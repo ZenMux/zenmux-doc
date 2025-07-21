@@ -1,0 +1,20 @@
+{
+  "name": "sample-doc",
+  "version": "1.0.0",
+  "scripts": {
+    "postinstall": "patch-package",
+    "docs:dev": "vitepress dev docs_source",
+    "docs:build": "vitepress build docs_source",
+    "docs:preview": "vitepress preview docs_source"
+  },
+  "dependencies": {
+    "copy-to-clipboard": "^3.3.3",
+    "element-plus": "^2.10.4",
+    "element-ui": "^2.15.14",
+    "vitepress": "1.6.3"
+  },
+  "repository": "git@github.com:tboxrouter/sample-doc.git",
+  "devDependencies": {
+    "patch-package": "^8.0.0"
+  }
+}

@@ -1,0 +1,12 @@
+diff --git a/node_modules/vitepress/dist/node/chunk-Zsoi3j4v.js b/node_modules/vitepress/dist/node/chunk-Zsoi3j4v.js
+index 8cfe39e..a336ca9 100644
+--- a/node_modules/vitepress/dist/node/chunk-Zsoi3j4v.js
++++ b/node_modules/vitepress/dist/node/chunk-Zsoi3j4v.js
+@@ -36714,6 +36714,7 @@ async function createMarkdownToVueRenderFn(srcDir, options = {}, pages, isBuild
+       headers,
+       params,
+       relativePath,
++      content: btoa(src),
+       filePath: slash(path$1.relative(srcDir, fileOrig))
+     };
+     if (includeLastUpdatedData && frontmatter.lastUpdated !== false) {
