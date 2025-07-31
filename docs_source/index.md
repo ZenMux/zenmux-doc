@@ -1,25 +1,166 @@
 ---
-# https://vitepress.dev/reference/default-theme-home-page
-layout: home
-
-hero:
-  name: "TboxRouter Documents"
-  text: "A tboxrouter document"
-  tagline: My great project tagline
-  actions:
-    - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
-    - theme: alt
-      text: API Examples
-      link: /api-examples
-
-features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+title: Quickstart
+subtitle: Get started with Zenmux
+slug: quickstart
+headline: Zenmux Quickstart Guide | Developer Documentation
+canonical-url: 'https://zenmux.ai/docs/quickstart'
+'og:site_name': Zenmux Documentation
+'og:title': Zenmux Quickstart Guide
+'og:description': >-
+  Get started with Zenmux's unified API for hundreds of AI models. Learn how
+  to integrate using OpenAI SDK, direct API calls, or third-party frameworks.
+'og:image':
+  type: url
+  value: >-
+    https://zenmux.ai/dynamic-og?pathname=quickstart&title=Quick%20Start&description=Start%20using%20Zenmux%20API%20in%20minutes%20with%20any%20SDK
+'og:image:width': 1200
+'og:image:height': 630
+'twitter:card': summary_large_image
+'twitter:site': '@ZenmuxAI'
+noindex: false
+nofollow: false
 ---
+# Quickstart
 
+Zenmux provides a unified API that gives you access to hundreds of AI models through a single endpoint, while automatically handling fallbacks and selecting the most cost-effective options. Get started with just a few lines of code using your preferred SDK or framework.
+
+::: tip
+  Looking for information about free models and rate limits? Please see the [FAQ](./markdown-examples.md)
+:::
+
+In the examples below, the Zenmux-specific headers are optional. Setting them allows your app to appear on the Zenmux leaderboards. For detailed information about app attribution, see our [App Attribution guide](./markdown-examples.md).
+
+## Using the OpenAI SDK
+
+::: code-group
+
+```python title="Python"
+from openai import OpenAI
+
+client = OpenAI(
+  base_url="https://zenmux.ai/api/v1",
+  api_key="<Zenmux_API_KEY>",
+)
+
+completion = client.chat.completions.create(
+  extra_headers={
+    "HTTP-Referer": "<YOUR_SITE_URL>", # Optional. Site URL for rankings on zenmux.ai.
+    "X-Title": "<YOUR_SITE_NAME>", # Optional. Site title for rankings on zenmux.ai.
+  },
+  model="openai/gpt-4o",
+  messages=[
+    {
+      "role": "user",
+      "content": "What is the meaning of life?"
+    }
+  ]
+)
+
+print(completion.choices[0].message.content)
+```
+
+```typescript title="TypeScript"
+import OpenAI from 'openai';
+
+const openai = new OpenAI({
+  baseURL: 'https://zenmux.ai/api/v1',
+  apiKey: '<Zenmux_API_KEY>',
+  defaultHeaders: {
+    'HTTP-Referer': '<YOUR_SITE_URL>', // Optional. Site URL for rankings on zenmux.ai.
+    'X-Title': '<YOUR_SITE_NAME>', // Optional. Site title for rankings on zenmux.ai.
+  },
+});
+
+async function main() {
+  const completion = await openai.chat.completions.create({
+    model: 'openai/gpt-4o',
+    messages: [
+      {
+        role: 'user',
+        content: 'What is the meaning of life?',
+      },
+    ],
+  });
+
+  console.log(completion.choices[0].message);
+}
+
+main();
+```
+
+:::
+
+## Using the Zenmux API directly
+
+<Tip>
+  You can use the interactive [Request Builder](/request-builder) to generate Zenmux API requests in the language of your choice.
+</Tip>
+
+::: code-group
+
+```python title="Python"
+import requests
+import json
+
+response = requests.post(
+  url="https://zenmux.ai/api/v1/chat/completions",
+  headers={
+    "Authorization": "Bearer <Zenmux_API_KEY>",
+    "HTTP-Referer": "<YOUR_SITE_URL>", # Optional. Site URL for rankings on zenmux.ai.
+    "X-Title": "<YOUR_SITE_NAME>", # Optional. Site title for rankings on zenmux.ai.
+  },
+  data=json.dumps({
+    "model": "openai/gpt-4o", # Optional
+    "messages": [
+      {
+        "role": "user",
+        "content": "What is the meaning of life?"
+      }
+    ]
+  })
+)
+```
+
+```typescript title="TypeScript"
+fetch('https://zenmux.ai/api/v1/chat/completions', {
+  method: 'POST',
+  headers: {
+    Authorization: 'Bearer <Zenmux_API_KEY>',
+    'HTTP-Referer': '<YOUR_SITE_URL>', // Optional. Site URL for rankings on zenmux.ai.
+    'X-Title': '<YOUR_SITE_NAME>', // Optional. Site title for rankings on zenmux.ai.
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    model: 'openai/gpt-4o',
+    messages: [
+      {
+        role: 'user',
+        content: 'What is the meaning of life?',
+      },
+    ],
+  }),
+});
+```
+
+```shell title="Shell"
+curl https://zenmux.ai/api/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $Zenmux_API_KEY" \
+  -d '{
+  "model": "openai/gpt-4o",
+  "messages": [
+    {
+      "role": "user",
+      "content": "What is the meaning of life?"
+    }
+  ]
+}'
+```
+
+:::
+
+The API also supports [streaming](./markdown-examples.md).
+
+## Using third-party SDKs
+
+For information about using third-party SDKs and frameworks with Zenmux, please [see our frameworks documentation.](./markdown-examples.md)
