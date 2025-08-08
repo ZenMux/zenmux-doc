@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "postinstall": "patch-package",
+    "dev": "npm run docs:dev",
+    "build": "npm run docs:build",
     "docs:dev": "vitepress dev docs_source",
     "docs:build": "vitepress build docs_source",
     "docs:preview": "vitepress preview docs_source"

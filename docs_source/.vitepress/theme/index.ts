@@ -5,6 +5,7 @@ import DefaultTheme from 'vitepress/theme'
 import 'element-plus/theme-chalk/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 import Select from './select.vue'
+import Login from './login.vue'
 import './style.css'
 
 export default {
@@ -20,5 +21,6 @@ export default {
   enhanceApp({ app, router, siteData }) {
     // ...
     // app.use(ElementPlus);
+    app.component('Login', Login)
   }
 } satisfies Theme

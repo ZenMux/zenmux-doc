@@ -4,17 +4,23 @@ import { defineConfig } from 'vitepress'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   lang: 'en-US',
-  title: "TboxRouter Documents",
-  description: "A tboxrouter document",
+  title: "ZenMux",
+  description: "zenmux.ai document",
   outDir: '../docs',
   base: '/',
 
+  ignoreDeadLinks: true,
+
   themeConfig: {
+    externalLinkIcon: false,
     // https://vitepress.dev/reference/default-theme-config
-    // nav: [
-    //   { text: 'Home', link: '/' },
-    //   { text: 'Examples', link: '/markdown-examples' }
-    // ],
+    nav: [
+      { text: 'API', link: '/api/overview' },
+      { text: 'Models', link: 'https://zenmux.ai/models', noIcon: true },
+      { text: 'Chat', link: 'https://zenmux.ai/chat', noIcon: true },
+      { text: 'Ranking', link: 'https://zenmux.ai/rangking', noIcon: true },
+      { component: 'Login' },
+    ],
 
     sidebar: [
       {
@@ -27,17 +33,16 @@ export default defineConfig({
         ]
       },
       {
-        text: 'Overview',
+        text: 'Api Reference',
         items: [
-          { text: '🚀Quickstart', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          { text: 'Overview', link: '/api/overview' },
         ]
       }
     ],
 
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
-    ],
+    // socialLinks: [
+    //   { icon: 'github', link: 'https://github.com/vuejs/vitepress', ariaLabel: 'GitHub' }
+    // ],
 
     search: {
       provider: 'local'
