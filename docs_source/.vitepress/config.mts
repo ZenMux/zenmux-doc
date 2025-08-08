@@ -28,8 +28,6 @@ export default defineConfig({
         collapsed: false,
         items: [
           { text: '🚀 Quickstart', link: '/' },
-          { text: '❓ FAQ?', link: '/api-examples' },
-          { text: '🧾 Priciples', link: '/api-examples' }
         ]
       },
       {
