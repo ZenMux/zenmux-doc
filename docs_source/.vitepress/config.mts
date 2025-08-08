@@ -7,7 +7,7 @@ export default defineConfig({
   title: "TboxRouter Documents",
   description: "A tboxrouter document",
   outDir: '../docs',
-  base: '/sample-doc/',
+  base: '/',
 
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
