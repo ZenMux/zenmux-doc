@@ -12,3 +12,5 @@ content: Buffer.from(src, 'utf-8').toString('base64'),
 
 content: btoa(src),
 ```
+
+测试一下
