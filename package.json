@@ -1,10 +1,10 @@
 {
-  "name": "sample-doc",
-  "version": "1.0.0",
+  "name": "zenmux-doc",
+  "version": "1.0.1",
   "scripts": {
-    "postinstall": "patch-package",
-    "dev": "npm run docs:dev",
-    "build": "npm run docs:build",
+    "dev": "vitepress dev docs_source",
+    "build": "vitepress build docs_source",
+    "preview": "vitepress preview docs_source",
     "docs:dev": "vitepress dev docs_source",
     "docs:build": "vitepress build docs_source",
     "docs:preview": "vitepress preview docs_source"
@@ -15,8 +15,6 @@
     "element-ui": "^2.15.14",
     "vitepress": "1.6.3"
   },
-  "repository": "git@github.com:tboxrouter/sample-doc.git",
-  "devDependencies": {
-    "patch-package": "^8.0.0"
-  }
+  "repository": "git@github.com:ZenMux/zenmux-doc.git",
+  "devDependencies": {}
 }

@@ -3,16 +3,16 @@
 # layout: home
 
 hero:
-  name: "TboxRouter Documents"
-  text: "A tboxrouter document"
-  tagline: My great project tagline
+  name: "ZenMux 文档"
+  text: "ZenMux 文档与开发者指南"
+  tagline: 一套接口，统一接入海量 AI 模型
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      text: Markdown 示例
+      link: /zh/markdown-examples
     - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: API 示例
+      link: /zh/api-examples
 
 features:
   - title: Feature A

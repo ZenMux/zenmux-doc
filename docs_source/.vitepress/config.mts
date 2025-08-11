@@ -1,13 +1,13 @@
-import { zhCn } from 'element-plus/es/locales.mjs';
-import { defineConfig } from 'vitepress'
+import { zhCn } from "element-plus/es/locales.mjs";
+import { defineConfig } from "vitepress";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  lang: 'en-US',
+  lang: "en-US",
   title: "ZenMux",
   description: "zenmux.ai document",
-  outDir: '../docs',
-  base: '/',
+  outDir: "../docs",
+  base: "/",
 
   ignoreDeadLinks: true,
 
@@ -15,27 +15,23 @@ export default defineConfig({
     externalLinkIcon: false,
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: 'API', link: '/api/overview' },
-      { text: 'Models', link: 'https://zenmux.ai/models', noIcon: true },
-      { text: 'Chat', link: 'https://zenmux.ai/chat', noIcon: true },
-      { text: 'Ranking', link: 'https://zenmux.ai/rangking', noIcon: true },
-      { component: 'Login' },
+      { text: "API", link: "/api/overview" },
+      { text: "Models", link: "https://zenmux.ai/models", noIcon: true },
+      { text: "Chat", link: "https://zenmux.ai/chat", noIcon: true },
+      { text: "Ranking", link: "https://zenmux.ai/ranking", noIcon: true },
+      { component: "Login" },
     ],
 
     sidebar: [
       {
-        text: 'Overview',
+        text: "Overview",
         collapsed: false,
-        items: [
-          { text: '🚀 Quickstart', link: '/' },
-        ]
+        items: [{ text: "🚀 Quickstart", link: "/" }],
       },
       {
-        text: 'Api Reference',
-        items: [
-          { text: 'Overview', link: '/api/overview' },
-        ]
-      }
+        text: "Api Reference",
+        items: [{ text: "Overview", link: "/api/overview" }],
+      },
     ],
 
     // socialLinks: [
@@ -43,79 +39,58 @@ export default defineConfig({
     // ],
 
     search: {
-      provider: 'local'
+      provider: "local",
     },
   },
 
-
-  // locales: {
-  //   root: {
-  //     label: 'English',
-  //     lang: 'en-US',
-  //     title: 'TboxRouter Documents',
-  //     description: 'A tboxrouter document',
-  //     themeConfig: {
-  //       // https://vitepress.dev/reference/default-theme-config
-  //       // nav: [
-  //       //   { text: 'Home', link: '/' },
-  //       //   { text: 'Examples', link: '/markdown-examples' }
-  //       // ],
-
-  //       sidebar: [
-  //         {
-  //           text: 'Overview',
-  //           collapsed: false,
-  //           items: [
-  //             { text: '🚀 Quickstart', link: '/' },
-  //             { text: '❓ FAQ?', link: '/api-examples' },
-  //             { text: '🧾 Priciples', link: '/api-examples' }
-  //           ]
-  //         },
-  //         {
-  //           text: 'Overview',
-  //           items: [
-  //             { text: '🚀Quickstart', link: '/markdown-examples' },
-  //             { text: 'Runtime API Examples', link: '/api-examples' }
-  //           ]
-  //         }
-  //       ],
-
-  //       socialLinks: [
-  //         { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
-  //       ],
-
-  //       search: {
-  //         provider: 'local'
-  //       },
-  //     },
-  //   },
-  //   zh: {
-  //     label: '简体中文',
-  //     lang: 'zh-CN',
-  //     link: '/zh/',
-  //     title: 'TboxRouter 文档',
-  //     description: 'TboxRouter 的文档',
-  //     themeConfig: {
-  //       nav: [
-  //         { text: '首页', link: '/zh/' },
-  //         { text: '示例', link: '/zh/markdown-examples' }
-  //       ],
-
-  //       sidebar: [
-  //         {
-  //           text: '示例',
-  //           items: [
-  //             { text: 'Markdown 示例', link: '/zh/markdown-examples' },
-  //             { text: '运行时 API 示例', link: '/zh/api-examples' }
-  //           ]
-  //         }
-  //       ],
-  //     },
-  //   },
-  // },
+  // Enable locales for English (root) and Simplified Chinese (zh)
+  locales: {
+    root: {
+      label: "English",
+      lang: "en-US",
+      title: "ZenMux",
+      description: "zenmux.ai document",
+      // Use the global themeConfig for root; override only if necessary
+    },
+    zh: {
+      label: "简体中文",
+      lang: "zh-CN",
+      link: "/zh/",
+      title: "ZenMux 文档",
+      description: "ZenMux 的文档",
+      themeConfig: {
+        nav: [
+          { text: "API 概览", link: "/api/overview" },
+          { text: "模型", link: "https://zenmux.ai/models", noIcon: true },
+          { text: "聊天", link: "https://zenmux.ai/chat", noIcon: true },
+          { text: "Ranking", link: "https://zenmux.ai/ranking", noIcon: true },
+          { component: "Login" },
+        ],
+        sidebar: [
+          {
+            text: "概览",
+            collapsed: false,
+            items: [
+              { text: "🚀 快速开始", link: "/zh/getting-started" },
+              { text: "Markdown 示例", link: "/zh/markdown-examples" },
+              { text: "运行时 API 示例", link: "/zh/api-examples" },
+            ],
+          },
+          {
+            text: "API 参考",
+            items: [
+              // 暂无中文版本，先指向英文 Overview
+              { text: "Overview", link: "/api/overview" },
+            ],
+          },
+        ],
+        search: { provider: "local" },
+      },
+    },
+  },
 
   postRender(context) {
     // You can modify the context here
-    console.log('Post render context:', context);
+    console.log("Post render context:", context);
   },
-})
+});
