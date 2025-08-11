@@ -2,7 +2,6 @@
   "name": "zenmux-doc",
   "version": "1.0.1",
   "scripts": {
-    "postinstall": "patch-package",
     "dev": "vitepress dev docs_source",
     "build": "vitepress build docs_source",
     "preview": "vitepress preview docs_source",
@@ -17,7 +16,5 @@
     "vitepress": "1.6.3"
   },
   "repository": "git@github.com:ZenMux/zenmux-doc.git",
-  "devDependencies": {
-    "patch-package": "^8.0.0"
-  }
+  "devDependencies": {}
 }
