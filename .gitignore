@@ -5,3 +5,5 @@ docs_source/.vitepress/cache
 docs_source/.vitepress/dist
 docs_source/.vitepress/cache
 docs
+
+.llm-prompt
