@@ -109,6 +109,7 @@ export default defineConfig({
             items: [
               { text: "快速开始", link: "/zh/guide/quickstart" },
               { text: "令牌使用", link: "/zh/guide/token-usage" },
+              { text: "参数映射", link: "/zh/guide/parameter-mapping" },
               { text: "基础调用", link: "/zh/guide/basic" },
               {
                 text: "高级调用",
