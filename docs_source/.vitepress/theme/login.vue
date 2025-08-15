@@ -19,7 +19,7 @@
           <el-dropdown-item @click="goSettings">Settings</el-dropdown-item>
           <el-dropdown-item @click="goCredits">Credits</el-dropdown-item>
           <el-dropdown-item @click="goApiKeys">API Keys</el-dropdown-item>
-          <el-dropdown-item @click="logout">Sign out</el-dropdown-item>
+          <el-dropdown-item @click="goLogout">Sign out</el-dropdown-item>
         </el-dropdown-menu>
       </template>
     </el-dropdown>
@@ -31,7 +31,7 @@ import { defineComponent, ref } from 'vue';
 import { ElButton, ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus'
 import MyIcon from './icon.vue';
 import { useData, inBrowser } from 'vitepress'
-import { info } from '../../component/server';
+import { info, logout } from '../../component/server';
 
 export default defineComponent({
   name: 'LoginButton',
@@ -77,8 +77,9 @@ export default defineComponent({
       }, 2000);
     };
 
-    const logout = () => {
+    const goLogout = () => {
       user.value = null;
+      logout();
       // 可在此处添加实际的登出逻辑
     };
 
@@ -96,7 +97,7 @@ export default defineComponent({
       user,
       isCopied,
       handleClick,
-      logout,
+      goLogout,
       isLoading,
       goSettings,
       goCredits,
