@@ -48,3 +48,6 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+      - name: Notify webhook
+        run: |
+          curl -X POST -H "Content-Type: application/json" -d '{"msgtype":"markdown","markdown":{"title":"deployed","text":"# docs 发布成功\n\n${{ steps.deployment.outputs.page_url }}"}}' https://oapi.dingtalk.com/robot/send?access_token=2c29f44da95646d48863d4ced8baa6a9bbf4c61c894eff907b7f0ba09c8042c9
