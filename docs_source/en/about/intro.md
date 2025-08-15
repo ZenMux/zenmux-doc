@@ -8,33 +8,6 @@ headers:
     - description: Bearer authentication of the form Bearer <token>, where token is your auth token.
 aside: false
 ---
-<script setup>
-  import { computePosition, autoUpdate } from '@floating-ui/dom';
-
-  setTimeout(() => {
-    const docDOM = document.querySelector('.http-method.get');
-    const floatDOM = document.querySelector('.http-method-show');
-    let hasStart = false;
-
-    function updatePosition() {
-      const minY = 64;
-      const rect = docDOM.getBoundingClientRect();
-      const y = Math.max(rect.top, minY);
-      floatDOM.style.top = y + 'px';
-
-      if(!hasStart) {
-        hasStart = true;
-        autoUpdate(docDOM, floatDOM, updatePosition);
-      }
-      
-    }
-    document.querySelectorAll('.vp-doc > div > .vp-adaptive-theme').forEach(node => {
-      floatDOM.appendChild(node);
-    });
-    updatePosition();
-    console.info('--->', floatDOM, docDOM);
-  });
-</script>
 
 # Get a generation
 

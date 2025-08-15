@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted, computed, watch } from 'vue'
-import {  ElMessage, ElSelect, ElOption } from 'element-plus'
+import { ElMessage, ElSelect, ElOption } from 'element-plus'
 import MyIcon from './icon.vue';
-import { useData } from 'vitepress';
+import { useData, inBrowser } from 'vitepress';
 
 const { frontmatter, page } = useData();
 
@@ -20,6 +20,7 @@ const copiedResp = ref(false)
 const copiedPath = ref(false)
 
 function initRequestData() {
+  if (!inBrowser) return;
   const dom = document.querySelector<HTMLElement>('.api-request')
   if (dom) {
     dom.dataset.info?.trim().toUpperCase().split(' ').forEach(part => {
@@ -126,13 +127,8 @@ async function copyPath() {
       <div class="api-header">
         <div class="left">
           <span class="http-method" :class="httpMethod.toLowerCase()" v-text="httpMethod"></span>
-          <span
-            class="http-path"
-            :class="{ copied: copiedPath }"
-            v-text="requestURL"
-            @click="copyPath"
-            title="Click to copy path"
-          ></span>
+          <span class="http-path" :class="{ copied: copiedPath }" v-text="requestURL" @click="copyPath"
+            title="Click to copy path"></span>
         </div>
         <div class="right">
           <el-select v-model="currentLang" placeholder="Lang" size="small" style="width:120px">
