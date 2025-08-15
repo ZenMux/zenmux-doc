@@ -1,28 +1,16 @@
 <template>
   <span class="login-button">
-    <el-button
-      v-if="!user && !isLoading"
-      type="primary"
-      @click="handleClick"
-      :disabled="isCopied"
-    >
+    <el-button v-if="!user && !isLoading" type="primary" @click="handleClick" :disabled="isCopied">
       Login
     </el-button>
-    <my-icon v-else-if="isLoading" className="loading-icon" name="sync-circle" :style="{ animation: 'spin 2s linear infinite' }">
+    <my-icon v-else-if="isLoading" className="loading-icon" name="sync-circle"
+      :style="{ animation: 'spin 2s linear infinite' }">
       <el-icon-loading />
     </my-icon>
     <el-dropdown v-else-if="user">
       <template #default>
-        <img
-          v-if="user.avatarUrl"
-          :src="user.avatarUrl"
-          alt="avatar"
-          class="user-avatar"
-        />
-        <span
-          v-else
-          class="user-avatar text-avatar"
-        >
+        <img v-if="user.avatarUrl" :src="user.avatarUrl" alt="avatar" class="user-avatar" />
+        <span v-else class="user-avatar text-avatar">
           {{ user.displayName ? user.displayName.charAt(0) : '' }}
         </span>
       </template>
@@ -42,7 +30,7 @@
 import { defineComponent, ref } from 'vue';
 import { ElButton, ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus'
 import MyIcon from './icon.vue';
-import { useData } from 'vitepress'
+import { useData, inBrowser } from 'vitepress'
 import { info } from '../../component/server';
 
 export default defineComponent({
@@ -65,19 +53,20 @@ export default defineComponent({
       displayName: string;
       email: string;
     } | null>(null);
-    const { theme, page, frontmatter } = useData()
 
-    info().then(res => {
-      console.log('User info:', res);
-      if (res.data.success) {
-        user.value = res.data.data as any;
-      }
-      isLoading.value = false;
-      console.info('User info loaded:', user.value);
-    }).catch(err => {
-      console.error('Failed to fetch user info:', err);
-      isLoading.value = false;
-    });
+    if (inBrowser) {
+      info().then(res => {
+        console.log('User info:', res);
+        if (res.data.success) {
+          user.value = res.data.data as any;
+        }
+        isLoading.value = false;
+        console.info('User info loaded:', user.value);
+      }).catch(err => {
+        console.error('Failed to fetch user info:', err);
+        isLoading.value = false;
+      });
+    }
 
     const handleClick = () => {
       if (isCopied.value) return;
@@ -129,6 +118,7 @@ export default defineComponent({
   transition: color 0.25s;
   cursor: pointer;
 }
+
 .user-avatar {
   width: 28px;
   height: 28px;
@@ -140,6 +130,7 @@ export default defineComponent({
   align-items: center;
   justify-content: center;
 }
+
 .text-avatar {
   background: var(--vp-c-gray-3);
   color: var(--vp-c-text-1);
@@ -148,6 +139,7 @@ export default defineComponent({
   font-weight: bold;
   object-fit: contain;
 }
+
 .loading-icon {
   font-size: 22px;
   margin-left: 10px;
