@@ -20,7 +20,10 @@ canonical-url: 'https://zenmux.ai/docs/quickstart'
 noindex: false
 nofollow: false
 ---
-# Quickstart
+# Quickstart Quickstart Quickstart Quickstart Quickstart Quickstart Quickstart Quickstart 
+<Copy> 
+  **asd** 
+</Copy>
 
 ZenMux provides a unified API that gives you access to hundreds of AI models through a single endpoint, while automatically handling fallbacks and selecting the most cost-effective options. Get started with just a few lines of code using your preferred SDK or framework.
 
