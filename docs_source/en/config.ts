@@ -6,8 +6,13 @@ export default defineLoacaleConfig({
   title: "ZenMux",
   description: "zenmux.ai document",
   themeConfig: {
-    externalLinkIcon: false,
-    nav: [],
+    nav: [
+      { text: 'API', link: '/api/overview' },
+      { text: 'Models', link: 'https://zenmux.ai/models', noIcon: true },
+      { text: 'Chat', link: 'https://zenmux.ai/chat', noIcon: true },
+      { text: 'Ranking', link: 'https://zenmux.ai/rangking', noIcon: true },
+    ],
+    socialLinks: false as any,
     sidebar: [
       {
         text: "About ZenMux",

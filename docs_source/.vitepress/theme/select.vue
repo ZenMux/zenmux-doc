@@ -1,7 +1,7 @@
 <template>
   <div class="select-dropdown">
     <el-dropdown split-button @click="handleClick">
-      <span v-if="!isCopied"><my-icon name="copy"></my-icon> Copy Page</span>
+      <span v-if="!isCopied"><my-icon name="copy"></my-icon> Copy Page </span>
       <span v-else><my-icon name="checkmark"></my-icon> Copied</span>
       <template #dropdown>
         <el-dropdown-menu>
@@ -27,6 +27,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
+import LZString from 'lz-string';
 import { ElButton, ElDropdown, ElDropdownItem, ElDropdownMenu } from 'element-plus'
 import copyToClipboard from 'copy-to-clipboard';
 import { useData } from 'vitepress'
@@ -58,8 +59,9 @@ export default defineComponent({
 
     const handleClick = () => {
       if (isCopied.value) return;
+      console.log('Button clicked!', page.value);
       // @ts-expect-error not error
-      copyToClipboard(atob(page.value.content))
+      copyToClipboard(LZString.decompressFromBase64(page.value.content))
       console.log('Button clicked!', page.value);
       isCopied.value = true;
       setTimeout(() => {

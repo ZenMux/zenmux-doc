@@ -140,3 +140,26 @@
 .el-popper__arrow {
   display: none;
 }
+
+span.http-method {
+  display: inline-block;
+  font-size: .615rem;
+  border-radius: 4px;
+  text-align: center;
+  font-weight: bold;
+  width: 36px;
+}
+
+span.http-method.get {
+  color: var(--vp-c-white);
+  background-color: var(--vp-c-green-3);
+}
+
+span.http-method.post {
+  color: var(--vp-c-white);
+  background-color: var(--vp-c-brand-3);
+}
+
+.api-page .VPDoc .content {
+  margin-right: 400px;
+}
