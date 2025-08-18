@@ -34,6 +34,8 @@ export default defineConfig({
   base: "/",
   ignoreDeadLinks: true,
 
+  head: [['link', { rel: 'icon', href: 'public/favicon.svg' }]],
+
   vite: {
     server: {
       host: '127.0.0.1'
