@@ -34,7 +34,7 @@ export default defineConfig({
   base: "/",
   ignoreDeadLinks: true,
 
-  head: [['link', { rel: 'icon', href: 'public/favicon.svg' }]],
+  head: [['link', { rel: 'icon', href: '/favicon.svg' }]],
 
   vite: {
     server: {
