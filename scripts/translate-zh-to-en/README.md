@@ -23,18 +23,26 @@ cp .env.example .env
 # 翻译单个文件
 npm run translate docs_source/zh/index.md
 
+# 强制覆盖已存在的英文文件
+npm run translate docs_source/zh/index.md -- --force
+
 # 翻译指南文档
 npm run translate docs_source/zh/guide/quickstart.md
 
-# 翻译关于页面
-npm run translate docs_source/zh/about/intro.md
+# 翻译关于页面（强制覆盖）
+npm run translate docs_source/zh/about/intro.md -- --force
 ```
+
+## 参数说明
+
+- `--force`: 强制覆盖已存在的目标文件，默认情况下脚本会跳过已存在的英文文件
 
 ## 功能特性
 
 - ✅ 自动检测中文路径（必须包含 `/zh/` 目录）
 - ✅ 自动生成对应的英文路径（将 `zh` 替换为 `en`）
 - ✅ 智能跳过已存在的英文文件
+- ✅ 支持强制覆盖模式（`--force` 参数）
 - ✅ 自动创建目标目录
 - ✅ 使用专业的翻译提示词保证质量
 - ✅ 保持代码和格式不变
@@ -42,6 +50,7 @@ npm run translate docs_source/zh/about/intro.md
 ## 注意事项
 
 - 源文件路径必须包含 `/zh/` 目录
-- 如果目标英文文件已存在，脚本会跳过翻译
+- 默认情况下，如果目标英文文件已存在，脚本会跳过翻译
+- 使用 `--force` 参数可以强制覆盖已存在的文件
 - 只支持 Markdown (`.md`) 文件
 - 需要有效的 ZenMux API Key

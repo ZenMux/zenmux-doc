@@ -110,13 +110,19 @@ async function translateContent(systemPrompt: string, markdownContent: string): 
 
 async function main() {
   try {
-    // 从命令行参数获取源文件路径
-    const sourceFilePath = process.argv[2];
+    // 解析命令行参数
+    const args = process.argv.slice(2);
+    const forceOverwrite = args.includes('--force');
+    const sourceFilePath = args.find(arg => !arg.startsWith('--'));
     
     if (!sourceFilePath) {
       console.error("❌ 请提供源文件路径作为命令行参数");
-      console.log("使用方法: npm run translate <源文件路径>");
+      console.log("使用方法: npm run translate <源文件路径> [--force]");
       console.log("示例: npm run translate docs_source/zh/index.md");
+      console.log("示例: npm run translate docs_source/zh/index.md --force");
+      console.log("");
+      console.log("参数说明:");
+      console.log("  --force  强制覆盖已存在的目标文件");
       console.log("");
       console.log("注意: 请确保已设置环境变量 ZENMUX_API_KEY");
       console.log("设置方法: export ZENMUX_API_KEY=your_api_key_here");
@@ -138,11 +144,15 @@ async function main() {
     const targetFilePath = convertZhToEnPath(absoluteSourcePath);
     console.log(`📁 目标文件路径: ${targetFilePath}`);
     
-    // 检查目标文件是否已存在
-    if (checkTargetFileExists(targetFilePath)) {
+    // 检查目标文件是否已存在（除非使用 --force 参数）
+    if (!forceOverwrite && checkTargetFileExists(targetFilePath)) {
       console.log("⚠️  目标文件已存在，跳过翻译");
       console.log(`📄 现有文件: ${targetFilePath}`);
+      console.log("💡 如需强制覆盖，请使用 --force 参数");
       process.exit(0);
+    } else if (forceOverwrite && checkTargetFileExists(targetFilePath)) {
+      console.log("🔄 检测到 --force 参数，将覆盖现有文件");
+      console.log(`📄 目标文件: ${targetFilePath}`);
     }
     
     // 加载系统提示词

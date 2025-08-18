@@ -1,11 +1,11 @@
 ---
-title: 快速上手
+title: Quick Start
 outline: deep
 ---
 
-# 快速开始
+# Quick Start
 
-这里写中文内容。
+This is where the English content goes.
 
 ```js
 content: Buffer.from(src, 'utf-8').toString('base64'),
@@ -13,5 +13,4 @@ content: Buffer.from(src, 'utf-8').toString('base64'),
 content: btoa(src),
 ```
 
-测试一下
-
+Testing this out
