@@ -20,7 +20,7 @@ canonical-url: 'https://zenmux.ai/docs/quickstart'
 noindex: false
 nofollow: false
 ---
-# Quickstart Quickstart Quickstart Quickstart Quickstart Quickstart Quickstart Quickstart 
+# Quickstart
 <Copy> 
   **asd** 
 </Copy>
