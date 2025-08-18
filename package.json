@@ -7,7 +7,8 @@
     "preview": "vitepress preview docs_source",
     "docs:dev": "vitepress dev docs_source",
     "docs:build": "vitepress build docs_source",
-    "docs:preview": "vitepress preview docs_source"
+    "docs:preview": "vitepress preview docs_source",
+    "translate": "tsx scripts/translate-zh-to-en/translate-zh-to-en.ts"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.2",
@@ -18,10 +19,12 @@
     "element-ui": "^2.15.14",
     "lz-string": "^1.5.0",
     "markdown-it-container": "^4.0.0",
+    "openai": "^5.12.2",
     "vitepress": "1.6.3"
   },
   "repository": "git@github.com:ZenMux/zenmux-doc.git",
   "devDependencies": {
-    "@types/node": "^24.2.1"
+    "@types/node": "^24.2.1",
+    "tsx": "^4.20.4"
   }
 }
