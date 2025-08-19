@@ -12,11 +12,9 @@ export default defineLoacaleConfig({
       { text: 'Chat', link: 'https://zenmux.ai/chat', noIcon: true },
       { text: 'Ranking', link: 'https://zenmux.ai/rangking', noIcon: true },
     ],
-    socialLinks: false as any,
     sidebar: [
       {
         text: "About ZenMux",
-        collapsed: false,
         items: [
           { text: "Introduction", link: "/about/intro" },
           { text: "Architecture", link: "/about/architecture" },
@@ -26,11 +24,12 @@ export default defineLoacaleConfig({
         ]
       },
       {
-        text: "Guides",
+        text: "User Guide",
         items: [
           { text: "Quickstart", link: "/guide/quickstart" },
           { text: "Token Usage", link: "/guide/token-usage" },
           { text: "Basic Usage", link: "/guide/basic" },
+          { text: "Parameter Mapping", link: "/guide/parameter-mapping" },
           {
             text: "Advanced",
             items: [
@@ -74,5 +73,6 @@ export default defineLoacaleConfig({
         ]
       }
     ],
+    search: { provider: "local" }
   },
 });

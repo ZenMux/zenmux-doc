@@ -7,11 +7,15 @@ export default defineLoacaleConfig({
   title: "ZenMux 文档",
   description: "ZenMux 的文档",
   themeConfig: {
-    nav: [],
+    nav: [
+      { text: 'API', link: '/api/overview' },
+      { text: 'Models', link: 'https://zenmux.ai/models', noIcon: true },
+      { text: 'Chat', link: 'https://zenmux.ai/chat', noIcon: true },
+      { text: 'Ranking', link: 'https://zenmux.ai/rangking', noIcon: true },
+    ],
     sidebar: [
       {
         text: "关于 ZenMux",
-        collapsed: false,
         items: [
           { text: "简介", link: "/zh/about/intro" },
           { text: "架构", link: "/zh/about/architecture" },
