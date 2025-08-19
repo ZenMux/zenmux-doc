@@ -170,7 +170,8 @@ payload = {
 response = httpx.post(
     "https://zenmux.ai/api/v1/chat/completions", # [!code highlight]
     headers=headers,
-    json=payload
+    json=payload,
+    timeout=httpx.Timeout(60.0)
 )
 
 # 检查请求是否成功（可选）
