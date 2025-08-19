@@ -8,6 +8,10 @@ export default defineLoacaleConfig({
   description: "ZenMux 的文档",
   themeConfig: {
     nav: [],
+    outline: {
+      label: "目录",
+      level: [2, 3]
+    },
     sidebar: [
       {
         text: "关于 ZenMux",

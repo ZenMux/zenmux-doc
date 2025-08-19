@@ -12,6 +12,9 @@ export default defineLoacaleConfig({
       { text: 'Chat', link: 'https://zenmux.ai/chat', noIcon: true },
       { text: 'Ranking', link: 'https://zenmux.ai/rangking', noIcon: true },
     ],
+    outline: {
+      level: [2, 3]
+    },
     socialLinks: false as any,
     sidebar: [
       {
