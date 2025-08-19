@@ -24,13 +24,13 @@ cp .env.example .env
 npm run translate docs_source/zh/index.md
 
 # 强制覆盖已存在的英文文件
-npm run translate docs_source/zh/index.md -- --force
+npm run translate docs_source/zh/index.md --force
 
 # 翻译指南文档
 npm run translate docs_source/zh/guide/quickstart.md
 
 # 翻译关于页面（强制覆盖）
-npm run translate docs_source/zh/about/intro.md -- --force
+npm run translate docs_source/zh/about/intro.md --force
 ```
 
 ## 参数说明
