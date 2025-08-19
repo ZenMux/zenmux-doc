@@ -2,6 +2,9 @@ import { defineConfig } from "vitepress";
 import container from 'markdown-it-container';
 import fs from "node:fs";
 import LZString from 'lz-string';
+import {
+  groupIconVitePlugin,
+} from 'vitepress-plugin-group-icons'
 import { locales } from '../config';
 
 const basePath = process.cwd() + '/docs_source/';
@@ -40,6 +43,55 @@ export default defineConfig({
     server: {
       host: '127.0.0.1'
     },
+    plugins: [
+      groupIconVitePlugin({
+        customIcon: {
+          'python': 'vscode-icons:file-type-python',
+          'javascript': 'vscode-icons:file-type-js',
+          'typescript': 'vscode-icons:file-type-typescript',
+          'vue': 'vscode-icons:file-type-vue',
+          'html': 'vscode-icons:file-type-html',
+          'css': 'vscode-icons:file-type-css',
+          'json': 'vscode-icons:file-type-json',
+          'markdown': 'vscode-icons:file-type-markdown',
+          'c': 'vscode-icons:file-type-c',
+          'cpp': 'vscode-icons:file-type-cpp',
+          'java': 'vscode-icons:file-type-java',
+          'go': 'vscode-icons:file-type-go',
+          'ruby': 'vscode-icons:file-type-ruby',
+          'php': 'vscode-icons:file-type-php',
+          'shell': 'vscode-icons:file-type-shell',
+          'bash': 'vscode-icons:file-type-shell',
+          'sql': 'vscode-icons:file-type-sql',
+          'xml': 'vscode-icons:file-type-xml',
+          'yaml': 'vscode-icons:file-type-yaml',
+          'dockerfile': 'vscode-icons:file-type-docker',
+          'kotlin': 'vscode-icons:file-type-kotlin',
+          'swift': 'vscode-icons:file-type-swift',
+          'rust': 'vscode-icons:file-type-rust',
+          'scala': 'vscode-icons:file-type-scala',
+          'perl': 'vscode-icons:file-type-perl',
+          'haskell': 'vscode-icons:file-type-haskell',
+          'elixir': 'vscode-icons:file-type-elixir',
+          'lua': 'vscode-icons:file-type-lua',
+          'r': 'vscode-icons:file-type-r',
+          'matlab': 'vscode-icons:file-type-matlab',
+          'powershell': 'vscode-icons:file-type-powershell',
+          'typescriptreact': 'vscode-icons:file-type-tsx',
+          'javascriptreact': 'vscode-icons:file-type-js',
+          'vuejs': 'vscode-icons:file-type-vue',
+          'svelte': 'vscode-icons:file-type-svelte',
+          'json5': 'vscode-icons:file-type-json',
+          'jsonc': 'vscode-icons:file-type-json',
+          'graphql': 'vscode-icons:file-type-graphql',
+          'markdownlint': 'vscode-icons:file-type-markdown',
+          'vuepress': 'vscode-icons:file-type-vue',
+          'nuxt': 'vscode-icons:file-type-nuxt',
+          'nextjs': 'vscode-icons:file-type-nextjs',
+          'astro': 'vscode-icons:file-type-astro',
+        },
+      }),
+    ]
   },
 
   rewrites: {
