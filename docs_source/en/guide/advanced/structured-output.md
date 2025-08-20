@@ -1,20 +1,21 @@
-# 结构化输出
-ZenMux 支持模型的结构化输出，确保响应遵循特定的[JSON Schema](https://json-schema.org/)格式。
-当您需要一致的格式响应时，可以依赖此功能来解析。
-# 参数
+# Structured Output
+ZenMux supports structured output for models, ensuring responses follow a specific [JSON Schema](https://json-schema.org/) format.
+When you need consistent formatted responses, you can rely on this feature for parsing.
+
+# Parameters
 **response_format**
-- 设置 { "type": "json_object" } 只保证输出是有效的JSON格式，不保证特定的结构或字段。
-- 设置 { "type": "json_schema", "json_schema": {...} } 更严格的控制JSON输出结构, 提供更强的类型和结构保证
+- Setting { "type": "json_object" } only guarantees the output is valid JSON format, without guaranteeing specific structure or fields.
+- Setting { "type": "json_schema", "json_schema": {...} } provides stricter control over JSON output structure, offering stronger type and structural guarantees.
 
-1. 设置 json_object 模式 
+1. Setting json_object mode 
 
-输入结构：
+Input structure:
 ```ts
 "response_format": {
     "type": "json_object"
 }
 ```
-输出结构: content 会返回有效的 JSON 格式内容 
+Output structure: content will return valid JSON formatted content 
 ```ts
 {
     "model": "openai/gpt-5-nano",
@@ -29,13 +30,13 @@ ZenMux 支持模型的结构化输出，确保响应遵循特定的[JSON Schema]
     ....
 }
 ```
-2. 设置 json_schema 模式 
+2. Setting json_schema mode 
 
-输入按照标准的 [JSON Schema](https://json-schema.org/) 格式定义好
+Input follows the standard [JSON Schema](https://json-schema.org/) format definition
 ```ts
 "response_format": {
     "type": "json_schema",
-    // 标准的json_schema数据
+    // Standard json_schema data
     "json_schema": {
         "name": "role",
         "description": "介绍自己",
@@ -62,7 +63,7 @@ ZenMux 支持模型的结构化输出，确保响应遵循特定的[JSON Schema]
     }
 }
 ```
-输出的 content 会按照指定的schema格式返回 JSON 数据
+The output content will return JSON data according to the specified schema format
 ```ts
 {
     "model": "openai/gpt-5-nano",
@@ -77,29 +78,29 @@ ZenMux 支持模型的结构化输出，确保响应遵循特定的[JSON Schema]
     ...
 }
 ```
-# 支持的模型
+# Supported Models
 
-在模型卡片页面找到对应供应商，查看支持参数中是否有 response_format, 如下图所示：
+Find the corresponding provider on the model card page and check if response_format is included in the supported parameters, as shown in the image below:
 
 ![img](https://cdn.marmot-cloud.com/storage/tbox-router/2025/08/20/kX7qp74/format.jpg)
 
-# API 调用示例
+# API Call Examples
 
 ::: code-group
 ```python [Python]
 from openai import OpenAI
 
-# 1. 初始化 OpenAI 客户端
+# 1. Initialize OpenAI client
 client = OpenAI(
-    # 2. 将基础 URL 指向 ZenMux 端点
+    # 2. Point base URL to ZenMux endpoint
     base_url="https://zenmux.ai/api/v1", # [!code highlight]
-    # 3. 替换为你从 ZenMux 用户控制台获取的 API Key
+    # 3. Replace with your API Key obtained from ZenMux user console
     api_key="<你的 ZENMUX_API_KEY>", # [!code highlight]
 )
 
-# 4. 发起请求
+# 4. Make request
 completion = client.chat.completions.create(
-    # 5. 指定你想使用的模型，格式为 "供应商/模型名称"
+    # 5. Specify the model you want to use, format: "provider/model_name"
     model="openai/gpt-5", # [!code highlight]
     messages=[
         {
@@ -144,18 +145,18 @@ print(completion.choices[0].message.content)
 ```ts [TypeScript]
 import OpenAI from "openai";
 
-// 1. 初始化 OpenAI 客户端
+// 1. Initialize OpenAI client
 const openai = new OpenAI({
-    // 2. 将基础 URL 指向 ZenMux 端点
+    // 2. Point base URL to ZenMux endpoint
     baseURL: "https://zenmux.ai/api/v1", // [!code highlight]
-    // 3. 替换为你从 ZenMux 用户控制台获取的 API Key
+    // 3. Replace with your API Key obtained from ZenMux user console
     api_key="<你的 ZENMUX_API_KEY>", // [!code highlight]
 });
 
 async function main() {
-    // 4. 发起请求
+    // 4. Make request
     const completion = await openai.chat.completions.create({
-        // 5. 指定你想使用的模型，格式为 "供应商/模型名称"
+        // 5. Specify the model you want to use, format: "provider/model_name"
         model: "openai/gpt-5",
         messages: [
             {
@@ -198,4 +199,5 @@ async function main() {
     console.log(completion.choices[0].message.content);
 }
 
-main();```
+main();
+```
