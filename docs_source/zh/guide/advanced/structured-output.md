@@ -1,6 +1,6 @@
 # 结构化输出
-ZenMux 支持模型的结构化输出，确保响应遵循特定的[JSON Schema](https://json-schema.org/)格式。
-当您需要一致的格式响应时，可以依赖此功能来解析。
+ZenMux 支持模型的结构化输出，响应遵循特定的[JSON Schema](https://json-schema.org/)格式。
+当您有固定的结构化数据诉求时，您可以用到该功能！
 # 参数
 **response_format**
 - 设置 { "type": "json_object" } 只保证输出是有效的JSON格式，不保证特定的结构或字段。
@@ -9,19 +9,24 @@ ZenMux 支持模型的结构化输出，确保响应遵循特定的[JSON Schema]
 1. 设置 json_object 模式 
 
 输入结构：
-```ts
-"response_format": {
-    "type": "json_object"
+```json
+{
+    "response_format": {
+        "type": "json_object"
+    }
 }
 ```
 输出结构: content 会返回有效的 JSON 格式内容 
-```ts
+```json
 {
     "model": "openai/gpt-5-nano",
     "choices": [
         {
             "message": {
-                "content": "{\n  \"description\": \"I am ChatGPT, an AI assistant built by OpenAI. I help answer questions, brainstorm ideas, draft text, explain concepts, debug code, and learn topics. I use patterns from training data to generate helpful, clear responses while recognizing limits and inviting follow-up questions. I adapt tone and detail to your needs.\"\n}",
+                // 实际content为json字符串，这个为了可读性，展示为json
+                "content": {
+                    "description": "I am ChatGPT, an AI assistant built by OpenAI. I help answer questions, brainstorm ideas, draft text, explain concepts, debug code, and learn topics. I use patterns from training data to generate helpful, clear responses while recognizing limits and inviting follow-up questions. I adapt tone and detail to your needs."
+                }
             }
             ....
         }
@@ -32,44 +37,51 @@ ZenMux 支持模型的结构化输出，确保响应遵循特定的[JSON Schema]
 2. 设置 json_schema 模式 
 
 输入按照标准的 [JSON Schema](https://json-schema.org/) 格式定义好
-```ts
-"response_format": {
-    "type": "json_schema",
-    // 标准的json_schema数据
-    "json_schema": {
-        "name": "role",
-        "description": "介绍自己",
-        "schema": {
-            "type": "object",
-            "description": "Your messages",
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "description": "your name"
+```json
+{
+    "response_format": {
+        "type": "json_schema",
+        // 标准的json_schema数据
+        "json_schema": {
+            "name": "role",
+            "description": "介绍自己",
+            "schema": {
+                "type": "object",
+                "description": "Your messages",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "your name"
+                    },
+                    "city": {
+                        "type": "string",
+                        "description": "where your city"
+                    },
+                    "desc": {
+                        "type": "string",
+                        "description": "详细介绍"
+                    }
                 },
-                "city": {
-                    "type": "string",
-                    "description": "where your city"
-                },
-                "desc": {
-                    "type": "string",
-                    "description": "详细介绍"
-                }
-            },
-            "required": ["name", "city", "desc"],
-            "additionalProperties": false
+                "required": ["name", "city", "desc"],
+                "additionalProperties": false
+            }
         }
     }
 }
 ```
 输出的 content 会按照指定的schema格式返回 JSON 数据
-```ts
+```json
 {
     "model": "openai/gpt-5-nano",
     "choices": [
         {
             "message": {
-                "content": "{\"name\":\"ChatGPT\",\"city\":\"Internet\",\"desc\":\"I am ChatGPT, an AI language model created by OpenAI. I help with questions, ideas, writing, and problem-solving. I learn from patterns in text and aim to be helpful, accurate, and respectful. I don't have personal experiences, but I strive to understand your needs and respond clearly and kindly today.\"}",
+                // 实际content为json字符串，这个为了可读性，展示为json
+                "content": {
+                    "name": "ChatGPT",
+                    "city": "Internet",
+                    "desc": "I am ChatGPT, an AI language model created by OpenAI. I help with questions, ideas, writing, and problem-solving. I learn from patterns in text and aim to be helpful, accurate, and respectful. I don't have personal experiences, but I strive to understand your needs and respond clearly and kindly today."
+                }
                 ...
             }
         }
@@ -81,7 +93,7 @@ ZenMux 支持模型的结构化输出，确保响应遵循特定的[JSON Schema]
 
 在模型卡片页面找到对应供应商，查看支持参数中是否有 response_format, 如下图所示：
 
-![img](https://cdn.marmot-cloud.com/storage/tbox-router/2025/08/20/kX7qp74/format.jpg)
+![img](https://cdn.marmot-cloud.com/storage/tbox-router/2025/08/20/cpP9tfy/format1.jpg)
 
 # API 调用示例
 
@@ -107,9 +119,11 @@ completion = client.chat.completions.create(
             "content": "Hi, who are you? Describe yourself using about 50 words. Use JSON response format?" # [!code highlight]
         }
     ],
+    # 方式一、
     # response_format = {
     #      "type": "json_object"
     #  }
+    # 方式二、
     response_format = { # [!code highlight]
         "type": "json_schema", # [!code highlight]
         "json_schema": {
@@ -163,9 +177,11 @@ async function main() {
                 "content": "Hi, who are you? Describe yourself using about 50 words. Use JSON response format?"
             }
         ],
+        // 方式一、
         // response_format: {
         //     "type": "json_object"
         // }
+        // 方式二、
         response_format: {
             type: "json_schema", // [!code highlight]
             json_schema: {       // [!code highlight]
