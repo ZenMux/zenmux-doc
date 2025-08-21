@@ -1,11 +1,13 @@
 # Structured Output
-ZenMux provides structured output functionality that ensures model responses strictly follow your defined [JSON Schema](https://json-schema.org/) format.
-When you have fixed structured data requirements, this feature is perfect for you!
+
+ZenMux provides structured output functionality to ensure model responses strictly adhere to your defined [JSON Schema](https://json-schema.org/) format.
+You can use this feature when you have fixed structured data requirements!
 
 # Parameters
+
 **response_format**
-- Set `{ "type": "json_object" }` for valid JSON format output, but without guaranteeing specific structure or fields.
-- Set `{ "type": "json_schema", "json_schema": {...} }` for stricter control over JSON output structure, providing stronger type and structure guarantees.
+- Set { "type": "json_object" } for valid JSON format output, but doesn't guarantee specific structure or fields.
+- Set { "type": "json_schema", "json_schema": {...} } for stricter control over JSON output structure, providing stronger type and structure guarantees.
 
 1. Setting json_object mode
 
@@ -24,7 +26,7 @@ Output structure: content will return valid JSON format content
     "choices": [
         {
             "message": {
-                // Actual content is a JSON string, shown as JSON here for readability
+                // Actual content is a json string, displayed as json here for readability
                 "content": {
                     "description": "I am ChatGPT, an AI assistant built by OpenAI. I help answer questions, brainstorm ideas, draft text, explain concepts, debug code, and learn topics. I use patterns from training data to generate helpful, clear responses while recognizing limits and inviting follow-up questions. I adapt tone and detail to your needs."
                 }
@@ -38,7 +40,7 @@ Output structure: content will return valid JSON format content
 
 2. Setting json_schema mode
 
-Input follows standard [JSON Schema](https://json-schema.org/) format definition:
+Input defined according to standard [JSON Schema](https://json-schema.org/) format:
 ```json
 {
     "response_format": {
@@ -71,14 +73,14 @@ Input follows standard [JSON Schema](https://json-schema.org/) format definition
     }
 }
 ```
-Output content will return JSON data according to the specified schema format:
+The output content will return JSON data according to the specified schema format:
 ```json
 {
     "model": "openai/gpt-5-nano",
     "choices": [
         {
             "message": {
-                // Actual content is a JSON string, shown as JSON here for readability
+                // Actual content is a json string, displayed as json here for readability
                 "content": {
                     "name": "ChatGPT",
                     "city": "Internet",
@@ -96,7 +98,7 @@ Output content will return JSON data according to the specified schema format:
 
 Find the corresponding provider on the model card page and check if response_format is included in the supported parameters, as shown in the image below:
 
-![img](https://github-production-user-asset-6210df.s3.amazonaws.com/20706012/480308753-96820a8f-5e82-4dee-bcf3-e3ef5940af8f.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250821%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250821T033651Z&X-Amz-Expires=300&X-Amz-Signature=d399221580848ee73df01cf6c3552ad216d9daaa72bd7cc652da7d0cbfb296df&X-Amz-SignedHeaders=host)
+![img](https://cdn.marmot-cloud.com/storage/zenmux/2025/08/21/1Hj7emo/res_format.jpg)
 
 # API Call Examples
 
@@ -166,7 +168,7 @@ const openai = new OpenAI({
     // 2. Point base URL to ZenMux endpoint
     baseURL: "https://zenmux.ai/api/v1", // [!code highlight]
     // 3. Replace with your API Key obtained from ZenMux user console
-    api_key="<你的 ZENMUX_API_KEY>", // [!code highlight]
+    apiKey="<你的 ZENMUX_API_KEY>", // [!code highlight]
 });
 
 async function main() {

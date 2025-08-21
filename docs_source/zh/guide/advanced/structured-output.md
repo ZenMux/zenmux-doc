@@ -93,7 +93,7 @@ ZenMux 提供结构化输出功能，确保模型响应严格遵循您定义的[
 
 在模型卡片页面找到对应供应商，查看支持参数中是否有 response_format, 如下图所示：
 
-![img](https://github-production-user-asset-6210df.s3.amazonaws.com/20706012/480308753-96820a8f-5e82-4dee-bcf3-e3ef5940af8f.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250821%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250821T033651Z&X-Amz-Expires=300&X-Amz-Signature=d399221580848ee73df01cf6c3552ad216d9daaa72bd7cc652da7d0cbfb296df&X-Amz-SignedHeaders=host)
+![img](https://cdn.marmot-cloud.com/storage/zenmux/2025/08/21/1Hj7emo/res_format.jpg)
 
 # API 调用示例
 
@@ -163,7 +163,7 @@ const openai = new OpenAI({
     // 2. 将基础 URL 指向 ZenMux 端点
     baseURL: "https://zenmux.ai/api/v1", // [!code highlight]
     // 3. 替换为你从 ZenMux 用户控制台获取的 API Key
-    api_key="<你的 ZENMUX_API_KEY>", // [!code highlight]
+    apiKey="<你的 ZENMUX_API_KEY>", // [!code highlight]
 });
 
 async function main() {
