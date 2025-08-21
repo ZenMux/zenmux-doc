@@ -1,771 +1,715 @@
 ---
-title: Tool Calling
-subtitle: Using Tools in Your Prompt
+title: Tool Calls
+subtitle: Use tools in your prompts
 ---
 
-# Tool Calling
+# Tool Calls
 
-Tool calls (also known as function calls) enable large language models (LLMs) to access external tools. LLMs do not directly invoke tools; instead, they suggest calling a tool. The user then executes the tool separately and feeds the result back to the LLM. Finally, the LLM organizes the result into an answer to the user's original question.
+Provide models with new capabilities and data access so they can follow instructions and respond to prompts.
 
-ZenMux unifies the tool call interfaces across models and providers, making it easy to integrate external tools into any supported model.
+**Tool calls** (also known as **Function calls**) provide OpenAI models with a powerful and flexible way to interface with external systems and access data beyond their training data. This guide will show how to connect models to data and operations provided by your application. We'll demonstrate how to use function tools (defined by JSON schema) and custom tools that can handle free-form text input and output.
 
-**Supported Models**: You can filter for models that support tool calls at [zenmux.ai/models?supported_parameters=tools](https://zenmux.ai/models?supported_parameters=tools).
+How it Works
+--------
 
-If you want to learn through a complete end-to-end example, please read on.
+Let's first understand several key terms about tool calls. After we have a shared vocabulary understanding of tool calls, we'll walk through some practical examples showing how to implement them.
 
-## Request Body Example
+Tools - capabilities we provide to the model
 
-Using ZenMux for tool calls involves three key steps. Here is the request format for each step:
+A **function** or **tool** abstractly refers to a capability we tell the model it can access. When a model generates a response to a prompt, it may decide it needs data or functionality provided by a tool to follow the prompt's instructions.
 
-### Step 1: Inference Request with Tools
+You can provide the model with access to tools such as:
 
-```json
-{
-  "model": "google/gemini-2.0-flash-001",
-  "messages": [
-    {
-      "role": "user",
-      "content": "What are the titles of books by James Joyce?"
-    }
-  ],
-  "tools": [
-    {
-      "type": "function",
-      "function": {
-        "name": "search_gutenberg_books",
-        "description": "Search for books in the Gutenberg library",
-        "parameters": {
-          "type": "object",
-          "properties": {
-            "search_terms": {
-              "type": "array",
-              "items": {"type": "string"},
-              "description": "List of search terms for finding books"
-            }
-          },
-          "required": ["search_terms"]
-        }
-      }
-    }
-  ]
-}
+*   Get today's weather for a location
+*   Access account details for a given user ID
+*   Issue a refund for a lost order
+
+Or any other operation you want the model to be able to know about or perform when responding to prompts.
+
+When we make an API request to the model containing a prompt, we can include a list of tools the model might consider using. For example, if we want the model to be able to answer questions about the current weather somewhere in the world, we might give it access to a `get_weather` tool that takes `location` as a parameter.
+
+Tool calls - model's requests to use tools
+
+A **function call** or **tool call** refers to a special type of response we get from the model when, after examining a prompt, the model determines that in order to follow the instructions in the prompt, it needs to call one of the tools we've provided it with.
+
+If the model receives a prompt like "What's the weather like in Paris?" in an API request, it can respond with a tool call to the `get_weather` tool with `Paris` as the `location` parameter.
+
+Tool call output - output we generate for the model
+
+**Function call output** or **tool call output** refers to the response a tool generates using the input from the model's tool call. Tool call output can be structured JSON or plain text and should include a reference to the specific model tool call (referenced via `call_id` in subsequent examples).
+
+Completing our weather example:
+
+*   The model can access a `get_weather` **tool** that takes `location` as a parameter.
+*   In response to a prompt like "What's the weather like in Paris?", the model returns a **tool call** containing a `location` parameter with the value `Paris`
+*   Our **tool call output** might be JSON structure like `{"temperature": "25", "unit": "C"}` indicating the current temperature is 25 degrees.
+
+We then send all the tool definitions, original prompt, model's tool call, and tool call output back to the model together and finally receive a text response like:
+
+```text
+The weather in Paris today is 25°C.
 ```
 
-### Step 2: Tool Execution (Client Side)
+Functions vs Tools
 
-After receiving a model response with `tool_calls`, execute the requested tool locally and prepare the result:
+*   Functions are a specific type of tool defined by JSON schema. Function definitions allow the model to pass data to your application, and your code can access the data or perform actions the model suggests.
+*   In addition to function tools, there are custom tools (described in this guide) that can handle free-text input and output.
+*   There are also built-in tools that are part of the OpenAI platform. These tools enable models to search the web, execute code, access functionality from MCP servers, and more.
 
-```javascript
-// The model returns tool_calls; you execute the tool locally
-const toolResult = await searchGutenbergBooks(["James", "Joyce"]);
-```
+### Tool Call Flow
 
-### Step 3: Inference Request with Tool Results
+Tool calls are a multi-step conversation between your application and the model through the OpenAI API. The tool call flow has five high-level steps:
 
-```json
-{
-  "model": "google/gemini-2.0-flash-001",
-  "messages": [
-    {
-      "role": "user",
-      "content": "What are the titles of books by James Joyce?"
-    },
-    {
-      "role": "assistant",
-      "content": null,
-      "tool_calls": [
-        {
-          "id": "call_abc123",
-          "type": "function",
-          "function": {
-            "name": "search_gutenberg_books",
-            "arguments": "{\"search_terms\": [\"James\", \"Joyce\"]}"
-          }
-        }
-      ]
-    },
-    {
-      "role": "tool",
-      "tool_call_id": "call_abc123",
-      "content": "[{\"id\": 4300, \"title\": \"Ulysses\", \"authors\": [{\"name\": \"Joyce, James\"}]}]"
-    }
-  ],
-  "tools": [
-    {
-      "type": "function",
-      "function": {
-        "name": "search_gutenberg_books",
-        "description": "Search for books in the Gutenberg library",
-        "parameters": {
-          "type": "object",
-          "properties": {
-            "search_terms": {
-              "type": "array",
-              "items": {"type": "string"},
-              "description": "List of search terms for finding books"
-            }
-          },
-          "required": ["search_terms"]
-        }
-      }
-    }
-  ]
-}
-```
+1.  Make a request to the model, including the tools it can call
+2.  Receive tool calls from the model
+3.  Execute code on the application side using the tool call inputs
+4.  Make a second request to the model, including the tool outputs
+5.  Receive the final response from the model (or more tool calls)
 
-**Note**: Each request (steps 1 and 3) must include the `tools` parameter so the router can validate the tool schema on every call.
+![Function calling diagram steps](https://cdn.openai.com/API/docs/images/function-calling-diagram-steps.png)
 
-### Tool Call Example
+Function Tool Example
+------------
 
-Below is a Python code example showing how to let an LLM call an external API (such as the Gutenberg Project) to search for books.
+Let's look at an end-to-end tool call flow using a `get_horoscope` function to get a daily horoscope for a zodiac sign.
 
-First, set up the basics:
+Complete tool call example
 
 ::: code-group
 
 ```python
-import json, requests
 from openai import OpenAI
+import json
 
-ZENMUX_API_KEY = f"<ZENMUX_API_KEY>"
-
-# You can use any model that supports tool calls
-MODEL = "google/gemini-2.0-flash-001"
-
-openai_client = OpenAI(
+client = OpenAI(
   base_url="https://zenmux.ai/api/v1",
-  api_key=ZENMUX_API_KEY,
+  api_key="<ZENMUX_API_KEY>",
 )
 
-task = "What are the titles of books by James Joyce?"
-
-messages = [
-  {
-    "role": "system",
-    "content": "You are a helpful assistant."
-  },
-  {
-    "role": "user",
-    "content": task,
-  }
-]
-
-```
-
-```typescript
-const response = await fetch('https://zenmux.ai/api/v1/chat/completions', {
-  method: 'POST',
-  headers: {
-    Authorization: `Bearer <ZENMUX_API_KEY>`,
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({
-    model: 'google/gemini-2.0-flash-001',
-    messages: [
-      { role: 'system', content: 'You are a helpful assistant.' },
-      {
-        role: 'user',
-        content: 'What are the titles of books by James Joyce?',
-      },
-    ],
-  }),
-});
-```
-
-:::
-
-### Define the Tool
-
-Next, define the tool you want to call. Note that a tool is just a regular function. You also need to write a JSON schema compatible with OpenAI's function call parameters. Pass this schema to the LLM so it knows what tools are available and how to use them. The model will request the tool with parameters when needed. You handle the tool call locally, execute the function, and return the result to the LLM.
-
-::: code-group
-
-```python
-def search_gutenberg_books(search_terms):
-    search_query = " ".join(search_terms)
-    url = "https://gutendex.com/books"
-    response = requests.get(url, params={"search": search_query})
-
-    simplified_results = []
-    for book in response.json().get("results", []):
-        simplified_results.append({
-            "id": book.get("id"),
-            "title": book.get("title"),
-            "authors": book.get("authors")
-        })
-
-    return simplified_results
-
+# 1. Define a list of callable tools for the model
 tools = [
-  {
-    "type": "function",
-    "function": {
-      "name": "search_gutenberg_books",
-      "description": "Search for books in the Gutenberg library using specified search terms",
-      "parameters": {
-        "type": "object",
-        "properties": {
-          "search_terms": {
-            "type": "array",
-            "items": {
-              "type": "string"
+    {
+        "type": "function",
+        "function": {
+            "name": "get_horoscope",
+            "description": "Get today's horoscope for a zodiac sign.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "sign": {
+                        "type": "string",
+                        "description": "Zodiac sign name, such as Taurus or Aquarius",
+                    },
+                },
+                "required": ["sign"],
             },
-            "description": "List of search terms for finding books in the Gutenberg library (e.g., ['dickens', 'great'] to find Dickens books with 'great' in the title)"
-          }
         },
-        "required": ["search_terms"]
-      }
-    }
-  }
+    },
 ]
 
-TOOL_MAPPING = {
-    "search_gutenberg_books": search_gutenberg_books
-}
+# Create a running input list that we'll add to over time
+input_list = [
+    {"role": "user", "content": "What's my horoscope? I'm an Aquarius."}
+]
 
+# 2. Prompt the model with the defined tools
+response = client.chat.completions.create(
+    model="moonshotai/kimi-k2",
+    tools=tools,
+    messages=input_list,
+)
+
+# Save function call output for subsequent requests
+function_call = None
+function_call_arguments = None
+input_list.append({
+  "role": "assistant",
+  "content": response.choices[0].message.content,
+  "tool_calls": [tool_call.model_dump() for tool_call in response.choices[0].message.tool_calls] if response.choices[0].message.tool_calls else None,
+})
+
+for item in response.choices[0].message.tool_calls:
+    if item.type == "function":
+        function_call = item
+        function_call_arguments = json.loads(item.function.arguments)
+
+def get_horoscope(sign):
+    return f"{sign}: Next Tuesday you will encounter a small otter."
+
+# 3. Execute the get_horoscope function logic
+result = {"horoscope": get_horoscope(function_call_arguments["sign"])}
+
+# 4. Provide function call results to the model
+input_list.append({
+    "role": "tool",
+    "tool_call_id": function_call.id,
+    "name": function_call.function.name,
+    "content": json.dumps(result),
+})
+
+print("Final input:")
+print(json.dumps(input_list, indent=2, ensure_ascii=False))
+
+response = client.chat.completions.create(
+    model="moonshotai/kimi-k2",
+    tools=tools,
+    messages=input_list,
+)
+
+# 5. The model should now be able to provide a response!
+print("Final output:")
+print(response.model_dump_json(indent=2))
+print("\n" + response.choices[0].message.content)
 ```
 
-```typescript
-async function searchGutenbergBooks(searchTerms: string[]): Promise<Book[]> {
-  const searchQuery = searchTerms.join(' ');
-  const url = 'https://gutendex.com/books';
-  const response = await fetch(`${url}?search=${searchQuery}`);
-  const data = await response.json();
+```javascript
+import OpenAI from "openai";
+const openai = new OpenAI({
+  baseURL: 'https://zenmux.ai/api/v1',
+  apiKey: '<ZENMUX_API_KEY>',
+});
 
-  return data.results.map((book: any) => ({
-    id: book.id,
-    title: book.title,
-    authors: book.authors,
-  }));
-}
-
+// 1. Define a list of callable tools for the model
 const tools = [
   {
-    type: 'function',
+    type: "function",
     function: {
-      name: 'searchGutenbergBooks',
-      description:
-        'Search for books in the Gutenberg library using specified search terms',
+      name: "get_horoscope",
+      description: "Get today's horoscope for a zodiac sign.",
       parameters: {
-        type: 'object',
+        type: "object",
         properties: {
-          search_terms: {
-            type: 'array',
-            items: {
-              type: 'string',
-            },
-            description:
-              "List of search terms for finding books in the Gutenberg library (e.g., ['dickens', 'great'] to find Dickens books with 'great' in the title)",
+          sign: {
+            type: "string",
+            description: "Zodiac sign name, such as Taurus or Aquarius",
           },
         },
-        required: ['search_terms'],
+        required: ["sign"],
       },
     },
   },
 ];
 
-const TOOL_MAPPING = {
-  searchGutenbergBooks,
+// Create a running input list that we'll add to over time
+let input = [
+  { role: "user", content: "What's my horoscope? I'm an Aquarius." },
+];
+
+// 2. Prompt the model with the defined tools
+let response = await openai.chat.completions.create({
+  model: "moonshotai/kimi-k2",
+  tools,
+  messages: input,
+});
+
+// Save function call output for subsequent requests
+let functionCall = null;
+let functionCallArguments = null;
+input = input.concat(response.choices.map((c) => c.message));
+
+response.choices.forEach((item) => {
+  if (item.message.tool_calls && item.message.tool_calls.length > 0) {
+    functionCall = item.message.tool_calls[0];
+    functionCallArguments = JSON.parse(functionCall.function.arguments);
+  }
+});
+
+// 3. Execute the get_horoscope function logic
+function getHoroscope(sign) {
+  return sign + " Next Tuesday you will encounter a small otter.";
+}
+const result = { horoscope: getHoroscope(functionCallArguments.sign) };
+
+// 4. Provide function call results to the model
+input.push({
+  role: 'tool',
+  tool_call_id: functionCall.id,
+  name: functionCall.function.name,
+  content: JSON.stringify(result),
+});
+console.log("Final input:");
+console.log(JSON.stringify(input, null, 2));
+
+response = await openai.chat.completions.create({
+  model: "moonshotai/kimi-k2",
+  instructions: "Respond using only the horoscope generated by the tool.",
+  tools,
+  messages: input,
+});
+
+// 5. The model should now be able to provide a response!
+console.log("Final output:");
+console.log(JSON.stringify(response.choices.map(v => v.message), null, 2));
+```
+
+:::
+
+Note that for reasoning models like GPT-5 or o4-mini, any reasoning items returned in model responses that contain tool calls must also be passed back along with the tool call outputs.
+
+Defining Functions
+--------
+
+Functions can be set in the `tools` parameter of each API request. Functions are defined by their schema, which tells the model what it does and what input parameters it expects. Function definitions have the following properties:
+
+|Field|Description|
+|---|---|
+|type|Should always be function|
+|function|Tool structure|
+|function.name|Function name (e.g., get_weather)|
+|function.description|Details about when and how to use this function|
+|function.parameters|JSON schema defining the function's input parameters|
+|function.strict|Whether to enable strict schema adherence when generating the function call|
+
+Here's an example function definition for a `get_weather` function
+
+```json
+{
+    "type": "function",
+    "function": {
+      "name": "get_weather",
+      "description": "Retrieve the current weather for a given location.",
+      "parameters": {
+          "type": "object",
+          "properties": {
+              "location": {
+                  "type": "string",
+                  "description": "The city and country, e.g. Bogotá, Colombia"
+              },
+              "units": {
+                  "type": "string",
+                  "enum": ["celsius", "fahrenheit"],
+                  "description": "The unit to return the temperature in."
+              }
+          },
+          "required": ["location", "units"],
+          "additionalProperties": false
+      },
+      "strict": true
+    }
+}
+```
+
+### Best Practices for Defining Functions
+
+1.  **Write clear, detailed function names, parameter descriptions, and instructions.**
+    
+    *   **Clearly describe the function's purpose and each parameter** (and its format), and what the output represents.
+    *   **Use system prompts to describe when (and when not) to use each function.** In general, tell the model exactly what to do.
+    *   **Include examples and edge cases**, especially to correct any recurring failures. (**Note:** Adding examples may impact **reasoning model** performance.)
+2.  **Apply software engineering best practices.**
+    
+    *   **Make functions obvious and intuitive.** ([Principle of least astonishment](https://en.wikipedia.org/wiki/Principle_of_least_astonishment))
+    *   **Use enums** and object structures to make invalid states unrepresentable. (e.g., `toggle_light(on: bool, off: bool)` allows invalid calls)
+    *   **Intern test.** Could an intern/human use the function correctly with only what you give the model? (If not, what questions would they ask you? Add the answers to the prompt.)
+3.  **Offload burden from the model and use code whenever possible.**
+    
+    *   **Don't make the model fill in parameters you already know.** For example, if you already have the `order_id` from a previous menu, don't have an `order_id` parameter—use a parameter-less `submit_refund()` and pass the `order_id` through code.
+    *   **Combine functions that are always called in sequence.** For example, if you always call `mark_location()` after `query_location()`, just move the marking logic into the query function call.
+4.  **Keep function count low for higher accuracy.**
+    
+    *   **Evaluate performance with different numbers of functions**.
+    *   **Aim for fewer than 20 functions at any time**, though this is just a soft suggestion.
+
+### Token Usage
+
+Under the hood, functions are injected into the system message in a syntax the model has been trained on. This means functions count towards the model's context limit and are billed as input tokens. If running into token limits, we suggest limiting the number of functions or the length of descriptions you provide for function parameters.
+
+Handling Function Calls
+------------
+
+When the model calls a function, you must execute it and return the result. Since a model response might contain zero, one, or multiple calls, best practice is to assume several.
+
+The response's `tool_calls` array contains function call entries (`type` is `function`). Each entry contains the following fields:
+
+- `id`: Unique identifier for subsequently submitting function results
+- `function`: Function structure
+    - `name`: Function name  
+    - `arguments`: JSON-encoded function parameters
+
+Example response containing multiple function calls
+
+```json
+[
+    {
+        "id": "fc_12345xyz",
+        "type": "function",
+        "function": {
+            "name": "get_weather",
+            "arguments": "{\"location\":\"Paris, France\"}"
+        }
+    },
+    {
+        "id": "fc_67890abc",
+        "type": "function",
+        "function": {
+            "name": "get_weather",
+            "arguments": "{\"location\":\"Bogotá, Colombia\"}"
+        }
+    },
+    {
+        "id": "fc_99999def",
+        "type": "function",
+        "function": {
+            "name": "send_email",
+            "arguments": "{\"to\":\"bob@email.com\",\"body\":\"Hi bob\"}"
+        }
+    }
+]
+```
+
+Execute function calls and append results
+
+::: code-group
+
+```python
+for choice in response.choices:
+    for tool_call in choice.message.tool_calls or []:
+        if tool_call.type != "function":
+            continue
+        
+        name = tool_call.function.name
+        args = json.loads(tool_call.function.arguments)
+        
+        result = call_function(name, args)
+        input_list.append({
+            "role": "tool",
+            "name": name,
+            "tool_call_id": tool_call.id,
+            "content": str(result)
+        })
+```
+
+```javascript
+for (const choice of response.choices) {
+  for (const toolCall of choice.tool_calls) {
+      if (toolCall.type !== "function") {
+          continue;
+      }
+
+      const name = toolCall.function.name;
+      const args = JSON.parse(toolCall.function.arguments);
+
+      const result = callFunction(name, args);
+      input.push({
+          role: "tool",
+          name: name,
+          tool_call_id: toolCall.id,
+          content: result.toString()
+      });
+  }
+}
+```
+
+:::
+
+In the above example, we have a hypothetical `call_function` to route each call. Here's a possible implementation:
+
+Execute function calls and append results
+
+::: code-group
+
+```python
+def call_function(name, args):
+    if name == "get_weather":
+        return get_weather(**args)
+    if name == "send_email":
+        return send_email(**args)
+```
+
+```javascript
+const callFunction = async (name, args) => {
+    if (name === "get_weather") {
+        return getWeather(args.latitude, args.longitude);
+    }
+    if (name === "send_email") {
+        return sendEmail(args.to, args.body);
+    }
 };
 ```
 
 :::
 
-### Using the Tool and Tool Results
+### Formatting Results
 
-Let's make the first ZenMux API call:
+Results must be strings, but the format is up to you (JSON, error codes, plain text, etc.). The model will interpret the string as needed.
+
+If your function has no return value (e.g., `send_email`), simply return a string to represent success or failure. (e.g., `"success"`)
+
+### Incorporating Results into Responses
+
+After appending results to your `input`, you can send them back to the model to get a final response.
+
+Send results back to the model
 
 ::: code-group
 
 ```python
-request_1 = {
-    "model": google/gemini-2.0-flash-001,
-    "tools": tools,
-    "messages": messages
-}
-
-response_1 = openai_client.chat.completions.create(**request_1).message
+response = client.chat.completions.create(
+    model="moonshotai/kimi-k2",
+    messages=input_messages,
+    tools=tools,
+)
 ```
 
-```typescript
-const request_1 = await fetch('https://zenmux.ai/api/v1/chat/completions', {
-  method: 'POST',
-  headers: {
-    Authorization: `Bearer <ZENMUX_API_KEY>`,
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({
-    model: 'google/gemini-2.0-flash-001',
+```javascript
+const response = await openai.chat.completions.create({
+    model: "moonshotai/kimi-k2",
+    messages: input,
     tools,
-    messages,
-  }),
 });
-
-const data = await request_1.json();
-const response_1 = data.choices[0].message;
 ```
 
 :::
 
-The model will return `finish_reason` as `tool_calls` and include a `tool_calls` array. In a general LLM response handler, you should check `finish_reason`, but here we assume it's a tool call. Continue processing the tool call:
+Final response
+
+```json
+"Paris is about 15°C, Bogotá is about 18°C, and I sent that email to Bob."
+```
+
+Additional Configuration
+--------
+
+### Tool Choice
+
+By default, the model will determine when and how many tools to use. You can force specific behavior using the `tool_choice` parameter.
+
+1.  **Auto:** (_default_) Call zero, one, or more functions. `tool_choice: "auto"`
+2.  **Required:** Call one or more functions. `tool_choice: "required"`
+
+**When to use allowed_tools**
+
+If you want only a subset of tools to be available in a model request, but don't want to modify the tool list you pass in to maximize prompt caching savings, you may want to configure an `allowed_tools` list.
+
+```json
+"tool_choice": {
+    "type": "allowed_tools",
+    "mode": "auto",
+    "tools": [
+        { "type": "function", "function": { "name": "get_weather" } },
+        { "type": "function", "function": { "name": "get_time" } }
+    ]
+}
+```
+
+You can also set `tool_choice` to `"none"` to simulate the behavior of not passing functions.
+
+Streaming
+--------
+
+Streaming can show progress by displaying which function is being called and the model filling in its parameters, even showing parameters in real time.
+
+Streaming function calls is very similar to streaming regular responses: you set `stream` to `true` and get different `event` objects.
+
+Streaming function calls
 
 ::: code-group
 
 ```python
-# Append the response to the messages array to ensure LLM has full context
-messages.append(response_1)
+from openai import OpenAI
 
-# Handle the requested tool call using our book search tool
-for tool_call in response_1.tool_calls:
-    '''
-    Only one tool is provided here, so we know which function to call.
-    If there are multiple tools, check `tool_call.function.name` to determine which function to call locally.
-    '''
-    tool_name = tool_call.function.name
-    tool_args = json.loads(tool_call.function.arguments)
-    tool_response = TOOL_MAPPING[tool_name](**tool_args)
-    messages.append({
-      "role": "tool",
-      "tool_call_id": tool_call.id,
-      "content": json.dumps(tool_response),
-    })
-```
+client = OpenAI(
+  base_url="https://zenmux.ai/api/v1",
+  api_key="<ZENMUX_API_KEY>",
+)
 
-```typescript
-// Append the response to the messages array to ensure LLM has full context
-messages.push(response_1);
-
-// Handle the requested tool call using our book search tool
-for (const toolCall of response_1.tool_calls) {
-  const toolName = toolCall.function.name;
-  const { search_params } = JSON.parse(toolCall.function.arguments);
-  const toolResponse = await TOOL_MAPPING[toolName](search_params);
-  messages.push({
-    role: 'tool',
-    toolCallId: toolCall.id,
-    name: toolName,
-    content: JSON.stringify(toolResponse),
-  });
-}
-```
-
-:::
-
-Now the messages array contains:
-
-1. The original request
-2. The LLM's response (with tool call request)
-3. The result of the tool call (JSON object returned from the Gutenberg API)
-
-You can now make a second ZenMux API call to get the final result!
-
-::: code-group
-
-```python
-request_2 = {
-  "model": MODEL,
-  "messages": messages,
-  "tools": tools
-}
-
-response_2 = openai_client.chat.completions.create(**request_2)
-
-print(response_2.choices[0].message.content)
-```
-
-```typescript
-const response = await fetch('https://zenmux.ai/api/v1/chat/completions', {
-  method: 'POST',
-  headers: {
-    Authorization: `Bearer <ZENMUX_API_KEY>`,
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({
-    model: 'google/gemini-2.0-flash-001',
-    messages,
-    tools,
-  }),
-});
-
-const data = await response.json();
-console.log(data.choices[0].message.content);
-```
-
-:::
-
-Output example:
-
-```text
-Here are some books by James Joyce:
-
-*   *Ulysses*
-*   *Dubliners*
-*   *A Portrait of the Artist as a Young Man*
-*   *Chamber Music*
-*   *Exiles: A Play in Three Acts*
-```
-
-Done! We've successfully used a tool in the prompt.
-
-## Interleaved Thinking
-
-Interleaved thinking allows the model to reason between tool calls, enabling more complex decision-making after receiving tool results. This feature helps the model chain reasoning across multiple tool calls and make more nuanced judgments based on intermediate results.
-
-**Important Note**: Interleaved thinking increases token usage and response latency. Consider your budget and performance needs when enabling it.
-
-### How Interleaved Thinking Works
-
-With interleaved thinking enabled, the model can:
-
-- Reason based on tool call results before deciding the next step
-- Insert reasoning steps between multiple tool calls
-- Make more nuanced decisions based on intermediate results
-- Transparently show reasoning during tool selection
-
-### Example: Multi-step Research and Reasoning
-
-Here's an example of how a model uses interleaved thinking to research a topic across multiple sources:
-
-**Initial Request:**
-```json
-{
-  "model": "anthropic/claude-3.5-sonnet",
-  "messages": [
-    {
-      "role": "user",
-      "content": "Research the environmental impact of electric vehicles and provide a comprehensive analysis."
-    }
-  ],
-  "tools": [
-    {
-      "type": "function",
-      "function": {
-        "name": "search_academic_papers",
-        "description": "Search for academic papers on a topic",
-        "parameters": {
-          "type": "object",
-          "properties": {
-            "query": {"type": "string"},
-            "field": {"type": "string"}
-          },
-          "required": ["query"]
-        }
-      }
-    },
-    {
-      "type": "function",
-      "function": {
-        "name": "get_latest_statistics",
-        "description": "Get the latest statistics on a topic",
-        "parameters": {
-          "type": "object",
-          "properties": {
-            "topic": {"type": "string"},
-            "year": {"type": "integer"}
-          },
-          "required": ["topic"]
-        }
-      }
-    }
-  ]
-}
-```
-
-**Model Reasoning and Tool Call Flow:**
-
-1. **Initial Reasoning**: "I need to research the environmental impact of electric vehicles. First, I'll look for academic papers for peer-reviewed studies."
-2. **First Tool Call**: `search_academic_papers({"query": "electric vehicle lifecycle environmental impact", "field": "environmental science"})`
-3. **Reasoning After First Tool Result**: "The papers show varying impacts during manufacturing. I need the latest statistics to supplement the academic research."
-4. **Second Tool Call**: `get_latest_statistics({"topic": "electric vehicle carbon footprint", "year": 2024})`
-5. **Reasoning After Second Tool Result**: "Now I have academic research and recent data. I'll look for manufacturing-related studies to fill in gaps."
-6. **Third Tool Call**: `search_academic_papers({"query": "electric vehicle battery manufacturing environmental cost", "field": "materials science"})`
-7. **Final Analysis**: Integrate all information and provide a comprehensive answer.
-
-### Interleaved Thinking Best Practices
-
-- **Clear Tool Descriptions**: Describe tool usage in detail to help the model decide when to use them
-- **Structured Parameters**: Use clear parameter schemas for precise tool calls
-- **Context Preservation**: Maintain conversation context during multiple tool interactions
-- **Error Handling**: Tools should return meaningful error messages to help the model adjust its strategy
-
-### Implementation Notes
-
-- Response time increases due to added reasoning steps
-- Token usage increases
-- Reasoning quality depends on model capability
-- Some models are better suited for interleaved thinking
-
-## Simple Agentic Loop
-
-In the above example, calls are explicit and sequential. To handle diverse user inputs and tool calls, you can use an agentic loop.
-
-Here's a simple agentic loop example (tools and initial messages are the same as above):
-
-::: code-group
-
-```python
-
-def call_llm(msgs):
-    resp = openai_client.chat.completions.create(
-        model=google/gemini-2.0-flash-001,
-        tools=tools,
-        messages=msgs
-    )
-    msgs.append(resp.choices[0].message.dict())
-    return resp
-
-def get_tool_response(response):
-    tool_call = response.choices[0].message.tool_calls[0]
-    tool_name = tool_call.function.name
-    tool_args = json.loads(tool_call.function.arguments)
-
-    # Find the correct tool locally and call it with parameters
-    # Easily extend to support more tools without changing the loop
-    tool_result = TOOL_MAPPING[tool_name](**tool_args)
-
-    return {
-        "role": "tool",
-        "tool_call_id": tool_call.id,
-        "content": tool_result,
-    }
-
-max_iterations = 10
-iteration_count = 0
-
-while iteration_count < max_iterations:
-    iteration_count += 1
-    resp = call_llm(_messages)
-
-    if resp.choices[0].message.tool_calls is not None:
-        messages.append(get_tool_response(resp))
-    else:
-        break
-
-if iteration_count >= max_iterations:
-    print("Warning: Maximum loop count reached")
-
-print(messages[-1]['content'])
-
-```
-
-```typescript
-async function callLLM(messages: Message[]): Promise<Message> {
-  const response = await fetch(
-    'https://zenmux.ai/api/v1/chat/completions',
-    {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer <ZENMUX_API_KEY>`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        model: 'google/gemini-2.0-flash-001',
-        tools,
-        messages,
-      }),
-    },
-  );
-
-  const data = await response.json();
-  messages.push(data.choices[0].message);
-  return data;
-}
-
-async function getToolResponse(response: Message): Promise<Message> {
-  const toolCall = response.toolCalls[0];
-  const toolName = toolCall.function.name;
-  const toolArgs = JSON.parse(toolCall.function.arguments);
-
-  // Find the correct tool locally and call it with parameters
-  // Easily extend to support more tools without changing the loop
-  const toolResult = await TOOL_MAPPING[toolName](toolArgs);
-
-  return {
-    role: 'tool',
-    toolCallId: toolCall.id,
-    content: toolResult,
-  };
-}
-
-const maxIterations = 10;
-let iterationCount = 0;
-
-while (iterationCount < maxIterations) {
-  iterationCount++;
-  const response = await callLLM(messages);
-
-  if (response.toolCalls) {
-    messages.push(await getToolResponse(response));
-  } else {
-    break;
-  }
-}
-
-if (iterationCount >= maxIterations) {
-  console.warn("Warning: Maximum loop count reached");
-}
-
-console.log(messages[messages.length - 1].content);
-```
-
-:::
-
-## Best Practices & Advanced Patterns
-
-### Function Definition Guidelines
-
-When defining LLM tools, follow these best practices:
-
-**Clear, Specific Names**:
-
-```json
-// Recommended: clear and specific
-{ "name": "get_weather_forecast" }
-```
-
-```json
-// Avoid: too vague
-{ "name": "weather" }
-```
-
-**Detailed Descriptions**: Provide detailed descriptions to help the model understand when and how to use the tool.
-
-```json
-{
-  "description": "Get current weather and 5-day forecast for a specified location. Supports city, postal code, and coordinates.",
-  "parameters": {
-    "type": "object",
-    "properties": {
-      "location": {
-        "type": "string",
-        "description": "City name, postal code, or coordinates (lat,lng). E.g., 'New York', '10001', '40.7128,-74.0060'"
-      },
-      "units": {
-        "type": "string",
-        "enum": ["celsius", "fahrenheit"],
-        "description": "Temperature unit",
-        "default": "celsius"
-      }
-    },
-    "required": ["location"]
-  }
-}
-```
-
-### Tool Call Streaming Response
-
-When using streaming responses, handle different content types correctly:
-
-```typescript
-const stream = await fetch('/api/chat/completions', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({
-    model: 'anthropic/claude-3.5-sonnet',
-    messages: messages,
-    tools: tools,
-    stream: true
-  })
-});
-
-const reader = stream.body.getReader();
-let toolCalls = [];
-
-while (true) {
-  const { done, value } = await reader.read();
-  if (done) {
-    break;
-  }
-
-  const chunk = new TextDecoder().decode(value);
-  const lines = chunk.split('\n').filter(line => line.trim());
-
-  for (const line of lines) {
-    if (line.startsWith('data: ')) {
-      const data = JSON.parse(line.slice(6));
-
-      if (data.choices[0].delta.tool_calls) {
-        toolCalls.push(...data.choices[0].delta.tool_calls);
-      }
-
-      if (data.choices[0].delta.finish_reason === 'tool_calls') {
-        await handleToolCalls(toolCalls);
-      } else if (data.choices[0].delta.finish_reason === 'stop') {
-        // Normal completion, no tool calls
-        break;
-      }
-    }
-  }
-}
-```
-
-### Tool Selection Configuration
-
-Control tool usage with the `tool_choice` parameter:
-
-```json
-// Let the model decide automatically (default)
-{ "tool_choice": "auto" }
-```
-
-```json
-// Disable tool calls
-{ "tool_choice": "none" }
-```
-
-```json
-// Force a specific tool
-{
-  "tool_choice": {
+tools = [{
     "type": "function",
-    "function": {"name": "search_database"}
-  }
+    "function": {
+        "name": "get_weather",
+        "description": "Get the current temperature for a given location.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "location": {
+                    "type": "string",
+                    "description": "The city and country, e.g. Bogotá, Colombia"
+                }
+            },
+            "required": [
+                "location"
+            ],
+            "additionalProperties": False
+        }
+    }
+}]
+
+stream = client.chat.completions.create(
+    model="moonshotai/kimi-k2",
+    messages=[{"role": "user", "content": "What's the weather like in Paris today?"}],
+    tools=tools,
+    stream=True
+)
+
+for event in stream:
+    print(event.choices[0].delta.model_dump_json())
+```
+
+```javascript
+import { OpenAI } from "openai";
+
+const openai = new OpenAI({
+  baseURL: 'https://zenmux.ai/api/v1',
+  apiKey: '<ZENMUX_API_KEY>',
+});
+
+const tools = [{
+    type: "function",
+    function: {
+        name: "get_weather",
+        description: "Get the current temperature (in Celsius) for provided coordinates.",
+        parameters: {
+            type: "object",
+            properties: {
+                latitude: { type: "number" },
+                longitude: { type: "number" }
+            },
+            required: ["latitude", "longitude"],
+            additionalProperties: false
+        },
+        strict: true,
+    },
+}];
+
+const stream = await openai.chat.completions.create({
+    model: "moonshotai/kimi-k2",
+    messages: [{ role: "user", content: "What's the weather like in Paris today?" }],
+    tools,
+    stream: true,
+});
+
+for await (const event of stream) {
+    console.log(JSON.stringify(event.choices[0].delta));
 }
 ```
 
-### Parallel Tool Calls
+:::
 
-Control whether multiple tools can be called simultaneously with the `parallel_tool_calls` parameter (most models allow this by default):
+Output events
 
 ```json
-// Disable parallel tool calls; tools will be called sequentially
-{ "parallel_tool_calls": false }
+{"content":"I need","role":"assistant"}
+{"content":" coordinates","role":"assistant"}
+{"content":" for","role":"assistant"}
+{"content":" Paris","role":"assistant"}
+{"content":" to","role":"assistant"}
+{"content":" get","role":"assistant"}
+{"content":" the","role":"assistant"}
+{"content":" weather","role":"assistant"}
+{"content":" information","role":"assistant"}
+{"content":".","role":"assistant"}
+{"content":" Paris","role":"assistant"}
+{"content":" has","role":"assistant"}
+{"content":" a","role":"assistant"}
+{"content":" latitude","role":"assistant"}
+{"content":" of","role":"assistant"}
+{"content":" approximately","role":"assistant"}
+{"content":" 48","role":"assistant"}
+{"content":".","role":"assistant"}
+{"content":"856","role":"assistant"}
+{"content":"6","role":"assistant"}
+{"content":",","role":"assistant"}
+{"content":" and","role":"assistant"}
+{"content":" longitude","role":"assistant"}
+{"content":" is","role":"assistant"}
+{"content":" 2","role":"assistant"}
+{"content":".","role":"assistant"}
+{"content":"352","role":"assistant"}
+{"content":"2","role":"assistant"}
+{"content":".","role":"assistant"}
+{"content":" Let","role":"assistant"}
+{"content":" me","role":"assistant"}
+{"content":" query","role":"assistant"}
+{"content":" Paris","role":"assistant"}
+{"content":"'s","role":"assistant"}
+{"content":" weather","role":"assistant"}
+{"content":" for","role":"assistant"}
+{"content":" today","role":"assistant"}
+{"content":".","role":"assistant"}
+{"content":"","role":"assistant","tool_calls":[{"index":0,"id":"get_weather:0","function":{"arguments":"","name":"get_weather"},"type":"function"}]}
+{"content":"","role":"assistant","tool_calls":[{"index":0,"function":{"arguments":"{\""}}]}
+{"content":"","role":"assistant","tool_calls":[{"index":0,"function":{"arguments":"latitude"}}]}
+{"content":"","role":"assistant","tool_calls":[{"index":0,"function":{"arguments":"\":"}}]}
+{"content":"","role":"assistant","tool_calls":[{"index":0,"function":{"arguments":" "}}]}
+{"content":"","role":"assistant","tool_calls":[{"index":0,"function":{"arguments":"48"}}]}
+{"content":"","role":"assistant","tool_calls":[{"index":0,"function":{"arguments":"."}}]}
+{"content":"","role":"assistant","tool_calls":[{"index":0,"function":{"arguments":"856"}}]}
+{"content":"","role":"assistant","tool_calls":[{"index":0,"function":{"arguments":"6"}}]}
+{"content":"","role":"assistant","tool_calls":[{"index":0,"function":{"arguments":","}}]}
+{"content":"","role":"assistant","tool_calls":[{"index":0,"function":{"arguments":" \""}}]}
+{"content":"","role":"assistant","tool_calls":[{"index":0,"function":{"arguments":"longitude"}}]}
+{"content":"","role":"assistant","tool_calls":[{"index":0,"function":{"arguments":"\":"}}]}
+{"content":"","role":"assistant","tool_calls":[{"index":0,"function":{"arguments":" "}}]}
+{"content":"","role":"assistant","tool_calls":[{"index":0,"function":{"arguments":"2"}}]}
+{"content":"","role":"assistant","tool_calls":[{"index":0,"function":{"arguments":"."}}]}
+{"content":"","role":"assistant","tool_calls":[{"index":0,"function":{"arguments":"352"}}]}
+{"content":"","role":"assistant","tool_calls":[{"index":0,"function":{"arguments":"2"}}]}
+{"content":"","role":"assistant","tool_calls":[{"index":0,"function":{"arguments":"}"}}]}
+{"content":"","role":"assistant"}
 ```
 
-When `parallel_tool_calls` is `false`, the model will request only one tool call at a time, rather than potentially multiple parallel calls.
+However, instead of aggregating chunks into a single `content` string, you aggregate chunks into an encoded `arguments` JSON object.
 
-### Multi-tool Workflows
+When the model calls one or more functions, a `tool_calls.type` of `function` event will be emitted for each function call
+```json
+{"content":"","role":"assistant","tool_calls":[{"index":0,"id":"get_weather:0","function":{"arguments":"","name":"get_weather"},"type":"function"}]}
+```
 
-Design tools that work together:
+Here's a code snippet demonstrating how to aggregate `delta` into a final `tool_call` object.
+
+Accumulating `tool_call` content
+
+::: code-group
+
+```python
+final_tool_calls = {}
+
+for event in stream:
+    delta = event.choices[0].delta
+    if delta.tool_calls and len(delta.tool_calls) > 0:
+        tool_call = delta.tool_calls[0]
+        if tool_call.type == "function":
+            final_tool_calls[tool_call.index] = tool_call
+        else:
+            final_tool_calls[tool_call.index].function.arguments += tool_call.function.arguments
+
+print("Final tool calls:")
+for index, tool_call in final_tool_calls.items():
+    print(f"Tool Call {index}:")
+    print(tool_call.model_dump_json(indent=2))
+```
+
+```javascript
+const finalToolCalls = [];
+
+for await (const event of stream) {
+    const delta = event.choices[0].delta;
+    if (delta.tool_calls && delta.tool_calls.length > 0) {
+        const toolCall = delta.tool_calls[0];
+        if (toolCall.type === "function") {
+            finalToolCalls[toolCall.index] = toolCall;
+        } else {
+            finalToolCalls[toolCall.index].function.arguments += toolCall.function.arguments;
+        }
+    }
+}
+
+console.log("Final tool calls:");
+console.log(JSON.stringify(finalToolCalls, null, 2));
+```
+
+:::
+
+Accumulated final\_tool\_calls\[0\]
 
 ```json
 {
-  "tools": [
-    {
-      "type": "function",
-      "function": {
-        "name": "search_products",
-        "description": "Search for products in the product catalog"
-      }
+    "index": 0,
+    "id": "get_weather:0",
+    "function": {
+        "arguments": "{\"location\": \"Paris, France\"}",
+        "name": "get_weather"
     },
-    {
-      "type": "function",
-      "function": {
-        "name": "get_product_details",
-        "description": "Get detailed information about a specified product"
-      }
-    },
-    {
-      "type": "function",
-      "function": {
-        "name": "check_inventory",
-        "description": "Check current inventory for a product"
-      }
-    }
-  ]
+    "type": "function"
 }
 ```
-
-This allows the model to naturally chain operations: search → get details → check inventory.
-
-For more on ZenMux message formats and tool parameters, see the [API Reference](https://docs.zenmux.ai/api-reference/overview).
