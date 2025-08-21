@@ -27,7 +27,7 @@ function initRequestData() {
       if (part && ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'].includes(part)) {
         httpMethod.value = part
       } else if (part) {
-        requestURL.value = part
+        requestURL.value = part.toLowerCase()
       }
     });
   }
@@ -174,7 +174,7 @@ async function copyPath() {
   width: 480px;
   max-width: 90vw;
   z-index: 1000;
-  max-width: 400px;
+  max-width: 500px;
 }
 
 .api-request-container {
