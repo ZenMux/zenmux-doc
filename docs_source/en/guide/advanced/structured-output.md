@@ -1,13 +1,13 @@
 # Structured Output
-ZenMux supports structured output from models, with responses following specific [JSON Schema](https://json-schema.org/) formats.
-When you have fixed structured data requirements, you can use this feature!
+ZenMux provides structured output functionality that ensures model responses strictly follow your defined [JSON Schema](https://json-schema.org/) format.
+When you have fixed structured data requirements, this feature is perfect for you!
 
 # Parameters
 **response_format**
-- Setting { "type": "json_object" } only guarantees the output is valid JSON format, without guaranteeing specific structure or fields.
-- Setting { "type": "json_schema", "json_schema": {...} } provides stricter control over JSON output structure, offering stronger type and structure guarantees.
+- Set `{ "type": "json_object" }` for valid JSON format output, but without guaranteeing specific structure or fields.
+- Set `{ "type": "json_schema", "json_schema": {...} }` for stricter control over JSON output structure, providing stronger type and structure guarantees.
 
-1. Setting json_object mode 
+1. Setting json_object mode
 
 Input structure:
 ```json
@@ -17,14 +17,14 @@ Input structure:
     }
 }
 ```
-Output structure: content will return valid JSON format content 
+Output structure: content will return valid JSON format content
 ```json
 {
     "model": "openai/gpt-5-nano",
     "choices": [
         {
             "message": {
-                // Actual content is a json string, displayed as json here for readability
+                // Actual content is a JSON string, shown as JSON here for readability
                 "content": {
                     "description": "I am ChatGPT, an AI assistant built by OpenAI. I help answer questions, brainstorm ideas, draft text, explain concepts, debug code, and learn topics. I use patterns from training data to generate helpful, clear responses while recognizing limits and inviting follow-up questions. I adapt tone and detail to your needs."
                 }
@@ -36,9 +36,9 @@ Output structure: content will return valid JSON format content
 }
 ```
 
-2. Setting json_schema mode 
+2. Setting json_schema mode
 
-Input follows standard [JSON Schema](https://json-schema.org/) format definition
+Input follows standard [JSON Schema](https://json-schema.org/) format definition:
 ```json
 {
     "response_format": {
@@ -71,14 +71,14 @@ Input follows standard [JSON Schema](https://json-schema.org/) format definition
     }
 }
 ```
-The output content will return JSON data according to the specified schema format
+Output content will return JSON data according to the specified schema format:
 ```json
 {
     "model": "openai/gpt-5-nano",
     "choices": [
         {
             "message": {
-                // Actual content is a json string, displayed as json here for readability
+                // Actual content is a JSON string, shown as JSON here for readability
                 "content": {
                     "name": "ChatGPT",
                     "city": "Internet",
@@ -94,9 +94,9 @@ The output content will return JSON data according to the specified schema forma
 
 # Supported Models
 
-Find the corresponding provider on the model card page and check if response_format is included in the supported parameters, as shown below:
+Find the corresponding provider on the model card page and check if response_format is included in the supported parameters, as shown in the image below:
 
-![img](https://cdn.marmot-cloud.com/storage/tbox-router/2025/08/20/cpP9tfy/format1.jpg)
+![img](https://github-production-user-asset-6210df.s3.amazonaws.com/20706012/480308753-96820a8f-5e82-4dee-bcf3-e3ef5940af8f.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250821%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250821T033651Z&X-Amz-Expires=300&X-Amz-Signature=d399221580848ee73df01cf6c3552ad216d9daaa72bd7cc652da7d0cbfb296df&X-Amz-SignedHeaders=host)
 
 # API Call Examples
 
@@ -114,7 +114,7 @@ client = OpenAI(
 
 # 4. Make request
 completion = client.chat.completions.create(
-    # 5. Specify the model you want to use, format: "provider/model-name"
+    # 5. Specify the model you want to use, format: "provider/model_name"
     model="openai/gpt-5", # [!code highlight]
     messages=[
         {
@@ -131,7 +131,7 @@ completion = client.chat.completions.create(
         "type": "json_schema", # [!code highlight]
         "json_schema": {
             "name": "role",
-            "description": "介绍自己",
+            "description": "Introduce yourself",
             "schema": {
                 "type": "object",
                 "description": "Your messages",
@@ -146,7 +146,7 @@ completion = client.chat.completions.create(
                     },
                     "desc": {
                         "type": "string",
-                        "description": "详细介绍"
+                        "description": "description"
                     }
                 },
                 "required": ["name", "city", "desc"],
@@ -172,7 +172,7 @@ const openai = new OpenAI({
 async function main() {
     // 4. Make request
     const completion = await openai.chat.completions.create({
-        // 5. Specify the model you want to use, format: "provider/model-name"
+        // 5. Specify the model you want to use, format: "provider/model_name"
         model: "openai/gpt-5",
         messages: [
             {
@@ -189,7 +189,7 @@ async function main() {
             type: "json_schema", // [!code highlight]
             json_schema: {       // [!code highlight]
                 name: "role",
-                description: "介绍自己",
+                description: "Introduce yourself",
                 schema: {
                     type: "object",
                     description: "Your messages",
@@ -204,7 +204,7 @@ async function main() {
                         },
                         desc: {
                             type: "string",
-                            description: "详细介绍"
+                            description: "description"
                         }
                     },
                     required: ["name", "city", "desc"],

@@ -1,10 +1,10 @@
 # 结构化输出
-ZenMux 支持模型的结构化输出，响应遵循特定的[JSON Schema](https://json-schema.org/)格式。
-当您有固定的结构化数据诉求时，您可以用到该功能！
+ZenMux 提供结构化输出功能，确保模型响应严格遵循您定义的[JSON Schema](https://json-schema.org/)格式。
+当您有固定的结构化数据需求时，您可以用到此功能！
 # 参数
 **response_format**
-- 设置 { "type": "json_object" } 只保证输出是有效的JSON格式，不保证特定的结构或字段。
-- 设置 { "type": "json_schema", "json_schema": {...} } 更严格的控制JSON输出结构, 提供更强的类型和结构保证
+- 设置{ "type": "json_object" }, 输出是有效的JSON格式，但不保证特定的结构或字段。
+- 设置{ "type": "json_schema", "json_schema": {...} }, 更严格的控制 JSON 输出结构, 提供更强的类型和结构保证
 
 1. 设置 json_object 模式 
 
@@ -44,7 +44,7 @@ ZenMux 支持模型的结构化输出，响应遵循特定的[JSON Schema](https
         // 标准的json_schema数据
         "json_schema": {
             "name": "role",
-            "description": "介绍自己",
+            "description": "Introduce yourself",
             "schema": {
                 "type": "object",
                 "description": "Your messages",
@@ -59,7 +59,7 @@ ZenMux 支持模型的结构化输出，响应遵循特定的[JSON Schema](https
                     },
                     "desc": {
                         "type": "string",
-                        "description": "详细介绍"
+                        "description": "description"
                     }
                 },
                 "required": ["name", "city", "desc"],
@@ -93,7 +93,7 @@ ZenMux 支持模型的结构化输出，响应遵循特定的[JSON Schema](https
 
 在模型卡片页面找到对应供应商，查看支持参数中是否有 response_format, 如下图所示：
 
-![img](https://cdn.marmot-cloud.com/storage/tbox-router/2025/08/20/cpP9tfy/format1.jpg)
+![img](https://github-production-user-asset-6210df.s3.amazonaws.com/20706012/480308753-96820a8f-5e82-4dee-bcf3-e3ef5940af8f.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250821%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250821T033651Z&X-Amz-Expires=300&X-Amz-Signature=d399221580848ee73df01cf6c3552ad216d9daaa72bd7cc652da7d0cbfb296df&X-Amz-SignedHeaders=host)
 
 # API 调用示例
 
@@ -128,7 +128,7 @@ completion = client.chat.completions.create(
         "type": "json_schema", # [!code highlight]
         "json_schema": {
             "name": "role",
-            "description": "介绍自己",
+            "description": "Introduce yourself",
             "schema": {
                 "type": "object",
                 "description": "Your messages",
@@ -143,7 +143,7 @@ completion = client.chat.completions.create(
                     },
                     "desc": {
                         "type": "string",
-                        "description": "详细介绍"
+                        "description": "description"
                     }
                 },
                 "required": ["name", "city", "desc"],
@@ -186,7 +186,7 @@ async function main() {
             type: "json_schema", // [!code highlight]
             json_schema: {       // [!code highlight]
                 name: "role",
-                description: "介绍自己",
+                description: "Introduce yourself",
                 schema: {
                     type: "object",
                     description: "Your messages",
@@ -201,7 +201,7 @@ async function main() {
                         },
                         desc: {
                             type: "string",
-                            description: "详细介绍"
+                            description: "description"
                         }
                     },
                     required: ["name", "city", "desc"],
