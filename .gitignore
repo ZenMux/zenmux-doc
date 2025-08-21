@@ -6,4 +6,6 @@ docs_source/.vitepress/dist
 docs_source/.vitepress/cache
 docs
 
+.DS_Store
+
 .llm-prompt

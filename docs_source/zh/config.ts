@@ -7,6 +7,10 @@ export default defineLoacaleConfig({
   title: "ZenMux 文档",
   description: "ZenMux 的文档",
   themeConfig: {
+    outline: {
+      label: "目录",
+      level: [2, 3]
+    },
     nav: [
       { text: 'API', link: '/api/overview' },
       { text: 'Models', link: 'https://zenmux.ai/models', noIcon: true },
