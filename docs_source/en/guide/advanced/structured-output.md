@@ -1,18 +1,18 @@
-# 结构化输出
+# Structured Output
 
-ZenMux 提供结构化输出功能，确保模型响应严格遵循您定义的[JSON Schema](https://json-schema.org/)格式。
-当您有固定的结构化数据需求时，您可以用到此功能！
+ZenMux provides structured output functionality to ensure model responses strictly follow your defined [JSON Schema](https://json-schema.org/) format.
+When you have fixed structured data requirements, you can utilize this feature!
 
-# 参数
+# Parameters
 
 **response_format**
 
-- 设置{ "type": "json_object" }, 输出是有效的 JSON 格式，但不保证特定的结构或字段。
-- 设置{ "type": "json_schema", "json_schema": {...} }, 更严格的控制 JSON 输出结构, 提供更强的类型和结构保证
+- Setting { "type": "json_object" } outputs valid JSON format, but doesn't guarantee specific structure or fields.
+- Setting { "type": "json_schema", "json_schema": {...} } provides stricter control over JSON output structure with stronger type and structural guarantees
 
-1. 设置 json_object 模式
+1. Setting json_object mode
 
-输入结构：
+Input structure:
 
 ```json
 {
@@ -22,15 +22,15 @@ ZenMux 提供结构化输出功能，确保模型响应严格遵循您定义的[
 }
 ```
 
-输出结构: content 会返回有效的 JSON 格式内容
+Output structure: content returns valid JSON format content
 
 ```json
 {
-    "model": "openai/gpt-5-nano",
+    "model": "openai/gpt-5",
     "choices": [
         {
             "message": {
-                // 实际content为json字符串，这个为了可读性，展示为json
+                // Actual content is a JSON string, displayed as JSON here for readability
                 "content": {
                     "description": "I am ChatGPT, an AI assistant built by OpenAI. I help answer questions, brainstorm ideas, draft text, explain concepts, debug code, and learn topics. I use patterns from training data to generate helpful, clear responses while recognizing limits and inviting follow-up questions. I adapt tone and detail to your needs."
                 }
@@ -42,15 +42,15 @@ ZenMux 提供结构化输出功能，确保模型响应严格遵循您定义的[
 }
 ```
 
-2. 设置 json_schema 模式
+2. Setting json_schema mode
 
-输入按照标准的 [JSON Schema](https://json-schema.org/) 格式定义好
+Input follows standard [JSON Schema](https://json-schema.org/) format definition
 
 ```json
 {
   "response_format": {
     "type": "json_schema",
-    // 标准的json_schema数据
+    // Standard json_schema data
     "json_schema": {
       "name": "role",
       "description": "Introduce yourself",
@@ -79,15 +79,15 @@ ZenMux 提供结构化输出功能，确保模型响应严格遵循您定义的[
 }
 ```
 
-输出的 content 会按照指定的 schema 格式返回 JSON 数据
+The output content will return JSON data according to the specified schema format
 
 ```json
 {
-    "model": "openai/gpt-5-nano",
+    "model": "openai/gpt-5",
     "choices": [
         {
             "message": {
-                // 实际content为json字符串，这个为了可读性，展示为json
+                // Actual content is a JSON string, displayed as JSON here for readability
                 "content": {
                     "name": "ChatGPT",
                     "city": "Internet",
@@ -101,30 +101,30 @@ ZenMux 提供结构化输出功能，确保模型响应严格遵循您定义的[
 }
 ```
 
-# 支持的模型
+# Supported Models
 
-在模型卡片页面找到对应供应商，查看支持参数中是否有 response_format, 如下图所示：
+Find the corresponding provider on the model card page and check if response_format is supported in the supported parameters, as shown in the image below:
 
 ![img](https://cdn.marmot-cloud.com/storage/zenmux/2025/08/21/1Hj7emo/res_format.jpg)
 
-# API 调用示例
+# API Call Example
 
 ::: code-group
 
 ```python [Python]
 from openai import OpenAI
 
-# 1. 初始化 OpenAI 客户端
+# 1. Initialize OpenAI client
 client = OpenAI(
-    # 2. 将基础 URL 指向 ZenMux 端点
+    # 2. Point base URL to ZenMux endpoint
     base_url="https://zenmux.ai/api/v1", # [!code highlight]
-    # 3. 替换为你从 ZenMux 用户控制台获取的 API Key
-    api_key="<你的 ZENMUX_API_KEY>", # [!code highlight]
+    # 3. Replace with your API Key obtained from ZenMux user console
+    api_key="<your_ZENMUX_API_KEY>", # [!code highlight]
 )
 
-# 4. 发起请求
+# 4. Make request
 completion = client.chat.completions.create(
-    # 5. 指定你想使用的模型，格式为 "供应商/模型名称"
+    # 5. Specify the model you want to use, format: "provider/model_name"
     model="openai/gpt-5", # [!code highlight]
     messages=[
         {
@@ -132,11 +132,11 @@ completion = client.chat.completions.create(
             "content": "Hi, who are you? Describe yourself using about 50 words. Use JSON response format?" # [!code highlight]
         }
     ],
-    # 方式一: 输出是有效的JSON格式，但不保证特定的结构或字段。
+    # Method 1: Output is valid JSON format, but doesn't guarantee specific structure or fields.
     # response_format = {
     #      "type": "json_object"
     #  }
-    # 方式二: 更严格地控制 JSON 输出结构，提供更强的类型和结构保证
+    # Method 2: Stricter control over JSON output structure, providing stronger type and structural guarantees
     response_format = { # [!code highlight]
         "type": "json_schema", # [!code highlight]
         "json_schema": {
@@ -172,18 +172,18 @@ print(completion.choices[0].message.content)
 ```ts [TypeScript]
 import OpenAI from "openai";
 
-// 1. 初始化 OpenAI 客户端
+// 1. Initialize OpenAI client
 const openai = new OpenAI({
-  // 2. 将基础 URL 指向 ZenMux 端点
+  // 2. Point base URL to ZenMux endpoint
   baseURL: "https://zenmux.ai/api/v1", // [!code highlight]
-  // 3. 替换为你从 ZenMux 用户控制台获取的 API Key
-  apiKey = "<你的 ZENMUX_API_KEY>", // [!code highlight]
+  // 3. Replace with your API Key obtained from ZenMux user console
+  apiKey = "<your_ZENMUX_API_KEY>", // [!code highlight]
 });
 
 async function main() {
-  // 4. 发起请求
+  // 4. Make request
   const completion = await openai.chat.completions.create({
-    // 5. 指定你想使用的模型，格式为 "供应商/模型名称"
+    // 5. Specify the model you want to use, format: "provider/model_name"
     model: "openai/gpt-5",
     messages: [
       {
@@ -192,11 +192,11 @@ async function main() {
           "Hi, who are you? Describe yourself using about 50 words. Use JSON response format?",
       },
     ],
-    // 方式一: 输出是有效的JSON格式，但不保证特定的结构或字段。
+    // Method 1: Output is valid JSON format, but doesn't guarantee specific structure or fields.
     // response_format: {
     //     "type": "json_object"
     // }
-    // 方式二: 更严格地控制 JSON 输出结构，提供更强的类型和结构保证
+    // Method 2: Stricter control over JSON output structure, providing stronger type and structural guarantees
     response_format: {
       type: "json_schema", // [!code highlight]
       json_schema: {
