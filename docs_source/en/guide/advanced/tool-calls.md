@@ -201,56 +201,61 @@ let input: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [
   { role: "user", content: "What's my horoscope? I'm an Aquarius." },
 ];
 
-// 2. Use model with tool calling capability
-let response = await openai.chat.completions.create({
-  model: "moonshotai/kimi-k2",
-  tools,
-  messages: input,
-});
 
-// Save function call output for subsequent requests
-let functionCall: OpenAI.Chat.Completions.ChatCompletionMessageFunctionToolCall | undefined;
-let functionCallArguments: Record<string, string> | undefined;
-input = input.concat(response.choices.map((c) => c.message));
+async function main() {
+  // 2. Use model with tool calling capability
+  let response = await openai.chat.completions.create({
+    model: "moonshotai/kimi-k2",
+    tools,
+    messages: input,
+  });
 
-response.choices.forEach((item) => {
-  if (item.message.tool_calls && item.message.tool_calls.length > 0) {
-    functionCall = item.message.tool_calls[0] as OpenAI.Chat.Completions.ChatCompletionMessageFunctionToolCall;
-    functionCallArguments = JSON.parse(functionCall.function.arguments) as Record<string, string>;
+  // Save function call output for subsequent requests
+  let functionCall: OpenAI.Chat.Completions.ChatCompletionMessageFunctionToolCall | undefined;
+  let functionCallArguments: Record<string, string> | undefined;
+  input = input.concat(response.choices.map((c) => c.message));
+
+  response.choices.forEach((item) => {
+    if (item.message.tool_calls && item.message.tool_calls.length > 0) {
+      functionCall = item.message.tool_calls[0] as OpenAI.Chat.Completions.ChatCompletionMessageFunctionToolCall;
+      functionCallArguments = JSON.parse(functionCall.function.arguments) as Record<string, string>;
+    }
+  });
+
+  // 3. Execute the function logic for get_horoscope
+  function getHoroscope(sign: string) {
+    return sign + " Next Tuesday you will meet a little otter.";
   }
-});
 
-// 3. Execute the function logic for get_horoscope
-function getHoroscope(sign: string) {
-  return sign + " Next Tuesday you will meet a little otter.";
+  if (!functionCall || !functionCallArguments) {
+    throw new Error("Model didn't return a function call");
+  }
+
+  const result = { horoscope: getHoroscope(functionCallArguments.sign) };
+
+  // 4. Provide the function call result to the model
+  input.push({
+    role: 'tool',
+    tool_call_id: functionCall.id,
+    // @ts-expect-error must have name
+    name: functionCall.function.name,
+    content: JSON.stringify(result),
+  });
+  console.log("Final input:");
+  console.log(JSON.stringify(input, null, 2));
+
+  response = await openai.chat.completions.create({
+    model: "moonshotai/kimi-k2",
+    tools,
+    messages: input,
+  });
+
+  // 5. The model should now be able to provide a response!
+  console.log("Final output:");
+  console.log(JSON.stringify(response.choices.map(v => v.message), null, 2));
 }
 
-if (!functionCall || !functionCallArguments) {
-  throw new Error("Model didn't return a function call");
-}
-
-const result = { horoscope: getHoroscope(functionCallArguments.sign) };
-
-// 4. Provide the function call result to the model
-input.push({
-  role: 'tool',
-  tool_call_id: functionCall.id,
-  // @ts-expect-error must have name
-  name: functionCall.function.name,
-  content: JSON.stringify(result),
-});
-console.log("Final input:");
-console.log(JSON.stringify(input, null, 2));
-
-response = await openai.chat.completions.create({
-  model: "moonshotai/kimi-k2",
-  tools,
-  messages: input,
-});
-
-// 5. The model should now be able to provide a response!
-console.log("Final output:");
-console.log(JSON.stringify(response.choices.map(v => v.message), null, 2));
+main();
 ```
 
 :::
@@ -563,16 +568,20 @@ const tools: OpenAI.Chat.Completions.ChatCompletionTool[] = [{
     },
 }];
 
-const stream = await openai.chat.completions.create({
-    model: "moonshotai/kimi-k2",
-    messages: [{ role: "user", content: "How's the weather in Paris today?" }],
-    tools,
-    stream: true,
-});
+async function main() {
+  const stream = await openai.chat.completions.create({
+      model: "moonshotai/kimi-k2",
+      messages: [{ role: "user", content: "How's the weather in Paris today?" }],
+      tools,
+      stream: true,
+  });
 
-for await (const event of stream) {
-    console.log(JSON.stringify(event.choices[0].delta));
+  for await (const event of stream) {
+      console.log(JSON.stringify(event.choices[0].delta));
+  }
 }
+
+main();
 ```
 
 :::
