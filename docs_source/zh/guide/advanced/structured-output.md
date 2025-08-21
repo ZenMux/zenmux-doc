@@ -1,22 +1,29 @@
 # 结构化输出
+
 ZenMux 提供结构化输出功能，确保模型响应严格遵循您定义的[JSON Schema](https://json-schema.org/)格式。
 当您有固定的结构化数据需求时，您可以用到此功能！
+
 # 参数
+
 **response_format**
-- 设置{ "type": "json_object" }, 输出是有效的JSON格式，但不保证特定的结构或字段。
+
+- 设置{ "type": "json_object" }, 输出是有效的 JSON 格式，但不保证特定的结构或字段。
 - 设置{ "type": "json_schema", "json_schema": {...} }, 更严格的控制 JSON 输出结构, 提供更强的类型和结构保证
 
-1. 设置 json_object 模式 
+1. 设置 json_object 模式
 
 输入结构：
+
 ```json
 {
-    "response_format": {
-        "type": "json_object"
-    }
+  "response_format": {
+    "type": "json_object"
+  }
 }
 ```
-输出结构: content 会返回有效的 JSON 格式内容 
+
+输出结构: content 会返回有效的 JSON 格式内容
+
 ```json
 {
     "model": "openai/gpt-5-nano",
@@ -34,42 +41,46 @@ ZenMux 提供结构化输出功能，确保模型响应严格遵循您定义的[
     ....
 }
 ```
-2. 设置 json_schema 模式 
+
+2. 设置 json_schema 模式
 
 输入按照标准的 [JSON Schema](https://json-schema.org/) 格式定义好
+
 ```json
 {
-    "response_format": {
-        "type": "json_schema",
-        // 标准的json_schema数据
-        "json_schema": {
-            "name": "role",
-            "description": "Introduce yourself",
-            "schema": {
-                "type": "object",
-                "description": "Your messages",
-                "properties": {
-                    "name": {
-                        "type": "string",
-                        "description": "your name"
-                    },
-                    "city": {
-                        "type": "string",
-                        "description": "where your city"
-                    },
-                    "desc": {
-                        "type": "string",
-                        "description": "description"
-                    }
-                },
-                "required": ["name", "city", "desc"],
-                "additionalProperties": false
-            }
-        }
+  "response_format": {
+    "type": "json_schema",
+    // 标准的json_schema数据
+    "json_schema": {
+      "name": "role",
+      "description": "Introduce yourself",
+      "schema": {
+        "type": "object",
+        "description": "Your messages",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "your name"
+          },
+          "city": {
+            "type": "string",
+            "description": "where your city"
+          },
+          "desc": {
+            "type": "string",
+            "description": "description"
+          }
+        },
+        "required": ["name", "city", "desc"],
+        "additionalProperties": false
+      }
     }
+  }
 }
 ```
-输出的 content 会按照指定的schema格式返回 JSON 数据
+
+输出的 content 会按照指定的 schema 格式返回 JSON 数据
+
 ```json
 {
     "model": "openai/gpt-5-nano",
@@ -89,6 +100,7 @@ ZenMux 提供结构化输出功能，确保模型响应严格遵循您定义的[
     ...
 }
 ```
+
 # 支持的模型
 
 在模型卡片页面找到对应供应商，查看支持参数中是否有 response_format, 如下图所示：
@@ -98,6 +110,7 @@ ZenMux 提供结构化输出功能，确保模型响应严格遵循您定义的[
 # API 调用示例
 
 ::: code-group
+
 ```python [Python]
 from openai import OpenAI
 
@@ -119,11 +132,11 @@ completion = client.chat.completions.create(
             "content": "Hi, who are you? Describe yourself using about 50 words. Use JSON response format?" # [!code highlight]
         }
     ],
-    # 方式一、
+    # 方式一: 输出是有效的JSON格式，但不保证特定的结构或字段。
     # response_format = {
     #      "type": "json_object"
     #  }
-    # 方式二、
+    # 方式二: 更严格地控制 JSON 输出结构，提供更强的类型和结构保证
     response_format = { # [!code highlight]
         "type": "json_schema", # [!code highlight]
         "json_schema": {
@@ -155,63 +168,67 @@ completion = client.chat.completions.create(
 
 print(completion.choices[0].message.content)
 ```
+
 ```ts [TypeScript]
 import OpenAI from "openai";
 
 // 1. 初始化 OpenAI 客户端
 const openai = new OpenAI({
-    // 2. 将基础 URL 指向 ZenMux 端点
-    baseURL: "https://zenmux.ai/api/v1", // [!code highlight]
-    // 3. 替换为你从 ZenMux 用户控制台获取的 API Key
-    apiKey="<你的 ZENMUX_API_KEY>", // [!code highlight]
+  // 2. 将基础 URL 指向 ZenMux 端点
+  baseURL: "https://zenmux.ai/api/v1", // [!code highlight]
+  // 3. 替换为你从 ZenMux 用户控制台获取的 API Key
+  apiKey = "<你的 ZENMUX_API_KEY>", // [!code highlight]
 });
 
 async function main() {
-    // 4. 发起请求
-    const completion = await openai.chat.completions.create({
-        // 5. 指定你想使用的模型，格式为 "供应商/模型名称"
-        model: "openai/gpt-5",
-        messages: [
-            {
-                "role": "user",
-                "content": "Hi, who are you? Describe yourself using about 50 words. Use JSON response format?"
-            }
-        ],
-        // 方式一、
-        // response_format: {
-        //     "type": "json_object"
-        // }
-        // 方式二、
-        response_format: {
-            type: "json_schema", // [!code highlight]
-            json_schema: {       // [!code highlight]
-                name: "role",
-                description: "Introduce yourself",
-                schema: {
-                    type: "object",
-                    description: "Your messages",
-                    properties: {
-                        name: {
-                            type: "string",
-                            description: "your name"
-                        },
-                        city: {
-                            type: "string",
-                            description: "where your city"
-                        },
-                        desc: {
-                            type: "string",
-                            description: "description"
-                        }
-                    },
-                    required: ["name", "city", "desc"],
-                    additionalProperties: false
-                }
-            }
-        }
-    });
+  // 4. 发起请求
+  const completion = await openai.chat.completions.create({
+    // 5. 指定你想使用的模型，格式为 "供应商/模型名称"
+    model: "openai/gpt-5",
+    messages: [
+      {
+        role: "user",
+        content:
+          "Hi, who are you? Describe yourself using about 50 words. Use JSON response format?",
+      },
+    ],
+    // 方式一: 输出是有效的JSON格式，但不保证特定的结构或字段。
+    // response_format: {
+    //     "type": "json_object"
+    // }
+    // 方式二: 更严格地控制 JSON 输出结构，提供更强的类型和结构保证
+    response_format: {
+      type: "json_schema", // [!code highlight]
+      json_schema: {
+        // [!code highlight]
+        name: "role",
+        description: "Introduce yourself",
+        schema: {
+          type: "object",
+          description: "Your messages",
+          properties: {
+            name: {
+              type: "string",
+              description: "your name",
+            },
+            city: {
+              type: "string",
+              description: "where your city",
+            },
+            desc: {
+              type: "string",
+              description: "description",
+            },
+          },
+          required: ["name", "city", "desc"],
+          additionalProperties: false,
+        },
+      },
+    },
+  });
 
-    console.log(completion.choices[0].message.content);
+  console.log(completion.choices[0].message.content);
 }
 
-main();```
+main();
+```
