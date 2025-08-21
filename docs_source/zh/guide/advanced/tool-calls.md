@@ -54,7 +54,6 @@ subtitle: 在你的 prompt 中使用工具
 
 *   函数是一种特定类型的工具，由 JSON schema 定义。函数定义允许模型向您的应用程序传递数据，您的代码可以访问数据或执行模型建议的操作。
 *   除了函数工具外，还有自定义工具（在本指南中描述），它们可以处理自由文本输入和输出。
-*   还有作为 OpenAI 平台一部分的[内置工具](/docs/guides/tools)。这些工具使模型能够[搜索网络](/docs/guides/tools-web-search)、[执行代码](/docs/guides/tools-code-interpreter)、访问 [MCP 服务器](/docs/guides/tools-remote-mcp)的功能等等。
 
 ### 工具调用流程
 
@@ -67,6 +66,7 @@ subtitle: 在你的 prompt 中使用工具
 5.  从模型接收最终响应（或更多工具调用）
 
 ![函数调用图表步骤](https://cdn.openai.com/API/docs/images/function-calling-diagram-steps.png)
+> 图片引用自 OpenAI
 
 函数工具示例
 ------------

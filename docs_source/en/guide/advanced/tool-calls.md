@@ -54,7 +54,6 @@ Functions vs Tools
 
 *   Functions are a specific type of tool defined by JSON schema. Function definitions allow the model to pass data to your application, and your code can access the data or perform actions the model suggests.
 *   In addition to function tools, there are custom tools (described in this guide) that can handle free-text input and output.
-*   There are also built-in tools that are part of the OpenAI platform. These tools enable models to search the web, execute code, access functionality from MCP servers, and more.
 
 ### Tool Call Flow
 
@@ -67,6 +66,7 @@ Tool calls are a multi-step conversation between your application and the model 
 5.  Receive the final response from the model (or more tool calls)
 
 ![Function calling diagram steps](https://cdn.openai.com/API/docs/images/function-calling-diagram-steps.png)
+> Image source: OpenAI
 
 Function Tool Example
 ------------
