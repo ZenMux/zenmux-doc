@@ -83,7 +83,7 @@ Complete tool call example:
 
 ::: code-group
 
-```python
+```Python
 from openai import OpenAI
 import json
 
@@ -168,7 +168,7 @@ print(response.model_dump_json(indent=2))
 print("\n" + response.choices[0].message.content)
 ```
 
-```typescript
+```Typescript
 import OpenAI from "openai";
 const openai = new OpenAI({
   baseURL: 'https://zenmux.ai/api/v1',
@@ -305,7 +305,7 @@ Here's the definition for a `get_weather` function tool:
 
 ### Token Usage
 
-Under the hood, `tools` are injected into the system message. This means `tools` count towards the model's context limit and are billed as prompt tokens. If you run into token limits, we recommend limiting the size and number of `tools`.
+Under the hood, This `tools` count towards the model's context limit and are billed as prompt tokens. If you run into token limits, we recommend limiting the size and number of `tools`.
 
 Handling Tool Calls
 ------------
@@ -355,7 +355,7 @@ Execute tool calls and append results:
 
 ::: code-group
 
-```python
+```Python
 for choice in response.choices:
     for tool_call in choice.message.tool_calls or []:
         if tool_call.type != "function":
@@ -373,7 +373,7 @@ for choice in response.choices:
         })
 ```
 
-```typescript
+```Typescript
 for (const choice of response.choices) {
   for (const toolCall of choice.tool_calls) {
       if (toolCall.type !== "function") {
@@ -402,7 +402,7 @@ Execute function calls and append results:
 
 ::: code-group
 
-```python
+```Python
 def call_function(name, args):
     if name == "get_weather":
         return get_weather(**args)
@@ -410,8 +410,8 @@ def call_function(name, args):
         return send_email(**args)
 ```
 
-```javascript
-const callFunction = async (name, args) => {
+```Typescript
+const callFunction = async (name: string, args: unknown) => {
     if (name === "get_weather") {
         return getWeather(args.latitude, args.longitude);
     }
@@ -437,7 +437,7 @@ Send results back to the model:
 
 ::: code-group
 
-```python
+```Python
 response = client.chat.completions.create(
     model="moonshotai/kimi-k2",
     messages=input_messages,
@@ -497,7 +497,7 @@ Streaming tool calls:
 
 ::: code-group
 
-```python
+```Python
 from openai import OpenAI
 
 client = OpenAI(
@@ -537,7 +537,7 @@ for event in stream:
     print(event.choices[0].delta.model_dump_json())
 ```
 
-```typescript
+```Typescript
 import { OpenAI } from "openai";
 
 const openai = new OpenAI({
@@ -655,7 +655,7 @@ Accumulate `tool_call` content:
 
 ::: code-group
 
-```python
+```Python
 final_tool_calls = {}
 
 for event in stream:
@@ -673,7 +673,7 @@ for index, tool_call in final_tool_calls.items():
     print(tool_call.model_dump_json(indent=2))
 ```
 
-```typescript
+```Typescript
 const finalToolCalls: OpenAI.Chat.Completions.ChatCompletionMessageFunctionToolCall[]  = [];
 
 for await (const event of stream) {

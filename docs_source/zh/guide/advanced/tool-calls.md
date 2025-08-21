@@ -83,7 +83,7 @@ subtitle: 在你的 prompt 中使用工具
 
 ::: code-group
 
-```python
+```Python
 from openai import OpenAI
 import json
 
@@ -168,7 +168,7 @@ print(response.model_dump_json(indent=2))
 print("\n" + response.choices[0].message.content)
 ```
 
-```typescript
+```Typescript
 import OpenAI from "openai";
 const openai = new OpenAI({
   baseURL: 'https://zenmux.ai/api/v1',
@@ -305,7 +305,7 @@ console.log(JSON.stringify(response.choices.map(v => v.message), null, 2));
 
 ### Token 使用
 
-在底层，`tools`会注入到系统消息中。这意味着`tools`会计入模型的上下文限制，并作为 prompt token 计费。如果遇到 token 限制，我们建议限制`tools`大小和数量。
+在底层，`tools`会计入模型的上下文限制，并作为 prompt token 计费。如果遇到 token 限制，我们建议限制`tools`大小和数量。
 
 处理工具调用（Tool calling）
 ------------
@@ -355,7 +355,7 @@ console.log(JSON.stringify(response.choices.map(v => v.message), null, 2));
 
 ::: code-group
 
-```python
+```Python
 for choice in response.choices:
     for tool_call in choice.message.tool_calls or []:
         if tool_call.type != "function":
@@ -373,7 +373,7 @@ for choice in response.choices:
         })
 ```
 
-```typescript
+```Typescript
 for (const choice of response.choices) {
   for (const toolCall of choice.tool_calls) {
       if (toolCall.type !== "function") {
@@ -402,7 +402,7 @@ for (const choice of response.choices) {
 
 ::: code-group
 
-```python
+```Python
 def call_function(name, args):
     if name == "get_weather":
         return get_weather(**args)
@@ -410,8 +410,8 @@ def call_function(name, args):
         return send_email(**args)
 ```
 
-```javascript
-const callFunction = async (name, args) => {
+```Typescript
+const callFunction = async (name: string, args: unknown) => {
     if (name === "get_weather") {
         return getWeather(args.latitude, args.longitude);
     }
@@ -437,7 +437,7 @@ const callFunction = async (name, args) => {
 
 ::: code-group
 
-```python
+```Python
 response = client.chat.completions.create(
     model="moonshotai/kimi-k2",
     messages=input_messages,
@@ -445,7 +445,7 @@ response = client.chat.completions.create(
 )
 ```
 
-```javascript
+```Typescript
 const response = await openai.chat.completions.create({
     model: "moonshotai/kimi-k2",
     messages: input,
@@ -497,7 +497,7 @@ const response = await openai.chat.completions.create({
 
 ::: code-group
 
-```python
+```Python
 from openai import OpenAI
 
 client = OpenAI(
@@ -537,7 +537,7 @@ for event in stream:
     print(event.choices[0].delta.model_dump_json())
 ```
 
-```typescript
+```Typescript
 import { OpenAI } from "openai";
 
 const openai = new OpenAI({
@@ -646,7 +646,7 @@ for await (const event of stream) {
 
 ::: code-group
 
-```python
+```Python
 final_tool_calls = {}
 
 for event in stream:
@@ -664,7 +664,7 @@ for index, tool_call in final_tool_calls.items():
     print(tool_call.model_dump_json(indent=2))
 ```
 
-```typescript
+```Typescript
 const finalToolCalls: OpenAI.Chat.Completions.ChatCompletionMessageFunctionToolCall[]  = [];
 
 for await (const event of stream) {
