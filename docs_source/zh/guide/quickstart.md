@@ -12,7 +12,7 @@ ZenMux 提供了一个与 OpenAI 兼容的统一 API。
 
 ---
 
-## 方法一：使用 OpenAI 兼容接口 (推荐)
+## 方法一：使用 OpenAI SDK (推荐)
 
 ::: info 兼容性说明
 ZenMux 的 API 端点与 OpenAI API 完全兼容，只需修改两个参数即可无缝切换。

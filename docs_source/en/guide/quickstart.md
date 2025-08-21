@@ -1,21 +1,21 @@
 # Quick Start
 
-ZenMux provides a unified API that is compatible with OpenAI.
+ZenMux provides a unified API compatible with OpenAI.
 
 ::: tip 💡 Get Started in Three Steps
-You can start using ZenMux with just three simple steps:
+Just three simple steps to start using ZenMux:
 :::
 
 1. **Get API Key**: Go to your **[User Console > API Keys](https://zenmux.ai/settings/keys)** page and create a new API Key.
-2. **Choose Integration Method**: We recommend using OpenAI SDK compatibility mode, or you can call the ZenMux API directly.
-3. **Make Your First Request**: Copy the code example below, replace with your API Key, and run it.
+2. **Choose Integration Method**: We recommend using OpenAI SDK compatibility mode, or you can directly call the ZenMux API.
+3. **Make Your First Request**: Copy the code example below, replace with your API Key, and run.
 
 ---
 
-## Method 1: Using OpenAI Compatible Interface (Recommended)
+## Method 1: Using OpenAI SDK (Recommended)
 
-::: info Compatibility Note
-ZenMux's API endpoints are fully compatible with OpenAI API - you only need to modify two parameters for seamless switching.
+::: info Compatibility Notice
+ZenMux's API endpoints are fully compatible with OpenAI API. You only need to modify two parameters for seamless switching.
 :::
 
 ### Code Examples
@@ -30,7 +30,7 @@ client = OpenAI(
     # 2. Point base URL to ZenMux endpoint
     base_url="https://zenmux.ai/api/v1", # [!code highlight]
     # 3. Replace with your API Key from ZenMux user console
-    api_key="<你的 ZENMUX_API_KEY>", # [!code highlight]
+    api_key="<your_ZENMUX_API_KEY>", # [!code highlight]
 )
 
 # 4. Make request
@@ -40,7 +40,7 @@ completion = client.chat.completions.create(
     messages=[
         {
             "role": "user",
-            "content": "What's the meaning of life?" # [!code highlight]
+            "content": "What is the meaning of life?" # [!code highlight]
         }
     ]
 )
@@ -56,7 +56,7 @@ const openai = new OpenAI({
   // 2. Point base URL to ZenMux endpoint
   baseURL: "https://zenmux.ai/api/v1", // [!code highlight]
   // 3. Replace with your API Key from ZenMux user console
-  apiKey: "<你的 ZENMUX_API_KEY>", // [!code highlight]
+  apiKey: "<your_ZENMUX_API_KEY>", // [!code highlight]
 });
 
 async function main() {
@@ -67,7 +67,7 @@ async function main() {
     messages: [
       {
         role: "user",
-        content: "What's the meaning of life?", // [!code highlight]
+        content: "What is the meaning of life?", // [!code highlight]
       },
     ],
   });
@@ -86,7 +86,7 @@ const openai = new OpenAI({
   // 2. Point base URL to ZenMux endpoint
   baseURL: "https://zenmux.ai/api/v1", // [!code highlight]
   // 3. Replace with your API Key from ZenMux user console
-  apiKey: "<你的 ZENMUX_API_KEY>", // [!code highlight]
+  apiKey: "<your_ZENMUX_API_KEY>", // [!code highlight]
 });
 
 // 4. Make request
@@ -96,7 +96,7 @@ const completion = await openai.chat.completions.create({
   messages: [
     {
       role: "user",
-      content: "What's the meaning of life?", // [!code highlight]
+      content: "What is the meaning of life?", // [!code highlight]
     },
   ],
 });
@@ -114,7 +114,7 @@ import (
 )
 
 func main() {
-    config := openai.DefaultConfig("<你的 ZENMUX_API_KEY>") // [!code highlight]
+    config := openai.DefaultConfig("<your_ZENMUX_API_KEY>") // [!code highlight]
     config.BaseURL = "https://zenmux.ai/api/v1" // [!code highlight]
     client := openai.NewClientWithConfig(config)
 
@@ -125,7 +125,7 @@ func main() {
             Messages: []openai.ChatCompletionMessage{
                 {
                     Role:    openai.ChatMessageRoleUser,
-                    Content: "What's the meaning of life?", // [!code highlight]
+                    Content: "What is the meaning of life?", // [!code highlight]
                 },
             },
         },
@@ -152,7 +152,7 @@ func main() {
 import httpx
 
 # Prepare request data
-api_key = "<你的 ZENMUX_API_KEY>" # [!code highlight]
+api_key = "<your_ZENMUX_API_KEY>" # [!code highlight]
 headers = {
     "Authorization": f"Bearer {api_key}", # [!code highlight]
 }
@@ -161,7 +161,7 @@ payload = {
     "messages": [
         {
             "role": "user",
-            "content": "What's the meaning of life?" # [!code highlight]
+            "content": "What is the meaning of life?" # [!code highlight]
         }
     ]
 }
@@ -182,10 +182,11 @@ print(response.json())
 ```
 
 ```typescript [TypeScript (fetch)]
-fetch("https://zenmux.ai/api/v1/chat/completions", { // [!code highlight]
+fetch("https://zenmux.ai/api/v1/chat/completions", {
+  // [!code highlight]
   method: "POST",
   headers: {
-    Authorization: "Bearer <你的 ZENMUX_API_KEY>", // [!code highlight]
+    Authorization: "Bearer <your_ZENMUX_API_KEY>", // [!code highlight]
     "Content-Type": "application/json",
   },
   body: JSON.stringify({
@@ -194,7 +195,7 @@ fetch("https://zenmux.ai/api/v1/chat/completions", { // [!code highlight]
     messages: [
       {
         role: "user",
-        content: "What's the meaning of life?", // [!code highlight]
+        content: "What is the meaning of life?", // [!code highlight]
       },
     ],
   }),
@@ -207,14 +208,14 @@ fetch("https://zenmux.ai/api/v1/chat/completions", { // [!code highlight]
 ```bash [Shell (cURL)]
 
 curl https://zenmux.ai/api/v1/chat/completions # [!code highlight]
-  -H "Content-Type: application/json" 
+  -H "Content-Type: application/json"
   -H "Authorization: Bearer $ZENMUX_API_KEY" # [!code highlight]
-  -d '{ 
+  -d '{
     "model": "openai/gpt-5",
     "messages": [
       {
         "role": "user",
-        "content": "What's the meaning of life?" 
+        "content": "What is the meaning of life?"
       }
     ]
   }'
@@ -231,22 +232,22 @@ import java.util.List;
 
 public class ZenMuxExample {
     public static void main(String[] args) throws Exception {
-        String apiKey = "<你的 ZENMUX_API_KEY>"; // [!code highlight]
-        
+        String apiKey = "<your_ZENMUX_API_KEY>"; // [!code highlight]
+
         // Build request body
         Map<String, Object> requestBody = Map.of(
             "model", "openai/gpt-5", // [!code highlight]
             "messages", List.of(
                 Map.of(
                     "role", "user",
-                    "content", "What's the meaning of life?"// [!code highlight]
+                    "content", "What is the meaning of life?"// [!code highlight]
                 )
             )
         );
-        
+
         ObjectMapper mapper = new ObjectMapper();
         String jsonBody = mapper.writeValueAsString(requestBody);
-        
+
         // Create HTTP request
         HttpRequest request = HttpRequest.newBuilder()
             .uri(URI.create("https://zenmux.ai/api/v1/chat/completions")) // [!code highlight]
@@ -254,12 +255,12 @@ public class ZenMuxExample {
             .header("Authorization", "Bearer " + apiKey) // [!code highlight]
             .POST(HttpRequest.BodyPublishers.ofString(jsonBody))
             .build();
-        
+
         // Send request
         HttpClient client = HttpClient.newHttpClient();
-        HttpResponse<String> response = client.send(request, 
+        HttpResponse<String> response = client.send(request,
             HttpResponse.BodyHandlers.ofString());
-        
+
         System.out.println(response.body());
     }
 }
@@ -271,12 +272,12 @@ public class ZenMuxExample {
 
 ## Next Steps
 
-You can now explore more features:
+Next, you can explore more features:
 
 ::: details Recommended Reading
 
 - **[Model List](https://zenmux.ai/docs/models)** - Explore all models we support
 - **[Advanced Features](https://zenmux.ai/docs/advanced)** - Streaming, function calling, and more
-- **[API Reference](https://zenmux.ai/docs/api-reference)** - Get detailed information on all APIs
+- **[API Reference](https://zenmux.ai/docs/api-reference)** - Get detailed information for all APIs
 
 :::
