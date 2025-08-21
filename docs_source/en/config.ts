@@ -19,7 +19,6 @@ export default defineLoacaleConfig({
     sidebar: [
       {
         text: "About ZenMux",
-        collapsed: false,
         items: [
           { text: "Introduction", link: "/about/intro" },
           { text: "Architecture", link: "/about/architecture" },
@@ -29,11 +28,12 @@ export default defineLoacaleConfig({
         ]
       },
       {
-        text: "Guides",
+        text: "User Guide",
         items: [
           { text: "Quickstart", link: "/guide/quickstart" },
           { text: "Token Usage", link: "/guide/token-usage" },
           { text: "Basic Usage", link: "/guide/basic" },
+          { text: "Parameter Mapping", link: "/guide/parameter-mapping" },
           {
             text: "Advanced",
             items: [
@@ -77,5 +77,6 @@ export default defineLoacaleConfig({
         ]
       }
     ],
+    search: { provider: "local" }
   },
 });

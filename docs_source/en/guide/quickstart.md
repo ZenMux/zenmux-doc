@@ -1,46 +1,46 @@
-# 快速开始
+# Quick Start
 
-ZenMux 提供了一个与 OpenAI 兼容的统一 API。
+ZenMux provides a unified API compatible with OpenAI.
 
-::: tip 💡 三步即可开始
-只需要三个简单步骤，即可开始使用 ZenMux：
+::: tip 💡 Get Started in Three Steps
+Just three simple steps to start using ZenMux:
 :::
 
-1. **获取 API 密钥**：前往你的 **[用户控制台 > API Keys](https://zenmux.ai/settings/keys)** 页面，创建一个新的 API Key。
-2. **选择集成方式**：我们推荐使用 OpenAI SDK 的兼容模式，也可以直接调用 ZenMux API。
-3. **发起你的第一个请求**：复制下面的代码示例，替换你的 API Key，即可运行。
+1. **Get API Key**: Go to your **[User Console > API Keys](https://zenmux.ai/settings/keys)** page and create a new API Key.
+2. **Choose Integration Method**: We recommend using OpenAI SDK compatibility mode, or you can directly call the ZenMux API.
+3. **Make Your First Request**: Copy the code example below, replace with your API Key, and run.
 
 ---
 
-## 方法一：使用 OpenAI SDK (推荐)
+## Method 1: Using OpenAI SDK (Recommended)
 
-::: info 兼容性说明
-ZenMux 的 API 端点与 OpenAI API 完全兼容，只需修改两个参数即可无缝切换。
+::: info Compatibility Notice
+ZenMux's API endpoints are fully compatible with OpenAI API. You only need to modify two parameters for seamless switching.
 :::
 
-### 代码示例
+### Code Examples
 
 ::: code-group
 
 ```python [Python]
 from openai import OpenAI
 
-# 1. 初始化 OpenAI 客户端
+# 1. Initialize OpenAI client
 client = OpenAI(
-    # 2. 将基础 URL 指向 ZenMux 端点
+    # 2. Point base URL to ZenMux endpoint
     base_url="https://zenmux.ai/api/v1", # [!code highlight]
-    # 3. 替换为你从 ZenMux 用户控制台获取的 API Key
-    api_key="<你的 ZENMUX_API_KEY>", # [!code highlight]
+    # 3. Replace with your API Key from ZenMux user console
+    api_key="<your_ZENMUX_API_KEY>", # [!code highlight]
 )
 
-# 4. 发起请求
+# 4. Make request
 completion = client.chat.completions.create(
-    # 5. 指定你想使用的模型，格式为 "供应商/模型名称"
+    # 5. Specify the model you want to use, format: "provider/model_name"
     model="openai/gpt-5", # [!code highlight]
     messages=[
         {
             "role": "user",
-            "content": "生命的意义是什么？" # [!code highlight]
+            "content": "What is the meaning of life?" # [!code highlight]
         }
     ]
 )
@@ -51,23 +51,23 @@ print(completion.choices[0].message.content)
 ```ts [TypeScript]
 import OpenAI from "openai";
 
-// 1. 初始化 OpenAI 客户端
+// 1. Initialize OpenAI client
 const openai = new OpenAI({
-  // 2. 将基础 URL 指向 ZenMux 端点
+  // 2. Point base URL to ZenMux endpoint
   baseURL: "https://zenmux.ai/api/v1", // [!code highlight]
-  // 3. 替换为你从 ZenMux 用户控制台获取的 API Key
-  apiKey: "<你的 ZENMUX_API_KEY>", // [!code highlight]
+  // 3. Replace with your API Key from ZenMux user console
+  apiKey: "<your_ZENMUX_API_KEY>", // [!code highlight]
 });
 
 async function main() {
-  // 4. 发起请求
+  // 4. Make request
   const completion = await openai.chat.completions.create({
-    // 5. 指定你想使用的模型，格式为 "供应商/模型名称"
+    // 5. Specify the model you want to use, format: "provider/model_name"
     model: "openai/gpt-5", // [!code highlight]
     messages: [
       {
         role: "user",
-        content: "生命的意义是什么？", // [!code highlight]
+        content: "What is the meaning of life?", // [!code highlight]
       },
     ],
   });
@@ -81,22 +81,22 @@ main();
 ```js [JavaScript]
 import OpenAI from "openai";
 
-// 1. 初始化 OpenAI 客户端
+// 1. Initialize OpenAI client
 const openai = new OpenAI({
-  // 2. 将基础 URL 指向 ZenMux 端点
+  // 2. Point base URL to ZenMux endpoint
   baseURL: "https://zenmux.ai/api/v1", // [!code highlight]
-  // 3. 替换为你从 ZenMux 用户控制台获取的 API Key
-  apiKey: "<你的 ZENMUX_API_KEY>", // [!code highlight]
+  // 3. Replace with your API Key from ZenMux user console
+  apiKey: "<your_ZENMUX_API_KEY>", // [!code highlight]
 });
 
-// 4. 发起请求
+// 4. Make request
 const completion = await openai.chat.completions.create({
-  // 5. 指定你想使用的模型，格式为 "供应商/模型名称"
+  // 5. Specify the model you want to use, format: "provider/model_name"
   model: "openai/gpt-5", // [!code highlight]
   messages: [
     {
       role: "user",
-      content: "生命的意义是什么？", // [!code highlight]
+      content: "What is the meaning of life?", // [!code highlight]
     },
   ],
 });
@@ -114,7 +114,7 @@ import (
 )
 
 func main() {
-    config := openai.DefaultConfig("<你的 ZENMUX_API_KEY>") // [!code highlight]
+    config := openai.DefaultConfig("<your_ZENMUX_API_KEY>") // [!code highlight]
     config.BaseURL = "https://zenmux.ai/api/v1" // [!code highlight]
     client := openai.NewClientWithConfig(config)
 
@@ -125,7 +125,7 @@ func main() {
             Messages: []openai.ChatCompletionMessage{
                 {
                     Role:    openai.ChatMessageRoleUser,
-                    Content: "生命的意义是什么？", // [!code highlight]
+                    Content: "What is the meaning of life?", // [!code highlight]
                 },
             },
         },
@@ -144,15 +144,15 @@ func main() {
 
 ---
 
-## 方法二：直接调用 ZenMux API
+## Method 2: Direct ZenMux API Call
 
 ::: code-group
 
 ```python [Python (httpx)]
 import httpx
 
-# 准备请求数据
-api_key = "<你的 ZENMUX_API_KEY>" # [!code highlight]
+# Prepare request data
+api_key = "<your_ZENMUX_API_KEY>" # [!code highlight]
 headers = {
     "Authorization": f"Bearer {api_key}", # [!code highlight]
 }
@@ -161,12 +161,12 @@ payload = {
     "messages": [
         {
             "role": "user",
-            "content": "生命的意义是什么？" # [!code highlight]
+            "content": "What is the meaning of life?" # [!code highlight]
         }
     ]
 }
 
-# 发送 POST 请求
+# Send POST request
 response = httpx.post(
     "https://zenmux.ai/api/v1/chat/completions", # [!code highlight]
     headers=headers,
@@ -174,27 +174,28 @@ response = httpx.post(
     timeout=httpx.Timeout(60.0)
 )
 
-# 检查请求是否成功（可选）
+# Check if request was successful (optional)
 response.raise_for_status()
 
-# 打印服务器返回的 JSON 响应
+# Print JSON response from server
 print(response.json())
 ```
 
 ```typescript [TypeScript (fetch)]
-fetch("https://zenmux.ai/api/v1/chat/completions", { // [!code highlight]
+fetch("https://zenmux.ai/api/v1/chat/completions", {
+  // [!code highlight]
   method: "POST",
   headers: {
-    Authorization: "Bearer <你的 ZENMUX_API_KEY>", // [!code highlight]
+    Authorization: "Bearer <your_ZENMUX_API_KEY>", // [!code highlight]
     "Content-Type": "application/json",
   },
   body: JSON.stringify({
-    // 可选。若不指定，ZenMux 将启用智能路由为你自动选择最佳模型。
+    // Optional. If not specified, ZenMux will enable smart routing to automatically select the best model for you.
     model: "openai/gpt-5", // [!code highlight]
     messages: [
       {
         role: "user",
-        content: "生命的意义是什么？", // [!code highlight]
+        content: "What is the meaning of life?", // [!code highlight]
       },
     ],
   }),
@@ -207,14 +208,14 @@ fetch("https://zenmux.ai/api/v1/chat/completions", { // [!code highlight]
 ```bash [Shell (cURL)]
 
 curl https://zenmux.ai/api/v1/chat/completions # [!code highlight]
-  -H "Content-Type: application/json" 
+  -H "Content-Type: application/json"
   -H "Authorization: Bearer $ZENMUX_API_KEY" # [!code highlight]
-  -d '{ 
+  -d '{
     "model": "openai/gpt-5",
     "messages": [
       {
         "role": "user",
-        "content": "生命的意义是什么？" 
+        "content": "What is the meaning of life?"
       }
     ]
   }'
@@ -231,35 +232,35 @@ import java.util.List;
 
 public class ZenMuxExample {
     public static void main(String[] args) throws Exception {
-        String apiKey = "<你的 ZENMUX_API_KEY>"; // [!code highlight]
-        
-        // 构建请求体
+        String apiKey = "<your_ZENMUX_API_KEY>"; // [!code highlight]
+
+        // Build request body
         Map<String, Object> requestBody = Map.of(
             "model", "openai/gpt-5", // [!code highlight]
             "messages", List.of(
                 Map.of(
                     "role", "user",
-                    "content", "生命的意义是什么？"// [!code highlight]
+                    "content", "What is the meaning of life?"// [!code highlight]
                 )
             )
         );
-        
+
         ObjectMapper mapper = new ObjectMapper();
         String jsonBody = mapper.writeValueAsString(requestBody);
-        
-        // 创建 HTTP 请求
+
+        // Create HTTP request
         HttpRequest request = HttpRequest.newBuilder()
             .uri(URI.create("https://zenmux.ai/api/v1/chat/completions")) // [!code highlight]
             .header("Content-Type", "application/json")
             .header("Authorization", "Bearer " + apiKey) // [!code highlight]
             .POST(HttpRequest.BodyPublishers.ofString(jsonBody))
             .build();
-        
-        // 发送请求
+
+        // Send request
         HttpClient client = HttpClient.newHttpClient();
-        HttpResponse<String> response = client.send(request, 
+        HttpResponse<String> response = client.send(request,
             HttpResponse.BodyHandlers.ofString());
-        
+
         System.out.println(response.body());
     }
 }
@@ -269,14 +270,14 @@ public class ZenMuxExample {
 
 ---
 
-## 后续步骤
+## Next Steps
 
-接下来，你可以探索更多功能：
+Next, you can explore more features:
 
-::: details 推荐阅读
+::: details Recommended Reading
 
-- **[模型列表](https://zenmux.ai/docs/models)** - 探索我们支持的所有模型
-- **[高级功能](https://zenmux.ai/docs/advanced)** - 流式传输、函数调用等
-- **[API 参考文档](https://zenmux.ai/docs/api-reference)** - 获取所有 API 的详细信息
+- **[Model List](https://zenmux.ai/docs/models)** - Explore all models we support
+- **[Advanced Features](https://zenmux.ai/docs/advanced)** - Streaming, function calling, and more
+- **[API Reference](https://zenmux.ai/docs/api-reference)** - Get detailed information for all APIs
 
 :::
