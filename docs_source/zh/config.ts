@@ -69,9 +69,7 @@ export default defineLoacaleConfig({
         text: "帮助中心",
         items: [
           { text: "常见问题", link: "/zh/help/faq" },
-          { text: "联系我们", link: "/zh/help/contact" },
-          { text: "隐私政策", link: "/zh/help/privacy" },
-          { text: "服务条款", link: "/zh/help/terms" }
+          { text: "联系我们", link: "/zh/help/contact" }
         ]
       }
     ],

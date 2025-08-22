@@ -22,8 +22,8 @@ export default defineLoacaleConfig({
         items: [
           { text: "Introduction", link: "/about/intro" },
           { text: "Models & Providers", link: "/about/models-and-providers" },
-          { text: "Pricing", link: "/about/pricing" },
-          { text: "Smart Routing", link: "/about/smart-routing" }
+          { text: "Pricing & Cost", link: "/about/pricing-and-cost" },
+          { text: "Provider Routing", link: "/about/provider-routing" }
         ]
       },
       {
@@ -36,9 +36,7 @@ export default defineLoacaleConfig({
               { text: "Streaming", link: "/guide/advanced/streaming" },
               { text: "Multimodal", link: "/guide/advanced/multimodal" },
               { text: "Structured Output", link: "/guide/advanced/structured-output" },
-              { text: "Tool Calling", link: "/guide/advanced/tool-calls" },
-              { text: "Prompt Cache", link: "/guide/advanced/prompt-cache" },
-              { text: "Reasoning Models", link: "/guide/advanced/reasoning" }
+              { text: "Tool Calling", link: "/guide/advanced/tool-calls" }
             ]
           }
         ]
@@ -68,9 +66,7 @@ export default defineLoacaleConfig({
         text: "Help Center",
         items: [
           { text: "FAQ", link: "/help/faq" },
-          { text: "Contact Us", link: "/help/contact" },
-          { text: "Privacy Policy", link: "/help/privacy" },
-          { text: "Terms of Service", link: "/help/terms" }
+          { text: "Contact Us", link: "/help/contact" }
         ]
       }
     ],
