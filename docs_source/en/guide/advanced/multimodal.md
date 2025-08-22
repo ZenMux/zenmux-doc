@@ -1,10 +1,10 @@
-# 多模态
+# Multimodal
 
-ZenMux 支持多模态输入，除文本输入外，还支持图片和PDF输入，音频、视频敬请期待。
+ZenMux supports multimodal input, including not only text input but also image and PDF input, with audio and video support coming soon.
 
-## 图片输入
+## Image Input
 
-### 使用图片链接
+### Using Image URL
 
 ::: code-group
 
@@ -14,7 +14,7 @@ import json
 
 url = "https://zenmux.ai/api/v1/chat/completions"
 headers = {
-  "Authorization": "Bearer {你的 ZENMUX_API_KEY}", # [!code highlight]
+  "Authorization": "Bearer {your_ZENMUX_API_KEY}", # [!code highlight]
   "Content-Type": "application/json"
 }
 payload = {
@@ -25,7 +25,7 @@ payload = {
       "content": [
         {
           "type": "text",
-          "text": "请分析一下图片的内容"
+          "text": "Please analyze the content of the image"
         },
         {
           "type": "image_url",# [!code highlight]
@@ -47,7 +47,7 @@ print(response.json())
 const response = await fetch("https://zenmux.ai/api/v1/chat/completions", {
   method: "POST",
   headers: {
-    Authorization: "Bearer <你的 ZUNMUX_API_KEY>", // [!code highlight]
+    Authorization: "Bearer <your_ZENMUX_API_KEY>", // [!code highlight]
     "Content-Type": "application/json",
   },
   body: JSON.stringify({
@@ -58,7 +58,7 @@ const response = await fetch("https://zenmux.ai/api/v1/chat/completions", {
         content: [
           {
             type: "text",
-            text: "请分析一下图片的内容",
+            text: "Please analyze the content of the image",
           },
           {
             type: "image_url", // [!code highlight]
@@ -78,7 +78,7 @@ console.log(data);
 ```
 :::
 
-### 使用图片 Base64编码
+### Using Image Base64 Encoding
 
 ::: code-group
 
@@ -94,7 +94,7 @@ def encode_image_to_base64(image_path):
 
 url = "https://zenmux.ai/api/v1/chat/completions"
 headers = {
-  "Authorization": "Bearer {你的 ZENMUX_API_KEY}",
+  "Authorization": "Bearer {your_ZENMUX_API_KEY}",
   "Content-Type": "application/json"
 }
 
@@ -110,7 +110,7 @@ payload = {
       "content": [
         {
           "type": "text",
-          "text": "请分析一下图片的内容"
+          "text": "Please analyze the content of the image"
         },
         {
           "type": "image_url",  # [!code highlight]
@@ -141,7 +141,7 @@ const base64Image = await encodeImageToBase64(imagePath);
 const response = await fetch("https://zenmux.ai/api/v1/chat/completions", {
   method: "POST",
   headers: {
-    Authorization: "Bearer ${你的 ZUNMUX_API_KEY}",  // [!code highlight]
+    Authorization: "Bearer ${your_ZENMUX_API_KEY}",  // [!code highlight]
     "Content-Type": "application/json",
   },
   body: JSON.stringify({
@@ -152,7 +152,7 @@ const response = await fetch("https://zenmux.ai/api/v1/chat/completions", {
         content: [
           {
             type: "text",
-            text: "请分析一下图片的内容",
+            text: "Please analyze the content of the image",
           },
           {
             type: "image_url", // [!code highlight]
@@ -173,9 +173,9 @@ console.log(data);
 :::
 
 
-## PDF输入
+## PDF Input
 
-### 使用PDF链接
+### Using PDF URL
 
 ::: code-group
 
@@ -185,7 +185,7 @@ import json
 
 url = "https://zenmux.ai/api/v1/chat/completions"
 headers = {
-  "Authorization": "Bearer {你的 ZUMMUX_API_KEY}", # [!code highlight]
+  "Authorization": "Bearer {your_ZENMUX_API_KEY}", # [!code highlight]
   "Content-Type": "application/json"
 }
 payload = {
@@ -196,7 +196,7 @@ payload = {
       "content": [
         {
           "type": "text",
-          "text": "请分析一下文件的主要内容"
+          "text": "Please analyze the main content of the file"
         },
         {
           "type": "file",  # [!code highlight]
@@ -218,7 +218,7 @@ print(response.json())
 const response = await fetch("https://zenmux.ai/api/v1/chat/completions", {
   method: "POST",
   headers: {
-    Authorization: "Bearer <你的 ZUNMUX_API_KEY>",
+    Authorization: "Bearer <your_ZENMUX_API_KEY>",
     "Content-Type": "application/json",
   },
   body: JSON.stringify({
@@ -229,7 +229,7 @@ const response = await fetch("https://zenmux.ai/api/v1/chat/completions", {
         content: [
           {
             type: "text",
-            text: "请分析一下文件的主要内容",
+            text: "Please analyze the main content of the file",
           },
           {
             type: "file",
@@ -250,7 +250,7 @@ console.log(data);
 ```
 :::
 
-### 使用PDF Base64编码
+### Using PDF Base64 Encoding
 
 ::: code-group
 
@@ -267,7 +267,7 @@ def encode_pdf_to_base64(pdf_path):
 
 url = "https://zenmux.ai/api/v1/chat/completions"
 headers = {
-  "Authorization": "Bearer {你的 ZENMUX_API_KEY}", # [!code highlight]
+  "Authorization": "Bearer {your_ZENMUX_API_KEY}", # [!code highlight]
   "Content-Type": "application/json"
 }
 
@@ -283,7 +283,7 @@ payload = {
       "content": [
         {
           "type": "text",
-          "text": "请分析一下文件的主要内容"
+          "text": "Please analyze the main content of the file"
         },
         {
           "type": "file", # [!code highlight]
@@ -315,7 +315,7 @@ const base64PDF = await encodePDFToBase64(pdfPath);
 const response = await fetch("https://zenmux.ai/api/v1/chat/completions", {
   method: "POST",
   headers: {
-    Authorization: "Bearer ${你的 ZENMUX_API_KEY}", // [!code highlight]
+    Authorization: "Bearer ${your_ZENMUX_API_KEY}", // [!code highlight]
     "Content-Type": "application/json",
   },
   body: JSON.stringify({
@@ -326,7 +326,7 @@ const response = await fetch("https://zenmux.ai/api/v1/chat/completions", {
         content: [
           {
             type: "text",
-            text: "请分析一下文件的主要内容",
+            text: "Please analyze the main content of the file",
           },
           {
             type: "file", // [!code highlight]
