@@ -7,7 +7,7 @@ Cherry Studio 是一款优秀的 AI 对话客户端，支持多种 AI 模型提�
 ### 获取 ZenMux API Key
 
 ::: tip 获取 API Key
-访问 [ZenMux 控制台](https://zenmux.ai/console) 注册账户并获取您的 API Key
+访问 [ZenMux 控制台](https://zenmux.ai/settings/keys) 注册账户并获取您的 API Key
 :::
 
 ## 配置步骤

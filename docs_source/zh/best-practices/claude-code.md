@@ -53,7 +53,7 @@ Claude Code Proxy 是一个开源项目，可以将 Claude Code 的请求代理�
 
 ```bash [使用 UV（推荐）]
 # 克隆代理仓库
-git clone https://github.com/anthropic/claude-code-proxy.git
+git clone https://github.com/fuergaosi233/claude-code-proxy.git
 cd claude-code-proxy
 
 # 使用 UV 安装依赖
@@ -62,7 +62,7 @@ uv sync
 
 ```bash [使用 pip]
 # 克隆代理仓库
-git clone https://github.com/anthropic/claude-code-proxy.git
+git clone https://github.com/fuergaosi233/claude-code-proxy.git
 cd claude-code-proxy
 
 # 使用 pip 安装依赖
