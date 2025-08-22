@@ -57,7 +57,7 @@ async function saveTranslation(content: string, targetPath: string): Promise<voi
 
 // 加载系统提示词
 function loadSystemPrompt(): string {
-  const promptPath = path.join(__dirname, './translation-zh-to-en-v2.xml');
+  const promptPath = path.join(__dirname, '../../.prompts/translation-zh-to-en.xml');
   
   if (!fs.existsSync(promptPath)) {
     throw new Error(`系统提示词文件不存在: ${promptPath}`);

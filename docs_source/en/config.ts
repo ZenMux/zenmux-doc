@@ -21,7 +21,6 @@ export default defineLoacaleConfig({
         text: "About ZenMux",
         items: [
           { text: "Introduction", link: "/about/intro" },
-          { text: "Architecture", link: "/about/architecture" },
           { text: "Models & Providers", link: "/about/models-and-providers" },
           { text: "Pricing", link: "/about/pricing" },
           { text: "Smart Routing", link: "/about/smart-routing" }
@@ -31,9 +30,6 @@ export default defineLoacaleConfig({
         text: "User Guide",
         items: [
           { text: "Quickstart", link: "/guide/quickstart" },
-          { text: "Token Usage", link: "/guide/token-usage" },
-          { text: "Basic Usage", link: "/guide/basic" },
-          { text: "Parameter Mapping", link: "/guide/parameter-mapping" },
           {
             text: "Advanced",
             items: [
@@ -50,6 +46,7 @@ export default defineLoacaleConfig({
       {
         text: "Best Practices",
         items: [
+          { text: "Claude Code Integration", link: "/best-practices/claude-code" },
           { text: "Cherry Studio Integration", link: "/best-practices/cherry-studio" },
           { text: "Immersive Translate Integration", link: "/best-practices/immersive-translate" }
         ]

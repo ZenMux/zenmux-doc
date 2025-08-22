@@ -22,18 +22,15 @@ export default defineLoacaleConfig({
         text: "关于 ZenMux",
         items: [
           { text: "简介", link: "/zh/about/intro" },
-          { text: "架构", link: "/zh/about/architecture" },
           { text: "模型&供应商", link: "/zh/about/models-and-providers" },
-          { text: "价格", link: "/zh/about/pricing" },
-          { text: "智能路由", link: "/zh/about/smart-routing" }
+          { text: "价格&费用", link: "/zh/about/pricing-and-cost" },
+          { text: "供应商路由", link: "/zh/about/provider-routing" }
         ]
       },
       {
         text: "使用文档",
         items: [
           { text: "快速开始", link: "/zh/guide/quickstart" },
-          { text: "令牌使用", link: "/zh/guide/token-usage" },
-          { text: "基础调用", link: "/zh/guide/basic" },
           {
             text: "高级调用",
             items: [
@@ -50,6 +47,7 @@ export default defineLoacaleConfig({
       {
         text: "最佳实践",
         items: [
+          { text: "ClaudeCode接入ZenMux指南", link: "/zh/best-practices/claude-code" },
           { text: "Cherry Studio 接入指南", link: "/zh/best-practices/cherry-studio" },
           { text: "沉浸式翻译接入指南", link: "/zh/best-practices/immersive-translate" }
         ]
