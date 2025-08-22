@@ -27,14 +27,6 @@ pnpm install -g @anthropic-ai/claude-code
 npm install -g @anthropic-ai/claude-code
 ```
 
-```bash [启动命令]
-# 导航到您的项目目录
-cd your-awesome-project
-
-# 启动 Claude Code
-claude
-```
-
 :::
 
 ::: info 参考文档
@@ -46,7 +38,7 @@ claude
 Claude Code Proxy 是一个开源项目，可以将 Claude Code 的请求代理到 ZenMux 平台。
 
 ::: tip 开源贡献
-感谢 [fuergaosi233](https://github.com/fuergaosi233) 提供的开源贡献
+感谢该项目的作者 [fuergaosi233](https://github.com/fuergaosi233)。
 :::
 
 ::: code-group
@@ -137,6 +129,7 @@ ANTHROPIC_BASE_URL=http://localhost:8082 ANTHROPIC_API_KEY="any-value" claude  #
 # 添加到 .bashrc 或 .zshrc 文件中
 alias claude-zenmux='ANTHROPIC_BASE_URL=http://localhost:8082 ANTHROPIC_API_KEY="any-value" claude'
 ```
+
 :::
 
 ## 使用效果
@@ -153,28 +146,21 @@ alias claude-zenmux='ANTHROPIC_BASE_URL=http://localhost:8082 ANTHROPIC_API_KEY=
 **问题**：Claude Code 无法连接到代理服务
 
 **解决方案**：
+
 - 确保 Claude Code Proxy 正在运行
 - 检查端口 8082 是否被占用
 - 验证防火墙设置是否阻止了本地连接
-:::
+  :::
 
 ::: details API Key 错误
 **问题**：提示 API Key 无效或未授权
 
 **解决方案**：
+
 - 检查 `.env` 文件中的 ZenMux API Key 是否正确
 - 确认 API Key 是否已激活且有足够余额
 - 验证 API Key 格式是否以 `sk-ai-v1-` 开头
-:::
-
-::: details 模型不可用
-**问题**：选择的模型无法使用
-
-**解决方案**：
-- 确认模型名称是否正确（区分大小写）
-- 检查该模型在 ZenMux 平台上是否可用
-- 查看 ZenMux 控制台中的模型列表
-:::
+  :::
 
 ### 日志查看
 
@@ -191,22 +177,22 @@ alias claude-zenmux='ANTHROPIC_BASE_URL=http://localhost:8082 ANTHROPIC_API_KEY=
 ```bash [成本优化配置]
 # 注重成本效益的模型选择
 BIG_MODEL="anthropic/claude-sonnet-4"
-MIDDLE_MODEL="openai/gpt-4o"
-SMALL_MODEL="openai/gpt-4o-mini"
+MIDDLE_MODEL="openai/gpt-5-mini"
+SMALL_MODEL="openai/gpt-5-nana"
 ```
 
 ```bash [性能优先配置]
 # 注重性能表现的模型选择
 BIG_MODEL="anthropic/claude-opus-4.1"
 MIDDLE_MODEL="anthropic/claude-sonnet-4"
-SMALL_MODEL="anthropic/claude-haiku-4"
+SMALL_MODEL="openai/gpt-5"
 ```
 
 ```bash [均衡配置]
 # 平衡性能和成本的模型选择
 BIG_MODEL="anthropic/claude-sonnet-4"
-MIDDLE_MODEL="openai/gpt-4o"
-SMALL_MODEL="anthropic/claude-haiku-4"
+MIDDLE_MODEL="anthropic/claude-sonnet-4"
+SMALL_MODEL="openai/gpt-5-mini"
 ```
 
 :::

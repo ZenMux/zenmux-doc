@@ -23,12 +23,12 @@ Cherry Studio 是一款优秀的 AI 对话客户端，支持多种 AI 模型提�
 
 在提供商配置界面填写以下信息：
 
-| 配置项 | 值 |
-|-------|-----|
-| **提供商名称** | ZenMux |
-| **API 端点** | `https://zenmux.ai/api/v1` |
-| **API Key** | 您的 ZenMux API Key |
-| **模型格式** | OpenAI Compatible |
+| 配置项         | 值                         |
+| -------------- | -------------------------- |
+| **提供商名称** | ZenMux                     |
+| **API 端点**   | `https://zenmux.ai/api/v1` |
+| **API Key**    | 您的 ZenMux API Key        |
+| **模型格式**   | OpenAI Compatible          |
 
 ::: warning 注意事项
 请确保 API Key 填写正确，并保持网络连接稳定
@@ -39,18 +39,22 @@ Cherry Studio 是一款优秀的 AI 对话客户端，支持多种 AI 模型提�
 配置完成后，Cherry Studio 将自动获取 ZenMux 支持的模型列表。您可以在模型选择器中看到以下类型的模型：
 
 **Claude 系列**
+
 - `anthropic/claude-sonnet-4`
 - `anthropic/claude-haiku-3.5`
 
 **GPT 系列**
+
 - `openai/gpt-4o`
 - `openai/gpt-4-turbo`
 
 **Gemini 系列**
+
 - `google/gemini-2.5-pro`
 - `google/gemini-1.5-flash`
 
 **其他模型**
+
 - `meta-llama/llama-3.3-70b-instruct`
 
 ## 功能支持
@@ -92,11 +96,13 @@ Cherry Studio 是一款优秀的 AI 对话客户端，支持多种 AI 模型提�
 ### 模型列表为空
 
 **可能原因：**
+
 - API Key 配置错误
 - 网络连接问题
 - API 端点地址填写错误
 
 **解决方案：**
+
 - 检查 API Key 是否正确
 - 确认网络连接正常
 - 验证 API 端点地址：`https://zenmux.ai/api/v1`
@@ -104,11 +110,13 @@ Cherry Studio 是一款优秀的 AI 对话客户端，支持多种 AI 模型提�
 ### 模型显示不可用
 
 **可能原因：**
+
 - 模型正在维护
 - 账户余额不足
 - 地区访问限制
 
 **解决方案：**
+
 - 访问 [ZenMux 控制台](https://zenmux.ai/console/usage) 查看账户状态
 - 尝试切换到其他可用模型
 - 联系技术支持获取帮助
@@ -128,7 +136,8 @@ Cherry Studio 是一款优秀的 AI 对话客户端，支持多种 AI 模型提�
 - **帮助文档**：[常见问题解答](/zh/help/faq)
 
 ::: details 相关资源
+
 - [ZenMux API 文档](/zh/api-reference)
 - [模型支持列表](/zh/models)
 - [定价说明](/zh/pricing)
-:::
+  :::
