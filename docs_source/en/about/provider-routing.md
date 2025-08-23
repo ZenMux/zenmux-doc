@@ -1,15 +1,15 @@
 # Provider Routing
 
-As described in the [Models and Providers](https://docs.zenmux.ai/en/about/models-and-providers.html) section, for the same model, ZenMux intelligently routes and selects appropriate providers for calls, ensuring optimal performance and availability. When calling large language models through ZenMux, developers don't need to worry about the underlying provider selection logic—they only need to specify the model name.
+As described in the [Models and Providers](https://docs.zenmux.ai/zh/about/models-and-providers.html) section, for the same model, ZenMux intelligently routes and selects the appropriate provider for calls, ensuring optimal performance and availability. When calling large language models through ZenMux, developers don't need to worry about the underlying provider selection logic—simply specify the model name.
 
 ## Default Routing Strategy
 
 ZenMux employs the following default routing strategy:
 
-::: info Smart Routing Principles
+::: info Intelligent Routing Principles
 
-1. **Prioritize Original Provider**: Prioritize the model's original developer (e.g., Claude prioritizes Anthropic)
-2. **Smart Fallback**: If the original provider is unavailable, automatically switch to other providers
+1. **Original Provider Priority**: Prioritize the model's original developer (e.g., Claude prioritizes Anthropic)
+2. **Intelligent Fallback**: If the original provider is unavailable, automatically switch to other providers
 3. **Performance Ranking**: Other providers are ranked by first token latency from low to high
    :::
 
@@ -40,30 +40,30 @@ You can override the default routing strategy by specifying the `provider_routin
 
 :::
 
-### Routing Behavior Explanation
+### Routing Behavior Description
 
 By specifying a `providers` list, ZenMux's routing behavior is as follows:
 
-- **Sequential Calls**: Attempt to call providers in list order
-- **Success Stop**: Stop once a provider successfully returns a result
+- **Sequential Calls**: Attempts to call each provider in the order listed
+- **Stop on Success**: Continues until a provider successfully returns a result
 - **Single Provider**: If only one provider is specified, ZenMux will only call that provider
-- **Error Handling**: If a specified provider returns an error, return the error message directly
+- **Error Handling**: If a specified provider returns an error, the error information is returned directly
 
 ::: warning Important Notes
-When using custom routing strategies, ensure that the specified providers actually support the selected model, otherwise it may result in call failures.
+When using custom routing strategies, ensure that the specified providers actually support the selected model, otherwise calls may fail.
 :::
 
 ## Getting Provider Identifiers
 
 To accurately specify providers, you need to obtain the correct provider slug (identifier).
 
-### How to Get Identifiers
+### How to Get Provider Slugs
 
-1. Visit the [Model Details page](./models-and-providers.md)
+1. Visit the [Model Details Page](https://zenmux.ai/models)
 2. Click the copy button next to the provider name
-3. Copy the accurate slug identifier, such as `anthropic/anthropic_endpoint`
+3. Copy the exact slug identifier, such as `anthropic/anthropic_endpoint`
 
-![Provider slug copy](https://cdn.marmot-cloud.com/storage/zenmux/2025/08/22/j5hXtcH/provider-slug.png)
+![Provider Slug Copy](https://cdn.marmot-cloud.com/storage/zenmux/2025/08/22/j5hXtcH/provider-slug.png)
 
 ::: tip Tip
 Make sure to use the correct slug format, typically in the form of `provider_name/endpoint_identifier`.
@@ -75,18 +75,18 @@ Custom provider routing strategies are suitable for the following scenarios:
 
 | Scenario | Description | Example |
 | ---------------- | ---------------------------------- | -------------------------------- |
-| **Geographic Optimization** | Select providers closer geographically to reduce latency | APAC users prioritize regionally deployed providers |
+| **Geographic Optimization** | Select geographically closer providers to reduce latency | APAC users prioritize regionally deployed providers |
 | **Cost Control** | Prioritize more cost-effective providers | Choose lower-cost third-party providers |
 | **Compliance Requirements** | Select providers that meet specific data compliance requirements | Financial institutions choose providers meeting regulatory requirements |
 | **Performance Optimization** | Select optimal providers based on historical performance data | Choose providers with lower latency |
-| **Testing Validation** | Specify particular providers for validation in development testing | A/B testing different provider performance |
+| **Testing and Validation** | Specify particular providers for validation during development testing | A/B test different provider performance |
 
 ::: details Complete Example
 
 ```python
 import requests
 
-# Request example specifying a specific provider
+# Request example specifying a particular provider
 response = requests.post(
     "https://zenmux.ai/api/v1/chat/completions",
     headers={
@@ -108,4 +108,4 @@ print(response.json())
 
 :::
 
-By properly configuring provider routing strategies, you can optimize API call performance, cost, and reliability according to specific business requirements.
+By properly configuring provider routing strategies, you can optimize API call performance, cost, and reliability according to your specific business requirements.

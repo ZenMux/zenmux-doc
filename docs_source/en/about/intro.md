@@ -1,33 +1,33 @@
-# Introduction
+# Overview
 
 ## ZenMux Overview
 
-ZenMux is the world's first enterprise-grade model aggregation platform providing **AI Model Insurance Services**. We not only offer developers unified API access to mainstream global large language models, but also automatically select optimal models through **intelligent routing algorithms** and provide **insurance coverage guarantees** for AI output quality, comprehensively addressing enterprise concerns about AI hallucinations and unstable quality.
+ZenMux is the world's first enterprise-grade model aggregation platform that provides **AI Model Insurance Services**. We not only provide developers with a unified API interface to access mainstream global large language models, but also automatically select optimal models through **intelligent routing algorithms** and provide **insurance coverage for AI output quality**, comprehensively addressing enterprise concerns about AI hallucinations and unstable quality.
 
-Through ZenMux, developers can use a single interface to call models from multiple providers including OpenAI, Anthropic, Google, DeepSeek, and others, while enjoying intelligent routing, failover capabilities, and insurance protection services.
+Through ZenMux, developers can use a single interface to call models from multiple providers including OpenAI, Anthropic, Google, DeepSeek, and others, while enjoying intelligent routing, failover, and insurance coverage services.
 
-### Product Name Origin
+### Product Name Definition
 
 **ZenMux** is a combination of **Zen** and **Mux (Multiplexer)**:
 
-::: tip Zen Philosophy
-Embodies the product's core philosophy: simplifying the complex processes of multi-model selection, risk management, and API calls through intelligent automation into an extremely simple experience of "one API, one SDK, one platform." It also provides insurance safety nets to reduce users' concerns about encountering issues like hallucinations when using AI.
+::: tip Zen Meaning
+Embodies the product's core philosophy: simplifying the complex processes of multi-model selection, risk management, and API calls through intelligent means into an extremely simple experience of "one API, one SDK, one platform." It also provides insurance coverage mechanisms to reduce users' concerns about encountering issues like hallucinations when using AI.
 :::
 
-::: tip Mux (Multiplexer) Functionality
-Represents the product's core function: aggregating multiple AI model providers (OpenAI, Anthropic, Google, DeepSeek, etc.) and selecting the most suitable model for current tasks through intelligent routing algorithms from numerous options.
+::: tip Mux (Multiplexer) Meaning
+Embodies the product's core functionality: aggregating multiple AI model providers (OpenAI, Anthropic, Google, DeepSeek, etc.) and using intelligent routing algorithms to select the most suitable model for current tasks from numerous options.
 :::
 
 ::: tip Product Philosophy
-With a Zen mindset, harness the power of AI — thousands of models unified in one place, achieving optimal results through the simplest experience.
+With a Zen mindset, harness the power of AI — bringing countless models to one place, achieving optimal results through ultimate simplicity.
 :::
 
 ## Core Solutions
 
 ### Unified Access Experience
 
-- **Single API Interface**: Compatible with OpenAI API standards, call all mainstream models with one codebase
-- **Unified Authentication**: Manage access permissions to all providers with a single API Key
+- **Single API Interface**: Compatible with OpenAI API standards, one codebase to call all mainstream models
+- **Unified Authentication**: One API Key to manage access permissions for all providers
 - **Unified Billing Management**: Transparent usage statistics and cost control
 
 ### Intelligent Services
@@ -37,23 +37,23 @@ The intelligent routing feature is currently in final testing phase and will be 
 :::
 
 - **Intelligent Routing** (Coming Soon): Automatically select the most suitable model based on request content and task characteristics
-- **Automatic Failover**: Intelligently switch to backup options when primary models are unavailable
-- **Performance Optimization**: Caching mechanisms and load balancing ensure optimal response speeds
+- **Automatic Failover**: Intelligently switch to backup options when the primary model is unavailable
+- **Performance Optimization**: Caching mechanisms and load balancing ensure optimal response speed
 
 ### Quality Assurance
 
-::: tip Quality Guarantee
+::: tip Assurance Mechanisms
 We provide multi-layered quality assurance systems to ensure your AI applications are stable and reliable.
 :::
 
-- **Model Insurance Service** (Coming Soon): Provide quality guarantees for AI outputs
-- **Multi-model Validation**: Support parallel model calls and result comparison
+- **Model Insurance Services** (Coming Soon): Provide coverage mechanisms for AI output quality
+- **Multi-Model Validation**: Support parallel model calls and result comparison
 - **Quality Monitoring**: Real-time monitoring of model performance and output quality
 
-## Version Information & Beta Application
+## Version Information and Beta Application
 
 ::: danger Beta Phase
-ZenMux is currently in **Closed Beta** testing phase
+ZenMux is currently in **Closed Beta** phase
 :::
 
 We cordially invite developers to join ZenMux's exclusive beta testing program.
@@ -67,16 +67,16 @@ To thank you for your support and participation, developers who successfully app
 ::: details Specific Benefits
 
 - **A fully-featured ZenMux beta account**
-- **$1,000 USD worth of large model API credits**
-- **Exclusive customer support group access**: You will be invited to join our beta-exclusive communication groups (WeChat/Discord), with direct support from our product and technical teams, ensuring your questions receive the fastest responses.
+- **$1000 USD worth of large model API call credits**
+- **Exclusive customer support group access**: You will be invited to join our beta-exclusive communication group (WeChat/Discord), with direct support from our product and technical teams, ensuring your questions receive the fastest response.
 
 :::
 
-These credits can be used to call all models on the platform with no expiration limit, helping you fully explore and integrate ZenMux's various features.
+These credits can be used to call all models on the platform with no expiration date, helping you fully explore and integrate ZenMux's various features.
 
 ### How to Apply
 
-The application process is simple and fast. Please follow these steps:
+The application process is simple and quick. Please follow these steps:
 
 #### Step 1: Send Application Email
 
@@ -89,32 +89,32 @@ Subject: ZenMux Beta Access Application - [Your Name/Team Name]
 
 :::
 
-#### Step 2: Complete Application Information
+#### Step 2: Fill Out Application Information
 
 ::: info Application Template
-We recommend copying the following template to help us process your application quickly
+We recommend copying the following template for quick processing of your application
 :::
 
 ```text
 - Personal/Team Introduction: (e.g., independent developer, startup team, enterprise internal developer, etc.)
 - Your Product/Project Description: (What project do you plan to use ZenMux for? e.g., intelligent customer service, content generation tools, data analysis applications, etc.)
-- Primary Use Cases: (Please briefly describe the problems you hope to solve or functions you want to implement)
-- Expected Primary Models: (e.g., GPT-4o, Claude 3.5 Sonnet, Llama 3, etc. Leave blank if uncertain)
-- Contact Email for Account Information: (If different from the sender email, please specify here)
+- Main Use Cases: (Please briefly describe the problems you hope to solve or features you want to implement)
+- Expected Primary Models: (e.g., GPT-4o, Claude 3.5 Sonnet, Llama 3, etc. Leave blank if unsure)
+- Contact Email for Account Information: (If different from sender email, please specify here)
 ```
 
 #### Step 3: Review and Activation
 
-::: info Fast Review
+::: info Quick Review
 Our team will review your application within **1 business day**.
 :::
 
-Once approved, we will activate your beta account and credit **$1,000** worth of model API credits to your account. You will then receive a welcome email containing account information and exclusive community invitations.
+After approval, we will activate your beta account and credit **$1000** worth of model API credits to your account. You will then receive a welcome email containing account information and exclusive community group invitation.
 
 ### Follow Us
 
 ::: info Community Support
-Follow our official social media and developer communities for the latest product updates, technical tutorials, and community event information:
+Follow our official social media and developer community for the latest product updates, technical tutorials, and community event information:
 :::
 
 - **Discord Server**: [ZenMux Developer Community](https://discord.gg/zenmux)
@@ -124,16 +124,4 @@ Follow our official social media and developer communities for the latest produc
 
 ### Contact Us
 
-We look forward to your participation! If you have any questions before applying, please feel free to contact us at `support@zenmux.ai`.
-
----
-
-## Next Steps
-
-::: details Recommended Reading
-
-- [Quick Start](https://docs.zenmux.ai/zh/guide/quickstart.html) - Experience ZenMux immediately
-- [Architecture Design](https://docs.zenmux.ai/zh/guide/architecture.html) - Deep dive into technical principles
-- [Models & Providers](https://docs.zenmux.ai/zh/guide/models-providers.html) - Choose the right model
-
-:::
+We look forward to your usage! If you have any questions before applying, please feel free to contact us at `support@zenmux.ai`.

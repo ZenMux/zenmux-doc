@@ -3,19 +3,19 @@
 ZenMux provides a unified API compatible with OpenAI.
 
 ::: tip 💡 Get Started in Three Steps
-Just three simple steps to start using ZenMux:
+You can start using ZenMux with just three simple steps:
 :::
 
 1. **Get API Key**: Go to your **[User Console > API Keys](https://zenmux.ai/settings/keys)** page and create a new API Key.
-2. **Choose Integration Method**: We recommend using OpenAI SDK compatibility mode, or you can directly call the ZenMux API.
-3. **Make Your First Request**: Copy the code example below, replace with your API Key, and run.
+2. **Choose Integration Method**: We recommend using OpenAI SDK compatibility mode, or you can directly call ZenMux API.
+3. **Make Your First Request**: Copy the code examples below, replace with your API Key, and run.
 
 ---
 
 ## Method 1: Using OpenAI SDK (Recommended)
 
-::: info Compatibility Notice
-ZenMux's API endpoints are fully compatible with OpenAI API. You only need to modify two parameters for seamless switching.
+::: info Compatibility Note
+ZenMux's API endpoints are fully compatible with OpenAI API - you only need to modify two parameters for seamless switching.
 :::
 
 ### Code Examples
@@ -29,7 +29,7 @@ from openai import OpenAI
 client = OpenAI(
     # 2. Point base URL to ZenMux endpoint
     base_url="https://zenmux.ai/api/v1", # [!code highlight]
-    # 3. Replace with your API Key from ZenMux user console
+    # 3. Replace with your API Key obtained from ZenMux user console
     api_key="<your_ZENMUX_API_KEY>", # [!code highlight]
 )
 
@@ -55,7 +55,7 @@ import OpenAI from "openai";
 const openai = new OpenAI({
   // 2. Point base URL to ZenMux endpoint
   baseURL: "https://zenmux.ai/api/v1", // [!code highlight]
-  // 3. Replace with your API Key from ZenMux user console
+  // 3. Replace with your API Key obtained from ZenMux user console
   apiKey: "<your_ZENMUX_API_KEY>", // [!code highlight]
 });
 
@@ -76,68 +76,6 @@ async function main() {
 }
 
 main();
-```
-
-```js [JavaScript]
-import OpenAI from "openai";
-
-// 1. Initialize OpenAI client
-const openai = new OpenAI({
-  // 2. Point base URL to ZenMux endpoint
-  baseURL: "https://zenmux.ai/api/v1", // [!code highlight]
-  // 3. Replace with your API Key from ZenMux user console
-  apiKey: "<your_ZENMUX_API_KEY>", // [!code highlight]
-});
-
-// 4. Make request
-const completion = await openai.chat.completions.create({
-  // 5. Specify the model you want to use, format: "provider/model_name"
-  model: "openai/gpt-5", // [!code highlight]
-  messages: [
-    {
-      role: "user",
-      content: "What is the meaning of life?", // [!code highlight]
-    },
-  ],
-});
-
-console.log(completion.choices[0].message);
-```
-
-```go [Go]
-package main
-
-import (
-    "context"
-    "fmt"
-    "github.com/sashabaranov/go-openai"
-)
-
-func main() {
-    config := openai.DefaultConfig("<your_ZENMUX_API_KEY>") // [!code highlight]
-    config.BaseURL = "https://zenmux.ai/api/v1" // [!code highlight]
-    client := openai.NewClientWithConfig(config)
-
-    resp, err := client.CreateChatCompletion(
-        context.Background(),
-        openai.ChatCompletionRequest{
-            Model: "openai/gpt-5", // [!code highlight]
-            Messages: []openai.ChatCompletionMessage{
-                {
-                    Role:    openai.ChatMessageRoleUser,
-                    Content: "What is the meaning of life?", // [!code highlight]
-                },
-            },
-        },
-    )
-
-    if err != nil {
-        fmt.Printf("ChatCompletion error: %v\n", err)
-        return
-    }
-
-    fmt.Println(resp.Choices[0].Message.Content)
-}
 ```
 
 :::
@@ -190,7 +128,6 @@ fetch("https://zenmux.ai/api/v1/chat/completions", {
     "Content-Type": "application/json",
   },
   body: JSON.stringify({
-    // Optional. If not specified, ZenMux will enable smart routing to automatically select the best model for you.
     model: "openai/gpt-5", // [!code highlight]
     messages: [
       {
@@ -221,63 +158,22 @@ curl https://zenmux.ai/api/v1/chat/completions # [!code highlight]
   }'
 ```
 
-```java [Java]
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.net.URI;
-import java.util.Map;
-import java.util.List;
-
-public class ZenMuxExample {
-    public static void main(String[] args) throws Exception {
-        String apiKey = "<your_ZENMUX_API_KEY>"; // [!code highlight]
-
-        // Build request body
-        Map<String, Object> requestBody = Map.of(
-            "model", "openai/gpt-5", // [!code highlight]
-            "messages", List.of(
-                Map.of(
-                    "role", "user",
-                    "content", "What is the meaning of life?"// [!code highlight]
-                )
-            )
-        );
-
-        ObjectMapper mapper = new ObjectMapper();
-        String jsonBody = mapper.writeValueAsString(requestBody);
-
-        // Create HTTP request
-        HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://zenmux.ai/api/v1/chat/completions")) // [!code highlight]
-            .header("Content-Type", "application/json")
-            .header("Authorization", "Bearer " + apiKey) // [!code highlight]
-            .POST(HttpRequest.BodyPublishers.ofString(jsonBody))
-            .build();
-
-        // Send request
-        HttpClient client = HttpClient.newHttpClient();
-        HttpResponse<String> response = client.send(request,
-            HttpResponse.BodyHandlers.ofString());
-
-        System.out.println(response.body());
-    }
-}
-```
-
 :::
 
 ---
 
-## Next Steps
+## Model Selection
 
-Next, you can explore more features:
+All models supported by ZenMux can be viewed from the [Official Model List](https://zenmux.ai/models).
 
-::: details Recommended Reading
+The value for the `model` parameter can be obtained by copying the accurate model Slug through the following methods:
 
-- **[Model List](https://zenmux.ai/docs/models)** - Explore all models we support
-- **[Advanced Features](https://zenmux.ai/docs/advanced)** - Streaming, function calling, and more
-- **[API Reference](https://zenmux.ai/docs/api-reference)** - Get detailed information for all APIs
+![Copy Model Slug](https://github.com/user-attachments/assets/dbb619aa-9ec4-4be2-8017-9f6c3ebcc36c)
 
-:::
+![Copy Model Slug](https://github.com/user-attachments/assets/f78ec49e-a91d-49ae-ad4e-66cc7d6b514b)
+
+---
+
+## Advanced Usage
+
+For detailed information about advanced usage, please refer to the Advanced Calling chapter.

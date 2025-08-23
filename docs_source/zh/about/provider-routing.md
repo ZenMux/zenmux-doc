@@ -59,7 +59,7 @@ ZenMux 采用以下默认路由策略：
 
 ### 获取方法
 
-1. 访问 [模型详情页面](./models-and-providers.md)
+1. 访问 [模型详情页面](https://zenmux.ai/models)
 2. 点击供应商名称旁的复制按钮
 3. 复制准确的 slug 标识符，如 `anthropic/anthropic_endpoint`
 

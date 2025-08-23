@@ -1,22 +1,22 @@
 # Models & Providers
 
-ZenMux adopts a multi-model, multi-provider redundancy architecture to ensure high availability and stability of large language model services. We integrate industry-leading large language models to provide developers with rich choices and flexible usage experiences.
+ZenMux employs a multi-model, multi-provider redundancy architecture to ensure high availability and stability of large language model services. We integrate industry-leading large language models to provide developers with rich choices and flexible usage experiences.
 
 ## Model List
 
 ::: tip Quick View
-You can view all supported models and their basic information on the **Models** interface of the official website. Use the filter conditions on the left, the search box at the top, and sorting options to quickly locate the desired model.
+All supported models and their basic information can be viewed on the **Models** page of the official website. You can quickly locate the desired models using the filter options on the left, search box at the top, and sorting options.
 :::
 
 ![Model List Page](https://cdn.marmot-cloud.com/storage/zenmux/2025/08/21/iAG4cry/models-page.png)
 
 ## Multi-Provider Architecture
 
-### Redundancy Protection
+### Redundancy Guarantee
 
-Most large language models are configured with multiple provider access. When a provider experiences service exceptions, ZenMux automatically switches to other available providers to ensure service continuity.
+Most large language models are configured with multiple provider integrations. When a provider experiences service issues, ZenMux automatically switches to other available providers to ensure service continuity.
 
-For detailed provider routing strategies, please refer to the [Provider Routing Documentation](https://docs.zenmux.ai/zh/about/provider-routing.html)
+For detailed strategies on provider routing, please refer to the [Provider Routing Documentation](https://docs.zenmux.ai/zh/about/provider-routing.html)
 
 ### Provider Details
 
@@ -24,7 +24,7 @@ Taking the `anthropic/claude-sonnet-4` model as an example, click on the model c
 
 **Supported Providers:**
 
-- **Anthropic** - Official original interface
+- **Anthropic** - Official provider interface
 - **Vertex AI** - Google Cloud managed service
 - **Amazon Bedrock** - AWS managed service
 
@@ -32,12 +32,12 @@ Taking the `anthropic/claude-sonnet-4` model as an example, click on the model c
 
 ## Provider Comparison Information
 
-On the model details page, you can compare detailed information from various providers, including performance metrics, pricing, availability, and other aspects.
+The model details page allows you to compare detailed information across providers, including performance metrics, pricing, availability, and other aspects.
 
 ### Performance Metrics Description
 
-| Metric | Description |
-| --- | --- |
-| **Time to First Token** | Time from request to returning the first token |
-| **Throughput** | Number of tokens processed per minute |
-| **Availability** | Real-time service status and stability |
+| Metric              | Description                            |
+| ------------------- | -------------------------------------- |
+| **Latency (Time to First Token)** | Time from request to returning the first token |
+| **Throughput**      | Number of tokens processed per minute         |
+| **Uptime**         | Real-time service status and stability       |

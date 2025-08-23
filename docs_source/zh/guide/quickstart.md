@@ -78,68 +78,6 @@ async function main() {
 main();
 ```
 
-```js [JavaScript]
-import OpenAI from "openai";
-
-// 1. 初始化 OpenAI 客户端
-const openai = new OpenAI({
-  // 2. 将基础 URL 指向 ZenMux 端点
-  baseURL: "https://zenmux.ai/api/v1", // [!code highlight]
-  // 3. 替换为你从 ZenMux 用户控制台获取的 API Key
-  apiKey: "<你的 ZENMUX_API_KEY>", // [!code highlight]
-});
-
-// 4. 发起请求
-const completion = await openai.chat.completions.create({
-  // 5. 指定你想使用的模型，格式为 "供应商/模型名称"
-  model: "openai/gpt-5", // [!code highlight]
-  messages: [
-    {
-      role: "user",
-      content: "生命的意义是什么？", // [!code highlight]
-    },
-  ],
-});
-
-console.log(completion.choices[0].message);
-```
-
-```go [Go]
-package main
-
-import (
-    "context"
-    "fmt"
-    "github.com/sashabaranov/go-openai"
-)
-
-func main() {
-    config := openai.DefaultConfig("<你的 ZENMUX_API_KEY>") // [!code highlight]
-    config.BaseURL = "https://zenmux.ai/api/v1" // [!code highlight]
-    client := openai.NewClientWithConfig(config)
-
-    resp, err := client.CreateChatCompletion(
-        context.Background(),
-        openai.ChatCompletionRequest{
-            Model: "openai/gpt-5", // [!code highlight]
-            Messages: []openai.ChatCompletionMessage{
-                {
-                    Role:    openai.ChatMessageRoleUser,
-                    Content: "生命的意义是什么？", // [!code highlight]
-                },
-            },
-        },
-    )
-
-    if err != nil {
-        fmt.Printf("ChatCompletion error: %v\n", err)
-        return
-    }
-
-    fmt.Println(resp.Choices[0].Message.Content)
-}
-```
-
 :::
 
 ---
@@ -182,14 +120,14 @@ print(response.json())
 ```
 
 ```typescript [TypeScript (fetch)]
-fetch("https://zenmux.ai/api/v1/chat/completions", { // [!code highlight]
+fetch("https://zenmux.ai/api/v1/chat/completions", {
+  // [!code highlight]
   method: "POST",
   headers: {
     Authorization: "Bearer <你的 ZENMUX_API_KEY>", // [!code highlight]
     "Content-Type": "application/json",
   },
   body: JSON.stringify({
-    // 可选。若不指定，ZenMux 将启用智能路由为你自动选择最佳模型。
     model: "openai/gpt-5", // [!code highlight]
     messages: [
       {
@@ -207,76 +145,35 @@ fetch("https://zenmux.ai/api/v1/chat/completions", { // [!code highlight]
 ```bash [Shell (cURL)]
 
 curl https://zenmux.ai/api/v1/chat/completions # [!code highlight]
-  -H "Content-Type: application/json" 
+  -H "Content-Type: application/json"
   -H "Authorization: Bearer $ZENMUX_API_KEY" # [!code highlight]
-  -d '{ 
+  -d '{
     "model": "openai/gpt-5",
     "messages": [
       {
         "role": "user",
-        "content": "生命的意义是什么？" 
+        "content": "生命的意义是什么？"
       }
     ]
   }'
-```
-
-```java [Java]
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.net.URI;
-import java.util.Map;
-import java.util.List;
-
-public class ZenMuxExample {
-    public static void main(String[] args) throws Exception {
-        String apiKey = "<你的 ZENMUX_API_KEY>"; // [!code highlight]
-        
-        // 构建请求体
-        Map<String, Object> requestBody = Map.of(
-            "model", "openai/gpt-5", // [!code highlight]
-            "messages", List.of(
-                Map.of(
-                    "role", "user",
-                    "content", "生命的意义是什么？"// [!code highlight]
-                )
-            )
-        );
-        
-        ObjectMapper mapper = new ObjectMapper();
-        String jsonBody = mapper.writeValueAsString(requestBody);
-        
-        // 创建 HTTP 请求
-        HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://zenmux.ai/api/v1/chat/completions")) // [!code highlight]
-            .header("Content-Type", "application/json")
-            .header("Authorization", "Bearer " + apiKey) // [!code highlight]
-            .POST(HttpRequest.BodyPublishers.ofString(jsonBody))
-            .build();
-        
-        // 发送请求
-        HttpClient client = HttpClient.newHttpClient();
-        HttpResponse<String> response = client.send(request, 
-            HttpResponse.BodyHandlers.ofString());
-        
-        System.out.println(response.body());
-    }
-}
 ```
 
 :::
 
 ---
 
-## 后续步骤
+## 模型选择
 
-接下来，你可以探索更多功能：
+ZenMux 支持的全部模型可从[官方模型列表](https://zenmux.ai/models)查看。
 
-::: details 推荐阅读
+`model`参数的值可从通过如下方式复制模型准确的 Slug 获取:
 
-- **[模型列表](https://zenmux.ai/docs/models)** - 探索我们支持的所有模型
-- **[高级功能](https://zenmux.ai/docs/advanced)** - 流式传输、函数调用等
-- **[API 参考文档](https://zenmux.ai/docs/api-reference)** - 获取所有 API 的详细信息
+![复制模型Slug](https://github.com/user-attachments/assets/dbb619aa-9ec4-4be2-8017-9f6c3ebcc36c)
 
-:::
+![复制模型Slug](https://github.com/user-attachments/assets/f78ec49e-a91d-49ae-ad4e-66cc7d6b514b)
+
+---
+
+## 高级用法
+
+关于高级用法的详细信息，请参阅高级调用章节的内容。

@@ -125,15 +125,3 @@ ZenMux 当前处于 **内部测试 (Closed Beta)** 阶段
 ### 联系我们
 
 我们期待您的使用！如果您在申请前有任何疑问，也欢迎随时通过 `support@zenmux.ai` 与我们联系。
-
----
-
-## 下一步操作
-
-::: details 推荐阅读
-
-- [快速开始](https://docs.zenmux.ai/zh/guide/quickstart.html) - 立即体验 ZenMux
-- [架构设计](https://docs.zenmux.ai/zh/guide/architecture.html) - 深入理解技术原理  
-- [模型与供应商](https://docs.zenmux.ai/zh/guide/models-providers.html) - 选择合适的模型
-
-:::
