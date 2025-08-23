@@ -71,7 +71,12 @@ Tool calling is a multi-turn conversation between your application and the model
 4.  Send a second request to the model including the tool output
 5.  Receive the final response from the model (or more tool calls)
 
-![Function calling diagram steps](https://cdn.openai.com/API/docs/images/function-calling-diagram-steps.png)
+<div style="text-align: center;">
+  <img src="https://cdn.openai.com/API/docs/images/function-calling-diagram-steps.png" 
+       alt="Function calling diagram steps" 
+       style="width: 100%; max-width: 600px; border-radius: 8px; margin: 20px 0; background: white; padding: 10px;"
+       loading="lazy" />
+</div>
 > Image referenced from OpenAI
 
 Tool Call Examples

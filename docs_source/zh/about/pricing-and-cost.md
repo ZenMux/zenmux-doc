@@ -6,7 +6,12 @@ ZenMux 采用透明的计费体系，确保每一笔调用都被精确计量计�
 
 您可以在模型详情页面查看各个供应商的价格信息。每个供应商都会展示详细的计费标准，包括输入 Token、输出 Token 以及特殊功能的费用。
 
-![模型详情页面价格部分](https://cdn.marmot-cloud.com/storage/zenmux/2025/08/22/zhew65D/model-pricing.png)
+<div style="text-align: center;">
+  <img src="https://cdn.marmot-cloud.com/storage/zenmux/2025/08/22/zhew65D/model-pricing.png" 
+       alt="模型详情页面价格部分" 
+       style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); margin: 20px 0;"
+       loading="lazy" />
+</div>
 
 ## 计费项目说明
 
@@ -35,11 +40,21 @@ ZenMux 的计费项目包括以下几种类型：
 
 您可以在控制台的 **Activity** 界面查看所有 API 调用的费用详情，包括每次调用的具体费用、Token 使用量、调用时间等信息。
 
-![控制台-Activity界面](https://cdn.marmot-cloud.com/storage/zenmux/2025/08/22/NYwQvBH/activity-cost.png)
+<div style="text-align: center;">
+  <img src="https://cdn.marmot-cloud.com/storage/zenmux/2025/08/22/NYwQvBH/activity-cost.png" 
+       alt="控制台-Activity界面" 
+       style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); margin: 20px 0;"
+       loading="lazy" />
+</div>
 
 点击具体的调用记录，可以查看更详细的费用分解：
 
-![费用详情](https://cdn.marmot-cloud.com/storage/zenmux/2025/08/22/dWtmUoT/cost-details.png)
+<div style="text-align: center;">
+  <img src="https://cdn.marmot-cloud.com/storage/zenmux/2025/08/22/dWtmUoT/cost-details.png" 
+       alt="费用详情" 
+       style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); margin: 20px 0;"
+       loading="lazy" />
+</div>
 
 ### 原始 Meta 信息
 

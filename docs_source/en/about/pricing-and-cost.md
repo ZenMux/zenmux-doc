@@ -6,7 +6,12 @@ ZenMux employs a transparent billing system that ensures every API call is preci
 
 You can view pricing information for each supplier on the model details page. Each supplier displays detailed billing standards, including costs for input tokens, output tokens, and special features.
 
-![Model details page pricing section](https://cdn.marmot-cloud.com/storage/zenmux/2025/08/22/zhew65D/model-pricing.png)
+<div style="text-align: center;">
+  <img src="https://cdn.marmot-cloud.com/storage/zenmux/2025/08/22/zhew65D/model-pricing.png" 
+       alt="Model details page pricing section" 
+       style="width: 100%; max-width: 700px; border-radius: 6px; box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1); margin: 18px 0;"
+       loading="lazy" />
+</div>
 
 ## Billing Items Description
 
@@ -35,11 +40,21 @@ We guarantee that every API call is precisely metered and billed. You can view d
 
 You can view cost details for all API calls in the **Activity** interface of the console, including specific costs for each call, token usage, call time, and other information.
 
-![Console-Activity interface](https://cdn.marmot-cloud.com/storage/zenmux/2025/08/22/NYwQvBH/activity-cost.png)
+<div style="text-align: center;">
+  <img src="https://cdn.marmot-cloud.com/storage/zenmux/2025/08/22/NYwQvBH/activity-cost.png" 
+       alt="Console-Activity interface" 
+       style="width: 100%; max-width: 700px; border-radius: 6px; box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1); margin: 18px 0;"
+       loading="lazy" />
+</div>
 
 Click on specific call records to view more detailed cost breakdowns:
 
-![Cost details](https://cdn.marmot-cloud.com/storage/zenmux/2025/08/22/dWtmUoT/cost-details.png)
+<div style="text-align: center;">
+  <img src="https://cdn.marmot-cloud.com/storage/zenmux/2025/08/22/dWtmUoT/cost-details.png" 
+       alt="Cost details" 
+       style="width: 100%; max-width: 700px; border-radius: 6px; box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1); margin: 18px 0;"
+       loading="lazy" />
+</div>
 
 ### Raw Meta Information
 

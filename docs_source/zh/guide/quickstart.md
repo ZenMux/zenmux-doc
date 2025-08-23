@@ -168,9 +168,19 @@ ZenMux 支持的全部模型可从[官方模型列表](https://zenmux.ai/models)
 
 `model`参数的值可从通过如下方式复制模型准确的 Slug 获取:
 
-![复制模型Slug](https://github.com/user-attachments/assets/dbb619aa-9ec4-4be2-8017-9f6c3ebcc36c)
+<div style="text-align: center;">
+  <img src="https://github.com/user-attachments/assets/dbb619aa-9ec4-4be2-8017-9f6c3ebcc36c" 
+       alt="复制模型Slug" 
+       style="width: auto; max-width: 400px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); margin: 16px 0;"
+       loading="lazy" />
+</div>
 
-![复制模型Slug](https://github.com/user-attachments/assets/f78ec49e-a91d-49ae-ad4e-66cc7d6b514b)
+<div style="text-align: center;">
+  <img src="https://github.com/user-attachments/assets/f78ec49e-a91d-49ae-ad4e-66cc7d6b514b" 
+       alt="复制模型Slug" 
+       style="width: auto; max-width: 400px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); margin: 16px 0;"
+       loading="lazy" />
+</div>
 
 ---
 

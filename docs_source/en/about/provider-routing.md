@@ -63,7 +63,12 @@ To accurately specify providers, you need to obtain the correct provider slug (i
 2. Click the copy button next to the provider name
 3. Copy the exact slug identifier, such as `anthropic/anthropic_endpoint`
 
-![Provider Slug Copy](https://cdn.marmot-cloud.com/storage/zenmux/2025/08/22/j5hXtcH/provider-slug.png)
+<div style="text-align: center;">
+  <img src="https://cdn.marmot-cloud.com/storage/zenmux/2025/08/22/j5hXtcH/provider-slug.png" 
+       alt="Provider Slug Copy" 
+       style="width: auto; max-width: 400px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); margin: 16px 0;"
+       loading="lazy" />
+</div>
 
 ::: tip Tip
 Make sure to use the correct slug format, typically in the form of `provider_name/endpoint_identifier`.

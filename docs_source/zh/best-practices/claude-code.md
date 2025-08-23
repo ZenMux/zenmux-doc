@@ -112,7 +112,12 @@ python -m claude-code-proxy
 
 启动成功后，您将看到类似以下的输出：
 
-![Claude Code Proxy 运行效果](https://cdn.marmot-cloud.com/storage/zenmux/2025/08/22/FiEgoFH/claude-code-proxy.png)
+<div style="text-align: center;">
+  <img src="https://cdn.marmot-cloud.com/storage/zenmux/2025/08/22/FiEgoFH/claude-code-proxy.png" 
+       alt="Claude Code Proxy 运行效果" 
+       style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); margin: 20px 0;"
+       loading="lazy" />
+</div>
 
 ### 2. 启动 Claude Code 客户端
 
@@ -136,7 +141,12 @@ alias claude-zenmux='ANTHROPIC_BASE_URL=http://localhost:8082 ANTHROPIC_API_KEY=
 
 配置完成后，您就可以在 Claude Code 中使用 ZenMux 的所有模型了：
 
-![Claude Code 使用展示](https://cdn.marmot-cloud.com/storage/zenmux/2025/08/22/KZuymll/claude-code.png)
+<div style="text-align: center;">
+  <img src="https://cdn.marmot-cloud.com/storage/zenmux/2025/08/22/KZuymll/claude-code.png" 
+       alt="Claude Code 使用展示" 
+       style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); margin: 20px 0;"
+       loading="lazy" />
+</div>
 
 ## 故障排除
 

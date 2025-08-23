@@ -22,42 +22,42 @@ nofollow: false
 ---
 
 ::: info Welcome to ZenMux Documentation
-For detailed information about ZenMux, please visit our [introduction page](/en/about/intro), which contains a comprehensive product overview, feature highlights, and Beta application information.
+For detailed information about ZenMux, please visit our [introduction page](/about/intro), which contains a comprehensive product overview, feature highlights, and Beta application information.
 :::
 
 ## Quick Navigation
 
 ### About ZenMux
 
-- [Introduction](/en/about/intro) - Comprehensive product overview and Beta application
-- [Models & Providers](/en/about/models-and-providers) - Supported models and providers
-- [Pricing & Cost](/en/about/pricing-and-cost) - Pricing information and costs
-- [Provider Routing](/en/about/provider-routing) - Provider routing mechanisms
+- [Introduction](/about/intro) - Comprehensive product overview and Beta application
+- [Models & Providers](/about/models-and-providers) - Supported models and providers
+- [Pricing & Cost](/about/pricing-and-cost) - Pricing information and costs
+- [Provider Routing](/about/provider-routing) - Provider routing mechanisms
 
 ### Usage Documentation
 
-- [Quick Start](/en/guide/quickstart) - Get started with ZenMux in minutes
+- [Quick Start](/guide/quickstart) - Get started with ZenMux in minutes
 
 ### Advanced Calls
 
-- [Streaming](/en/guide/advanced/streaming) - Real-time streaming responses
-- [Multimodal](/en/guide/advanced/multimodal) - Text, image, and audio processing
-- [Structured Output](/en/guide/advanced/structured-output) - JSON and structured responses
-- [Tool Calls](/en/guide/advanced/tool-calls) - Function calling capabilities
-- [Prompt Cache](/en/guide/advanced/prompt-cache) - Prompt caching functionality
-- [Reasoning Models](/en/guide/advanced/reasoning) - Using reasoning models
+- [Streaming](/guide/advanced/streaming) - Real-time streaming responses
+- [Multimodal](/guide/advanced/multimodal) - Text, image, and audio processing
+- [Structured Output](/guide/advanced/structured-output) - JSON and structured responses
+- [Tool Calls](/guide/advanced/tool-calls) - Function calling capabilities
+- [Prompt Cache](/guide/advanced/prompt-cache) - Prompt caching functionality
+- [Reasoning Models](/guide/advanced/reasoning) - Using reasoning models
   
 ### Best Practices
 
-- [ClaudeCode Integration with ZenMux Guide](/en/best-practices/claude-code) - How to integrate Claude with ZenMux custom model usage
+- [ClaudeCode Integration with ZenMux Guide](/best-practices/claude-code) - How to integrate Claude with ZenMux custom model usage
 
 ### API Reference
 
-- [Chat Completion](/en/api/openai/chat-completion) - OpenAI-compatible chat API
-- [Get a generation](/en/api/platform/get-generation) - ZenMux platform-specific API
+- [Chat Completion](/api/openai/chat-completion) - OpenAI-compatible chat API
+- [Get a generation](/api/platform/get-generation) - ZenMux platform-specific API
 
 ---
 
 ::: tip Ready to Get Started?
-Begin your ZenMux journey by reading our [introduction](/en/about/intro), then follow the [quick start guide](/en/guide/quickstart) for your first API call.
+Begin your ZenMux journey by reading our [introduction](/about/intro), then follow the [quick start guide](/guide/quickstart) for your first API call.
 :::

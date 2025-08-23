@@ -71,7 +71,12 @@ subtitle: 在你的 prompt 中使用工具
 4.  向模型发出第二次请求，包含工具输出
 5.  从模型接收最终响应（或更多工具调用）
 
-![函数调用图表步骤](https://cdn.openai.com/API/docs/images/function-calling-diagram-steps.png)
+<div style="text-align: center;">
+  <img src="https://cdn.openai.com/API/docs/images/function-calling-diagram-steps.png" 
+       alt="函数调用图表步骤" 
+       style="width: 100%; max-width: 600px; border-radius: 8px; margin: 20px 0; background: white; padding: 10px;"
+       loading="lazy" />
+</div>
 > 图片引用自 OpenAI
 
 工具调用示例

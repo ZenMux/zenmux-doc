@@ -8,7 +8,12 @@ ZenMux 采用多模型、多供应商的冗余架构，确保大语言模型服�
 在官网的 **Models** 界面可查看所有支持的模型及其基本信息，可通过左侧的筛选条件、顶部的搜索框、排序选项等快速定位所需模型。
 :::
 
-![模型列表页面](https://cdn.marmot-cloud.com/storage/zenmux/2025/08/21/iAG4cry/models-page.png)
+<div style="text-align: center;">
+  <img src="https://cdn.marmot-cloud.com/storage/zenmux/2025/08/21/iAG4cry/models-page.png" 
+       alt="模型列表页面" 
+       style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); margin: 20px 0;"
+       loading="lazy" />
+</div>
 
 ## 多供应商架构
 
@@ -28,7 +33,12 @@ ZenMux 采用多模型、多供应商的冗余架构，确保大语言模型服�
 - **Vertex AI** - Google Cloud 托管服务
 - **Amazon Bedrock** - AWS 托管服务
 
-![模型详情页面](https://cdn.marmot-cloud.com/storage/zenmux/2025/08/21/vrmIq6I/model-details.png)
+<div style="text-align: center;">
+  <img src="https://cdn.marmot-cloud.com/storage/zenmux/2025/08/21/vrmIq6I/model-details.png" 
+       alt="模型详情页面" 
+       style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); margin: 20px 0;"
+       loading="lazy" />
+</div>
 
 ## 供应商对比信息
 

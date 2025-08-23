@@ -33,7 +33,78 @@ pnpm run build
 pnpm run preview
 ```
 
-提示
+## 脚本命令
+
+本项目提供了多个实用脚本来简化开发流程：
+
+### 📖 文档开发
+
+```sh
+# 启动开发服务器（热更新）
+pnpm run dev
+
+# 构建生产版本（输出到 docs/ 目录）
+pnpm run build
+
+# 预览已构建的站点
+pnpm run preview
+```
+
+### 🌐 翻译工具
+
+```sh
+# 将中文文档翻译为英文
+pnpm run translate <中文文件路径> [--force]
+
+# 示例：翻译快速开始文档
+pnpm run translate docs_source/zh/guide/quickstart.md
+
+# 强制重新翻译（覆盖现有英文文件）
+pnpm run translate docs_source/zh/guide/quickstart.md --force
+```
+
+**翻译工具说明**：
+- 自动将 `zh/` 路径转换为 `en/` 路径
+- 使用 AI 模型 (claude-sonnet-4) 进行高质量翻译
+- 保留代码块、变量名和 Markdown 格式
+- 需要设置环境变量 `ZENMUX_API_KEY`
+
+### ✨ 文档优化
+
+```sh
+# 优化中文文档的语言和结构
+pnpm run optimize <输入文件> <输出文件> [--force]
+
+# 示例：优化草稿文档
+pnpm run optimize draft.md docs_source/zh/guide/quickstart.md
+
+# 强制覆盖现有文件
+pnpm run optimize draft.md docs_source/zh/guide/quickstart.md --force
+```
+
+**文档优化工具说明**：
+- 改善中文文档的表达和结构
+- 确保 VitePress 语法的正确使用
+- 统一文档风格和格式
+- 需要设置环境变量 `ZENMUX_API_KEY`
+
+### 🖼️ 图片格式化
+
+```sh
+# 自动格式化所有文档中的图片
+pnpm run format-images
+```
+
+**图片格式化工具功能**：
+- **智能分类**：根据图片描述自动识别类型
+  - 截图类 (界面、页面、效果)：大尺寸展示，最大宽度 800px
+  - 图标类 (按钮、复制、slug)：小尺寸展示，最大宽度 400px
+  - 图表类 (流程图、架构图)：中等尺寸，最大宽度 600px
+  - 默认类：统一中等尺寸，最大宽度 700px
+- **统一样式**：响应式设计、圆角边框、阴影效果、居中对齐
+- **性能优化**：懒加载支持，避免重复处理
+
+**提示**：
 
 - 本仓库的 `docs_source/.vitepress/config.mts` 已设置 `outDir: '../docs'`，因此无需在命令行传 `--out`。
 - 已开启本地全文搜索（`search.provider = 'local'`）。

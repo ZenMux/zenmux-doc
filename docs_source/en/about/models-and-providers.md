@@ -8,7 +8,12 @@ ZenMux employs a multi-model, multi-provider redundancy architecture to ensure h
 All supported models and their basic information can be viewed on the **Models** page of the official website. You can quickly locate the desired models using the filter options on the left, search box at the top, and sorting options.
 :::
 
-![Model List Page](https://cdn.marmot-cloud.com/storage/zenmux/2025/08/21/iAG4cry/models-page.png)
+<div style="text-align: center;">
+  <img src="https://cdn.marmot-cloud.com/storage/zenmux/2025/08/21/iAG4cry/models-page.png" 
+       alt="Model List Page" 
+       style="width: 100%; max-width: 700px; border-radius: 6px; box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1); margin: 18px 0;"
+       loading="lazy" />
+</div>
 
 ## Multi-Provider Architecture
 
@@ -28,7 +33,12 @@ Taking the `anthropic/claude-sonnet-4` model as an example, click on the model c
 - **Vertex AI** - Google Cloud managed service
 - **Amazon Bedrock** - AWS managed service
 
-![Model Details Page](https://cdn.marmot-cloud.com/storage/zenmux/2025/08/21/vrmIq6I/model-details.png)
+<div style="text-align: center;">
+  <img src="https://cdn.marmot-cloud.com/storage/zenmux/2025/08/21/vrmIq6I/model-details.png" 
+       alt="Model Details Page" 
+       style="width: 100%; max-width: 700px; border-radius: 6px; box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1); margin: 18px 0;"
+       loading="lazy" />
+</div>
 
 ## Provider Comparison Information
 

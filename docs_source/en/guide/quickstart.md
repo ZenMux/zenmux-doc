@@ -168,9 +168,19 @@ All models supported by ZenMux can be viewed from the [Official Model List](http
 
 The value for the `model` parameter can be obtained by copying the accurate model Slug through the following methods:
 
-![Copy Model Slug](https://github.com/user-attachments/assets/dbb619aa-9ec4-4be2-8017-9f6c3ebcc36c)
+<div style="text-align: center;">
+  <img src="https://github.com/user-attachments/assets/dbb619aa-9ec4-4be2-8017-9f6c3ebcc36c" 
+       alt="Copy Model Slug" 
+       style="width: auto; max-width: 400px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); margin: 16px 0;"
+       loading="lazy" />
+</div>
 
-![Copy Model Slug](https://github.com/user-attachments/assets/f78ec49e-a91d-49ae-ad4e-66cc7d6b514b)
+<div style="text-align: center;">
+  <img src="https://github.com/user-attachments/assets/f78ec49e-a91d-49ae-ad4e-66cc7d6b514b" 
+       alt="Copy Model Slug" 
+       style="width: auto; max-width: 400px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); margin: 16px 0;"
+       loading="lazy" />
+</div>
 
 ---
 

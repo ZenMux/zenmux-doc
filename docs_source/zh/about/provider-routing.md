@@ -63,7 +63,12 @@ ZenMux 采用以下默认路由策略：
 2. 点击供应商名称旁的复制按钮
 3. 复制准确的 slug 标识符，如 `anthropic/anthropic_endpoint`
 
-![供应商 slug 复制](https://cdn.marmot-cloud.com/storage/zenmux/2025/08/22/j5hXtcH/provider-slug.png)
+<div style="text-align: center;">
+  <img src="https://cdn.marmot-cloud.com/storage/zenmux/2025/08/22/j5hXtcH/provider-slug.png" 
+       alt="供应商 slug 复制" 
+       style="width: auto; max-width: 400px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); margin: 16px 0;"
+       loading="lazy" />
+</div>
 
 ::: tip 提示
 确保使用正确的 slug 格式，通常为 `供应商名称/端点标识` 的形式。

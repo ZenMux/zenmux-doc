@@ -105,7 +105,12 @@ The output content will return JSON data according to the specified schema forma
 
 Find the corresponding provider on the model card page and check if response_format is supported in the supported parameters, as shown in the image below:
 
-![img](https://cdn.marmot-cloud.com/storage/zenmux/2025/08/21/1Hj7emo/res_format.jpg)
+<div style="text-align: center;">
+  <img src="https://cdn.marmot-cloud.com/storage/zenmux/2025/08/21/1Hj7emo/res_format.jpg" 
+       alt="img" 
+       style="width: 100%; max-width: 700px; border-radius: 6px; box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1); margin: 18px 0;"
+       loading="lazy" />
+</div>
 
 # API Call Example
 

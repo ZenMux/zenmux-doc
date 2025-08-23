@@ -112,7 +112,12 @@ python -m claude-code-proxy
 
 After successful startup, you will see output similar to the following:
 
-![Claude Code Proxy Running Effect](https://cdn.marmot-cloud.com/storage/zenmux/2025/08/22/FiEgoFH/claude-code-proxy.png)
+<div style="text-align: center;">
+  <img src="https://cdn.marmot-cloud.com/storage/zenmux/2025/08/22/FiEgoFH/claude-code-proxy.png" 
+       alt="Claude Code Proxy Running Effect" 
+       style="width: 100%; max-width: 700px; border-radius: 6px; box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1); margin: 18px 0;"
+       loading="lazy" />
+</div>
 
 ### 2. Start Claude Code Client
 
@@ -136,7 +141,12 @@ alias claude-zenmux='ANTHROPIC_BASE_URL=http://localhost:8082 ANTHROPIC_API_KEY=
 
 After configuration is complete, you can use all ZenMux models in Claude Code:
 
-![Claude Code Usage Demonstration](https://cdn.marmot-cloud.com/storage/zenmux/2025/08/22/KZuymll/claude-code.png)
+<div style="text-align: center;">
+  <img src="https://cdn.marmot-cloud.com/storage/zenmux/2025/08/22/KZuymll/claude-code.png" 
+       alt="Claude Code Usage Demonstration" 
+       style="width: 100%; max-width: 700px; border-radius: 6px; box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1); margin: 18px 0;"
+       loading="lazy" />
+</div>
 
 ## Troubleshooting
 

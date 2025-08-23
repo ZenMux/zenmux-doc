@@ -9,7 +9,8 @@
     "docs:build": "vitepress build docs_source",
     "docs:preview": "vitepress preview docs_source",
     "translate": "tsx scripts/translate-zh-to-en/translate-zh-to-en.ts",
-    "optimize": "tsx scripts/optimize-chinese-docs/optimize-chinese-docs.ts"
+    "optimize": "tsx scripts/optimize-chinese-docs/optimize-chinese-docs.ts",
+    "format-images": "node scripts/format-images.js"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.2",
@@ -18,6 +19,7 @@
     "copy-to-clipboard": "^3.3.3",
     "element-plus": "^2.10.4",
     "element-ui": "^2.15.14",
+    "glob": "^11.0.0",
     "lz-string": "^1.5.0",
     "markdown-it-container": "^4.0.0",
     "openai": "^5.12.2",
