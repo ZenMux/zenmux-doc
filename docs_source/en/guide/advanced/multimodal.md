@@ -1,10 +1,10 @@
 # Multimodal
 
-ZenMux supports multimodal input, including not only text input but also image and PDF input, with audio and video support coming soon.
+ZenMux supports multimodal input. In addition to text input, it also supports image and PDF input, with audio and video support coming soon.
 
 ## Image Input
 
-### Using Image URL
+### Using Image URLs
 
 ::: code-group
 
@@ -100,7 +100,7 @@ headers = {
 
 image_path = "path/to/your/image.jpg"
 base64_image = encode_image_to_base64(image_path)
-base64_image_data = f"data:image/jpeg;base64,{base64_image}"
+data_url = "data:image/jpeg;base64,{base64_image}"
 
 payload = {
   "model": "google/gemini-2.5-pro",
@@ -115,7 +115,7 @@ payload = {
         {
           "type": "image_url",  # [!code highlight]
           "image_url": {  # [!code highlight]
-            "url": base64_image_data  # [!code highlight]
+            "url": data_url  # [!code highlight]
           }  # [!code highlight]
         }
       ]
@@ -175,7 +175,7 @@ console.log(data);
 
 ## PDF Input
 
-### Using PDF URL
+### Using PDF URLs
 
 ::: code-group
 
@@ -273,7 +273,7 @@ headers = {
 
 pdf_path = "path/to/your/test.pdf"
 base64_pdf = encode_pdf_to_base64(pdf_path)
-data_url = f"data:application/pdf;base64,{base64_pdf}"
+data_url = "data:application/pdf;base64,{base64_pdf}"
 
 payload = {
   "model": "google/gemini-2.5-pro",
