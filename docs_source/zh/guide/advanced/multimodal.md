@@ -47,7 +47,7 @@ print(response.json())
 const response = await fetch("https://zenmux.ai/api/v1/chat/completions", {
   method: "POST",
   headers: {
-    Authorization: "Bearer <你的 ZUNMUX_API_KEY>", // [!code highlight]
+    Authorization: "Bearer <你的 ZENMUX_API_KEY>", // [!code highlight]
     "Content-Type": "application/json",
   },
   body: JSON.stringify({
@@ -100,7 +100,7 @@ headers = {
 
 image_path = "path/to/your/image.jpg"
 base64_image = encode_image_to_base64(image_path)
-base64_image_data = f"data:image/jpeg;base64,{base64_image}"
+data_url = "data:image/jpeg;base64,{base64_image}"
 
 payload = {
   "model": "google/gemini-2.5-pro",
@@ -115,7 +115,7 @@ payload = {
         {
           "type": "image_url",  # [!code highlight]
           "image_url": {  # [!code highlight]
-            "url": base64_image_data  # [!code highlight]
+            "url": data_url  # [!code highlight]
           }  # [!code highlight]
         }
       ]
@@ -141,7 +141,7 @@ const base64Image = await encodeImageToBase64(imagePath);
 const response = await fetch("https://zenmux.ai/api/v1/chat/completions", {
   method: "POST",
   headers: {
-    Authorization: "Bearer ${你的 ZUNMUX_API_KEY}",  // [!code highlight]
+    Authorization: "Bearer ${你的 ZENMUX_API_KEY}",  // [!code highlight]
     "Content-Type": "application/json",
   },
   body: JSON.stringify({
@@ -185,7 +185,7 @@ import json
 
 url = "https://zenmux.ai/api/v1/chat/completions"
 headers = {
-  "Authorization": "Bearer {你的 ZUMMUX_API_KEY}", # [!code highlight]
+  "Authorization": "Bearer {你的 ZENMUX_API_KEY}", # [!code highlight]
   "Content-Type": "application/json"
 }
 payload = {
@@ -218,7 +218,7 @@ print(response.json())
 const response = await fetch("https://zenmux.ai/api/v1/chat/completions", {
   method: "POST",
   headers: {
-    Authorization: "Bearer <你的 ZUNMUX_API_KEY>",
+    Authorization: "Bearer <你的 ZENMUX_API_KEY>",
     "Content-Type": "application/json",
   },
   body: JSON.stringify({
@@ -273,7 +273,7 @@ headers = {
 
 pdf_path = "path/to/your/test.pdf"
 base64_pdf = encode_pdf_to_base64(pdf_path)
-data_url = f"data:application/pdf;base64,{base64_pdf}"
+data_url = "data:application/pdf;base64,{base64_pdf}"
 
 payload = {
   "model": "google/gemini-2.5-pro",
