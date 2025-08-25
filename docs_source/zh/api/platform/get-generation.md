@@ -33,11 +33,11 @@ Get generation 接口用于查询生成信息，如用量和费用等。
 
 ### generationTime `integer`
 
-本次推理从首字到结束的持续时长，单位耗秒。
+本次推理从首字到结束的持续时长，单位毫秒。
 
 ### latency `integer`
 
-首字延时，单位耗秒。
+首字延时，单位毫秒。
 
 ### throughput `string`
 
@@ -60,7 +60,7 @@ Get generation 接口用于查询生成信息，如用量和费用等。
 本次推理消耗的 credit
 
 
-::: api-request GET /api/v1/generations
+::: api-request GET /api/v1/generation
 
 
 ```Shell

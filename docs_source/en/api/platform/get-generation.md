@@ -60,7 +60,7 @@ The reason why the model finished inference.
 The credits consumed by this inference.
 
 
-::: api-request GET /api/v1/generations
+::: api-request GET /api/v1/generation
 
 
 ```Shell
