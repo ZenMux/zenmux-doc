@@ -2,7 +2,7 @@
 
 ## ZenMux 概述
 
-ZenMux是全球首个提供**AI模型保险服务**的企业级模型聚合平台。我们不仅为开发者提供统一的 API 接口来访问全球主流大语言模型，更通过**智能路由算法**自动选择最优模型，并为AI输出质量提供**保险兜底保障**，全方位解决企业对AI幻觉、质量不稳定的担忧。
+ZenMux 是全球首个提供**AI 模型保险服务**的企业级模型聚合平台。我们不仅为开发者提供统一的 API 接口来访问全球主流大语言模型，更通过**智能路由算法**自动选择最优模型，并为 AI 输出质量提供**保险兜底保障**，全方位解决企业对 AI 幻觉、质量不稳定的担忧。
 
 通过 ZenMux，开发者可以使用单一接口调用 OpenAI、Anthropic、Google、DeepSeek 等多家供应商的模型，同时享受智能路由、故障转移和保险保障服务。
 
@@ -111,17 +111,6 @@ ZenMux 当前处于 **内部测试 (Closed Beta)** 阶段
 
 审核通过后，我们将为您开通内测账户，并将价值 **$1000** 的模型调用额度充值到您的账户中。届时，您将收到一封包含账户信息和专属社群邀请的欢迎邮件。
 
-### 关注我们
-
-::: info 社区支持
-欢迎关注我们的官方社交媒体和开发者社区，获取最新的产品动态、技术教程和社区活动信息：
-:::
-
-- **Discord 服务器**: [ZenMux Developer Community](https://discord.gg/zenmux)
-- **Twitter/X**: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
-- **GitHub**: [github.com/zenmux](https://github.com/zenmux)
-- **微信开发者群**: 添加微信号 `ZenMux-Support` 备注"开发者"加入
-
 ### 联系我们
 
-我们期待您的使用！如果您在申请前有任何疑问，也欢迎随时通过 `support@zenmux.ai` 与我们联系。
+您可以通过邮箱、社交媒体账号等联系我们，详见：[联系我们页面](https://docs.zenmux.ai/zh/help/contact.html)。

@@ -1,6 +1,6 @@
 # Contact Us
 
-Welcome to contact the ZenMux team! We offer multiple contact methods to ensure you receive timely assistance and support.
+Welcome to contact the ZenMux team! We provide multiple contact methods to ensure you receive timely help and support.
 
 ## Technical Support
 
@@ -12,19 +12,19 @@ When sending an email, please provide the following information to help us serve
 
 - Your account email
 - Detailed problem description
-- Relevant error messages or logs
+- Related error messages or logs
 - Time when the problem occurred
 - Programming language and version you are using
 
 ::: tip Quick Response Tips
-For the fastest technical support, we recommend checking our [FAQ page](/en/help/faq) first, as many common questions can be answered there.
+For the fastest technical support, we recommend checking our [FAQ page](/zh/help/faq) first, where many common questions can be answered.
 :::
 
-## Sales Inquiry
+## Sales Consultation
 
-### Enterprise Partnership
+### Enterprise Partnerships
 
-If you are an enterprise customer, we offer dedicated enterprise solutions:
+If you are an enterprise customer, we provide dedicated enterprise solutions:
 
 **Sales Email**: [bd@zenmux.ai](mailto:bd@zenmux.ai)
 
@@ -35,24 +35,17 @@ If you are an enterprise customer, we offer dedicated enterprise solutions:
 Follow our social media for the latest updates:
 
 - **Official Website**: [https://zenmux.ai](https://zenmux.ai)
-- **WeChat Official Account**: ZenMux
 - **Twitter**: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
 
-### Developer Community
-
-Join our developer community:
-
-- **Discord Server**: [discord.gg/zenmux](https://discord.gg/zenmux)
-
-## Feedback and Suggestions
+## Feedback & Suggestions
 
 We highly value your feedback and suggestions, which help us continuously improve our products and services.
 
 ### Product Feedback
 
-**Feedback Email**: [support@zenmux.ai](mailto:feedback@zenmux.ai)
+**Feedback Email**: [support@zenmux.ai](mailto:support@zenmux.ai)
 
-You can provide feedback on:
+You can provide us with feedback on:
 
 - Feature requests and improvement suggestions
 - User experience issues

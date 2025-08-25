@@ -35,14 +35,7 @@
 关注我们的社交媒体获取最新动态：
 
 - **官方网站**：[https://zenmux.ai](https://zenmux.ai)
-- **微信公众号**：ZenMux
 - **Twitter**：[@ZenMuxAI](https://twitter.com/ZenMuxAI)
-
-### 开发者社区
-
-加入我们的开发者社区：
-
-- **Discord 服务器**：[discord.gg/zenmux](https://discord.gg/zenmux)
 
 ## 反馈与建议
 
@@ -50,7 +43,7 @@
 
 ### 产品反馈
 
-**反馈邮箱**：[support@zenmux.ai](mailto:feedback@zenmux.ai)
+**反馈邮箱**：[support@zenmux.ai](mailto:support@zenmux.ai)
 
 您可以向我们反馈：
 
