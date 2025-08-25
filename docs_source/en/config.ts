@@ -54,11 +54,11 @@ export default defineLoacaleConfig({
         items: [
           {
             text: "OpenAI Compatible API",
-            items: [{ text: "Chat Completion", link: "/api/openai/chat-completion" }]
+            items: [{ text: "Create chat completion", link: "/api/openai/create-chat-completion" }]
           },
           {
             text: "Platform API",
-            items: [{ text: "Get a generation", link: "/api/platform/get-generation" }]
+            items: [{ text: "Get generation", link: "/api/platform/get-generation" }]
           }
         ]
       },
