@@ -19,31 +19,27 @@ The generation id returned by the [Create chat completion](../openai/create-chat
 
 ## Returns
 
-### generationId `string`
+### generation_id `string`
 
 The current generation id.
 
-### modelSlug `string`
+### model `string`
 
 Model ID.
 
-### createdAt `string`
+### created_at `string`
 
-The time when the server received the inference call request.
+The time when the server received the inference request.
 
-### generationTime `integer`
+### generation_time `integer`
 
-The duration from the first token to completion for this inference, in milliseconds.
+The duration of this inference from the first token to completion, in milliseconds.
 
 ### latency `integer`
 
 First token latency, in milliseconds.
 
-### throughput `string`
-
-Generation speed, in tokens/second.
-
-### nativeTokens `object`
+### native_tokens `object`
 
 Usage information consumed by this inference.
 
@@ -51,13 +47,13 @@ Usage information consumed by this inference.
 
 Whether it is a streaming response.
 
-### finishReason `string`
+### finish_reason `string`
 
-The reason why the model finished inference.
+The reason why the model stopped inference.
 
-### realAmount `string`
+### usage `string`
 
-The credits consumed by this inference.
+The credit consumed by this inference
 
 
 ::: api-request GET /api/v1/generation

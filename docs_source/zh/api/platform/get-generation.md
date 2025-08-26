@@ -19,19 +19,19 @@ Get generation 接口用于查询生成信息，如用量和费用等。
 
 ## Returns
 
-### generationId `string`
+### generation_id `string`
 
 当前的 generation id。
 
-### modelSlug `string`
+### model `string`
 
 模型 ID。
 
-### createdAt `string`
+### created_at `string`
 
 服务端收到推理调用请求的时间。
 
-### generationTime `integer`
+### generation_time `integer`
 
 本次推理从首字到结束的持续时长，单位毫秒。
 
@@ -39,11 +39,7 @@ Get generation 接口用于查询生成信息，如用量和费用等。
 
 首字延时，单位毫秒。
 
-### throughput `string`
-
-生成速度，单位 tokens/秒。
-
-### nativeTokens `object`
+### native_tokens `object`
 
 本次推理消耗的用量信息。
 
@@ -51,11 +47,11 @@ Get generation 接口用于查询生成信息，如用量和费用等。
 
 是否是流式响应。
 
-### finishReason `string`
+### finish_reason `string`
 
 模型结束推理的原因。
 
-### realAmount `string`
+### usage `string`
 
 本次推理消耗的 credit
 
