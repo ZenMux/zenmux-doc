@@ -7,10 +7,8 @@ export default defineLoacaleConfig({
   description: "zenmux.ai document",
   themeConfig: {
     nav: [
-      { text: 'API', link: '/api/overview' },
       { text: 'Models', link: 'https://zenmux.ai/models', noIcon: true },
       { text: 'Chat', link: 'https://zenmux.ai/chat', noIcon: true },
-      { text: 'Ranking', link: 'https://zenmux.ai/rangking', noIcon: true },
     ],
     outline: {
       level: [2, 3]
