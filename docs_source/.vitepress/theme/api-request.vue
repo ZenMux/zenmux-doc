@@ -173,7 +173,7 @@ async function copyPath() {
   right: 20px;
   width: 480px;
   max-width: 90vw;
-  z-index: 1000;
+  z-index: 22;
   max-width: 500px;
 }
 

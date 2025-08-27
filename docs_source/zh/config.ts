@@ -12,10 +12,8 @@ export default defineLoacaleConfig({
       level: [2, 3]
     },
     nav: [
-      { text: 'API', link: '/api/overview' },
       { text: 'Models', link: 'https://zenmux.ai/models', noIcon: true },
       { text: 'Chat', link: 'https://zenmux.ai/chat', noIcon: true },
-      { text: 'Ranking', link: 'https://zenmux.ai/rangking', noIcon: true },
     ],
     sidebar: [
       {
