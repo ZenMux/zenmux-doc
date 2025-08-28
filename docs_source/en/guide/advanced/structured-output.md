@@ -1,16 +1,16 @@
 # Structured Output
 
-ZenMux provides structured output functionality to ensure model responses strictly follow your defined [JSON Schema](https://json-schema.org/) format.
-When you have fixed structured data requirements, you can utilize this feature!
+ZenMux provides structured output to ensure model responses strictly follow your defined [JSON Schema](https://json-schema.org/) format.
+Use this feature whenever you need fixed, structured data!
 
 # Parameters
 
 **response_format**
 
-- Setting { "type": "json_object" } outputs valid JSON format, but doesn't guarantee specific structure or fields.
-- Setting { "type": "json_schema", "json_schema": {...} } provides stricter control over JSON output structure with stronger type and structural guarantees
+- Set { "type": "json_object" } to produce valid JSON output, without guarantees about specific structure or fields.
+- Set { "type": "json_schema", "json_schema": {...} } to strictly constrain the JSON output structure with stronger type and shape guarantees.
 
-1. Setting json_object mode
+1. Enable json_object mode
 
 Input structure:
 
@@ -22,15 +22,15 @@ Input structure:
 }
 ```
 
-Output structure: content returns valid JSON format content
+Output structure: content returns a valid JSON payload
 
 ```json
 {
-    "model": "openai/gpt-5",
+    "model": "openai/gpt-5-nano",
     "choices": [
         {
             "message": {
-                // Actual content is a JSON string, displayed as JSON here for readability
+                // The actual content is a JSON string; shown as JSON here for readability
                 "content": {
                     "description": "I am ChatGPT, an AI assistant built by OpenAI. I help answer questions, brainstorm ideas, draft text, explain concepts, debug code, and learn topics. I use patterns from training data to generate helpful, clear responses while recognizing limits and inviting follow-up questions. I adapt tone and detail to your needs."
                 }
@@ -42,15 +42,15 @@ Output structure: content returns valid JSON format content
 }
 ```
 
-2. Setting json_schema mode
+2. Enable json_schema mode
 
-Input follows standard [JSON Schema](https://json-schema.org/) format definition
+Define the input according to the standard [JSON Schema](https://json-schema.org/) format:
 
 ```json
 {
   "response_format": {
     "type": "json_schema",
-    // Standard json_schema data
+    // Standard json_schema payload
     "json_schema": {
       "name": "role",
       "description": "Introduce yourself",
@@ -79,15 +79,15 @@ Input follows standard [JSON Schema](https://json-schema.org/) format definition
 }
 ```
 
-The output content will return JSON data according to the specified schema format
+The returned content will be JSON conforming to the specified schema:
 
 ```json
 {
-    "model": "openai/gpt-5",
+    "model": "openai/gpt-5-nano",
     "choices": [
         {
             "message": {
-                // Actual content is a JSON string, displayed as JSON here for readability
+                // The actual content is a JSON string; shown as JSON here for readability
                 "content": {
                     "name": "ChatGPT",
                     "city": "Internet",
@@ -103,7 +103,7 @@ The output content will return JSON data according to the specified schema forma
 
 # Supported Models
 
-Find the corresponding provider on the model card page and check if response_format is supported in the supported parameters, as shown in the image below:
+On the model card page, find the corresponding provider and check whether response_format is listed among the supported parameters, as shown below:
 
 <div style="text-align: center;">
   <img src="https://cdn.marmot-cloud.com/storage/zenmux/2025/08/21/1Hj7emo/res_format.jpg" 
@@ -112,24 +112,24 @@ Find the corresponding provider on the model card page and check if response_for
        loading="lazy" />
 </div>
 
-# API Call Example
+# API Call Examples
 
 ::: code-group
 
 ```python [Python]
 from openai import OpenAI
 
-# 1. Initialize OpenAI client
+# 1. Initialize the OpenAI client
 client = OpenAI(
-    # 2. Point base URL to ZenMux endpoint
+    # 2. Point the base URL to the ZenMux endpoint
     base_url="https://zenmux.ai/api/v1", # [!code highlight]
-    # 3. Replace with your API Key obtained from ZenMux user console
-    api_key="<your_ZENMUX_API_KEY>", # [!code highlight]
+    # 3. Replace with the API Key from your ZenMux user console
+    api_key="<your ZENMUX_API_KEY>", # [!code highlight]
 )
 
-# 4. Make request
+# 4. Send a request
 completion = client.chat.completions.create(
-    # 5. Specify the model you want to use, format: "provider/model_name"
+    # 5. Specify the model you want to use, in the format "provider/model_name"
     model="openai/gpt-5", # [!code highlight]
     messages=[
         {
@@ -137,11 +137,11 @@ completion = client.chat.completions.create(
             "content": "Hi, who are you? Describe yourself using about 50 words. Use JSON response format?" # [!code highlight]
         }
     ],
-    # Method 1: Output is valid JSON format, but doesn't guarantee specific structure or fields.
+    # Option 1: Output is valid JSON, but without guarantees about specific structure or fields.
     # response_format = {
     #      "type": "json_object"
     #  }
-    # Method 2: Stricter control over JSON output structure, providing stronger type and structural guarantees
+    # Option 2: Strictly enforce the JSON output structure with stronger type and shape guarantees
     response_format = { # [!code highlight]
         "type": "json_schema", # [!code highlight]
         "json_schema": {
@@ -177,18 +177,18 @@ print(completion.choices[0].message.content)
 ```ts [TypeScript]
 import OpenAI from "openai";
 
-// 1. Initialize OpenAI client
+// 1. Initialize the OpenAI client
 const openai = new OpenAI({
-  // 2. Point base URL to ZenMux endpoint
+  // 2. Point the base URL to the ZenMux endpoint
   baseURL: "https://zenmux.ai/api/v1", // [!code highlight]
-  // 3. Replace with your API Key obtained from ZenMux user console
-  apiKey = "<your_ZENMUX_API_KEY>", // [!code highlight]
+  // 3. Replace with the API Key from your ZenMux user console
+  apiKey = "<your ZENMUX_API_KEY>", // [!code highlight]
 });
 
 async function main() {
-  // 4. Make request
+  // 4. Send a request
   const completion = await openai.chat.completions.create({
-    // 5. Specify the model you want to use, format: "provider/model_name"
+    // 5. Specify the model you want to use, in the format "provider/model_name"
     model: "openai/gpt-5",
     messages: [
       {
@@ -197,11 +197,11 @@ async function main() {
           "Hi, who are you? Describe yourself using about 50 words. Use JSON response format?",
       },
     ],
-    // Method 1: Output is valid JSON format, but doesn't guarantee specific structure or fields.
+    # Option 1: Output is valid JSON, but without guarantees about specific structure or fields.
     // response_format: {
     //     "type": "json_object"
     // }
-    // Method 2: Stricter control over JSON output structure, providing stronger type and structural guarantees
+    // Option 2: Strictly enforce the JSON output structure with stronger type and shape guarantees
     response_format: {
       type: "json_schema", // [!code highlight]
       json_schema: {

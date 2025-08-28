@@ -1,6 +1,6 @@
 ---
 pageClass: api-page
-title: API Reference
+title: API
 ---
 
 # Create chat completion
@@ -9,139 +9,140 @@ title: API Reference
 POST https://zenmux.ai/api/v1/chat/completions
 ```
 
-The Create chat completions interface is compatible with OpenAI's [Create chat completion](https://platform.openai.com/docs/api-reference/chat/create) interface, designed for conversational large language model inference calls.
+The Create chat completions endpoint is compatible with OpenAI’s [Create chat completion](https://platform.openai.com/docs/api-reference/chat/create) endpoint and is used to invoke conversational large language models for inference.
 
-Below are all parameters that models may support. Different models support different parameters. Please refer to each model's detail page for specific supported parameters.
+Below are all parameters that models may support. Supported parameters vary by model. Refer to each model’s detail page for the exact set of supported parameters.
 
 ## Request body
 
 ### messages `array` <font color="red">Required</font>
 
-Prompts input to the large model in the form of a conversation message list. Depending on the model's capabilities, supported message types may vary, including text, images, audio, and video. For specific supported parameters, please check each model provider's documentation.
+Provide the prompt to the model as a list of chat messages. Supported message modalities vary by model capability, e.g., text, image, audio, or video. For specifics, consult the documentation from each model vendor.
 
-Each element in messages represents a conversation message, consisting of role and content. For details, refer to OpenAI's definition: [messages](https://platform.openai.com/docs/api-reference/chat/create#chat_create-messages).
+Each element in messages represents a single chat message with a role and content. For details, see OpenAI’s definition: [messages](https://platform.openai.com/docs/api-reference/chat/create#chat_create-messages).
 
 ### model `string` <font color="red">Required</font>
 
-The model ID for this inference call, formatted as &lt;provider&gt;/&lt;model_name&gt;, such as openai/gpt-5. This can be obtained from each model's detail page.
+The model ID for this inference call, in the format <vendor>/<model_name>, such as openai/gpt-5. You can find model IDs on each model’s detail page.
 
 ### stream `boolean` <font color="gray">Optional</font> `Default false`
 
-Specifies whether to use streaming response. Only when explicitly specifying `stream: true` will the response be streamed using the Server-Sent Event protocol. Otherwise, all generated content is returned at once.
+Whether to use streaming responses. Streaming via Server-Sent Events is used only when you explicitly set `stream: true`. Otherwise, the full output is returned in a single response.
 
 ### max_completion_tokens `integer` <font color="gray">Optional</font> 
 
-Limits the length of model-generated content, including the reasoning process. If not provided, the model's default limit will be used. The maximum generation length for each model can be found on the detail page.
+Limits the length of the model’s generated content, including reasoning. If omitted, the model’s default limit is used. See each model’s detail page for maximum generation length.
 
 ### temperature `float` <font color="gray">Optional</font> `Default 1`
 
-Determines the sampling temperature, typically ranging from 0 to 2, but different models may have different ranges. For example, Claude series models range from 0 to 1. Higher values increase the randomness of generated content.
+Controls sampling temperature. The typical range is 0 to 2, but the valid range may vary by model (e.g., the Claude family uses 0 to 1). Higher values increase randomness.
 
-It is generally not recommended to use together with top_p.
+Generally, do not use together with top_p.
 
 ### top_p `float` <font color="gray">Optional</font> `Default 1`
 
-The proportion of samples to truncate. Higher values result in more samples being included, increasing the randomness of generated content.
+Controls nucleus sampling by restricting to a proportion of the probability mass. Higher values include more tokens and increase randomness.
 
-It is generally not recommended to use together with temperature.
+Generally, do not use together with temperature.
 
 ### frequency_penalty `float` <font color="gray">Optional</font> `Default 0`
 
-Ranges from -2.0 to 2.0, used in text generation models to control repetitive vocabulary usage by reducing the generation probability of high-frequency words to enhance text diversity. Higher values result in less repetition.
+Range: -2.0 to 2.0. Penalizes frequent tokens to reduce repetition and improve output diversity. Higher values reduce repetition.
 
 ### presence_penalty `float` <font color="gray">Optional</font> `Default 0`
 
-Parameter for reducing vocabulary repetition by penalizing the generation probability of words that have already appeared, reducing their likelihood of being selected again, thereby enhancing text diversity.
+Penalizes tokens that have already appeared to reduce repetition and improve output diversity.
 
 ### seed `integer` <font color="gray">Optional</font>
 
-Used to control the large model to generate the same content as much as possible based on the same seed. If not provided, a different random seed will be used each time.
+Encourages the model to produce the same output for the same seed where possible. If omitted, a random seed is used for each request.
 
 ### logit_bias `map` <font color="gray">Optional</font> `Default null`
 
-Can be used to adjust the model's preference for specific categories. By increasing or decreasing bias for certain categories, it can influence the model's output results.
+Adjusts the model’s preference for specific tokens by increasing or decreasing their bias, which can influence the output.
 
-For usage, refer to OpenAI's official documentation: [logit_bias](https://platform.openai.com/docs/api-reference/chat/create#chat_create-logit_bias).
+See OpenAI’s docs for usage: [logit_bias](https://platform.openai.com/docs/api-reference/chat/create#chat_create-logit_bias).
 
 ### logprobs `boolean` <font color="gray">Optional</font> `Default false`
 
-Probability distribution information for each token returned during generation, primarily used for analyzing confidence in the model generation process and debugging the model.
+Returns the probability distribution for each generated token, primarily for analyzing model confidence and debugging.
 
 ### top_logprobs `integer` <font color="gray">Optional</font>
 
-An integer between 0 and 20, specifying the number of most likely tokens to return at each token position, each with an associated log probability. If this parameter is used, logprobs must be true.
+An integer between 0 and 20 specifying how many of the most likely tokens to return at each token position, each with an associated log probability. Requires logprobs to be true.
 
 ### response_format `object` <font color="gray">Optional</font>
 
-Used to control model output of structured content. If not provided, structured output is not used by default. For detailed usage of structured output, see [Structured Output](../advanced/structured-output.md).
+Controls structured output. If omitted, structured output is not used. For details, see [Structured Output](../advanced/structured-output.md).
 
 ### stop `string/array` <font color="gray">Optional</font> `Default null`
 
-Supported by some models only, used to specify stop sequences. Can be a string or an array of strings (to specify multiple). The model's response will not include the stop sequences.
+Supported by some models only. Specifies stop sequences, either a single string or an array of strings (multiple stop sequences). The stop sequence(s) will not be included in the output.
 
 ### tools `array` <font color="gray">Optional</font>
 
-List of tools available to the large model. If not provided, tool calling is not used. Currently only supports function-type tools. For detailed usage of tool calling, see [Tool Calls](../advanced/tool-calls.md)
+A list of tools the model may call. If omitted, tool calling is disabled. Currently only function-type tools are supported. For details, see [Tool Calls](../advanced/tool-calls.md)
 
 ### tool_choice `string/object` <font color="gray">Optional</font>
 
-Used to control how the model chooses to use tools, used in conjunction with the tools parameter. 'none' tells the model not to use any tools, 'auto' allows the model to freely decide whether to use tools and which ones, 'required' means the model must choose to use tools. You can also pass an object to tell the model it must choose to use a specified tool.
+Controls how the model chooses to use tools and must be used together with tools. 'none' tells the model not to use any tools; 'auto' lets the model decide whether and which tools to use; 'required' forces the model to use a tool. You can also pass an object to force the model to use a specific tool.
 
-If tools is empty, defaults to none. If tools is not empty, defaults to auto.
+If tools is empty, the default is none. If tools is not empty, the default is auto.
 
 ### parallel_tool_calls `boolean` <font color="gray">Optional</font> `Default true`
 
-Controls whether the model can select multiple tools at once.
+Controls whether the model may select multiple tools at once.
 
 ### stream_options `object` <font color="gray">Optional</font>
 
-Used to control the content returned in streaming responses, only available when stream: true.
+Controls what is included in streaming responses. Only applicable when stream: true.
 
 ### reasoning `object` <font color="gray">Optional</font>
 
-Used to control reasoning output, supports specifying both effort and max_tokens simultaneously. Different models may have different effective fields. For details, see [Reasoning Models](../guide/advanced/reasoning.md).
+Controls reasoning output. Supports specifying both effort and max_tokens. Effective fields vary by model. See [Reasoning Models](../guide/advanced/reasoning.md).
+
 
 ## Returns
 
-If stream: true, responds using Server-Sent Event protocol, where each response content is a chat completion chunk. If stream: false, responds with JSON-formatted chat completion.
+If stream: true, responses use Server-Sent Events and each event is a chat completion chunk. If stream: false, the response is a JSON chat completion.
 
 ### Chat completion chunk
 
-Represents a data fragment returned by the large model's streaming response. When stream: true, many chat completion chunks are returned in sequence.
+Represents one segment in a streamed response. When stream: true, multiple chat completion chunks are returned sequentially.
 
 #### id `string`
 
-Represents the generation id for this generation, globally unique. Can be used to query information about this generation, such as usage and cost, through the [Get generation](../platform/get-generation.md) interface.
+The generation id for this request, globally unique. You can query details such as usage and cost via the [Get generation](../platform/get-generation.md) endpoint.
 
 #### choices `array`
 
-Represents the model's output as a list. The array will contain at most one element. Unlike OpenAI, we do not support multiple simultaneous outputs through n. Additionally, when stream_option.include_usage: true, the choices list of the last chunk will be empty.
+The model’s outputs as a list. At most one element will be present. Unlike OpenAI, we do not support multiple outputs via n. Additionally, when stream_options.include_usage: true, the last chunk’s choices list will be empty and contain no elements.
 
-choice property definition
+Choice properties
 
 ##### delta `object`
 
-Represents a content fragment of the model's output.
+A fragment of the model’s output.
 
 ##### content `string`
 
-Represents the normal output content from the model.
+Regular output content from the model.
 
 ##### reasoning `string`
 
-Represents the reasoning content output by the model.
+Reasoning content output by the model.
 
 ##### tool_calls `array`
 
-Represents tool calls output by the model.
+Indicates the model produced tool calls.
 
 #### finish_reason `string`
 
-Generation end marker. If non-empty, indicates this is the last content fragment. Values typically include stop, length, content_filter, etc. For specific value ranges, please refer to each model provider's official definition.
+Indicates the reason generation finished. If non-empty, the current chunk is the last one. Typical values include stop, length, content_filter, etc. Refer to each vendor’s official definitions for exact values.
 
 #### index `integer`
 
-Which choice this is, related to n. Since we don't support multiple simultaneous outputs through n, there will only be one choice with index value 0.
+Which choice this is. Since we do not support multiple outputs via n, there is only one choice and index is 0.
 
 #### logprobs `object`
 
@@ -149,45 +150,45 @@ Log probability information for the choice.
 
 #### usage `object`
 
-Represents usage information for this generation. If stream_options.include_usage: true, an additional chunk with an empty choices array will be output, containing usage information.
+Usage information for this generation. If stream_options.include_usage: true, an additional chunk is sent where choices is an empty array and usage is included on that chunk.
 
 ### Chat Completion
 
-Data structure returned by the interface when stream: false, returning all model-generated content at once, including usage information.
+When stream: false, this is the response structure. All generated content is returned at once, including usage information.
 
 #### id `string`
 
-Represents the generation id for this generation, globally unique. Can be used to query information about this generation, such as usage and cost, through the [Get generation](../platform/get-generation.md) interface.
+The generation id for this request, globally unique. You can query details such as usage and cost via the [Get generation](../platform/get-generation.md) endpoint.
 
 #### choices `array`
 
-Represents the model's output as a list. The array will contain at most one element. Unlike OpenAI, we do not support multiple simultaneous outputs through n.
+The model’s outputs as a list. At most one element will be present. Unlike OpenAI, we do not support multiple outputs via n.
 
-choice property definition
+Choice properties
 
 ##### message `object`
 
-Represents a message generated by the model.
+A single message generated by the model.
 
 ##### content `string`
 
-Represents the normal output content from the model.
+Regular output content from the model.
 
 ##### reasoning `string`
 
-Represents the reasoning content output by the model.
+Reasoning content output by the model.
 
 ##### tool_calls
 
-Represents tool calls output by the model.
+Indicates the model produced tool calls.
 
 #### finish_reason `string`
 
-Reason for ending generation. Values typically include stop, length, content_filter, etc. For specific value ranges, please refer to each model provider's official definition.
+Reason generation finished. Typical values include stop, length, content_filter, etc. Refer to each vendor’s official definitions for exact values.
 
 #### index `integer`
 
-Which choice this is, related to n. Since we don't support multiple simultaneous outputs through n, there will only be one choice with index value 0.
+Which choice this is. Since we do not support multiple outputs via n, there is only one choice and index is 0.
 
 #### logprobs `object`
 
@@ -196,7 +197,9 @@ Log probability information for the choice.
 
 #### usage `object`
 
-Represents usage information for this generation.
+Usage information for this generation.
+
+
 
 ::: api-request POST /api/v1/chat/completions
 

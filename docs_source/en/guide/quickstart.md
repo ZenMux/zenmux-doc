@@ -1,21 +1,21 @@
 # Quick Start
 
-ZenMux provides a unified API compatible with OpenAI.
+ZenMux provides a unified API that is compatible with OpenAI.
 
 ::: tip 💡 Get Started in Three Steps
-You can start using ZenMux with just three simple steps:
+Just three simple steps to start using ZenMux:
 :::
 
-1. **Get API Key**: Go to your **[User Console > API Keys](https://zenmux.ai/settings/keys)** page and create a new API Key.
-2. **Choose Integration Method**: We recommend using OpenAI SDK compatibility mode, or you can directly call ZenMux API.
-3. **Make Your First Request**: Copy the code examples below, replace with your API Key, and run.
+1. Get an API Key: Go to your [User Console > API Keys](https://zenmux.ai/settings/keys) page and create a new API Key.
+2. Choose an integration method: We recommend using the OpenAI SDK in compatibility mode, or you can call the ZenMux API directly.
+3. Make your first request: Copy the code sample below, replace your API Key, and run it.
 
 ---
 
-## Method 1: Using OpenAI SDK (Recommended)
+## Method 1: Use the OpenAI SDK (Recommended)
 
-::: info Compatibility Note
-ZenMux's API endpoints are fully compatible with OpenAI API - you only need to modify two parameters for seamless switching.
+::: info Compatibility Notes
+ZenMux’s API endpoints are fully compatible with the OpenAI API. You can switch seamlessly by changing just two parameters.
 :::
 
 ### Code Examples
@@ -25,17 +25,17 @@ ZenMux's API endpoints are fully compatible with OpenAI API - you only need to m
 ```python [Python]
 from openai import OpenAI
 
-# 1. Initialize OpenAI client
+# 1. Initialize the OpenAI client
 client = OpenAI(
-    # 2. Point base URL to ZenMux endpoint
+    # 2. Point the base URL to the ZenMux endpoint
     base_url="https://zenmux.ai/api/v1", # [!code highlight]
-    # 3. Replace with your API Key obtained from ZenMux user console
-    api_key="<your_ZENMUX_API_KEY>", # [!code highlight]
+    # 3. Replace with the API Key from your ZenMux user console
+    api_key="<your ZENMUX_API_KEY>", # [!code highlight]
 )
 
-# 4. Make request
+# 4. Make a request
 completion = client.chat.completions.create(
-    # 5. Specify the model you want to use, format: "provider/model_name"
+    # 5. Specify the model to use in the format "provider/model-name"
     model="openai/gpt-5", # [!code highlight]
     messages=[
         {
@@ -51,18 +51,18 @@ print(completion.choices[0].message.content)
 ```ts [TypeScript]
 import OpenAI from "openai";
 
-// 1. Initialize OpenAI client
+// 1. Initialize the OpenAI client
 const openai = new OpenAI({
-  // 2. Point base URL to ZenMux endpoint
+  // 2. Point the base URL to the ZenMux endpoint
   baseURL: "https://zenmux.ai/api/v1", // [!code highlight]
-  // 3. Replace with your API Key obtained from ZenMux user console
-  apiKey: "<your_ZENMUX_API_KEY>", // [!code highlight]
+  // 3. Replace with the API Key from your ZenMux user console
+  apiKey: "<your ZENMUX_API_KEY>", // [!code highlight]
 });
 
 async function main() {
-  // 4. Make request
+  // 4. Make a request
   const completion = await openai.chat.completions.create({
-    // 5. Specify the model you want to use, format: "provider/model_name"
+    // 5. Specify the model to use in the format "provider/model-name"
     model: "openai/gpt-5", // [!code highlight]
     messages: [
       {
@@ -82,7 +82,7 @@ main();
 
 ---
 
-## Method 2: Direct ZenMux API Call
+## Method 2: Call the ZenMux API Directly
 
 ::: code-group
 
@@ -90,7 +90,7 @@ main();
 import httpx
 
 # Prepare request data
-api_key = "<your_ZENMUX_API_KEY>" # [!code highlight]
+api_key = "<your ZENMUX_API_KEY>" # [!code highlight]
 headers = {
     "Authorization": f"Bearer {api_key}", # [!code highlight]
 }
@@ -112,10 +112,10 @@ response = httpx.post(
     timeout=httpx.Timeout(60.0)
 )
 
-# Check if request was successful (optional)
+# Check whether the request succeeded (optional)
 response.raise_for_status()
 
-# Print JSON response from server
+# Print the JSON response returned by the server
 print(response.json())
 ```
 
@@ -124,7 +124,7 @@ fetch("https://zenmux.ai/api/v1/chat/completions", {
   // [!code highlight]
   method: "POST",
   headers: {
-    Authorization: "Bearer <your_ZENMUX_API_KEY>", // [!code highlight]
+    Authorization: "Bearer <your ZENMUX_API_KEY>", // [!code highlight]
     "Content-Type": "application/json",
   },
   body: JSON.stringify({
@@ -164,9 +164,9 @@ curl https://zenmux.ai/api/v1/chat/completions # [!code highlight]
 
 ## Model Selection
 
-All models supported by ZenMux can be viewed from the [Official Model List](https://zenmux.ai/models).
+All models supported by ZenMux can be found in the [official model list](https://zenmux.ai/models).
 
-The value for the `model` parameter can be obtained by copying the accurate model Slug through the following methods:
+You can set the value of the model parameter by copying the exact model slug as shown below:
 
 <div style="text-align: center;">
   <img src="https://github.com/user-attachments/assets/dbb619aa-9ec4-4be2-8017-9f6c3ebcc36c" 
@@ -186,4 +186,4 @@ The value for the `model` parameter can be obtained by copying the accurate mode
 
 ## Advanced Usage
 
-For detailed information about advanced usage, please refer to the Advanced Calling chapter.
+For more details on advanced usage, see the Advanced Calls section.

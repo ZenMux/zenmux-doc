@@ -1,6 +1,12 @@
 # 多模态
 
-ZenMux 支持多模态输入，除文本输入外，还支持图片和PDF输入，音频、视频敬请期待。
+ZenMux 支持多模态输入：
+
+- 文本输入
+- 图片输入
+- PDF 输入
+- 音频输入(敬请期待)
+- 视频输入(敬请期待)
 
 ## 图片输入
 
@@ -42,7 +48,6 @@ print(response.json())
 
 ```
 
-
 ```ts [TypeScript]
 const response = await fetch("https://zenmux.ai/api/v1/chat/completions", {
   method: "POST",
@@ -62,7 +67,8 @@ const response = await fetch("https://zenmux.ai/api/v1/chat/completions", {
           },
           {
             type: "image_url", // [!code highlight]
-            image_url: { // [!code highlight]
+            image_url: {
+              // [!code highlight]
               url: "https://cdn.marmot-cloud.com/storage/tbox-router/2025/08/05/e9445SU/shengchengtupian2025-04-09-19_31.png", // [!code highlight]
             }, // [!code highlight]
           },
@@ -74,11 +80,11 @@ const response = await fetch("https://zenmux.ai/api/v1/chat/completions", {
 
 const data = await response.json();
 console.log(data);
-
 ```
+
 :::
 
-### 使用图片 Base64编码
+### 使用图片 Base64 编码
 
 ::: code-group
 
@@ -141,7 +147,7 @@ const base64Image = await encodeImageToBase64(imagePath);
 const response = await fetch("https://zenmux.ai/api/v1/chat/completions", {
   method: "POST",
   headers: {
-    Authorization: "Bearer ${你的 ZENMUX_API_KEY}",  // [!code highlight]
+    Authorization: "Bearer ${你的 ZENMUX_API_KEY}", // [!code highlight]
     "Content-Type": "application/json",
   },
   body: JSON.stringify({
@@ -156,7 +162,8 @@ const response = await fetch("https://zenmux.ai/api/v1/chat/completions", {
           },
           {
             type: "image_url", // [!code highlight]
-            image_url: { // [!code highlight]
+            image_url: {
+              // [!code highlight]
               url: base64Image, // [!code highlight]
             }, // [!code highlight]
           },
@@ -168,14 +175,13 @@ const response = await fetch("https://zenmux.ai/api/v1/chat/completions", {
 
 const data = await response.json();
 console.log(data);
-
 ```
+
 :::
 
+## PDF 输入
 
-## PDF输入
-
-### 使用PDF链接
+### 使用 PDF 链接
 
 ::: code-group
 
@@ -235,7 +241,8 @@ const response = await fetch("https://zenmux.ai/api/v1/chat/completions", {
             type: "file",
             file: {
               filename: "test.pdf",
-              file_data: "https://cdn.marmot-cloud.com/storage/tbox-router/2025/08/06/uyZbd8m/xiaoxingxingzhaopengyou.pdf",
+              file_data:
+                "https://cdn.marmot-cloud.com/storage/tbox-router/2025/08/06/uyZbd8m/xiaoxingxingzhaopengyou.pdf",
             },
           },
         ],
@@ -246,11 +253,11 @@ const response = await fetch("https://zenmux.ai/api/v1/chat/completions", {
 
 const data = await response.json();
 console.log(data);
-
 ```
+
 :::
 
-### 使用PDF Base64编码
+### 使用 PDF Base64 编码
 
 ::: code-group
 
@@ -330,7 +337,8 @@ const response = await fetch("https://zenmux.ai/api/v1/chat/completions", {
           },
           {
             type: "file", // [!code highlight]
-            file: { // [!code highlight]
+            file: {
+              // [!code highlight]
               filename: "test.pdf", // [!code highlight]
               file_data: base64PDF, // [!code highlight]
             }, // [!code highlight]
@@ -343,5 +351,4 @@ const response = await fetch("https://zenmux.ai/api/v1/chat/completions", {
 
 const data = await response.json();
 console.log(data);
-
 ```

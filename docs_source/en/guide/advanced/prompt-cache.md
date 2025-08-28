@@ -1,7 +1,7 @@
 # Prompt Caching
 
-ZenMux does not interfere with the model's prompt caching behavior. Whether prompt caching is enabled depends on the model provider's default behavior and the user's call parameters.
+ZenMux does not interfere with a model’s prompt caching behavior. Whether prompt caching is enabled is determined by the model provider’s default behavior and the request parameters specified by the user.
 
-## Provider Default Behavior
+## Providers' Default Behavior
 
-For different model providers' default prompt caching behaviors, please refer to each model's detail page.
+For the default prompt caching behavior of different model providers, please refer to each model’s detail page.

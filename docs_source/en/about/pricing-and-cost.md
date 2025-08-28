@@ -1,64 +1,64 @@
-# Pricing & Costs
+# Pricing and Fees
 
-ZenMux employs a transparent billing system that ensures every API call is precisely metered and billed. Pricing varies across different models, and the same model may have different prices under different suppliers.
+ZenMux uses a transparent billing system to ensure every call is precisely measured and billed. Pricing varies by model, and the same model may be priced differently across providers.
 
-## Price Viewing
+## View Pricing
 
-You can view pricing information for each supplier on the model details page. Each supplier displays detailed billing standards, including costs for input tokens, output tokens, and special features.
+You can view provider-specific pricing on the model details page. Each provider displays a detailed pricing schedule, including costs for input tokens, output tokens, and special features.
 
 <div style="text-align: center;">
   <img src="https://cdn.marmot-cloud.com/storage/zenmux/2025/08/22/zhew65D/model-pricing.png" 
-       alt="Model details page pricing section" 
-       style="width: 100%; max-width: 700px; border-radius: 6px; box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1); margin: 18px 0;"
+       alt="Pricing section on the model details page" 
+       style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); margin: 20px 0;"
        loading="lazy" />
 </div>
 
-## Billing Items Description
+## Billing Items
 
 ZenMux billing items include the following types:
 
-| Billing Item              | Description                         |
-| :------------------------ | :---------------------------------- |
-| `prompt`                  | Processing fee for input prompts    |
-| `completion`              | Fee for model-generated output      |
-| `image`                   | Image processing or generation fee  |
-| `request`                 | Base fee for API request calls      |
-| `web_search`              | Web search functionality usage fee |
-| `input_cache_read`        | Cache read operation fee            |
-| `input_cache_write`       | Cache write operation fee           |
-| `input_cache_write_5_min` | 5-minute cache write operation fee  |
-| `input_cache_write_1_h`   | 1-hour cache write operation fee    |
-| `internal_reasoning`      | Internal reasoning computation fee  |
+| Billing Item              | Description                                  |
+| :------------------------ | :------------------------------------------- |
+| `prompt`                  | Cost for processing input prompts            |
+| `completion`              | Cost for model-generated outputs             |
+| `image`                   | Cost for image processing or generation      |
+| `request`                 | Base fee per API request                     |
+| `web_search`              | Fee for invoking web search                  |
+| `input_cache_read`        | Cost for cache read operations               |
+| `input_cache_write`       | Cost for cache write operations              |
+| `input_cache_write_5_min` | Cost for 5-minute cache write operations     |
+| `input_cache_write_1_h`   | Cost for 1-hour cache write operations       |
+| `internal_reasoning`      | Cost for internal reasoning computation      |
 
 ::: tip Billing Precision Guarantee
-We guarantee that every API call is precisely metered and billed. You can view detailed cost breakdowns through the console.
+We ensure that every call is precisely metered and billed. You can review detailed cost breakdowns in the console.
 :::
 
-## Cost Details Viewing
+## Viewing Cost Details
 
-### Console Activity Interface
+### Console Activity Page
 
-You can view cost details for all API calls in the **Activity** interface of the console, including specific costs for each call, token usage, call time, and other information.
+On the console's **Activity** page, you can view cost details for all API calls, including the specific cost of each call, token usage, call time, and more.
 
 <div style="text-align: center;">
   <img src="https://cdn.marmot-cloud.com/storage/zenmux/2025/08/22/NYwQvBH/activity-cost.png" 
-       alt="Console-Activity interface" 
-       style="width: 100%; max-width: 700px; border-radius: 6px; box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1); margin: 18px 0;"
+       alt="Console - Activity page" 
+       style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); margin: 20px 0;"
        loading="lazy" />
 </div>
 
-Click on specific call records to view more detailed cost breakdowns:
+Click a specific call record to view a more detailed cost breakdown:
 
 <div style="text-align: center;">
   <img src="https://cdn.marmot-cloud.com/storage/zenmux/2025/08/22/dWtmUoT/cost-details.png" 
        alt="Cost details" 
-       style="width: 100%; max-width: 700px; border-radius: 6px; box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1); margin: 18px 0;"
+       style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); margin: 20px 0;"
        loading="lazy" />
 </div>
 
 ### Raw Meta Information
 
-In addition to the console interface, you can also understand call cost details through the raw Meta information returned by the API. The following is a complete example data:
+In addition to the console, you can inspect the raw Meta information returned by the API to understand call costs. Below is a complete sample payload:
 
 ::: details Cost Details JSON Example
 
@@ -173,20 +173,20 @@ In addition to the console interface, you can also understand call cost details 
 
 :::
 
-### Key Cost Field Descriptions
+### Key Cost Fields
 
-Understanding the key cost fields in Meta information helps you better analyze and manage call costs:
+Understanding the key cost fields in the Meta information helps you analyze and manage call costs:
 
-| Field Name       | Data Type | Description                                                   |
-| :--------------- | :-------- | :------------------------------------------------------------ |
-| `originAmount`   | string    | Original cost amount (before billing)                        |
-| `billAmount`     | string    | Actual billed amount                                          |
-| `discountAmount` | string    | Discount amount                                               |
-| `realAmount`     | string    | Final payment amount                                          |
-| `ratingDetails`  | array     | Detailed cost breakdown, listing costs and rates by billing item |
+| Field Name       | Data Type | Description                                                          |
+| :--------------- | :-------- | :------------------------------------------------------------------- |
+| `originAmount`   | string    | Original amount (before billing adjustments)                         |
+| `billAmount`     | string    | Billed amount                                                        |
+| `discountAmount` | string    | Discount amount                                                      |
+| `realAmount`     | string    | Final payable amount                                                 |
+| `ratingDetails`  | array     | Detailed cost breakdown by billing item, including per-unit rates   |
 
-::: info Cost Calculation Explanation
-The calculation formula for the final payment amount is: **realAmount = billAmount - discountAmount**
+::: info Cost Calculation
+The final payable amount is calculated as: realAmount = billAmount - discountAmount
 
-Each `ratingDetails` item contains specific cost breakdown and unit rate information for that billing item.
+Each `ratingDetails` entry includes the itemized cost and per-unit rate for that billing item.
 :::

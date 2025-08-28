@@ -53,21 +53,36 @@ pnpm run preview
 ### 🌐 翻译工具
 
 ```sh
-# 将中文文档翻译为英文
-pnpm run translate <中文文件路径> [--force]
+# 将中文文档翻译为英文（支持单个文件或整个文件夹）
+pnpm run translate <中文文件路径或文件夹路径> [--force] [--concurrency=5]
 
-# 示例：翻译快速开始文档
+# 示例：翻译单个文档
 pnpm run translate docs_source/zh/guide/quickstart.md
+
+# 示例：翻译整个文件夹（递归处理所有markdown文件）
+pnpm run translate docs_source/zh/
 
 # 强制重新翻译（覆盖现有英文文件）
 pnpm run translate docs_source/zh/guide/quickstart.md --force
+
+# 自定义并发数量（同时翻译多个文件，默认为5）
+pnpm run translate docs_source/zh/ --concurrency=10
+
+# 完整示例：翻译整个文件夹，强制覆盖，使用10个并发
+pnpm run translate docs_source/zh/ --force --concurrency=10
 ```
 
 **翻译工具说明**：
+- 支持单个文件或文件夹输入，文件夹会递归处理所有markdown文件
 - 自动将 `zh/` 路径转换为 `en/` 路径
-- 使用 AI 模型 (claude-sonnet-4) 进行高质量翻译
+- 使用 AI 模型 (openai/gpt-5) 进行高质量翻译
 - 保留代码块、变量名和 Markdown 格式
+- 支持并行处理多个文件，提高翻译效率
 - 需要设置环境变量 `ZENMUX_API_KEY`
+
+**参数说明**：
+- `--force`: 强制覆盖已存在的目标文件
+- `--concurrency=N`: 设置并发翻译数量（默认为5，建议不超过10以避免API限流）
 
 ### ✨ 文档优化
 

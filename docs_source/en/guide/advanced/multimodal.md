@@ -1,10 +1,16 @@
 # Multimodal
 
-ZenMux supports multimodal input. In addition to text input, it also supports image and PDF input, with audio and video support coming soon.
+ZenMux supports multimodal inputs:
+
+- Text input
+- Image input
+- PDF input
+- Audio input (coming soon)
+- Video input (coming soon)
 
 ## Image Input
 
-### Using Image URLs
+### Using Image URL
 
 ::: code-group
 
@@ -14,7 +20,7 @@ import json
 
 url = "https://zenmux.ai/api/v1/chat/completions"
 headers = {
-  "Authorization": "Bearer {your_ZENMUX_API_KEY}", # [!code highlight]
+  "Authorization": "Bearer {your ZENMUX_API_KEY}", # [!code highlight]
   "Content-Type": "application/json"
 }
 payload = {
@@ -25,7 +31,7 @@ payload = {
       "content": [
         {
           "type": "text",
-          "text": "Please analyze the content of the image"
+          "text": "Please analyze the contents of the image"
         },
         {
           "type": "image_url",# [!code highlight]
@@ -42,12 +48,11 @@ print(response.json())
 
 ```
 
-
 ```ts [TypeScript]
 const response = await fetch("https://zenmux.ai/api/v1/chat/completions", {
   method: "POST",
   headers: {
-    Authorization: "Bearer <your_ZENMUX_API_KEY>", // [!code highlight]
+    Authorization: "Bearer <your ZENMUX_API_KEY>", // [!code highlight]
     "Content-Type": "application/json",
   },
   body: JSON.stringify({
@@ -58,11 +63,12 @@ const response = await fetch("https://zenmux.ai/api/v1/chat/completions", {
         content: [
           {
             type: "text",
-            text: "Please analyze the content of the image",
+            text: "Please analyze the contents of the image",
           },
           {
             type: "image_url", // [!code highlight]
-            image_url: { // [!code highlight]
+            image_url: {
+              // [!code highlight]
               url: "https://cdn.marmot-cloud.com/storage/tbox-router/2025/08/05/e9445SU/shengchengtupian2025-04-09-19_31.png", // [!code highlight]
             }, // [!code highlight]
           },
@@ -74,8 +80,8 @@ const response = await fetch("https://zenmux.ai/api/v1/chat/completions", {
 
 const data = await response.json();
 console.log(data);
-
 ```
+
 :::
 
 ### Using Image Base64 Encoding
@@ -94,7 +100,7 @@ def encode_image_to_base64(image_path):
 
 url = "https://zenmux.ai/api/v1/chat/completions"
 headers = {
-  "Authorization": "Bearer {your_ZENMUX_API_KEY}",
+  "Authorization": "Bearer {your ZENMUX_API_KEY}",
   "Content-Type": "application/json"
 }
 
@@ -110,7 +116,7 @@ payload = {
       "content": [
         {
           "type": "text",
-          "text": "Please analyze the content of the image"
+          "text": "Please analyze the contents of the image"
         },
         {
           "type": "image_url",  # [!code highlight]
@@ -141,7 +147,7 @@ const base64Image = await encodeImageToBase64(imagePath);
 const response = await fetch("https://zenmux.ai/api/v1/chat/completions", {
   method: "POST",
   headers: {
-    Authorization: "Bearer ${your_ZENMUX_API_KEY}",  // [!code highlight]
+    Authorization: "Bearer ${your ZENMUX_API_KEY}", // [!code highlight]
     "Content-Type": "application/json",
   },
   body: JSON.stringify({
@@ -152,11 +158,12 @@ const response = await fetch("https://zenmux.ai/api/v1/chat/completions", {
         content: [
           {
             type: "text",
-            text: "Please analyze the content of the image",
+            text: "Please analyze the contents of the image",
           },
           {
             type: "image_url", // [!code highlight]
-            image_url: { // [!code highlight]
+            image_url: {
+              // [!code highlight]
               url: base64Image, // [!code highlight]
             }, // [!code highlight]
           },
@@ -168,14 +175,13 @@ const response = await fetch("https://zenmux.ai/api/v1/chat/completions", {
 
 const data = await response.json();
 console.log(data);
-
 ```
-:::
 
+:::
 
 ## PDF Input
 
-### Using PDF URLs
+### Using PDF URL
 
 ::: code-group
 
@@ -185,7 +191,7 @@ import json
 
 url = "https://zenmux.ai/api/v1/chat/completions"
 headers = {
-  "Authorization": "Bearer {your_ZENMUX_API_KEY}", # [!code highlight]
+  "Authorization": "Bearer {your ZENMUX_API_KEY}", # [!code highlight]
   "Content-Type": "application/json"
 }
 payload = {
@@ -218,7 +224,7 @@ print(response.json())
 const response = await fetch("https://zenmux.ai/api/v1/chat/completions", {
   method: "POST",
   headers: {
-    Authorization: "Bearer <your_ZENMUX_API_KEY>",
+    Authorization: "Bearer <your ZENMUX_API_KEY>",
     "Content-Type": "application/json",
   },
   body: JSON.stringify({
@@ -235,7 +241,8 @@ const response = await fetch("https://zenmux.ai/api/v1/chat/completions", {
             type: "file",
             file: {
               filename: "test.pdf",
-              file_data: "https://cdn.marmot-cloud.com/storage/tbox-router/2025/08/06/uyZbd8m/xiaoxingxingzhaopengyou.pdf",
+              file_data:
+                "https://cdn.marmot-cloud.com/storage/tbox-router/2025/08/06/uyZbd8m/xiaoxingxingzhaopengyou.pdf",
             },
           },
         ],
@@ -246,8 +253,8 @@ const response = await fetch("https://zenmux.ai/api/v1/chat/completions", {
 
 const data = await response.json();
 console.log(data);
-
 ```
+
 :::
 
 ### Using PDF Base64 Encoding
@@ -267,7 +274,7 @@ def encode_pdf_to_base64(pdf_path):
 
 url = "https://zenmux.ai/api/v1/chat/completions"
 headers = {
-  "Authorization": "Bearer {your_ZENMUX_API_KEY}", # [!code highlight]
+  "Authorization": "Bearer {your ZENMUX_API_KEY}", # [!code highlight]
   "Content-Type": "application/json"
 }
 
@@ -315,7 +322,7 @@ const base64PDF = await encodePDFToBase64(pdfPath);
 const response = await fetch("https://zenmux.ai/api/v1/chat/completions", {
   method: "POST",
   headers: {
-    Authorization: "Bearer ${your_ZENMUX_API_KEY}", // [!code highlight]
+    Authorization: "Bearer ${your ZENMUX_API_KEY}", // [!code highlight]
     "Content-Type": "application/json",
   },
   body: JSON.stringify({
@@ -330,7 +337,8 @@ const response = await fetch("https://zenmux.ai/api/v1/chat/completions", {
           },
           {
             type: "file", // [!code highlight]
-            file: { // [!code highlight]
+            file: {
+              // [!code highlight]
               filename: "test.pdf", // [!code highlight]
               file_data: base64PDF, // [!code highlight]
             }, // [!code highlight]
@@ -343,5 +351,4 @@ const response = await fetch("https://zenmux.ai/api/v1/chat/completions", {
 
 const data = await response.json();
 console.log(data);
-
 ```

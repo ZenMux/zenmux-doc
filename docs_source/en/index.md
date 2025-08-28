@@ -7,8 +7,8 @@ canonical-url: "https://zenmux.ai/"
 "og:site_name": ZenMux
 "og:title": ZenMux - AI Model Aggregation Platform
 "og:description": >-
-  ZenMux provides unified API access to hundreds of AI models, featuring intelligent routing, 
-  automatic failover, and AI output quality insurance.
+  ZenMux provides unified API access to hundreds of AI models with intelligent routing,
+  automatic failover, and AI output quality assurance.
 "og:image":
   type: url
   value: >-
@@ -21,43 +21,43 @@ noindex: false
 nofollow: false
 ---
 
-::: info Welcome to ZenMux Documentation
-For detailed information about ZenMux, please visit our [introduction page](/about/intro), which contains a comprehensive product overview, feature highlights, and Beta application information.
+::: info Welcome to the ZenMux Documentation
+For more details about ZenMux, visit our [Introduction page](/zh/about/intro), which includes a comprehensive product overview, feature set, and Beta application information.
 :::
 
 ## Quick Navigation
 
 ### About ZenMux
 
-- [Introduction](/about/intro) - Comprehensive product overview and Beta application
-- [Models & Providers](/about/models-and-providers) - Supported models and providers
-- [Pricing & Cost](/about/pricing-and-cost) - Pricing information and costs
-- [Provider Routing](/about/provider-routing) - Provider routing mechanisms
+- [Introduction](/zh/about/intro) - Comprehensive product overview and Beta application
+- [Models & Providers](/zh/about/models-and-providers) - Supported models and providers
+- [Pricing & Cost](/zh/about/pricing-and-cost) - Pricing and fees
+- [Provider Routing](/zh/about/provider-routing) - Provider routing mechanism
 
-### Usage Documentation
+### User Guide
 
-- [Quick Start](/guide/quickstart) - Get started with ZenMux in minutes
+- [Quickstart](/zh/guide/quickstart) - Get started with ZenMux in minutes
 
-### Advanced Calls
+### Advanced Usage
 
-- [Streaming](/guide/advanced/streaming) - Real-time streaming responses
-- [Multimodal](/guide/advanced/multimodal) - Text, image, and audio processing
-- [Structured Output](/guide/advanced/structured-output) - JSON and structured responses
-- [Tool Calls](/guide/advanced/tool-calls) - Function calling capabilities
-- [Prompt Cache](/guide/advanced/prompt-cache) - Prompt caching functionality
-- [Reasoning Models](/guide/advanced/reasoning) - Using reasoning models
+- [Streaming](/zh/guide/advanced/streaming) - Real-time streaming responses
+- [Multimodal](/zh/guide/advanced/multimodal) - Text, image, and audio processing
+- [Structured Output](/zh/guide/advanced/structured-output) - JSON and structured responses
+- [Tool Calls](/zh/guide/advanced/tool-calls) - Function calling capabilities
+- [Prompt Cache](/zh/guide/advanced/prompt-cache) - Prompt caching functionality
+- [Reasoning Models](/zh/guide/advanced/reasoning) - Using reasoning models
   
 ### Best Practices
 
-- [ClaudeCode Integration with ZenMux Guide](/best-practices/claude-code) - How to integrate Claude with ZenMux custom model usage
+- [Claude Code Integration Guide for ZenMux](/zh/best-practices/claude-code) - How to connect Claude to ZenMux for custom model usage
 
 ### API Reference
 
-- [Chat Completion](/api/openai/chat-completion) - OpenAI-compatible chat API
-- [Get a generation](/api/platform/get-generation) - ZenMux platform-specific API
+- [Chat Completion](/zh/api/openai/chat-completion) - OpenAI-compatible chat API
+- [Get a generation](/zh/api/platform/get-generation) - ZenMux platform-specific API
 
 ---
 
-::: tip Ready to Get Started?
-Begin your ZenMux journey by reading our [introduction](/about/intro), then follow the [quick start guide](/guide/quickstart) for your first API call.
+::: tip Ready to get started?
+Begin your ZenMux journey by reading our [Introduction](/zh/about/intro), then follow the [Quickstart](/zh/guide/quickstart) to make your first API call.
 :::

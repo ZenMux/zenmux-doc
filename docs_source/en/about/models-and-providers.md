@@ -1,53 +1,53 @@
-# Models & Providers
+# Models and Providers
 
-ZenMux employs a multi-model, multi-provider redundancy architecture to ensure high availability and stability of large language model services. We integrate industry-leading large language models to provide developers with rich choices and flexible usage experiences.
+ZenMux uses a multi-model, multi-provider redundant architecture to ensure the high availability and stability of large language model services. We aggregate top-tier LLMs from across the industry, giving developers a rich selection and flexible usage experience.
 
-## Model List
+## Model Catalog
 
 ::: tip Quick View
-All supported models and their basic information can be viewed on the **Models** page of the official website. You can quickly locate the desired models using the filter options on the left, search box at the top, and sorting options.
+On the website's **Models** page, you can view all supported models and their basic information. Use the filters on the left, the search box at the top, and the sorting options to quickly locate the model you need.
 :::
 
 <div style="text-align: center;">
   <img src="https://cdn.marmot-cloud.com/storage/zenmux/2025/08/21/iAG4cry/models-page.png" 
-       alt="Model List Page" 
-       style="width: 100%; max-width: 700px; border-radius: 6px; box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1); margin: 18px 0;"
+       alt="Models list page" 
+       style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); margin: 20px 0;"
        loading="lazy" />
 </div>
 
 ## Multi-Provider Architecture
 
-### Redundancy Guarantee
+### Redundancy and Failover
 
-Most large language models are configured with multiple provider integrations. When a provider experiences service issues, ZenMux automatically switches to other available providers to ensure service continuity.
+Most large language models are integrated with multiple providers. If a provider experiences a service incident, ZenMux automatically switches to other available providers to ensure service continuity.
 
-For detailed strategies on provider routing, please refer to the [Provider Routing Documentation](https://docs.zenmux.ai/zh/about/provider-routing.html)
+For details on provider routing strategies, see the [Provider Routing documentation](https://docs.zenmux.ai/zh/about/provider-routing.html)
 
 ### Provider Details
 
-Taking the `anthropic/claude-sonnet-4` model as an example, click on the model card to view detailed information:
+Using the `anthropic/claude-sonnet-4` model as an example, click the model card to view detailed information:
 
 **Supported Providers:**
 
-- **Anthropic** - Official provider interface
+- **Anthropic** - Native official API
 - **Vertex AI** - Google Cloud managed service
 - **Amazon Bedrock** - AWS managed service
 
 <div style="text-align: center;">
   <img src="https://cdn.marmot-cloud.com/storage/zenmux/2025/08/21/vrmIq6I/model-details.png" 
-       alt="Model Details Page" 
-       style="width: 100%; max-width: 700px; border-radius: 6px; box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1); margin: 18px 0;"
+       alt="Model details page" 
+       style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); margin: 20px 0;"
        loading="lazy" />
 </div>
 
-## Provider Comparison Information
+## Provider Comparison
 
-The model details page allows you to compare detailed information across providers, including performance metrics, pricing, availability, and other aspects.
+On the model details page, you can compare providers across performance metrics, pricing, availability, and more.
 
-### Performance Metrics Description
+### Performance Metrics
 
-| Metric              | Description                            |
-| ------------------- | -------------------------------------- |
-| **Latency (Time to First Token)** | Time from request to returning the first token |
-| **Throughput**      | Number of tokens processed per minute         |
-| **Uptime**         | Real-time service status and stability       |
+| Metric                         | Description                              |
+| ----------------------------- | ---------------------------------------- |
+| Latency (Time to First Token) | Time from the request to the first token |
+| Throughput                    | Number of tokens processed per minute    |
+| Uptime                        | Real-time service status and stability   |

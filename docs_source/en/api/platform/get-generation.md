@@ -1,6 +1,6 @@
 ---
 pageClass: api-page
-title: Interface
+title: API
 ---
 
 # Get generation
@@ -9,19 +9,19 @@ title: Interface
 GET https://zenmux.ai/api/v1/generation?id=<generation_id>
 ```
 
-The Get generation interface is used to query generation information, such as usage and costs.
+The Get generation endpoint is used to query generation details, such as usage and cost.
 
-## Request params
+## Request parameters
 
 ### generate_id `string` <font color="red">Required</font>
 
-The generation id returned by the [Create chat completion](../openai/create-chat-completion.md) interface.
+The generation ID returned by the [Create chat completion](../openai/create-chat-completion.md) endpoint.
 
 ## Returns
 
 ### generation_id `string`
 
-The current generation id.
+The current generation ID.
 
 ### model `string`
 
@@ -29,31 +29,31 @@ Model ID.
 
 ### created_at `string`
 
-The time when the server received the inference request.
+The time the server received the inference request.
 
 ### generation_time `integer`
 
-The duration of this inference from the first token to completion, in milliseconds.
+Duration from the first token to completion, in milliseconds.
 
 ### latency `integer`
 
-First token latency, in milliseconds.
+Time to first token, in milliseconds.
 
 ### native_tokens `object`
 
-Usage information consumed by this inference.
+Usage details for this generation.
 
 ### streamed `boolean`
 
-Whether it is a streaming response.
+Whether the response was streamed.
 
 ### finish_reason `string`
 
-The reason why the model stopped inference.
+The reason the model stopped.
 
 ### usage `string`
 
-The credit consumed by this inference
+Credits consumed by this generation.
 
 
 ::: api-request GET /api/v1/generation
