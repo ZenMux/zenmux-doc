@@ -8,7 +8,7 @@ Just three simple steps to start using ZenMux:
 
 1. Get an API Key: Go to your [User Console > API Keys](https://zenmux.ai/settings/keys) page and create a new API Key.
 2. Choose an integration method: We recommend using the OpenAI SDK in compatibility mode, or you can call the ZenMux API directly.
-3. Make your first request: Copy the code sample below, replace your API Key, and run it.
+3. Make your first request: Copy the code sample below, replace your API Key, and then run it.
 
 ---
 

@@ -15,7 +15,7 @@ You can view provider-specific pricing on the model details page. Each provider 
 
 ## Billing Items
 
-ZenMux billing items include the following types:
+The billing items include the following types:
 
 | Billing Item              | Description                                  |
 | :------------------------ | :------------------------------------------- |
@@ -31,7 +31,7 @@ ZenMux billing items include the following types:
 | `internal_reasoning`      | Cost for internal reasoning computation      |
 
 ::: tip Billing Precision Guarantee
-We ensure that every call is precisely metered and billed. You can review detailed cost breakdowns in the console.
+We ensure that every call is precisely metered and billed. You can review detailed cost breakdowns in the console page.
 :::
 
 ## Viewing Cost Details

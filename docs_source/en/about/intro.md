@@ -6,12 +6,12 @@ ZenMux is the world's first enterprise-grade model aggregation platform that off
 
 With ZenMux, developers can call models from providers such as OpenAI, Anthropic, Google, and DeepSeek through a single interface, while benefiting from intelligent routing, failover, and insurance-backed quality assurance services.
 
-### Name Meaning
+### Meaning of the Name
 
-ZenMux is a portmanteau of Zen and Mux (Multiplexer):
+ZenMux is a conflation of Zen and Mux (Multiplexer):
 
 ::: tip Meaning of Zen (禅)
-Reflects the core philosophy: reducing the complex processes of multi-model selection, risk management, and API orchestration into a minimalist experience—"one API, one SDK, one platform"—through intelligent automation. At the same time, we provide an insurance backstop to alleviate concerns about hallucinations and similar issues when using AI.
+Reflects the core philosophy: reducing the complex processes of multi-model selection, risk management, and API orchestration into a minimalist experience—"one API, one SDK, one platform"—through intelligent automation. At the same time, we provide an insurance to alleviate concerns about hallucinations and similar issues when using AI.
 :::
 
 ::: tip Meaning of Mux (Multiplexer)
@@ -36,9 +36,9 @@ With a Zen mindset, harness the power of AI — thousands of models unified into
 The intelligent routing feature is in its final testing phase and will launch soon.
 :::
 
-- Intelligent routing (coming soon): Automatically selects the best model based on request content and task characteristics
 - Automatic failover: Seamlessly switches to alternatives when the primary model is unavailable
 - Performance optimization: Caching and load balancing ensure optimal response times
+- Intelligent routing (coming soon): Automatically selects the best model based on request content and task characteristics
 
 ### Quality Assurance
 
@@ -46,9 +46,9 @@ The intelligent routing feature is in its final testing phase and will launch so
 We provide a multi-layered quality assurance system to ensure your AI applications are stable and reliable.
 :::
 
-- Model insurance (coming soon): An assurance mechanism for AI output quality
 - Multi-model validation: Supports parallel model calls and result comparison
 - Quality monitoring: Real-time tracking of model performance and output quality
+- Model insurance (coming soon): An assurance mechanism for AI output quality
 
 ## Release Notes and Closed Beta Application
 
@@ -56,7 +56,7 @@ We provide a multi-layered quality assurance system to ensure your AI applicatio
 ZenMux is currently in Closed Beta
 :::
 
-We invite developers to join ZenMux’s exclusive closed beta program.
+We invite developers to join ZenMux’s closed beta program.
 
 ### Exclusive Beta Benefits
 
@@ -81,7 +81,7 @@ The application process is quick and simple. Follow these steps:
 ::: code-group
 
 ```text [Email Info]
-To: support@zenmux.ai
+To: bd@zenmux.ai
 Subject: ZenMux Closed Beta Application - [Your Name/Team Name]
 ```
 

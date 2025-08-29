@@ -5,7 +5,7 @@ subtitle: Use tools in your prompt
 
 # Tool Calling
 
-Grant models new capabilities and data access so they can follow instructions and respond to prompts.
+Enable models new capabilities and data access so they can follow instructions and respond to prompts.
 
 Tool Calling (also known as Function Calling) is a powerful and flexible way for LLMs to interface with external systems and access data beyond their training corpus. This guide shows how to connect models to data and operations provided by your application. We will demonstrate how to use tool calling, which can handle free-form text inputs and outputs.
 

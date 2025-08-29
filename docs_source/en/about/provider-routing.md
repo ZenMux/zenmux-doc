@@ -8,12 +8,12 @@ ZenMux uses the following default routing strategy:
 
 ::: info Intelligent Routing Principles
 
-1. Priority to the origin: Prefer the model’s original developer (e.g., Claude prefers Anthropic)
-2. Smart failover: If the origin is unavailable, automatically switch to other providers
+1. Priority to the original: Prefer the model’s original developer (e.g., Claude prefers Anthropic)
+2. Smart failover: If the original is unavailable, automatically switch to other providers
 3. Performance ordering: Other providers are sorted by first-token latency from low to high
    :::
 
-This strategy ensures maximum service availability while maintaining strong performance.
+This strategy ensures maximum service availability while maintaining optimal performance.
 
 ## Custom Routing Strategy
 
