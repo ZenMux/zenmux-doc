@@ -34,7 +34,8 @@ export default defineLoacaleConfig({
               { text: "Streaming", link: "/guide/advanced/streaming" },
               { text: "Multimodal", link: "/guide/advanced/multimodal" },
               { text: "Structured Output", link: "/guide/advanced/structured-output" },
-              { text: "Tool Calling", link: "/guide/advanced/tool-calls" }
+              { text: "Tool Calling", link: "/guide/advanced/tool-calls" },
+              { text: "Anthropic SDK Support", link: "/guide/advanced/anthropic-sdk-support" }
             ]
           }
         ]

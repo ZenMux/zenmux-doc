@@ -43,6 +43,7 @@ For more details about ZenMux, visit our [Introduction page](/zh/about/intro), w
 - [Streaming](/zh/guide/advanced/streaming) - Real-time streaming responses
 - [Multimodal](/zh/guide/advanced/multimodal) - Text, image, and audio processing
 - [Structured Output](/zh/guide/advanced/structured-output) - JSON and structured responses
+- [Anthropic SDK Support](/zh/guide/advanced/anthropic-sdk-support) - Anthropic SDK Support
 - [Tool Calls](/zh/guide/advanced/tool-calls) - Function calling capabilities
 - [Prompt Cache](/zh/guide/advanced/prompt-cache) - Prompt caching functionality
 - [Reasoning Models](/zh/guide/advanced/reasoning) - Using reasoning models

@@ -35,6 +35,7 @@ export default defineLoacaleConfig({
               { text: "流式", link: "/zh/guide/advanced/streaming" },
               { text: "多模态", link: "/zh/guide/advanced/multimodal" },
               { text: "结构化输出", link: "/zh/guide/advanced/structured-output" },
+              { text: "Anthropic SDK 支持", link: "/zh/guide/advanced/anthropic-sdk-support" },
               { text: "工具调用", link: "/zh/guide/advanced/tool-calls" },
               { text: "提示词缓存", link: "/zh/guide/advanced/prompt-cache" },
               { text: "推理模型", link: "/zh/guide/advanced/reasoning" }
