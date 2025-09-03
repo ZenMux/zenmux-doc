@@ -4,6 +4,8 @@ ZenMux 支持 Anthropic SDK 的调用方式, 使用方式见API调用示例，�
 
 # API 调用示例
 
+直接使用 curl 需要指定 anthropic-version: 2023-06-01 （仅支持该版本）。 
+
 ::: code-group
 
 ```python [Python]
@@ -47,4 +49,19 @@ async function main () {
 }
 
 main();
+```
+
+```bash [Curl]
+curl https://zenmux.ai/api/v1/messages \
+     --header "x-api-key: $ZENMUX_API_KEY" \
+     --header "anthropic-version: 2023-06-01" \
+     --header "content-type: application/json" \
+     --data \
+'{
+    "model": "anthropic/claude-3.5-sonnet",
+    "max_tokens": 1024,
+    "messages": [
+        {"role": "user", "content": "Hello, world"}
+    ]
+}'
 ```
