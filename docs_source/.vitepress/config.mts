@@ -144,6 +144,9 @@ export default defineConfig({
   },
 
   transformPageData(pageData, ctx) {
+    if (pageData.frontmatter.pageClass === 'api-page') {
+      pageData.frontmatter.aside = false;
+    }
     // @ts-expect-error not error
     pageData.content = LZString.compressToBase64(fs.readFileSync(basePath + pageData.filePath).toString().replace(/<Copy \/>/g, ''));
   },

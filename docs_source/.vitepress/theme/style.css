@@ -159,7 +159,3 @@ span.http-method.post {
   color: var(--vp-c-white);
   background-color: var(--vp-c-brand-3);
 }
-
-.api-page .VPDoc .content {
-  margin-right: 500px;
-}
