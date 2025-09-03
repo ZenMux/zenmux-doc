@@ -15,7 +15,7 @@ export default {
   Layout: () => {
     return h(DefaultTheme.Layout, null, {
       // https://vitepress.dev/guide/extending-default-theme#layout-slots
-      'doc-footer-before': () => h(ApiRequest),
+      'doc-top': () => h(ApiRequest),
       'nav-bar-content-after': () => h(Login),
     })
   },

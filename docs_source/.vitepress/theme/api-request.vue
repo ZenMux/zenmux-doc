@@ -172,9 +172,8 @@ async function copyPath() {
   top: 80px;
   right: 20px;
   width: 480px;
-  max-width: 90vw;
+  max-width: min(500px, calc(100vw - 912px));
   z-index: 22;
-  max-width: 500px;
 }
 
 .api-request-container {
@@ -307,5 +306,32 @@ async function copyPath() {
 .api-header .left .http-path.copied::after {
   /* removed: using ElMessage instead of inline badge */
   content: none;
+}
+
+.api-page .VPDoc .content {
+  margin-right: min(500px, calc(100vw - 912px));
+}
+
+@media (max-width: 1280px) {
+
+  .api-page .VPDoc .content {
+    margin-right: 0;
+  }
+
+  .api-float-container {
+    position: static;
+    width: 100%;
+    max-width: 100%;
+    min-width: 640px;
+    margin: 0 auto;
+
+    @media (min-width: 960px) {
+      padding: 0 32px;
+    }
+  }
+
+  .VPDoc {
+    padding-right: 20px;
+  }
 }
 </style>
