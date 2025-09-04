@@ -65,9 +65,12 @@ pip install -r requirements.txt
 
 ### 3. 配置环境变量
 
-修改 `claude-code-proxy/.env` 文件，配置您的 ZenMux API 信息和首选模型：
+修改 claude-code-proxy 项目的`.env`文件，配置您的 ZenMux API 信息和首选模型：
 
 ```bash
+# 复制.env.example为.env，如果已有.env文件则跳过此步骤
+cp .env.example .env
+
 # ZenMux API Key
 OPENAI_API_KEY="sk-ai-v1-xxx"  # [!code highlight]
 
