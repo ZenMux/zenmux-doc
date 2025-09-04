@@ -43,7 +43,6 @@ nofollow: false
 - [流式](/zh/guide/advanced/streaming) - 实时流式响应
 - [多模态](/zh/guide/advanced/multimodal) - 文本、图像和音频处理
 - [结构化输出](/zh/guide/advanced/structured-output) - JSON 和结构化响应
-- [Anthropic SDK 支持](/zh/guide/advanced/anthropic-sdk-support) - Anthropic SDK 支持
 - [工具调用](/zh/guide/advanced/tool-calls) - 函数调用能力
 - [提示词缓存](/zh/guide/advanced/prompt-cache) - 提示词缓存功能
 - [推理模型](/zh/guide/advanced/reasoning) - 推理模型使用
@@ -56,6 +55,7 @@ nofollow: false
 
 - [Chat Completion](/zh/api/openai/chat-completion) - OpenAI 兼容聊天 API
 - [Get a generation](/zh/api/platform/get-generation) - ZenMux 平台特定 API
+- [Message](/zh/api/anthropic/create-messages) - Anthropic API
 
 ---
 

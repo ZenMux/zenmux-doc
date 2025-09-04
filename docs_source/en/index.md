@@ -43,7 +43,6 @@ For more details about ZenMux, visit our [Introduction page](/zh/about/intro), w
 - [Streaming](/zh/guide/advanced/streaming) - Real-time streaming responses
 - [Multimodal](/zh/guide/advanced/multimodal) - Text, image, and audio processing
 - [Structured Output](/zh/guide/advanced/structured-output) - JSON and structured responses
-- [Anthropic SDK Support](/guide/advanced/anthropic-sdk-support) - Anthropic SDK Support
 - [Tool Calls](/zh/guide/advanced/tool-calls) - Function calling capabilities
 - [Prompt Cache](/zh/guide/advanced/prompt-cache) - Prompt caching functionality
 - [Reasoning Models](/zh/guide/advanced/reasoning) - Using reasoning models
@@ -56,6 +55,7 @@ For more details about ZenMux, visit our [Introduction page](/zh/about/intro), w
 
 - [Chat Completion](/zh/api/openai/chat-completion) - OpenAI-compatible chat API
 - [Get a generation](/zh/api/platform/get-generation) - ZenMux platform-specific API
+- [Message](/api/anthropic/create-messages) - Anthropic API
 
 ---
 

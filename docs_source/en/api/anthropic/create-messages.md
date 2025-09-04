@@ -1,10 +1,16 @@
-# Anthropic SDK Support
+# Anthropic API: Messages
 
-ZenMux supports the Anthropic SDK integration. See the API call examples below for usage. For detailed request parameters and response structures, refer to the [Anthropic Documentation](https://docs.anthropic.com/en/api/messages).
+ZenMux supports the Anthropic API. See the API call examples below for usage. For detailed request parameters and response schemas, refer to the [Anthropic documentation](https://docs.anthropic.com/en/api/messages).
 
-# API Call Examples
+## Supported Features
 
-When using curl directly, you must specify anthropic-version: 2023-06-01 (only this version is supported).
+All Anthropic API features are supported except for the following:
+1. The header parameter anthropic-version only supports "2023-06-01".
+2. The header parameter anthropic-beta does not support "code-execution-2025-08-25", i.e., the code_execution tool is unavailable.
+
+## API Call Examples
+
+When using curl directly, you must specify anthropic-version: 2023-06-01 (this is the only supported version).
 
 ::: code-group
 
@@ -13,8 +19,8 @@ import anthropic
 
 ## 1. Initialize the Anthropic client
 client = anthropic.Anthropic(
-    # Replace with the API key from the ZenMux user console
-    api_key="<your ZENMUX_API_KEY>", # [!code highlight]
+    # Replace with the API key from your ZenMux console
+    api_key="<YOUR ZENMUX_API_KEY>", # [!code highlight]
     # 3. Point the base URL to the ZenMux endpoint
     base_url="https://zenmux.ai/api"  # [!code highlight]
 )
@@ -33,8 +39,8 @@ import Anthropic from '@anthropic-ai/sdk';
 
 // 1. Initialize the Anthropic client
 const anthropic = new Anthropic({
-  // 2. Replace with the API key from the ZenMux user console
-  apiKey: '<your ZENMUX_API_KEY>', // [!code highlight]
+  // 2. Replace with the API key from your ZenMux console
+  apiKey: '<YOUR ZENMUX_API_KEY>', // [!code highlight]
   // 3. Point the base URL to the ZenMux endpoint
   baseURL: "https://zenmux.ai/api", // [!code highlight]
 });
@@ -65,3 +71,7 @@ curl https://zenmux.ai/api/v1/messages \
     ]
 }'
 ```
+
+## Claude Code Usage
+
+See [Claude Code Integration](/best-practices/claude-code)

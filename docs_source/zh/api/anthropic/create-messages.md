@@ -1,8 +1,14 @@
-# Anthropic SDK 支持
+# Anthropic API: Messages
 
-ZenMux 支持 Anthropic SDK 的调用方式, 使用方式见API调用示例，具体请求参数和返回结构详见[Anthropic 官网](https://docs.anthropic.com/en/api/messages)
+ZenMux 支持 Anthropic API, 使用方式见 API 调用示例，具体请求参数和返回结构详见[Anthropic 官网](https://docs.anthropic.com/en/api/messages)
 
-# API 调用示例
+## 支持情况
+
+支持 Anthropic API 所有功能，除了以下几个功能：
+1. header 参数 anthropic-version 只支持"2023-06-01"
+2. header 参数 anthropic-beta 不支持"code-execution-2025-08-25", 即无法使用code_execution工具
+
+## API 调用示例
 
 直接使用 curl 需要指定 anthropic-version: 2023-06-01 （仅支持该版本）。 
 
@@ -65,3 +71,7 @@ curl https://zenmux.ai/api/v1/messages \
     ]
 }'
 ```
+
+## Claude code 使用方式
+
+见[Claude Code Integration](/zh/best-practices/claude-code)

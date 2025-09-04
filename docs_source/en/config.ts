@@ -35,7 +35,6 @@ export default defineLoacaleConfig({
               { text: "Multimodal", link: "/guide/advanced/multimodal" },
               { text: "Structured Output", link: "/guide/advanced/structured-output" },
               { text: "Tool Calling", link: "/guide/advanced/tool-calls" },
-              { text: "Anthropic SDK Support", link: "/guide/advanced/anthropic-sdk-support" }
             ]
           }
         ]
@@ -58,6 +57,10 @@ export default defineLoacaleConfig({
           {
             text: "Platform API",
             items: [{ text: "Get generation", link: "/api/platform/get-generation" }]
+          },
+          {
+            text: "Anthropic API",
+            items: [{ text: "Create Messages", link: "/zh/api/anthropic/create-messages" }]
           }
         ]
       },
