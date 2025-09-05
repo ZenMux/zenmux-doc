@@ -8,7 +8,19 @@ import 'element-plus/theme-chalk/dark/css-vars.css'
 import Select from './select.vue'
 import Login from './login.vue'
 import ApiRequest from './api-request.vue'
+import NProgress from 'nprogress';
+import 'nprogress/nprogress.css';
 import './style.css'
+
+NProgress.configure({
+  showSpinner: false,
+  speed: 500,
+  minimum: 0.3,
+});
+
+window.addEventListener('beforeunload', () => {
+  NProgress.start();
+});
 
 export default {
   extends: DefaultTheme,
