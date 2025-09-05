@@ -153,6 +153,7 @@ export default defineConfig({
 
   themeConfig: {
     search: { provider: "local" },
+    logoLink: "https://zenmux.ai",
   },
 
   // locales: English (root) and Simplified Chinese (zh)

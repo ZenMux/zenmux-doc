@@ -23,6 +23,7 @@
     "glob": "^11.0.0",
     "lz-string": "^1.5.0",
     "markdown-it-container": "^4.0.0",
+    "nprogress": "^0.2.0",
     "openai": "^5.12.2",
     "vitepress": "1.6.3",
     "vitepress-plugin-group-icons": "^1.6.3"
