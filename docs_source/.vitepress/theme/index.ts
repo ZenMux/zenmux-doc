@@ -18,9 +18,11 @@ NProgress.configure({
   minimum: 0.3,
 });
 
-window.addEventListener('beforeunload', () => {
-  NProgress.start();
-});
+if (typeof window !== 'undefined') {
+  window.addEventListener('beforeunload', () => {
+    NProgress.start();
+  });
+}
 
 export default {
   extends: DefaultTheme,

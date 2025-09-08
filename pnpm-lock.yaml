@@ -38,12 +38,15 @@ importers:
       markdown-it-container:
         specifier: ^4.0.0
         version: 4.0.0
+      nprogress:
+        specifier: ^0.2.0
+        version: 0.2.0
       openai:
         specifier: ^5.12.2
         version: 5.12.2
       vitepress:
         specifier: 1.6.3
-        version: 1.6.3(@algolia/client-search@5.35.0)(@types/node@24.3.0)(async-validator@4.2.5)(axios@1.11.0)(postcss@8.5.6)(search-insights@2.17.3)
+        version: 1.6.3(@algolia/client-search@5.35.0)(@types/node@24.3.0)(async-validator@4.2.5)(axios@1.11.0)(nprogress@0.2.0)(postcss@8.5.6)(search-insights@2.17.3)
       vitepress-plugin-group-icons:
         specifier: ^1.6.3
         version: 1.6.3(markdown-it@14.1.0)(vite@5.4.19(@types/node@24.3.0))
@@ -1189,6 +1192,9 @@ packages:
   normalize-wheel@1.0.1:
     resolution: {integrity: sha512-1OnlAPZ3zgrk8B91HyRj+eVv+kS5u+Z0SCsak6Xil/kmgEia50ga7zfkumayonZrImffAxPU/5WcyGhzetHNPA==}
 
+  nprogress@0.2.0:
+    resolution: {integrity: sha512-I19aIingLgR1fmhftnbWWO3dXc0hSxqHQHQb3H8m+K3TnEn/iSeTZZOyvKXWqQESMwuUVnatlCnZdLBZZt2VSA==}
+
   oniguruma-to-es@3.1.1:
     resolution: {integrity: sha512-bUH8SDvPkH3ho3dvwJwfonjlQ4R80vjyvrU8YpxuROddv55vAEJrTuCuCVUhhsHbtlD9tGGbaNApGQckXhS8iQ==}
 
@@ -2071,7 +2077,7 @@ snapshots:
       - '@vue/composition-api'
       - vue
 
-  '@vueuse/integrations@12.8.2(async-validator@4.2.5)(axios@1.11.0)(focus-trap@7.6.5)':
+  '@vueuse/integrations@12.8.2(async-validator@4.2.5)(axios@1.11.0)(focus-trap@7.6.5)(nprogress@0.2.0)':
     dependencies:
       '@vueuse/core': 12.8.2
       '@vueuse/shared': 12.8.2
@@ -2080,6 +2086,7 @@ snapshots:
       async-validator: 4.2.5
       axios: 1.11.0
       focus-trap: 7.6.5
+      nprogress: 0.2.0
     transitivePeerDependencies:
       - typescript
 
@@ -2550,6 +2557,8 @@ snapshots:
 
   normalize-wheel@1.0.1: {}
 
+  nprogress@0.2.0: {}
+
   oniguruma-to-es@3.1.1:
     dependencies:
       emoji-regex-xs: 1.0.0
@@ -2778,7 +2787,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  vitepress@1.6.3(@algolia/client-search@5.35.0)(@types/node@24.3.0)(async-validator@4.2.5)(axios@1.11.0)(postcss@8.5.6)(search-insights@2.17.3):
+  vitepress@1.6.3(@algolia/client-search@5.35.0)(@types/node@24.3.0)(async-validator@4.2.5)(axios@1.11.0)(nprogress@0.2.0)(postcss@8.5.6)(search-insights@2.17.3):
     dependencies:
       '@docsearch/css': 3.8.2
       '@docsearch/js': 3.8.2(@algolia/client-search@5.35.0)(search-insights@2.17.3)
@@ -2791,7 +2800,7 @@ snapshots:
       '@vue/devtools-api': 7.7.7
       '@vue/shared': 3.5.18
       '@vueuse/core': 12.8.2
-      '@vueuse/integrations': 12.8.2(async-validator@4.2.5)(axios@1.11.0)(focus-trap@7.6.5)
+      '@vueuse/integrations': 12.8.2(async-validator@4.2.5)(axios@1.11.0)(focus-trap@7.6.5)(nprogress@0.2.0)
       focus-trap: 7.6.5
       mark.js: 8.11.1
       minisearch: 7.1.2

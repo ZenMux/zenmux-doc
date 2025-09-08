@@ -69,7 +69,7 @@ export default defineComponent({
     }
 
     const handleClick = () => {
-      if (isCopied.value) return;
+      if (isCopied.value || !inBrowser) return;
       window.open('https://zenmux.ai/settings/credits', '_blank');
       isCopied.value = true;
       setTimeout(() => {
@@ -79,18 +79,26 @@ export default defineComponent({
 
     const goLogout = () => {
       user.value = null;
-      logout();
+      if (inBrowser) {
+        logout();
+      }
       // 可在此处添加实际的登出逻辑
     };
 
     const goSettings = () => {
-      window.open('https://zenmux.ai/settings', '_blank');
+      if (inBrowser) {
+        window.open('https://zenmux.ai/settings', '_blank');
+      }
     };
     const goCredits = () => {
-      window.open('https://zenmux.ai/settings/credits', '_blank');
+      if (inBrowser) {
+        window.open('https://zenmux.ai/settings/credits', '_blank');
+      }
     };
     const goApiKeys = () => {
-      window.open('https://zenmux.ai/settings/keys', '_blank');
+      if (inBrowser) {
+        window.open('https://zenmux.ai/settings/keys', '_blank');
+      }
     };
 
     return {

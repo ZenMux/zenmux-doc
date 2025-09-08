@@ -8,10 +8,12 @@ axios.interceptors.request.use((config) => {
   // 从 cookie 里么读取 ctoken
   // 放到 query 里
   const url = new URL(config.url || '', 'https://zenmux.ai');
-  const ctoken = document.cookie
-    .split('; ')
-    .find((row) => row.startsWith('ctoken='))
-    ?.split('=')[1];
+  const ctoken = typeof document !== 'undefined' 
+    ? document.cookie
+        .split('; ')
+        .find((row) => row.startsWith('ctoken='))
+        ?.split('=')[1]
+    : undefined;
   if (ctoken) {
     url.searchParams.set('ctoken', ctoken);
   }
