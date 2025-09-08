@@ -55,6 +55,7 @@ For more details about ZenMux, visit our [Introduction page](/about/intro), whic
 
 - [Chat Completion](/api/openai/chat-completion) - OpenAI-compatible chat API
 - [Get a generation](/api/platform/get-generation) - ZenMux platform-specific API
+- [Message](/api/anthropic/create-messages) - Anthropic API
 
 ---
 

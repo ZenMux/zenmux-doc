@@ -60,6 +60,10 @@ export default defineLoacaleConfig({
           {
             text: "Platform API",
             items: [{ text: "Get generation", link: "/zh/api/platform/get-generation" }]
+          },
+          {
+            text: "Anthropic API",
+            items: [{ text: "Create Messages", link: "/zh/api/anthropic/create-messages" }]
           }
         ]
       },

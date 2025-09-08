@@ -34,7 +34,7 @@ export default defineLoacaleConfig({
               { text: "Streaming", link: "/guide/advanced/streaming" },
               { text: "Multimodal", link: "/guide/advanced/multimodal" },
               { text: "Structured Output", link: "/guide/advanced/structured-output" },
-              { text: "Tool Calling", link: "/guide/advanced/tool-calls" }
+              { text: "Tool Calling", link: "/guide/advanced/tool-calls" },
             ]
           }
         ]
@@ -57,6 +57,10 @@ export default defineLoacaleConfig({
           {
             text: "Platform API",
             items: [{ text: "Get generation", link: "/api/platform/get-generation" }]
+          },
+          {
+            text: "Anthropic API",
+            items: [{ text: "Create Messages", link: "/zh/api/anthropic/create-messages" }]
           }
         ]
       },

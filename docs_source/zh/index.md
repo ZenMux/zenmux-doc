@@ -55,6 +55,7 @@ nofollow: false
 
 - [Chat Completion](/zh/api/openai/chat-completion) - OpenAI 兼容聊天 API
 - [Get a generation](/zh/api/platform/get-generation) - ZenMux 平台特定 API
+- [Message](/zh/api/anthropic/create-messages) - Anthropic API
 
 ---
 
