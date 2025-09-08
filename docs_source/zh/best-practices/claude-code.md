@@ -1,19 +1,104 @@
 # 通过 ZenMux 使用 Claude Code 指南
 
-Claude Code 是 Anthropic 推出的官方命令行工具，通过与 ZenMux 的集成，您可以使用更多模型选择，而不仅仅局限于 Claude 官方 API。本指南将帮助您完成完整的配置流程。
+Claude Code 是 Anthropic 推出的官方 Coding Agent，通过与 ZenMux 的集成，您可以使用更多模型选择，而不仅仅局限于 Claude 官方 API。本指南提供两种使用方案：直接配置方案和代理方案。
 
-## 概述
+## 两种使用方案对比
 
-通过 ZenMux + Claude Code Proxy 的组合，您可以：
+我们提供两种不同的使用方案，您可以根据具体需求选择：
 
-- **多模型支持**：使用 ZenMux 平台上的所有大语言模型
-- **成本优化**：选择最适合您需求的价格方案
-- **高可用性**：享受 ZenMux 的多供应商冗余保障
-- **无缝体验**：保持 Claude Code 原有的使用体验
+| 方案特点       | 方法 1：直接配置           | 方法 2：代理方案         |
+| -------------- | -------------------------- | ------------------------ |
+| **配置复杂度** | 简单，仅需环境变量配置     | 中等，需安装代理服务     |
+| **模型支持**   | 目前仅支持 Claude 系列模型 | 支持 ZenMux 平台所有模型 |
+| **启动方式**   | 直接启动 Claude Code       | 需先启动代理服务         |
+| **资源占用**   | 轻量级                     | 需要额外的代理进程       |
+| **适用场景**   | Claude 用户的快速迁移      | 需要多模型选择的用户     |
 
-## 安装步骤
+::: tip 选择建议
 
-### 1. 安装 Claude Code
+- 如果您主要使用 Claude 系列模型，推荐使用**方法 1**，配置更简单
+- 如果您需要在多个模型间切换选择，推荐使用**方法 2**，功能更全面
+  :::
+
+## 方法 1：直接配置方案（Claude 模型）
+
+### 安装 Claude Code
+
+::: code-group
+
+```bash [npm/pnpm]
+# 使用 pnpm 安装（推荐）
+pnpm install -g @anthropic-ai/claude-code
+
+# 或使用 npm 安装
+npm install -g @anthropic-ai/claude-code
+```
+
+:::
+
+### 配置环境变量
+
+设置以下环境变量来使用 ZenMux 的 Anthropic API 格式：
+
+```bash
+# 设置 ZenMux API 基础 URL（Anthropic 格式）
+export ANTHROPIC_BASE_URL=https://zenmux.ai/anthropic  # [!code highlight]
+
+# 设置您的 ZenMux API Key
+export ANTHROPIC_AUTH_TOKEN=sk-ai-v1-xxx  # [!code highlight]
+
+# 指定使用的模型（Claude 系列）
+export ANTHROPIC_MODEL=anthropic/claude-sonnet-4  # [!code highlight]
+export ANTHROPIC_SMALL_FAST_MODEL=anthropic/claude-sonnet-4  # [!code highlight]
+
+```
+
+::: warning 重要配置
+请确保将 `sk-ai-v1-xxx` 替换为您的真实 ZenMux API Key。您可以在 [ZenMux 控制台](https://zenmux.ai/settings/keys) 中获取 API Key。
+:::
+
+### 直接启动使用
+
+配置好环境变量后，直接进入您的项目目录并启动 Claude Code：
+
+```bash
+# 进入项目目录
+cd my-project
+
+# 直接启动 Claude Code
+claude  # [!code highlight]
+```
+
+::: tip 便捷使用
+您可以将环境变量配置添加到您的 shell 配置文件中，避免每次手动设置：
+
+```bash
+# 添加到 .bashrc 或 .zshrc 文件中
+export ANTHROPIC_BASE_URL=https://zenmux.ai/anthropic
+export ANTHROPIC_AUTH_TOKEN=sk-ai-v1-xxx
+export ANTHROPIC_MODEL=anthropic/claude-sonnet-4
+export ANTHROPIC_SMALL_FAST_MODEL=anthropic/claude-sonnet-4
+```
+
+:::
+
+### 推荐模型
+
+推荐使用以下 Claude 系列模型：
+
+- `anthropic/claude-opus-4.1` - 性能最强的模型，但是价格最贵，注意使用成本
+- `anthropic/claude-sonnet-4` - 平衡性能和速度的模型（推荐）
+- `anthropic/claude-3.5-haiku` - 速度最快的轻量级模型
+
+---
+
+## 方法 2：代理方案（全模型支持）
+
+如果您需要使用 ZenMux 平台上的所有模型（包括 GPT、Gemini 等），可以使用代理方案。
+
+### 安装步骤
+
+#### 1. 安装 Claude Code
 
 首先安装 Anthropic 官方的 Claude Code 工具：
 
@@ -33,7 +118,7 @@ npm install -g @anthropic-ai/claude-code
 关于 Claude Code 的详细功能和使用方法，请参考 [Claude Code 官方文档](https://docs.anthropic.com/en/docs/claude-code/overview)
 :::
 
-### 2. 安装 Claude Code Proxy
+#### 2. 安装 Claude Code Proxy
 
 Claude Code Proxy 是一个开源项目，可以将 Claude Code 的请求代理到 ZenMux 平台。
 
@@ -63,7 +148,7 @@ pip install -r requirements.txt
 
 :::
 
-### 3. 配置环境变量
+#### 3. 配置环境变量
 
 修改 claude-code-proxy 项目的`.env`文件，配置您的 ZenMux API 信息和首选模型：
 
@@ -87,9 +172,9 @@ SMALL_MODEL="openai/gpt-4o-mini"  # [!code highlight]
 请确保将 `sk-ai-v1-xxx` 替换为您的真实 ZenMux API Key。您可以在 [ZenMux 控制台](https://zenmux.ai/settings/keys) 中获取 API Key
 :::
 
-## 启动服务
+### 启动服务
 
-### 1. 启动 Claude Code Proxy
+#### 1. 启动 Claude Code Proxy
 
 ::: code-group
 
@@ -122,7 +207,7 @@ python -m claude-code-proxy
        loading="lazy" />
 </div>
 
-### 2. 启动 Claude Code 客户端
+#### 2. 启动 Claude Code 客户端
 
 在新的终端窗口中，使用以下命令启动 Claude Code 客户端：
 
@@ -140,7 +225,16 @@ alias claude-zenmux='ANTHROPIC_BASE_URL=http://localhost:8082 ANTHROPIC_API_KEY=
 
 :::
 
-## 使用效果
+### 支持的模型
+
+方法 2 通过代理方案支持 ZenMux 平台上的所有模型，包括：
+
+- **Claude 系列**：`anthropic/claude-opus-4.1`、`anthropic/claude-sonnet-4`、`anthropic/claude-haiku-4`
+- **GPT 系列**：`openai/gpt-5`、`openai/gpt-4o`、`openai/gpt-4o-mini`、`openai/gpt-5-mini`、`openai/gpt-5-nana`
+- **Gemini 系列**：`google/gemini-pro`、`google/gemini-flash`
+- **其他模型**：更多模型请查看 [ZenMux 模型列表](https://zenmux.ai/models)
+
+### 使用效果
 
 配置完成后，您就可以在 Claude Code 中使用 ZenMux 的所有模型了：
 
