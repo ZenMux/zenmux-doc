@@ -72,12 +72,14 @@ const jsonPlain = computed(() => htmlToPlain(json.value))
 
 function htmlToPlain(html: string) {
   if (!html) return ''
+  if (!inBrowser) return html.replace(/<[^>]*>/g, '') // SSR fallback: strip HTML tags
   const div = document.createElement('div')
   div.innerHTML = html
   return div.textContent || ''
 }
 
 async function copyText(text: string) {
+  if (!inBrowser) return // Skip copy function during SSR
   try {
     if (navigator.clipboard?.writeText) {
       await navigator.clipboard.writeText(text)
