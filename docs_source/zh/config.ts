@@ -14,6 +14,7 @@ export default defineLoacaleConfig({
     nav: [
       { text: 'Models', link: 'https://zenmux.ai/models', noIcon: true },
       { text: 'Chat', link: 'https://zenmux.ai/chat', noIcon: true },
+      { text: 'Docs', link: '/', noIcon: true },
     ],
     sidebar: [
       {
