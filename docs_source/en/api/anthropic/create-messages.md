@@ -10,7 +10,7 @@ All Anthropic API features are supported except for the following:
 
 ## API Call Examples
 
-When using curl directly, you must specify anthropic-version: 2023-06-01 (this is the only supported version).
+When using cURL directly, you must specify anthropic-version: 2023-06-01 (this is the only supported version).
 
 ::: code-group
 
@@ -57,7 +57,7 @@ async function main () {
 main();
 ```
 
-```bash [Curl]
+```bash [cURL]
 curl https://zenmux.ai/api/v1/messages \
      --header "x-api-key: $ZENMUX_API_KEY" \
      --header "anthropic-version: 2023-06-01" \

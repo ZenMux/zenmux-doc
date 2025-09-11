@@ -10,7 +10,7 @@ ZenMux 支持 Anthropic API, 使用方式见 API 调用示例，具体请求参�
 
 ## API 调用示例
 
-直接使用 curl 需要指定 anthropic-version: 2023-06-01 （仅支持该版本）。 
+直接使用 cURL 需要指定 anthropic-version: 2023-06-01 （仅支持该版本）。 
 
 ::: code-group
 
@@ -57,7 +57,7 @@ async function main () {
 main();
 ```
 
-```bash [Curl]
+```bash [cURL]
 curl https://zenmux.ai/api/v1/messages \
      --header "x-api-key: $ZENMUX_API_KEY" \
      --header "anthropic-version: 2023-06-01" \
