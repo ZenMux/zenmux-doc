@@ -16,6 +16,9 @@ export default defineLoacaleConfig({
       { text: 'Chat', link: 'https://zenmux.ai/chat', noIcon: true },
       { text: 'Docs', link: '/', noIcon: true },
     ],
+    socialLinks: [
+      { icon: 'github', link: 'https://github.com/ZenMux/zenmux-doc' }
+    ],
     sidebar: [
       {
         text: "关于 ZenMux",
