@@ -14,7 +14,9 @@ export default defineLoacaleConfig({
     outline: {
       level: [2, 3]
     },
-    socialLinks: false as any,
+    socialLinks: [
+      { icon: 'github', link: 'https://github.com/ZenMux/zenmux-doc' }
+    ],
     sidebar: [
       {
         text: "About ZenMux",
