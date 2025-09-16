@@ -1,0 +1,55 @@
+name: Deploy VitePress site to Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 8
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install
+      - name: Build
+        run: pnpm run docs:build
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Notify webhook
+        run: |
+          curl -X POST -H "Content-Type: application/json" \
+            -d '{"msgtype":"markdown","markdown":{"title":"deployed","text":"# docs 发布成功\n\n${{ steps.deployment.outputs.page_url }}"}}' \
+            "https://oapi.dingtalk.com/robot/send?access_token=${{ secrets.DINGTALK_TOKEN }}"

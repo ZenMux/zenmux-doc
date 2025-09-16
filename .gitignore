@@ -1,0 +1,15 @@
+node_modules/
+docs_source/.vitepress/cache
+
+# VitePress build output
+docs_source/.vitepress/dist
+docs_source/.vitepress/cache
+docs
+
+.DS_Store
+
+.llm-prompt
+.env
+.env.local
+.env.*.local
+.vscode/
