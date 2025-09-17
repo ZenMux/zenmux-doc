@@ -1,16 +1,16 @@
 # Reasoning Models
 
-ZenMux allows you to control model reasoning behavior in the Create chat completion endpoint via the reasoning_effort parameter and the reasoning parameter.
+ZenMux supports controlling a model’s reasoning behavior in the Create chat completion API via the reasoning_effort and reasoning parameters.
 
 ## Parameter Definitions
 
 **reasoning_effort**
 
-Follows the OpenAI protocol. Allowed values: minimal, low, medium, high. If omitted, the default is medium.
+Follows the OpenAI spec. Allowed values: low, medium, high. If omitted, the default is medium. For OpenAI models, minimal is also accepted.
 
 **reasoning**
 
-An example of supported parameters in reasoning:
+An example of supported parameters for reasoning is as follows:
 
 ```json
 {
@@ -25,20 +25,20 @@ An example of supported parameters in reasoning:
 
 **effort**
 
-Equivalent to reasoning_effort, for consumption by models that only support reasoning_effort.
+Equivalent to reasoning_effort; used for models that only support reasoning_effort.
 
 **max_tokens**
 
-Used to limit the length of reasoning tokens, for consumption by models that support a thinking budget.
+Used to cap the reasoning token length; for models that support a thinking budget.
 
 **enabled**
 
-If omitted, the default is true. Can be used to disable reasoning.
+If omitted, the default is true; can be used to disable reasoning.
 :::
 
-## Parameter Precedence
+## Parameter Priority
 
-ZenMux automatically computes/fills in the parameters required by the model based on what you pass. The rules are:
+ZenMux automatically derives/supplements the parameters required by the model based on what the user provides. The rules are as follows:
 
 * If neither reasoning_effort nor reasoning is provided
 
@@ -52,14 +52,14 @@ Equivalent to:
 }
 ```
 
-* About computing max_tokens
+* Computing max_tokens
 
-When the user specifies max_completion_tokens, or the model itself has a max_completion_tokens limit, reasoning.max_tokens will be computed based on reasoning.effort. The rules are:
+When the user specifies max_completion_tokens, or the model itself has a max_completion_tokens limit, reasoning.max_tokens is computed based on reasoning.effort using the following rules:
 
 ```
-minimal: 5%, low: 20%, medium: 50%, high: 80%
+low: 20%, medium: 50%, high: 80%
 ```
 
 * If max_tokens is provided but effort is not
 
-When the user specifies max_completion_tokens, or the model itself has a max_completion_tokens limit, effort will be inferred from max_tokens. The rule is to compute reasoning.max_tokens / max_completion_tokens to obtain the ratio, compare it against minimal: 5%, low: 20%, medium: 50%, high: 80%, and select the closest tier as effort. For example, if reasoning.max_tokens / max_completion_tokens = 30%, effort is low.
+When the user specifies max_completion_tokens, or the model itself has a max_completion_tokens limit, effort is computed from max_tokens. The rule is to take the ratio reasoning.max_tokens / max_completion_tokens, compare it with low: 20%, medium: 50%, high: 80%, and choose the closest tier as effort. For example, if reasoning.max_tokens / max_completion_tokens = 30%, the effort is low.
