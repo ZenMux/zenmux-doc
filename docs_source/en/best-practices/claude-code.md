@@ -42,7 +42,7 @@ Set the following environment variables to use ZenMux with the Anthropic API for
 
 ```bash
 # Set ZenMux API base URL (Anthropic format)
-export ANTHROPIC_BASE_URL=https://zenmux.ai/api   # [!code highlight]
+export ANTHROPIC_BASE_URL=https://zenmux.ai/api/anthropic   # [!code highlight]
 
 # Set your ZenMux API Key
 export ANTHROPIC_AUTH_TOKEN=sk-ai-v1-xxx  # [!code highlight]

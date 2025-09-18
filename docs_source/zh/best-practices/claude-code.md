@@ -42,7 +42,7 @@ npm install -g @anthropic-ai/claude-code
 
 ```bash
 # 设置 ZenMux API 基础 URL（Anthropic 格式）
-export ANTHROPIC_BASE_URL=https://zenmux.ai/api   # [!code highlight]
+export ANTHROPIC_BASE_URL=https://zenmux.ai/api/anthropic   # [!code highlight]
 
 # 设置您的 ZenMux API Key
 export ANTHROPIC_AUTH_TOKEN=sk-ai-v1-xxx  # [!code highlight]
