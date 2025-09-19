@@ -70,8 +70,8 @@ export default defineLoacaleConfig({
       {
         text: "Help Center",
         items: [
-          { text: "Privacy Policy", link: "/privacy" },
-          { text: "Terms of Service", link: "/terms-of-service" },
+          // { text: "Privacy Policy", link: "/privacy" },
+          // { text: "Terms of Service", link: "/terms-of-service" },
           { text: "FAQ", link: "/help/faq" },
           { text: "Contact Us", link: "/help/contact" }
         ]
