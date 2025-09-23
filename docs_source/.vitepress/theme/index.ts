@@ -11,6 +11,7 @@ import ApiRequest from './api-request.vue'
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 import './style.css'
+import './custom.css'
 
 NProgress.configure({
   showSpinner: false,
