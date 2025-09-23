@@ -126,6 +126,28 @@ export default defineComponent({
   color: var(--vp-c-text-1);
   transition: color 0.25s;
   cursor: pointer;
+  margin-left: 16px;
+
+  button.el-button {
+    background-color: #000;
+    border: none;
+    border-radius: 6px;
+
+    &:hover {
+      background-color: #333;
+    }
+  }
+
+}
+
+.dark .login-button button.el-button {
+  background-color: #f2f2f2;
+  border: none;
+  color: #000;
+
+  &:hover {
+    background-color: #ccc;
+  }
 }
 
 .user-avatar {

@@ -1,0 +1,14 @@
+
+:root {
+  --vp-c-brand-1: #000;
+  --vp-c-brand-2: #666;
+}
+
+.dark:root {
+  --vp-c-brand-1: #fff;
+  --vp-c-brand-2: #ccc;
+}
+
+.VPLink.active {
+  font-weight: bold !important;
+}
