@@ -2,112 +2,179 @@
 **Effective date:** 2025/9/30  
 
 ## Overview  
-This ZenMux Privacy Policy ("Policy") explains:  
-1. How We Collect Personal Information  
-2. How We Store and Protect Personal Information  
-3. How We Use Personal Information  
-4. How We Share Your Personal Information  
-5. How We Use Cookies, Beacons, Proxy and Other Technologies  
-6. How You Can Exercise Your Rights Regarding Your Personal Information  
-7. Statement on Third Party Liability  
-8. No Intention to Collect Personal Information of Minors  
-9. Application and Revision of the Policy  
-10. Notes to Key Terms Used in the Policy  
+### This ZenMux Privacy Policy (this “Policy”) will help you understand:
+### I. How We Collect Personal Information
+### II. How We Store and Protect Personal Information
+### III. How We Use Personal Information
+### IV. How We Share Your Personal Information
+### V. How We Use Cookie, Beacon, Proxy and Other Technologies
+### VI. How You Can Exercise Your Rights regarding Your Personal Information
+### VII. Statement on Third Party Liability
+### VIII. No Intention to Collect Personal Information of Minors
+### IX. Application and Revision of the Policy
+### X. Notes to Key Terms Used in the Policy
 
-ZenMux ("we", "our", or "us") respects your privacy. This Policy outlines how we collect, store, use, and share your personal information. **Please read carefully** – by using our services, you agree to these terms.  
 
----
+ZenMux (referred to as “we”, “our” or “us” in this Policy) respects and protects your privacy. We will collect, store, use and/or share your personal information in accordance with this Policy. We will also explain to you, through this Policy, how you may access, update, manage and protect your personal information held by us.
 
-## 1. How We Collect Personal Information  
-We process personal information when:  
-✔ You provide consent  
-✔ Required to fulfill contracts  
-✔ Necessary for legal compliance (e.g., anti-money laundering laws)  
-✔ Related to national security or public health emergencies  
-✔ For service improvement or security purposes  
+This Policy is closely associated with your use of the services. We suggest you carefully read and understand all terms in this Policy and make choices you deem appropriate. We try to use plain and concise language, and for provisions that are vital to your rights or interests, we use words in bold for your attention. If you do not agree with our policies and practices, please do not use the service.
 
-**Types of data collected:**  
-- **Personal Info:** Name, email, phone number  
-- **Usage Data:** Pages visited, actions taken  
-- **Location Data:** IP address  
+We will collect, store, use and/or share your personal information as required in order to comply with the requirements of applicable laws and regulations, to provide relevant services and to improve the quality of such services. We will process your personal information in accordance with this Policy to enable you to access quality, convenient and efficient services and to better protect your account.
 
----
 
-## 2. How We Store and Protect Personal Information  
-1. **Storage Locations:** Primarily in Singapore, with international transfers complying with local laws  
-2. **Retention Period:** Only as long as legally required  
-3. **Security Measures:**  
-   - Encrypted data centers  
-   - Minimal access protocols  
-   - Emergency response training  
-4. **Breach Protocol:** Immediate notification if incidents occur  
+## How We Collect Personal Information
+**In accordance with applicable laws and regulations, we may process your personal information in the following circumstances:**
 
-> **⚠️ User Responsibility:** Keep login credentials secure. Report compromises to support@zenmux.ai.  
+**(1) when we obtain your express consent or your deemed consent under applicable laws and regulations;**
 
----
+**(2) when it is necessary for the conclusion and performance of a contract;**
 
-## 3. How We Use Personal Information  
-| Purpose | Examples |  
-|---------|----------|  
-| Service Delivery | Account notifications, feature access |  
-| Improvements | Customized experiences, analytics |  
-| Security | Fraud prevention, spam detection |  
-| Legal Compliance | Regulatory requirements, dispute resolution |  
+**(3) when it is necessary to fulfill our legal obligations, such as the necessary information required by laws and regulations about anti-money laundering, anti-terrorist financing and real-name management;**
 
----
+**(4) when it is directly related to national security or national defense security;**
 
-## 4. How We Share Your Personal Information  
-**With:**  
-- Affiliates and service providers  
-- Legal/regulatory authorities (when required)  
-- Entities involved in mergers/acquisitions  
+**(5) when it is necessary to respond to public health emergencies, or to protect the life, health and/or property safety of natural persons in an emergency;**
 
-**Complaint Handling:** May disclose complaint details to consumer protection agencies.  
+**(6) when it is directly related to a criminal investigation, prosecution, trial or enforcement of judgments, or to recover a debt;**
 
----
+**(7) when the personal information has been made publicly available by an individual voluntarily and through other legitimate means (such as legitimate news reports, government information disclosure, etc.), and the processing of such publicly available personal information is reasonable and permitted by applicable laws and regulations;**
 
-## 5. Cookies & Tracking Technologies  
-**We use:**  
-- **Cookies** for login persistence  
-- **Web beacons** for traffic analysis  
-- **Proxy tech** for phishing protection  
+**(8) when it is necessary for the improvement of, or maintenance of, secure and stable operation of the services provided, or evaluative purposes such as to discover and deal with failure in the products or services; or**
 
-**Manage preferences** via browser settings (may limit functionality).  
+**(9) other circumstances provided in applicable laws and regulations.**
 
----
+**Please note that when we process your personal information in the above circumstances (2) – (9), we may not need to obtain your consent in accordance with, and to the extent permitted by, applicable laws and regulations.**
 
-## 6. Your Rights  
-Request access, corrections, or deletions by contacting:  
-📧 **support@zenmux.ai**  
-We respond within legally mandated timeframes.  
+When you use the services, we may need to collect following types of information in order to provide you with relevant services, improve the quality of our services, safeguard the security of your account, and comply with applicable laws and regulations:**
 
----
+**Personal Information.** To identify our customers, when you register accounts for relevant services on our website, we may collect your name, email address, phone number and other contact information from you. 
 
-## 7. Third-Party Links  
-External sites have independent privacy policies. We don't control their data practices.  
+**Usage Information.** In order to provide relevant services and to facilitate your access to relevant services, we will store necessary information generated or submitted when you use the relevant services, such as pages you visited and actions you took. 
 
----
+**Location Information.** We may obtain and preserve information about your computer, such as IP address. 
 
-## 8. Minor Protection  
-Services are **not intended for minors**. We do not knowingly collect their data.  
+## How We Store and Protect Personal Information
+1. **We will store and/or transfer your personal information in accordance with applicable laws and regulations. Personal information collected and generated by us about you may be transferred and/or stored outside your country/region of residence. Generally, personal information uploaded or transferred by you to us related to your account and product services will be stored in Singapore. In carrying out such international transfers, we will follow the requirements of applicable laws and regulations, and will require such overseas recipients of your personal information to ensure that the standard of protection provided by such overseas recipients of personal information is comparable to that under applicable laws and regulations of your country/region of residence.**
 
----
+2. We will only retain your personal information for the period necessary for the purposes set forth in this Policy and within the timeframe required by applicable laws and regulations.
 
-## 9. Policy Updates  
-Changes notified via:  
-- Email/SMS  
-- Website announcements  
-Continued use = acceptance of revised Policy.  
+3. We maintain data protection and security. To safeguard your personal information, we are dedicated to exploiting various security technologies and supporting management systems to reduce the risks of your personal information being divulged, corrupted or lost, misused, revised, accessed or disclosed without authorisation, strictly restricting access to the data center and using private network channels and network proxies.
 
----
+4. We have appointed staff responsible for personal information protection. We have also developed a relevant internal control system, and adopted the authorisation principle of minimal and sufficient use by employees who may have access to your personal information. We systematically monitor the data processing activities of our employees.
 
-## 10. Key Terms  
-- **"ZenMux"** = AI Force Singapore Pte. Ltd.  
-- **"Personal Information"** = Data identifiable to an individual  
-- **"Identifiers"** = Login credentials, verification codes  
+5. We have formulated emergency plans for personal information security incidents and regularly arrange relevant internal personnel to receive emergency response training and to conduct emergency exercise, so that they are able to master the responsibilities of their position and the strategies and procedures for emergency response. If, unfortunately, any personal information security incident occurs, we will act in accordance with applicable laws and regulations and, where required, inform you in a timely manner of the basic information and possible impact of the security incident, measures taken or to be taken by us, suggestions for you to take precautions on your own and to reduce risks, remedial measures taken for you, etc.
 
----
+6. **While we take information security measures to protect your personal information, please also ensure that you keep your account login name and other identifiers in a safe manner. When you use the services, we will identify you by your account login name and other identifiers. Once you divulge such information, you may suffer from losses and adverse legal consequences against you. If you find that your account login name and/or other identifiers may be or have been divulged, please contact us immediately so that we may take appropriate measures to avoid or mitigate the relevant losses.**
 
-**Contact:**  
-For questions or complaints:  
-✉️ support@zenmux.ai  
+7. Upon our customer’s termination of using the services, we will stop collecting your personal information, except as otherwise provided by applicable laws and regulations or required by regulatory authorities. If the retention period of relevant personal information required by applicable laws and regulations has not expired or there are other circumstances under which the relevant personal information shall not or need not be deleted according to applicable laws and regulations, we will continue to retain such personal information while ceasing to process such personal information, except for storage and taking necessary security protection measures. If we cease operations, we will promptly stop collecting your personal information, and will inform you of the cessation, and delete or anonymize the personal information held by us.
+
+## How We Use Personal Information
+To comply with applicable laws and regulations, to provide relevant services, to improve service quality and customise your experience, or to safeguard the security of your account, we will use your personal information under the following circumstances:
+
+● provide services; 
+
+● contact you regarding the management of any features or functions of the website or service you have registered to use; 
+
+● provide you with notifications about your account; 
+
+● notify you of changes to our website, policies, terms, or any products or services; 
+
+● send you marketing and promotional emails; 
+
+● respond to your questions or other requests; 
+
+● enable you to participate in interactive features of the website and services; 
+
+● customize your experience on the website or service and/or otherwise tailor the content you see when visiting and using the website or service; 
+
+● store your user account, registration and profile data, or other personal data; 
+
+● track your return visits to and use of the website and services; 
+
+● accumulate and report aggregated statistical information related to the website and services and user activities; 
+
+● determine which features and services users prefer most, to help us operate, enhance, and improve our website; 
+
+● protect your safety while using our website, which requires us to process your personal data to combat spam, malware, malicious activity, or security risks; 
+
+● improve and enforce our security measures; 
+
+● maintain legal and regulatory compliance; 
+
+● enforce compliance with our Terms of Service and other policies; 
+
+● investigate and resolve disputes; 
+
+● investigate and prevent fraud, abuse, and violations of our Terms of Service and other policies, illegal or criminal activities, unauthorized access to or use of personal data or our systems and networks; 
+
+● protect you, others, and our business.
+
+We also use information for any other purposes disclosed to you before you provide personal data or for purposes reasonably necessary to provide the services or other related products and/or services. 
+
+We may additionally use your information for research and analysis purposes and to comply with our policies or legal requirements. 
+
+## How We Share Your Personal Information
+**1. Sharing of your personal information for providing services**
+
+Your personal information will be shared by us with third parties. We may share your information with third parties for commercial purposes, for example to enable them to provide services on our behalf or to assist us in analyzing how the services are used. 
+
+Such third parties include (a) our affiliates and other partners, (b) our third party service providers and contractors, (c) our authorised agents, (d) our professional advisers, (e) law enforcement agencies, courts, governmental bodies and regulatory authorities to whom we may be legally required to make disclosures, and (f) any individuals or entities involved in any merger, acquisition, corporate reorganisation, financing or similar transaction involving the sale of all or part of our assets.
+
+**2. Complaints handling**
+
+To perform our legal obligations and to protect the legitimate rights and interests of you and others, we may, when you lodge a complaint about others or are complained by others, provide your name, contact information, and the relevant contents of the complaints to the relevant consumer rights protection authority and/or the regulatory authorities to resolve such complaints or disputes in a timely manner, except where expressly prohibited by applicable laws and regulations.
+
+## How We Use Cookie, Beacon, Proxy and Other Technologies
+For easier user experience, we may identify you through small data files when you visit our website or use any service provided by us, which could save you the trouble of repeatedly entering login information or help to determine whether your account is safe. Such data files may include cookies, flash cookies or other local storages provided by your browser or linked applications (collectively referred to as “cookies”). **Please understand that some of our services are only available through cookies. You can change the cookie acceptance level or refuse our cookies if it is allowed by your browsers or browser add-ons.** The “Help” section of the toolbar of most browsers will tell you how to prevent your browser from accepting new cookies, how to have the browser notify you when you receive a new cookie, and how to disable cookies altogether. Additionally, you can disable or delete similar data used by browser add-ons, such as flash cookies, by changing the add-on settings or by visiting the website of the developer. **However, such actions may under certain circumstances affect your secure access to our website or use of services provided by us.**
+
+In addition, our website may include some electronic images (referred to as “single-pixel GIF files” or “web beacons”). Through web beacons, a website can help to calculate the number of users visiting the webpage or access some cookies. We will use web beacons to collect data regarding your webpage browsing activities, such as webpage addresses visited by you, the reference pages previously visited by you, your browser environment and your display settings.
+
+If, where applicable, you use any service provided by any third party other than us through our website or platform, to keep your account secure and for safer user experience, we may use a private network protocol and proxy technology (referred to as “private network channel”). With the private network channel, we can help you identify high risk sites that are already known to us and thus reduce risks associated with phishing and account breaches arising from those sites. The private network channel can also better protect the common rights and interests of you and third parties by preventing lawbreakers from tampering with the services expected by you and third parties, including advertisements injection and illegal contents tampering caused by unsecure routers and illegal base stations. Meanwhile, we may obtain and preserve information about your computer, such as IP address, hardware ID and the location of the pages you visited. 
+
+## How You Can Exercise Your Rights regarding Your Personal 
+### Information
+We will take appropriate technical measures to ensure that you can access, update and correct your personal information and exercise your other rights to personal information provided under applicable laws and regulations. **Please note that if you opt out of certain types of data collection or use, you may not be able to use all features of our services.** You may carry out the relevant operations by contacting us via the following email address.
+
+**When we cooperate with third party organizations to provide services, to the extent required by applicable laws and regulations, your use of such third party organization’s services will be subject to its published privacy policy or other terms and conditions (if any). Please read the relevant policies and terms carefully; if you have any questions, you may consult the third party organization which provides the services you use.**
+
+If you have any questions about this Policy or have any complaints or comments on the processing of your personal information, please contact us via the following channels:
+
+**Email address: support@zenmux.ai**
+
+We will respond to you within the timeframe required by applicable laws and regulations. We need to verify your identity and credentials to protect your information security. Depending on your country/region of residence, you may have the right to lodge a complaint with the supervisory authority or initiate legal proceedings in a court of competent jurisdiction.
+
+## Statement on Third Party Liability
+Please note that the platform on which this Policy is published may contain links to third party websites. These third parties may place their own cookies or pixel tags or otherwise collect and process your personal information that are beyond our control and which may not be subject to this Policy. While we will use commercially reasonable efforts to require these entities to take measures to protect your personal information, we cannot guarantee that these entities will take all the protective measures as requested by us. You are therefore kindly asked to contact these entities directly to understand the details of their privacy policies. If you find that there exists any risk in webpages created by, or applications developed by, these third parties, you are recommended to cease the use of such webpages or applications to protect your legal rights and interests.
+
+## No Intention to Collect Personal Information of Minors
+Our website is not intended for, and we will not knowingly collect personal information from, minors under the age of majority in your country/region of residence.
+
+## Application and Revision of the Policy
+Unless there is a separate privacy policy for relevant services or there are any special provisions in the relevant users’ service agreement, this Policy is applicable to all the services of us.
+
+We may update this Policy in due course upon any significant changes as follows:
+
+(1) changes in our corporate particulars, such as: changes in ownership arising out of any mergers, acquisitions and restructuring;
+
+(2) changes in the scope, purpose, rules and method of collecting, storing and using personal information;
+
+(3) changes in the recipients that may receive personal information, scope, purpose and/or method of disclosing personal information;
+
+(4) changes in the way you access to and manage your personal information;
+
+(5) changes in data security capabilities and information security risks;
+
+(6) changes in the channels and mechanisms for user inquiries and complaints, and in external dispute resolution agencies and the contacts; or
+
+(7) other changes that may have a material effect on your rights and interests in respect of your personal information.
+
+If this Policy is updated, we may notify you by ways of emails/SMS, portal, platform or website message or announcements on our website. In order for you to receive such notifications in a timely manner, it is advisable that you notify us promptly upon any update to your contact information. If you continue to use relevant services after the Policy updates become effective, you are deemed to have fully read, understood and accepted the updated Policy and that you are willing to be bound by such updated Policy.
+
+You may view this Policy on the homepage of our website.
+
+## Notes to Key Terms Used in the Policy
+1. For the purpose of this Policy, “ZenMux” or “we”, “our” “us” means AI Force Singapore Pte. Ltd..
+
+2. For the purpose of this Policy, “personal information” has the meaning ascribed to the term “personal information”, “personal data”, “personal identifiable information” or other equivalent term under applicable laws and applications.
+
+3. For the purpose of this Policy, “identifiers” means the information used by us to verify your identity, such as your account login name, password, SMS verification code, telephone number, and mobile number, in each case to the extent necessary and narrowly restricted to achieve the purpose of processing.
