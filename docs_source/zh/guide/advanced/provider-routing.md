@@ -8,18 +8,23 @@ ZenMux 采用以下默认路由策略：
 
 ::: info 智能路由原则
 
-1. **优先原厂**：优先选择模型的原开发厂商（如 Claude 优先选择 Anthropic）
+1. **性能排序**：其他供应商按照首 Token 延时（Latency）从低到高排序
 2. **智能切换**：如果原厂不可用，自动切换到其他供应商
-3. **性能排序**：其他供应商按照首 Token 延时（Latency）从低到高排序
    :::
 
 这种策略确保了在保证性能的同时，最大化服务的可用性。
 
 ## 自定义路由策略
 
-### 指定供应商列表
+### 根据供应商的时延，价格或吞吐量进行路由
 
-您可以通过在请求中指定 `provider_routing_strategy` 参数来覆盖默认的路由策略：
+您可以通过在`provider.routing`中指定 `type` 为 `priority`来设置优先按照某个维度进行排序，通过`primary_factor`指定具体的维度，支持`latency`, `price`, `throughput`。维度说明如下:
+
+| 维度             | 说明                                         | 
+| ---------------- | -------------------------------------------- |
+| **latency**      | 按照首 Token 延时（Latency）从低到高排序     |
+| **price**        | 按照prompt和completion的综合价格从低到高排序 |
+| **throughput**   | 按照吞吐量从高到低排序                       |
 
 ::: code-group
 
@@ -27,13 +32,34 @@ ZenMux 采用以下默认路由策略：
 {
   "model": "anthropic/claude-sonnet-4",
   "messages": [...],
-  "provider_routing_strategy": { // [!code highlight]
-    "type": "specified_providers", // [!code highlight]
-    "providers": [ // [!code highlight]
-      "anthropic/anthropic_endpoint",
-      "google-vertex/VertexAIAnthropic",
-      "amazon-bedrock/BedrockAnthropic"
-    ]
+  "provider": { // [!code highlight]
+    "routing": { // [!code highlight]
+      "type": "priority",
+      "primary_factor": "price"
+    }
+  }
+}
+```
+
+### 指定供应商列表
+
+您可以通过在请求中指定 `provider` 参数来覆盖默认的路由策略：
+
+::: code-group
+
+```json [请求示例]
+{
+  "model": "anthropic/claude-sonnet-4",
+  "messages": [...],
+  "provider": { // [!code highlight]
+    "routing": { // [!code highlight]
+      "type": "order",
+      "providers": [
+        "anthropic/anthropic_endpoint",
+        "google-vertex/VertexAIAnthropic",
+        "amazon-bedrock/BedrockAnthropic"
+      ]
+    }
   }
 }
 ```
@@ -101,9 +127,11 @@ response = requests.post(
     json={
         "model": "anthropic/claude-sonnet-4",
         "messages": [{"role": "user", "content": "Hello!"}],
-        "provider_routing_strategy": {  # [!code highlight]
-            "type": "specified_providers",  # [!code highlight]
-            "providers": ["anthropic/anthropic_endpoint"]  # [!code highlight]
+        "provider": {  # [!code highlight]
+            "routing": {  # [!code highlight]
+                "type": "specified_providers",  # [!code highlight]
+                "providers": ["anthropic/anthropic_endpoint"]  # [!code highlight]
+            }
         }
     }
 )
