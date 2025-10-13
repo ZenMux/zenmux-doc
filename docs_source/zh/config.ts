@@ -25,8 +25,7 @@ export default defineLoacaleConfig({
         items: [
           { text: "简介", link: "/zh/about/intro" },
           { text: "模型&供应商", link: "/zh/about/models-and-providers" },
-          { text: "价格&费用", link: "/zh/about/pricing-and-cost" },
-          { text: "供应商路由", link: "/zh/about/provider-routing" }
+          { text: "价格&费用", link: "/zh/about/pricing-and-cost" }
         ]
       },
       {
@@ -36,6 +35,9 @@ export default defineLoacaleConfig({
           {
             text: "高级调用",
             items: [
+              { text: "供应商路由", link: "/zh/guide/advanced/provider-routing" },
+              { text: "模型路由", link: "/zh/guide/advanced/model-routing" },
+              { text: "兜底模型", link: "/zh/guide/advanced/fallback" },
               { text: "流式", link: "/zh/guide/advanced/streaming" },
               { text: "多模态", link: "/zh/guide/advanced/multimodal" },
               { text: "结构化输出", link: "/zh/guide/advanced/structured-output" },
