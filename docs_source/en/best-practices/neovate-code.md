@@ -32,7 +32,7 @@ For users requiring more complex configurations or those migrating from older ve
 }
 ```
 
-for more details, refer to the [Neovate Configuration Documentation](https://neovateai.dev/en/docs/providers/#custom-providers).
+For more details, refer to the [Neovate Configuration Documentation](https://neovateai.dev/en/docs/providers/#custom-providers).
 
 ## Integration Steps
 
