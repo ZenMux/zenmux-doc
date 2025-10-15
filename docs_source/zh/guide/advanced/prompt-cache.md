@@ -108,7 +108,7 @@ Anthropic Claude 和 Qwen 系列模型可以通过特定参数显式指定缓存
 
 ::: code-group
 
-```python [OpenAI SDK]
+```python [OpenAI Python SDK]
 from openai import OpenAI
 
 client = OpenAI(
@@ -171,7 +171,7 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-```python [Anthropic SDK]
+```python [Anthropic Python SDK]
 import anthropic
 
 client = anthropic.Anthropic(
@@ -238,7 +238,7 @@ print(response.content[0].text)
 
 ::: code-group
 
-```python [OpenAI SDK]
+```python [OpenAI Python SDK]
 from openai import OpenAI
 
 client = OpenAI(
@@ -302,7 +302,7 @@ response = client.chat.completions.create(
 print(response.choices[0].message)
 ```
 
-```python [Anthropic SDK]
+```python [Anthropic Python SDK]
 import anthropic
 
 client = anthropic.Anthropic(
@@ -373,7 +373,7 @@ print(response.content[0].text)
 
 ::: code-group
 
-```python [OpenAI SDK]
+```python [OpenAI Python SDK]
 from openai import OpenAI
 
 client = OpenAI(
@@ -423,7 +423,7 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-```python [Anthropic SDK]
+```python [Anthropic Python SDK]
 import anthropic
 
 client = anthropic.Anthropic(
@@ -483,7 +483,7 @@ print(response.content[0].text)
 
 ::: code-group
 
-```python [OpenAI SDK]
+```python [OpenAI Python SDK]
 from openai import OpenAI
 
 client = OpenAI(
@@ -586,7 +586,7 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-```python [Anthropic SDK]
+```python [Anthropic Python SDK]
 import anthropic
 
 client = anthropic.Anthropic(

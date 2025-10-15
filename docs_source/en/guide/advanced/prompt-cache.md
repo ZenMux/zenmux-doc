@@ -108,7 +108,7 @@ Each request can define a maximum of **4 cache breakpoints**.
 
 ::: code-group
 
-```python [OpenAI SDK]
+```python [OpenAI Python SDK]
 from openai import OpenAI
 
 client = OpenAI(
@@ -171,7 +171,7 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-```python [Anthropic SDK]
+```python [Anthropic Python SDK]
 import anthropic
 
 client = anthropic.Anthropic(
@@ -238,7 +238,7 @@ When your application uses many tools, caching tool definitions can significantl
 
 ::: code-group
 
-```python [OpenAI SDK]
+```python [OpenAI PythonSDK]
 from openai import OpenAI
 
 client = OpenAI(
@@ -302,7 +302,7 @@ response = client.chat.completions.create(
 print(response.choices[0].message)
 ```
 
-```python [Anthropic SDK]
+```python [Anthropic Python SDK]
 import anthropic
 
 client = anthropic.Anthropic(
@@ -373,7 +373,7 @@ In long conversation scenarios, you can cache the entire conversation history:
 
 ::: code-group
 
-```python [OpenAI SDK]
+```python [OpenAI Python SDK]
 from openai import OpenAI
 
 client = OpenAI(
@@ -423,7 +423,7 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-```python [Anthropic SDK]
+```python [Anthropic Python SDK]
 import anthropic
 
 client = anthropic.Anthropic(
@@ -483,7 +483,7 @@ When you have multiple content segments with different update frequencies, you c
 
 ::: code-group
 
-```python [OpenAI SDK]
+```python [OpenAI Python SDK]
 from openai import OpenAI
 
 client = OpenAI(
@@ -586,7 +586,7 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-```python [Anthropic SDK]
+```python [Anthropic Python SDK]
 import anthropic
 
 client = anthropic.Anthropic(
