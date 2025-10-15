@@ -14,23 +14,23 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.2",
-    "@floating-ui/dom": "^1.7.3",
+    "@floating-ui/dom": "^1.7.4",
     "@types/glob": "^9.0.0",
-    "axios": "^1.11.0",
+    "axios": "^1.12.2",
     "copy-to-clipboard": "^3.3.3",
-    "element-plus": "^2.10.4",
+    "element-plus": "^2.11.4",
     "element-ui": "^2.15.14",
-    "glob": "^11.0.0",
+    "glob": "^11.0.3",
     "lz-string": "^1.5.0",
     "markdown-it-container": "^4.0.0",
     "nprogress": "^0.2.0",
-    "openai": "^5.12.2",
+    "openai": "^5.23.2",
     "vitepress": "1.6.3",
-    "vitepress-plugin-group-icons": "^1.6.3"
+    "vitepress-plugin-group-icons": "^1.6.4"
   },
   "repository": "git@github.com:ZenMux/zenmux-doc.git",
   "devDependencies": {
-    "@types/node": "^24.2.1",
-    "tsx": "^4.20.4"
+    "@types/node": "^24.7.2",
+    "tsx": "^4.20.6"
   }
 }

@@ -33,9 +33,11 @@ pnpm run preview
 # or
 pnpm run docs:preview
 
-# Translate Chinese docs to English
-pnpm run translate <path-to-zh-file> [--force]
-# Example: pnpm run translate docs_source/zh/guide/quickstart.md
+# Translate Chinese docs to English (supports single file or entire folder)
+pnpm run translate <path-to-zh-file-or-folder> [--force] [--concurrency=5]
+# Example (single file): pnpm run translate docs_source/zh/guide/quickstart.md
+# Example (folder): pnpm run translate docs_source/zh/
+# Example (parallel): pnpm run translate docs_source/zh/ --concurrency=10
 
 # Optimize Chinese docs using AI
 pnpm run optimize <input-file> <output-file> [--force]
@@ -76,20 +78,24 @@ scripts/format-images.js          # Image formatting automation
 ## Translation Workflow
 
 1. Write Chinese documentation in `docs_source/zh/`
-2. Use translation script: `pnpm run translate docs_source/zh/[file].md`
+2. Use translation script: `pnpm run translate docs_source/zh/[file].md` (or entire folder)
 3. Script automatically:
    - Converts `zh` paths to `en` paths
-   - Uses AI model (anthropic/claude-sonnet-4) for translation
+   - Uses AI model (openai/gpt-5) via ZenMux API for translation
    - Applies translation rules from `.prompts/translation-zh-to-en.xml`
    - Preserves code blocks, variable names, and markdown formatting
+   - Supports parallel translation of multiple files with `--concurrency` flag (default: 5)
+   - Skips existing files unless `--force` flag is used
 
 ## VitePress Configuration Details
 
-- **Locale setup**: Root locale (English) and `/zh/` prefix for Chinese
-- **Custom containers**: `api-request` container for API examples with tabs
-- **Code highlighting**: Enhanced with `[!code highlight]` syntax
+- **Locale setup**: Root locale (English) and `/zh/` prefix for Chinese via `rewrites` config
+- **Custom containers**: `api-request` container (markdown-it-container) renders tabbed API examples
+- **Code highlighting**: Enhanced with `[!code highlight]` syntax and language-specific icons
 - **Search**: Local search enabled for both languages
-- **Icons**: Custom code group icons via `vitepress-plugin-group-icons`
+- **Icons**: Custom code group icons via `vitepress-plugin-group-icons` with 50+ language mappings
+- **Page compression**: Content is compressed with LZ-String for efficient transmission
+- **Output directory**: Builds to `../docs` (relative to `docs_source/`) for GitHub Pages
 
 ## Development Guidelines
 
@@ -113,13 +119,20 @@ scripts/format-images.js          # Image formatting automation
 - Chinese files: Prefixed paths like `/zh/guide/quickstart`
 - Ensure consistent naming between language versions
 
-## Translation Script Environment
+## Script Environment Requirements
 
-The translation script requires:
+### Translation Script
 
-- Environment variable: `ZENMUX_API_KEY` (ZenMux API key)
-- Model: Uses `anthropic/claude-sonnet-4` via ZenMux API
-- Prompt: Located at `.prompts/translation-zh-to-en.xml`
+- Environment variable: `ZENMUX_API_KEY` (required)
+- Model: Uses `openai/gpt-5` via ZenMux API
+- Prompt template: `.prompts/translation-zh-to-en.xml`
+- Dependencies: `openai` SDK, `glob` for file matching
+
+### Optimization Script
+
+- Environment variable: `ZENMUX_API_KEY` (required)
+- Prompt template: `.prompts/optimize-chinese-docs.xml`
+- Purpose: Improve Chinese doc structure, style, and VitePress syntax before translation
 
 ## GitHub Pages Deployment
 
@@ -128,16 +141,22 @@ The translation script requires:
 - Custom domain: `docs.zenmux.ai` (configured in `docs/CNAME`)
 - Deployment is automatic on push to main branch
 
-## Content Optimization
+## Custom VitePress Features
 
-Use the optimization script to improve Chinese documentation drafts before translation:
+### API Request Container
 
-```bash
-pnpm run optimize <input-file> <output-file> [--force]
-```
+The codebase implements a custom `api-request` markdown container (see [config.mts:103-142](docs_source/.vitepress/config.mts#L103-L142)) that creates tabbed code examples. This renders as radio-button tabs with synchronized content switching, commonly used for multi-language API examples.
 
-The script:
-- Uses the prompt at `.prompts/optimize-chinese-docs.xml`
-- Applies AI-powered optimization for style, structure, and VitePress syntax
-- Ensures consistency with existing documentation standards
-- Requires `ZENMUX_API_KEY` environment variable
+**Usage example:**
+
+- Wrap code blocks in `::: api-request` container
+- Use `[Tab Title]` syntax in code fence info string to create tabs
+- First tab is selected by default
+
+### Page Data Transformation
+
+The config includes a `transformPageData` hook that:
+
+- Sets `aside: false` for pages with `pageClass: 'api-page'` frontmatter
+- Compresses page content with LZ-String base64 encoding for efficient data transfer
+- Strips `<Copy />` components from content during processing
