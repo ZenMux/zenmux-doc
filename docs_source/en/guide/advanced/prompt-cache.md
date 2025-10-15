@@ -175,7 +175,7 @@ print(response.choices[0].message.content)
 import anthropic
 
 client = anthropic.Anthropic(
-    base_url="https://zenmux.ai/api/v1",
+    base_url="https://zenmux.ai/api/anthropic",
     api_key="<your_ZENMUX_API_KEY>",
 )
 
@@ -306,7 +306,7 @@ print(response.choices[0].message)
 import anthropic
 
 client = anthropic.Anthropic(
-    base_url="https://zenmux.ai/api/v1",
+    base_url="https://zenmux.ai/api/anthropic",
     api_key="<your_ZENMUX_API_KEY>",
 )
 
@@ -427,7 +427,7 @@ print(response.choices[0].message.content)
 import anthropic
 
 client = anthropic.Anthropic(
-    base_url="https://zenmux.ai/api/v1",
+    base_url="https://zenmux.ai/api/anthropic",
     api_key="<your_ZENMUX_API_KEY>",
 )
 
@@ -590,7 +590,7 @@ print(response.choices[0].message.content)
 import anthropic
 
 client = anthropic.Anthropic(
-    base_url="https://zenmux.ai/api/v1",
+    base_url="https://zenmux.ai/api/anthropic",
     api_key="<your_ZENMUX_API_KEY>",
 )
 
