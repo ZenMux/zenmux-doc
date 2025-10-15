@@ -148,6 +148,14 @@ ZenMux 依托 Cloudflare 的强大基础设施，在全球部署了分布式边�
 
 通过全球边缘节点部署，ZenMux 为您的全球化 AI 应用提供坚实的基础设施支持。
 
-### 联系我们
+## 联系我们
 
-您可以通过邮箱、社交媒体账号等联系我们，详见：[联系我们页面](https://docs.zenmux.ai/zh/help/contact.html)。
+如果您在使用过程中遇到任何问题，或有任何建议和反馈，欢迎通过以下方式联系我们：
+
+- **官方网站**：<https://zenmux.ai>
+- **技术支持邮箱**：[support@zenmux.ai](mailto:support@zenmux.ai)
+- **商务合作邮箱**：[bd@zenmux.ai](mailto:bd@zenmux.ai)
+- **Twitter**：[@ZenMuxAI](https://twitter.com/ZenMuxAI)
+- **Discord 社区**：<http://discord.gg/vHZZzj84Bm>
+
+更多联系方式和详细信息，请访问我们的[联系我们页面](/zh/help/contact)。
