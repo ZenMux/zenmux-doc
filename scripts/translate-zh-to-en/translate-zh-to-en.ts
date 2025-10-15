@@ -158,11 +158,15 @@ async function translateContent(systemPrompt: string, markdownContent: string): 
   console.log("🚀 正在调用大模型进行翻译...");
   
   const completion = await client.chat.completions.create({
-    model: "anthropic/claude-sonnet-4.5",
-    // model: "openai/gpt-5",
+    // model: "anthropic/claude-sonnet-4.5",
+    model: "openai/gpt-5",
     messages: messages,
   });
   
+  if (!completion) {
+    throw new Error("大模型返回内容为空");
+  }
+
   const translatedContent = completion.choices[0].message.content;
   
   if (!translatedContent) {
