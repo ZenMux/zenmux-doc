@@ -9,7 +9,9 @@ export default defineLoacaleConfig({
     nav: [
       { text: "Models", link: "https://zenmux.ai/models", noIcon: true },
       { text: "Chat", link: "https://zenmux.ai/chat", noIcon: true },
+      { text: "Benchmarks", link: "https://zenmux.ai/benchmark", noIcon: true },
       { text: "Docs", link: "/", noIcon: true },
+      { text: "About Us", link: "https://zenmux.ai/aboutus", noIcon: true },
     ],
     outline: {
       level: [2, 3],
