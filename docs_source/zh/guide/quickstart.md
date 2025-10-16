@@ -1,18 +1,26 @@
 # 快速开始
 
-ZenMux 提供了一个与 OpenAI 兼容的统一 API。
+欢迎使用 **[ZenMux](https://docs.zenmux.ai/zh/about/intro.html)**！本指南将帮助你快速上手，展示如何通过三种不同的方法调用 ZenMux API。
 
-::: tip 💡 三步即可开始
-只需要三个简单步骤，即可开始使用 ZenMux：
+::: tip 💡 四步即可开始
+只需要四个简单步骤，即可开始使用 ZenMux：
 :::
 
-1. **获取 API 密钥**：前往你的 **[用户控制台 > API Keys](https://zenmux.ai/settings/keys)** 页面，创建一个新的 API Key。
-2. **选择集成方式**：我们推荐使用 OpenAI SDK 的兼容模式，也可以直接调用 ZenMux API。
-3. **发起你的第一个请求**：复制下面的代码示例，替换你的 API Key，即可运行。
+1. **登录 ZenMux**：访问 **[ZenMux 登录页面](https://zenmux.ai/login)**，选择以下任一方式登录：
+
+   - 邮箱登录
+   - GitHub 账号登录
+   - Google 账号登录
+
+2. **获取 API 密钥**：登录后，前往你的 **[用户控制台 > API Keys](https://zenmux.ai/settings/keys)** 页面，创建一个新的 API Key。
+
+3. **选择集成方式**：我们推荐使用 OpenAI SDK 或 Anthropic SDK 的兼容模式，也可以直接调用 ZenMux API。
+
+4. **发起你的第一个请求**：复制下面的代码示例，替换你的 API Key，即可运行。
 
 ---
 
-## 方法一：使用 OpenAI SDK (推荐)
+## 方法一：使用 OpenAI SDK
 
 ::: info 兼容性说明
 ZenMux 的 API 端点与 OpenAI API 完全兼容，只需修改两个参数即可无缝切换。
@@ -82,7 +90,88 @@ main();
 
 ---
 
-## 方法二：直接调用 ZenMux API
+## 方法二：使用 Anthropic SDK
+
+::: info 兼容性说明
+ZenMux 完全支持 Anthropic API 协议，可以无缝集成到 Claude Code、Cursor 等工具中。只需修改两个参数即可使用。
+
+注意 Anthropic 协议的 base_url="https://zenmux.ai/api/anthropic"。
+:::
+
+::: info Anthropic协议支持模型说明
+支持Anthropic协议的模型正在分批适配中，当前已支持的模型可以通过[官方模型列表](https://zenmux.ai/models)筛选Anthropic API Compatible查看:
+![anthropic-support](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/16/602FqX9/anthropic-support.png)
+或者也可以通过[模型详情页](https://zenmux.ai/anthropic/claude-haiku-4.5)查看:
+![anthropic-support](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/16/I9JHS8b/detail-anthropic-support.png)
+:::
+
+### 代码示例
+
+::: code-group
+
+```python [Python]
+from anthropic import Anthropic
+
+# 1. 初始化 Anthropic 客户端
+client = Anthropic(
+    # 2. 将基础 URL 指向 ZenMux 端点
+    base_url="https://zenmux.ai/api/anthropic", # [!code highlight]
+    # 3. 替换为你从 ZenMux 用户控制台获取的 API Key
+    api_key="<你的 ZENMUX_API_KEY>", # [!code highlight]
+)
+
+# 4. 发起请求
+message = client.messages.create(
+    # 5. 指定你想使用的模型，格式为 "供应商/模型名称"
+    model="anthropic/claude-sonnet-4.5", # [!code highlight]
+    max_tokens=1024,
+    messages=[
+        {
+            "role": "user",
+            "content": "生命的意义是什么？" # [!code highlight]
+        }
+    ]
+)
+
+print(message.content[0].text)
+```
+
+```ts [TypeScript]
+import Anthropic from "@anthropic-ai/sdk";
+
+// 1. 初始化 Anthropic 客户端
+const client = new Anthropic({
+  // 2. 将基础 URL 指向 ZenMux 端点
+  baseURL: "https://zenmux.ai/api/anthropic", // [!code highlight]
+  // 3. 替换为你从 ZenMux 用户控制台获取的 API Key
+  apiKey: "<你的 ZENMUX_API_KEY>", // [!code highlight]
+});
+
+async function main() {
+  // 4. 发起请求
+  const message = await client.messages.create({
+    // 5. 指定你想使用的模型，格式为 "供应商/模型名称"
+    model: "anthropic/claude-sonnet-4.5", // [!code highlight]
+    max_tokens: 1024,
+    messages: [
+      {
+        role: "user",
+        content: "生命的意义是什么？", // [!code highlight]
+      },
+    ],
+  });
+
+  console.log(message.content[0].text);
+}
+
+main();
+```
+
+:::
+
+---
+
+## 方法三：直接调用 ZenMux API
 
 ::: code-group
 
