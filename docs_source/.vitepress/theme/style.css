@@ -159,3 +159,16 @@ span.http-method.post {
   color: var(--vp-c-white);
   background-color: var(--vp-c-brand-3);
 }
+
+:root {
+  --el-color-primary: black;
+}
+
+.el-button:hover {
+  background-color: #fafafa;
+  border-color: #dcdfe6;
+}
+
+.el-dropdown-menu__item:not(.is-disabled):focus, .el-dropdown-menu__item:not(.is-disabled):hover {
+  background-color: #fafafa;
+}
