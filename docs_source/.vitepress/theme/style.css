@@ -172,3 +172,14 @@ span.http-method.post {
 .el-dropdown-menu__item:not(.is-disabled):focus, .el-dropdown-menu__item:not(.is-disabled):hover {
   background-color: #fafafa;
 }
+
+html.dark .el-button:hover {
+  background-color: #333;
+  border-color: #666;
+  color: #fff;
+}
+
+html.dark .el-dropdown-menu__item:not(.is-disabled):focus, .el-dropdown-menu__item:not(.is-disabled):hover {
+  background-color: #333;
+  color: #fff;
+}
