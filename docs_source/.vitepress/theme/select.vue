@@ -1,34 +1,11 @@
 <template>
   <div class="select-dropdown">
-    <el-dropdown @click="handleClick">
       <el-button-group>
         <el-button @click="handleClick">
           <span v-if="!isCopied"><my-icon name="lucide/copy"></my-icon> Copy Page </span>
           <span v-else><my-icon name="lucide/copy-check"></my-icon> Copied</span>
         </el-button>
-        <el-button class="button-with-caret">
-          <my-icon name="lucide/chevron-down"></my-icon>
-        </el-button>
       </el-button-group>
-      <template #dropdown>
-        <el-dropdown-menu>
-          <el-dropdown-item @click="handleClick">
-            <div class="dropdown-item">
-              <div>
-                <span v-if="!isCopied">
-                  <my-icon name="lucide/copy"></my-icon>
-                  Copy Page
-                </span>
-                <span v-else>Copied</span>
-              </div>
-              <div class="dropdown-item-description">
-                Copy this page as Markdown for LLMs
-              </div>
-            </div>
-          </el-dropdown-item>
-        </el-dropdown-menu>
-      </template>
-    </el-dropdown>
   </div>
 </template>
 
