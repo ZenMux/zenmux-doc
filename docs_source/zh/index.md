@@ -32,7 +32,6 @@ nofollow: false
 - [简介](/zh/about/intro) - 全面的产品概述和 Beta 申请
 - [模型&供应商](/zh/about/models-and-providers) - 支持的模型和供应商
 - [价格&费用](/zh/about/pricing-and-cost) - 价格信息和费用
-- [供应商路由](/zh/about/provider-routing) - 供应商路由机制
 
 ### 使用文档
 
@@ -40,6 +39,9 @@ nofollow: false
 
 ### 高级调用
 
+- [供应商路由](/zh/guide/advanced/provider-routing) - 供应商路由机制
+- [模型路由](/zh/guide/advanced/model-routing) - 模型智能路由机制
+- [兜底模型](/zh/guide/advanced/fallback) - 兜底模型机制
 - [流式](/zh/guide/advanced/streaming) - 实时流式响应
 - [多模态](/zh/guide/advanced/multimodal) - 文本、图像和音频处理
 - [结构化输出](/zh/guide/advanced/structured-output) - JSON 和结构化响应
