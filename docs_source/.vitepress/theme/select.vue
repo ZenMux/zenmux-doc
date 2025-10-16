@@ -1,15 +1,22 @@
 <template>
   <div class="select-dropdown">
-    <el-dropdown split-button @click="handleClick">
-      <span v-if="!isCopied"><my-icon name="copy"></my-icon> Copy Page </span>
-      <span v-else><my-icon name="checkmark"></my-icon> Copied</span>
+    <el-dropdown @click="handleClick">
+      <el-button-group>
+        <el-button @click="handleClick">
+          <span v-if="!isCopied"><my-icon name="lucide/copy"></my-icon> Copy Page </span>
+          <span v-else><my-icon name="lucide/copy-check"></my-icon> Copied</span>
+        </el-button>
+        <el-button class="button-with-caret">
+          <my-icon name="lucide/chevron-down"></my-icon>
+        </el-button>
+      </el-button-group>
       <template #dropdown>
         <el-dropdown-menu>
           <el-dropdown-item @click="handleClick">
             <div class="dropdown-item">
               <div>
                 <span v-if="!isCopied">
-                  <my-icon name="copy"></my-icon>
+                  <my-icon name="lucide/copy"></my-icon>
                   Copy Page
                 </span>
                 <span v-else>Copied</span>
@@ -28,7 +35,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import LZString from 'lz-string';
-import { ElButton, ElDropdown, ElDropdownItem, ElDropdownMenu } from 'element-plus'
+import { ElButton, ElButtonGroup, ElDropdown, ElDropdownItem, ElDropdownMenu } from 'element-plus'
 import copyToClipboard from 'copy-to-clipboard';
 import { useData } from 'vitepress'
 import MyIcon from './icon.vue';
@@ -37,6 +44,7 @@ export default defineComponent({
   name: 'SelectDropdown',
   components: {
     ElButton,
+    ElButtonGroup,
     ElDropdown,
     ElDropdownItem,
     ElDropdownMenu,
@@ -83,6 +91,10 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.button-with-caret {
+  padding: 0 8px;
+}
+
 .dropdown-item {
   flex-direction: column;
 }

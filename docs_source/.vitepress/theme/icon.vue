@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const className = computed(() => ['el-icon-' + props.name, (attrs.class || ''), props.className || ''].join(' ').trim())
 const style = computed(() => ({
-  '--icon': `url('https://api.iconify.design/ion/${props.name}.svg')`,
+  '--icon': `url('https://api.iconify.design/${props.name}.svg')`,
   ...(attrs.style as Record<string, string>)
 }))
 </script>
