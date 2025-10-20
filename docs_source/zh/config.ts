@@ -4,9 +4,9 @@ export default defineLoacaleConfig({
   label: "简体中文",
   lang: "zh-CN",
   link: "/zh/",
-  title: "ZenMux 文档",
   description: "ZenMux 的文档",
   themeConfig: {
+    logo: 'https://cdn.marmot-cloud.com/storage/tbox-router/2025/08/18/MB5Icka/ZenMux.svg',
     outline: {
       label: "目录",
       level: [2, 3]

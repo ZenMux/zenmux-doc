@@ -31,7 +31,6 @@ function extractLang(info: string) {
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   lang: "en-US",
-  title: "ZenMux",
   description: "zenmux.ai document",
   outDir: "../docs",
   base: "/",
@@ -152,6 +151,7 @@ export default defineConfig({
   },
 
   themeConfig: {
+    siteTitle: '\u200B',
     search: { provider: "local" },
     logoLink: "https://zenmux.ai",
   },
