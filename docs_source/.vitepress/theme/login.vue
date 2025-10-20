@@ -16,9 +16,14 @@
       </template>
       <template #dropdown>
         <el-dropdown-menu>
-          <el-dropdown-item @click="goSettings">Settings</el-dropdown-item>
-          <el-dropdown-item @click="goCredits">Credits</el-dropdown-item>
+          <el-dropdown-item @click="()=> handleAction('settings/chat')">Chat</el-dropdown-item>
+          <el-dropdown-item @click="()=> handleAction('settings/activity')">Logs</el-dropdown-item>
+          <el-dropdown-item @click="()=> handleAction('settings/cost')">Cost</el-dropdown-item>
+          <el-dropdown-item @click="()=> handleAction('settings/usage')">Usage</el-dropdown-item>
+          <el-dropdown-item @click="()=> handleAction('settings/insurance')">Insurance</el-dropdown-item>
+          <el-dropdown-item @click="()=> handleAction('settings/credits')">Wallet</el-dropdown-item>
           <el-dropdown-item @click="goApiKeys">API Keys</el-dropdown-item>
+          <el-dropdown-item @click="()=> handleAction('settings/strategy')">Strategy</el-dropdown-item>
           <el-dropdown-item @click="goLogout">Sign out</el-dropdown-item>
         </el-dropdown-menu>
       </template>
@@ -30,7 +35,7 @@
 import { defineComponent, ref } from 'vue';
 import { ElButton, ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus'
 import MyIcon from './icon.vue';
-import { useData, inBrowser } from 'vitepress'
+import { inBrowser } from 'vitepress'
 import { info, logout } from '../../component/server';
 
 export default defineComponent({
@@ -100,6 +105,22 @@ export default defineComponent({
         window.open('https://zenmux.ai/settings/keys', '_blank');
       }
     };
+    const goChat = () => {
+      if (inBrowser) {
+        window.open('https://zenmux.ai/settings/chat', '_blank');
+      }
+    };
+    const goLogs = () => {
+      if (inBrowser) {
+        window.open('https://zenmux.ai/settings/activity', '_blank');
+      }
+    };
+
+    const handleAction = (slug: string) => {
+      if(inBrowser) {
+        window.open('https://zenmux.ai/' + slug, '_blank');
+      }
+    };
 
     return {
       user,
@@ -109,7 +130,10 @@ export default defineComponent({
       isLoading,
       goSettings,
       goCredits,
-      goApiKeys
+      goApiKeys,
+      goChat,
+      goLogs,
+      handleAction,
     };
   }
 });
