@@ -36,7 +36,25 @@ export default defineConfig({
   base: "/",
   ignoreDeadLinks: true,
 
-  head: [['link', { rel: 'icon', href: '/favicon.svg' }]],
+  head: [
+    ['link', { rel: 'icon', href: '/favicon.svg' }],
+    [
+      'script', {
+        async: 'true',
+        src: 'https://www.googletagmanager.com/gtag/js?id=G-6FF0RJ6DGB'
+      },
+    ],
+    [
+      'script', {},
+      `
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+  
+      gtag('config', 'G-6FF0RJ6DGB');
+      `
+    ]
+  ],
 
   vite: {
     server: {
