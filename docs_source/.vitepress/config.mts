@@ -36,7 +36,25 @@ export default defineConfig({
   base: "/",
   ignoreDeadLinks: true,
 
-  head: [['link', { rel: 'icon', href: '/favicon.svg' }]],
+  head: [
+    ['link', { rel: 'icon', href: '/favicon.svg' }],
+    [
+      'script', {
+        async: 'true',
+        src: 'https://www.googletagmanager.com/gtag/js?id=G-6FF0RJ6DGB'
+      },
+    ],
+    [
+      'script', {},
+      `
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+  
+      gtag('config', 'G-6FF0RJ6DGB');
+      `
+    ]
+  ],
 
   vite: {
     server: {
@@ -151,7 +169,12 @@ export default defineConfig({
   },
 
   themeConfig: {
-    siteTitle: '\u200B',
+    logo: {
+      light: 'https://cdn.marmot-cloud.com/storage/zenmux/2025/10/20/bl9Q1WT/text-logo-dark.svg',
+      dark: 'https://cdn.marmot-cloud.com/storage/zenmux/2025/10/20/KNgZ27t/text-logo-light.svg',
+      alt: 'ZenMux Logo',
+    },
+    siteTitle: false,
     search: { provider: "local" },
     logoLink: "https://zenmux.ai",
   },

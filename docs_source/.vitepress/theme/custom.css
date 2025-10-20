@@ -12,3 +12,7 @@
 .VPLink.active {
   font-weight: bold !important;
 }
+
+.VPImage.logo {
+  height: 36px;
+}
