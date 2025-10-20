@@ -3,9 +3,9 @@ import { defineLoacaleConfig } from "..";
 export default defineLoacaleConfig({
   label: "English",
   lang: "en-US",
-  title: "ZenMux",
   description: "zenmux.ai document",
   themeConfig: {
+    logo: 'https://cdn.marmot-cloud.com/storage/tbox-router/2025/08/18/MB5Icka/ZenMux.svg',
     nav: [
       { text: "Models", link: "https://zenmux.ai/models", noIcon: true },
       { text: "Chat", link: "https://zenmux.ai/chat", noIcon: true },
