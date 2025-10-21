@@ -31,7 +31,7 @@
 
 ### 基础用法
 
-使用模型路由非常简单，只需将 `model` 参数设置为 `zenmux/auto`，并通过 `model_routing_config` 指定候选模型池即可。如果您未指定 `model_routing_config`，系统将使用平台全量的[模型池](https://zenmux.ai/models)。
+使用模型路由非常简单，只需将 `model` 参数设置为 `zenmux/auto`，并通过 `model_routing_config` 指定候选模型池即可。如果您未指定 `model_routing_config.available_models`，系统将使用平台全量的[模型池](https://zenmux.ai/models)。
 
 ::: code-group
 

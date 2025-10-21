@@ -114,6 +114,26 @@ You can use the `provider.routing` configuration to specify how providers are so
 
 ::: code-group
 
+```json [Route by Latency]
+{
+  "model": "anthropic/claude-sonnet-4",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Hello!"
+    }
+  ],
+  "provider": {
+    // [!code highlight]
+    "routing": {
+      // [!code highlight]
+      "type": "priority", // [!code highlight]
+      "primary_factor": "latency" // [!code highlight]
+    }
+  }
+}
+```
+
 ```json [Route by Price]
 {
   "model": "anthropic/claude-sonnet-4",
