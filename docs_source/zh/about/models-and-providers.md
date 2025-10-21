@@ -1,53 +1,135 @@
 # 模型与供应商
 
-ZenMux 采用多模型、多供应商的冗余架构，确保大语言模型服务的高可用性和稳定性。我们整合了业界顶尖的大语言模型，为开发者提供丰富的选择和灵活的使用体验。
+ZenMux 采用**多模型、多供应商**的冗余架构，为开发者提供高可用、高性能的大语言模型服务。我们整合了全球顶尖的 AI 模型，并通过多供应商接入策略确保服务的稳定性和可靠性。
+
+## 为什么选择多模型、多供应商架构
+
+在企业级 AI 应用中，单一模型或单一供应商的架构存在诸多风险：
+
+- **服务中断风险**：供应商故障导致业务停摆
+- **性能波动问题**：不同供应商的延迟和吞吐量差异显著
+- **成本优化困难**：缺乏灵活的供应商选择机制
+- **地理位置限制**：单一供应商可能无法覆盖全球市场
+- **合规性要求**：不同地区对数据存储和处理有不同规定
+
+ZenMux 的多供应商架构从根本上解决这些问题，为您的 AI 应用提供企业级保障。
+
+## 核心优势
+
+### 高可用性保障
+
+当某个供应商出现服务异常或容量不足时，ZenMux 会自动切换到其他可用供应商，确保服务连续性，无需人工干预。
+
+**保障机制：**
+
+- **实时健康检测**：持续监控所有供应商的服务状态
+- **智能故障转移**：毫秒级切换到备用供应商
+- **透明切换过程**：用户无感知的故障恢复
+- **多层冗余设计**：主流模型配备 2-3 家供应商
+
+### 性能优化
+
+不同供应商在不同地理位置、不同时段的性能表现各异。ZenMux 通过智能路由策略，为每个请求选择最优供应商。
+
+**性能优势：**
+
+- **延迟优化**：首 Token 延迟作为重要权重进行供应商选择
+- **吞吐量保障**：在高负载时动态调整供应商分配
+- **全球加速**：结合 Cloudflare 边缘网络实现全球低延迟
+- **实时监控**：持续跟踪性能指标，动态优化路由策略
+
+### 成本控制灵活性
+
+通过多供应商架构，您可以根据预算和性能需求灵活选择最合适的供应商。
+
+**成本优化方式：**
+
+- **价格对比透明**：实时展示各供应商的价格信息
+- **灵活切换**：轻松在不同供应商之间切换以优化成本
+- **按需路由**：通过供应商路由配置实现成本控制
+
+::: tip 智能供应商路由
+如需精细控制供应商选择，请参考 [供应商路由文档](/zh/guide/advanced/provider-routing.html)。
+:::
+
+::: tip 模型 Fallback 机制
+详细的故障转移和模型兜底策略，请参考 [模型兜底文档](/zh/guide/advanced/fallback.html)。
+:::
 
 ## 模型列表
 
 ::: tip 快速查看
-在官网的 **Models** 界面可查看所有支持的模型及其基本信息，可通过左侧的筛选条件、顶部的搜索框、排序选项等快速定位所需模型。
+在官网的 [Models 页面](https://zenmux.ai/models) 可查看所有支持的模型及其基本信息。您可以通过左侧的筛选条件、顶部的搜索框、排序选项等快速定位所需模型。也可以通过模型卡片快速获取到模型的输入、输出支持模态；input/output 价格；Context 和 Max Tokens 等关键信息。
 :::
 
-<div style="text-align: center;">
-  <img src="https://cdn.marmot-cloud.com/storage/zenmux/2025/08/21/iAG4cry/models-page.png" 
-       alt="模型列表页面" 
-       style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); margin: 20px 0;"
-       loading="lazy" />
-</div>
+![Model List](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/b5FlrNU/model-list.png)
 
-## 多供应商架构
+::: tip 智能模型路由
+如果您不确定该选择哪个模型，可以使用 ZenMux 的[智能模型路由](/zh/guide/advanced/model-routing.html)功能，系统会根据请求内容自动选择最合适的模型。
+:::
 
-### 冗余保障
+## 模型详情页
 
-大多数大语言模型都配置了多家供应商接入，当某个供应商出现服务异常时，ZenMux 会自动切换到其他可用供应商，确保服务连续性。
+### 查看模型供应商信息
 
-供应商路由的详细策略请参考 [供应商路由文档](https://docs.zenmux.ai/zh/about/provider-routing.html)
+点击任意模型卡片可进入该模型的详情页，在详情页中您可以查看：
 
-### 供应商详情
+- **供应商列表**：该模型支持的所有供应商
+- **性能对比**：不同供应商的首 Token 延迟、吞吐量等性能指标
+- **价格对比**：各供应商的所有计费项的详细价格
+- **参数对比**：各供应商支持的参数
+- **支持协议**：各供应商支持的调用协议（OpenAI API、Anthropic API 等）
+- **可用性状态**：实时显示各供应商的服务状态
+- **供应商 Slug**：用于供应商路由配置的标识符
 
-以 `anthropic/claude-sonnet-4` 模型为例，点击模型卡片可查看详细信息：
+::: info 模型详情页示例
+例如访问 [Claude Sonnet 4 详情页](https://zenmux.ai/anthropic/claude-sonnet-4)，可以看到该模型在 Anthropic、Google Vertex、Amazon Bedrock 等供应商的完整对比信息。
+:::
 
-**支持的供应商：**
+![Model Details](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/nYt8yU9/model-details.png)
 
-- **Anthropic** - 原厂官方接口
-- **Vertex AI** - Google Cloud 托管服务
-- **Amazon Bedrock** - AWS 托管服务
+### 供应商详情页
 
-<div style="text-align: center;">
-  <img src="https://cdn.marmot-cloud.com/storage/zenmux/2025/08/21/vrmIq6I/model-details.png" 
-       alt="模型详情页面" 
-       style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); margin: 20px 0;"
-       loading="lazy" />
-</div>
+此外，您还可以通过供应商详情页查看该供应商支持的所有模型：
 
-## 供应商对比信息
+- **模型列表**：该供应商接入的所有模型
+- **用量统计**：该供应商的接入所有模型的用量统计数据
 
-在模型详情页面可对比查看各供应商的详细信息，包括性能指标、价格、可用性等方面。
+::: info 供应商详情页示例
+例如访问 [Anthropic 供应商页面](https://zenmux.ai/providers/anthropic)，可以看到该供应商提供的所有 Claude 模型及其详细信息。
+:::
+![Provider Details](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/iYwxXFg/provider-analysis.png)
 
-### 性能指标说明
+通过模型详情页和供应商详情页，您可以全面了解各个模型和供应商的特性，做出最适合您业务需求的选择。
 
-| 指标              | 说明                            |
-| ----------------- | ------------------------------- |
-| **Latency (首 Token 延时)** | 从请求到返回第一个 Token 的时间 |
-| **吞吐量 (Throughput)**        | 每分钟处理的 Token 数量         |
-| **可用性 (Uptime)**        | 实时服务状态和稳定性            |
+## 常见问题
+
+### Q: 如何查看某次调用使用了哪个供应商？
+
+A: 在 [ZenMux 控制台](https://zenmux.ai/settings/activity)的调用日志中可以查看每次请求的详细信息，包括使用的模型和供应商。
+
+![调用日志示例](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/EClzQU6/logs-provider-model.png)
+
+### Q: 自动切换供应商会影响输出一致性吗？
+
+A: 同一模型在不同供应商的输出通常是一致的，因为它们使用相同的底层模型权重。但某些供应商可能有轻微的响应时间差异。
+
+### Q: 可以同时指定模型路由和供应商路由吗？
+
+A: 可以。模型路由用于选择最合适的模型，供应商路由用于为选定的模型选择最优供应商。两者结合使用可以实现端到端的智能优化。具体请参考[模型路由文档](/zh/guide/advanced/model-routing.html)和[供应商路由文档](/zh/guide/advanced/provider-routing.html)。
+
+### Q: 多供应商架构会增加延迟吗？
+
+A: 不会。ZenMux 的路由决策在毫秒级完成，对总体延迟的影响可以忽略不计。反而通过智能选择低延迟供应商，可以降低总体响应时间。
+
+::: tip 联系我们
+如果您在使用过程中遇到任何问题，或有任何建议和反馈，欢迎通过以下方式联系我们：
+
+- **官方网站**：<https://zenmux.ai>
+- **技术支持邮箱**：[support@zenmux.ai](mailto:support@zenmux.ai)
+- **商务合作邮箱**：[bd@zenmux.ai](mailto:bd@zenmux.ai)
+- **Twitter**：[@ZenMuxAI](https://twitter.com/ZenMuxAI)
+- **Discord 社区**：<http://discord.gg/vHZZzj84Bm>
+
+更多联系方式和详细信息，请访问我们的[联系我们页面](/zh/help/contact)。
+:::
