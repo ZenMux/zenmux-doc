@@ -34,6 +34,7 @@ export default defineConfig({
   description: "zenmux.ai document",
   outDir: "../docs",
   base: "/",
+  title: 'ZenMux',
   ignoreDeadLinks: true,
 
   head: [
