@@ -17,6 +17,16 @@
 
 模型路由通过自动化决策解决这些问题，为每个请求智能匹配最优模型。
 
+## 模型列表
+
+::: tip 快速查看
+在官网的 [Models 页面](https://zenmux.ai/models) 可查看所有支持的模型及其基本信息。您可以通过左侧的筛选条件、顶部的搜索框、排序选项等快速定位所需模型。也可以通过模型卡片快速获取到模型的输入、输出支持模态；input/output 价格；Context 和 Max Tokens 等关键信息。
+:::
+
+![Model List](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/b5FlrNU/model-list.png)
+
+点击任意模型卡片可进入该模型的详情页，查看该模型在不同供应商的详细信息，包括性能对比、价格对比、参数对比等。详情请参考[供应商路由文档](/zh/guide/advanced/provider-routing.html#如何查看供应商信息)。
+
 ## 核心优势
 
 | 优势特性     | 说明                                         |
@@ -33,6 +43,13 @@
 
 使用模型路由非常简单，只需将 `model` 参数设置为 `zenmux/auto`，并通过 `model_routing_config` 指定候选模型池即可。如果您未指定 `model_routing_config.available_models`，系统将使用平台全量的[模型池](https://zenmux.ai/models)。
 
+::: info 模型 Slug 获取说明
+ZenMux 平台的模型具备唯一 Slug，您可以通过[模型列表页](https://zenmux.ai/models)获取对应模型的 Slug:
+![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/AQG0SIr/model-slug.png)
+或者[某个模型的模型详情页](https://zenmux.ai/anthropic/claude-sonnet-4.5)获取对应模型的 Slug:
+![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/dWYxJnq/model-slug-3.png)
+:::
+
 ::: code-group
 
 ```json [cURL 请求]
@@ -40,7 +57,7 @@
   "model": "zenmux/auto",
   "model_routing_config": {
     "available_models": [
-      "anthropic/claude-4-sonnet",
+      "anthropic/claude-4-sonnet", // 填写模型 Slug
       "openai/gpt-5",
       "google/gemini-2.5-flash-lite"
     ],
@@ -241,6 +258,10 @@ A: 路由系统会综合考虑多个因素：
 ### Q: 可以看到详细的路由决策日志吗？
 
 A: 当前响应中会返回实际使用的模型（`response.model`）。或者通过 [ZenMux 用户控制台](https://zenmux.ai/settings/activity)查看调用日志，了解每次请求的路由详情。
+
+### Q: 可以同时使用模型路由和供应商路由吗？
+
+A: 可以。模型路由用于选择最合适的模型，供应商路由用于为选定的模型选择最优供应商。两者结合使用可以实现端到端的智能优化。具体请参考[供应商路由文档](/zh/guide/advanced/provider-routing.html)。
 
 ::: tip 联系我们
 如果您在使用过程中遇到任何问题，或有任何建议和反馈，欢迎通过以下方式联系我们：
