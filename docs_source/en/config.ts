@@ -26,7 +26,6 @@ export default defineLoacaleConfig({
           { text: "Introduction", link: "/about/intro" },
           { text: "Models & Providers", link: "/about/models-and-providers" },
           { text: "Pricing & Cost", link: "/about/pricing-and-cost" },
-          { text: "Provider Routing", link: "/about/provider-routing" },
         ],
       },
       {
