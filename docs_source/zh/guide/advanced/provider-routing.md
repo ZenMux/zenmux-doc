@@ -114,6 +114,26 @@ print(response.choices[0].message.content)
 
 ::: code-group
 
+```json [按首Token时延路由]
+{
+  "model": "anthropic/claude-sonnet-4",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Hello!"
+    }
+  ],
+  "provider": {
+    // [!code highlight]
+    "routing": {
+      // [!code highlight]
+      "type": "priority", // [!code highlight]
+      "primary_factor": "latency" // [!code highlight]
+    }
+  }
+}
+```
+
 ```json [按价格路由]
 {
   "model": "anthropic/claude-sonnet-4",

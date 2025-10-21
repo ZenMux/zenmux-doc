@@ -31,7 +31,7 @@ Model routing solves these problems through automated decision-making, intellige
 
 ### Basic Usage
 
-Using model routing is simple—set the `model` parameter to `zenmux/auto`, and specify the candidate model pool via `model_routing_config`. If you do not provide `model_routing_config`, the system will use the platform-wide [model pool](https://zenmux.ai/models).
+Using model routing is simple—set the `model` parameter to `zenmux/auto`, and specify the candidate model pool via `model_routing_config`. If you do not provide `model_routing_config.available_models`, the system will use the platform-wide [model pool](https://zenmux.ai/models).
 
 ::: code-group
 
