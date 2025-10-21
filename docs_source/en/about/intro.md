@@ -13,8 +13,8 @@ Core advantages of the platform:
 - Intelligent routing with insurance: Automatically selects the optimal model and provides insurance-backed quality guarantees
 - Enterprise-grade services: High capacity reserves, automatic failover, and global edge acceleration
 
-::: tip 💡 Top-up Discount
-We currently offer a 20% top-up discount and support recharging via Stripe credit cards and Alipay. We welcome you to try it out and share feedback.
+::: tip 💡 Top-up Boost
+**We currently boost your top-up by 20% with extra Credits.**Recharging is supported via Stripe credit cards and Alipay. We welcome you to try it out and share feedback.
 :::
 
 ### Product Name Meaning
