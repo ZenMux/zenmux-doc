@@ -25,9 +25,7 @@ export default defineLoacaleConfig({
       {
         text: "关于 ZenMux",
         items: [
-          { text: "简介", link: "/zh/about/intro" },
-          { text: "模型&供应商", link: "/zh/about/models-and-providers" },
-          { text: "价格&费用", link: "/zh/about/pricing-and-cost" }
+          { text: "简介", link: "/zh/about/intro" }
         ]
       },
       {
@@ -46,6 +44,12 @@ export default defineLoacaleConfig({
               { text: "工具调用", link: "/zh/guide/advanced/tool-calls" },
               { text: "推理模型", link: "/zh/guide/advanced/reasoning" },
               { text: "提示词缓存", link: "/zh/guide/advanced/prompt-cache" }
+            ]
+          },
+          {
+            text: "可观测性",
+            items: [
+              { text: "价格与费用", link: "/zh/guide/observability/pricing-and-cost" }
             ]
           }
         ]
