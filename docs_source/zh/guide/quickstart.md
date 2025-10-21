@@ -14,11 +14,18 @@
 
 2. **获取 API 密钥**：登录后，前往你的 **[用户控制台 > API Keys](https://zenmux.ai/settings/keys)** 页面，创建一个新的 API Key。
 
-3. **选择集成方式**：我们推荐使用 OpenAI SDK 或 Anthropic SDK 的兼容模式，也可以直接调用 ZenMux API。
+3. **选择调用方式**：我们推荐使用 OpenAI SDK 或 Anthropic SDK 的兼容模式，也可以直接调用 ZenMux API。
 
 4. **发起你的第一个请求**：复制下面的代码示例，替换你的 API Key，即可运行。
 
 ---
+
+::: info 模型Slug获取说明
+ZenMux平台的模型具备唯一Slug，您可以通过[模型列表页](https://zenmux.ai/models)获取对应模型的Slug:
+![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/AQG0SIr/model-slug.png)
+或者[某个模型的模型详情页](https://zenmux.ai/anthropic/claude-sonnet-4.5)获取对应模型的Slug:
+![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/dWYxJnq/model-slug-3.png)
+:::
 
 ## 方法一：使用 OpenAI SDK
 
@@ -251,28 +258,18 @@ curl https://zenmux.ai/api/v1/chat/completions # [!code highlight]
 
 ---
 
-## 模型选择
-
-ZenMux 支持的全部模型可从[官方模型列表](https://zenmux.ai/models)查看。
-
-`model`参数的值可从通过如下方式复制模型准确的 Slug 获取:
-
-<div style="text-align: center;">
-  <img src="https://github.com/user-attachments/assets/dbb619aa-9ec4-4be2-8017-9f6c3ebcc36c" 
-       alt="复制模型Slug" 
-       style="width: auto; max-width: 400px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); margin: 16px 0;"
-       loading="lazy" />
-</div>
-
-<div style="text-align: center;">
-  <img src="https://github.com/user-attachments/assets/f78ec49e-a91d-49ae-ad4e-66cc7d6b514b" 
-       alt="复制模型Slug" 
-       style="width: auto; max-width: 400px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); margin: 16px 0;"
-       loading="lazy" />
-</div>
-
----
-
 ## 高级用法
 
 关于高级用法的详细信息，请参阅高级调用章节的内容。
+
+::: tip 联系我们
+如果您在使用过程中遇到任何问题，或有任何建议和反馈，欢迎通过以下方式联系我们：
+
+- **官方网站**：<https://zenmux.ai>
+- **技术支持邮箱**：[support@zenmux.ai](mailto:support@zenmux.ai)
+- **商务合作邮箱**：[bd@zenmux.ai](mailto:bd@zenmux.ai)
+- **Twitter**：[@ZenMuxAI](https://twitter.com/ZenMuxAI)
+- **Discord 社区**：<http://discord.gg/vHZZzj84Bm>
+
+更多联系方式和详细信息，请访问我们的[联系我们页面](/zh/help/contact)。
+:::
