@@ -21,6 +21,18 @@ noindex: false
 nofollow: false
 ---
 
+<script setup>
+import { onMounted } from 'vue'
+import { useRouter } from 'vitepress'
+
+const router = useRouter()
+
+onMounted(() => {
+  // Redirect to introduction page
+  router.go('/about/intro')
+})
+</script>
+
 ::: info Welcome to the ZenMux Documentation
 For more details about ZenMux, visit our [Introduction page](/about/intro), which includes a comprehensive product overview, feature set, and Beta application information.
 :::

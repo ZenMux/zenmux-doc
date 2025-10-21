@@ -7,7 +7,7 @@ canonical-url: "https://zenmux.ai/"
 "og:site_name": ZenMux
 "og:title": ZenMux - AI 模型聚合平台
 "og:description": >-
-  ZenMux 提供数百种 AI 模型的统一 API 访问，具备智能路由、
+  ZenMux 提供数百种 AI 模型的统一 API 访问,具备智能路由、
   自动故障转移和 AI 输出质量保险。
 "og:image":
   type: url
@@ -20,6 +20,18 @@ canonical-url: "https://zenmux.ai/"
 noindex: false
 nofollow: false
 ---
+
+<script setup>
+import { onMounted } from 'vue'
+import { useRouter } from 'vitepress'
+
+const router = useRouter()
+
+onMounted(() => {
+  // 重定向到简介页面
+  router.go('/zh/about/intro')
+})
+</script>
 
 ::: info 欢迎来到 ZenMux 文档
 关于 ZenMux 的详细信息，请访问我们的[简介页面](/zh/about/intro)，其中包含详细的产品概述、功能特性和 Beta 申请信息。

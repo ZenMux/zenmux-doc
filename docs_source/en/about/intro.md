@@ -14,7 +14,7 @@ Core advantages of the platform:
 - Enterprise-grade services: High capacity reserves, automatic failover, and global edge acceleration
 
 ::: tip 💡 Top-up Boost
-** We currently boost your top-up by 20% with extra Credits. ** Recharging is supported via Stripe credit cards and Alipay. We welcome you to try it out and share feedback.
+We currently boost your top-up by 20% with extra Credits. Recharging is supported via Stripe credit cards and Alipay. We welcome you to try it out and share feedback.
 :::
 
 ### Product Name Meaning
