@@ -1,29 +1,36 @@
 # Quick Start
 
-Welcome to **[ZenMux](https://docs.zenmux.ai/about/intro.html)**! This guide helps you get started quickly and shows how to call the ZenMux API using three different methods.
+Welcome to **[ZenMux](https://docs.zenmux.ai/about/intro.html)**! This guide will help you get started quickly and shows how to call the ZenMux API in three different ways.
 
-::: tip 💡 Get started in four steps
-You only need four simple steps to start using ZenMux:
+::: tip 💡 Get started in 4 steps
+You can start using ZenMux in just four simple steps:
 :::
 
-1. **Log in to ZenMux**: Visit the **[ZenMux login page](https://zenmux.ai/login)** and choose one of the following login methods:
+1. **Sign in to ZenMux**: Visit the **[ZenMux login page](https://zenmux.ai/login)** and sign in using any of the following:
 
-   - Email login
-   - GitHub account login
-   - Google account login
+   - Email
+   - GitHub account
+   - Google account
 
-2. **Get an API Key**: After logging in, go to your **[User Console > API Keys](https://zenmux.ai/settings/keys)** page and create a new API Key.
+2. **Get an API key**: After signing in, go to your **[User Console > API Keys](https://zenmux.ai/settings/keys)** page and create a new API key.
 
-3. **Choose an integration method**: We recommend using the OpenAI SDK or the Anthropic SDK compatibility mode. You can also call the ZenMux API directly.
+3. **Choose an integration method**: We recommend using the OpenAI SDK or Anthropic SDK in compatibility mode, or you can call the ZenMux API directly.
 
-4. **Send your first request**: Copy the code examples below, replace your API Key, and run.
+4. **Make your first request**: Copy the code example below, replace your API key, and run it.
 
 ---
+
+::: info How to Obtain Model Slugs
+Each model on the ZenMux platform has a unique slug. You can find model slugs on the [Models page](https://zenmux.ai/models):
+![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/AQG0SIr/model-slug.png)
+Or on the [model detail page](https://zenmux.ai/anthropic/claude-sonnet-4.5):
+![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/dWYxJnq/model-slug-3.png)
+:::
 
 ## Method 1: Using the OpenAI SDK
 
 ::: info Compatibility
-ZenMux API endpoints are fully compatible with the OpenAI API. You only need to change two parameters to switch seamlessly.
+ZenMux endpoints are fully compatible with the OpenAI API. You only need to change two parameters to switch seamlessly.
 :::
 
 ### Code Examples
@@ -37,11 +44,11 @@ from openai import OpenAI
 client = OpenAI(
     # 2. Point the base URL to the ZenMux endpoint
     base_url="https://zenmux.ai/api/v1", # [!code highlight]
-    # 3. Replace with the API Key from your ZenMux User Console
+    # 3. Replace with the API key from your ZenMux console
     api_key="<your ZENMUX_API_KEY>", # [!code highlight]
 )
 
-# 4. Send a request
+# 4. Make the request
 completion = client.chat.completions.create(
     # 5. Specify the model you want to use in the format "provider/model-name"
     model="openai/gpt-5", # [!code highlight]
@@ -63,12 +70,12 @@ import OpenAI from "openai";
 const openai = new OpenAI({
   // 2. Point the base URL to the ZenMux endpoint
   baseURL: "https://zenmux.ai/api/v1", // [!code highlight]
-  // 3. Replace with the API Key from your ZenMux User Console
+  // 3. Replace with the API key from your ZenMux console
   apiKey: "<your ZENMUX_API_KEY>", // [!code highlight]
 });
 
 async function main() {
-  // 4. Send a request
+  // 4. Make the request
   const completion = await openai.chat.completions.create({
     // 5. Specify the model you want to use in the format "provider/model-name"
     model: "openai/gpt-5", // [!code highlight]
@@ -93,15 +100,15 @@ main();
 ## Method 2: Using the Anthropic SDK
 
 ::: info Compatibility
-ZenMux fully supports the Anthropic API protocol and can be seamlessly integrated into tools like Claude Code and Cursor. You only need to change two parameters.
+ZenMux fully supports the Anthropic API protocol and integrates seamlessly with tools like Claude Code and Cursor. You only need to change two parameters.
 
-Note that for the Anthropic protocol use base_url="https://zenmux.ai/api/anthropic".
+Note: For the Anthropic protocol, use base_url="https://zenmux.ai/api/anthropic".
 :::
 
 ::: info Anthropic Protocol Model Support
-Models compatible with the Anthropic protocol are being adapted in batches. You can view currently supported models by filtering Anthropic API Compatible on the [Official Model List](https://zenmux.ai/models):
+Models compatible with the Anthropic protocol are being adapted in batches. You can view the currently supported models by filtering for Anthropic API Compatible on the [official model list](https://zenmux.ai/models):
 ![anthropic-support](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/16/602FqX9/anthropic-support.png)
-Alternatively, check the [model detail page](https://zenmux.ai/anthropic/claude-haiku-4.5):
+You can also check on the [model detail page](https://zenmux.ai/anthropic/claude-haiku-4.5):
 ![anthropic-support](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/16/I9JHS8b/detail-anthropic-support.png)
 :::
 
@@ -116,11 +123,11 @@ from anthropic import Anthropic
 client = Anthropic(
     # 2. Point the base URL to the ZenMux endpoint
     base_url="https://zenmux.ai/api/anthropic", # [!code highlight]
-    # 3. Replace with the API Key from your ZenMux User Console
+    # 3. Replace with the API key from your ZenMux console
     api_key="<your ZENMUX_API_KEY>", # [!code highlight]
 )
 
-# 4. Send a request
+# 4. Make the request
 message = client.messages.create(
     # 5. Specify the model you want to use in the format "provider/model-name"
     model="anthropic/claude-sonnet-4.5", # [!code highlight]
@@ -143,12 +150,12 @@ import Anthropic from "@anthropic-ai/sdk";
 const client = new Anthropic({
   // 2. Point the base URL to the ZenMux endpoint
   baseURL: "https://zenmux.ai/api/anthropic", // [!code highlight]
-  // 3. Replace with the API Key from your ZenMux User Console
+  // 3. Replace with the API key from your ZenMux console
   apiKey: "<your ZENMUX_API_KEY>", // [!code highlight]
 });
 
 async function main() {
-  // 4. Send a request
+  // 4. Make the request
   const message = await client.messages.create({
     // 5. Specify the model you want to use in the format "provider/model-name"
     model: "anthropic/claude-sonnet-4.5", // [!code highlight]
@@ -201,7 +208,7 @@ response = httpx.post(
     timeout=httpx.Timeout(60.0)
 )
 
-# Check if the request succeeded (optional)
+# Optionally check whether the request succeeded
 response.raise_for_status()
 
 # Print the JSON response returned by the server
@@ -251,28 +258,18 @@ curl https://zenmux.ai/api/v1/chat/completions # [!code highlight]
 
 ---
 
-## Model Selection
-
-You can find the full list of models supported by ZenMux on the [Official Model List](https://zenmux.ai/models).
-
-The value of the `model` parameter can be obtained by copying the exact model slug as shown below:
-
-<div style="text-align: center;">
-  <img src="https://github.com/user-attachments/assets/dbb619aa-9ec4-4be2-8017-9f6c3ebcc36c" 
-       alt="Copy model slug" 
-       style="width: auto; max-width: 400px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); margin: 16px 0;"
-       loading="lazy" />
-</div>
-
-<div style="text-align: center;">
-  <img src="https://github.com/user-attachments/assets/f78ec49e-a91d-49ae-ad4e-66cc7d6b514b" 
-       alt="Copy model slug" 
-       style="width: auto; max-width: 400px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); margin: 16px 0;"
-       loading="lazy" />
-</div>
-
----
-
 ## Advanced Usage
 
-For details on advanced usage, see the Advanced Usage section.
+For more details on advanced usage, refer to the Advanced Usage section.
+
+::: tip Contact Us
+If you encounter any issues during use or have suggestions and feedback, feel free to contact us:
+
+- **Official Website**: <https://zenmux.ai>
+- **Technical Support**: [support@zenmux.ai](mailto:support@zenmux.ai)
+- **Business Inquiries**: [bd@zenmux.ai](mailto:bd@zenmux.ai)
+- **Twitter**: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
+- **Discord Community**: <http://discord.gg/vHZZzj84Bm>
+
+For more contact options and details, please visit our [Contact Us page](/help/contact).
+:::

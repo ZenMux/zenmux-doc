@@ -55,7 +55,7 @@
 }
 ```
 
-```python [Python SDK]
+```python [OpenAI Python SDK]
 from openai import OpenAI
 
 client = OpenAI(
@@ -82,33 +82,6 @@ response = client.chat.completions.create(
 
 print(f"选中的模型: {response.model}")
 print(f"回答: {response.choices[0].message.content}")
-```
-
-```typescript [TypeScript/JavaScript]
-import OpenAI from "openai";
-
-const client = new OpenAI({
-  baseURL: "https://zenmux.ai/api/v1",
-  apiKey: process.env.ZENMUX_API_KEY, // [!code highlight]
-});
-
-const response = await client.chat.completions.create({
-  model: "zenmux/auto", // [!code highlight]
-  model_routing_config: {
-    // [!code highlight]
-    available_models: [
-      // [!code highlight]
-      "anthropic/claude-4-sonnet", // [!code highlight]
-      "openai/gpt-5", // [!code highlight]
-      "google/gemini-2.5-flash-lite", // [!code highlight]
-    ], // [!code highlight]
-    preference: "balanced", // [!code highlight]
-  }, // [!code highlight]
-  messages: [{ role: "user", content: "解释一下什么是量子计算" }],
-});
-
-console.log("选中的模型:", response.model);
-console.log("回答:", response.choices[0].message.content);
 ```
 
 :::

@@ -105,4 +105,6 @@ Please ensure the your_api_key variable is properly configured.
 仅提供翻译后的英文markdown内容，不要添加任何额外的评论或解释。输出应该可以直接用作英文技术文档。
 </output_format>
 
+特别注意：如果因为我的中文、英文的url路径有些不一样，当翻译成英文时，请把zh去掉，比如/docs_source/zh/about/intro.md翻译成英文后路径应为/docs_source/about/intro.md。而不是/docs_source/en/about/intro.md。
+
 请提供你的中文markdown文档，我将按照这些规范将其翻译成专业英文。

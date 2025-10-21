@@ -27,15 +27,15 @@ model_slug:provider_slug
 
 ### 使用示例
 
-::: info 模型Slug获取说明
-ZenMux平台的模型具备唯一Slug，您可以通过[模型列表页](https://zenmux.ai/models)获取对应模型的Slug:
+::: info 模型 Slug 获取说明
+ZenMux 平台的模型具备唯一 Slug，您可以通过[模型列表页](https://zenmux.ai/models)获取对应模型的 Slug:
 ![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/AQG0SIr/model-slug.png)
-或者[某个模型的模型详情页](https://zenmux.ai/anthropic/claude-sonnet-4.5)获取对应模型的Slug:
+或者[某个模型的模型详情页](https://zenmux.ai/anthropic/claude-sonnet-4.5)获取对应模型的 Slug:
 ![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/dWYxJnq/model-slug-3.png)
 :::
 
-::: info 供应商Slug获取说明
-ZenMux平台的模型供应商具备唯一Slug，您可以通过[模型详情页](https://zenmux.ai/anthropic/claude-sonnet-4.5)获取对应模型供应商的Slug:
+::: info 供应商 Slug 获取说明
+ZenMux 平台的模型供应商具备唯一 Slug，您可以通过[模型详情页](https://zenmux.ai/anthropic/claude-sonnet-4.5)获取对应模型供应商的 Slug:
 ![provider-slug](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/98Gc7hL/provider-slug.png)
 :::
 
@@ -61,7 +61,7 @@ anthropic/claude-3.7-sonnet:amazon-bedrock
 }
 ```
 
-```python [Python SDK]
+```python [OpenAI Python SDK]
 from openai import OpenAI
 
 client = OpenAI(
@@ -83,12 +83,12 @@ print(response.choices[0].message.content)
 
 ### 优势特点
 
-| 特点       | 说明                                       |
-| ---------- | ------------------------------------------ |
-| **简洁直观** | 直接在模型名称中指定，无需额外配置字段     |
-| **API 兼容** | 完全兼容 OpenAI SDK 的标准参数结构         |
-| **快速切换** | 只需修改模型名称即可切换供应商             |
-| **清晰明确** | 一目了然地看出正在使用哪个供应商           |
+| 特点         | 说明                                   |
+| ------------ | -------------------------------------- |
+| **简洁直观** | 直接在模型名称中指定，无需额外配置字段 |
+| **API 兼容** | 完全兼容 OpenAI SDK 的标准参数结构     |
+| **快速切换** | 只需修改模型名称即可切换供应商         |
+| **清晰明确** | 一目了然地看出正在使用哪个供应商       |
 
 ::: tip 💡 最佳实践
 对于大多数场景，推荐使用模型名称后缀语法来指定供应商，这是最简单直接的方式。如果需要更复杂的路由策略（如多供应商回退、动态优先级等），可以使用下文介绍的高级路由配置。
@@ -104,11 +104,11 @@ print(response.choices[0].message.content)
 
 #### 支持的路由维度
 
-| 维度           | 说明                                     |
-| -------------- | ---------------------------------------- |
-| **latency**    | 按照首 Token 延迟（Latency）从低到高排序 |
+| 维度           | 说明                                            |
+| -------------- | ----------------------------------------------- |
+| **latency**    | 按照首 Token 延迟（Latency）从低到高排序        |
 | **price**      | 按照综合价格（Prompt + Completion）从低到高排序 |
-| **throughput** | 按照吞吐量从高到低排序                   |
+| **throughput** | 按照吞吐量从高到低排序                          |
 
 #### 配置示例
 
@@ -123,8 +123,10 @@ print(response.choices[0].message.content)
       "content": "Hello!"
     }
   ],
-  "provider": { // [!code highlight]
-    "routing": { // [!code highlight]
+  "provider": {
+    // [!code highlight]
+    "routing": {
+      // [!code highlight]
       "type": "priority", // [!code highlight]
       "primary_factor": "price" // [!code highlight]
     }
@@ -141,8 +143,10 @@ print(response.choices[0].message.content)
       "content": "Hello!"
     }
   ],
-  "provider": { // [!code highlight]
-    "routing": { // [!code highlight]
+  "provider": {
+    // [!code highlight]
+    "routing": {
+      // [!code highlight]
       "type": "priority", // [!code highlight]
       "primary_factor": "throughput" // [!code highlight]
     }
@@ -167,10 +171,13 @@ print(response.choices[0].message.content)
       "content": "Hello!"
     }
   ],
-  "provider": { // [!code highlight]
-    "routing": { // [!code highlight]
+  "provider": {
+    // [!code highlight]
+    "routing": {
+      // [!code highlight]
       "type": "order", // [!code highlight]
-      "providers": [ // [!code highlight]
+      "providers": [
+        // [!code highlight]
         "anthropic/anthropic_endpoint", // [!code highlight]
         "google-vertex/VertexAIAnthropic", // [!code highlight]
         "amazon-bedrock/BedrockAnthropic" // [!code highlight]
@@ -193,15 +200,15 @@ response = client.chat.completions.create(
     messages=[
         {"role": "user", "content": "Hello!"}
     ],
-    extra_body={ // [!code highlight]
-        "provider": { // [!code highlight]
-            "routing": { // [!code highlight]
-                "type": "order", // [!code highlight]
-                "providers": [ // [!code highlight]
-                    "anthropic/anthropic_endpoint", // [!code highlight]
-                    "google-vertex/VertexAIAnthropic", // [!code highlight]
-                    "amazon-bedrock/BedrockAnthropic" // [!code highlight]
-                ] // [!code highlight]
+    extra_body={
+        "provider": {
+            "routing": {
+                "type": "order",
+                "providers": [
+                    "anthropic/anthropic_endpoint",
+                    "google-vertex/VertexAIAnthropic",
+                    "amazon-bedrock/BedrockAnthropic"
+                ]
             }
         }
     }
@@ -227,15 +234,15 @@ response = client.chat.completions.create(
 
 不同的路由策略适用于不同的业务场景：
 
-| 场景             | 推荐方式                 | 说明                                     |
-| ---------------- | ------------------------ | ---------------------------------------- |
-| **锁定单一供应商** | 模型名称后缀语法         | 简单直接，适合生产环境固定供应商         |
-| **地理位置优化** | 指定供应商列表           | 选择地理位置更近的供应商以降低延迟       |
-| **成本控制**     | 按价格路由               | 优先选择价格更优的供应商                 |
-| **性能优化**     | 按延迟或吞吐量路由       | 根据性能指标动态选择最佳供应商           |
-| **高可用保障**   | 指定供应商列表（多个）   | 多供应商回退机制，确保服务连续性         |
-| **合规要求**     | 锁定特定供应商           | 选择符合数据合规要求的供应商             |
-| **测试验证**     | 灵活切换                 | A/B 测试不同供应商的表现                 |
+| 场景               | 推荐方式               | 说明                               |
+| ------------------ | ---------------------- | ---------------------------------- |
+| **锁定单一供应商** | 模型名称后缀语法       | 简单直接，适合生产环境固定供应商   |
+| **地理位置优化**   | 指定供应商列表         | 选择地理位置更近的供应商以降低延迟 |
+| **成本控制**       | 按价格路由             | 优先选择价格更优的供应商           |
+| **性能优化**       | 按延迟或吞吐量路由     | 根据性能指标动态选择最佳供应商     |
+| **高可用保障**     | 指定供应商列表（多个） | 多供应商回退机制，确保服务连续性   |
+| **合规要求**       | 锁定特定供应商         | 选择符合数据合规要求的供应商       |
+| **测试验证**       | 灵活切换               | A/B 测试不同供应商的表现           |
 
 ::: details 📋 完整示例
 
