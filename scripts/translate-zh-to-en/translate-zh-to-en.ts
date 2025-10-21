@@ -182,14 +182,20 @@ async function main() {
     const args = process.argv.slice(2);
     const forceOverwrite = args.includes('--force');
     const concurrency = parseInt(args.find(arg => arg.startsWith('--concurrency='))?.split('=')[1] || '5');
-    const sourceInput = args.find(arg => !arg.startsWith('--'));
-    
-    if (!sourceInput) {
+
+    // 收集所有非标志参数作为源路径列表
+    const sourceInputs = args.filter(arg => !arg.startsWith('--'));
+
+    if (sourceInputs.length === 0) {
       console.error("❌ 请提供源文件或文件夹路径作为命令行参数");
-      console.log("使用方法: pnpm run translate <源路径> [--force] [--concurrency=5]");
-      console.log("示例: pnpm run translate docs_source/zh/index.md");
-      console.log("示例: pnpm run translate docs_source/zh/");
-      console.log("示例: pnpm run translate docs_source/zh/ --force --concurrency=10");
+      console.log("使用方法: pnpm run translate <源路径1> [源路径2] [...] [--force] [--concurrency=5]");
+      console.log("");
+      console.log("示例:");
+      console.log("  pnpm run translate docs_source/zh/index.md");
+      console.log("  pnpm run translate docs_source/zh/");
+      console.log("  pnpm run translate docs_source/zh/guide/quickstart.md docs_source/zh/about/intro.md");
+      console.log("  pnpm run translate docs_source/zh/guide/ docs_source/zh/api/ --force");
+      console.log("  pnpm run translate docs_source/zh/ --force --concurrency=10");
       console.log("");
       console.log("参数说明:");
       console.log("  --force         强制覆盖已存在的目标文件");
@@ -199,23 +205,50 @@ async function main() {
       console.log("设置方法: export ZENMUX_API_KEY=your_api_key_here");
       process.exit(1);
     }
-    
-    // 转换为绝对路径
-    const absoluteSourcePath = path.resolve(sourceInput);
-    
+
     console.log("=== 中文文档翻译脚本 ===");
-    console.log(`📁 源路径: ${absoluteSourcePath}`);
+    console.log(`📁 输入路径数量: ${sourceInputs.length}`);
     console.log(`🔄 并发数量: ${concurrency}`);
-    
-    // 检查路径是否包含 zh
-    if (!isChinesePath(absoluteSourcePath)) {
-      throw new Error("❌ 源路径必须包含 'zh' 目录");
-    }
-    
-    // 获取所有需要翻译的markdown文件
+    console.log(`💪 强制覆盖: ${forceOverwrite ? '是' : '否'}`);
+    console.log("");
+
+    // 收集所有需要翻译的markdown文件
     console.log("🔍 扫描markdown文件...");
-    const markdownFiles = getMarkdownFiles(absoluteSourcePath);
-    console.log(`📄 找到 ${markdownFiles.length} 个markdown文件`);
+    const allMarkdownFiles: string[] = [];
+
+    for (const sourceInput of sourceInputs) {
+      // 转换为绝对路径
+      const absoluteSourcePath = path.resolve(sourceInput);
+
+      console.log(`  📂 处理路径: ${absoluteSourcePath}`);
+
+      // 检查路径是否包含 zh
+      if (!isChinesePath(absoluteSourcePath)) {
+        console.error(`  ⚠️  跳过: 源路径必须包含 'zh' 目录`);
+        continue;
+      }
+
+      try {
+        // 获取该路径下的所有markdown文件
+        const markdownFiles = getMarkdownFiles(absoluteSourcePath);
+        console.log(`  ✅ 找到 ${markdownFiles.length} 个markdown文件`);
+        allMarkdownFiles.push(...markdownFiles);
+      } catch (error) {
+        console.error(`  ❌ 处理路径失败: ${error}`);
+        continue;
+      }
+    }
+
+    console.log("");
+    console.log(`📄 总计找到 ${allMarkdownFiles.length} 个markdown文件`);
+
+    // 去重（防止重复指定同一文件）
+    const uniqueMarkdownFiles = [...new Set(allMarkdownFiles)];
+    if (uniqueMarkdownFiles.length < allMarkdownFiles.length) {
+      console.log(`🔄 去重后: ${uniqueMarkdownFiles.length} 个文件`);
+    }
+
+    const markdownFiles = uniqueMarkdownFiles;
     
     if (markdownFiles.length === 0) {
       console.log("⚠️  没有找到需要翻译的markdown文件");
