@@ -1,14 +1,14 @@
-# Guide to Using Claude Code via ZenMux
+# Claude Code CLI Guide via ZenMux
 
-Claude Code is Anthropic’s official coding agent. With its integration into ZenMux, you can choose from many more models, not just those available through the official Claude API.
+Claude Code is Anthropic’s official coding agent. Through its integration with ZenMux, you can access more model options beyond the official Claude API.
 
 ::: info Compatibility Notes
-ZenMux fully supports the Anthropic API protocol and can be seamlessly integrated into tools like Claude Code and Cursor. You only need to change two parameters to start using it.
+ZenMux fully supports the Anthropic API protocol and can be seamlessly integrated with tools like Claude Code and Cursor. You only need to modify two parameters.
 
-Note: for the Anthropic protocol, base_url="https://zenmux.ai/api/anthropic".
+Note that the Anthropic protocol base_url is "https://zenmux.ai/api/anthropic".
 :::
 
-## Configuration
+## Configuration Guide
 
 ### Install Claude Code
 
@@ -24,65 +24,76 @@ npm install -g @anthropic-ai/claude-code
 
 :::
 
-### Configure Environment Variables
+### Configure Claude Code
 
-Set the following environment variables to use ZenMux with the Anthropic API format:
+Claude Code supports using a configuration file to set environment variables. Edit or create the `~/.claude/settings.json` file and add the following configuration:
 
 ```bash
-# Set ZenMux API base URL (Anthropic format)
-export ANTHROPIC_BASE_URL="https://zenmux.ai/api/anthropic"   # [!code highlight]
+# If the .claude directory does not exist, create it first
+mkdir -p ~/.claude
 
-# Set your ZenMux API key
-export ANTHROPIC_AUTH_TOKEN="sk-ai-v1-xxx"  # [!code highlight]
+# Create or edit the configuration file
+nano ~/.claude/settings.json  # Or use other editors like vim, code, etc.
+```
 
-# Specify the models to use (Claude series)
-export ANTHROPIC_MODEL="anthropic/claude-sonnet-4.5"  # [!code highlight]
-export ANTHROPIC_SMALL_FAST_MODEL="anthropic/claude-haiku-4.5"  # [!code highlight]
+Add the following content to the configuration file:
 
+```json
+{
+  "env": {
+    "ANTHROPIC_AUTH_TOKEN": "sk-ai-v1-xxx",
+    "ANTHROPIC_BASE_URL": "https://zenmux.ai/api/anthropic",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "anthropic/claude-haiku-4.5",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "anthropic/claude-sonnet-4.5",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "anthropic/claude-opus-4.1"
+  }
+}
 ```
 
 ::: warning Important Configuration
-Be sure to replace `sk-ai-v1-xxx` with your actual ZenMux API key. You can obtain an API key from the [ZenMux Console](https://zenmux.ai/settings/keys).
+Make sure to replace `sk-ai-v1-xxx` with your actual ZenMux API Key. You can obtain the API Key from the [ZenMux Console](https://zenmux.ai/settings/keys).
 :::
 
-### Start Using It
+::: tip Configuration Notes
 
-After configuring your environment variables, navigate to your project directory and start Claude Code:
+- `ANTHROPIC_AUTH_TOKEN`: Your ZenMux API Key
+- `ANTHROPIC_BASE_URL`: ZenMux Anthropic API endpoint
+- `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC`: Disable nonessential traffic
+- `ANTHROPIC_DEFAULT_HAIKU_MODEL`: Set the default Haiku model (for quick tasks)
+- `ANTHROPIC_DEFAULT_SONNET_MODEL`: Set the default Sonnet model (for general tasks)
+- `ANTHROPIC_DEFAULT_OPUS_MODEL`: Set the default Opus model (for complex tasks)
+  :::
+
+### Start Using Immediately
+
+After configuring `settings.json`, go to your project directory and start Claude Code:
 
 ```bash
-# Go to your project directory
+# Navigate to the project directory
 cd my-project
 
 # Start Claude Code
 claude  # [!code highlight]
 ```
 
-::: tip Quick Setup
-You can add the environment variables to your shell profile to avoid setting them manually each time:
-
-```bash
-# Add to your .bashrc or .zshrc file
-export ANTHROPIC_BASE_URL="https://zenmux.ai/api/anthropic"
-export ANTHROPIC_AUTH_TOKEN="sk-ai-v1-xxx"
-export ANTHROPIC_MODEL="anthropic/claude-sonnet-4.5"
-export ANTHROPIC_SMALL_FAST_MODEL="anthropic/claude-haiku-4.5"
-```
-
+::: tip Convenient Usage
+Using a configuration file is more convenient—no need to manually set environment variables each time. The configuration will be automatically loaded whenever you start Claude Code.
 :::
 
 ### Supported Models
 
 ::: info Anthropic Protocol Supported Models
-Models that support the Anthropic protocol are being adapted in batches. You can view currently supported models by filtering for Anthropic API Compatible in the [official model list](https://zenmux.ai/models):
+Models that support the Anthropic protocol are being adapted in batches. You can view currently supported models by filtering "Anthropic API Compatible" in the [official model list](https://zenmux.ai/models):
 ![anthropic-support](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/16/602FqX9/anthropic-support.png)
-Alternatively, you can check the [model detail page](https://zenmux.ai/anthropic/claude-haiku-4.5):
+Alternatively, check the [model detail page](https://zenmux.ai/anthropic/claude-haiku-4.5):
 ![anthropic-support](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/16/I9JHS8b/detail-anthropic-support.png)
 :::
 
-Below is a list of recommended models with strong coding capabilities. For the full list of models compatible with the Anthropic protocol, use the methods described above.
+Below is a recommended list of models with strong coding capabilities. For the complete set of models supporting the Anthropic protocol, please use the methods described above.
 
-| No. | Model slug                        |
-| --- | --------------------------------- |
+| No. | Model slug                       |
+| --- | -------------------------------- |
 | 1   | `anthropic/claude-sonnet-4.5`    |
 | 2   | `anthropic/claude-opus-4.1`      |
 | 3   | `anthropic/claude-haiku-4.5`     |
@@ -100,11 +111,11 @@ Below is a list of recommended models with strong coding capabilities. For the f
 | 15  | `inclusionai/ring-1t`            |
 | 16  | `inclusionai/ling-1t`            |
 
-For more models, refer to the Anthropic protocol support instructions above.
+For more models, refer to the Anthropic protocol support notes above!
 
-## Usage
+## Usage Experience
 
-Once configured, you can use ZenMux’s variety of models within Claude Code:
+Once configured, you can use ZenMux’s diverse models within Claude Code:
 
 <div style="text-align: center;">
   <img src="https://cdn.marmot-cloud.com/storage/zenmux/2025/10/16/GxOgGlh/claude-code-v2.png"
@@ -113,7 +124,7 @@ Once configured, you can use ZenMux’s variety of models within Claude Code:
        loading="lazy" />
 </div>
 
-You can use the '/model' command to identify the currently selected model:
+You can use the '/model' command to verify the currently active model:
 
 <div style="text-align: center;">
   <img src="https://cdn.marmot-cloud.com/storage/zenmux/2025/10/16/MOGcIN5/claude-code-v2-model.png"
@@ -127,50 +138,52 @@ You can use the '/model' command to identify the currently selected model:
 ### Common Issues
 
 ::: details API Key Error
-**Issue**: API key invalid or unauthorized
+**Issue**: API Key is reported as invalid or unauthorized
 
 **Solution**:
 
-- Check whether the ZenMux API key in your environment variables is correct
-- Confirm the API key is active and has sufficient balance
-- Verify the API key format starts with `sk-ai-v1-`
+- Check whether the ZenMux API Key in your environment variables is correct
+- Ensure the API Key is active and has sufficient balance
+- Verify the API Key format starts with `sk-ai-v1-`
   :::
 
-::: details Model Not Compatible with the Anthropic Protocol
-**Issue**: When using a model, you are told it does not support the Anthropic protocol
+::: details Model Not Compatible with Anthropic Protocol
+**Issue**: When using a model, you are prompted that it does not support the Anthropic protocol
 
 **Solution**:
 
-- Filter for "Anthropic API Compatible" in the [ZenMux model list](https://zenmux.ai/models) to see currently supported models
+- Filter "Anthropic API Compatible" in the [ZenMux model list](https://zenmux.ai/models) to see currently supported models
 - Or visit the specific model’s detail page to confirm Anthropic protocol support
 - Choose a model from the supported list above
   :::
 
-::: details Connection Failures
-**Issue**: Claude Code cannot connect to the ZenMux service
+::: details Connection Failure
+**Issue**: Claude Code fails to connect to the ZenMux service
 
 **Solution**:
 
-- Check that your network connection is normal
-- Verify `ANTHROPIC_BASE_URL` is set correctly to `https://zenmux.ai/api/anthropic`
-- Confirm your firewall settings are not blocking outbound connections
+- Check whether your network connection is normal
+- Verify `ANTHROPIC_BASE_URL` is correctly set to `https://zenmux.ai/api/anthropic`
+- Confirm that firewall settings are not blocking outbound connections
   :::
 
-::: details Environment Variables Not Taking Effect
-**Issue**: Model configuration remains inactive after setting environment variables
+::: details Configuration File Not Taking Effect
+**Issue**: settings.json configuration is set but not applied
 
 **Solution**:
 
-- Reopen your terminal window, or run `source ~/.zshrc` or `source ~/.bashrc` to reload the profile
-- Confirm the environment variables are set correctly with `echo $ANTHROPIC_MODEL`
+- Confirm the configuration file path is `~/.claude/settings.json`
+- Check whether the JSON format is valid (note: the JSON standard does not support comments; remove any comments)
+- Use `cat ~/.claude/settings.json` to verify the file contents
+- Restart Claude Code to load the latest configuration
   :::
 
 ::: details VSCode Claude Code Extension Configuration
-**Issue**: Issues in GUI mode with the Claude Code VSCode extension
+**Issue**: Issues encountered in the VSCode Claude Code extension’s GUI mode
 
 **Solution**:
 
-You can adjust the model configuration directly in the VSCode extension settings, changing it to the model slugs configured in your profile. The operation is shown in the images below:
+You can configure Claude Code’s model directly in the VSCode extension settings by setting it to the model slug from your configuration file. See the screenshots below:
 
 ![VSCode Claude Code Extension Configuration](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/16/alNj8F2/cc-plugin-settings.png)
 ![VSCode Claude Code Extension Configuration](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/16/S7fuYF9/cc-plugin-model.png)
@@ -178,28 +191,49 @@ You can adjust the model configuration directly in the VSCode extension settings
 
 ## Advanced Configuration
 
-### Configure Models of Different Scales
+### Configure Models of Different Sizes
 
-You can configure models of different scales based on your task requirements:
+You can configure different model sizes in `~/.claude/settings.json` based on task requirements:
 
 ::: code-group
 
-```bash [Balanced]
-# Model choices balancing performance and cost
-export ANTHROPIC_MODEL=anthropic/claude-sonnet-4.5
-export ANTHROPIC_SMALL_FAST_MODEL=anthropic/claude-haiku-4.5
+```json [Balanced Configuration]
+{
+  "env": {
+    "ANTHROPIC_AUTH_TOKEN": "sk-ai-v1-xxx",
+    "ANTHROPIC_BASE_URL": "https://zenmux.ai/api/anthropic",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "anthropic/claude-haiku-4.5",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "anthropic/claude-sonnet-4.5",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "anthropic/claude-opus-4.1"
+  }
+}
 ```
 
-```bash [Performance-first]
-# Model choices prioritizing performance
-export ANTHROPIC_MODEL=anthropic/claude-opus-4.1
-export ANTHROPIC_SMALL_FAST_MODEL=anthropic/claude-sonnet-4.5
+```json [Performance-First Configuration]
+{
+  "env": {
+    "ANTHROPIC_AUTH_TOKEN": "sk-ai-v1-xxx",
+    "ANTHROPIC_BASE_URL": "https://zenmux.ai/api/anthropic",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "anthropic/claude-sonnet-4.5",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "anthropic/claude-opus-4.1",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "google/gemini-2.5-pro"
+  }
+}
 ```
 
-```bash [Cost-optimized]
-# Model choices prioritizing cost-effectiveness
-export ANTHROPIC_MODEL=moonshotai/kimi-k2-0905
-export ANTHROPIC_SMALL_FAST_MODEL=deepseek/deepseek-chat
+```json [Cost-Optimized Configuration]
+{
+  "env": {
+    "ANTHROPIC_AUTH_TOKEN": "sk-ai-v1-xxx",
+    "ANTHROPIC_BASE_URL": "https://zenmux.ai/api/anthropic",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "deepseek/deepseek-chat",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "moonshotai/kimi-k2-0905",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "qwen/qwen3-coder-plus"
+  }
+}
 ```
 
 :::
@@ -208,4 +242,16 @@ This approach helps you achieve the best balance of performance and cost across 
 
 ::: info More Models
 See the [ZenMux model list](https://zenmux.ai/models) for all available models and their details.
+:::
+
+::: tip Contact Us
+If you encounter any issues during use or have suggestions and feedback, feel free to contact us:
+
+- **Official Website**: <https://zenmux.ai>
+- **Technical Support**: [support@zenmux.ai](mailto:support@zenmux.ai)
+- **Business Inquiries**: [bd@zenmux.ai](mailto:bd@zenmux.ai)
+- **Twitter**: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
+- **Discord Community**: <http://discord.gg/vHZZzj84Bm>
+
+For more contact options and details, please visit our [Contact Us page](/help/contact).
 :::
