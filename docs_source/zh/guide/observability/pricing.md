@@ -34,5 +34,17 @@ ZenMux 的计费项目包括以下几种类型：
 :::
 
 ::: tip Cost 统计查看
-如果想了解当前时间段、当天、当月的费用情况，可以在[Cost统计页面查看](https://zenmux.ai/settings/cost)中进行筛选查看。
+如果想了解当前时间段、当天、当月的费用情况，可以在[Cost 统计页面查看](https://zenmux.ai/settings/cost)中进行筛选查看。
+:::
+
+::: tip 联系我们
+如果您在使用过程中遇到任何问题，或有任何建议和反馈，欢迎通过以下方式联系我们：
+
+- **官方网站**：<https://zenmux.ai>
+- **技术支持邮箱**：[support@zenmux.ai](mailto:support@zenmux.ai)
+- **商务合作邮箱**：[bd@zenmux.ai](mailto:bd@zenmux.ai)
+- **Twitter**：[@ZenMuxAI](https://twitter.com/ZenMuxAI)
+- **Discord 社区**：<http://discord.gg/vHZZzj84Bm>
+
+更多联系方式和详细信息，请访问我们的[联系我们页面](/zh/help/contact)。
 :::
