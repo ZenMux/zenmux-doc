@@ -1,10 +1,12 @@
-# 日志
+# 请求日志
 
 ZenMux 提供了完善的日志系统，帮助您实时监控和分析所有 API 调用记录。通过日志功能，您可以查看每次请求的详细信息，包括 Token 使用量、费用、性能指标等，从而更好地优化您的应用和控制成本。
 
 ## 日志查看
 
 ### Logs 界面
+
+![logs](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/23/mztJndv/logs-1.png)
 
 在控制台的 **Logs** 页面，您可以查看所有 API 调用的详细记录。界面提供了强大的筛选和分析功能：
 
@@ -28,6 +30,9 @@ ZenMux 提供了完善的日志系统，帮助您实时监控和分析所有 API
 | `Action`        | 操作按钮，点击 **Details** 查看完整的请求和响应详情        |
 
 ::: tip Token 详情查看
+
+![logs](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/23/l7x9hSz/logs-3.png)
+
 点击 Input Tokens 列的数字，会弹出悬浮窗显示详细的 Token 分类，包括：
 
 - `prompt`：基础输入 Token
@@ -37,9 +42,23 @@ ZenMux 提供了完善的日志系统，帮助您实时监控和分析所有 API
 - `input_cache_write_1_h`：1 小时缓存写入
 
 这有助于您了解缓存的使用情况和优化缓存策略。
+
+:::
+
+::: tip 扣费钱包 详情查看
+
+![logs](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/23/euBJCl9/logs-2.png)
+
+点击 Cost 列的数字，会弹出悬浮窗显示详细的扣费钱包分类，包括：
+
+- `充值钱包`：用户充值的金额，当赠送钱包余额不足时，使用充值钱包扣费
+- `赠送钱包`：如充值赠送、保险赔偿等，优先使用赠送钱包扣费
+
 :::
 
 ### 请求详情页面
+
+![logs](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/EClzQU6/logs-provider-model.png)
 
 点击任意日志记录的 **Details** 按钮，可以查看该次调用的完整信息。详情页面分为左右两个区域：
 
@@ -93,42 +112,6 @@ ZenMux 提供了完善的日志系统，帮助您实时监控和分析所有 API
 - 计费详情和费率信息
 - 调用链路追踪 ID
 
-## 计费透明度
-
-ZenMux 采用透明的计费体系，确保每一笔调用都被精确计量计费。不同模型的价格存在差异，而同一模型在不同供应商下的价格也可能有所不同。
-
-### 价格查看
-
-您可以在模型详情页面查看各个供应商的价格信息。每个供应商都会展示详细的计费标准，包括输入 Token、输出 Token 以及特殊功能的费用。
-
-<div style="text-align: center;">
-  <img src="https://cdn.marmot-cloud.com/storage/zenmux/2025/08/22/zhew65D/model-pricing.png"
-       alt="模型详情页面价格部分"
-       style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); margin: 20px 0;"
-       loading="lazy" />
-</div>
-
-### 计费项目说明
-
-ZenMux 的计费项目包括以下几种类型：
-
-| 计费项                    | 说明                   |
-| :------------------------ | :--------------------- |
-| `prompt`                  | 输入提示词的处理费用   |
-| `completion`              | 模型生成输出内容的费用 |
-| `image`                   | 图像处理或生成的费用   |
-| `request`                 | API 请求调用的基础费用 |
-| `web_search`              | 网络搜索功能调用费用   |
-| `input_cache_read`        | 缓存读取操作费用       |
-| `input_cache_write`       | 缓存写入操作费用       |
-| `input_cache_write_5_min` | 5 分钟缓存写入操作费用 |
-| `input_cache_write_1_h`   | 1 小时缓存写入操作费用 |
-| `internal_reasoning`      | 内部推理计算费用       |
-
-::: tip 计费精度保证
-我们保证每一笔调用都被精确计量计费，您可以在日志详情中查看每次调用的费用明细和详细的费率分解。
-:::
-
 ## 费用详情
 
 日志系统不仅记录 API 调用信息，还提供了详细的费用分析功能。您可以通过多种方式查看费用详情：
@@ -137,24 +120,10 @@ ZenMux 的计费项目包括以下几种类型：
 
 在 Logs 列表中，每条记录都会显示：
 
-- **Cost 列**：直接显示该次调用的总费用
-- 点击 **Details** 按钮查看详细的费用分解，包括每个计费项的具体金额和费率
+- **Cost 列**：直接显示该次调用的总费用以及不同钱包的扣费费用
 
-<div style="text-align: center;">
-  <img src="https://cdn.marmot-cloud.com/storage/zenmux/2025/08/22/NYwQvBH/activity-cost.png"
-       alt="控制台日志界面"
-       style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); margin: 20px 0;"
-       loading="lazy" />
-</div>
-
+![logs](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/23/euBJCl9/logs-2.png)
 点击具体的调用记录，可以查看更详细的费用分解：
-
-<div style="text-align: center;">
-  <img src="https://cdn.marmot-cloud.com/storage/zenmux/2025/08/22/dWtmUoT/cost-details.png"
-       alt="费用详情"
-       style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); margin: 20px 0;"
-       loading="lazy" />
-</div>
 
 ### 原始 Meta 信息
 
@@ -166,25 +135,17 @@ ZenMux 的计费项目包括以下几种类型：
 {
   "generationId": "2534CCEDTKJR00217635",
   "accountId": "2533AC0Q5MIe14613672",
-  "apiKeyId": "2534AKkA4Nqn14642786",
-  "authorSlug": "anthropic",
+  "model": "Anthropic: Claude Sonnet 4",
   "modelSlug": "anthropic/claude-sonnet-4",
+  "apiKeyId": "2534AKkA4Nqn14642786",
   "providerSlug": "anthropic",
-  "endpointSlug": "anthropic/ahtnropic_endpoint",
-  "appId": null,
   "createdAt": "2025-08-22T02:49:18.000+00:00",
   "generationTime": 3298,
   "latency": 2177,
   "moderationLatency": 2169,
   "streamed": true,
   "cancelled": false,
-  "tokensPrompt": 16527,
-  "tokensCompletion": 95,
-  "tokensReasoning": 0,
   "throughput": "28.81",
-  "nativeTokensPrompt": 16527,
-  "nativeTokensCompletion": 95,
-  "nativeTokensReasoning": 0,
   "nativeFeeTokens": {
     "input_cache_write_5_min": 0,
     "completion": 95,
@@ -205,10 +166,6 @@ ZenMux 的计费项目包括以下几种类型：
   },
   "finishReason": "tool_calls",
   "nativeFinishReason": "tool_calls",
-  "origin": null,
-  "providerResponses": null,
-  "providerApiKeyId": "2533PCgBu07N14613665",
-  "byok": false,
   "originAmount": "0.051006",
   "billAmount": "0.051006",
   "discountAmount": "0",
@@ -259,73 +216,8 @@ ZenMux 的计费项目包括以下几种类型：
     "serviceCode": "anthropic#anthropic/ahtnropic_endpoint#anthropic/claude-sonnet-4"
   },
   "requestRetryTimes": 0,
-  "finalRetry": true,
-  "billStatus": 0,
-  "bizHour": "2025082202",
-  "bizDate": "20250822",
-  "bizMonth": "202508",
-  "bizWeek": "202534",
-  "source": "itboxroutercore",
-  "ext": { "traceId": "21d5e62d17558309613841043942", "requestSuccess": true },
-  "model": "Anthropic: Claude Sonnet 4"
+  "finalRetry": true
 }
 ```
 
 :::
-
-### 关键费用字段说明
-
-了解 Meta 信息中的关键费用字段，有助于您更好地分析和管理调用成本：
-
-| 字段名称         | 数据类型 | 说明                                         |
-| :--------------- | :------- | :------------------------------------------- |
-| `originAmount`   | string   | 原始费用金额（计费前）                       |
-| `billAmount`     | string   | 实际计费金额                                 |
-| `discountAmount` | string   | 折扣金额                                     |
-| `realAmount`     | string   | 最终支付金额                                 |
-| `ratingDetails`  | array    | 详细费用分解，按计费项目列出每项的费用和费率 |
-
-::: info 费用计算说明
-最终支付金额的计算公式为：**realAmount = billAmount - discountAmount**
-
-每个 `ratingDetails` 项目包含该计费项的具体费用分解和单价费率信息。
-:::
-
-## 使用建议
-
-### 成本优化
-
-通过日志系统，您可以：
-
-1. **分析 Token 使用模式**
-
-   - 查看不同请求的 Token 消耗情况
-   - 识别高成本的调用场景
-   - 优化 Prompt 设计以减少 Token 使用
-
-2. **利用缓存功能**
-
-   - 监控 `input_cache_read` 和 `input_cache_write` 的使用情况
-   - 合理使用 5 分钟和 1 小时缓存来降低成本
-   - 缓存命中可以显著降低输入 Token 的费用
-
-3. **性能监控**
-   - 关注 Latency 和 Throughput 指标
-   - 比较不同模型和供应商的性能表现
-   - 根据性能需求选择合适的模型配置
-
-### 问题排查
-
-日志系统可以帮助您快速定位问题：
-
-- **查看 Finish Reason**：了解请求结束的原因（正常完成、达到长度限制、工具调用等）
-- **检查错误日志**：通过筛选功能快速定位失败的请求
-- **分析调用链路**：使用 Trace ID 追踪完整的请求处理流程
-
-### 多项目管理
-
-如果您管理多个项目：
-
-- 为不同项目创建独立的 API Key
-- 使用 API Key 筛选功能分别查看各项目的日志
-- 分析各项目的成本分布和使用模式
