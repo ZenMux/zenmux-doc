@@ -37,6 +37,10 @@ export default defineConfig({
   title: 'ZenMux',
   ignoreDeadLinks: true,
 
+  sitemap: {
+    hostname: 'https://docs.zenmux.ai'
+  },
+
   head: [
     ['link', { rel: 'icon', href: '/favicon.svg' }],
     [
