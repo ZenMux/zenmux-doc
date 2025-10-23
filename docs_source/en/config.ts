@@ -65,6 +65,7 @@ export default defineLoacaleConfig({
             text: "Claude Code Integration",
             link: "/best-practices/claude-code",
           },
+          { text: "CodeX Integration", link: "/best-practices/codex" },
           { text: "Neovate Integration", link: "/best-practices/neovate-code" },
           // { text: "Cherry Studio Integration", link: "/best-practices/cherry-studio" },
           // { text: "Immersive Translate Integration", link: "/best-practices/immersive-translate" }
