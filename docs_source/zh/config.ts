@@ -49,7 +49,8 @@ export default defineLoacaleConfig({
           {
             text: "可观测性",
             items: [
-              { text: "价格与费用", link: "/zh/guide/observability/pricing-and-cost" }
+              { text: "模型价格", link: "/zh/guide/observability/pricing" },
+              { text: "请求日志", link: "/zh/guide/observability/logs" }
             ]
           }
         ]
