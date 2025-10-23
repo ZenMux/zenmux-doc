@@ -24,8 +24,6 @@ export default defineLoacaleConfig({
         text: "About ZenMux",
         items: [
           { text: "Introduction", link: "/about/intro" },
-          { text: "Models & Providers", link: "/about/models-and-providers" },
-          { text: "Pricing & Cost", link: "/about/pricing-and-cost" },
         ],
       },
       {
@@ -35,7 +33,10 @@ export default defineLoacaleConfig({
           {
             text: "Advanced",
             items: [
-              { text: "Provider Routing", link: "/guide/advanced/provider-routing" },
+              {
+                text: "Provider Routing",
+                link: "/guide/advanced/provider-routing",
+              },
               { text: "Model Routing", link: "/guide/advanced/model-routing" },
               { text: "Fallback Model", link: "/guide/advanced/fallback" },
               { text: "Streaming", link: "/guide/advanced/streaming" },
@@ -46,6 +47,13 @@ export default defineLoacaleConfig({
               },
               { text: "Tool Calling", link: "/guide/advanced/tool-calls" },
               { text: "Prompt Cache", link: "/guide/advanced/prompt-cache" },
+            ],
+          },
+          {
+            text: "Observability",
+            items: [
+              { text: "Model Pricing", link: "/guide/observability/pricing" },
+              { text: "Request Logs", link: "/guide/observability/logs" },
             ],
           },
         ],

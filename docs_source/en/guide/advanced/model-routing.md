@@ -1,37 +1,54 @@
 # Model Routing
 
-Model routing is an intelligent capability of ZenMux that helps you automatically select the most suitable model among many large language models. The system intelligently balances performance and cost based on request content, task characteristics, and your preference settings.
+Model routing is an intelligent feature of ZenMux that helps you automatically select the most suitable model from a wide range of large language models. The system intelligently balances performance and cost based on the request content, task characteristics, and your preference settings.
 
-::: tip Intelligent Model Selection
-No need to manually compare model performance and pricing—ZenMux automatically matches the best model for each request so you can focus on your business logic.
+::: tip Intelligent model selection
+No need to manually compare model performance and pricing—ZenMux automatically matches the most suitable model for each request, so you can focus on building your business logic.
 :::
 
-## Why Model Routing Is Needed
+## Why Model Routing
 
-In real-world applications, different tasks have different requirements for models:
+In real-world applications, different tasks have different model requirements:
 
-- Simple conversations: Using a high-performance model can waste cost
-- Complex reasoning: Using a budget model may not meet quality requirements
-- Production environments: You need to balance quality, cost, and speed
-- Model selection challenges: There are dozens of models on the market; manual selection is time-consuming and labor-intensive
+- Simple conversations: using a high-performance model may be wasteful
+- Complex reasoning: a budget model may not meet quality requirements
+- Production environments: you must balance quality, cost, and speed
+- Model selection is hard: dozens of models on the market make manual selection time-consuming
 
-Model routing solves these problems through automated decision-making, intelligently matching the optimal model for each request.
+Model routing solves these problems with automated decisions, intelligently matching the optimal model for each request.
 
-## Key Advantages
+## Model List
 
-| Advantage      | Description                                      |
-| -------------- | ------------------------------------------------ |
-| Intelligent decisions | Automatically analyzes request content and task characteristics to select the most suitable model |
-| Cost optimization | Prioritizes better cost-performance models while ensuring quality |
-| Flexible configuration | Supports custom model pools and preference strategies to fit different business scenarios |
-| Transparent and controllable | Returns information about the actual model used for easy monitoring and optimization |
-| Continuous improvement | Continuously optimizes routing strategies based on historical data to improve decision quality |
+::: tip Quick lookup
+On the [Models page](https://zenmux.ai/models) you can view all supported models and their basic information. Use the filters on the left, the search box at the top, and sorting options to quickly locate the model you need. Model cards also provide quick access to supported input/output modalities, input/output pricing, Context, Max Tokens, and other key details.
+:::
+
+![Model List](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/b5FlrNU/model-list.png)
+
+Click any model card to open its details page and view model-specific information across different providers, including performance comparisons, price comparisons, and parameter differences. For details, see the [Provider Routing documentation](/guide/advanced/provider-routing.html#如何查看供应商信息).
+
+## Core Benefits
+
+| Benefit                      | Description                                                                                       |
+| ---------------------------- | ------------------------------------------------------------------------------------------------- |
+| Intelligent decisions        | Automatically analyzes request content and task characteristics to select the most suitable model |
+| Cost optimization            | Prioritizes better cost-performance models while ensuring quality                                 |
+| Flexible configuration       | Supports custom model pools and preference strategies for different business scenarios            |
+| Transparent and controllable | Returns the actual model used for easy monitoring and optimization                                |
+| Continuous optimization      | Continuously improves routing strategies based on historical data                                 |
 
 ## Quick Start
 
 ### Basic Usage
 
-Using model routing is simple—set the `model` parameter to `zenmux/auto`, and specify the candidate model pool via `model_routing_config`. If you do not provide `model_routing_config.available_models`, the system will use the platform-wide [model pool](https://zenmux.ai/models).
+Model routing is easy to use—simply set the `model` parameter to `zenmux/auto` and specify the candidate model pool via `model_routing_config`. If you do not specify `model_routing_config.available_models`, the system will use the platform’s full [model pool](https://zenmux.ai/models).
+
+::: info How to get model slugs
+Models on the ZenMux platform have unique slugs. You can get a model’s slug from the [Models list page](https://zenmux.ai/models):
+![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/AQG0SIr/model-slug.png)
+Or from the [model detail page for a specific model](https://zenmux.ai/anthropic/claude-sonnet-4.5):
+![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/dWYxJnq/model-slug-3.png)
+:::
 
 ::: code-group
 
@@ -40,7 +57,7 @@ Using model routing is simple—set the `model` parameter to `zenmux/auto`, and 
   "model": "zenmux/auto",
   "model_routing_config": {
     "available_models": [
-      "anthropic/claude-4-sonnet",
+      "anthropic/claude-4-sonnet", // Provide the model slug
       "openai/gpt-5",
       "google/gemini-2.5-flash-lite"
     ],
@@ -86,146 +103,146 @@ print(f"Answer: {response.choices[0].message.content}")
 
 :::
 
-::: info Actual Model Used
-The `model` field in the response returns the model actually selected by intelligent routing, enabling you to monitor and analyze routing behavior.
+::: info Model actually used
+The `model` field in the response returns the model selected by intelligent routing, making it easy to monitor and analyze routing behavior.
 :::
 
 ## How It Works
 
-### `zenmux/auto` Model
+### `zenmux/auto` model
 
 `zenmux/auto` is a special model identifier in ZenMux. When you specify this model, the system enables intelligent routing.
 
-Routing Decision Process:
+Routing decision process:
 
-1. Request analysis: Parse prompt content, context length, task type, and other features
-2. Model evaluation: Score each model in the candidate pool
-3. Comprehensive decision: Balance performance, price, and availability according to the `preference` strategy
-4. Model selection: Choose the optimal model and forward the request
-5. Result return: Indicate the actual model used in the response
+1. Request analysis: parse prompt content, context length, task type, and other features
+2. Model evaluation: score each model in the candidate pool
+3. Aggregated decision: balance performance, price, and availability according to the `preference` strategy
+4. Model selection: choose the optimal model and forward the request
+5. Result return: annotate the actual model used in the response
 
-::: details Factors Considered in Routing Decisions
+::: details Factors considered in routing decisions
 
-- Task complexity: Simple conversation vs. complex reasoning
-- Context length: Short dialogues vs. long document analysis
-- Model performance: Accuracy, response speed, creativity
-- Model price: Input/output token unit price
-- Model availability: Real-time load, regional restrictions
+- Task complexity: simple conversation vs. complex reasoning
+- Context length: short dialogue vs. long document analysis
+- Model performance: accuracy, response speed, creativity
+- Model pricing: input/output token unit price
+- Model availability: real-time load, regional restrictions
 - User preference: performance / balanced / price
 
 :::
 
 ## Configuration Parameters
 
-### `model_routing_config` Object
+### `model_routing_config` object
 
-Configure intelligent routing behavior using the `model_routing_config` parameter:
+Configure intelligent routing behavior via the `model_routing_config` parameter:
 
-| Parameter           | Type       | Required | Description                       |
-| ------------------- | ---------- | -------- | --------------------------------- |
-| `available_models`  | `string[]` | Yes      | List of candidate models to choose from |
-| `preference`        | `string`   | No       | Routing preference strategy, default is `balanced` |
+| Parameter          | Type       | Required | Description                                     |
+| ------------------ | ---------- | -------- | ----------------------------------------------- |
+| `available_models` | `string[]` | Yes      | Candidate model list for routing                |
+| `preference`       | `string`   | No       | Routing preference strategy, default `balanced` |
 
-### `available_models` - Candidate Model Pool
+### `available_models` - Candidate model pool
 
-Specify the list of models that intelligent routing can select from. It is recommended to include 3–5 models across different performance and price tiers.
+Specify the list of models that intelligent routing can choose from. We recommend including 3–5 models across different performance and price tiers.
 
 ::: warning Notes
 
 - The model list must include at least 2 models
-- Mix models with different price tiers to achieve optimal balance
+- Mix models from different price tiers for optimal balance
 
 :::
 
-### `preference` - Routing Preference Strategy
+### `preference` - Routing preference strategy
 
-Specify the priority strategy used by intelligent routing during decision-making:
+Specify the priority strategy used in routing decisions:
 
-#### `balanced` - Balanced Mode (Default)
+#### `balanced` - Balanced mode (default)
 
-Seeks the best balance between performance and cost; suitable for most applications.
+Seeks the optimal balance between performance and cost; suitable for most application scenarios.
 
-Features:
+Characteristics:
 
-- Prefers budget-friendly models for simple tasks
+- Prioritizes budget models for simple tasks
 - Automatically upgrades to high-performance models for complex tasks
 - Balances quality and cost
 
-Use cases:
+Suitable scenarios:
 
-- General applications in production environments
-- Mixed scenarios like conversational assistants and content generation
-- Situations that require cost control without sacrificing quality
+- General-purpose apps in production environments
+- Mixed scenarios such as conversational assistants and content generation
+- Situations where you must control cost without sacrificing quality
 
-#### `performance` - Performance-First Mode
+#### `performance` - Performance-first mode
 
-Prefers the most powerful models; suitable for scenarios with extremely high quality requirements.
+Prioritizes the highest-performing models; suitable for scenarios with very high output quality requirements.
 
-Features:
+Characteristics:
 
-- Tends to select top-tier flagship models
-- Ensures the highest response quality and accuracy
-- Higher cost
+- Tends to choose top flagship models
+- Ensures the highest answer quality and accuracy
+- Relatively higher cost
 
-Use cases:
+Suitable scenarios:
 
 - Critical business decision support
 - Professional content creation (legal, medical, finance, etc.)
 - Complex code generation and debugging
 - Academic research and data analysis
 
-#### `price` - Price-First Mode
+#### `price` - Price-first mode
 
-Prefers models with the best cost-effectiveness; suitable for large-scale, cost-sensitive applications.
+Prioritizes models with the best cost-effectiveness; suitable for large-scale, cost-sensitive applications.
 
-Features:
+Characteristics:
 
 - Prefers the cheapest models
-- Upgrades to more expensive models only when necessary
+- Only upgrades to more expensive models when necessary
 - Maximizes cost efficiency
 
-Use cases:
+Suitable scenarios:
 
 - High-concurrency simple conversation applications
-- Internal tools and testing environments
+- Internal tools and test environments
 - Education and learning scenarios
-- Budget-constrained startup projects
+- Budget-limited startup projects
 
-### Preference Strategy Comparison
+### Preference strategy comparison
 
-| Strategy       | Performance | Cost       | Use Cases             |
-| -------------- | ----------- | ---------- | --------------------- |
-| `balanced`     | ⭐⭐⭐⭐   | ⭐⭐⭐     | Production, general apps |
-| `performance`  | ⭐⭐⭐⭐⭐ | ⭐⭐       | Critical business, professional content |
-| `price`        | ⭐⭐⭐     | ⭐⭐⭐⭐⭐ | High concurrency, cost-sensitive |
+| Strategy      | Performance | Cost       | Suitable scenarios                      |
+| ------------- | ----------- | ---------- | --------------------------------------- |
+| `balanced`    | ⭐⭐⭐⭐    | ⭐⭐⭐     | Production, general apps                |
+| `performance` | ⭐⭐⭐⭐⭐  | ⭐⭐       | Critical business, professional content |
+| `price`       | ⭐⭐⭐      | ⭐⭐⭐⭐⭐ | High concurrency, cost-sensitive        |
 
 ## Best Practices
 
-### 1. Properly Configure the Candidate Model Pool
+### 1. Configure the candidate model pool appropriately
 
-Follow these principles when selecting candidate models:
+Follow these principles when choosing candidate models:
 
 Recommended:
 
 - Include 3–5 models across different tiers
-- Mix flagship, mid-range, and budget models
-- Consider each model’s strengths (creativity, reasoning, speed, etc.)
+- Mix flagship, mid-tier, and budget models
+- Consider model strengths (creativity, reasoning, speed, etc.)
 - Ensure all models have the necessary API keys configured
 
 Avoid:
 
-- Choosing only models from the same tier (loses routing advantages)
+- Only choosing models from the same tier (loses routing advantages)
 - Including too many models (increases decision complexity)
 
 ## FAQ
 
 ### Q: How much latency does intelligent routing add?
 
-A: Routing decisions typically complete within 50–100 ms, which is negligible for most applications. Actual response time mainly depends on the selected model’s processing speed.
+A: Routing decisions typically complete within 50–100 ms, with negligible impact for most applications. The actual request response time mainly depends on the selected model’s processing speed.
 
 ### Q: How many models should the candidate pool include?
 
-A: We recommend 3–5 models. Too few won’t leverage routing advantages; too many increase decision complexity with diminishing returns.
+A: We recommend 3–5 models. Too few cannot fully leverage routing advantages; too many increase decision complexity with diminishing returns.
 
 ### Q: What factors does intelligent routing consider?
 
@@ -238,18 +255,22 @@ A: The routing system considers multiple factors:
 - Current load and availability
 - Your `preference` setting
 
-### Q: Can I see detailed routing decision logs?
+### Q: Can I view detailed routing decision logs?
 
-A: The response returns the model actually used (`response.model`). You can also check call logs and routing details for each request in the [ZenMux user console](https://zenmux.ai/settings/activity).
+A: The response returns the actual model used (`response.model`). You can also view call logs in the [ZenMux user console](https://zenmux.ai/settings/activity) to see the routing details for each request.
+
+### Q: Can I use model routing and provider routing together?
+
+A: Yes. Model routing chooses the most suitable model, while provider routing chooses the optimal provider for the selected model. Using both together enables end-to-end intelligent optimization. For details, see the [Provider Routing documentation](/guide/advanced/provider-routing.html).
 
 ::: tip Contact Us
-If you encounter any issues or have suggestions and feedback, feel free to reach us via:
+If you encounter any issues during use or have suggestions and feedback, please contact us via:
 
 - Official website: <https://zenmux.ai>
-- Technical support: [support@zenmux.ai](mailto:support@zenmux.ai)
-- Business inquiries: [bd@zenmux.ai](mailto:bd@zenmux.ai)
+- Technical support email: [support@zenmux.ai](mailto:support@zenmux.ai)
+- Business cooperation email: [bd@zenmux.ai](mailto:bd@zenmux.ai)
 - Twitter: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
 - Discord community: <http://discord.gg/vHZZzj84Bm>
 
-For more contact methods and details, visit our [Contact Us page](/help/contact).
+For more contact options and details, visit our [Contact Us page](/help/contact).
 :::
