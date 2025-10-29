@@ -94,10 +94,16 @@ export default defineLoacaleConfig({
             items: [
               {
                 text: "Create Messages",
-                link: "/zh/api/anthropic/create-messages",
+                link: "/api/anthropic/create-messages",
               },
             ],
           },
+          {
+            text: "Google Vertex AI API",
+            items: [
+              { text: "Generate Content", link: "/api/vertexai/generate-content" }
+            ]
+          }
         ],
       },
       {
