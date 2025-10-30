@@ -3,14 +3,15 @@
   "version": "1.0.1",
   "scripts": {
     "dev": "vitepress dev docs_source",
-    "build": "vitepress build docs_source",
+    "build": "vitepress build docs_source && npm run copy-docs",
     "preview": "vitepress preview docs_source",
     "docs:dev": "vitepress dev docs_source",
-    "docs:build": "vitepress build docs_source",
+    "docs:build": "vitepress build docs_source && npm run copy-docs",
     "docs:preview": "vitepress preview docs_source",
     "translate": "tsx scripts/translate-zh-to-en/translate-zh-to-en.ts",
     "optimize": "tsx scripts/optimize-chinese-docs/optimize-chinese-docs.ts",
-    "format-images": "node scripts/format-images.js"
+    "format-images": "node scripts/format-images.js",
+    "copy-docs": "cp docs/vp-icons.css docs/docs/vp-icons.css"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.2",

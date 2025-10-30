@@ -34,15 +34,22 @@ export default defineConfig({
   description: "zenmux.ai document",
   outDir: "../docs",
   base: "/",
+  assetsDir: 'docs',
   title: 'ZenMux',
   ignoreDeadLinks: true,
+
+  transformHtml: (html) => {
+    return html.replace(/href="\/vp-icons.css"/g, (_match, p1) => {
+      return `href="/docs/vp-icons.css"`;
+    });
+  },
 
   sitemap: {
     hostname: 'https://docs.zenmux.ai'
   },
 
   head: [
-    ['link', { rel: 'icon', href: '/favicon.svg' }],
+    ['link', { rel: 'icon', href: '/docs/favicon.svg' }],
     [
       'script', {
         async: 'true',
