@@ -69,6 +69,7 @@ export default defineLoacaleConfig({
           { text: "CodeX Integration", link: "/best-practices/codex" },
           { text: "opencode Integration", link: "/best-practices/opencode" },
           { text: "Neovate Integration", link: "/best-practices/neovate-code" },
+          { text: "Sider Integration", link: "/best-practices/sider" },
           // { text: "Cherry Studio Integration", link: "/best-practices/cherry-studio" },
           // { text: "Immersive Translate Integration", link: "/best-practices/immersive-translate" }
         ],
