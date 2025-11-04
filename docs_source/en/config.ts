@@ -47,6 +47,7 @@ export default defineLoacaleConfig({
                 link: "/guide/advanced/structured-output",
               },
               { text: "Tool Calling", link: "/guide/advanced/tool-calls" },
+              { text: "Reasoning Models", link: "/guide/advanced/reasoning" },
               { text: "Prompt Cache", link: "/guide/advanced/prompt-cache" },
             ],
           },
