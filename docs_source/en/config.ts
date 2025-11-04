@@ -47,6 +47,7 @@ export default defineLoacaleConfig({
                 link: "/guide/advanced/structured-output",
               },
               { text: "Tool Calling", link: "/guide/advanced/tool-calls" },
+              { text: "Reasoning Models", link: "/guide/advanced/reasoning" },
               { text: "Prompt Cache", link: "/guide/advanced/prompt-cache" },
             ],
           },
@@ -72,6 +73,7 @@ export default defineLoacaleConfig({
           { text: "Sider Integration", link: "/best-practices/sider" },
           // { text: "Cherry Studio Integration", link: "/best-practices/cherry-studio" },
           // { text: "Immersive Translate Integration", link: "/best-practices/immersive-translate" }
+          { text: "Open-WebUI Integration", link: "/best-practices/open-webui" },
         ],
       },
       {
