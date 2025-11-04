@@ -72,6 +72,7 @@ export default defineLoacaleConfig({
           { text: "Neovate Integration", link: "/best-practices/neovate-code" },
           // { text: "Cherry Studio Integration", link: "/best-practices/cherry-studio" },
           // { text: "Immersive Translate Integration", link: "/best-practices/immersive-translate" }
+          { text: "Open-WebUI Integration", link: "/best-practices/open-webui" },
         ],
       },
       {
