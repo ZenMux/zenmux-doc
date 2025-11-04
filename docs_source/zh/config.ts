@@ -66,6 +66,7 @@ export default defineLoacaleConfig({
           { text: "Sider接入ZenMux指南", link: "/zh/best-practices/sider" }
           // { text: "Cherry Studio 接入指南", link: "/zh/best-practices/cherry-studio" },
           // { text: "沉浸式翻译接入指南", link: "/zh/best-practices/immersive-translate" }
+          { text: "Open-WebUI接入ZenMux指南", link: "/best-practices/open-webui" },
         ]
       },
       {
