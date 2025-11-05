@@ -74,10 +74,10 @@ export default defineLoacaleConfig({
           },
           { text: "Cline接入ZenMux指南", link: "/zh/best-practices/cline" },
           {
-            text: "Cherry Studio 接入指南",
+            text: "CherryStudio接入ZenMux指南",
             link: "/zh/best-practices/cherry-studio",
           },
-          { text: "Obsidian 接入指南", link: "/zh/best-practices/obsidian" },
+          { text: "Obsidian接入ZenMux指南", link: "/zh/best-practices/obsidian" },
           { text: "Sider接入ZenMux指南", link: "/zh/best-practices/sider" },
           // { text: "沉浸式翻译接入指南", link: "/zh/best-practices/immersive-translate" }
           {
