@@ -23,9 +23,7 @@ export default defineLoacaleConfig({
     sidebar: [
       {
         text: "About ZenMux",
-        items: [
-          { text: "Introduction", link: "/about/intro" },
-        ],
+        items: [{ text: "Introduction", link: "/about/intro" }],
       },
       {
         text: "User Guide",
@@ -69,12 +67,21 @@ export default defineLoacaleConfig({
           },
           { text: "CodeX Integration", link: "/best-practices/codex" },
           { text: "opencode Integration", link: "/best-practices/opencode" },
-          { text: "Neovate Integration", link: "/best-practices/neovate-code" },
-          { text: "Sider Integration", link: "/best-practices/sider" },
-          // { text: "Cherry Studio Integration", link: "/best-practices/cherry-studio" },
-          // { text: "Immersive Translate Integration", link: "/best-practices/immersive-translate" }
-          { text: "Open-WebUI Integration", link: "/best-practices/open-webui" },
           { text: "Cline Integration", link: "/best-practices/cline" },
+          {
+            text: "Cherry Studio Integration",
+            link: "/best-practices/cherry-studio",
+          },
+          { text: "Obsidian Integration", link: "/best-practices/obsidian" },
+
+          { text: "Sider Integration", link: "/best-practices/sider" },
+          // { text: "Immersive Translate Integration", link: "/best-practices/immersive-translate" }
+          { text: "Dify Integration", link: "/best-practices/dify" },
+          {
+            text: "Open-WebUI Integration",
+            link: "/best-practices/open-webui",
+          },
+          { text: "Neovate Integration", link: "/best-practices/neovate-code" },
         ],
       },
       {
@@ -107,9 +114,12 @@ export default defineLoacaleConfig({
           {
             text: "Google Vertex AI API",
             items: [
-              { text: "Generate Content", link: "/api/vertexai/generate-content" }
-            ]
-          }
+              {
+                text: "Generate Content",
+                link: "/api/vertexai/generate-content",
+              },
+            ],
+          },
         ],
       },
       {
