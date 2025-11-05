@@ -74,6 +74,7 @@ export default defineLoacaleConfig({
           // { text: "Cherry Studio Integration", link: "/best-practices/cherry-studio" },
           // { text: "Immersive Translate Integration", link: "/best-practices/immersive-translate" }
           { text: "Open-WebUI Integration", link: "/best-practices/open-webui" },
+          { text: "Cline Integration", link: "/best-practices/cline" },
         ],
       },
       {
