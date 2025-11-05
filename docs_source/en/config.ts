@@ -76,11 +76,12 @@ export default defineLoacaleConfig({
 
           { text: "Sider Integration", link: "/best-practices/sider" },
           // { text: "Immersive Translate Integration", link: "/best-practices/immersive-translate" }
-          { text: "Dify Integration", link: "/best-practices/dify" },
+
           {
             text: "Open-WebUI Integration",
             link: "/best-practices/open-webui",
           },
+          { text: "Dify Integration", link: "/best-practices/dify" },
           { text: "Neovate Integration", link: "/best-practices/neovate-code" },
         ],
       },

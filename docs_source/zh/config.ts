@@ -72,7 +72,7 @@ export default defineLoacaleConfig({
             text: "opencode接入ZenMux指南",
             link: "/zh/best-practices/opencode",
           },
-          { text: "Cline接入ZenMux指南", link: "/best-practices/cline" },
+          { text: "Cline接入ZenMux指南", link: "/zh/best-practices/cline" },
           {
             text: "Cherry Studio 接入指南",
             link: "/zh/best-practices/cherry-studio",
@@ -82,11 +82,11 @@ export default defineLoacaleConfig({
           // { text: "沉浸式翻译接入指南", link: "/zh/best-practices/immersive-translate" }
           {
             text: "Open-WebUI接入ZenMux指南",
-            link: "/best-practices/open-webui",
+            link: "/zh/best-practices/open-webui",
           },
-                    {
+          {
             text: "Dify接入ZenMux指南",
-            link: "/best-practices/dify",
+            link: "/zh/best-practices/dify",
           },
           {
             text: "Neovate接入ZenMux指南",
