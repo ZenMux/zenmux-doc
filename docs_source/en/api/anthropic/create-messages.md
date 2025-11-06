@@ -22,10 +22,10 @@ client = anthropic.Anthropic(
     # Replace with the API key from your ZenMux console
     api_key="<YOUR ZENMUX_API_KEY>", # [!code highlight]
     # 3. Point the base URL to the ZenMux endpoint
-    base_url="https://zenmux.ai/api"  # [!code highlight]
+    base_url="https://zenmux.ai/api/anthropic"  # [!code highlight]
 )
 message = client.messages.create(
-    model="anthropic/claude-3.5-sonnet",
+    model="anthropic/claude-sonnet-4.5",
     max_tokens=1024,
     messages=[
         {"role": "user", "content": "Hello, Claude"}
@@ -42,12 +42,12 @@ const anthropic = new Anthropic({
   // 2. Replace with the API key from your ZenMux console
   apiKey: '<YOUR ZENMUX_API_KEY>', // [!code highlight]
   // 3. Point the base URL to the ZenMux endpoint
-  baseURL: "https://zenmux.ai/api", // [!code highlight]
+  baseURL: "https://zenmux.ai/api/anthropic", // [!code highlight]
 });
 
 async function main () {
     const msg = await anthropic.messages.create({
-        model: "anthropic/claude-3.5-sonnet",
+        model: "anthropic/claude-sonnet-4.5",
         max_tokens: 1024,
         messages: [{ role: "user", content: "Hello, Claude" }],
     });
@@ -58,13 +58,13 @@ main();
 ```
 
 ```bash [cURL]
-curl https://zenmux.ai/api/v1/messages \
+curl https://zenmux.ai/api/anthropic/v1/messages \
      --header "x-api-key: $ZENMUX_API_KEY" \
      --header "anthropic-version: 2023-06-01" \
      --header "content-type: application/json" \
      --data \
 '{
-    "model": "anthropic/claude-3.5-sonnet",
+    "model": "anthropic/claude-sonnet-4.5",
     "max_tokens": 1024,
     "messages": [
         {"role": "user", "content": "Hello, world"}
