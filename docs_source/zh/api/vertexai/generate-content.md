@@ -18,21 +18,21 @@ npm install @google/genai
 ```Python [Python]
 from google import genai  
 from google.genai import types  
-  
-client = genai.Client(  
-    api_key="$ZenMux_API_KEY",  
-    vertexai=True,  
+
+client = genai.Client(
+    api_key="$ZenMux_API_KEY",
+    vertexai=True,
     http_options=types.HttpOptions(
-        api_version='v1', 
-        base_url='https://zenmux.ai/api'
-    ),  
-)  
-  
+        api_version='v1',
+        base_url='https://zenmux.ai/api/vertex-ai'
+    ),
+)
+
 response = client.models.generate_content(  
     model="google/gemini-2.5-pro",  
     contents="How does AI work?"  
-)  
-print(response.text)  
+)
+print(response.text)
 ```
 ```ts [TypeScript]
 const genai = require("@google/genai");
@@ -41,7 +41,7 @@ const client = new genai.GoogleGenAI({
   apiKey: "$ZenMux_API_KEY",
   vertexai: true,
   httpOptions: {
-    baseUrl: "https://zenmux.ai/api",
+    baseUrl: "https://zenmux.ai/api/vertex-ai",
     apiVersion: "v1"
   }
 });
