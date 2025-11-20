@@ -40,6 +40,7 @@ export default defineLoacaleConfig({
               { text: "Fallback Model", link: "/guide/advanced/fallback" },
               { text: "Streaming", link: "/guide/advanced/streaming" },
               { text: "Multimodal", link: "/guide/advanced/multimodal" },
+              { text: "Image Generation", link: "/guide/advanced/image-generation" },
               {
                 text: "Structured Output",
                 link: "/guide/advanced/structured-output",
