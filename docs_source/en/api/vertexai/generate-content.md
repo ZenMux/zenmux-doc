@@ -20,7 +20,7 @@ from google import genai
 from google.genai import types  
   
 client = genai.Client(  
-    api_key="$ZenMux_API_KEY",  
+    api_key="$ZENMUX_API_KEY",  
     vertexai=True,  
     http_options=types.HttpOptions(
         api_version='v1', 
@@ -38,7 +38,7 @@ print(response.text)
 const genai = require("@google/genai");
 
 const client = new genai.GoogleGenAI({
-  apiKey: "$ZenMux_API_KEY",
+  apiKey: "$ZENMUX_API_KEY",
   vertexai: true,
   httpOptions: {
     baseUrl: "https://zenmux.ai/api/vertex-ai",
