@@ -5,7 +5,7 @@ Claude Code is Anthropic’s official coding agent. Through its integration with
 ::: info Compatibility Notes
 ZenMux fully supports the Anthropic API protocol and can be seamlessly integrated with tools like Claude Code and Cursor. You only need to modify two parameters.
 
-Note that the Anthropic protocol base_url is "https://zenmux.ai/api/anthropic".
+Note that the Anthropic protocol base_url is "<https://zenmux.ai/api/anthropic>".
 :::
 
 ## Configuration Guide
@@ -46,7 +46,7 @@ Add the following content to the configuration file:
     "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
     "ANTHROPIC_DEFAULT_HAIKU_MODEL": "anthropic/claude-haiku-4.5",
     "ANTHROPIC_DEFAULT_SONNET_MODEL": "anthropic/claude-sonnet-4.5",
-    "ANTHROPIC_DEFAULT_OPUS_MODEL": "anthropic/claude-opus-4.1"
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "anthropic/claude-opus-4.5"
   }
 }
 ```
@@ -92,24 +92,34 @@ Alternatively, check the [model detail page](https://zenmux.ai/anthropic/claude-
 
 Below is a recommended list of models with strong coding capabilities. For the complete set of models supporting the Anthropic protocol, please use the methods described above.
 
-| No. | Model slug                       |
-| --- | -------------------------------- |
-| 1   | `anthropic/claude-sonnet-4.5`    |
-| 2   | `anthropic/claude-opus-4.1`      |
-| 3   | `anthropic/claude-haiku-4.5`     |
-| 4   | `google/gemini-2.5-pro`          |
-| 5   | `openai/gpt-5-codex`             |
-| 6   | `openai/gpt-5`                   |
-| 7   | `x-ai/grok-4-fast`               |
-| 8   | `x-ai/grok-code-fast-1`          |
-| 9   | `x-ai/grok-4-fast-non-reasoning` |
-| 10  | `deepseek/deepseek-chat`         |
-| 11  | `qwen/qwen3-coder-plus`          |
-| 12  | `moonshotai/kimi-k2-0905`        |
-| 13  | `z-ai/glm-4.6`                   |
-| 14  | `z-ai/glm-4.5-air`               |
-| 15  | `inclusionai/ring-1t`            |
-| 16  | `inclusionai/ling-1t`            |
+| 模型 slug                        |
+| -------------------------------- |
+| `anthropic/claude-sonnet-4.5`    |
+| `anthropic/claude-opus-4.5`      |
+|`google/gemini-3-pro-preview`|
+|`openai/gpt-5.1-codex`|
+|`openai/gpt-5.1-codex-mini`|
+| `anthropic/claude-opus-4.1`      |
+|`baidu/ernie-5.0-thinking-preview`|
+|`volcengine/doubao-seed-code`|
+|`moonshotai/kimi-k2-thinking`|
+|`moonshotai/kimi-k2-thinking-turbo`|
+|`minimax/minimax-m2`|
+|`kuaishou/kat-coder-pro-v1`|
+| `anthropic/claude-haiku-4.5`     |
+| `google/gemini-2.5-pro`          |
+| `openai/gpt-5-codex`             |
+| `openai/gpt-5`                   |
+| `x-ai/grok-4-fast`               |
+| `x-ai/grok-code-fast-1`          |
+| `x-ai/grok-4-fast-non-reasoning` |
+| `deepseek/deepseek-chat`         |
+| `qwen/qwen3-coder-plus`          |
+| `moonshotai/kimi-k2-0905`        |
+| `z-ai/glm-4.6`                   |
+| `z-ai/glm-4.5-air`               |
+| `inclusionai/ring-1t`            |
+| `inclusionai/ling-1t`            |
 
 For more models, refer to the Anthropic protocol support notes above!
 
@@ -205,7 +215,7 @@ You can configure different model sizes in `~/.claude/settings.json` based on ta
     "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
     "ANTHROPIC_DEFAULT_HAIKU_MODEL": "anthropic/claude-haiku-4.5",
     "ANTHROPIC_DEFAULT_SONNET_MODEL": "anthropic/claude-sonnet-4.5",
-    "ANTHROPIC_DEFAULT_OPUS_MODEL": "anthropic/claude-opus-4.1"
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "anthropic/claude-opus-4.5"
   }
 }
 ```
@@ -217,7 +227,7 @@ You can configure different model sizes in `~/.claude/settings.json` based on ta
     "ANTHROPIC_BASE_URL": "https://zenmux.ai/api/anthropic",
     "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
     "ANTHROPIC_DEFAULT_HAIKU_MODEL": "anthropic/claude-sonnet-4.5",
-    "ANTHROPIC_DEFAULT_SONNET_MODEL": "anthropic/claude-opus-4.1",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "anthropic/claude-opus-4.5",
     "ANTHROPIC_DEFAULT_OPUS_MODEL": "google/gemini-2.5-pro"
   }
 }
