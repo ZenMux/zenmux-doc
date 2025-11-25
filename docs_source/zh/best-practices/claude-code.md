@@ -5,7 +5,7 @@ Claude Code 是 Anthropic 推出的官方 Coding Agent，通过与 ZenMux 的集
 ::: info 兼容性说明
 ZenMux 完全支持 Anthropic API 协议，可以无缝集成到 Claude Code、Cursor 等工具中。只需修改两个参数即可使用。
 
-注意 Anthropic 协议的 base_url="https://zenmux.ai/api/anthropic"。
+注意 Anthropic 协议的 base_url="<https://zenmux.ai/api/anthropic"。>
 :::
 
 ## 配置方案
@@ -46,7 +46,7 @@ nano ~/.claude/settings.json  # 或使用其他编辑器如 vim、code 等
     "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
     "ANTHROPIC_DEFAULT_HAIKU_MODEL": "anthropic/claude-haiku-4.5",
     "ANTHROPIC_DEFAULT_SONNET_MODEL": "anthropic/claude-sonnet-4.5",
-    "ANTHROPIC_DEFAULT_OPUS_MODEL": "anthropic/claude-opus-4.1"
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "anthropic/claude-opus-4.5"
   }
 }
 ```
@@ -92,24 +92,34 @@ claude  # [!code highlight]
 
 下面是一些推荐使用的编程能力较强的模型模型列表，完整的支持 Anthropic 协议的模型请按照上述方式获取。
 
-| 序号 | 模型 slug                        |
-| ---- | -------------------------------- |
-| 1    | `anthropic/claude-sonnet-4.5`    |
-| 2    | `anthropic/claude-opus-4.1`      |
-| 3    | `anthropic/claude-haiku-4.5`     |
-| 4    | `google/gemini-2.5-pro`          |
-| 5    | `openai/gpt-5-codex`             |
-| 6    | `openai/gpt-5`                   |
-| 7    | `x-ai/grok-4-fast`               |
-| 8    | `x-ai/grok-code-fast-1`          |
-| 9    | `x-ai/grok-4-fast-non-reasoning` |
-| 10   | `deepseek/deepseek-chat`         |
-| 11   | `qwen/qwen3-coder-plus`          |
-| 12   | `moonshotai/kimi-k2-0905`        |
-| 13   | `z-ai/glm-4.6`                   |
-| 14   | `z-ai/glm-4.5-air`               |
-| 15   | `inclusionai/ring-1t`            |
-| 16   | `inclusionai/ling-1t`            |
+| 模型 slug                        |
+| -------------------------------- |
+| `anthropic/claude-sonnet-4.5`    |
+| `anthropic/claude-opus-4.5`      |
+|`google/gemini-3-pro-preview`|
+|`openai/gpt-5.1-codex`|
+|`openai/gpt-5.1-codex-mini`|
+| `anthropic/claude-opus-4.1`      |
+|`baidu/ernie-5.0-thinking-preview`|
+|`volcengine/doubao-seed-code`|
+|`moonshotai/kimi-k2-thinking`|
+|`moonshotai/kimi-k2-thinking-turbo`|
+|`minimax/minimax-m2`|
+|`kuaishou/kat-coder-pro-v1`|
+| `anthropic/claude-haiku-4.5`     |
+| `google/gemini-2.5-pro`          |
+| `openai/gpt-5-codex`             |
+| `openai/gpt-5`                   |
+| `x-ai/grok-4-fast`               |
+| `x-ai/grok-code-fast-1`          |
+| `x-ai/grok-4-fast-non-reasoning` |
+| `deepseek/deepseek-chat`         |
+| `qwen/qwen3-coder-plus`          |
+| `moonshotai/kimi-k2-0905`        |
+| `z-ai/glm-4.6`                   |
+| `z-ai/glm-4.5-air`               |
+| `inclusionai/ring-1t`            |
+| `inclusionai/ling-1t`            |
 
 更多模型可以通过上述 Anthropic 协议支持模型说明来获取！
 
@@ -205,7 +215,7 @@ claude  # [!code highlight]
     "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
     "ANTHROPIC_DEFAULT_HAIKU_MODEL": "anthropic/claude-haiku-4.5",
     "ANTHROPIC_DEFAULT_SONNET_MODEL": "anthropic/claude-sonnet-4.5",
-    "ANTHROPIC_DEFAULT_OPUS_MODEL": "anthropic/claude-opus-4.1"
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "anthropic/claude-opus-4.5"
   }
 }
 ```
@@ -217,7 +227,7 @@ claude  # [!code highlight]
     "ANTHROPIC_BASE_URL": "https://zenmux.ai/api/anthropic",
     "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
     "ANTHROPIC_DEFAULT_HAIKU_MODEL": "anthropic/claude-sonnet-4.5",
-    "ANTHROPIC_DEFAULT_SONNET_MODEL": "anthropic/claude-opus-4.1",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "anthropic/claude-opus-4.5",
     "ANTHROPIC_DEFAULT_OPUS_MODEL": "google/gemini-2.5-pro"
   }
 }
