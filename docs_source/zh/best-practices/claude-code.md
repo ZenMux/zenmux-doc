@@ -221,17 +221,6 @@ export ANTHROPIC_DEFAULT_OPUS_MODEL="google/gemini-3-pro-preview"
 - 确认防火墙设置是否阻止了外部连接
   :::
 
-::: details 配置文件不生效
-**问题**：设置了 settings.json 配置后仍然不生效
-
-**解决方案**：
-
-- 确认配置文件路径为 `~/.claude/settings.json`
-- 检查 JSON 格式是否正确（注意 JSON 标准不支持注释，如有注释请删除）
-- 使用 `cat ~/.claude/settings.json` 验证配置文件内容
-- 重新启动 Claude Code 以加载最新配置
-  :::
-
 ::: details VSCode Claude Code 插件配置
 **问题**：在 VSCode 的 Claude Code 插件 GUI 模式下遇到问题
 

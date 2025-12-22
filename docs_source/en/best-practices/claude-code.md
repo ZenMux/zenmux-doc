@@ -79,7 +79,8 @@ export ANTHROPIC_DEFAULT_SONNET_MODEL="anthropic/claude-sonnet-4.5" # Balanced m
 export ANTHROPIC_DEFAULT_OPUS_MODEL="anthropic/claude-opus-4.5"     # High-power model
 ```
 
-3. Apply the configuration (choose one):
+1. Apply the configuration (choose one):
+
    ```bash
    # Option 1: Reload the config file (recommended)
    source ~/.bashrc  # if using bash
@@ -112,13 +113,17 @@ After configuring environment variables, you can start Claude Code. On first lau
 
 1. Open a **new** terminal window (to ensure environment variables are loaded)
 2. Enter your project directory:
+
    ```bash
    cd /path/to/your/project
    ```
+
 3. Start Claude Code:
+
    ```bash
    claude  # [!code highlight]
    ```
+
 4. On first launch, Claude Code will:
    - Automatically read `ANTHROPIC_AUTH_TOKEN` from your environment
    - Authenticate via the ZenMux service specified by `ANTHROPIC_BASE_URL`
@@ -141,6 +146,7 @@ Anthropic base URL: https://zenmux.ai/api/anthropic  # [!code highlight]
 ```
 
 **Verification checklist:**
+
 - ✅ `Auth token` should display `ANTHROPIC_AUTH_TOKEN` (meaning it’s being read from environment variables)
 - ✅ `Anthropic base URL` should display `https://zenmux.ai/api/anthropic` (the ZenMux endpoint)
 
@@ -219,17 +225,6 @@ You can use the `/model` command to confirm which model is currently in use:
 - Check whether your network connection is working
 - Verify `ANTHROPIC_BASE_URL` is correctly set to `https://zenmux.ai/api/anthropic`
 - Confirm your firewall settings are not blocking outbound connections
-  :::
-
-::: details Config file not taking effect
-**Problem**: You configured settings.json but it still does not take effect
-
-**Solution**:
-
-- Confirm the config file path is `~/.claude/settings.json`
-- Check whether the JSON is valid (note: standard JSON does not support comments—remove any comments)
-- Use `cat ~/.claude/settings.json` to verify the file contents
-- Restart Claude Code to load the latest configuration
   :::
 
 ::: details VSCode Claude Code extension configuration
