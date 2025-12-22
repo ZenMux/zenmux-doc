@@ -159,7 +159,7 @@ async function translateContent(systemPrompt: string, markdownContent: string): 
   
   const completion = await client.chat.completions.create({
     // model: "anthropic/claude-sonnet-4.5",
-    model: "openai/gpt-5",
+    model: "openai/gpt-5.2",
     messages: messages,
   });
   
