@@ -1,13 +1,14 @@
-# Claude Code CLI Guide with ZenMux
+# Guide: Using Claude Code CLI via ZenMux
 
-Claude Code is Anthropic’s official coding agent. With ZenMux integration, you can use a broader range of models instead of being limited to Anthropic’s official Claude models.
+::: info Compatibility Notes
 
-For example, via ZenMux you can use models such as the GPT-5.2 series, Claude-4.5 series, Gemini-3 series, Grok 4.1 series, Doubao-Seed-Code, Kimi-K2, Minimax-M2, GLM-4.6, DeepSeek-V3.2, Qwen3-Coder-Plus, and more in Claude Code. For the full list of supported models, see the [official model list](https://zenmux.ai/models?sort=newest&supported_protocol=messages).
+Claude Code is Anthropic’s official coding agent. With ZenMux integration, you can access a broader range of models rather than being limited to Anthropic’s official Claude models.
 
-::: info Compatibility
-ZenMux fully supports the Anthropic API protocol and can be seamlessly integrated into tools like Claude Code and Cursor. You only need to change two parameters.
+For example, you can use GPT-5.2 series, Claude-4.5 series, Gemini-3 series, Grok 4.1 series, Doubao-Seed-Code, Kimi-K2, Minimax-M2, GLM-4.6, DeepSeek-V3.2, Qwen3-Coder-Plus, and more within Claude Code via ZenMux. For the full list of supported models, see the [Official Model List](https://zenmux.ai/models?sort=newest&supported_protocol=messages).
 
-Note that the Anthropic protocol base_url is `https://zenmux.ai/api/anthropic`.
+ZenMux fully supports the Anthropic API protocol and can be seamlessly integrated into tools like Claude Code and Cursor. You only need to modify two parameters.
+
+Note: For the Anthropic protocol, use `base_url="https://zenmux.ai/api/anthropic"`.
 :::
 
 ## Configuration
@@ -28,91 +29,147 @@ npm install -g @anthropic-ai/claude-code
 
 ### Configure Claude Code
 
-::: warning Important changes in v2.0.7x
+#### How the Configuration Works
+
+By default, Claude Code connects directly to Anthropic’s official service. By setting environment variables, you can redirect its requests to ZenMux. The benefits include:
+
+- **No changes to Claude Code required**: switch endpoints using environment variables only
+- **Authenticate with a ZenMux API Key**: instead of an Anthropic API Key
+- **Access more model choices**: beyond Claude, you can use GPT, Gemini, Qwen, and many others
+
+The core setup is to configure two key environment variables—`ANTHROPIC_BASE_URL` (the ZenMux service endpoint) and `ANTHROPIC_AUTH_TOKEN` (your ZenMux API Key)—so all Claude Code requests are forwarded through ZenMux.
+
+::: warning Important change in v2.0.7x
 Due to updates in Claude Code v2.0.7x, its **environment variable loading logic has changed**: the `env` configuration in `~/.claude/settings.json` **cannot be reliably read** in the following scenarios:
 
-- When you **log in** to Claude Code for the first time
-- When you log in again after running **logout**
+- When logging in to Claude Code **for the first time**
+- When logging in again after running **logout**
 
-Therefore, when connecting to ZenMux, we recommend consistently configuring via **shell profile environment variables** to ensure that both login and requests go through ZenMux’s Anthropic-compatible endpoint.
+Therefore, when connecting to ZenMux, we recommend configuring via **shell profile environment variables** to ensure both login and requests go through ZenMux’s Anthropic-compatible endpoint.
 :::
 
-### Step 1: Add environment variables to your shell profile (recommended)
+### Step 1: Configure Shell Environment Variables (Recommended)
 
-Append the following to `~/.bashrc` or `~/.zshrc` (choose the one for your shell):
+This step writes the ZenMux connection configuration into your shell config file so it is automatically applied each time you open a terminal.
+
+**Steps:**
+
+1. Determine which shell you’re using (typically bash or zsh):
+   - If using bash, edit `~/.bashrc`
+   - If using zsh, edit `~/.zshrc`
+   - If you’re not sure, run `echo $SHELL`
+
+2. **Append** the following to the end of the corresponding config file (remember to replace the API Key):
 
 ```bash
-# Set these in your shell (e.g., ~/.bashrc, ~/.zshrc)
-export ANTHROPIC_BASE_URL="https://zenmux.ai/api/anthropic"
-export ANTHROPIC_AUTH_TOKEN="sk-ai-v1-xxx"
-export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC="1"
+# ============= ZenMux + Claude Code Configuration =============
+# Connect Claude Code to ZenMux instead of Anthropic’s official service
 
-# Important: If ANTHROPIC_API_KEY was previously set on your machine, we recommend explicitly emptying it to avoid conflicts
+# Core configuration: ZenMux endpoint and authentication
+export ANTHROPIC_BASE_URL="https://zenmux.ai/api/anthropic"  # ZenMux Anthropic-compatible endpoint
+export ANTHROPIC_AUTH_TOKEN="sk-ai-v1-xxx"                   # Replace with your ZenMux API Key
+export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC="1"          # Disable non-essential traffic
+
+# Avoid conflicts: if you previously set ANTHROPIC_API_KEY locally, explicitly clear it
 export ANTHROPIC_API_KEY=""
 
-# Default models (required): correspond to Haiku / Sonnet / Opus tiers respectively
-export ANTHROPIC_DEFAULT_HAIKU_MODEL="anthropic/claude-haiku-4.5"
-export ANTHROPIC_DEFAULT_SONNET_MODEL="anthropic/claude-sonnet-4.5"
-export ANTHROPIC_DEFAULT_OPUS_MODEL="anthropic/claude-opus-4.5"
+# Default model configuration (required): map Haiku / Sonnet / Opus speed tiers to actual models
+export ANTHROPIC_DEFAULT_HAIKU_MODEL="anthropic/claude-haiku-4.5"   # Fast model
+export ANTHROPIC_DEFAULT_SONNET_MODEL="anthropic/claude-sonnet-4.5" # Balanced model
+export ANTHROPIC_DEFAULT_OPUS_MODEL="anthropic/claude-opus-4.5"     # High-power model
 ```
 
-After saving, run `source ~/.bashrc` or `source ~/.zshrc` to apply changes, or simply restart your terminal.
+3. Apply the configuration (choose one):
+   ```bash
+   # Option 1: Reload the config file (recommended)
+   source ~/.bashrc  # if using bash
+   # or
+   source ~/.zshrc   # if using zsh
+
+   # Option 2: Restart your terminal window
+   ```
 
 ::: warning Critical configuration
-Make sure to replace `sk-ai-v1-xxx` with your real ZenMux API Key. You can obtain your API Key from the [ZenMux Console](https://zenmux.ai/settings/keys).
+Make sure to replace `sk-ai-v1-xxx` with your real ZenMux API Key. You can get your API Key from the [ZenMux Console](https://zenmux.ai/settings/keys).
 :::
 
-::: tip Variable reference
+::: tip Environment variable reference
 
-- `ANTHROPIC_BASE_URL`: ZenMux Anthropic API endpoint (overrides Claude Code’s login/request endpoint)
-- `ANTHROPIC_AUTH_TOKEN`: Your ZenMux API Key
-- `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC`: Disable non-essential traffic
-- `ANTHROPIC_API_KEY`: Recommended to explicitly set to empty to prevent Claude Code from using any existing local Anthropic configuration
+| Variable | Purpose | Notes |
+|----------|---------|-------|
+| `ANTHROPIC_BASE_URL` | Service endpoint | Redirects Claude Code requests to ZenMux |
+| `ANTHROPIC_AUTH_TOKEN` | Auth token | Your ZenMux API Key (get it in the [Console](https://zenmux.ai/settings/keys)) |
+| `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` | Traffic control | Disables non-essential telemetry to improve privacy |
+| `ANTHROPIC_API_KEY` | Conflict avoidance | Clear it to avoid conflicts with existing local Anthropic config |
+| `ANTHROPIC_DEFAULT_*_MODEL` | Model mapping | Maps the Haiku/Sonnet/Opus tiers to specific models |
 :::
 
-### Step 2: Start Claude Code
+### Step 2: Start Claude Code and Complete Authentication
 
-Enter your project directory and start Claude Code:
+After configuring environment variables, you can start Claude Code. On first launch, it will authenticate through ZenMux automatically.
 
-```bash
-cd my-project
-claude  # [!code highlight]
-```
+**Steps:**
 
-### Step 3: Verify the connection
+1. Open a **new** terminal window (to ensure environment variables are loaded)
+2. Enter your project directory:
+   ```bash
+   cd /path/to/your/project
+   ```
+3. Start Claude Code:
+   ```bash
+   claude  # [!code highlight]
+   ```
+4. On first launch, Claude Code will:
+   - Automatically read `ANTHROPIC_AUTH_TOKEN` from your environment
+   - Authenticate via the ZenMux service specified by `ANTHROPIC_BASE_URL`
+   - Require no additional login steps before you can start using it
 
-Run `/status` in Claude Code and confirm the base URL points to ZenMux:
+::: tip Tip
+If you see an error that the `claude` command cannot be found, confirm Claude Code is installed globally (see the install steps above).
+:::
+
+### Step 3: Verify Connection Status
+
+After a successful launch, verify that Claude Code is correctly connected to ZenMux.
+
+At the Claude Code prompt, run `/status` and confirm the configuration:
 
 ```text
 > /status
-Auth token: ANTHROPIC_AUTH_TOKEN
-Anthropic base URL: https://zenmux.ai/api/anthropic
+Auth token: ANTHROPIC_AUTH_TOKEN  # [!code highlight]
+Anthropic base URL: https://zenmux.ai/api/anthropic  # [!code highlight]
 ```
 
-## Switching / specifying default models
+**Verification checklist:**
+- ✅ `Auth token` should display `ANTHROPIC_AUTH_TOKEN` (meaning it’s being read from environment variables)
+- ✅ `Anthropic base URL` should display `https://zenmux.ai/api/anthropic` (the ZenMux endpoint)
 
-Above, we configured default models in the shell profile (**required**). If you want to switch to other models, simply modify the same set of environment variables:
+If it matches the above, your setup is complete. You can now use Claude Code via ZenMux.
+
+## Switch / Set Default Models
+
+You already configured default models in your shell profile (**required**). If you want to switch to other models, simply modify the same environment variables:
 
 ```bash
-export ANTHROPIC_DEFAULT_HAIKU_MODEL="anthropic/claude-haiku-4.5"
-export ANTHROPIC_DEFAULT_SONNET_MODEL="anthropic/claude-sonnet-4.5"
-export ANTHROPIC_DEFAULT_OPUS_MODEL="anthropic/claude-opus-4.5"
+export ANTHROPIC_DEFAULT_HAIKU_MODEL="volcengine/doubao-seed-code"
+export ANTHROPIC_DEFAULT_SONNET_MODEL="openai/gpt-5.2"
+export ANTHROPIC_DEFAULT_OPUS_MODEL="google/gemini-3-pro-preview"
 ```
 
-After updating, remember to run `source ~/.bashrc` / `source ~/.zshrc` or restart the terminal for changes to take effect.
+After editing, remember to run `source ~/.bashrc` / `source ~/.zshrc` or restart your terminal for the changes to take effect.
 
-### Supported models
+### Supported Models
 
-::: info Notes on models supported by the Anthropic protocol
-Models that support the Anthropic protocol are being adapted in batches. You can filter the currently supported models via the [official model list](https://zenmux.ai/models?sort=newest&supported_protocol=messages) by selecting the Anthropic Messages protocol:
+::: info Supported models for the Anthropic protocol
+Models that support the Anthropic protocol are being rolled out in batches. You can filter the currently supported models via the [Official Model List](https://zenmux.ai/models?sort=newest&supported_protocol=messages) by selecting the Anthropic Messages protocol:
 ![anthropic-support](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/16/602FqX9/anthropic-support.png)
-You can also check the [model detail page](https://zenmux.ai/anthropic/claude-haiku-4.5):
+Alternatively, you can check support on a model’s details page (example):
 ![anthropic-support](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/16/I9JHS8b/detail-anthropic-support.png)
 :::
 
-## What it looks like
+## What It Looks Like
 
-After configuration, you can use a variety of ZenMux models in Claude Code:
+After configuration, you can use various ZenMux models in Claude Code:
 
 <div style="text-align: center;">
   <img src="https://cdn.marmot-cloud.com/storage/zenmux/2025/10/16/GxOgGlh/claude-code-v2.png"
@@ -121,7 +178,7 @@ After configuration, you can use a variety of ZenMux models in Claude Code:
        loading="lazy" />
 </div>
 
-You can use the '/model' command to determine the current model in use:
+You can use the `/model` command to confirm which model is currently in use:
 
 <div style="text-align: center;">
   <img src="https://cdn.marmot-cloud.com/storage/zenmux/2025/10/16/MOGcIN5/claude-code-v2-model.png"
@@ -132,10 +189,10 @@ You can use the '/model' command to determine the current model in use:
 
 ## Troubleshooting
 
-### Common issues
+### Common Issues
 
 ::: details API Key error
-**Issue**: It says the API Key is invalid or unauthorized
+**Problem**: You see an “invalid API Key” or “unauthorized” message
 
 **Solution**:
 
@@ -145,104 +202,53 @@ You can use the '/model' command to determine the current model in use:
   :::
 
 ::: details Model does not support the Anthropic protocol
-**Issue**: When using a model, it indicates the Anthropic protocol is not supported
+**Problem**: You see a message saying the selected model does not support the Anthropic protocol
 
 **Solution**:
 
-- In the [ZenMux model list](https://zenmux.ai/models), filter by "Anthropic API Compatible" to view currently supported models
-- Or visit the model detail page to confirm whether it supports the Anthropic protocol
-- Use a model from the supported list above
+- In the [ZenMux Model List](https://zenmux.ai/models), filter by "Anthropic API Compatible" to see currently supported models
+- Or open the model’s details page to confirm whether it supports the Anthropic protocol
+- Select a model from the supported list above
   :::
 
 ::: details Connection failure
-**Issue**: Claude Code cannot connect to the ZenMux service
+**Problem**: Claude Code cannot connect to the ZenMux service
 
 **Solution**:
 
 - Check whether your network connection is working
 - Verify `ANTHROPIC_BASE_URL` is correctly set to `https://zenmux.ai/api/anthropic`
-- Confirm firewall settings are not blocking outbound connections
+- Confirm your firewall settings are not blocking outbound connections
   :::
 
-::: details Configuration file not taking effect
-**Issue**: settings.json is configured, but it still doesn’t take effect
+::: details Config file not taking effect
+**Problem**: You configured settings.json but it still does not take effect
 
 **Solution**:
 
-- Confirm the configuration file path is `~/.claude/settings.json`
-- Check that the JSON format is valid (note that standard JSON does not support comments—remove them if present)
+- Confirm the config file path is `~/.claude/settings.json`
+- Check whether the JSON is valid (note: standard JSON does not support comments—remove any comments)
 - Use `cat ~/.claude/settings.json` to verify the file contents
 - Restart Claude Code to load the latest configuration
   :::
 
 ::: details VSCode Claude Code extension configuration
-**Issue**: Issues when using the Claude Code extension in VSCode (GUI mode)
+**Problem**: Issues in the Claude Code extension GUI mode in VSCode
 
 **Solution**:
 
-You can adjust Claude Code’s model configuration directly in the VSCode extension settings by changing it to the model slug specified in your configuration file. See the screenshots below:
+You can adjust Claude Code’s model configuration directly in the VSCode extension settings by changing it to the model slug used in your config. See the screenshots below for the exact steps:
 
 ![VSCode Claude Code extension configuration](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/16/alNj8F2/cc-plugin-settings.png)
 ![VSCode Claude Code extension configuration](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/16/S7fuYF9/cc-plugin-model.png)
 :::
 
-## Advanced configuration
-
-### Configure models of different sizes
-
-You can configure models of different sizes in `~/.claude/settings.json` based on your task requirements:
-
-::: code-group
-
-```json [Balanced configuration]
-{
-  "env": {
-    "ANTHROPIC_AUTH_TOKEN": "sk-ai-v1-xxx",
-    "ANTHROPIC_BASE_URL": "https://zenmux.ai/api/anthropic",
-    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
-    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "anthropic/claude-haiku-4.5",
-    "ANTHROPIC_DEFAULT_SONNET_MODEL": "anthropic/claude-sonnet-4.5",
-    "ANTHROPIC_DEFAULT_OPUS_MODEL": "anthropic/claude-opus-4.5"
-  }
-}
-```
-
-```json [Performance-first configuration]
-{
-  "env": {
-    "ANTHROPIC_AUTH_TOKEN": "sk-ai-v1-xxx",
-    "ANTHROPIC_BASE_URL": "https://zenmux.ai/api/anthropic",
-    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
-    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "anthropic/claude-sonnet-4.5",
-    "ANTHROPIC_DEFAULT_SONNET_MODEL": "anthropic/claude-opus-4.5",
-    "ANTHROPIC_DEFAULT_OPUS_MODEL": "google/gemini-2.5-pro"
-  }
-}
-```
-
-```json [Cost-optimized configuration]
-{
-  "env": {
-    "ANTHROPIC_AUTH_TOKEN": "sk-ai-v1-xxx",
-    "ANTHROPIC_BASE_URL": "https://zenmux.ai/api/anthropic",
-    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
-    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "deepseek/deepseek-chat",
-    "ANTHROPIC_DEFAULT_SONNET_MODEL": "moonshotai/kimi-k2-0905",
-    "ANTHROPIC_DEFAULT_OPUS_MODEL": "qwen/qwen3-coder-plus"
-  }
-}
-```
-
-:::
-
-With this approach, you can achieve the best balance of performance and cost across different usage scenarios.
-
 ::: info More models
-See the [ZenMux model list](https://zenmux.ai/models) for all available models and detailed information.
+See the [ZenMux Model List](https://zenmux.ai/models) for all available models and detailed information.
 :::
 
-::: tip Contact us
-If you encounter any issues during use, or have any suggestions or feedback, feel free to contact us via:
+::: tip Contact Us
+If you run into any issues during use, or if you have suggestions or feedback, feel free to contact us via:
 
 - **Official website**: <https://zenmux.ai>
 - **Technical support email**: [support@zenmux.ai](mailto:support@zenmux.ai)
@@ -250,5 +256,5 @@ If you encounter any issues during use, or have any suggestions or feedback, fee
 - **Twitter**: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
 - **Discord community**: <http://discord.gg/vHZZzj84Bm>
 
-For more contact methods and details, please visit our [Contact Us page](/help/contact).
-:::
+For more contact methods and details, please visit our [Contact page](/help/contact).
+::ાયદ
