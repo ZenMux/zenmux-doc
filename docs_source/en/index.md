@@ -1,13 +1,13 @@
 ---
 title: ZenMux - AI Model Aggregation Platform
-subtitle: Unified API for Hundreds of AI Models
+subtitle: A Unified API for Hundreds of AI Models
 slug: home
-headline: ZenMux - Enterprise AI Model Aggregation Platform
+headline: ZenMux - Enterprise-Grade AI Model Aggregation Platform
 canonical-url: "https://zenmux.ai/"
 "og:site_name": ZenMux
 "og:title": ZenMux - AI Model Aggregation Platform
 "og:description": >-
-  ZenMux provides unified API access to hundreds of AI models with intelligent routing,
+  ZenMux provides unified API access to hundreds of AI models, with intelligent routing,
   automatic failover, and AI output quality assurance.
 "og:image":
   type: url
@@ -28,13 +28,13 @@ import { useRouter } from 'vitepress'
 const router = useRouter()
 
 onMounted(() => {
-  // Redirect to introduction page
+  // Redirect to the introduction page
   router.go('/about/intro')
 })
 </script>
 
 ::: info Welcome to the ZenMux Documentation
-For more details about ZenMux, visit our [Introduction page](/about/intro), which includes a comprehensive product overview, feature set, and Beta application information.
+For more information about ZenMux, please visit our [Introduction page](/about/intro), which includes a detailed product overview, key features, and Beta application information.
 :::
 
 ## Quick Navigation
@@ -43,29 +43,31 @@ For more details about ZenMux, visit our [Introduction page](/about/intro), whic
 
 - [Introduction](/about/intro) - Comprehensive product overview and Beta application
 - [Models & Providers](/about/models-and-providers) - Supported models and providers
-- [Pricing & Cost](/about/pricing-and-cost) - Pricing and fees
-- [Provider Routing](/about/provider-routing) - Provider routing mechanism
+- [Pricing & Costs](/about/pricing-and-cost) - Pricing information and costs
 
-### User Guide
+### Documentation
 
 - [Quickstart](/guide/quickstart) - Get started with ZenMux in minutes
 
 ### Advanced Usage
 
+- [Provider Routing](/guide/advanced/provider-routing) - Provider routing mechanism
+- [Model Routing](/guide/advanced/model-routing) - Intelligent model routing mechanism
+- [Fallback Models](/guide/advanced/fallback) - Fallback model mechanism
 - [Streaming](/guide/advanced/streaming) - Real-time streaming responses
 - [Multimodal](/guide/advanced/multimodal) - Text, image, and audio processing
 - [Structured Output](/guide/advanced/structured-output) - JSON and structured responses
 - [Tool Calls](/guide/advanced/tool-calls) - Function calling capabilities
-- [Prompt Cache](/guide/advanced/prompt-cache) - Prompt caching functionality
+- [Prompt Caching](/guide/advanced/prompt-cache) - Prompt caching feature
 - [Reasoning Models](/guide/advanced/reasoning) - Using reasoning models
-
+  
 ### Best Practices
 
-- [Claude Code Integration Guide for ZenMux](/best-practices/claude-code) - How to connect Claude to ZenMux for custom model usage
+- [ClaudeCode Integration Guide for ZenMux](/best-practices/claude-code) - How to integrate Claude with ZenMux as a custom model
 
 ### API Reference
 
-- [Chat Completion](/api/openai/chat-completion) - OpenAI-compatible chat API
+- [Chat Completion](/api/openai/chat-completion) - OpenAI-compatible Chat API
 - [Get a generation](/api/platform/get-generation) - ZenMux platform-specific API
 - [Message](/api/anthropic/create-messages) - Anthropic API
 - [VertexAI](/api/vertexai/generate-content) - Google Vertex AI API
@@ -73,5 +75,5 @@ For more details about ZenMux, visit our [Introduction page](/about/intro), whic
 ---
 
 ::: tip Ready to get started?
-Begin your ZenMux journey by reading our [Introduction](/about/intro), then follow the [Quickstart](/guide/quickstart) to make your first API call.
+Start your ZenMux journey by reading our [Introduction](/about/intro), then follow the [Quickstart](/guide/quickstart) to make your first API call.
 :::

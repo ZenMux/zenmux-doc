@@ -155,19 +155,24 @@ async function translateContent(systemPrompt: string, markdownContent: string): 
     }
   ];
   
-  console.log("🚀 正在调用大模型进行翻译...");
+  console.log("🚀 正在调用大模型进行流式翻译...");
   
-  const completion = await client.chat.completions.create({
+  const stream = await client.chat.completions.create({
     // model: "anthropic/claude-sonnet-4.5",
     model: "openai/gpt-5.2",
     messages: messages,
+    stream: true,
   });
   
-  if (!completion) {
-    throw new Error("大模型返回内容为空");
+  let translatedContent = '';
+  
+  for await (const chunk of stream) {
+    const content = chunk.choices[0]?.delta?.content || '';
+    translatedContent += content;
+    process.stdout.write(content);
   }
-
-  const translatedContent = completion.choices[0].message.content;
+  
+  console.log("\n"); // 换行，以便后续输出
   
   if (!translatedContent) {
     throw new Error("大模型返回内容为空");
