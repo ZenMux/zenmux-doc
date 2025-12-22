@@ -93,6 +93,7 @@ export default defineLoacaleConfig({
             text: "Neovate接入ZenMux指南",
             link: "/zh/best-practices/neovate-code",
           },
+          { text: "VS Code Copilot 接入 ZenMux 指南", link: "/zh/best-practices/copilot" },
         ],
       },
       {
