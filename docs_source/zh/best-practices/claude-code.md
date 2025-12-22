@@ -1,6 +1,8 @@
 # 通过 ZenMux 使用 Claude Code CLI 指南
 
-Claude Code 是 Anthropic 推出的官方 Coding Agent，通过与 ZenMux 的集成，您可以使用更多模型选择，而不仅仅局限于 Claude 官方 API。
+Claude Code 是 Anthropic 推出的官方 Coding Agent，通过与 ZenMux 的集成，您可以使用更多模型选择，而不仅仅局限于 Claude 官方模型。
+
+例如，您可以通过 ZenMux 在 Claude Code 中使用 GPT-5.2系列、Claude-4.5系列、Gemini-3系列、Grok 4.1系列、Doubao-Seed-Code、Kimi-K2、Minimax-M2、GLM-4.6、DeepSeek-V3.2、Qwen3-Coder-Plus等模型，更多支持的模型请见[官方模型列表](https://zenmux.ai/models?sort=newest&supported_protocol=messages)。
 
 ::: info 兼容性说明
 ZenMux 完全支持 Anthropic API 协议，可以无缝集成到 Claude Code、Cursor 等工具中。只需修改两个参数即可使用。
@@ -26,102 +28,87 @@ npm install -g @anthropic-ai/claude-code
 
 ### 配置 Claude Code
 
-Claude Code 支持通过配置文件来设置环境变量。编辑或创建 `~/.claude/settings.json` 文件，添加以下配置：
+::: warning v2.0.7x 版本重要变更
+由于 Claude Code v2.0.7x 的更新，其**环境变量加载逻辑发生改变**：`~/.claude/settings.json` 中的 `env` 配置在以下场景**无法可靠读取**：
+
+- **首次登录** Claude Code 时
+- 执行 **logout** 后再次登录时
+
+因此，连接 ZenMux 时建议统一使用 **shell profile 环境变量** 的方式进行配置，以确保登录与请求都走 ZenMux 的 Anthropic 兼容端点。
+:::
+
+### 步骤 1：将环境变量写入 Shell Profile（推荐）
+
+将以下内容追加到 `~/.bashrc` 或 `~/.zshrc`（按您使用的 shell 选择其一）：
 
 ```bash
-# 如果 .claude 目录不存在，先创建目录
-mkdir -p ~/.claude
+# Set these in your shell (e.g., ~/.bashrc, ~/.zshrc)
+export ANTHROPIC_BASE_URL="https://zenmux.ai/api/anthropic"
+export ANTHROPIC_AUTH_TOKEN="sk-ai-v1-xxx"
+export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC="1"
 
-# 创建或编辑配置文件
-nano ~/.claude/settings.json  # 或使用其他编辑器如 vim、code 等
+# Important: 如果你本机曾设置过 ANTHROPIC_API_KEY，建议显式置空以避免冲突
+export ANTHROPIC_API_KEY=""
+
+# 默认模型（不可或缺）：分别对应 Haiku / Sonnet / Opus 三个档位
+export ANTHROPIC_DEFAULT_HAIKU_MODEL="anthropic/claude-haiku-4.5"
+export ANTHROPIC_DEFAULT_SONNET_MODEL="anthropic/claude-sonnet-4.5"
+export ANTHROPIC_DEFAULT_OPUS_MODEL="anthropic/claude-opus-4.5"
 ```
 
-在配置文件中添加以下内容：
-
-```json
-{
-  "env": {
-    "ANTHROPIC_AUTH_TOKEN": "sk-ai-v1-xxx",
-    "ANTHROPIC_BASE_URL": "https://zenmux.ai/api/anthropic",
-    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
-    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "anthropic/claude-haiku-4.5",
-    "ANTHROPIC_DEFAULT_SONNET_MODEL": "anthropic/claude-sonnet-4.5",
-    "ANTHROPIC_DEFAULT_OPUS_MODEL": "anthropic/claude-opus-4.5"
-  }
-}
-```
+保存后执行 `source ~/.bashrc` 或 `source ~/.zshrc` 使其生效，或直接重启终端。
 
 ::: warning 重要配置
 请确保将 `sk-ai-v1-xxx` 替换为您的真实 ZenMux API Key。您可以在 [ZenMux 控制台](https://zenmux.ai/settings/keys) 中获取 API Key。
 :::
 
-::: tip 配置说明
+::: tip 变量说明
 
+- `ANTHROPIC_BASE_URL`: ZenMux Anthropic API 端点（用于覆写 Claude Code 的登录/请求 endpoint）
 - `ANTHROPIC_AUTH_TOKEN`: 您的 ZenMux API Key
-- `ANTHROPIC_BASE_URL`: ZenMux Anthropic API 端点
 - `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC`: 禁用非必要流量
-- `ANTHROPIC_DEFAULT_HAIKU_MODEL`: 指定默认的 Haiku 模型（用于快速任务）
-- `ANTHROPIC_DEFAULT_SONNET_MODEL`: 指定默认的 Sonnet 模型（用于常规任务）
-- `ANTHROPIC_DEFAULT_OPUS_MODEL`: 指定默认的 Opus 模型（用于复杂任务）
-  :::
+- `ANTHROPIC_API_KEY`: 建议显式置空，避免 Claude Code 误走本机已有的 Anthropic 配置
+:::
 
-### 直接启动使用
+### 步骤 2：启动 Claude Code
 
-配置好 `settings.json` 后，直接进入您的项目目录并启动 Claude Code：
+进入您的项目目录并启动 Claude Code：
 
 ```bash
-# 进入项目目录
 cd my-project
-
-# 直接启动 Claude Code
 claude  # [!code highlight]
 ```
 
-::: tip 便捷使用
-配置文件方式更加便捷，无需每次手动设置环境变量，配置会自动在每次启动 Claude Code 时加载。
-:::
+### 步骤 3：验证连接
+
+在 Claude Code 内执行 `/status`，确认 base URL 指向 ZenMux：
+
+```text
+> /status
+Auth token: ANTHROPIC_AUTH_TOKEN
+Anthropic base URL: https://zenmux.ai/api/anthropic
+```
+
+## 更换/指定默认模型
+
+上面我们已经在 shell profile 中配置了默认模型（**不可或缺**）。如果您希望切换到其他模型，只需要修改同一组环境变量即可：
+
+```bash
+export ANTHROPIC_DEFAULT_HAIKU_MODEL="anthropic/claude-haiku-4.5"
+export ANTHROPIC_DEFAULT_SONNET_MODEL="anthropic/claude-sonnet-4.5"
+export ANTHROPIC_DEFAULT_OPUS_MODEL="anthropic/claude-opus-4.5"
+```
+
+修改后记得 `source ~/.bashrc` / `source ~/.zshrc` 或重启终端使其生效。
 
 ### 支持的模型
 
 ::: info Anthropic 协议支持模型说明
-支持 Anthropic 协议的模型正在分批适配中，当前已支持的模型可以通过[官方模型列表](https://zenmux.ai/models)筛选 Anthropic API Compatible 查看:
+支持 Anthropic 协议的模型正在分批适配中，当前已支持的模型可以通过[官方模型列表](https://zenmux.ai/models?sort=newest&supported_protocol=messages)筛选 Anthropic Messages 协议查看:
 ![anthropic-support](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/16/602FqX9/anthropic-support.png)
 或者也可以通过[模型详情页](https://zenmux.ai/anthropic/claude-haiku-4.5)查看:
 ![anthropic-support](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/16/I9JHS8b/detail-anthropic-support.png)
 :::
-
-下面是一些推荐使用的编程能力较强的模型模型列表，完整的支持 Anthropic 协议的模型请按照上述方式获取。
-
-| 模型 slug                        |
-| -------------------------------- |
-| `anthropic/claude-sonnet-4.5`    |
-| `anthropic/claude-opus-4.5`      |
-|`google/gemini-3-pro-preview`|
-|`openai/gpt-5.1-codex`|
-|`openai/gpt-5.1-codex-mini`|
-| `anthropic/claude-opus-4.1`      |
-|`baidu/ernie-5.0-thinking-preview`|
-|`volcengine/doubao-seed-code`|
-|`moonshotai/kimi-k2-thinking`|
-|`moonshotai/kimi-k2-thinking-turbo`|
-|`minimax/minimax-m2`|
-|`kuaishou/kat-coder-pro-v1`|
-| `anthropic/claude-haiku-4.5`     |
-| `google/gemini-2.5-pro`          |
-| `openai/gpt-5-codex`             |
-| `openai/gpt-5`                   |
-| `x-ai/grok-4-fast`               |
-| `x-ai/grok-code-fast-1`          |
-| `x-ai/grok-4-fast-non-reasoning` |
-| `deepseek/deepseek-chat`         |
-| `qwen/qwen3-coder-plus`          |
-| `moonshotai/kimi-k2-0905`        |
-| `z-ai/glm-4.6`                   |
-| `z-ai/glm-4.5-air`               |
-| `inclusionai/ring-1t`            |
-| `inclusionai/ling-1t`            |
-
-更多模型可以通过上述 Anthropic 协议支持模型说明来获取！
 
 ## 使用效果
 
