@@ -169,4 +169,4 @@ If you encounter any issues while using the platform or have suggestions and fee
 - Twitter: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
 - Discord community: <http://discord.gg/vHZZzj84Bm>
 
-For more contact methods and details, please visit our [Contact Us page](/zh/help/contact).
+For more contact methods and details, please visit our [Contact Us page](/help/contact).
