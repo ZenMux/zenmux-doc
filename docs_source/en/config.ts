@@ -129,6 +129,7 @@ export default defineLoacaleConfig({
         text: "Help Center",
         items: [
           { text: "Privacy Policy", link: "/privacy" },
+          { text: "Security and Compliance", link: "/compliance" },
           { text: "Terms of Service", link: "/terms-of-service" },
           // { text: "FAQ", link: "/help/faq" },
           { text: "Contact Us", link: "/help/contact" },
