@@ -141,6 +141,7 @@ export default defineLoacaleConfig({
         text: "帮助中心",
         items: [
           { text: "隐私政策", link: "/zh/privacy" },
+          { text: "安全合规", link: "/zh/compliance" },
           { text: "服务协议", link: "/zh/terms-of-service" },
           // { text: "常见问题", link: "/zh/help/faq" },
           { text: "联系我们", link: "/zh/help/contact" },
