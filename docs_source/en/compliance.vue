@@ -33,17 +33,17 @@ const cardList = [
   {
     img: "https://cdn.marmot-cloud.com/storage/zenmux/2025/12/29/XeFOBdl/AICPA-SOC-2.svg",
     status: "In progress",
-    alt:'SOC2 Type1',
-  },
-  {
-    img: "https://cdn.marmot-cloud.com/storage/zenmux/2025/12/29/4PHBRxb/GDPR.svg",
-    status: "In progress",
-    alt:'GDPR',
+    alt: "SOC2 Type1",
   },
   {
     img: "https://cdn.marmot-cloud.com/storage/zenmux/2025/12/29/p2o1ZKt/ISO-27001.svg",
     status: "In progress",
-    alt:'ISO27001',
+    alt: "ISO27001",
+  },
+  {
+    img: "https://cdn.marmot-cloud.com/storage/zenmux/2025/12/29/4PHBRxb/GDPR.svg",
+    status: "In progress",
+    alt: "GDPR",
   },
 ];
 
@@ -74,15 +74,15 @@ const controlsList: string[] = [
 <style scoped>
 .compliance-line {
   border-top: 1px solid #e2e2e3;
-  height:1px;
-  width:100%;
+  height: 1px;
+  width: 100%;
   padding-top: 80px;
   margin-top: 48px;
 }
 .card-list {
   display: flex;
   justify-content: space-between;
-  padding:0 120px 80px 120px;
+  padding: 0 120px 80px 120px;
 }
 .card-item {
   display: flex;
