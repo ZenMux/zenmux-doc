@@ -3,13 +3,18 @@
     <!-- 页面头部 -->
     <div class="page-header">
       <h1>安全合规</h1>
-      <p>ZenMux 致力于在全球监管框架下支持客户的安全与合规需求。我们提供强有力的数据保护控制措施，旨在帮助组织满足包括 GDPR 在内的主要隐私法律以及其他地区性标准的要求。ZenMux 还提供全面的数据处理附录，清晰阐明我们的安全实践、数据处理义务与客户权利，确保信息披露充分透明，并与当前主流合规要求保持一致。</p>
+      <p>
+        ZenMux
+        致力于在全球监管框架下支持客户的安全与合规需求。我们提供强有力的数据保护控制措施，旨在帮助组织满足包括
+        GDPR 在内的主要隐私法律以及其他地区性标准的要求。ZenMux
+        还提供全面的数据处理附录，清晰阐明我们的安全实践、数据处理义务与客户权利，确保信息披露充分透明，并与当前主流合规要求保持一致。
+      </p>
       <div class="compliance-line"></div>
     </div>
 
     <!-- 卡片列表 -->
     <div class="card-list">
-      <div v-for="(card, index) in cardList" :key="index" class="card-item">
+      <div v-for="(card, index) in currentCardList" :key="index" class="card-item">
         <img :src="card.img" :alt="card.alt" />
         <span class="card-tag">{{ card.status }}</span>
       </div>
@@ -17,11 +22,7 @@
 
     <!-- 控制措施列表 -->
     <div class="controls-list">
-      <div
-        v-for="(control, index) in controlsList"
-        :key="index"
-        class="control-item"
-      >
+      <div v-for="(control, index) in controlsList" :key="index" class="control-item">
         {{ control }}
       </div>
     </div>
@@ -29,6 +30,11 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useData } from 'vitepress'
+
+const { isDark } = useData()
+
 const cardList = [
   {
     img: "https://cdn.marmot-cloud.com/storage/zenmux/2025/12/29/XeFOBdl/AICPA-SOC-2.svg",
@@ -47,8 +53,28 @@ const cardList = [
   },
 ];
 
+const darkCardList = [
+  {
+    img: "https://cdn.marmot-cloud.com/storage/zenmux/2026/01/01/Vw09mBu/AICPA-SOC-2_dark.svg",
+    status: "In progress",
+    alt: "SOC2 Type1",
+  },
+  {
+    img: "https://cdn.marmot-cloud.com/storage/zenmux/2026/01/01/Ij3mF4N/ISO-27001_dark.svg",
+    status: "In progress",
+    alt: "ISO27001",
+  },
+  {
+    img: "https://cdn.marmot-cloud.com/storage/zenmux/2026/01/01/2dROIPA/GDPR_dark.svg",
+    status: "In progress",
+    alt: "GDPR",
+  },
+];
+
+const currentCardList = computed(() => isDark.value ? darkCardList : cardList)
+
 const controlsList: string[] = [
-   "CC1.1.2 Contractual agreements with terms, conditions and responsibilities are established with third parties or subcontractors.",
+  "CC1.1.2 Contractual agreements with terms, conditions and responsibilities are established with third parties or subcontractors.",
   "CC1.2.1 The Company's board has sufficient members separate and independent from management and provide objective evaluation and decision-making.",
   "CC1.3.1 The Company evaluates its organizational structure, reporting lines, authorities, and responsibilities as part of its business planning process, updates as needed and communicates to employees.",
   "CC1.4.1 Skill requirements are documented in position descriptions, and candidates' abilities to meet these requirements are evaluated as part of the hiring and performance review processes.",
@@ -79,17 +105,24 @@ const controlsList: string[] = [
   padding-top: 80px;
   margin-top: 48px;
 }
+
+html.dark .compliance-line {
+  border-top: 1px solid #2e2e32;
+}
+
 .card-list {
   display: flex;
   justify-content: space-between;
   padding: 0 120px 80px 120px;
 }
+
 .card-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
 }
+
 .card-tag {
   border: 1px solid #e6e6e6;
   font-size: 12px;
@@ -100,6 +133,15 @@ const controlsList: string[] = [
   border-radius: 4px;
 }
 
+html.dark .card-tag{
+  background-color: #262626;
+  color:#dfdfd6;
+}
+
+html.dark .card-tag {
+  border: 1px solid #2e2e32;
+}
+
 .controls-list {
   display: flex;
   flex-direction: column;
@@ -107,9 +149,20 @@ const controlsList: string[] = [
   padding-top: 32px;
   border-top: 1px solid #eee;
 }
+
+html.dark .controls-list {
+  border-top: 1px solid #2e2e32;
+}
+
+
 .control-item {
   border-bottom: 1px solid #eee;
   color: #333;
   padding-bottom: 32px;
+}
+
+html.dark .control-item {
+  color: #dfdfd6;
+  border-bottom: 1px solid #333;
 }
 </style>
