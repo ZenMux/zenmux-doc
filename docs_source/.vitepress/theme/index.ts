@@ -1,17 +1,17 @@
 // https://vitepress.dev/guide/custom-theme
-import { h } from 'vue'
-import type { Theme } from 'vitepress'
-import DefaultTheme from 'vitepress/theme'
-import 'virtual:group-icons.css'
-import 'element-plus/theme-chalk/index.css'
-import 'element-plus/theme-chalk/dark/css-vars.css'
-import Select from './select.vue'
-import Login from './login.vue'
-import ApiRequest from './api-request.vue'
+import { h } from 'vue';
+import type { Theme } from 'vitepress';
+import DefaultTheme from 'vitepress/theme';
+import 'virtual:group-icons.css';
+import 'element-plus/theme-chalk/index.css';
+import 'element-plus/theme-chalk/dark/css-vars.css';
+import Select from './select.vue';
+import Login from './login.vue';
+import ApiContainer from './api-container.vue';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
-import './style.css'
-import './custom.css'
+import './style.css';
+import './custom.css';
 
 NProgress.configure({
   showSpinner: false,
@@ -30,15 +30,15 @@ export default {
   Layout: () => {
     return h(DefaultTheme.Layout, null, {
       // https://vitepress.dev/guide/extending-default-theme#layout-slots
-      'doc-top': () => h(ApiRequest),
+      'doc-top': () => h(ApiContainer),
       'doc-before': () => h(Select),
       'nav-bar-content-after': () => h(Login),
-    })
+    });
   },
   enhanceApp({ app, router, siteData }) {
     // ...
     // app.use(ElementPlus);11
-    app.component('Login', Login)
-    app.component('Copy', Select)
-  }
-} satisfies Theme
+    app.component('Login', Login);
+    app.component('Copy', Select);
+  },
+} satisfies Theme;

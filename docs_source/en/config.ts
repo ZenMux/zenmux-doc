@@ -106,8 +106,8 @@ export default defineLoacaleConfig({
             text: 'Platform API',
             items: [
               {
-                text: 'List models',
-                link: '/zh/api/platform/list-models',
+                text: 'List models OpenAI Chat Completion',
+                link: '/api/platform/openai-list-models',
               },
               { text: 'Get generation', link: '/api/platform/get-generation' },
             ],
