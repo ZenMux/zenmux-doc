@@ -51,7 +51,7 @@ GET https://zenmux.ai/api/v1/models
 
 #### input_modalities `array`
 
-支持的输入模态列表，可能的值包括：
+模型支持的输入类型，可能的值包括：
 
 - `"text"` - 文本输入
 - `"image"` - 图片输入
@@ -60,13 +60,13 @@ GET https://zenmux.ai/api/v1/models
 
 #### output_modalities `array`
 
-支持的输出模态列表，可能的值包括：
+模型支持的输出类型，通常包括：
 
 - `"text"` - 文本输出
 
 #### capabilities `object`
 
-模型能力配置对象。
+模型的功能特性。
 
 ##### capabilities.reasoning `boolean`
 
@@ -82,19 +82,27 @@ GET https://zenmux.ai/api/v1/models
 
 ##### pricings.completion `array`
 
-生成补全的价格配置数组。
+模型生成的输出文本的价格配置数组。
 
 ##### pricings.input_cache_read `array`
 
-输入缓存读取的价格配置数组。
+模型从缓存中读取输入数据的价格配置数组。
+
+##### pricings.input_cache_write_1_h `array`
+
+模型写入缓存且保留 1 小时的价格配置数组。
+
+##### pricings.input_cache_write_5_min `array`
+
+模型写入缓存且保留 5 分钟的价格配置数组。
 
 ##### pricings.prompt `array`
 
-提示词的价格配置数组。
+模型处理输入文本的价格配置数组。
 
 ##### pricings.web_search `array`
 
-网络搜索的价格配置数组（可选字段，部分模型支持）。
+模型调用网络搜索功能的价格配置数组（可选字段，部分模型支持）。
 
 ### 价格配置项结构
 
@@ -121,15 +129,15 @@ GET https://zenmux.ai/api/v1/models
 
 ##### conditions.prompt_tokens `object`
 
-提示词 token 数量条件。
+用户提供给模型的输入内容消耗的 Token 数量条件。
 
 ##### conditions.completion_tokens `object`
 
-补全 token 数量条件。
+模型根据输入生成回复内容消耗的 Token 数量条件。
 
 #### 价格生效条件结构
 
-当价格配置中包含 `conditions` 字段时，该字段定义了价格生效的具体条件。条件对象包含以下字段：
+当价格配置中包含 `conditions` 字段时，该字段定义了价格生效的具体条件。`prompt_tokens`和 `completion_tokens` 的条件对象包含以下字段：
 
 ##### unit `string`
 
