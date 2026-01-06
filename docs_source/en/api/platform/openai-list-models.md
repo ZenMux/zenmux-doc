@@ -21,11 +21,11 @@ Returns a JSON object containing information about all available models.
 
 #### data `array`
 
-An array of models, including detailed information for each available model.
+An array of models, containing detailed information for each available model.
 
 #### object `string`
 
-Object type, fixed to `"list"`.
+The object type. Fixed as `"list"`.
 
 ### data object
 
@@ -35,23 +35,23 @@ The model’s unique identifier, in the format `<provider>/<model_name>`.
 
 #### object `string`
 
-Object type, fixed to `"model"`.
+The object type. Fixed as `"model"`.
 
 #### display_name `string`
 
-The model’s display name, used for UI display.
+The model’s display name, used for UI presentation.
 
 #### created `integer`
 
-The model’s creation timestamp (Unix timestamp).
+The model creation timestamp (Unix timestamp).
 
 #### owned_by `string`
 
-Identifier of the model owner/provider.
+The identifier of the model owner or provider.
 
 #### input_modalities `array`
 
-List of supported input modalities. Possible values include:
+The input modalities supported by the model. Possible values include:
 
 - `"text"` - Text input
 - `"image"` - Image input
@@ -60,88 +60,96 @@ List of supported input modalities. Possible values include:
 
 #### output_modalities `array`
 
-List of supported output modalities. Possible values include:
+The output modalities supported by the model, typically including:
 
 - `"text"` - Text output
 
 #### capabilities `object`
 
-Model capability configuration object.
+The model’s capabilities.
 
 ##### capabilities.reasoning `boolean`
 
-Whether reasoning is supported. `true` indicates reasoning is supported; `false` indicates it is not.
+Whether reasoning is supported. `true` indicates supported; `false` indicates not supported.
 
 #### context_length `integer`
 
-Context length limit, i.e., the maximum number of tokens the model can process.
+The context length limit, i.e., the maximum number of tokens the model can process.
 
 #### pricings `object`
 
-Pricing information object, containing various pricing configurations for model usage.
+Pricing information, containing the various price configurations for model usage.
 
 ##### pricings.completion `array`
 
-Pricing configuration array for generated completions.
+An array of pricing configurations for generated output text.
 
 ##### pricings.input_cache_read `array`
 
-Pricing configuration array for input cache reads.
+An array of pricing configurations for reading input data from cache.
+
+##### pricings.input_cache_write_1_h `array`
+
+An array of pricing configurations for writing to cache with a 1-hour retention.
+
+##### pricings.input_cache_write_5_min `array`
+
+An array of pricing configurations for writing to cache with a 5-minute retention.
 
 ##### pricings.prompt `array`
 
-Pricing configuration array for prompts.
+An array of pricing configurations for processing input text.
 
 ##### pricings.web_search `array`
 
-Pricing configuration array for web search (optional; supported by some models).
+An array of pricing configurations for invoking the web search capability (optional; supported by some models).
 
-### Pricing item structure
+### Pricing item schema
 
 Each pricing array within the `pricings` object (such as `completion`, `prompt`, etc.) contains one or more pricing configuration objects. Each pricing configuration object includes the following fields:
 
 #### value `number`
 
-Price value.
+The price value.
 
 #### unit `string`
 
-Pricing unit. Possible values include:
+The pricing unit. Possible values include:
 
 - `"perMTokens"` - Per million tokens
-- `"perCount"` - Per request
+- `"perCount"` - Per call
 
 #### currency `string`
 
-Currency type, e.g., `"USD"` for US dollars.
+The currency, e.g., `"USD"` for US dollars.
 
 #### conditions `object`
 
-Price applicability conditions (optional), used to define the specific conditions under which the price applies.
+Pricing conditions (optional), used to define the specific conditions under which the price applies.
 
 ##### conditions.prompt_tokens `object`
 
-Prompt token count conditions.
+A token-count condition for tokens consumed by the user-provided input.
 
 ##### conditions.completion_tokens `object`
 
-Completion token count conditions.
+A token-count condition for tokens consumed by the model-generated output.
 
-#### Condition structure
+#### Pricing conditions schema
 
-When a pricing configuration includes the `conditions` field, it defines the specific conditions under which the price applies. The condition object includes the following fields:
+When a pricing configuration includes the `conditions` field, it defines the specific conditions under which the price applies. The condition objects for `prompt_tokens` and `completion_tokens` include the following fields:
 
 ##### unit `string`
 
-Token measurement unit, fixed to `"kTokens"` (thousand tokens, i.e., 1000 tokens).
+The token measurement unit. Fixed as `"kTokens"` for thousand tokens (1000 tokens).
 
 ##### gte `number`
 
-Minimum token count (inclusive). The actual token count must be ≥ this value.
+The minimum token count (inclusive). The actual token count must be ≥ this value.
 
 ##### lt `number`
 
-Maximum token count (exclusive). The actual token count must be < this value. `null` indicates no upper limit.
+The maximum token count (exclusive). The actual token count must be < this value. `null` indicates no upper limit.
 
 ::: api-response
 
