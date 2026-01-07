@@ -47,7 +47,7 @@ GET https://zenmux.ai/api/v1/models
 
 #### owned_by `string`
 
-模型所有者或提供方的标识符。
+模型生成商。
 
 #### input_modalities `array`
 
@@ -56,13 +56,18 @@ GET https://zenmux.ai/api/v1/models
 - `"text"` - 文本输入
 - `"image"` - 图片输入
 - `"video"` - 视频输入
+- `"audio"` - 音频输入
 - `"file"` - 文件输入
 
 #### output_modalities `array`
 
-模型支持的输出类型，通常包括：
+模型支持的输出类型，可能的值包括：
 
-- `"text"` - 文本输出
+- `"text"` - 文本输入
+- `"image"` - 图片输入
+- `"video"` - 视频输入
+- `"audio"` - 音频输入
+- `"file"` - 文件输入
 
 #### capabilities `object`
 
@@ -80,6 +85,10 @@ GET https://zenmux.ai/api/v1/models
 
 定价信息对象，包含模型使用的各种价格配置。
 
+##### pricings.prompt `array`
+
+模型处理输入文本的价格配置数组。
+
 ##### pricings.completion `array`
 
 模型生成的输出文本的价格配置数组。
@@ -88,21 +97,41 @@ GET https://zenmux.ai/api/v1/models
 
 模型从缓存中读取输入数据的价格配置数组。
 
-##### pricings.input_cache_write_1_h `array`
-
-模型写入缓存且保留 1 小时的价格配置数组。
-
 ##### pricings.input_cache_write_5_min `array`
 
 模型写入缓存且保留 5 分钟的价格配置数组。
 
-##### pricings.prompt `array`
+##### pricings.input_cache_write_1_h `array`
 
-模型处理输入文本的价格配置数组。
+模型写入缓存且保留 1 小时的价格配置数组。
+
+### pricings.input_cache_write `array`
+
+模型写入缓存的价格配置数组。
 
 ##### pricings.web_search `array`
 
 模型调用网络搜索功能的价格配置数组（可选字段，部分模型支持）。
+
+##### pricings.internal_reasoning `array`
+
+模型内部推理过程的价格配置数组（可选字段，部分高级推理模型支持）。当模型启用内部思维链或详细推理过程时，会产生额外费用。
+
+##### pricings.video `array`
+
+模型处理视频输入的价格配置数组（可选字段，支持视频理解的模型）。按视频时长、分辨率或帧数计费。
+
+##### pricings.image `array`
+
+模型处理图像输入的价格配置数组（可选字段，支持图像理解的模型）。通常按图像数量、分辨率或像素数量计费。
+
+##### pricings.audio `array`
+
+模型处理音频输入的价格配置数组（可选字段，支持音频理解的模型）。按音频时长或处理量计费。
+
+##### pricings.audio_and_video `array`
+
+模型同时处理音频和视频内容的价格配置数组（可选字段，支持音视频多模态理解的模型）。适用于需要同时分析音频和视频内容的场景。
 
 ### 价格配置项结构
 
@@ -110,7 +139,7 @@ GET https://zenmux.ai/api/v1/models
 
 #### value `number`
 
-价格数值。
+模型折扣后的实际价格，免费服务显示为 0。
 
 #### unit `string`
 
@@ -118,14 +147,15 @@ GET https://zenmux.ai/api/v1/models
 
 - `"perMTokens"` - 每百万 tokens
 - `"perCount"` - 每次调用
+- `"perSecond"` - 每秒计费（适用于音频、视频等按时间计费的场景）
 
 #### currency `string`
 
-货币类型，如 `"USD"` 表示美元。
+货币类型，固定为 `"USD"`， 表示美元。
 
 #### conditions `object`
 
-价格生效条件（可选字段），用于定义价格适用的具体条件。
+价格生效条件（可选字段），常用于阶梯计价场景。
 
 ##### conditions.prompt_tokens `object`
 
@@ -133,7 +163,7 @@ GET https://zenmux.ai/api/v1/models
 
 ##### conditions.completion_tokens `object`
 
-模型根据输入生成回复内容消耗的 Token 数量条件。
+模型生成回复内容时消耗的 Token 数量条件。
 
 #### 价格生效条件结构
 
@@ -146,6 +176,14 @@ token 计量单位，固定为 `"kTokens"` 表示千 tokens（1000 tokens）。
 ##### gte `number`
 
 最小 token 数（包含），实际 token 数必须 ≥ 该值。
+
+#### lte `number`
+
+最大 token 数（包含），实际 token 数必须 ≤ 该值。
+
+#### gt `number`
+
+最小 token 数（不包含），实际 token 数必须 > 该值。
 
 ##### lt `number`
 
