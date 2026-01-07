@@ -3,13 +3,13 @@ pageClass: api-response
 title: API
 ---
 
-# List models OpenAI Chat Completion
+# List Models — OpenAI Chat Completion
 
 ```
 GET https://zenmux.ai/api/v1/models
 ```
 
-This endpoint is used to retrieve the list of OpenAI-compatible models supported by the platform.
+This endpoint retrieves the list of OpenAI-compatible models supported by the platform.
 
 ## Request params
 
@@ -21,21 +21,21 @@ Returns a JSON object containing information about all available models.
 
 #### data `array`
 
-An array of models, containing detailed information for all available models.
+An array of models, including detailed information for each available model.
 
 #### object `string`
 
-Object type, fixed as `"list"`.
+The object type. Fixed to `"list"`.
 
-### data object
+### `data` object
 
 #### id `string`
 
-The model’s unique identifier, in the format `<vendor>/<model_name>`.
+The model’s unique identifier, in the format `<provider>/<model_name>`.
 
 #### object `string`
 
-Object type, fixed as `"model"`.
+The object type. Fixed to `"model"`.
 
 #### display_name `string`
 
@@ -51,7 +51,7 @@ The model provider.
 
 #### input_modalities `array`
 
-Input modalities supported by the model. Possible values include:
+The input modalities supported by the model. Possible values include:
 
 - `"text"` - Text input
 - `"image"` - Image input
@@ -61,7 +61,7 @@ Input modalities supported by the model. Possible values include:
 
 #### output_modalities `array`
 
-Output modalities supported by the model. Possible values include:
+The output modalities supported by the model. Possible values include:
 
 - `"text"` - Text output
 - `"image"` - Image output
@@ -71,123 +71,123 @@ Output modalities supported by the model. Possible values include:
 
 #### capabilities `object`
 
-The model’s capability features.
+The model’s capability set.
 
 ##### capabilities.reasoning `boolean`
 
-Whether reasoning is supported. `true` indicates reasoning is supported; `false` indicates it is not.
+Whether reasoning is supported. `true` means reasoning is supported; `false` means it is not.
 
 #### context_length `integer`
 
-Context length limit, indicating the maximum number of tokens the model can process.
+The context length limit, i.e., the maximum number of tokens the model can process.
 
 #### pricings `object`
 
-Pricing information object, containing various price configurations for using the model.
+Pricing information, containing various price configurations for model usage.
 
 ##### pricings.prompt `array`
 
-An array of price configurations for processing input text.
+Price configuration array for processing input text.
 
 ##### pricings.completion `array`
 
-An array of price configurations for generated output text.
+Price configuration array for generated output text.
 
 ##### pricings.input_cache_read `array`
 
-An array of price configurations for reading input data from cache.
+Price configuration array for reading input data from cache.
 
 ##### pricings.input_cache_write_5_min `array`
 
-An array of price configurations for writing to cache and retaining it for 5 minutes.
+Price configuration array for writing to cache with a 5-minute retention.
 
 ##### pricings.input_cache_write_1_h `array`
 
-An array of price configurations for writing to cache and retaining it for 1 hour.
+Price configuration array for writing to cache with a 1-hour retention.
 
 ### pricings.input_cache_write `array`
 
-An array of price configurations for writing to cache.
+Price configuration array for writing to cache.
 
 ##### pricings.web_search `array`
 
-An array of price configurations for invoking web search (optional; supported by some models).
+Price configuration array for invoking web search (optional; supported by some models).
 
 ##### pricings.internal_reasoning `array`
 
-An array of price configurations for the model’s internal reasoning process (optional; supported by some advanced reasoning models). Additional fees may apply when the model enables internal chain-of-thought or detailed reasoning.
+Price configuration array for the model’s internal reasoning process (optional; supported by some advanced reasoning models). When internal chain-of-thought or detailed reasoning is enabled, additional charges apply.
 
 ##### pricings.video `array`
 
-An array of price configurations for processing video input (optional; for models that support video understanding). Billed by video duration, resolution, or frame count.
+Price configuration array for video output processing (optional; for models that support video understanding). Billed by video duration, resolution, or frame count.
 
 ##### pricings.image `array`
 
-An array of price configurations for processing image input (optional; for models that support image understanding). Typically billed by image count, resolution, or pixel count.
+Price configuration array for image output processing (optional; for models that support image understanding). Typically billed by image count, resolution, or pixel count.
 
 ##### pricings.audio `array`
 
-An array of price configurations for processing audio input (optional; for models that support audio understanding). Billed by audio duration or processing volume.
+Price configuration array for audio output processing (optional; for models that support audio understanding). Billed by audio duration or processed volume.
 
 ##### pricings.audio_and_video `array`
 
-An array of price configurations for processing audio and video together (optional; for models that support audiovisual multimodal understanding). Suitable for scenarios requiring simultaneous analysis of audio and video content.
+Price configuration array for generating video content with audio (optional; for models that support audio-video multimodal understanding). Applicable to scenarios requiring analysis of both video frames and audio content. Note: There are two video generation scenarios—silent video uses `pricings.video`, while video with audio uses `pricings.audio_and_video`.
 
-### Pricing item structure
+### Price configuration item structure
 
 Each pricing array within the `pricings` object (such as `completion`, `prompt`, etc.) contains one or more pricing configuration objects. Each pricing configuration object includes the following fields:
 
 #### value `number`
 
-The discounted effective price. Free services show 0.
+The actual discounted price. Free services show `0`.
 
 #### unit `string`
 
-Pricing unit. Possible values include:
+The pricing unit. Possible values include:
 
 - `"perMTokens"` - Per million tokens
 - `"perCount"` - Per call
-- `"perSecond"` - Per second (for time-billed scenarios such as audio and video)
+- `"perSecond"` - Per second (for time-based billing scenarios such as audio/video)
 
 #### currency `string`
 
-Currency type, fixed as `"USD"`, indicating US dollars.
+The currency type. Fixed to `"USD"`, meaning US dollars.
 
 #### conditions `object`
 
-Pricing effective conditions (optional), commonly used for tiered pricing.
+Conditions under which the price applies (optional), commonly used for tiered pricing.
 
 ##### conditions.prompt_tokens `object`
 
-Token-usage conditions for the input content provided by the user.
+Token-count conditions for the user-provided input consumed by the model.
 
 ##### conditions.completion_tokens `object`
 
-Token-usage conditions for tokens consumed when generating the response.
+Token-count conditions for the tokens consumed when the model generates output.
 
-#### Pricing effective condition structure
+#### Price condition structure
 
 When a pricing configuration includes the `conditions` field, it defines the specific conditions under which the price applies. The condition objects for `prompt_tokens` and `completion_tokens` include the following fields:
 
 ##### unit `string`
 
-Token measurement unit, fixed as `"kTokens"` meaning thousand tokens (1000 tokens).
+The token measurement unit. Fixed to `"kTokens"`, meaning thousand tokens (1000 tokens).
 
 ##### gte `number`
 
-Minimum number of tokens (inclusive). The actual token count must be ≥ this value.
+Minimum token count (inclusive). The actual token count must be ≥ this value.
 
 #### lte `number`
 
-Maximum number of tokens (inclusive). The actual token count must be ≤ this value.
+Maximum token count (inclusive). The actual token count must be ≤ this value.
 
 #### gt `number`
 
-Minimum number of tokens (exclusive). The actual token count must be > this value.
+Minimum token count (exclusive). The actual token count must be > this value.
 
 ##### lt `number`
 
-Maximum number of tokens (exclusive). The actual token count must be < this value. `null` indicates no upper limit.
+Maximum token count (exclusive). `null` means no upper limit.
 
 ::: api-response
 
