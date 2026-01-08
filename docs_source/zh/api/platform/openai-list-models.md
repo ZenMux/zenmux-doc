@@ -3,7 +3,7 @@ pageClass: api-page
 title: 接口
 ---
 
-# List models OpenAI Chat Completion
+# List Models(OpenAI Chat Completion Protocol)
 
 ```
 GET https://zenmux.ai/api/v1/models
