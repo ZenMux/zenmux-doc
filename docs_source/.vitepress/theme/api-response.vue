@@ -7,7 +7,7 @@ import { useData, inBrowser } from 'vitepress';
 const { frontmatter, page } = useData();
 
 const isApiResponse = computed(
-  () => frontmatter.value.pageClass === 'api-response',
+  () => frontmatter.value.pageClass === 'api-page',
 );
 
 const responseCodes = ref<Record<string, string>>({});

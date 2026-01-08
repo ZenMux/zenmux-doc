@@ -11,7 +11,6 @@ POST https://zenmux.ai/api/v1/chat/completions
 
 Create chat completions 接口兼容 OpenAI 的 [Create chat completion](https://platform.openai.com/docs/api-reference/chat/create) 接口，用于对话型大语言模型推理调用。
 
-
 下面列出了所有模型可能支持的参数，不同模型的支持参数有所不同，每个模型具体支持的参数请参见各模型详情页。
 
 ## Request body
@@ -30,7 +29,7 @@ messages 里的每个元素表示一条对话消息，每条消息由 role 和 c
 
 指定是否流式响应。只有当显式指定 `stream: true` 时，才会以 Server-Sent Event 协议进行流式响应。否则一次性返回所有生成内容。
 
-### max_completion_tokens `integer` <font color="gray">可选</font> 
+### max_completion_tokens `integer` <font color="gray">可选</font>
 
 限制模型生成内容的长度，包括思考过程。如果不传，会采用模型的默认限制。各模型的最大生成内容长度可以详情页获得。
 
@@ -101,7 +100,6 @@ messages 里的每个元素表示一条对话消息，每条消息由 role 和 c
 ### reasoning `object` <font color="gray">可选</font>
 
 用于控制 reasoning 输出，支持同时指定 effort 与 max_tokens，根据模型不同，生效的字段也不同。详情参见 [推理模型](../guide/advanced/reasoning.md)。
-
 
 ## Returns
 
@@ -200,8 +198,6 @@ Log probability information for the choice.
 
 表示此次生成的用量信息。
 
-
-
 ::: api-request POST /api/v1/chat/completions
 
 ```TypeScript
@@ -214,11 +210,11 @@ const openai = new OpenAI({
 
 async function main() {
   const completion = await openai.chat.completions.create({
-    model: "openai/gpt-5", 
+    model: "openai/gpt-5",
     messages: [
       {
         role: "user",
-        content: "What is the meaning of life?", 
+        content: "What is the meaning of life?",
       },
     ],
   });
@@ -234,11 +230,11 @@ from openai import OpenAI
 
 client = OpenAI(
     base_url="https://zenmux.ai/api/v1",
-    api_key="<your_ZENMUX_API_KEY>", 
+    api_key="<your_ZENMUX_API_KEY>",
 )
 
 completion = client.chat.completions.create(
-    model="openai/gpt-5", 
+    model="openai/gpt-5",
     messages=[
         {
             "role": "user",
@@ -250,7 +246,7 @@ completion = client.chat.completions.create(
 print(completion.choices[0].message.content)
 ```
 
-```Shell
+```cURL
 curl https://zenmux.ai/api/v1/chat/completions \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \

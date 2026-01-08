@@ -1,15 +1,15 @@
 ---
-pageClass: api-response
+pageClass: api-page
 title: API
 ---
 
-# List Models — OpenAI Chat Completion
+# List models OpenAI Chat Completion
 
 ```
 GET https://zenmux.ai/api/v1/models
 ```
 
-This endpoint retrieves the list of OpenAI-compatible models supported by the platform.
+This endpoint is used to retrieve information about the OpenAI-compatible models supported by the platform.
 
 ## Request params
 
@@ -17,17 +17,17 @@ This endpoint does not require any request parameters.
 
 ## Returns
 
-Returns a JSON object containing information about all available models.
+Returns a JSON object containing information for all available models.
 
 #### data `array`
 
-An array of models, including detailed information for each available model.
+An array of models, containing detailed information for all available models.
 
 #### object `string`
 
-The object type. Fixed to `"list"`.
+The object type, fixed as `"list"`.
 
-### `data` object
+### data object
 
 #### id `string`
 
@@ -35,7 +35,7 @@ The model’s unique identifier, in the format `<provider>/<model_name>`.
 
 #### object `string`
 
-The object type. Fixed to `"model"`.
+The object type, fixed as `"model"`.
 
 #### display_name `string`
 
@@ -71,7 +71,7 @@ The output modalities supported by the model. Possible values include:
 
 #### capabilities `object`
 
-The model’s capability set.
+The model’s capabilities.
 
 ##### capabilities.reasoning `boolean`
 
@@ -83,63 +83,63 @@ The context length limit, i.e., the maximum number of tokens the model can proce
 
 #### pricings `object`
 
-Pricing information, containing various price configurations for model usage.
+The pricing object, containing pricing configurations for different types of usage.
 
 ##### pricings.prompt `array`
 
-Price configuration array for processing input text.
+Pricing configuration array for processing input text.
 
 ##### pricings.completion `array`
 
-Price configuration array for generated output text.
+Pricing configuration array for generated output text.
 
 ##### pricings.input_cache_read `array`
 
-Price configuration array for reading input data from cache.
+Pricing configuration array for reading input data from cache.
 
 ##### pricings.input_cache_write_5_min `array`
 
-Price configuration array for writing to cache with a 5-minute retention.
+Pricing configuration array for writing to cache with a 5-minute retention.
 
 ##### pricings.input_cache_write_1_h `array`
 
-Price configuration array for writing to cache with a 1-hour retention.
+Pricing configuration array for writing to cache with a 1-hour retention.
 
-### pricings.input_cache_write `array`
+##### pricings.input_cache_write `array`
 
-Price configuration array for writing to cache.
+Pricing configuration array for writing to cache.
 
 ##### pricings.web_search `array`
 
-Price configuration array for invoking web search (optional; supported by some models).
+Pricing configuration array for invoking web search (optional; supported by some models).
 
 ##### pricings.internal_reasoning `array`
 
-Price configuration array for the model’s internal reasoning process (optional; supported by some advanced reasoning models). When internal chain-of-thought or detailed reasoning is enabled, additional charges apply.
+Pricing configuration array for the model’s internal reasoning process (optional; supported by some advanced reasoning models). Additional charges apply when the model enables internal chain-of-thought or detailed reasoning processes.
 
 ##### pricings.video `array`
 
-Price configuration array for video output processing (optional; for models that support video understanding). Billed by video duration, resolution, or frame count.
+Pricing configuration array for video output processing (optional; models that support video understanding). Billed by video duration, resolution, or frame count.
 
 ##### pricings.image `array`
 
-Price configuration array for image output processing (optional; for models that support image understanding). Typically billed by image count, resolution, or pixel count.
+Pricing configuration array for image output processing (optional; models that support image understanding). Typically billed by image count, resolution, or pixel count.
 
 ##### pricings.audio `array`
 
-Price configuration array for audio output processing (optional; for models that support audio understanding). Billed by audio duration or processed volume.
+Pricing configuration array for audio output processing (optional; models that support audio understanding). Billed by audio duration or processing volume.
 
 ##### pricings.audio_and_video `array`
 
-Price configuration array for generating video content with audio (optional; for models that support audio-video multimodal understanding). Applicable to scenarios requiring analysis of both video frames and audio content. Note: There are two video generation scenarios—silent video uses `pricings.video`, while video with audio uses `pricings.audio_and_video`.
+Pricing configuration array for generating video content with audio (optional; models that support multimodal audio-video understanding). Applies to scenarios that require analyzing both video frames and audio content. Note: there are two video generation scenarios—silent video uses `pricings.video`, while video with audio uses `pricings.audio_and_video`.
 
-### Price configuration item structure
+### Pricing item schema
 
 Each pricing array within the `pricings` object (such as `completion`, `prompt`, etc.) contains one or more pricing configuration objects. Each pricing configuration object includes the following fields:
 
 #### value `number`
 
-The actual discounted price. Free services show `0`.
+The discounted effective price. Free services show as 0.
 
 #### unit `string`
 
@@ -147,31 +147,31 @@ The pricing unit. Possible values include:
 
 - `"perMTokens"` - Per million tokens
 - `"perCount"` - Per call
-- `"perSecond"` - Per second (for time-based billing scenarios such as audio/video)
+- `"perSecond"` - Per second (for time-based billing scenarios such as audio and video)
 
 #### currency `string`
 
-The currency type. Fixed to `"USD"`, meaning US dollars.
+The currency type, fixed as `"USD"`, meaning US dollars.
 
 #### conditions `object`
 
-Conditions under which the price applies (optional), commonly used for tiered pricing.
+Pricing conditions (optional), commonly used for tiered pricing.
 
 ##### conditions.prompt_tokens `object`
 
-Token-count conditions for the user-provided input consumed by the model.
+Token-usage condition for the input content provided by the user.
 
 ##### conditions.completion_tokens `object`
 
-Token-count conditions for the tokens consumed when the model generates output.
+Token-usage condition for tokens consumed when the model generates the response.
 
-#### Price condition structure
+#### Pricing conditions schema
 
 When a pricing configuration includes the `conditions` field, it defines the specific conditions under which the price applies. The condition objects for `prompt_tokens` and `completion_tokens` include the following fields:
 
 ##### unit `string`
 
-The token measurement unit. Fixed to `"kTokens"`, meaning thousand tokens (1000 tokens).
+The token unit, fixed as `"kTokens"`, meaning thousand tokens (1000 tokens).
 
 ##### gte `number`
 
@@ -187,7 +187,7 @@ Minimum token count (exclusive). The actual token count must be > this value.
 
 ##### lt `number`
 
-Maximum token count (exclusive). `null` means no upper limit.
+Maximum token count (exclusive). The actual token count must be < this value; null indicates no upper bound.
 
 ::: api-response
 
@@ -387,6 +387,14 @@ Maximum token count (exclusive). `null` means no upper limit.
   ],
   "object": "list"
 }
+```
+
+:::
+
+::: api-request GET /api/v1/models
+
+```cURL
+curl https://zenmux.ai/api/v1/models
 ```
 
 :::
