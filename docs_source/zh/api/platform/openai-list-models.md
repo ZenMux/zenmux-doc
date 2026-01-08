@@ -1,5 +1,5 @@
 ---
-pageClass: api-response
+pageClass: api-page
 title: 接口
 ---
 
@@ -105,7 +105,7 @@ GET https://zenmux.ai/api/v1/models
 
 模型写入缓存且保留 1 小时的价格配置数组。
 
-### pricings.input_cache_write `array`
+##### pricings.input_cache_write `array`
 
 模型写入缓存的价格配置数组。
 
@@ -387,6 +387,14 @@ token 计量单位，固定为 `"kTokens"` 表示千 tokens（1000 tokens）。
   ],
   "object": "list"
 }
+```
+
+:::
+
+::: api-request GET /api/v1/models
+
+```cURL
+curl https://zenmux.ai/api/v1/models
 ```
 
 :::
