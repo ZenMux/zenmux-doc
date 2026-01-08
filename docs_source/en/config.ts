@@ -119,6 +119,10 @@ export default defineLoacaleConfig({
                 text: 'Create Messages',
                 link: '/api/anthropic/create-messages',
               },
+              {
+                text: 'List Models(Anthropic Message Protocol)',
+                link: '/api/anthropic/anthropic-list-models',
+              },
             ],
           },
           {
