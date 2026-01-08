@@ -109,6 +109,10 @@ export default defineLoacaleConfig({
                 text: 'List Models(OpenAI Chat Completion Protocol)',
                 link: '/api/platform/openai-list-models',
               },
+              {
+                text: 'List Models(Anthropic Message Protocol)',
+                link: '/api/platform/anthropic-list-models',
+              },
               { text: 'Get generation', link: '/api/platform/get-generation' },
             ],
           },
@@ -118,10 +122,6 @@ export default defineLoacaleConfig({
               {
                 text: 'Create Messages',
                 link: '/api/anthropic/create-messages',
-              },
-              {
-                text: 'List Models(Anthropic Message Protocol)',
-                link: '/api/anthropic/anthropic-list-models',
               },
             ],
           },

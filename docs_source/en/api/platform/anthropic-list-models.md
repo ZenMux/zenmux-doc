@@ -1,191 +1,191 @@
 ---
 pageClass: api-page
-title: 接口
+title: API
 ---
 
-# List Models(Anthropic Message Protocol)
+# List Models (Anthropic Message Protocol)
 
 ```
 GET https://zenmux.ai/api/anthropic/v1/models
 ```
 
-该接口用于获取平台支持 Anthropic 协议的所有可用模型信息
+This endpoint retrieves information about all available models on the platform that support the Anthropic Message protocol.
 
 ## Request params
 
-接口不需要任何请求参数。
+This endpoint does not require any request parameters.
 
 ## Returns
 
-返回一个包含所有可用模型信息的 JSON 对象。
+Returns a JSON object containing information about all available models.
 
-### 响应结构
+### Response schema
 
 #### data `array`
 
-模型列表数组，包含所有可用模型的详细信息。
+An array of models, including detailed information for each available model.
 
 #### has_more `boolean`
 
-是否还有更多模型数据，用于分页。
+Whether there are more model records available (used for pagination).
 
-### data 对象
+### data object
 
 #### id `string`
 
-模型的唯一标识符，格式为 `<供应商>/<模型名称>`。
+The model’s unique identifier, in the format `<provider>/<model_name>`.
 
 #### type `string`
 
-对象类型，固定为"model"。
+Object type, fixed as `"model"`.
 
 #### display_name `string`
 
-模型的显示名称，用于在界面中展示。
+The model’s display name, used for UI presentation.
 
 #### created_at `string`
 
-模型创建日期，格式为 `YYYY-MM-DD`。
+Model creation date, in `YYYY-MM-DD` format.
 
 #### input_modalities `array`
 
-模型支持的输入类型，可能的值包括：
+The input modalities supported by the model. Possible values include:
 
-- `"text"` - 文本输入
-- `"image"` - 图片输入
-- `"video"` - 视频输入
-- `"audio"` - 音频输入
-- `"file"` - 文件输入
+- `"text"` - Text input
+- `"image"` - Image input
+- `"video"` - Video input
+- `"audio"` - Audio input
+- `"file"` - File input
 
 #### output_modalities `array`
 
-模型支持的输出类型，可能的值包括：
+The output modalities supported by the model. Possible values include:
 
-- `"text"` - 文本输出
-- `"image"` - 图片输出
-- `"video"` - 视频输出
-- `"audio"` - 音频输出
-- `"file"` - 文件输出
+- `"text"` - Text output
+- `"image"` - Image output
+- `"video"` - Video output
+- `"audio"` - Audio output
+- `"file"` - File output
 
 #### capabilities `object`
 
-模型的功能特性。
+Model capability features.
 
 ##### capabilities.reasoning `boolean`
 
-是否支持推理能力。`true` 表示支持推理，`false` 表示不支持。
+Whether reasoning is supported. `true` indicates reasoning is supported; `false` indicates it is not.
 
 #### context_length `integer`
 
-上下文长度限制，表示模型能够处理的最大 token 数量。
+The context length limit, i.e., the maximum number of tokens the model can process.
 
 #### pricings `object`
 
-定价信息对象，包含模型使用的各种价格配置。
+Pricing information, including various pricing configurations for using the model.
 
 ##### pricings.prompt `array`
 
-模型处理输入文本的价格配置数组。
+Pricing configuration array for processing input text.
 
 ##### pricings.completion `array`
 
-模型生成的输出文本的价格配置数组。
+Pricing configuration array for generating output text.
 
 ##### pricings.input_cache_read `array`
 
-模型从缓存中读取输入数据的价格配置数组。
+Pricing configuration array for reading input data from cache.
 
 ##### pricings.input_cache_write_5_min `array`
 
-模型写入缓存且保留 5 分钟的价格配置数组。
+Pricing configuration array for writing to cache with a 5-minute retention.
 
 ##### pricings.input_cache_write_1_h `array`
 
-模型写入缓存且保留 1 小时的价格配置数组。
+Pricing configuration array for writing to cache with a 1-hour retention.
 
 ##### pricings.input_cache_write `array`
 
-模型写入缓存的价格配置数组。
+Pricing configuration array for writing to cache.
 
 ##### pricings.web_search `array`
 
-模型调用网络搜索功能的价格配置数组（可选字段，部分模型支持）。
+Pricing configuration array for using the web search feature (optional; supported by some models).
 
 ##### pricings.internal_reasoning `array`
 
-模型内部推理过程的价格配置数组（可选字段，部分高级推理模型支持）。当模型启用内部思维链或详细推理过程时，会产生额外费用。
+Pricing configuration array for the model’s internal reasoning process (optional; supported by some advanced reasoning models). Additional charges apply when the model enables internal chain-of-thought or detailed reasoning processes.
 
 ##### pricings.video `array`
 
-模型处理视频输出的价格配置数组（可选字段，支持视频理解的模型）。按视频时长、分辨率或帧数计费。
+Pricing configuration array for video output processing (optional; for models that support video understanding). Billed by video duration, resolution, or frame count.
 
 ##### pricings.image `array`
 
-模型处理图像输出的价格配置数组（可选字段，支持图像理解的模型）。通常按图像数量、分辨率或像素数量计费。
+Pricing configuration array for image output processing (optional; for models that support image understanding). Typically billed by image count, resolution, or pixel count.
 
 ##### pricings.audio `array`
 
-模型处理音频输出的价格配置数组（可选字段，支持音频理解的模型）。按音频时长或处理量计费。
+Pricing configuration array for audio output processing (optional; for models that support audio understanding). Billed by audio duration or processing volume.
 
 ##### pricings.audio_and_video `array`
 
-模型输出带音频（有声）视频内容的价格配置数组（可选字段，支持音视频多模态理解的模型）。适用于需要同时分析视频画面和音频内容的场景。注意：生成视频有两种场景，无声视频使用 `pricings.video`，有声视频使用 `pricings.audio_and_video`。
+Pricing configuration array for generating video content with audio (optional; for models that support audio-video multimodal understanding). Applies to scenarios that require analyzing both video frames and audio content. Note: There are two scenarios for video generation—silent video uses `pricings.video`, while video with audio uses `pricings.audio_and_video`.
 
-### 价格配置项结构
+### Pricing item schema
 
-在 `pricings` 对象中的每个价格数组（如 `completion`、`prompt` 等）都包含一个或多个价格配置对象。每个价格配置对象包含以下字段：
+Each pricing array within the `pricings` object (such as `completion`, `prompt`, etc.) contains one or more pricing configuration objects. Each pricing configuration object includes the following fields:
 
 #### value `number`
 
-模型折扣后的实际价格，免费服务显示为 0。
+The effective discounted price. Free services show as 0.
 
 #### unit `string`
 
-价格单位，可能的值包括：
+Pricing unit. Possible values include:
 
-- `"perMTokens"` - 每百万 tokens
-- `"perCount"` - 每次调用
-- `"perSecond"` - 每秒计费（适用于音频、视频等按时间计费的场景）
+- `"perMTokens"` - Per million tokens
+- `"perCount"` - Per call
+- `"perSecond"` - Per second (for time-billed scenarios such as audio and video)
 
 #### currency `string`
 
-货币类型，固定为 `"USD"`， 表示美元。
+Currency type, fixed as `"USD"`.
 
 #### conditions `object`
 
-价格生效条件（可选字段），常用于阶梯计价场景。
+Conditions under which the price applies (optional), commonly used for tiered pricing.
 
 ##### conditions.prompt_tokens `object`
 
-用户提供给模型的输入内容消耗的 Token 数量条件。
+Token-usage condition for the input content provided by the user.
 
 ##### conditions.completion_tokens `object`
 
-模型生成回复内容时消耗的 Token 数量条件。
+Token-usage condition for the tokens consumed when generating the model’s response.
 
-### 价格生效条件结构
+### Pricing condition schema
 
-当价格配置中包含 `conditions` 字段时，该字段定义了价格生效的具体条件。`prompt_tokens`和 `completion_tokens` 的条件对象包含以下字段：
+When a pricing configuration includes the `conditions` field, it defines the specific conditions under which that price applies. The condition objects for `prompt_tokens` and `completion_tokens` include the following fields:
 
 #### unit `string`
 
-token 计量单位，固定为 `"kTokens"` 表示千 tokens（1000 tokens）。
+Token measurement unit, fixed as `"kTokens"` (thousand tokens, i.e., 1000 tokens).
 
 #### gte `number`
 
-最小 token 数（包含），实际 token 数必须 ≥ 该值。
+Minimum token count (inclusive). The actual token count must be ≥ this value.
 
 #### lte `number`
 
-最大 token 数（包含），实际 token 数必须 ≤ 该值。
+Maximum token count (inclusive). The actual token count must be ≤ this value.
 
 #### gt `number`
 
-最小 token 数（不包含），实际 token 数必须 > 该值。
+Minimum token count (exclusive). The actual token count must be > this value.
 
 #### lt `number`
 
-最大 token 数（不包含），实际 token 数必须 < 该值，为 null 表示无上限。
+Maximum token count (exclusive). The actual token count must be < this value; null indicates no upper limit.
 
 ::: api-response
 
