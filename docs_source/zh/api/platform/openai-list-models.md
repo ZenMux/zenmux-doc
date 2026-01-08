@@ -3,13 +3,13 @@ pageClass: api-page
 title: 接口
 ---
 
-# List models OpenAI Chat Completion
+# List Models(OpenAI Chat Completion Protocol)
 
 ```
 GET https://zenmux.ai/api/v1/models
 ```
 
-该接口用于获取平台支持的 OpenAI 可用模型信息。
+该接口用于获取平台支持 OpenAI Chat Completion 协议的可用模型信息。
 
 ## Request params
 
