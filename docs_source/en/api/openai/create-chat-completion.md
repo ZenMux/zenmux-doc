@@ -29,7 +29,7 @@ The model ID for this inference call, formatted as &lt;provider&gt;/&lt;model_na
 
 Specifies whether to use streaming response. Only when explicitly specifying `stream: true` will the response be streamed using the Server-Sent Event protocol. Otherwise, all generated content is returned at once.
 
-### max_completion_tokens `integer` <font color="gray">Optional</font> 
+### max_completion_tokens `integer` <font color="gray">Optional</font>
 
 Limits the length of model-generated content, including the reasoning process. If not provided, the model's default limit will be used. The maximum generation length for each model can be found on the detail page.
 
@@ -210,11 +210,11 @@ const openai = new OpenAI({
 
 async function main() {
   const completion = await openai.chat.completions.create({
-    model: "openai/gpt-5", 
+    model: "openai/gpt-5",
     messages: [
       {
         role: "user",
-        content: "What is the meaning of life?", 
+        content: "What is the meaning of life?",
       },
     ],
   });
@@ -230,11 +230,11 @@ from openai import OpenAI
 
 client = OpenAI(
     base_url="https://zenmux.ai/api/v1",
-    api_key="<your_ZENMUX_API_KEY>", 
+    api_key="<your_ZENMUX_API_KEY>",
 )
 
 completion = client.chat.completions.create(
-    model="openai/gpt-5", 
+    model="openai/gpt-5",
     messages=[
         {
             "role": "user",
@@ -246,7 +246,7 @@ completion = client.chat.completions.create(
 print(completion.choices[0].message.content)
 ```
 
-```Shell
+```cURL
 curl https://zenmux.ai/api/v1/chat/completions \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \

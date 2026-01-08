@@ -55,11 +55,9 @@ Get generation 接口用于查询生成信息，如用量和费用等。
 
 本次推理消耗的 credit
 
-
 ::: api-request GET /api/v1/generation
 
-
-```Shell
+```cURL
 curl https://zenmux.ai/api/v1/generation?id=<generation_id> \
   -H "Authorization: Bearer $ZENMUX_API_KEY"
 ```

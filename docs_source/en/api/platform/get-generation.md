@@ -55,11 +55,9 @@ The reason why the model stopped inference.
 
 The credit consumed by this inference
 
-
 ::: api-request GET /api/v1/generation
 
-
-```Shell
+```cURL
 curl https://zenmux.ai/api/v1/generation?id=<generation_id> \
   -H "Authorization: Bearer $ZENMUX_API_KEY"
 ```
