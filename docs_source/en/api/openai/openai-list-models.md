@@ -3,7 +3,7 @@ pageClass: api-page
 title: API
 ---
 
-# List Models(OpenAI Chat Completion Protocol)
+# List Models
 
 ```
 GET https://zenmux.ai/api/v1/models
