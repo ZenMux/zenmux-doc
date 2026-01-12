@@ -3,7 +3,7 @@ pageClass: api-page
 title: 接口
 ---
 
-# List Models(Anthropic Message Protocol)
+# List Models
 
 ```
 GET https://zenmux.ai/api/anthropic/v1/models

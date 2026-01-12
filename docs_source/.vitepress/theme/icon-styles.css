@@ -1,0 +1,25 @@
+/* Icon styles for VitePress */
+[class^="el-icon-"] {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  vertical-align: middle;
+
+  -webkit-mask: var(--icon) no-repeat;
+  mask: var(--icon) no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  background-color: currentColor;
+  color: inherit;
+}
+
+/* Fallback for when icons fail to load */
+.el-icon-fallback {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background-color: currentColor;
+  border-radius: 2px;
+  opacity: 0.5;
+}
