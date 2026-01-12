@@ -1,37 +1,37 @@
 <script setup lang="ts">
-import { useAttrs, computed } from 'vue'
-defineOptions({ inheritAttrs: false })
-const attrs = useAttrs()
+import { useAttrs, computed } from 'vue';
+defineOptions({ inheritAttrs: false });
+const attrs = useAttrs();
 const passthroughAttrs = computed(() => {
-  const { class: _c, style: _s, ...rest } = attrs
-  return rest
-})
+  const { class: _c, style: _s, ...rest } = attrs;
+  return rest;
+});
 
 interface Props {
-  name: string
-  className?: string
+  name: string;
+  className?: string;
+  svg?: string;
 }
 
-const props = withDefaults(defineProps<Props>(), {
-})
+const props = withDefaults(defineProps<Props>(), {});
 
-const className = computed(() => ['el-icon-' + props.name, (attrs.class || ''), props.className || ''].join(' ').trim())
+const className = computed(() =>
+  ['el-icon-' + props.name, attrs.class || '', props.className || '']
+    .join(' ')
+    .trim(),
+);
 const style = computed(() => ({
   '--icon': `url('https://api.iconify.design/${props.name}.svg')`,
-  ...(attrs.style as Record<string, string>)
-}))
+  ...(attrs.style as Record<string, string>),
+}));
 </script>
 
 <template>
-  <span
-    :class="className"
-    :style="style"
-    v-bind="passthroughAttrs"
-  ></span>
+  <span :class="className" :style="style" v-bind="passthroughAttrs"></span>
 </template>
 
 <style>
-[class^="el-icon-"] {
+[class^='el-icon-'] {
   display: inline-block;
   width: 1em;
   height: 1em;

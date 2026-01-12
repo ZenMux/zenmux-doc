@@ -168,7 +168,7 @@ async function copyPath() {
             />
           </el-select>
           <my-icon
-            :name="copiedReq ? 'checkmark-done-circle-outline' : 'copy-outline'"
+            :name="copied ? 'lucide/copy-check' : 'lucide/copy'"
             :class="{ 'copied-icon': copiedReq }"
             style="margin-left: 16px; cursor: pointer; font-size: 18px"
             :title="copiedReq ? 'Copied' : 'Copy code'"
@@ -188,9 +188,7 @@ async function copyPath() {
         </div>
         <div class="right">
           <my-icon
-            :name="
-              copiedResp ? 'checkmark-done-circle-outline' : 'copy-outline'
-            "
+            :name="copied ? 'lucide/copy-check' : 'lucide/copy'"
             style="margin-left: 16px; cursor: pointer; font-size: 18px"
             :title="copiedResp ? 'Copied' : 'Copy response'"
             @click="copyResponse"

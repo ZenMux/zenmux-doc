@@ -116,7 +116,7 @@ async function copyResponse() {
             />
           </el-select>
           <my-icon
-            :name="copied ? 'checkmark-done-circle-outline' : 'copy-outline'"
+            :name="copied ? 'lucide/copy-check' : 'lucide/copy'"
             :class="{ 'copied-icon': copied }"
             style="margin-left: 16px; cursor: pointer; font-size: 18px"
             :title="copied ? 'Copied' : 'Copy response'"
@@ -147,7 +147,7 @@ async function copyResponse() {
   background-color: var(--vp-c-bg);
 
   pre {
-    max-height: calc(50vh - 140px);
+    max-height: none;
   }
 }
 
@@ -205,10 +205,42 @@ async function copyResponse() {
 
 .api-content {
   min-height: 100px;
+  max-height: 400px;
   border-radius: 4px;
   background-color: var(--vp-c-bg-2);
-  overflow: auto;
+  overflow: hidden;
   width: 100%;
+}
+
+.api-content:hover {
+  overflow: auto;
+}
+
+.api-content::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.api-content:hover::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.api-content:hover::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.api-content:hover::-webkit-scrollbar-thumb {
+  background: var(--vp-c-divider);
+  border-radius: 4px;
+}
+
+.api-content:hover::-webkit-scrollbar-thumb:hover {
+  background: var(--vp-c-divider-dark);
+}
+
+.api-content:hover::-webkit-scrollbar-corner {
+  background: transparent;
 }
 
 .api-content pre {
