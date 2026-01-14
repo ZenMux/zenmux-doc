@@ -110,38 +110,42 @@ export default defineLoacaleConfig({
             items: [
               {
                 text: 'Create chat completion',
-                link: '/zh/api/openai/create-chat-completion',
+                link: '/zh/api/openai/create-chat-completion-new',
               },
               {
                 text: 'List Models',
-                link: '/zh/api/openai/openai-list-models.md',
+                link: '/zh/api/openai/openai-list-models',
               },
             ],
           },
           {
-            text: 'Anthropic API',
+            text: 'Anthropic Compatible API',
             items: [
               {
-                text: 'Create Messages',
+                text: 'Create Message',
                 link: '/zh/api/anthropic/create-messages',
               },
               {
                 text: 'List Models',
-                link: '/zh/api/anthropic/anthropic-list-models.md',
+                link: '/zh/api/anthropic/anthropic-list-models',
               },
             ],
           },
           {
-            text: 'Google Vertex AI API',
+            text: 'Google Vertex AI Compatible API',
             items: [
               {
                 text: 'Generate Content',
                 link: '/zh/api/vertexai/generate-content',
               },
+              {
+                text: 'List Models',
+                link: '/zh/api/vertexai/google-list-models',
+              },
             ],
           },
           {
-            text: 'Platform API',
+            text: 'Platform Compatible API',
             items: [
               {
                 text: 'Get generation',

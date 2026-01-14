@@ -143,7 +143,7 @@
 
 span.http-method {
   display: inline-block;
-  font-size: .615rem;
+  font-size: 0.615rem;
   border-radius: 4px;
   text-align: center;
   font-weight: bold;
@@ -169,7 +169,8 @@ span.http-method.post {
   border-color: #dcdfe6;
 }
 
-.el-dropdown-menu__item:not(.is-disabled):focus, .el-dropdown-menu__item:not(.is-disabled):hover {
+.el-dropdown-menu__item:not(.is-disabled):focus,
+.el-dropdown-menu__item:not(.is-disabled):hover {
   background-color: #fafafa;
 }
 
@@ -179,7 +180,18 @@ html.dark .el-button:hover {
   color: #fff;
 }
 
-html.dark .el-dropdown-menu__item:not(.is-disabled):focus, .el-dropdown-menu__item:not(.is-disabled):hover {
+html.dark .el-dropdown-menu__item:not(.is-disabled):focus,
+.el-dropdown-menu__item:not(.is-disabled):hover {
   background-color: #333;
   color: #fff;
+}
+
+/* 覆盖vitepress默认的代码块高度限制 */
+.vp-doc div[class*='language-'] {
+  max-height: none !important;
+}
+
+.vp-doc [class*='language-'] pre {
+  max-height: none !important;
+  height: auto !important;
 }

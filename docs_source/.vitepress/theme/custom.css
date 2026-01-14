@@ -1,4 +1,3 @@
-
 :root {
   --vp-c-brand-1: #000;
   --vp-c-brand-2: #666;
@@ -15,4 +14,39 @@
 
 .VPImage.logo {
   height: 36px;
+}
+
+/* 确保代码块能够根据内容自适应高度 */
+.vp-code-group .blocks pre {
+  max-height: none !important;
+  height: auto !important;
+}
+
+/* 对于API响应中的长JSON也允许自适应 */
+.api-content pre {
+  max-height: none !important;
+  height: auto !important;
+  overflow-x: auto;
+  overflow-y: visible;
+}
+
+/* 确保整个API容器能够根据内容自适应 */
+.api-container {
+  max-height: calc(100vh - 100px) !important;
+  overflow-y: auto !important;
+}
+
+.api-request-container,
+.api-response-container {
+  max-height: none !important;
+  height: auto !important;
+}
+
+/* 覆盖所有可能的代码块高度限制 */
+.vp-doc pre,
+.vp-doc code,
+[class*='language-'] pre,
+.vp-code pre {
+  max-height: none !important;
+  height: auto !important;
 }
