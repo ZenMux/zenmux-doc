@@ -73,6 +73,9 @@ export default {
         router.onAfterPageLoad = () => {
           document.querySelectorAll('a').forEach((a) => {
             const href = a.getAttribute('href');
+            if (href?.startsWith('#') || href?.startsWith('http')) {
+              return;
+            }
             if (href?.startsWith('/') && !href.startsWith('/docs/')) {
               a.setAttribute('href', '/docs' + href);
             }
@@ -81,6 +84,9 @@ export default {
         window.addEventListener('load', () => {
           document.querySelectorAll('a').forEach((a) => {
             const href = a.getAttribute('href');
+            if (href?.startsWith('#') || href?.startsWith('http')) {
+              return;
+            }
             if (href?.startsWith('/') && !href.startsWith('/docs/')) {
               a.setAttribute('href', '/docs' + href);
             }
@@ -88,6 +94,9 @@ export default {
         });
         document.querySelectorAll('a').forEach((a) => {
           const href = a.getAttribute('href');
+          if (href?.startsWith('#') || href?.startsWith('http')) {
+            return;
+          }
           if (href?.startsWith('/') && !href.startsWith('/docs/')) {
             a.setAttribute('href', '/docs' + href);
           }
