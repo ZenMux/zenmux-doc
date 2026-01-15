@@ -49,18 +49,48 @@ export default {
       }
       const ret = await originGo.call(router, href);
       if (inBrowser) {
-        if (!location.hostname.startsWith('docs.')) {
-          history.replaceState({}, '', '/docs' + location.pathname);
+        if (location.pathname !== '/docs') {
+          if (!location.hostname.startsWith('docs.') && !location.pathname.startsWith('/docs/')) {
+            history.replaceState({}, '', '/docs' + location.pathname);
+          }
         }
       }
       return ret;
     };
     if (inBrowser) {
       router.onAfterRouteChange = (to) => {
+        if (location.pathname === '/docs') {
+          return;
+        }
         if (!location.hostname.startsWith('docs.') && !location.pathname.startsWith('/docs/')) {
           history.replaceState({}, '', '/docs' + location.pathname);
         }
       };
+
+      if (!location.hostname.startsWith('docs.')) {
+        router.onAfterPageLoad = () => {
+          document.querySelectorAll('a').forEach((a) => {
+            const href = a.getAttribute('href');
+            if (href?.startsWith('/') && !href.startsWith('/docs/')) {
+              a.setAttribute('href', '/docs' + href);
+            }
+          });
+        };
+        window.addEventListener('load', () => {
+          document.querySelectorAll('a').forEach((a) => {
+            const href = a.getAttribute('href');
+            if (href?.startsWith('/') && !href.startsWith('/docs/')) {
+              a.setAttribute('href', '/docs' + href);
+            }
+          });
+        });
+        document.querySelectorAll('a').forEach((a) => {
+          const href = a.getAttribute('href');
+          if (href?.startsWith('/') && !href.startsWith('/docs/')) {
+            a.setAttribute('href', '/docs' + href);
+          }
+        });
+      }
     }
     // ...
     // app.use(ElementPlus);11
