@@ -44,7 +44,7 @@ export default {
           if (inBrowser) {
             // @ts-expect-error not error
             if (url && url.startsWith('https:')) {
-              return;
+              return originPushState.call(this, data, title, url);
             }
             const urlObj = new URL(url as string, location.href);
             if (!urlObj.pathname.startsWith('/docs')) {
