@@ -37,6 +37,20 @@ export default {
   },
   enhanceApp({ app, router, siteData }) {
     const originGo = router.go;
+    if (inBrowser) {
+      if (!location.hostname.startsWith('docs.')) {
+        const originPushState = history.pushState;
+        history.pushState = function (data, title, url) {
+          if (inBrowser) {
+            // @ts-expect-error not error
+            if(!url.startsWith('/docs')) {
+              url = '/docs' + url;
+            }
+          }
+          return originPushState.call(this, data, title, url);
+        };
+      }
+    }
     router.go = async (href: string = inBrowser ? location.href : '/') => {
       if (inBrowser) {
         if (href.startsWith('https:')) {
@@ -48,25 +62,9 @@ export default {
         }
       }
       const ret = await originGo.call(router, href);
-      if (inBrowser) {
-        if (location.pathname !== '/docs') {
-          if (!location.hostname.startsWith('docs.') && !location.pathname.startsWith('/docs/')) {
-            history.replaceState({}, '', '/docs' + location.pathname);
-          }
-        }
-      }
       return ret;
     };
     if (inBrowser) {
-      router.onAfterRouteChange = (to) => {
-        if (location.pathname === '/docs') {
-          return;
-        }
-        if (!location.hostname.startsWith('docs.') && !location.pathname.startsWith('/docs/')) {
-          history.replaceState({}, '', '/docs' + location.pathname);
-        }
-      };
-
       if (!location.hostname.startsWith('docs.')) {
         router.onAfterPageLoad = () => {
           document.querySelectorAll('a').forEach((a) => {
