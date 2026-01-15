@@ -42,6 +42,10 @@ export default {
         const originPushState = history.pushState;
         history.pushState = function (data, title, url) {
           if (inBrowser) {
+            // @ts-expect-error not error
+            if (url && url.startsWith('https:')) {
+              return;
+            }
             const urlObj = new URL(url as string, location.href);
             if (!urlObj.pathname.startsWith('/docs')) {
               urlObj.pathname = '/docs' + urlObj.pathname;
