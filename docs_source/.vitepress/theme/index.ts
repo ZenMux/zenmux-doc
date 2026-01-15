@@ -43,7 +43,7 @@ export default {
         history.pushState = function (data, title, url) {
           if (inBrowser) {
             // @ts-expect-error not error
-            if(!url.startsWith('/docs')) {
+            if (!url.startsWith('/docs')) {
               url = '/docs' + url;
             }
           }
@@ -57,6 +57,10 @@ export default {
           const url = new URL(href);
           if (url.pathname.startsWith('/docs/')) {
             url.pathname = url.pathname.replace('/docs/', '/');
+            href = url.toString();
+          }
+          if (url.pathname === '/docs') {
+            url.pathname = '/';
             href = url.toString();
           }
         }
