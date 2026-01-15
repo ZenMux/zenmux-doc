@@ -43,8 +43,13 @@ export default {
         history.pushState = function (data, title, url) {
           if (inBrowser) {
             // @ts-expect-error not error
-            if (!url.startsWith('/docs')) {
-              url = '/docs' + url;
+            if (url && url.startsWith('https:')) {
+              return;
+            }
+            const urlObj = new URL(url as string, location.href);
+            if (!urlObj.pathname.startsWith('/docs')) {
+              urlObj.pathname = '/docs' + urlObj.pathname;
+              url = urlObj.toString();
             }
           }
           return originPushState.call(this, data, title, url);
