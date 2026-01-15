@@ -218,7 +218,8 @@ async function copyPath() {
   background-color: var(--vp-c-bg);
 
   pre {
-    max-height: calc(50vh - 140px);
+    max-height: none;
+    height: auto;
   }
 }
 
@@ -291,9 +292,11 @@ async function copyPath() {
 
 .api-content {
   min-height: 100px;
+  max-height: none;
+  height: auto;
   border-radius: 4px;
   background-color: var(--vp-c-bg-2);
-  overflow: auto;
+  overflow: visible;
   width: 100%;
 }
 
@@ -346,7 +349,7 @@ async function copyPath() {
 }
 
 .api-page .VPDoc .content {
-  margin-right: min(500px, calc(100vw - 912px));
+  margin-right: min(400px, calc(100vw - 912px));
 }
 
 @media (max-width: 1280px) {
