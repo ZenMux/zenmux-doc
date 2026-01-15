@@ -205,10 +205,11 @@ async function copyResponse() {
 
 .api-content {
   min-height: 100px;
-  max-height: 400px;
+  max-height: none;
+  height: auto;
   border-radius: 4px;
   background-color: var(--vp-c-bg-2);
-  overflow: hidden;
+  overflow: visible;
   width: 100%;
 }
 
@@ -221,25 +222,20 @@ async function copyResponse() {
   height: 8px;
 }
 
-.api-content:hover::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-.api-content:hover::-webkit-scrollbar-track {
+.api-content::-webkit-scrollbar-track {
   background: transparent;
 }
 
-.api-content:hover::-webkit-scrollbar-thumb {
+.api-content::-webkit-scrollbar-thumb {
   background: var(--vp-c-divider);
   border-radius: 4px;
 }
 
-.api-content:hover::-webkit-scrollbar-thumb:hover {
+.api-content::-webkit-scrollbar-thumb:hover {
   background: var(--vp-c-divider-dark);
 }
 
-.api-content:hover::-webkit-scrollbar-corner {
+.api-content::-webkit-scrollbar-corner {
   background: transparent;
 }
 

@@ -18,9 +18,11 @@ import ApiResponse from './api-response.vue';
   right: 20px;
   width: 480px;
   max-width: min(500px, calc(100vw - 912px));
+  max-height: calc(100vh - 100px);
   z-index: 22;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
 }
 
 @media (max-width: 1280px) {
