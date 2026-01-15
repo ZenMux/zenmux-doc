@@ -1,6 +1,6 @@
 // https://vitepress.dev/guide/custom-theme
 import { h } from 'vue';
-import type { Theme } from 'vitepress';
+import { inBrowser, type Theme } from 'vitepress';
 import DefaultTheme from 'vitepress/theme';
 import 'virtual:group-icons.css';
 import 'element-plus/theme-chalk/index.css';
@@ -36,6 +36,32 @@ export default {
     });
   },
   enhanceApp({ app, router, siteData }) {
+    const originGo = router.go;
+    router.go = async (href: string = inBrowser ? location.href : '/') => {
+      if (inBrowser) {
+        if (href.startsWith('https:')) {
+          const url = new URL(href);
+          if (url.pathname.startsWith('/docs/')) {
+            url.pathname = url.pathname.replace('/docs/', '/');
+            href = url.toString();
+          }
+        }
+      }
+      const ret = await originGo.call(router, href);
+      if (inBrowser) {
+        if (!location.hostname.startsWith('docs.')) {
+          history.replaceState({}, '', '/docs' + location.pathname);
+        }
+      }
+      return ret;
+    };
+    if (inBrowser) {
+      router.onAfterRouteChange = (to) => {
+        if (!location.hostname.startsWith('docs.') && !location.pathname.startsWith('/docs/')) {
+          history.replaceState({}, '', '/docs' + location.pathname);
+        }
+      };
+    }
     // ...
     // app.use(ElementPlus);11
     app.component('Login', Login);
