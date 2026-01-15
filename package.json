@@ -3,35 +3,36 @@
   "version": "1.0.1",
   "scripts": {
     "dev": "vitepress dev docs_source",
-    "build": "vitepress build docs_source && npm run copy-docs",
+    "build": "vitepress build docs_source && npm run copy-docs && npm run copy-to-root",
     "preview": "vitepress preview docs_source",
     "docs:dev": "vitepress dev docs_source",
-    "docs:build": "vitepress build docs_source && npm run copy-docs",
+    "docs:build": "vitepress build docs_source && npm run copy-docs && npm run copy-to-root",
     "docs:preview": "vitepress preview docs_source",
     "translate": "tsx scripts/translate-zh-to-en/translate-zh-to-en.ts",
     "optimize": "tsx scripts/optimize-chinese-docs/optimize-chinese-docs.ts",
     "format-images": "node scripts/format-images.js",
-    "copy-docs": "cp docs/vp-icons.css docs/docs/vp-icons.css"
+    "copy-docs": "cp docs/vp-icons.css docs/docs/vp-icons.css",
+    "copy-to-root": "bash scripts/copy-to-root.sh"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.2",
     "@floating-ui/dom": "^1.7.4",
     "@types/glob": "^9.0.0",
-    "axios": "^1.12.2",
+    "axios": "^1.13.2",
     "copy-to-clipboard": "^3.3.3",
-    "element-plus": "^2.11.4",
+    "element-plus": "^2.13.1",
     "element-ui": "^2.15.14",
-    "glob": "^11.0.3",
+    "glob": "^11.1.0",
     "lz-string": "^1.5.0",
     "markdown-it-container": "^4.0.0",
     "nprogress": "^0.2.0",
     "openai": "^5.23.2",
     "vitepress": "1.6.3",
-    "vitepress-plugin-group-icons": "^1.6.4"
+    "vitepress-plugin-group-icons": "^1.6.5"
   },
   "repository": "git@github.com:ZenMux/zenmux-doc.git",
   "devDependencies": {
-    "@types/node": "^24.7.2",
-    "tsx": "^4.20.6"
+    "@types/node": "^24.10.8",
+    "tsx": "^4.21.0"
   }
 }
