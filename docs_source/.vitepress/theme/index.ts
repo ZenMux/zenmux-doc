@@ -37,6 +37,25 @@ export default {
   },
   enhanceApp({ app, router, siteData }) {
     const originGo = router.go;
+    if (inBrowser) {
+      if (!location.hostname.startsWith('docs.')) {
+        const originPushState = history.pushState;
+        history.pushState = function (data, title, url) {
+          if (inBrowser) {
+            // @ts-expect-error not error
+            if (url && url.startsWith('https:')) {
+              return originPushState.call(this, data, title, url);
+            }
+            const urlObj = new URL(url as string, location.href);
+            if (!urlObj.pathname.startsWith('/docs')) {
+              urlObj.pathname = '/docs' + urlObj.pathname;
+              url = urlObj.toString();
+            }
+          }
+          return originPushState.call(this, data, title, url);
+        };
+      }
+    }
     router.go = async (href: string = inBrowser ? location.href : '/') => {
       if (inBrowser) {
         if (href.startsWith('https:')) {
@@ -45,22 +64,49 @@ export default {
             url.pathname = url.pathname.replace('/docs/', '/');
             href = url.toString();
           }
+          if (url.pathname === '/docs') {
+            url.pathname = '/';
+            href = url.toString();
+          }
         }
       }
       const ret = await originGo.call(router, href);
-      if (inBrowser) {
-        if (!location.hostname.startsWith('docs.')) {
-          history.replaceState({}, '', '/docs' + location.pathname);
-        }
-      }
       return ret;
     };
     if (inBrowser) {
-      router.onAfterRouteChange = (to) => {
-        if (!location.hostname.startsWith('docs.') && !location.pathname.startsWith('/docs/')) {
-          history.replaceState({}, '', '/docs' + location.pathname);
-        }
-      };
+      if (!location.hostname.startsWith('docs.')) {
+        router.onAfterPageLoad = () => {
+          document.querySelectorAll('a').forEach((a) => {
+            const href = a.getAttribute('href');
+            if (href?.startsWith('#') || href?.startsWith('http')) {
+              return;
+            }
+            if (href?.startsWith('/') && !href.startsWith('/docs/')) {
+              a.setAttribute('href', '/docs' + href);
+            }
+          });
+        };
+        window.addEventListener('load', () => {
+          document.querySelectorAll('a').forEach((a) => {
+            const href = a.getAttribute('href');
+            if (href?.startsWith('#') || href?.startsWith('http')) {
+              return;
+            }
+            if (href?.startsWith('/') && !href.startsWith('/docs/')) {
+              a.setAttribute('href', '/docs' + href);
+            }
+          });
+        });
+        document.querySelectorAll('a').forEach((a) => {
+          const href = a.getAttribute('href');
+          if (href?.startsWith('#') || href?.startsWith('http')) {
+            return;
+          }
+          if (href?.startsWith('/') && !href.startsWith('/docs/')) {
+            a.setAttribute('href', '/docs' + href);
+          }
+        });
+      }
     }
     // ...
     // app.use(ElementPlus);11
