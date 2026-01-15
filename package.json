@@ -12,7 +12,8 @@
     "optimize": "tsx scripts/optimize-chinese-docs/optimize-chinese-docs.ts",
     "format-images": "node scripts/format-images.js",
     "copy-docs": "cp docs/vp-icons.css docs/docs/vp-icons.css",
-    "copy-to-root": "bash scripts/copy-to-root.sh"
+    "copy-to-root": "bash scripts/copy-to-root.sh",
+    "postinstall": "node scripts/postinstall.js"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.2",
