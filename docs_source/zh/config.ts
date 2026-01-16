@@ -58,6 +58,7 @@ export default defineLoacaleConfig({
               { text: '模型价格', link: '/zh/guide/observability/pricing' },
               { text: '请求日志', link: '/zh/guide/observability/logs' },
               { text: '成本分析', link: '/zh/guide/observability/cost' },
+              { text: '用量统计', link: '/zh/guide/observability/usage' },
             ],
           },
         ],
