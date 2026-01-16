@@ -63,7 +63,7 @@ export default defineConfig({
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
   
-      gtag('config', 'G-6FF0RJ6DGB');
+      gtag('config', location.hostname.startsWith('docs.') ? 'G-6FF0RJ6DGB' : 'G-PV8J0P36S8');
       `,
     ],
   ],
