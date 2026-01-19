@@ -60,6 +60,7 @@ export default defineLoacaleConfig({
               { text: 'Request Logs', link: '/guide/observability/logs' },
               { text: 'Cost Analysis', link: '/guide/observability/cost' },
               { text: 'Usage', link: '/guide/observability/usage' },
+              { text: 'Insurance', link: '/guide/observability/insurance' },
             ],
           },
         ],
