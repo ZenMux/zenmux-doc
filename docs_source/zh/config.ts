@@ -53,7 +53,11 @@ export default defineLoacaleConfig({
             ],
           },
           {
-            text: 'Pay AS You Go',
+            text: '订阅制套餐',
+            link: '/zh/guide/subscription',
+          },
+          {
+            text: '按量计费',
             link: '/zh/guide/pay-as-you-go',
           },
           {

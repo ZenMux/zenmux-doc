@@ -54,6 +54,10 @@ export default defineLoacaleConfig({
             ],
           },
           {
+            text: "Subscription Plans",
+            link: "/guide/subscription",
+          },
+          {
             text: "Pay AS You Go",
             link: "/guide/pay-as-you-go",
           },
