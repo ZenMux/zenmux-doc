@@ -24,9 +24,11 @@ ZenMux 提供了完善的保险补偿系统，帮助您实时监控和分析因�
 
 ![insurance](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/cf6J8Ds/baoxianpeichang-peichangcishu.png)
 
-- **按补偿类型聚合（Aggregate by compensation type）**：此图表展示不同补偿原因的分布情况，例如“内容不达标”、“高延迟”等。通过该视图，您可以快速识别最常见的补偿类型，进而定位系统瓶颈或服务质量问题。
+1. **按补偿类型聚合（Aggregate by compensation type）**
+    - 此图表展示不同补偿原因的分布情况，例如“内容不达标”、“高延迟”等。通过该视图，您可以快速识别最常见的补偿类型，进而定位系统瓶颈或服务质量问题。
 
-- **按补偿模型聚合（Aggregate by compensation model）**：此图表按使用的模型分类，展示各模型产生的补偿情况。有助于评估不同模型的服务稳定性与可靠性，便于进行资源调整或优化策略制定。
+2. **按补偿模型聚合（Aggregate by compensation model）**
+    - 此图表按使用的模型分类，展示各模型产生的补偿情况。有助于评估不同模型的服务稳定性与可靠性，便于进行资源调整或优化策略制定。
 
 ## **补偿详情（Compensation Details）**
 
