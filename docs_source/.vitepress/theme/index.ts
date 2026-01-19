@@ -13,6 +13,10 @@ import 'nprogress/nprogress.css';
 import './style.css';
 import './custom.css';
 
+const isDocsHost = inBrowser && (location.hostname.startsWith('docs.') || location.hostname.startsWith('localhost') || location.hostname.startsWith('127.0.0.1'));
+
+console.info('isDocsHost:', isDocsHost);
+
 NProgress.configure({
   showSpinner: false,
   speed: 500,
@@ -38,7 +42,7 @@ export default {
   enhanceApp({ app, router, siteData }) {
     const originGo = router.go;
     if (inBrowser) {
-      if (!location.hostname.startsWith('docs.')) {
+      if (!isDocsHost) {
         const originPushState = history.pushState;
         history.pushState = function (data, title, url) {
           if (inBrowser) {
@@ -74,7 +78,8 @@ export default {
       return ret;
     };
     if (inBrowser) {
-      if (!location.hostname.startsWith('docs.')) {
+      console.info('isDocsHost:', isDocsHost);
+      if (!isDocsHost) {
         router.onAfterPageLoad = () => {
           document.querySelectorAll('a').forEach((a) => {
             const href = a.getAttribute('href');
