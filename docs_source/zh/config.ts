@@ -53,6 +53,10 @@ export default defineLoacaleConfig({
             ],
           },
           {
+            text: 'Pay AS You Go',
+            link: '/zh/guide/pay-as-you-go',
+          },
+          {
             text: '可观测性',
             items: [
               { text: '模型价格', link: '/zh/guide/observability/pricing' },
