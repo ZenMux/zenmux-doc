@@ -8,7 +8,7 @@ ZenMux 提供了强大的成本分析功能，帮助您实时监控和分析 API
 
 在页面顶部，您可以看到一组关键成本指标的统计卡片，用于快速了解当前时间段内的整体开销情况。
 
-![cost](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/16/kOgy6cO/8BB449C3-1DE9-421F-AFAF-DF102007A83C.png)
+![cost](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/qF4jfpo/chengbenfenxi-gailan.png)
 
 筛选条件：
 - **时间粒度**：支持按“Month”、“Day”、“Hour”等维度查看。
@@ -33,19 +33,28 @@ ZenMux 提供了强大的成本分析功能，帮助您实时监控和分析 API
 
 该区域以图表形式展示各模型的消费占比，帮助识别哪些模型是主要的成本来源。
 
+![cost](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/c0Rwgod/chengbenfenxi-Total-Cost-by-Model.png)
+
 > 建议：定期检查此部分，及时调整高成本低效模型的使用频率。
 
 ### 按类型分布
 
-此模块展示了成本在不同类型的分配情况，包括输入（Input token）、输出（Output token）、其他（Other Token）。
+此模块展示了成本在不同类型的分配情况。
+
+![cost](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/N7Wn7RU/chengbenfenxi-by-type.png)
 
 ### 按 API Key 分布
 
 该部分列出了每个 API Key 对应的消费金额，方便团队管理多账号场景下的成本归属。
 
+![cost](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/KojjQX3/chengbenfenxi-Cost-by-API-Key.png)
+
 ## 服务提供商视图
 
-切换到 “Provider Cost” 标签页后，可查看各个云服务提供商的具体成本明细。
+切换到 “Provider Cost” 标签页后，可查看某一个服务提供商的成本分析。
+
+![cost](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/KwYv6T1/chengbenfenxi-provider-cost.png
+)
 
 1. **Cost by Provider**  
    - 展示不同供应商（如 Google、OpenAI）的总支出。  
