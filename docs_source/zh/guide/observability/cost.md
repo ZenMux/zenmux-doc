@@ -24,8 +24,8 @@ ZenMux 提供了强大的成本分析功能，帮助您实时监控和分析 API
 | **Input Cost** | 输入 Token 所产生的费用。 |
 | **Output Cost** | 输出 Token 所产生的费用。 |
 | **Other Cost** | 其他非 Token 相关的额外费用（例如调用延迟补偿、系统资源消耗等）。 |
-| **Average Cost Per ...** | 平均每条请求/每单位 Token 的成本（根据上下文动态展示）。 |
-
+| **Average Cost Per Request** | 平均每次请求产生的费用。 |
+| **Average Cost Per Million Tokens** | 平均每百万Token产生的费用|
 
 ## 各维度分析
 
@@ -39,7 +39,7 @@ ZenMux 提供了强大的成本分析功能，帮助您实时监控和分析 API
 
 ### 按类型分布
 
-此模块展示了成本在不同类型的分配情况。
+此模块展示了成本在不同类型的分配情况，包括
 
 ![cost](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/N7Wn7RU/chengbenfenxi-by-type.png)
 
