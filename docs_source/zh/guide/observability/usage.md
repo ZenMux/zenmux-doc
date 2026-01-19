@@ -8,7 +8,7 @@ ZenMux 提供了全面的使用量分析功能，帮助您实时监控和分析 
 
 在“Usage”标签页中，您可以查看整体的资源消耗情况，包括 Token 使用量和 API 请求次数。
 
-![usage](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/wlSXKni/0DB9E36B-1F15-47FF-BFCC-ECCD32059314.png)
+![usage](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/VKnjOtl/yongliangfenxi-gailan.png)
 
 筛选条件：
 
@@ -32,19 +32,28 @@ ZenMux 提供了全面的使用量分析功能，帮助您实时监控和分析 
 - **按模型分布（Usage by Model）**  
   展示各模型的 Token 使用分布情况，以图表或表格形式呈现，帮助识别高消耗模型。
 
+![usage](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/RaM5XU5/yongliangfenxi-Usage-by-Model.png)
+
 - **按类型分布（Usage by Token Type）**  
-  分别统计输入（Input）与输出（Output）Token 的使用量，便于评估请求与响应的成本结构。
+  展示不同类型的Token使用分布情况。
+
+![usage](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/F1SB1uu/yongliangfenxi-Usage-by-Token-Type.png)
 
 - **按 API Key 分布（Usage by API Key）**  
   按不同 API 密钥维度展示 Token 和请求使用情况，适用于多用户或多项目场景下的用量隔离与审计。
 
+![usage](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/vCxvX0T/yongliangfenxi-Usage-by-API-Key.png)
+
 - **按Web搜索分布（Web Search Usage）**  
   显示启用 Web 搜索功能的请求所消耗的 Token 量及调用次数（如适用），帮助评估增强检索功能的使用频率与开销。
+
+![usage](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/sFwA29Z/yongliangfenxi-Web-Search-Usage.png)
 
 ## 服务提供商视图（Provider）
 
 切换至“Provider”标签页，可查看不同 AI 服务提供商的使用表现。
 
+![usage](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/Pbg1WCN/yongliangfenxi-Provider.png)
 
 ### 指标说明
 
@@ -60,17 +69,20 @@ ZenMux 提供了全面的使用量分析功能，帮助您实时监控和分析 
 - **Token Distribution**  
   展示各提供商的 Token 使用占比，便于评估资源分配合理性。
 
+![usage](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/hz0tFzY/yongliangfenxi-Provider-Token-Distribution.png)
+
 - **Request Distribution**  
   按服务提供商统计 API 请求次数分布，反映各提供商的调用负载情况。
 
-- **Provider Details**  
-  列出每个提供商的具体调用详情，包括请求次数、成功率、平均延迟、Token 消耗等关键指标。
+![usage](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/DyqPfmR/yongliangfenxi-Provider-Request-Distribution.png)
 
 > **提示**：可结合模型与提供商筛选，深入分析特定组合的性能表现。
 
 ## 性能分析（Performance）
 
 在“Performance”标签页中，您可以查看 API 调用的性能指标，用于评估模型响应效率与服务质量。
+
+![usage](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/9Y5ytNg/yongliangfenxi-Performance-gailan.png)
 
 ### 指标说明
 
