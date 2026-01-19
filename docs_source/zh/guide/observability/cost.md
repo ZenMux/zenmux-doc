@@ -2,6 +2,7 @@
 
 ZenMux 提供了强大的成本分析功能，帮助您实时监控和分析 API 使用所产生的费用。通过成本分析页面，您可以查看不同维度下的支出明细，包括按模型、API Key、服务提供商等分类的成本数据，从而更好地优化应用使用策略，控制开支。
 
+![cost](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/16/kOgy6cO/8BB449C3-1DE9-421F-AFAF-DF102007A83C.png)
 
 ## 一、成本概览
 
