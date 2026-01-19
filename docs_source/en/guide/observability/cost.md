@@ -8,7 +8,7 @@ ZenMux provides powerful cost analysis capabilities to help you monitor and anal
 
 At the top of the page, you'll find a set of key cost metric cards that provide a quick overview of overall spending for the current time period.
 
-![cost](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/16/kOgy6cO/8BB449C3-1DE9-421F-AFAF-DF102007A83C.png)
+![cost](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/qF4jfpo/chengbenfenxi-gailan.png)
 
 Filter Options:
 - **Time Granularity**: View data by "Month", "Day", "Hour", and other dimensions.
@@ -33,19 +33,28 @@ Filter Options:
 
 This section displays consumption distribution across models in chart form, helping identify which models are the primary cost drivers.
 
+![cost](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/c0Rwgod/chengbenfenxi-Total-Cost-by-Model.png)
+
+
 > Tip: Review this section regularly to adjust usage frequency for high-cost, low-efficiency models.
 
 ### Cost Breakdown by Type
 
 This module shows cost allocation across different types, including Input tokens, Output tokens, and Other tokens.
 
+![cost](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/N7Wn7RU/chengbenfenxi-by-type.png)
+
 ### Cost by API Key
 
 This section lists the consumption amount for each API Key, facilitating cost attribution in team scenarios with multiple accounts.
 
+![cost](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/KojjQX3/chengbenfenxi-Cost-by-API-Key.png)
+
 ## Provider Cost
 
 After switching to the "Provider Cost" tab, you can view detailed cost breakdowns for each cloud service provider.
+
+![cost](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/KwYv6T1/chengbenfenxi-provider-cost.png)
 
 1. **Cost by Provider**  
    - Displays total spending for different providers (e.g., Google, OpenAI).  
