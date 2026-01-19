@@ -1,0 +1,80 @@
+# 成本分析
+
+ZenMux 提供了强大的成本分析功能，帮助您实时监控和分析 API 使用所产生的费用。通过成本分析页面，您可以查看不同维度下的支出明细，包括按模型、API Key、服务提供商等分类的成本数据，从而更好地优化应用使用策略，控制开支。
+
+> **提示**：当前页面显示的数据不包含订阅计划中的使用数据，仅统计即用即付（Pay As You Go）的部分。
+
+## 成本概览
+
+在页面顶部，您可以看到一组关键成本指标的统计卡片，用于快速了解当前时间段内的整体开销情况。
+
+![cost](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/qF4jfpo/chengbenfenxi-gailan.png)
+
+筛选条件：
+- **时间粒度**：支持按“Month”、“Day”、“Hour”等维度查看。
+- **时间范围**：默认显示 UTC 时间下的最近周期，可手动选择具体日期或区间。
+- **API Keys**：筛选特定的 API 密钥产生的成本。
+- **模型选择**：可选择全部模型或指定某个模型（如 `google/gemini-3-pro-preview`）进行分析。
+
+### 指标说明
+
+| 指标 | 含义 |
+|------|------|
+| **Total Cost** | 总计花费金额，涵盖所有输入、输出及其他相关费用。 |
+| **Input Cost** | 输入 Token 所产生的费用。 |
+| **Output Cost** | 输出 Token 所产生的费用。 |
+| **Other Cost** | 其他非 Token 相关的额外费用（例如调用延迟补偿、系统资源消耗等）。 |
+| **Average Cost Per Request** | 平均每次请求产生的费用。 |
+| **Average Cost Per Million Tokens** | 平均每百万Token产生的费用|
+
+## 各维度分析
+
+### 按模型分布
+
+该区域以图表形式展示各模型的消费占比，帮助识别哪些模型是主要的成本来源。
+
+![cost](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/c0Rwgod/chengbenfenxi-Total-Cost-by-Model.png)
+
+> 建议：定期检查此部分，及时调整高成本低效模型的使用频率。
+
+### 按类型分布
+
+此模块展示了成本在不同类型的分配情况，包括
+
+![cost](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/N7Wn7RU/chengbenfenxi-by-type.png)
+
+### 按 API Key 分布
+
+该部分列出了每个 API Key 对应的消费金额，方便团队管理多账号场景下的成本归属。
+
+![cost](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/KojjQX3/chengbenfenxi-Cost-by-API-Key.png)
+
+## 服务提供商视图
+
+切换到 “Provider Cost” 标签页后，可查看某一个服务提供商的成本分析。
+
+![cost](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/KwYv6T1/chengbenfenxi-provider-cost.png
+)
+
+1. **Cost by Provider**  
+   - 展示不同供应商（如 Google、OpenAI）的总支出。  
+   - 支持排序与筛选，便于比较性价比。
+
+2. **Provider Details**  
+   - 列出该提供商下所有模型的调用详情，包括：模型名称、调用次数、输入/输出Token数量、单次调用成本、总费用。  
+
+> 💡 示例：若发现某提供商的模型单价偏高，可考虑迁移至更具性价比的替代方案。
+
+---
+
+::: tip 联系我们
+如果您在使用过程中遇到任何问题，或有任何建议和反馈，欢迎通过以下方式联系我们：
+
+- **官方网站**：<https://zenmux.ai>
+- **技术支持邮箱**：[support@zenmux.ai](mailto:support@zenmux.ai)
+- **商务合作邮箱**：[bd@zenmux.ai](mailto:bd@zenmux.ai)
+- **Twitter**：[@ZenMuxAI](https://twitter.com/ZenMuxAI)
+- **Discord 社区**：<http://discord.gg/vHZZzj84Bm>
+
+更多联系方式和详细信息，请访问我们的[联系我们页面](/zh/help/contact)。
+:::
