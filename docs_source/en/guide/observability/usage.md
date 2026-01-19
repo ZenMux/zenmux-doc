@@ -2,6 +2,9 @@
 
 ZenMux provides comprehensive usage analytics to help you monitor and analyze API call patterns, service provider performance, and model efficiency in real time. Through usage analytics, you can gain deep insights into key metrics such as token consumption, API request volume, and response times, enabling you to optimize application performance and control costs.
 
+![usage](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/wlSXKni/0DB9E36B-1F15-47FF-BFCC-ECCD32059314.png)
+
+
 > **Note**: The data displayed on this page does not include usage from subscription plans. It only reflects Pay As You Go usage.
 
 ## Usage Overview
