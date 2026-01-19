@@ -58,7 +58,7 @@ export default defineLoacaleConfig({
             items: [
               { text: 'Model Pricing', link: '/guide/observability/pricing' },
               { text: 'Request Logs', link: '/guide/observability/logs' },
-              { text: 'Cost Analysis', link: '/guide/observability/cost' },
+              { text: 'Cost', link: '/guide/observability/cost' },
               { text: 'Usage', link: '/guide/observability/usage' },
               { text: 'Insurance', link: '/guide/observability/insurance' },
             ],
