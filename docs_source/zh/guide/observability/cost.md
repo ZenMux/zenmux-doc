@@ -4,6 +4,8 @@ ZenMux 提供了强大的成本分析功能，帮助您实时监控和分析 API
 
 ![cost](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/16/kOgy6cO/8BB449C3-1DE9-421F-AFAF-DF102007A83C.png)
 
+> **提示**：当前页面显示的数据不包含订阅计划中的使用数据，仅统计即用即付（Pay As You Go）的部分。
+
 ## 一、成本概览
 
 在页面顶部，您可以看到一组关键成本指标的统计卡片，用于快速了解当前时间段内的整体开销情况。

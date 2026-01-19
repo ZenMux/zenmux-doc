@@ -4,6 +4,8 @@ ZenMux provides powerful cost analysis capabilities to help you monitor and anal
 
 ![cost](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/16/kOgy6cO/8BB449C3-1DE9-421F-AFAF-DF102007A83C.png)
 
+> **Note**: The data displayed on this page does not include usage from subscription plans. It only reflects Pay As You Go usage.
+
 
 ## 1. Cost Overview
 
