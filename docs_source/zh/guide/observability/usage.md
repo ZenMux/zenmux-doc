@@ -2,6 +2,8 @@
 
 ZenMux 提供了全面的使用量分析功能，帮助您实时监控和分析 API 调用的使用情况、服务提供商表现以及模型性能。通过使用分析功能，您可以深入了解 Token 消耗、API 请求量、响应速度等关键指标，从而优化应用效率并控制成本。
 
+![usage](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/wlSXKni/0DB9E36B-1F15-47FF-BFCC-ECCD32059314.png)
+
 > **提示**：当前页面显示的数据不包含订阅计划中的使用数据，仅统计按需调用（Pay As You Go）的部分。
 
 ## 一、使用量概览（Usage）
