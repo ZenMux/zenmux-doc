@@ -4,7 +4,7 @@ ZenMux 提供了全面的使用量分析功能，帮助您实时监控和分析 
 
 ![usage](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/wlSXKni/0DB9E36B-1F15-47FF-BFCC-ECCD32059314.png)
 
-> **提示**：当前页面显示的数据不包含订阅计划中的使用数据，仅统计按需调用（Pay As You Go）的部分。
+> **提示**：当前页面显示的数据不包含订阅计划中的使用数据，仅统计即用即付（Pay As You Go）的部分。
 
 ## 一、使用量概览（Usage）
 
