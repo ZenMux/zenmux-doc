@@ -2,6 +2,8 @@
 
 ZenMux provides powerful cost analysis capabilities to help you monitor and analyze API usage expenses in real time. Through the cost analysis page, you can view spending details across different dimensions, including costs categorized by model, API Key, service provider, and more, enabling you to optimize your application usage strategy and control expenses more effectively.
 
+![cost](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/16/kOgy6cO/8BB449C3-1DE9-421F-AFAF-DF102007A83C.png)
+
 
 ## 1. Cost Overview
 

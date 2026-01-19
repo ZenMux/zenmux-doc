@@ -2,7 +2,8 @@
 
 ZenMux provides a comprehensive insurance compensation system that enables you to monitor and analyze compensation instances resulting from service anomalies or performance issues in real-time. You can view aggregated compensation data, statistical charts categorized by type and model, as well as detailed compensation records, allowing you to better understand service health and optimize cost management.
 
----
+![insurance](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/qBpNVJw/EE668CB6-268F-495A-8A89-64725D33EFF0.png)
+
 
 ## **Overview**
 
