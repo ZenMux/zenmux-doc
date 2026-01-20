@@ -64,11 +64,11 @@ export default defineLoacaleConfig({
           {
             text: "Observability",
             items: [
-              { text: 'Model Pricing', link: '/guide/observability/pricing' },
-              { text: 'Request Logs', link: '/guide/observability/logs' },
-              { text: 'Cost', link: '/guide/observability/cost' },
-              { text: 'Usage', link: '/guide/observability/usage' },
-              { text: 'Insurance', link: '/guide/observability/insurance' },
+              { text: "Model Pricing", link: "/guide/observability/pricing" },
+              { text: "Request Logs", link: "/guide/observability/logs" },
+              { text: "Cost", link: "/guide/observability/cost" },
+              { text: "Usage", link: "/guide/observability/usage" },
+              { text: "Insurance", link: "/guide/observability/insurance" },
             ],
           },
         ],
@@ -108,7 +108,7 @@ export default defineLoacaleConfig({
             text: "OpenAI Compatible API",
             items: [
               {
-                text: "Create chat completion",
+                text: "Create Chat Completion",
                 link: "/api/openai/create-chat-completion-new",
               },
               {
@@ -121,8 +121,8 @@ export default defineLoacaleConfig({
             text: "Anthropic Compatible API",
             items: [
               {
-                text: "Create Message",
-                link: "/api/anthropic/create-messages",
+                text: "Create a Message",
+                link: "/api/anthropic/create-messages-new",
               },
               {
                 text: "List Models",
@@ -144,7 +144,7 @@ export default defineLoacaleConfig({
             ],
           },
           {
-            text: "Platform Compatible API",
+            text: "Platform API",
             items: [
               { text: "Get generation", link: "/api/platform/get-generation" },
             ],
