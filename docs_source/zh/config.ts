@@ -53,10 +53,21 @@ export default defineLoacaleConfig({
             ],
           },
           {
+            text: "订阅制套餐",
+            link: "/zh/guide/subscription",
+          },
+          {
+            text: "按量计费",
+            link: "/zh/guide/pay-as-you-go",
+          },
+          {
             text: "可观测性",
             items: [
               { text: "模型价格", link: "/zh/guide/observability/pricing" },
               { text: "请求日志", link: "/zh/guide/observability/logs" },
+              { text: "成本分析", link: "/zh/guide/observability/cost" },
+              { text: "用量统计", link: "/zh/guide/observability/usage" },
+              { text: "保险补偿", link: "/zh/guide/observability/insurance" },
             ],
           },
         ],
