@@ -40,6 +40,8 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 
 ## 套餐对比
 
+![subscription](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/7shxqbP/dingyuezhi-jiage2-dapingbanben.png)
+
 ### Free - 免费体验
 
 <div style="background: #f6f8fa; padding: 20px; border-radius: 8px; margin: 10px 0;">
@@ -370,6 +372,8 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 
 访问 [ZenMux Pricing 页面](https://zenmux.ai/pricing) 查看所有订阅套餐的详细信息和价格。
 
+![subscription](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/7shxqbP/dingyuezhi-jiage2-dapingbanben.png)
+
 ### 第 2 步:选择并订阅套餐
 
 1. 在 Pricing 页面选择适合您的套餐
@@ -382,7 +386,9 @@ Builder Plan 目前处于白名单内测阶段。如需申请,请通过您的 Ze
 
 ### 第 3 步:管理订阅和获取 API Key
 
-订阅成功后,访问 [订阅管理页面](https://zenmux.ai/platform/subscription) 来:
+订阅成功后,可访问 [订阅管理页面](https://zenmux.ai/platform/subscription) :
+
+![subcription](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/4I6M3by/dingyuezhi-gerenguanliyemian2.png)
 
 - 📊 **查看使用情况**
   - 当前 5 小时窗口的用量和剩余时间

@@ -40,6 +40,8 @@ This approach ensures fair billing across different models and usage patterns, g
 
 ## Plan Comparison
 
+![subscription](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/7shxqbP/dingyuezhi-jiage2-dapingbanben.png)
+
 ### Free - Try It for Free
 
 <div style="background: #f6f8fa; padding: 20px; border-radius: 8px; margin: 10px 0;">
@@ -370,6 +372,8 @@ If your project is about to go live or is already commercialized, switch to the 
 
 Visit the [ZenMux Pricing page](https://zenmux.ai/pricing) to see full details and pricing for all subscription plans.
 
+![subscription](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/7shxqbP/dingyuezhi-jiage2-dapingbanben.png)
+
 ### Step 2: Choose and Subscribe
 
 1. Choose the plan that fits you on the Pricing page
@@ -383,6 +387,8 @@ The Builder Plan is currently in a whitelist beta. To request access, contact us
 ### Step 3: Manage Your Subscription and Get an API Key
 
 After subscribing, visit the [Subscription Management page](https://zenmux.ai/platform/subscription) to:
+
+![subcription](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/4I6M3by/dingyuezhi-gerenguanliyemian2.png)
 
 - 📊 **View usage**
   - Usage and remaining time in the current 5-hour window
