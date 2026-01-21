@@ -40,26 +40,11 @@ This approach ensures fair billing across different models and usage patterns, g
 
 ## Plan Comparison
 
-![subscription](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/7shxqbP/dingyuezhi-jiage2-dapingbanben.png)
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/7shxqbP/dingyuezhi-jiage2-dapingbanben.png" alt="subscription-free" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 
 ### Free - Try It for Free
-
-<div style="background: #f6f8fa; padding: 20px; border-radius: 8px; margin: 10px 0;">
-
-**Quota:** 5 Flows/5h
-
-**Price:** $0
-
-**Best for:** Exploring AI capabilities and trying basic models
-
-**Plan features:**
-
-- ✅ Access to basic AI models
-- ✅ Studio Chat only
-- ✅ ~5 AI chats per 5 hours
-- ❌ No API access
-
-</div>
+---
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/HkD8Bgz/dingyuezhi-freetaocan.png" alt="subscription-free" style="width:300px; border-radius:8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 
 **Supported models:**
 
@@ -79,26 +64,8 @@ This approach ensures fair billing across different models and usage patterns, g
 ---
 
 ### Pro - The Developer Favorite
-
-<div style="background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%); color: white; padding: 20px; border-radius: 8px; margin: 10px 0;">
-
-**Quota:** 50 Flows/5h (~2,000 requests/month)
-
-**Price:** $20/month
-
-**Equivalent value:** ~$100 in API call credits
-
-**Best for:** Trying vibe coding, everyday learning
-
-**Plan features:**
-
-- ✅ Includes all Free features
-- ✅ Access to premium models
-- ✅ Studio Chat + API access
-- ✅ ~50 Claude Sonnet 4.5 coding requests per 5 hours, ~2,000 requests/month on average, equivalent to $100+ value. (Or 500 Claude Opus 4.5 coding requests per 5 hours, depending on model pricing and usage scenario, etc.)
-- ✅ Priority technical support
-
-</div>
+---
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/oI2koKx/dingyuezhi-protaocan.png" alt="subscription-free" style="width:300px; border-radius:8px;">
 
 **Supported models:** Includes **70+ premium models**, covering:
 
@@ -106,7 +73,7 @@ This approach ensures fair billing across different models and usage patterns, g
 
 ---
 
-### **Anthropic Claude Series**
+**Anthropic Claude Series**
 
 - `anthropic/claude-opus-4.5` - Claude Opus 4.5  
 - `anthropic/claude-sonnet-4.5` - Claude Sonnet 4.5  
@@ -118,7 +85,7 @@ This approach ensures fair billing across different models and usage patterns, g
 
 ---
 
-### **OpenAI GPT Series**
+**OpenAI GPT Series**
 
 - `openai/gpt-5.2` - GPT‑5.2  
 - `openai/gpt-5.2-chat` - GPT‑5.2 Chat  
@@ -141,7 +108,7 @@ This approach ensures fair billing across different models and usage patterns, g
 
 ---
 
-### **Google Gemini / Gemma Series**
+**Google Gemini / Gemma Series**
 
 - `google/gemini-2.0-flash` - Gemini 2.0 Flash  
 - `google/gemini-2.0-flash-lite-001` - Gemini 2.0 Flash Lite  
@@ -156,7 +123,7 @@ This approach ensures fair billing across different models and usage patterns, g
 
 ---
 
-### **xAI Grok Series**
+**xAI Grok Series**
 
 - `x-ai/grok-4` - Grok 4  
 - `x-ai/grok-4-fast` - Grok 4 Fast  
@@ -167,7 +134,7 @@ This approach ensures fair billing across different models and usage patterns, g
 
 ---
 
-### **Z.AI GLM Series**
+**Z.AI GLM Series**
 
 - `z-ai/glm-4.6v` - GLM 4.6V  
 - `z-ai/glm-4.6v-flash` - GLM 4.6V Flash  
@@ -178,7 +145,7 @@ This approach ensures fair billing across different models and usage patterns, g
 
 ---
 
-### **DeepSeek Series**
+**DeepSeek Series**
 
 - `deepseek/deepseek-chat` - DeepSeek Chat  
 - `deepseek/deepseek-chat-v3.1` - DeepSeek Chat V3.1  
@@ -189,7 +156,7 @@ This approach ensures fair billing across different models and usage patterns, g
 
 ---
 
-### **Qwen Series**
+**Qwen Series**
 
 - `qwen/qwen3-coder` - Qwen3 Coder  
 - `qwen/qwen3-coder-plus` - Qwen3 Coder Plus  
@@ -202,7 +169,7 @@ This approach ensures fair billing across different models and usage patterns, g
 
 ---
 
-### **Moonshot / Kimi Series**
+**Moonshot / Kimi Series**
 
 - `moonshotai/kimi-k2-thinking` - Kimi K2 Thinking  
 - `moonshotai/kimi-k2-thinking-turbo` - Kimi K2 Thinking Turbo
@@ -211,14 +178,14 @@ This approach ensures fair billing across different models and usage patterns, g
 
 ---
 
-### **Baidu ERNIE Series**
+**Baidu ERNIE Series**
 
 - `baidu/ernie-5.0-thinking-preview` - ERNIE 5.0 Thinking Preview  
 - `baidu/ernie-x1.1-preview` - ERNIE X1.1 Preview  
 
 ---
 
-### **InclusionAI Series**
+**InclusionAI Series**
 
 - `inclusionai/ling-1t` - Ling‑1T  
 - `inclusionai/ling-flash-2.0` - Ling Flash 2.0  
@@ -231,39 +198,39 @@ This approach ensures fair billing across different models and usage patterns, g
 
 ---
 
-### **Meta Llama Series**
+**Meta Llama Series**
 
 - `meta/llama-3.3-70b-instruct` - Llama 3.3 70B Instruct  
 - `meta/llama-4-scout-17b-16e-instruct` - Llama 4 Scout 17B 16E Instruct  
 
 ---
 
-### **Mistral Series**
+**Mistral Series**
 
 - `mistralai/mistral-large-2512` - Mistral Large 2512  
 
 ---
 
-### **MiniMax Series**
+**MiniMax Series**
 
 - `minimax/minimax-m2` - MiniMax M2  
 - `minimax/minimax-m2.1` - MiniMax M2.1  
 
 ---
 
-### **Kuaishou**
+**Kuaishou**
 
 - `kuaishou/kat-coder-pro-v1` - KAT‑Coder‑Pro‑V1  
 
 ---
 
-### **Stepfun**
+**Stepfun**
 
 - `stepfun/step-3` - Step 3  
 
 ---
 
-### **Volcengine Doubao**
+**Volcengine Doubao**
 
 - `volcengine/doubao-seed-1-6-vision` - Doubao Seed 1.6 Vision  
 - `volcengine/doubao-seed-1.8` - Doubao Seed 1.8  
@@ -271,31 +238,15 @@ This approach ensures fair billing across different models and usage patterns, g
 
 ---
 
-### **Xiaomi**
+**Xiaomi**
 
 - `xiaomi/mimo-v2-flash` - MiMo V2 Flash  
 
 ---
 
 ### Max - High-Intensity Development
-
-<div style="background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%); color: white; padding: 20px; border-radius: 8px; margin: 10px 0;">
-
-**Quota:** 300 Flows/5h
-
-**Price:** $100/month
-
-**Best for:** High-frequency development
-
-**Plan features:**
-
-- ✅ Includes all Pro features
-- ✅ **6×** the Pro 5-hour usage
-- ✅ **Unlimited** access to all premium models
-- ✅ **Additional support** for ultra-flagship models (e.g., GPT‑5.2 Pro)
-- ✅ Early access to new features
-
-</div>
+---
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/8PXHCx9/dingyuezhi-maxtaocan.png" alt="subscription-free" style="width:300px; border-radius:8px;">
 
 **Additional ultra-flagship models supported:**
 
@@ -307,25 +258,8 @@ This approach ensures fair billing across different models and usage patterns, g
 ---
 
 ### Ultra - Professional Flagship
-
-<div style="background: linear-gradient(135deg, #1a202c 0%, #000000 100%); color: white; padding: 20px; border-radius: 8px; margin: 10px 0;">
-
-**Quota:** 1200 Flows/5h
-
-**Price:** $200/month
-
-**Best for:** Professional developers and heavy AI users
-
-**Plan features:**
-
-- ✅ Includes all Max features
-- ✅ **24×** the Pro 5-hour usage
-- ✅ Access to all premium models
-- ✅ **Includes** all ultra-flagship models
-- ✅ Early access to new features
-- ✅ Ultimate usage quota
-
-</div>
+---
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/8PXHCx9/dingyuezhi-maxtaocan.png" alt="subscription-free" style="width:300px; border-radius:8px;">
 
 **Supported models:** Same as the Max plan, including all premium models and ultra-flagship models.
 
@@ -372,7 +306,7 @@ If your project is about to go live or is already commercialized, switch to the 
 
 Visit the [ZenMux Pricing page](https://zenmux.ai/pricing) to see full details and pricing for all subscription plans.
 
-![subscription](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/7shxqbP/dingyuezhi-jiage2-dapingbanben.png)
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/7shxqbP/dingyuezhi-jiage2-dapingbanben.png" alt="subscription-free" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 
 ### Step 2: Choose and Subscribe
 
@@ -388,7 +322,7 @@ The Builder Plan is currently in a whitelist beta. To request access, contact us
 
 After subscribing, visit the [Subscription Management page](https://zenmux.ai/platform/subscription) to:
 
-![subcription](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/4I6M3by/dingyuezhi-gerenguanliyemian2.png)
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/4I6M3by/dingyuezhi-gerenguanliyemian2.png" alt="subscription-free" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 
 - 📊 **View usage**
   - Usage and remaining time in the current 5-hour window
