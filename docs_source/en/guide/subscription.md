@@ -67,8 +67,6 @@ This approach ensures fair billing across different models and usage patterns, g
 ---
 <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/oI2koKx/dingyuezhi-protaocan.png" alt="subscription-free" style="width:300px; border-radius:8px;">
 
-**Supported models:** Includes **70+ premium models**, covering:
-
 **Supported models:** A total of **70+** premium models, organized by provider below (`model slug` - description)
 
 ---

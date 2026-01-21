@@ -6,7 +6,7 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 
 **Flow** 是 ZenMux 订阅制中使用的计量单位,综合了 token 使用量和请求次数。为了便于理解:
 
-- **1 Flow ≈ 1 次 Claude Sonnet 4.5 coding 场景的请求 或者 10 次 Claude Hiku 4.5 Coding场景的请求**， Coding典型场景为30000 Token 输入 + 1000 Token输出。
+- **1 Flow ≈ 1 次 Claude Sonnet 4.5 coding 场景的请求 或者 10 次 Claude Haiku 4.5 Coding场景的请求**， Coding典型场景为30000 Token 输入 + 1000 Token输出。
 
 这种计量方式确保了不同模型和使用场景下的公平计费,让您更清晰地了解订阅额度的使用情况。
 
@@ -64,8 +64,6 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 ### Pro - 开发者首选
 ---
 <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/oI2koKx/dingyuezhi-protaocan.png" alt="subscription-free" style="width:300px; border-radius:8px;">
-
-**支持的模型:** 包含 **70+ 高级模型**,涵盖:
 
 **支持的模型：** 共 **70+** 个高级模型，按厂商整理如下（`模型Slug` - 说明）
 
