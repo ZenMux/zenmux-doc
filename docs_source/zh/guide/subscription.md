@@ -40,26 +40,11 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 
 ## 套餐对比
 
-![subscription](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/7shxqbP/dingyuezhi-jiage2-dapingbanben.png)
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/7shxqbP/dingyuezhi-jiage2-dapingbanben.png" alt="subscription-free" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 
 ### Free - 免费体验
-
-<div style="background: #f6f8fa; padding: 20px; border-radius: 8px; margin: 10px 0;">
-
-**额度:** 5 Flows/5h
-
-**价格:** $0
-
-**适用场景:** 探索 AI 能力,体验基础模型
-
-**套餐特性:**
-
-- ✅ 访问基础 AI 模型
-- ✅ 仅限 Studio Chat 使用
-- ✅ 约 5 次 AI 对话/5 小时
-- ❌ 无 API 调用权限
-
-</div>
+---
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/HkD8Bgz/dingyuezhi-freetaocan.png" alt="subscription-free" style="width:300px; border-radius:8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 
 **支持的模型:**
 
@@ -76,29 +61,9 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 - `z-ai/glm-4.6v-flash` - Z.AI: GLM 4.6V Flash
 - `z-ai/glm-4.7` - Z.AI: GLM 4.7
 
----
-
 ### Pro - 开发者首选
-
-<div style="background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%); color: white; padding: 20px; border-radius: 8px; margin: 10px 0;">
-
-**额度:** 50 Flows/5h (约 2000 次请求/月)
-
-**价格:** $20/月
-
-**等价价值:** ~$100 API 调用额度
-
-**适用场景:** Vibe Coding尝鲜、日常学习
-
-**套餐特性:**
-
-- ✅ 包含 Free 所有功能
-- ✅ 访问高级模型(Premium models)
-- ✅ Studio Chat + API 调用权限
-- ✅ 约 50 次 Claude Sonnet 4.5 coding 请求/5 小时，月均约 2000 次请求,等价 $100+ 价值。(或者 500 次 Claude Opus 4.5 coding 请求/5 小时，取决于模型的本身的价格以及使用场景等)
-- ✅ 优先技术支持
-
-</div>
+---
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/oI2koKx/dingyuezhi-protaocan.png" alt="subscription-free" style="width:300px; border-radius:8px;">
 
 **支持的模型:** 包含 **70+ 高级模型**,涵盖:
 
@@ -106,7 +71,7 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 
 ---
 
-### **Anthropic Claude 系列**
+**Anthropic Claude 系列**
 
 - `anthropic/claude-opus-4.5` - Claude Opus 4.5  
 - `anthropic/claude-sonnet-4.5` - Claude Sonnet 4.5  
@@ -118,7 +83,7 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 
 ---
 
-### **OpenAI GPT 系列**
+**OpenAI GPT 系列**
 
 - `openai/gpt-5.2` - GPT‑5.2  
 - `openai/gpt-5.2-chat` - GPT‑5.2 Chat  
@@ -141,7 +106,7 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 
 ---
 
-### **Google Gemini / Gemma 系列**
+**Google Gemini / Gemma 系列**
 
 - `google/gemini-2.0-flash` - Gemini 2.0 Flash  
 - `google/gemini-2.0-flash-lite-001` - Gemini 2.0 Flash Lite  
@@ -156,7 +121,7 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 
 ---
 
-### **xAI Grok 系列**
+**xAI Grok 系列**
 
 - `x-ai/grok-4` - Grok 4  
 - `x-ai/grok-4-fast` - Grok 4 Fast  
@@ -167,7 +132,7 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 
 ---
 
-### **Z.AI GLM 系列**
+**Z.AI GLM 系列**
 
 - `z-ai/glm-4.6v` - GLM 4.6V  
 - `z-ai/glm-4.6v-flash` - GLM 4.6V Flash  
@@ -178,7 +143,7 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 
 ---
 
-### **DeepSeek 系列**
+**DeepSeek 系列**
 
 - `deepseek/deepseek-chat` - DeepSeek Chat  
 - `deepseek/deepseek-chat-v3.1` - DeepSeek Chat V3.1  
@@ -189,7 +154,7 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 
 ---
 
-### **Qwen / 通义千问 系列**
+**Qwen / 通义千问 系列**
 
 - `qwen/qwen3-coder` - Qwen3 Coder  
 - `qwen/qwen3-coder-plus` - Qwen3 Coder Plus  
@@ -202,7 +167,7 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 
 ---
 
-### **Moonshot / Kimi 系列**
+**Moonshot / Kimi 系列**
 
 - `moonshotai/kimi-k2-thinking` - Kimi K2 Thinking  
 - `moonshotai/kimi-k2-thinking-turbo` - Kimi K2 Thinking Turbo
@@ -211,14 +176,14 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 
 ---
 
-### **Baidu ERNIE 系列**
+**Baidu ERNIE 系列**
 
 - `baidu/ernie-5.0-thinking-preview` - ERNIE 5.0 Thinking Preview  
 - `baidu/ernie-x1.1-preview` - ERNIE X1.1 Preview  
 
 ---
 
-### **InclusionAI 系列**
+**InclusionAI 系列**
 
 - `inclusionai/ling-1t` - Ling‑1T  
 - `inclusionai/ling-flash-2.0` - Ling Flash 2.0  
@@ -231,39 +196,39 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 
 ---
 
-### **Meta Llama 系列**
+**Meta Llama 系列**
 
 - `meta/llama-3.3-70b-instruct` - Llama 3.3 70B Instruct  
 - `meta/llama-4-scout-17b-16e-instruct` - Llama 4 Scout 17B 16E Instruct  
 
 ---
 
-### **Mistral 系列**
+**Mistral 系列**
 
 - `mistralai/mistral-large-2512` - Mistral Large 2512  
 
 ---
 
-### **MiniMax 系列**
+**MiniMax 系列**
 
 - `minimax/minimax-m2` - MiniMax M2  
 - `minimax/minimax-m2.1` - MiniMax M2.1  
 
 ---
 
-### **快手 Kuaishou**
+**快手 Kuaishou**
 
 - `kuaishou/kat-coder-pro-v1` - KAT‑Coder‑Pro‑V1  
 
 ---
 
-### **阶跃 Stepfun**
+**阶跃 Stepfun**
 
 - `stepfun/step-3` - Step 3  
 
 ---
 
-### **字节 Volcengine Doubao**
+**字节 Volcengine Doubao**
 
 - `volcengine/doubao-seed-1-6-vision` - Doubao Seed 1.6 Vision  
 - `volcengine/doubao-seed-1.8` - Doubao Seed 1.8  
@@ -271,31 +236,14 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 
 ---
 
-### **小米 Xiaomi**
+**小米 Xiaomi**
 
 - `xiaomi/mimo-v2-flash` - MiMo V2 Flash  
 
 ---
-
 ### Max - 高强度开发
-
-<div style="background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%); color: white; padding: 20px; border-radius: 8px; margin: 10px 0;">
-
-**额度:** 300 Flows/5h
-
-**价格:** $100/月
-
-**适用场景:** 高频开发
-
-**套餐特性:**
-
-- ✅ 包含 Pro 所有功能
-- ✅ **6 倍** Pro 的 5 小时用量
-- ✅ **无限制**访问所有高级模型
-- ✅ **额外支持**超旗舰模型(GPT-5.2 Pro等)
-- ✅ 优先体验新功能
-
-</div>
+---
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/8PXHCx9/dingyuezhi-maxtaocan.png" alt="subscription-free" style="width:300px; border-radius:8px;">
 
 **额外支持的超旗舰模型:**
 
@@ -303,29 +251,11 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 - `openai/gpt-5-pro` - GPT-5 Pro
 - `anthropic/claude-opus-4.1` - Claude Opus 4.1
 - `anthropic/claude-opus-4` - Claude Opus 4
-
 ---
 
 ### Ultra - 专业级旗舰
-
-<div style="background: linear-gradient(135deg, #1a202c 0%, #000000 100%); color: white; padding: 20px; border-radius: 8px; margin: 10px 0;">
-
-**额度:** 1200 Flows/5h
-
-**价格:** $200/月
-
-**适用场景:** 专业开发者、AI 重度用户
-
-**套餐特性:**
-
-- ✅ 包含 Max 所有功能
-- ✅ **24 倍** Pro 的 5 小时用量
-- ✅ 访问所有高级模型
-- ✅ **包含**所有超旗舰模型
-- ✅ 优先体验新功能
-- ✅ 终极使用额度
-
-</div>
+---
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/aJFjhWL/dingyuezhi-ultrataocan.png" alt="subscription-free" style="width:300px; border-radius:8px;">
 
 **支持模型:** 与 Max 套餐相同,包含所有高级模型和超旗舰模型。
 
@@ -372,7 +302,7 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 
 访问 [ZenMux Pricing 页面](https://zenmux.ai/pricing) 查看所有订阅套餐的详细信息和价格。
 
-![subscription](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/7shxqbP/dingyuezhi-jiage2-dapingbanben.png)
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/7shxqbP/dingyuezhi-jiage2-dapingbanben.png" alt="subscription-free" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 
 ### 第 2 步:选择并订阅套餐
 
@@ -388,7 +318,7 @@ Builder Plan 目前处于白名单内测阶段。如需申请,请通过您的 Ze
 
 订阅成功后,可访问 [订阅管理页面](https://zenmux.ai/platform/subscription) :
 
-![subcription](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/4I6M3by/dingyuezhi-gerenguanliyemian2.png)
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/4I6M3by/dingyuezhi-gerenguanliyemian2.png" alt="subscription-free" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 
 - 📊 **查看使用情况**
   - 当前 5 小时窗口的用量和剩余时间
