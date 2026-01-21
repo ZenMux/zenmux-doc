@@ -259,7 +259,7 @@ This approach ensures fair billing across different models and usage patterns, g
 
 ### Ultra - Professional Flagship
 ---
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/8PXHCx9/dingyuezhi-maxtaocan.png" alt="subscription-free" style="width:300px; border-radius:8px;">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/aJFjhWL/dingyuezhi-ultrataocan.png" alt="subscription-free" style="width:300px; border-radius:8px;">
 
 **Supported models:** Same as the Max plan, including all premium models and ultra-flagship models.
 
