@@ -61,7 +61,7 @@ export default defineLoacaleConfig({
             link: "/zh/guide/pay-as-you-go",
           },
           {
-            text: "如何获取发票",
+            text: "下载发票",
             link: "/zh/guide/invoice",
           },
           {

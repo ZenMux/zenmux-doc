@@ -62,6 +62,10 @@ export default defineLoacaleConfig({
             link: "/guide/pay-as-you-go",
           },
           {
+            text: "Download Invoices",
+            link: "/guide/invoice",
+          },
+          {
             text: "Observability",
             items: [
               { text: "Model Pricing", link: "/guide/observability/pricing" },
