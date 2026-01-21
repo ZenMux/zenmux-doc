@@ -33,7 +33,7 @@
           <el-dropdown-item @click="() => handleAction('platform/chat')"
             >Chat</el-dropdown-item
           >
-          <el-dropdown-item @click="() => handleAction('platform/activity')"
+          <el-dropdown-item @click="() => handleAction('platform/logs')"
             >Logs</el-dropdown-item
           >
           <el-dropdown-item @click="() => handleAction('platform/cost')"
