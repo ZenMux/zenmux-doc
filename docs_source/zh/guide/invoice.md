@@ -2,20 +2,12 @@
 
 ZenMux 为所有充值和订阅付费用户提供完整的发票支持。本指南将帮助你了解如何填写发票信息、查看和下载发票，满足企业报销和财务审计需求。
 
-::: tip 💡 发票说明
-ZenMux 支持为所有充值和订阅付费记录生成正式发票（PDF 格式），包含完整的交易信息和开票资料，可用于企业报销和财务记录。
-:::
+## 如何下载发票
 
----
-
-## 如何获取发票
-
-获取发票分为两个步骤：
+下载发票主要分为两个步骤：
 
 1. **填写发票信息** - 在充值或订阅时输入开票资料
 2. **下载发票** - 在账单历史中查看并下载对应的发票
-
----
 
 ## 第一步：填写发票信息
 
@@ -29,9 +21,12 @@ ZenMux 支持为所有充值和订阅付费记录生成正式发票（PDF 格式
 
 <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/21/wNHvxNw/ruhehuoqufapiao-fapiaoshenqingrukou.png" alt="发票信息入口" style="width:400px; border-radius:8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 
+</br></br>
+
 2. 在弹出的表单中填写以下发票信息：
 
 <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/21/4G3z1Y6/ruhehuoqufapiao-tijiaofapiaoxinxi.png" alt="发票信息入口" style="width:400px; border-radius:8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+
 
    | 字段 | 说明 | 必填 |
    |------|------|------|
@@ -60,8 +55,6 @@ ZenMux 支持为所有充值和订阅付费记录生成正式发票（PDF 格式
 
 系统会记住最新保存的发票信息，方便下次使用。
 
----
-
 ## 第二步：下载发票
 
 完成充值或订阅付费后，你可以在账单历史中查看并下载对应的发票。
@@ -76,6 +69,8 @@ ZenMux 支持为所有充值和订阅付费记录生成正式发票（PDF 格式
 4. 点击 **「View Invoice」** 链接即可下载发票（PDF 格式）
 
 <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/21/csJydXK/ruhehuoqufapiao-anliangfufeijiemian.png" alt="Pay As You Go 交易历史" style="border-radius:8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+
+</br></br>
 
 <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/21/nZQY0YJ/ruhehuoqufapiao-xiazaifapiaostripejiemian.png" alt="download" style="width:400px; border-radius:8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 
@@ -94,9 +89,9 @@ ZenMux 支持为所有充值和订阅付费记录生成正式发票（PDF 格式
 
 <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/21/812araN/ruhehuoqufapiao-dingyuezhijiemian.png" alt="Subscription 账单历史" style="border-radius:8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/21/nZQY0YJ/ruhehuoqufapiao-xiazaifapiaostripejiemian.png" alt="download" style="width:400px; border-radius:8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+</br></br>
 
----
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/21/nZQY0YJ/ruhehuoqufapiao-xiazaifapiaostripejiemian.png" alt="download" style="width:400px; border-radius:8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 
 ## 发票内容说明
 
@@ -111,8 +106,6 @@ ZenMux 发票包含以下信息：
 所有发票均为 **PDF 格式**，可直接打印或用于企业报销和财务审计。
 
 <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/21/XaAMGwv/ruhehuoqufapiao-fapiaoneirongshili.png" alt="invoice" style="border-radius:8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
-
----
 
 ## 常见问题
 
@@ -148,8 +141,6 @@ ZenMux 发票包含以下信息：
 目前 ZenMux 提供的是英文发票。如需中文发票或其他特殊发票需求，请联系商务团队：
 
 - **商务合作邮箱**：[bd@zenmux.ai](mailto:bd@zenmux.ai)
-
----
 
 ## 下一步
 
