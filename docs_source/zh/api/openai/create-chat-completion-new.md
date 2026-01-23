@@ -3,13 +3,13 @@ pageClass: api-page
 title: 接口
 ---
 
-# Create chat completion
+# Create Chat Completion
 
 ```
 POST https://zenmux.ai/api/v1/chat/completions
 ```
 
-Create chat completions 接口兼容 OpenAI 的 [Create chat completion](https://platform.openai.com/docs/api-reference/chat/create) 接口，用于对话型大语言模型推理调用。
+Create Chat Completion 接口兼容 OpenAI 的 [Create Chat Completion](https://platform.openai.com/docs/api-reference/chat/create) 接口，用于对话型大语言模型推理调用。
 
 下面列出了所有模型可能支持的参数，不同模型的支持参数有所不同，每个模型具体支持的参数请参见各模型详情页。
 
@@ -37,7 +37,6 @@ messages 里的每个元素表示一条对话消息，每条消息由 role 和 c
 - content `string or array ` <font color="red">必选</font>
 
   Developer message 的内容。
-
   - Text content `string`
 
     Developer message 的内容。
@@ -45,7 +44,6 @@ messages 里的每个元素表示一条对话消息，每条消息由 role 和 c
   - Array of content parts `array`
 
     具有定义类型的内容部分数组。对于 Developer message，只支持类型 `text`。
-
     - text `string` <font color="red">必选</font>
 
       文本内容。
@@ -69,7 +67,6 @@ messages 里的每个元素表示一条对话消息，每条消息由 role 和 c
 - content `string or array ` <font color="red">必选</font>
 
   System message 的内容。
-
   - Text content `string`
 
     System message 的内容。
@@ -77,7 +74,6 @@ messages 里的每个元素表示一条对话消息，每条消息由 role 和 c
   - Array of content parts `array`
 
     具有定义类型的内容部分数组。对于 System message，只支持类型 `text`。
-
     - text `string` <font color="red">必选</font>
 
       文本内容。
@@ -101,7 +97,6 @@ messages 里的每个元素表示一条对话消息，每条消息由 role 和 c
 - content `string or array` <font color="red">必选</font>
 
   User message 的内容。
-
   - Text content `string` <font color="red">必选</font>
 
     纯文本内容，最常见的用法。
@@ -109,21 +104,17 @@ messages 里的每个元素表示一条对话消息，每条消息由 role 和 c
   - Array of content parts `array` <font color="red">必选</font>
 
     多模态内容片段数组。根据模型能力，可以包含文本、图片、音频等类型的内容。常见类型包括：
-
     - 文本片段
-
       - type `string` <font color="red">必选</font>，固定为 `text`
       - text `string` <font color="red">必选</font>，文本内容
 
     - 图片片段（仅多模态模型支持）
-
       - type `string` <font color="red">必选</font>，为 `image_url`
       - image_url `object` <font color="red">必选</font>
         - url `string` <font color="red">必选</font>，图片 URL 或 base64 Data URL
         - detail `string` <font color="gray">可选</font>，典型取值：`low` / `high` / `auto`，用于控制图像解析精度
 
     - 音频片段（仅音频输入模型支持）
-
       - type `string` <font color="red">必选</font>，为 `input_audio`
       - input_audio `object` <font color="red">必选</font>
         - data `string` <font color="red">必选</font>，音频文件 base64 内容
@@ -131,7 +122,6 @@ messages 里的每个元素表示一条对话消息，每条消息由 role 和 c
 
     - 文件片段（File content part，仅支持文件输入的模型）  
       用于将整份文件作为上下文输入给模型（例如 PDF、Office 文档等）。
-
       - type `string` <font color="red">必选</font>，固定为 `file`
       - file `object` <font color="red">必选</font>
         - file_id `string` <font color="gray">可选</font>
@@ -156,7 +146,6 @@ messages 里的每个元素表示一条对话消息，每条消息由 role 和 c
 - content `string or array` 可选
 
   Assistant message 的内容。**当未设置 `tool_calls` 或（已废弃的）`function_call` 时为必填。**
-
   - Text content `string`
 
     助手消息的纯文本内容。
@@ -164,9 +153,7 @@ messages 里的每个元素表示一条对话消息，每条消息由 role 和 c
   - Array of content parts `array`
 
     具有定义类型的内容部分数组。可以包含一个或多个类型为 `text` 的内容部分，或者**恰好一个**类型为 `refusal` 的内容部分。
-
     - Text content part `object`（文本内容片段）
-
       - type `string` <font color="red">必选</font>  
         内容片段的类型。
 
@@ -174,7 +161,6 @@ messages 里的每个元素表示一条对话消息，每条消息由 role 和 c
         文本内容。
 
     - Refusal content part `object`（拒答内容片段）
-
       - type `string` <font color="red">必选</font>  
         内容片段的类型。
 
@@ -196,15 +182,12 @@ messages 里的每个元素表示一条对话消息，每条消息由 role 和 c
 - audio `object or null` 可选
 
   关于**之前某次模型音频回复**的数据，可在后续对话中引用该音频回复。
-
   - id `string` <font color="red">必选</font>
 
     之前音频回复的唯一标识符。
 
 - tool_calls `array` 可选
-
   - 函数工具调用 `object`
-
     - id `string` <font color="red">必选</font>
 
       工具调用 ID，用于与后续的 Tool message 中的 `tool_call_id` 对应。
@@ -214,7 +197,6 @@ messages 里的每个元素表示一条对话消息，每条消息由 role 和 c
       工具类型，目前仅支持 `function`。
 
     - function `object` <font color="red">必选</font>
-
       - name `string` <font color="red">必选</font>
 
         要调用的函数名。
@@ -225,7 +207,6 @@ messages 里的每个元素表示一条对话消息，每条消息由 role 和 c
         注意：模型不保证一定生成完全合法的 JSON，可能会出现未在函数 Schema 中定义的参数，调用前应在业务侧进行校验。
 
     - 自定义工具调用 `object`
-
       - id `string` <font color="red">必选</font>
 
         工具调用 ID，用于与后续的 Tool message 中的 `tool_call_id` 对应。
@@ -235,7 +216,6 @@ messages 里的每个元素表示一条对话消息，每条消息由 role 和 c
         工具类型，始终为 `custom`。
 
       - custom `object` <font color="red">必选</font>
-
         - name `string` <font color="red">必选</font>
 
           要调用的函数名。
@@ -247,7 +227,6 @@ messages 里的每个元素表示一条对话消息，每条消息由 role 和 c
 - function_call `object or null`（已废弃） 可选
 
   已被 `tool_calls` 替代，仅为兼容旧版格式保留。表示模型建议调用的函数名称和参数。
-
   - name `string` <font color="red">必选</font>  
     要调用的函数名。
 
@@ -262,7 +241,6 @@ messages 里的每个元素表示一条对话消息，每条消息由 role 和 c
 - content `string or array` <font color="red">必选</font>
 
   工具执行结果的内容，一般为文本或结构化数据（序列化为字符串）。
-
   - Text content `string`
 
     Tool message 的内容。
@@ -270,7 +248,6 @@ messages 里的每个元素表示一条对话消息，每条消息由 role 和 c
   - Array of content parts `array`
 
     具有定义类型的内容部分数组。对于 Tool message，只支持类型 `text`。
-
     - text `string` <font color="red">必选</font>
 
       文本内容。
@@ -633,7 +610,6 @@ Nucleus sampling（核采样）参数：只从累积概率质量前 `top_p` 的 
 
 - top_logprobs `array`  
   在该位置最可能的一组候选 token 及其对数概率列表。极少数情况下，实际返回数量可能少于请求的数量。
-
   - bytes `array`  
     候选 token 的 UTF‑8 字节表示列表；若无字节表示则为 `null`。
   - logprob `number`  
@@ -657,7 +633,6 @@ Nucleus sampling（核采样）参数：只从累积概率质量前 `top_p` 的 
   拒绝内容中某个 token 的文本。
 - top_logprobs `array`  
   在该位置最可能的拒绝 token 候选列表。
-
   - bytes `array`  
     候选拒绝 token 的 UTF‑8 字节表示。
   - logprob `number`  
@@ -705,7 +680,6 @@ Nucleus sampling（核采样）参数：只从累积概率质量前 `top_p` 的 
   URL 引用的类型，当前固定为 `url_citation`。
 - url_citation `object`  
   使用网页搜索时的 URL 引用详情。
-
   - end_index `integer`  
     在当前消息 `content` 中，该 URL 引用最后一个字符的索引。
   - start_index `integer`  
@@ -747,7 +721,6 @@ Nucleus sampling（核采样）参数：只从累积概率质量前 `top_p` 的 
   工具类型。目前标准为 `function`，ZenMux 可能在扩展中支持 `custom` 等其他类型。
 - function `object`  
   当 `type = "function"` 时，表示模型调用的函数。
-
   - arguments `string`  
     JSON 字符串格式的函数调用参数。模型可能不会始终生成合法 JSON，也可能产生模式中未定义的字段；业务方应在实际调用前进行校验。
   - name `string`  
@@ -794,7 +767,6 @@ Nucleus sampling（核采样）参数：只从累积概率质量前 `top_p` 的 
 
 - completion_tokens_details `object`  
   对补全 token 的进一步细分。
-
   - accepted_prediction_tokens `integer`  
     在使用 Predicted Outputs 时，预测中实际出现在 completion 中的 token 数量。与预测输出能力相关，当前模型一般不会使用该字段。
   - audio_tokens `integer`  
@@ -806,7 +778,6 @@ Nucleus sampling（核采样）参数：只从累积概率质量前 `top_p` 的 
 
 - prompt_tokens_details `object`  
   对提示部分 token 的细分说明。
-
   - audio_tokens `integer`  
     提示中音频输入所占用的 token 数。
   - cached_tokens `integer`  
@@ -842,7 +813,6 @@ Nucleus sampling（核采样）参数：只从累积概率质量前 `top_p` 的 
   本分块的消息正文内容增量。客户端应将各分块的 `content` 依次拼接成完整回复。
 - function_call `object`（已弃用）  
   旧版函数调用增量信息，已被 `tool_calls` 取代，仍支持解析。
-
   - arguments `string`  
     本分块新增的函数参数 JSON 片段，需与前后分块的 `arguments` 拼接后再解析。
   - name `string`  
@@ -856,12 +826,10 @@ Nucleus sampling（核采样）参数：只从累积概率质量前 `top_p` 的 
   工具调用的增量信息列表。
 
   对于每个增量工具调用元素：
-
   - index `integer`  
     该工具调用在 `tool_calls` 数组中的序号。
   - function `object`  
     函数工具调用的增量信息。
-
     - arguments `string`  
       函数调用参数 JSON 字符串的增量片段，需跨分块拼接再解析。
     - name `string`  
@@ -907,7 +875,6 @@ Nucleus sampling（核采样）参数：只从累积概率质量前 `top_p` 的 
   当前输出 token 的文本表示。
 - top_logprobs `array`  
   本位置最可能的候选 token 列表。
-
   - bytes `array`  
     候选 token 的 UTF‑8 字节表示。
   - logprob `number`  
@@ -931,7 +898,6 @@ Nucleus sampling（核采样）参数：只从累积概率质量前 `top_p` 的 
   拒绝内容中某个 token 的文本。
 - top_logprobs `array`  
   该位置上最可能的拒绝 token 候选列表。
-
   - bytes `array`  
     候选拒绝 token 的 UTF‑8 字节表示。
   - logprob `number`  
@@ -982,7 +948,6 @@ Nucleus sampling（核采样）参数：只从累积概率质量前 `top_p` 的 
 
 - completion_tokens_details `object`  
   补全 token 细分统计。
-
   - accepted_prediction_tokens `integer`  
     预测输出中被采纳的 token 数。
   - audio_tokens `integer`  
@@ -994,7 +959,6 @@ Nucleus sampling（核采样）参数：只从累积概率质量前 `top_p` 的 
 
 - prompt_tokens_details `object`  
   提示 token 细分统计。
-
   - audio_tokens `integer`  
     提示中音频输入 token 数。
   - cached_tokens `integer`  
@@ -1006,7 +970,7 @@ Nucleus sampling（核采样）参数：只从累积概率质量前 `top_p` 的 
 import OpenAI from "openai";
 
 const openai = new OpenAI({
-  baseURL: 'https://zenmux.ai/api/v1',
+  baseURL: 'https://zenmux.ai/api/v1/chat/completions',
   apiKey: '<ZENMUX_API_KEY>',
 });
 
@@ -1031,7 +995,7 @@ main();
 from openai import OpenAI
 
 client = OpenAI(
-    base_url="https://zenmux.ai/api/v1",
+    base_url="https://zenmux.ai/api/v1/chat/completions",
     api_key="<your_ZENMUX_API_KEY>",
 )
 

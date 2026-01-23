@@ -3,15 +3,15 @@ pageClass: api-page
 title: API
 ---
 
-# Create chat completion
+# Create Chat Completion
 
 ```
 POST https://zenmux.ai/api/v1/chat/completions
 ```
 
-The Create chat completions endpoint is compatible with OpenAI’s [Create chat completion](https://platform.openai.com/docs/api-reference/chat/create) endpoint, and is used to run inference calls for conversational LLMs.
+The Create Chat Completion endpoint is compatible with OpenAI’s [Create Chat Completion](https://platform.openai.com/docs/api-reference/chat/create) endpoint, and is used to run inference calls for conversational LLMs.
 
-The parameters below list everything that *may* be supported by all models. Different models support different subsets of parameters. For the exact parameters supported by each model, see the model details page.
+The parameters below list everything that _may_ be supported by all models. Different models support different subsets of parameters. For the exact parameters supported by each model, see the model details page.
 
 ## Request headers
 
@@ -37,7 +37,6 @@ Instructions provided by the developer that the model should follow regardless o
 - content `string or array ` <font color="red">Required</font>
 
   The content of the Developer message.
-
   - Text content `string`
 
     The content of the Developer message.
@@ -45,7 +44,6 @@ Instructions provided by the developer that the model should follow regardless o
   - Array of content parts `array`
 
     An array of typed content parts. For Developer messages, only the `text` type is supported.
-
     - text `string` <font color="red">Required</font>
 
       Text content.
@@ -69,7 +67,6 @@ Instructions provided by the developer that the model should follow regardless o
 - content `string or array ` <font color="red">Required</font>
 
   The content of the System message.
-
   - Text content `string`
 
     The content of the System message.
@@ -77,7 +74,6 @@ Instructions provided by the developer that the model should follow regardless o
   - Array of content parts `array`
 
     An array of typed content parts. For System messages, only the `text` type is supported.
-
     - text `string` <font color="red">Required</font>
 
       Text content.
@@ -101,7 +97,6 @@ Messages sent by the end user to the model. In most chat scenarios, this is the 
 - content `string or array` <font color="red">Required</font>
 
   The content of the User message.
-
   - Text content `string` <font color="red">Required</font>
 
     Plain text content, the most common usage.
@@ -109,21 +104,17 @@ Messages sent by the end user to the model. In most chat scenarios, this is the 
   - Array of content parts `array` <font color="red">Required</font>
 
     An array of multimodal content parts. Depending on the model’s capabilities, it can include text, images, audio, and more. Common types include:
-
     - Text part
-
       - type `string` <font color="red">Required</font>, fixed to `text`
       - text `string` <font color="red">Required</font>, the text content
 
     - Image part (multimodal models only)
-
       - type `string` <font color="red">Required</font>, `image_url`
       - image_url `object` <font color="red">Required</font>
         - url `string` <font color="red">Required</font>, an image URL or a base64 Data URL
         - detail `string` <font color="gray">Optional</font>, typical values: `low` / `high` / `auto`, used to control image understanding fidelity
 
     - Audio part (audio-input models only)
-
       - type `string` <font color="red">Required</font>, `input_audio`
       - input_audio `object` <font color="red">Required</font>
         - data `string` <font color="red">Required</font>, base64-encoded audio file content
@@ -131,7 +122,6 @@ Messages sent by the end user to the model. In most chat scenarios, this is the 
 
     - File part (File content part, models that support file input only)  
       Used to pass an entire file as context to the model (e.g., PDFs, Office documents, etc.).
-
       - type `string` <font color="red">Required</font>, fixed to `file`
       - file `object` <font color="red">Required</font>
         - file_id `string` <font color="gray">Optional</font>
@@ -156,7 +146,6 @@ Messages that the model sends to the user during a conversation. You can include
 - content `string or array` Optional
 
   The content of the Assistant message. **Required when `tool_calls` or (deprecated) `function_call` is not set.**
-
   - Text content `string`
 
     Plain-text assistant message content.
@@ -164,9 +153,7 @@ Messages that the model sends to the user during a conversation. You can include
   - Array of content parts `array`
 
     An array of typed content parts. It can contain one or more parts of type `text`, or **exactly one** part of type `refusal`.
-
     - Text content part `object` (text content part)
-
       - type `string` <font color="red">Required</font>  
         The type of the content part.
 
@@ -174,7 +161,6 @@ Messages that the model sends to the user during a conversation. You can include
         Text content.
 
     - Refusal content part `object` (refusal content part)
-
       - type `string` <font color="red">Required</font>  
         The type of the content part.
 
@@ -196,15 +182,12 @@ Messages that the model sends to the user during a conversation. You can include
 - audio `object or null` Optional
 
   Data about a **previous model audio reply**, which can be referenced in subsequent turns.
-
   - id `string` <font color="red">Required</font>
 
     The unique identifier of the prior audio reply.
 
 - tool_calls `array` Optional
-
   - Function tool call `object`
-
     - id `string` <font color="red">Required</font>
 
       Tool call ID, used to match `tool_call_id` in subsequent Tool messages.
@@ -214,7 +197,6 @@ Messages that the model sends to the user during a conversation. You can include
       Tool type. Currently only `function` is supported.
 
     - function `object` <font color="red">Required</font>
-
       - name `string` <font color="red">Required</font>
 
         The name of the function to call.
@@ -225,7 +207,6 @@ Messages that the model sends to the user during a conversation. You can include
         Note: The model does not guarantee strictly valid JSON and may include parameters not defined in the function schema. Validate on the application side before executing.
 
     - Custom tool call `object`
-
       - id `string` <font color="red">Required</font>
 
         Tool call ID, used to match `tool_call_id` in subsequent Tool messages.
@@ -235,7 +216,6 @@ Messages that the model sends to the user during a conversation. You can include
         Tool type, always `custom`.
 
       - custom `object` <font color="red">Required</font>
-
         - name `string` <font color="red">Required</font>
 
           The name of the function to call.
@@ -247,7 +227,6 @@ Messages that the model sends to the user during a conversation. You can include
 - function_call `object or null` (deprecated) Optional
 
   Replaced by `tool_calls` and retained only for compatibility with the legacy format. Indicates the function name and parameters the model suggests calling.
-
   - name `string` <font color="red">Required</font>  
     The name of the function to call.
 
@@ -262,7 +241,6 @@ Messages used to send the execution result of an external tool (function) back t
 - content `string or array` <font color="red">Required</font>
 
   The tool execution result content, typically text or structured data (serialized as a string).
-
   - Text content `string`
 
     The content of the Tool message.
@@ -270,7 +248,6 @@ Messages used to send the execution result of an external tool (function) back t
   - Array of content parts `array`
 
     An array of typed content parts. For Tool messages, only the `text` type is supported.
-
     - text `string` <font color="red">Required</font>
 
       Text content.
@@ -562,21 +539,21 @@ Whether to include usage statistics in the response.
 
 ### Unsupported fields
 
-| Field name              | Type          | Supported                                           | Description                                                                                             |
-| ----------------------- | ------------- | --------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| audio                   | object/null   | <span style="white-space: nowrap;">❌ Not supported</span> | Audio output parameters                                                                                 |
-| modalities              | array         | ❌ Not supported                                    | Output modality types                                                                                   |
-| functions               | array         | ❌ Not supported                                    | Deprecated; this parameter is not accepted                                                              |
-| function_call           | string/object | ❌ Not supported                                    | Deprecated; this parameter is not accepted                                                              |
-| prompt_cache_key        | string        | ❌ Not supported                                    | Prompt cache key                                                                                        |
-| prompt_cache_retention  | string        | ❌ Not supported                                    | Cache retention strategy                                                                                |
-| safety_identifier       | string        | ❌ Not supported                                    | Safety identifier                                                                                       |
-| store                   | bool/null     | ❌ Not supported                                    | Store this conversation                                                                                 |
-| service_tier            | string        | ❌ Not supported                                    | Service tier                                                                                            |
-| prediction              | object        | ❌ Not supported                                    | Predicted output configuration                                                                          |
-| seed                    | int/null      | ❌ Not supported                                    | Random seed for sampling; marked as deprecated                                                          |
-| user                    | string        | ❌ Not supported                                    | Legacy user identifier; now mainly replaced by `safety_identifier` and `prompt_cache_key`               |
-| max_tokens              | int/null      | ❌ Not supported                                    | Deprecated; replaced by max_completion_tokens                                                           |
+| Field name             | Type          | Supported                                                  | Description                                                                               |
+| ---------------------- | ------------- | ---------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| audio                  | object/null   | <span style="white-space: nowrap;">❌ Not supported</span> | Audio output parameters                                                                   |
+| modalities             | array         | ❌ Not supported                                           | Output modality types                                                                     |
+| functions              | array         | ❌ Not supported                                           | Deprecated; this parameter is not accepted                                                |
+| function_call          | string/object | ❌ Not supported                                           | Deprecated; this parameter is not accepted                                                |
+| prompt_cache_key       | string        | ❌ Not supported                                           | Prompt cache key                                                                          |
+| prompt_cache_retention | string        | ❌ Not supported                                           | Cache retention strategy                                                                  |
+| safety_identifier      | string        | ❌ Not supported                                           | Safety identifier                                                                         |
+| store                  | bool/null     | ❌ Not supported                                           | Store this conversation                                                                   |
+| service_tier           | string        | ❌ Not supported                                           | Service tier                                                                              |
+| prediction             | object        | ❌ Not supported                                           | Predicted output configuration                                                            |
+| seed                   | int/null      | ❌ Not supported                                           | Random seed for sampling; marked as deprecated                                            |
+| user                   | string        | ❌ Not supported                                           | Legacy user identifier; now mainly replaced by `safety_identifier` and `prompt_cache_key` |
+| max_tokens             | int/null      | ❌ Not supported                                           | Deprecated; replaced by max_completion_tokens                                             |
 
 ## Response
 
@@ -633,7 +610,6 @@ A list of “message content tokens” with log probability information. Each el
 
 - top_logprobs `array`  
   A list of the most likely candidate tokens at this position and their log probabilities. In rare cases, the actual returned count may be less than the requested number.
-
   - bytes `array`  
     UTF‑8 byte representation of the candidate token; `null` if none.
   - logprob `number`  
@@ -657,7 +633,6 @@ A list of “refusal content tokens” with log probability information. When th
   The text of a token in the refusal content.
 - top_logprobs `array`  
   A list of the most likely refusal-token candidates at this position.
-
   - bytes `array`  
     UTF‑8 byte representation of the candidate refusal token.
   - logprob `number`  
@@ -705,7 +680,6 @@ A list of message annotations. When using tools like web search, it is used to c
   The type of the URL citation. Currently fixed to `url_citation`.
 - url_citation `object`  
   URL citation details when using web search.
-
   - end_index `integer`  
     The index of the last character of this URL citation in the message `content`.
   - start_index `integer`  
@@ -747,7 +721,6 @@ New tool call list. Each element describes a tool call, which can be a “functi
   Tool type. The current standard is `function`; ZenMux may support other types such as `custom` in extensions.
 - function `object`  
   When `type = "function"`, describes the function the model calls.
-
   - arguments `string`  
     Function call arguments as a JSON string. The model may not always produce valid JSON and may include fields not defined in the schema; validate before execution.
   - name `string`  
@@ -794,7 +767,6 @@ Usage statistics for this request, including prompt and completion token counts.
 
 - completion_tokens_details `object`  
   Further breakdown of completion tokens.
-
   - accepted_prediction_tokens `integer`  
     With Predicted Outputs, the number of predicted tokens that actually appeared in the completion. Generally unused by current models.
   - audio_tokens `integer`  
@@ -806,7 +778,6 @@ Usage statistics for this request, including prompt and completion token counts.
 
 - prompt_tokens_details `object`  
   Breakdown of prompt tokens.
-
   - audio_tokens `integer`  
     Number of tokens used by audio input in the prompt.
   - cached_tokens `integer`  
@@ -842,7 +813,6 @@ Incremental chat content generated by the streaming response—i.e., what is “
   Incremental message body content for this chunk. The client should concatenate `content` across chunks to form the full reply.
 - function_call `object`（deprecated）  
   Legacy function-calling incremental information, replaced by `tool_calls` but still supported for parsing.
-
   - arguments `string`  
     Incremental JSON fragment of function arguments for this chunk; must be concatenated across chunks before parsing.
   - name `string`  
@@ -856,12 +826,10 @@ Incremental chat content generated by the streaming response—i.e., what is “
   A list of incremental tool call information.
 
   For each incremental tool call element:
-
   - index `integer`  
     The position of this tool call in the `tool_calls` array.
   - function `object`  
     Incremental information for a function tool call.
-
     - arguments `string`  
       Incremental fragment of the function-call arguments JSON string; must be concatenated across chunks before parsing.
     - name `string`  
@@ -907,7 +875,6 @@ A list of “message content tokens” newly generated in the current chunk.
   The text representation of the current output token.
 - top_logprobs `array`  
   The most likely candidate tokens at this position.
-
   - bytes `array`  
     UTF‑8 byte representation of the candidate token.
   - logprob `number`  
@@ -931,7 +898,6 @@ A list of “refusal content tokens” newly generated in the current chunk.
   The text of a token in the refusal content.
 - top_logprobs `array`  
   The most likely candidate refusal tokens at this position.
-
   - bytes `array`  
     UTF‑8 byte representation of the candidate refusal token.
   - logprob `number`  
@@ -982,7 +948,6 @@ When `stream_options: {"include_usage": true}` is set in the request, the final 
 
 - completion_tokens_details `object`  
   Breakdown of completion tokens.
-
   - accepted_prediction_tokens `integer`  
     Number of predicted tokens accepted into the completion.
   - audio_tokens `integer`  
@@ -994,7 +959,6 @@ When `stream_options: {"include_usage": true}` is set in the request, the final 
 
 - prompt_tokens_details `object`  
   Breakdown of prompt tokens.
-
   - audio_tokens `integer`  
     Number of audio-input tokens in the prompt.
   - cached_tokens `integer`  
@@ -1006,7 +970,7 @@ When `stream_options: {"include_usage": true}` is set in the request, the final 
 import OpenAI from "openai";
 
 const openai = new OpenAI({
-  baseURL: 'https://zenmux.ai/api/v1',
+  baseURL: 'https://zenmux.ai/api/v1/chat/completions',
   apiKey: '<ZENMUX_API_KEY>',
 });
 
@@ -1031,7 +995,7 @@ main();
 from openai import OpenAI
 
 client = OpenAI(
-    base_url="https://zenmux.ai/api/v1",
+    base_url="https://zenmux.ai/api/v1/chat/completions",
     api_key="<your_ZENMUX_API_KEY>",
 )
 

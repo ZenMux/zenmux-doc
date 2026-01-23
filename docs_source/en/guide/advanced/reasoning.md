@@ -1,6 +1,6 @@
 # Reasoning Models
 
-ZenMux provides fine-grained control over model reasoning behavior in the Create chat completion endpoint. With the two configuration options, `reasoning_effort` and `reasoning`, you can flexibly adjust reasoning depth and resource allocation based on task complexity.
+ZenMux provides fine-grained control over model reasoning behavior in the Create Chat Completion endpoint. With the two configuration options, `reasoning_effort` and `reasoning`, you can flexibly adjust reasoning depth and resource allocation based on task complexity.
 
 ## Parameters
 
@@ -227,4 +227,4 @@ else:
 - For simple factual questions, use `low` or `medium` reasoning intensity
 - For tasks requiring complex logical deduction (e.g., math problems, code generation), use `high` reasoning intensity
 - Use the `max_tokens` parameter to control costs while maintaining reasoning quality
-:::
+  :::

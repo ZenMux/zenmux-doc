@@ -15,7 +15,7 @@ The Get generation interface is used to query generation information, such as us
 
 ### generate_id `string` <font color="red">Required</font>
 
-The generation id returned by the [Create chat completion](../openai/create-chat-completion.md) interface.
+The generation id returned by the [Create Chat Completion](../openai/create-chat-completion.md) interface.
 
 ## Returns
 
