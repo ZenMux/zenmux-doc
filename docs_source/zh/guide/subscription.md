@@ -309,7 +309,17 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 3. 完成支付流程
 
 ::: tip 💡 白名单申请
-Builder Plan 目前处于白名单内测阶段。如需申请,请通过您的 ZenMux 注册邮箱联系我们开通权限。
+Builder Plan 目前处于白名单内测阶段。请通过以下方式联系我们申请开通:
+
+1. **小红书:** 扫描二维码添加并发送邮箱申请
+
+   <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/23/9CysoYw/xiaohongshu.png" alt="小红书二维码" style="width:200px; border-radius:8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+
+2. **微信群:** 扫描二维码入群申请
+
+   <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/3LwPhj5/weixin0119.png" alt="微信群二维码" style="width:200px; border-radius:8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+
+3. **Discord:** [加入社区](https://discord.gg/vHZZzj84Bm)
 :::
 
 ### 第 3 步:管理订阅和获取 API Key
@@ -423,9 +433,17 @@ Studio Chat 和 API 调用使用相同的订阅配额池。在 Studio Chat 中�
 
 如何参与:
 
-1. 在 [GitHub Issues](https://github.com/ZenMux/zenmux/issues) 提交 bug 或建议
-2. 或通过注册邮箱联系我们
-3. 团队审核后发放奖励
+1. **小红书私信:** 扫描二维码添加小红书账号,发送邮箱申请白名单或提交 bug/建议
+
+   <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/23/9CysoYw/xiaohongshu.png" alt="小红书二维码" style="width:200px; border-radius:8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+
+2. **微信用户群:** 扫描二维码入群,直接与团队和其他开发者交流
+
+   <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/3LwPhj5/weixin0119.png" alt="微信群二维码" style="width:200px; border-radius:8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+
+3. **Discord 社区:** 加入我们的 [Discord 频道](https://discord.gg/vHZZzj84Bm) 参与讨论
+
+提交后,团队将审核并发放相应奖励。
 
 ## 常见问题
 
@@ -468,7 +486,7 @@ Studio Chat 和 API 调用使用相同的订阅配额池。在 Studio Chat 中�
 - **技术支持邮箱**: [support@zenmux.ai](mailto:support@zenmux.ai)
 - **商务合作邮箱**: [bd@zenmux.ai](mailto:bd@zenmux.ai)
 - **Twitter**: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
-- **Discord 社区**: <http://discord.gg/vHZZzj84Bm>
+- **Discord 社区**: <https://discord.gg/vHZZzj84Bm>
 
 更多联系方式和详细信息,请访问我们的[联系我们页面](/zh/help/contact)。
 :::

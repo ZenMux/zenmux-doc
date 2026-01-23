@@ -111,7 +111,7 @@ export default defineLoacaleConfig({
           },
           { text: "Dify Integration", link: "/best-practices/dify" },
           { text: "Neovate Integration", link: "/best-practices/neovate-code" },
-          { text: "VS Code Copilot", link: "/best-practices/copilot" },
+          { text: "Github Copilot", link: "/best-practices/github-copilot" },
         ],
       },
       {
