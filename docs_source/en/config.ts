@@ -121,6 +121,10 @@ export default defineLoacaleConfig({
                 link: "/api/openai/create-chat-completion-new",
               },
               {
+                text: "Create a Model Response",
+                link: "/api/openai/openai-responses",
+              },
+              {
                 text: "List Models",
                 link: "/api/openai/openai-list-models",
               },

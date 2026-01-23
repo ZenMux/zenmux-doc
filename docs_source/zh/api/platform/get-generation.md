@@ -15,7 +15,7 @@ Get generation 接口用于查询生成信息，如用量和费用等。
 
 ### generate_id `string` <font color="red">必选</font>
 
-[Create chat completion](../openai/create-chat-completion.md) 接口返回的 generation id。
+[Create Chat Completion](../openai/create-chat-completion.md) 接口返回的 generation id。
 
 ## Returns
 
