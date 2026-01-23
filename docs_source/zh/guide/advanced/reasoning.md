@@ -1,6 +1,6 @@
 # 推理模型
 
-ZenMux 在 Create chat completion 接口中提供了对模型推理行为的精细控制能力。通过 `reasoning_effort` 和 `reasoning` 两种参数配置方式,您可以根据任务复杂度灵活调整模型的推理深度和资源分配。
+ZenMux 在 Create Chat Completion 接口中提供了对模型推理行为的精细控制能力。通过 `reasoning_effort` 和 `reasoning` 两种参数配置方式,您可以根据任务复杂度灵活调整模型的推理深度和资源分配。
 
 ## 参数说明
 
