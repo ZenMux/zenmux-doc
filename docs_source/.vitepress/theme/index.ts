@@ -1,21 +1,25 @@
 // https://vitepress.dev/guide/custom-theme
-import { h } from 'vue';
-import { inBrowser, type Theme } from 'vitepress';
-import DefaultTheme from 'vitepress/theme';
-import 'virtual:group-icons.css';
-import 'element-plus/theme-chalk/index.css';
-import 'element-plus/theme-chalk/dark/css-vars.css';
-import Select from './select.vue';
-import Login from './login.vue';
-import ApiContainer from './api-container.vue';
-import NProgress from 'nprogress';
-import 'nprogress/nprogress.css';
-import './style.css';
-import './custom.css';
+import { h } from "vue";
+import { inBrowser, type Theme } from "vitepress";
+import DefaultTheme from "vitepress/theme";
+import "virtual:group-icons.css";
+import "element-plus/theme-chalk/index.css";
+import "element-plus/theme-chalk/dark/css-vars.css";
+import Select from "./select.vue";
+import Login from "./login.vue";
+import ApiContainer from "./api-container.vue";
+import NProgress from "nprogress";
+import "nprogress/nprogress.css";
+import "./style.css";
+import "./custom.css";
 
-const isDocsHost = inBrowser && (location.hostname.startsWith('docs.') || location.hostname.startsWith('localhost') || location.hostname.startsWith('127.0.0.1'));
+const isDocsHost =
+  inBrowser &&
+  (location.hostname.startsWith("docs.") ||
+    location.hostname.startsWith("localhost") ||
+    location.hostname.startsWith("127.0.0.1"));
 
-console.info('isDocsHost:', isDocsHost);
+console.info("isDocsHost:", isDocsHost);
 
 NProgress.configure({
   showSpinner: false,
@@ -23,8 +27,8 @@ NProgress.configure({
   minimum: 0.3,
 });
 
-if (typeof window !== 'undefined') {
-  window.addEventListener('beforeunload', () => {
+if (typeof window !== "undefined") {
+  window.addEventListener("beforeunload", () => {
     NProgress.start();
   });
 }
@@ -34,9 +38,9 @@ export default {
   Layout: () => {
     return h(DefaultTheme.Layout, null, {
       // https://vitepress.dev/guide/extending-default-theme#layout-slots
-      'doc-top': () => h(ApiContainer),
-      'doc-before': () => h(Select),
-      'nav-bar-content-after': () => h(Login),
+      "doc-top": () => h(ApiContainer),
+      "doc-before": () => h(Select),
+      "nav-bar-content-after": () => h(Login),
     });
   },
   enhanceApp({ app, router, siteData }) {
@@ -47,12 +51,12 @@ export default {
         history.pushState = function (data, title, url) {
           if (inBrowser) {
             // @ts-expect-error not error
-            if (url && url.startsWith('https:')) {
+            if (url && url.startsWith("https:")) {
               return originPushState.call(this, data, title, url);
             }
             const urlObj = new URL(url as string, location.href);
-            if (!urlObj.pathname.startsWith('/docs')) {
-              urlObj.pathname = '/docs' + urlObj.pathname;
+            if (!urlObj.pathname.startsWith("/docs")) {
+              urlObj.pathname = "/docs" + urlObj.pathname;
               url = urlObj.toString();
             }
           }
@@ -60,16 +64,27 @@ export default {
         };
       }
     }
-    router.go = async (href: string = inBrowser ? location.href : '/') => {
+
+    const updateLogoLink = () => {
+      const logoLink = document.querySelector(
+        ".VPNavBarTitle a"
+      ) as HTMLAnchorElement | null;
+      if (logoLink) {
+        logoLink.setAttribute("href", "https://zenmux.ai/");
+        logoLink.setAttribute("target", "_self");
+        logoLink.setAttribute("rel", "noopener");
+      }
+    };
+    router.go = async (href: string = inBrowser ? location.href : "/") => {
       if (inBrowser) {
-        if (href.startsWith('https:')) {
+        if (href.startsWith("https:")) {
           const url = new URL(href);
-          if (url.pathname.startsWith('/docs/')) {
-            url.pathname = url.pathname.replace('/docs/', '/');
+          if (url.pathname.startsWith("/docs/")) {
+            url.pathname = url.pathname.replace("/docs/", "/");
             href = url.toString();
           }
-          if (url.pathname === '/docs') {
-            url.pathname = '/';
+          if (url.pathname === "/docs") {
+            url.pathname = "/";
             href = url.toString();
           }
         }
@@ -78,44 +93,47 @@ export default {
       return ret;
     };
     if (inBrowser) {
-      console.info('isDocsHost:', isDocsHost);
+      console.info("isDocsHost:", isDocsHost);
+      updateLogoLink();
       if (!isDocsHost) {
         router.onAfterPageLoad = () => {
-          document.querySelectorAll('a').forEach((a) => {
-            const href = a.getAttribute('href');
-            if (href?.startsWith('#') || href?.startsWith('http')) {
+          updateLogoLink();
+          document.querySelectorAll("a").forEach((a) => {
+            const href = a.getAttribute("href");
+            if (href?.startsWith("#") || href?.startsWith("http")) {
               return;
             }
-            if (href?.startsWith('/') && !href.startsWith('/docs/')) {
-              a.setAttribute('href', '/docs' + href);
+            if (href?.startsWith("/") && !href.startsWith("/docs/")) {
+              a.setAttribute("href", "/docs" + href);
             }
           });
         };
-        window.addEventListener('load', () => {
-          document.querySelectorAll('a').forEach((a) => {
-            const href = a.getAttribute('href');
-            if (href?.startsWith('#') || href?.startsWith('http')) {
+        window.addEventListener("load", () => {
+          updateLogoLink();
+          document.querySelectorAll("a").forEach((a) => {
+            const href = a.getAttribute("href");
+            if (href?.startsWith("#") || href?.startsWith("http")) {
               return;
             }
-            if (href?.startsWith('/') && !href.startsWith('/docs/')) {
-              a.setAttribute('href', '/docs' + href);
+            if (href?.startsWith("/") && !href.startsWith("/docs/")) {
+              a.setAttribute("href", "/docs" + href);
             }
           });
         });
-        document.querySelectorAll('a').forEach((a) => {
-          const href = a.getAttribute('href');
-          if (href?.startsWith('#') || href?.startsWith('http')) {
+        document.querySelectorAll("a").forEach((a) => {
+          const href = a.getAttribute("href");
+          if (href?.startsWith("#") || href?.startsWith("http")) {
             return;
           }
-          if (href?.startsWith('/') && !href.startsWith('/docs/')) {
-            a.setAttribute('href', '/docs' + href);
+          if (href?.startsWith("/") && !href.startsWith("/docs/")) {
+            a.setAttribute("href", "/docs" + href);
           }
         });
       }
     }
     // ...
     // app.use(ElementPlus);11
-    app.component('Login', Login);
-    app.component('Copy', Select);
+    app.component("Login", Login);
+    app.component("Copy", Select);
   },
 } satisfies Theme;
