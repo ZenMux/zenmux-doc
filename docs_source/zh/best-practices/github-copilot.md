@@ -1,4 +1,4 @@
-# 通过 ZenMux 使用 VS Code Copilot 指南
+# 通过 ZenMux 使用 VSCode Github Copilot 指南
 
 ## 概述
 

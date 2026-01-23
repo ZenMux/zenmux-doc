@@ -1,4 +1,4 @@
-# Guide to Using VS Code Copilot with ZenMux
+# Guide to Using VSCode Github Copilot with ZenMux
 
 ## Overview
 
