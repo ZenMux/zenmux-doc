@@ -13,10 +13,19 @@ export default defineLoacaleConfig({
     nav: [
       { text: "Models", link: "https://zenmux.ai/models", noIcon: true },
       { text: "Chat", link: "https://zenmux.ai/chat", noIcon: true },
+      {
+        text: "Developers",
+        items: [
+          { text: "Docs", link: "/", noIcon: true },
+          { text: "Blog", link: "https://zenmux.ai/blog", noIcon: true },
+          {
+            text: "Changelog",
+            link: "https://zenmux.ai/changelog",
+            noIcon: true,
+          },
+        ],
+      },
       { text: "Benchmarks", link: "https://zenmux.ai/benchmark", noIcon: true },
-      { text: "Docs", link: "/", noIcon: true },
-      { text: "Blog", link: "https://zenmux.ai/blog", noIcon: true },
-      { text: "Changelog", link: "https://zenmux.ai/changelog", noIcon: true },
       { text: "About Us", link: "https://zenmux.ai/aboutus", noIcon: true },
     ],
     socialLinks: [
@@ -122,6 +131,10 @@ export default defineLoacaleConfig({
               {
                 text: "Create Chat Completion",
                 link: "/zh/api/openai/create-chat-completion-new",
+              },
+              {
+                text: "Create a model response",
+                link: "/zh/api/openai/openai-responses.md",
               },
               {
                 text: "List Models",
