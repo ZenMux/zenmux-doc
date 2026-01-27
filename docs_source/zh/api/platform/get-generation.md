@@ -15,9 +15,57 @@ Get generation 接口用于查询生成信息，如用量和费用等。
 本接口支持查询所有 API 协议的生成信息，包括 OpenAI Chat Completions、OpenAI Responses、Anthropic 和 Vertex AI 协议。
 :::
 
+::: warning ⚠️ 订阅制限制
+本接口仅支持 **Pay As You Go（按量付费）** 的 API Key 查询计费信息。使用订阅制 API Key（以 `sk-ss-v1-` 开头）调用本接口将无法获取计费相关字段（如 `usage`、`ratingResponses` 等）。
+
+如需获取计费信息，请使用 Pay As You Go API Key。详见：
+- [Pay As You Go 使用指南](../../guide/pay-as-you-go.md)
+- [订阅制使用指南](../../guide/subscription.md)
+:::
+
+## 计量与计费信息说明
+
+### 计量信息（Token Usage）
+
+**计量信息**（如 `nativeTokens` 字段中的 token 使用量）会按照不同通信协议原本的方式**随请求同步返回**：
+
+- **OpenAI Chat Completions 协议**：在响应的 `usage` 字段中返回
+- **OpenAI Responses 协议**：在响应的 `usage` 字段中返回
+- **Anthropic 协议**：在响应的 `usage` 字段中返回
+- **Vertex AI 协议**：在响应的 `usageMetadata` 字段中返回
+
+### 计费信息（Billing & Costs）
+
+**计费信息**（如 `usage`、`ratingResponses` 等费用相关字段）**暂不支持随请求同步返回**，需要在请求完成后 **3-5 分钟**通过本接口查询获取。
+
+::: info 💡 功能升级中
+我们正在完善升级计费架构，争取早日实现计费信息随请求同步返回，敬请期待！
+:::
+
 ## Request params
 
+### Authorization Header <font color="red">必选</font>
+
+**请求头参数：**
+
+```http
+Authorization: Bearer <ZENMUX_API_KEY>
+```
+
+- **参数名**：`Authorization`
+- **格式**：`Bearer <API_KEY>`
+- **说明**：你的 ZenMux API Key
+  - **Pay As You Go API Key**：支持查询完整的计量和计费信息
+  - **订阅制 API Key**（以 `sk-ss-v1-` 开头）：仅支持查询计量信息，不支持计费信息
+
+::: tip 💡 获取 API Key
+- Pay As You Go API Key：登录 [ZenMux 控制台](https://zenmux.ai/platform/pay-as-you-go) 创建
+- 订阅制 API Key：登录 [订阅管理页面](https://zenmux.ai/platform/subscription) 创建
+:::
+
 ### generate_id `string` <font color="red">必选</font>
+
+**查询参数：**
 
 ZenMux API 接口返回的 generation id，可以从以下接口获得：
 
