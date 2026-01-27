@@ -43,6 +43,7 @@ This approach ensures fair billing across different models and usage scenarios, 
 <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/7shxqbP/dingyuezhi-jiage2-dapingbanben.png" alt="subscription-free" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 
 ### Free - Free Trial
+
 ---
 <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/HkD8Bgz/dingyuezhi-freetaocan.png" alt="subscription-free" style="width:300px; border-radius:8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 
@@ -62,6 +63,7 @@ This approach ensures fair billing across different models and usage scenarios, 
 - `z-ai/glm-4.7` - Z.AI: GLM 4.7
 
 ### Pro - Developer Favorite
+
 ---
 <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/oI2koKx/dingyuezhi-protaocan.png" alt="subscription-free" style="width:300px; border-radius:8px;">
 
@@ -71,9 +73,11 @@ This approach ensures fair billing across different models and usage scenarios, 
 
 **Anthropic Claude Family**
 
-- `anthropic/claude-opus-4.5` - Claude Opus 4.5  
-- `anthropic/claude-sonnet-4.5` - Claude Sonnet 4.5  
-- `anthropic/claude-haiku-4.5` - Claude Haiku 4.5  
+- `anthropic/claude-opus-4.5` - Claude Opus 4.5
+- `anthropic/claude-sonnet-4.5` - Claude Sonnet 4.5
+- `anthropic/claude-haiku-4.5` - Claude Haiku 4.5
+- `anthropic/claude-opus-4.1` - Claude Opus 4.1
+- `anthropic/claude-opus-4` - Claude Opus 4
 - `anthropic/claude-3.5-sonnet` - Claude 3.5 Sonnet  
 - `anthropic/claude-3.5-haiku` - Claude 3.5 Haiku  
 - `anthropic/claude-3.7-sonnet` - Claude 3.7 Sonnet  
@@ -239,7 +243,9 @@ This approach ensures fair billing across different models and usage scenarios, 
 - `xiaomi/mimo-v2-flash` - MiMo V2 Flash  
 
 ---
+
 ### Max - High-Intensity Development
+
 ---
 <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/8PXHCx9/dingyuezhi-maxtaocan.png" alt="subscription-free" style="width:300px; border-radius:8px;">
 
@@ -247,11 +253,11 @@ This approach ensures fair billing across different models and usage scenarios, 
 
 - `openai/gpt-5.2-pro` - GPT-5.2 Pro
 - `openai/gpt-5-pro` - GPT-5 Pro
-- `anthropic/claude-opus-4.1` - Claude Opus 4.1
-- `anthropic/claude-opus-4` - Claude Opus 4
+
 ---
 
 ### Ultra - Professional Flagship
+
 ---
 <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/aJFjhWL/dingyuezhi-ultrataocan.png" alt="subscription-free" style="width:300px; border-radius:8px;">
 
@@ -309,17 +315,7 @@ Visit the [ZenMux Pricing page](https://zenmux.ai/pricing) to view full details 
 3. Complete the payment flow
 
 ::: tip 💡 Whitelist access
-The Builder Plan is currently in a whitelist-based beta. Contact us through the following channels to request access:
-
-1. **Xiaohongshu:** Scan the QR code, add us, and send your email to apply
-
-   <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/23/9CysoYw/xiaohongshu.png" alt="Xiaohongshu QR code" style="width:200px; border-radius:8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-
-2. **WeChat group:** Scan the QR code to join and apply
-
-   <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/3LwPhj5/weixin0119.png" alt="WeChat group QR code" style="width:200px; border-radius:8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-
-3. **Discord:** [Join the community](https://discord.gg/vHZZzj84Bm)
+If you need to apply for whitelist access, please visit our [Contact Us page](https://zenmux.ai/supports) and reach out via any of the contact methods provided (preferably RedNote, WeChat, or Discord) to submit your request.
 :::
 
 ### Step 3: Manage your subscription and get an API Key
@@ -433,17 +429,7 @@ We value feedback from every user. Join the ZenMux improvement program to earn r
 
 How to participate:
 
-1. **Xiaohongshu DM:** Scan the QR code, add our Xiaohongshu account, and send your email to request whitelist access or submit bugs/suggestions
-
-   <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/23/9CysoYw/xiaohongshu.png" alt="Xiaohongshu QR code" style="width:200px; border-radius:8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-
-2. **WeChat user group:** Scan the QR code to join and chat directly with the team and other developers
-
-   <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/3LwPhj5/weixin0119.png" alt="WeChat group QR code" style="width:200px; border-radius:8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-
-3. **Discord community:** Join our [Discord channel](https://discord.gg/vHZZzj84Bm) to participate in discussions
-
-After you submit, the team will review and issue the corresponding rewards.
+Please visit our [Contact Us page](https://zenmux.ai/supports) and reach out via any of the contact methods provided (preferably RedNote, WeChat, or Discord) to submit your feedback or suggestions.
 
 ## FAQ
 
