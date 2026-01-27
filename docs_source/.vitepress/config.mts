@@ -29,11 +29,12 @@ function extractLang(info: string) {
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   lang: "en-US",
-  description: "zenmux.ai document",
+  description:
+    "Get started with ZenMux quickly. Access our comprehensive developer documentation, guides, and API references to build and scale your applications with ZenMux",
   outDir: "../docs",
   base: "/",
   assetsDir: "docs",
-  title: "ZenMux",
+  title: "ZenMux | Documentation",
   ignoreDeadLinks: true,
 
   transformHtml: (html) => {
