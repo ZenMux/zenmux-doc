@@ -176,7 +176,7 @@ export default defineLoacaleConfig({
             text: "Platform API",
             items: [
               {
-                text: "Get generation",
+                text: "Get Generation",
                 link: "/zh/api/platform/get-generation",
               },
             ],
