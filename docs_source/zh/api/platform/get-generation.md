@@ -11,17 +11,31 @@ GET https://zenmux.ai/api/v1/generation?id=<generation_id>
 
 Get generation 接口用于查询生成信息，如用量和费用等。
 
+::: tip
+本接口支持查询所有 API 协议的生成信息，包括 OpenAI Chat Completions、OpenAI Responses、Anthropic 和 Vertex AI 协议。
+:::
+
 ## Request params
 
 ### generate_id `string` <font color="red">必选</font>
 
-[Create Chat Completion](../openai/create-chat-completion.md) 接口返回的 generation id。
+ZenMux API 接口返回的 generation id，可以从以下接口获得：
+
+- [Create Chat Completion](../openai/create-chat-completion.md) - OpenAI Chat Completions 协议
+- [Create a Model Response](../openai/openai-responses.md) - OpenAI Responses 协议
+- [Create Messages](../anthropic/create-messages-new.md) - Anthropic 协议
+- [Generate Content](../vertexai/generate-content.md) - Vertex AI 协议
 
 ## Returns
 
 ### api `string`
 
-API 类型，例如 `chat.completions`。
+API 类型，根据调用的协议不同，取值如下：
+
+- `chat.completions` - OpenAI Chat Completions 协议
+- `responses` - OpenAI Responses 协议
+- `messages` - Anthropic 协议
+- `generateContent` - Vertex AI 协议
 
 ### generationId `string`
 
