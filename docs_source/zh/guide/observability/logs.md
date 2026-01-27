@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: 请求日志
+  - - meta
+    - name: keywords
+      content: Zenmux, guide, tutorial, logs, Anthropic, Claude, API
+---
+
 # 请求日志
 
 ZenMux 提供了完善的日志系统，帮助您实时监控和分析所有 API 调用记录。通过日志功能，您可以查看每次请求的详细信息，包括 Token 使用量、费用、性能指标等，从而更好地优化您的应用和控制成本。

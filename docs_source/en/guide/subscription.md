@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: Subscription Plans
+  - - meta
+    - name: keywords
+      content: Zenmux, guide, tutorial, subscription, OpenAI, Anthropic, Claude, GPT, API
+---
+
 # Subscription Plans
 
 The ZenMux Builder Plan subscription offers individual developers a fixed monthly fee and a predictable way to call AI models, so you can focus on coding and creating without worrying about per-request API costs.

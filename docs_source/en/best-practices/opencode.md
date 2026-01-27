@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: Guide to Using OpenCode with ZenMux
+  - - meta
+    - name: keywords
+      content: Zenmux, best practices, integration, opencode, Claude, GPT, API
+---
+
 # Guide to Using OpenCode with ZenMux
 
 OpenCode is a terminal-first AI coding agent. Through its integration with ZenMux, you gain access to more powerful models to boost development efficiency.

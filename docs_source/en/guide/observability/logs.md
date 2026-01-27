@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: Request Logs
+  - - meta
+    - name: keywords
+      content: Zenmux, guide, tutorial, logs, Anthropic, Claude, API
+---
+
 # Request Logs
 
 ZenMux provides a comprehensive logging system that helps you monitor and analyze all API call records in real time. With the logging feature, you can view detailed information for each request, including token usage, cost, performance metrics, and more, enabling you to better optimize your application and control expenses.

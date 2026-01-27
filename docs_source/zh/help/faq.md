@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: 常见问题
+  - - meta
+    - name: keywords
+      content: Zenmux, help, FAQ, faq
+---
+
 # 常见问题
 
 ## 1. 我目前账号注册不了怎么办？

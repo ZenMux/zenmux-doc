@@ -1,6 +1,13 @@
 ---
 pageClass: api-page
 title: Responses API (OpenAI Responses API)
+head:
+  - - meta
+    - name: description
+      content: Create a Model Response
+  - - meta
+    - name: keywords
+      content: Zenmux, API, documentation, openai, responses, OpenAI, Anthropic
 ---
 
 # Create a Model Response

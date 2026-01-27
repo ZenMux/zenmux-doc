@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: Multimodal
+  - - meta
+    - name: keywords
+      content: Zenmux, guide, tutorial, multimodal, API
+---
+
 # Multimodal
 
 ZenMux supports multimodal inputs:

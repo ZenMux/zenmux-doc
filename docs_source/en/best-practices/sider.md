@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: Sider Integration Guide
+  - - meta
+    - name: keywords
+      content: Zenmux, best practices, integration, sider, OpenAI, Anthropic, Claude, API
+---
+
 # Sider Integration Guide
 
 Sider is a powerful browser AI assistant extension that provides convenient AI services in a sidebar. It supports multiple AI capabilities, including writing, reading, chatting about any topic, and even generating content summaries. By configuring ZenMux, you can access a broader selection of models beyond the base models provided by Sider.

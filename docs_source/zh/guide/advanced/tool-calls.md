@@ -1,6 +1,13 @@
 ---
 title: 工具调用
 subtitle: 在你的 prompt 中使用工具
+head:
+  - - meta
+    - name: description
+      content: 工具调用
+  - - meta
+    - name: keywords
+      content: Zenmux, guide, tutorial, tool, calls, OpenAI, GPT, API
 ---
 
 # 工具调用

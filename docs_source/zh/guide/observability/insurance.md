@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: 保险补偿（Insurance）
+  - - meta
+    - name: keywords
+      content: Zenmux, guide, tutorial, insurance, API
+---
+
 # **保险补偿（Insurance）**
 
 ZenMux 提供了完善的保险补偿系统，帮助您实时监控和分析因服务异常或性能问题导致的补偿情况。您可以查看各类补偿数据的汇总信息、按类型和模型分类的统计图表，以及具体的补偿明细记录，从而更好地了解服务运行状态并优化成本控制。

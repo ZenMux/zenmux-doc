@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: 下载发票
+  - - meta
+    - name: keywords
+      content: Zenmux, guide, tutorial, invoice
+---
+
 # 下载发票
 
 ZenMux 为所有充值和订阅付费用户提供完整的发票支持。本指南将帮助你了解如何填写发票信息、查看和下载发票，满足企业报销和财务审计需求。

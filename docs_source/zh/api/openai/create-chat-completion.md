@@ -1,6 +1,13 @@
 ---
 pageClass: api-page
 title: 接口
+head:
+  - - meta
+    - name: description
+      content: Create Chat Completion
+  - - meta
+    - name: keywords
+      content: Zenmux, API, documentation, create, chat, completion, OpenAI, Claude
 ---
 
 # Create Chat Completion

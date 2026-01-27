@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: Structured Output
+  - - meta
+    - name: keywords
+      content: Zenmux, guide, tutorial, structured, output, OpenAI, GPT, API
+---
+
 # Structured Output
 
 ZenMux provides structured output to ensure model responses strictly follow your defined [JSON Schema](https://json-schema.org/) format.

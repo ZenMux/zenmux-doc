@@ -19,6 +19,13 @@ canonical-url: "https://zenmux.ai/"
 "twitter:site": "@ZenMuxAI"
 noindex: false
 nofollow: false
+head:
+  - - meta
+    - name: description
+      content: const router = useRouter()...
+  - - meta
+    - name: keywords
+      content: Zenmux, index, OpenAI, Anthropic, Claude, API
 ---
 
 <script setup>

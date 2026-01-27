@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: Billing Transparency
+  - - meta
+    - name: keywords
+      content: Zenmux, guide, tutorial, pricing, API
+---
+
 # Billing Transparency
 
 ZenMux uses a transparent billing system to ensure every call is precisely metered and billed. Pricing differs across models, and the same model may be priced differently across providers.

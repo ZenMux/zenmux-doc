@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: 图片生成
+  - - meta
+    - name: keywords
+      content: Zenmux, guide, tutorial, image, generation, API
+---
+
 # 图片生成
 
 ZenMux 支持通过 Vertex AI 协议调用图片生成模型。本指南将介绍如何使用 ZenMux 生成图片并保存到本地。

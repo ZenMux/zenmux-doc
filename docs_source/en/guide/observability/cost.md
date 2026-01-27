@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: Cost Analytics
+  - - meta
+    - name: keywords
+      content: Zenmux, guide, tutorial, cost, OpenAI, API
+---
+
 # Cost Analytics
 
 ZenMux provides powerful cost analysis capabilities to help you monitor and analyze API usage expenses in real-time. Through the cost analysis page, you can view detailed spending across different dimensions, including costs categorized by model, API Key, service provider, and more, enabling you to better optimize your application usage strategy and control expenses.

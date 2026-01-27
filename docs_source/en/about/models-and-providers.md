@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: Models and Providers
+  - - meta
+    - name: keywords
+      content: Zenmux, about, models, and, providers, Anthropic, API
+---
+
 # Models and Providers
 
 ZenMux uses a multi-model, multi-provider redundant architecture to ensure the high availability and stability of large language model services. We aggregate top-tier LLMs from across the industry, giving developers a rich selection and flexible usage experience.

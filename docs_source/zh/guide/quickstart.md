@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: 快速开始
+  - - meta
+    - name: keywords
+      content: Zenmux, guide, tutorial, quickstart, OpenAI, Anthropic, Claude, API
+---
+
 # 快速开始
 
 欢迎使用 **[ZenMux](https://docs.zenmux.ai/zh/about/intro.html)**！本指南将帮助你快速上手，展示如何通过三种不同的方法调用 ZenMux API。
