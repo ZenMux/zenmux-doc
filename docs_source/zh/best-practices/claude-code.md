@@ -15,15 +15,66 @@ ZenMux 完全支持 Anthropic API 协议，可以无缝集成到 Claude Code、C
 
 ### 安装 Claude Code
 
+::: warning 重要更新：npm/pnpm 安装方式已废弃
+Claude Code 的 npm/pnpm 安装方式已经废弃，不再推荐使用。如果您之前通过 npm/pnpm 安装过 Claude Code，请先卸载旧版本，然后使用新的原生安装方式。
+
+**卸载旧版本（如果适用）：**
+
+```bash
+# 卸载 npm/pnpm 安装的版本
+npm uninstall -g @anthropic-ai/claude-code
+# 或
+pnpm uninstall -g @anthropic-ai/claude-code
+
+# 如果已经是原生安装，可以直接运行迁移命令
+claude install
+```
+
+:::
+
+**推荐安装方式（原生安装）：**
+
 ::: code-group
 
-```bash [npm/pnpm]
-# 使用 pnpm 安装（推荐）
-pnpm install -g @anthropic-ai/claude-code
-
-# 或使用 npm 安装
-npm install -g @anthropic-ai/claude-code
+```bash [macOS/Linux/WSL]
+# 一键安装脚本（推荐）
+curl -fsSL https://claude.ai/install.sh | bash
 ```
+
+```powershell [Windows PowerShell]
+# PowerShell 安装脚本
+irm https://claude.ai/install.ps1 | iex
+```
+
+```batch [Windows CMD]
+# CMD 安装脚本
+curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
+```
+
+```bash [Homebrew (macOS)]
+# 使用 Homebrew 安装
+brew install --cask claude-code
+
+# 注意：Homebrew 安装不会自动更新，需要手动更新
+# 更新命令：brew upgrade claude-code
+```
+
+```powershell [WinGet (Windows)]
+# 使用 WinGet 安装
+winget install Anthropic.ClaudeCode
+
+# 注意：WinGet 安装不会自动更新，需要手动更新
+# 更新命令：winget upgrade Anthropic.ClaudeCode
+```
+
+:::
+
+::: tip 💡 安装说明
+
+- **原生安装（推荐）**：macOS/Linux/WSL 和 Windows 的脚本安装方式会自动更新，保持您始终使用最新版本
+- **包管理器安装**：Homebrew 和 WinGet 方式需要手动运行更新命令来获取新版本
+- **完整安装文档**：如需了解详细的安装选项、系统要求、认证方式等信息，请参考 [Claude Code 官方安装文档](https://code.claude.com/docs/en/setup)
+- **安装验证**：安装完成后可以运行 `claude doctor` 检查安装状态
 
 :::
 

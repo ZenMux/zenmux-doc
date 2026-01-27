@@ -43,6 +43,7 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/7shxqbP/dingyuezhi-jiage2-dapingbanben.png" alt="subscription-free" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 
 ### Free - 免费体验
+
 ---
 <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/HkD8Bgz/dingyuezhi-freetaocan.png" alt="subscription-free" style="width:300px; border-radius:8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 
@@ -62,6 +63,7 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 - `z-ai/glm-4.7` - Z.AI: GLM 4.7
 
 ### Pro - 开发者首选
+
 ---
 <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/oI2koKx/dingyuezhi-protaocan.png" alt="subscription-free" style="width:300px; border-radius:8px;">
 
@@ -74,6 +76,8 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 - `anthropic/claude-opus-4.5` - Claude Opus 4.5  
 - `anthropic/claude-sonnet-4.5` - Claude Sonnet 4.5  
 - `anthropic/claude-haiku-4.5` - Claude Haiku 4.5  
+- `anthropic/claude-opus-4.1` - Claude Opus 4.1
+- `anthropic/claude-opus-4` - Claude Opus 4
 - `anthropic/claude-3.5-sonnet` - Claude 3.5 Sonnet  
 - `anthropic/claude-3.5-haiku` - Claude 3.5 Haiku  
 - `anthropic/claude-3.7-sonnet` - Claude 3.7 Sonnet  
@@ -239,7 +243,9 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 - `xiaomi/mimo-v2-flash` - MiMo V2 Flash  
 
 ---
+
 ### Max - 高强度开发
+
 ---
 <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/8PXHCx9/dingyuezhi-maxtaocan.png" alt="subscription-free" style="width:300px; border-radius:8px;">
 
@@ -247,11 +253,11 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 
 - `openai/gpt-5.2-pro` - GPT-5.2 Pro
 - `openai/gpt-5-pro` - GPT-5 Pro
-- `anthropic/claude-opus-4.1` - Claude Opus 4.1
-- `anthropic/claude-opus-4` - Claude Opus 4
+
 ---
 
 ### Ultra - 专业级旗舰
+
 ---
 <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/aJFjhWL/dingyuezhi-ultrataocan.png" alt="subscription-free" style="width:300px; border-radius:8px;">
 
@@ -309,17 +315,7 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 3. 完成支付流程
 
 ::: tip 💡 白名单申请
-Builder Plan 目前处于白名单内测阶段。请通过以下方式联系我们申请开通:
-
-1. **小红书:** 扫描二维码添加并发送邮箱申请
-
-   <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/23/9CysoYw/xiaohongshu.png" alt="小红书二维码" style="width:200px; border-radius:8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-
-2. **微信群:** 扫描二维码入群申请
-
-   <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/3LwPhj5/weixin0119.png" alt="微信群二维码" style="width:200px; border-radius:8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-
-3. **Discord:** [加入社区](https://discord.gg/vHZZzj84Bm)
+如需申请白名单,请访问官网[联系我们页面](https://zenmux.ai/supports),通过页面上提供的任意联系方式(优先小红书、微信、Discord)向我们提交申请。
 :::
 
 ### 第 3 步:管理订阅和获取 API Key
@@ -433,17 +429,7 @@ Studio Chat 和 API 调用使用相同的订阅配额池。在 Studio Chat 中�
 
 如何参与:
 
-1. **小红书私信:** 扫描二维码添加小红书账号,发送邮箱申请白名单或提交 bug/建议
-
-   <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/23/9CysoYw/xiaohongshu.png" alt="小红书二维码" style="width:200px; border-radius:8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-
-2. **微信用户群:** 扫描二维码入群,直接与团队和其他开发者交流
-
-   <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/3LwPhj5/weixin0119.png" alt="微信群二维码" style="width:200px; border-radius:8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-
-3. **Discord 社区:** 加入我们的 [Discord 频道](https://discord.gg/vHZZzj84Bm) 参与讨论
-
-提交后,团队将审核并发放相应奖励。
+请访问官网[联系我们页面](https://zenmux.ai/supports),通过页面上提供的任意联系方式(优先小红书、微信、Discord)向我们提交您的反馈或建议。
 
 ## 常见问题
 
