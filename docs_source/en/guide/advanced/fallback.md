@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: Fallback Mechanism
+  - - meta
+    - name: keywords
+      content: Zenmux, guide, tutorial, fallback, OpenAI, Anthropic, API
+---
+
 # Fallback Mechanism
 
 Model fallback is ZenMux’s fault-tolerance safeguard. When the primary model or routing strategy fails, the system automatically switches to a backup model to continue processing the request. This ensures your application consistently receives responses and minimizes the risk of service interruptions.

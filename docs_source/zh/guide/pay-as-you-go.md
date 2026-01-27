@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: Pay As You Go 按量付费
+  - - meta
+    - name: keywords
+      content: Zenmux, guide, tutorial, pay, you, OpenAI, API
+---
+
 # Pay As You Go 按量付费
 
 欢迎使用 **ZenMux Pay As You Go（按量付费）** 方案！本指南将帮助你了解按量付费的核心优势，以及如何充值、管理余额和创建生产级 API Key。

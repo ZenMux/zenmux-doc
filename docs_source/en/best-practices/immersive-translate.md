@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: Immersive Translate Integration Guide
+  - - meta
+    - name: keywords
+      content: Zenmux, best practices, integration, immersive, translate, OpenAI, API
+---
+
 # Immersive Translate Integration Guide
 
 Immersive Translate is a high-quality bilingual side-by-side translation extension that supports web pages, PDF, EPUB, and more. By configuring ZenMux, you can leverage our aggregated, high-quality translation models to enhance your translation experience.

@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: Guide to Using Claude Code CLI via ZenMux
+  - - meta
+    - name: keywords
+      content: Zenmux, best practices, integration, claude, code, Anthropic, Claude, GPT, API
+---
+
 # Guide: Using Claude Code CLI via ZenMux
 
 ::: info Compatibility Notes
@@ -96,13 +106,14 @@ Make sure to replace `sk-ai-v1-xxx` with your real ZenMux API Key. You can get y
 
 ::: tip Environment variable reference
 
-| Variable | Purpose | Notes |
-|----------|---------|-------|
-| `ANTHROPIC_BASE_URL` | Service endpoint | Redirects Claude Code requests to ZenMux |
-| `ANTHROPIC_AUTH_TOKEN` | Auth token | Your ZenMux API Key (get it in the [Console](https://zenmux.ai/settings/keys)) |
-| `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` | Traffic control | Disables non-essential telemetry to improve privacy |
-| `ANTHROPIC_API_KEY` | Conflict avoidance | Clear it to avoid conflicts with existing local Anthropic config |
-| `ANTHROPIC_DEFAULT_*_MODEL` | Model mapping | Maps the Haiku/Sonnet/Opus tiers to specific models |
+| Variable                                   | Purpose            | Notes                                                                          |
+| ------------------------------------------ | ------------------ | ------------------------------------------------------------------------------ |
+| `ANTHROPIC_BASE_URL`                       | Service endpoint   | Redirects Claude Code requests to ZenMux                                       |
+| `ANTHROPIC_AUTH_TOKEN`                     | Auth token         | Your ZenMux API Key (get it in the [Console](https://zenmux.ai/settings/keys)) |
+| `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` | Traffic control    | Disables non-essential telemetry to improve privacy                            |
+| `ANTHROPIC_API_KEY`                        | Conflict avoidance | Clear it to avoid conflicts with existing local Anthropic config               |
+| `ANTHROPIC_DEFAULT_*_MODEL`                | Model mapping      | Maps the Haiku/Sonnet/Opus tiers to specific models                            |
+
 :::
 
 ### Step 2: Start Claude Code and Complete Authentication

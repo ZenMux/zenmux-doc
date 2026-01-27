@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: 流式
+  - - meta
+    - name: keywords
+      content: Zenmux, guide, tutorial, streaming, OpenAI, API
+---
+
 # 流式
 
 ZenMux 允许任何模型以流式的方式逐步返回生成结果，而非一次性返回完整响应。流式输出能让用户第一时间看到大模型输出的第一个 Token，减少用户的等待时间。这种方式可以显著提升用户体验，尤其适用于实时对话、长文本生成等场景。

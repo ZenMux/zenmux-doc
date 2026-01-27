@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: Guide to Using VS Code Copilot with ZenMux
+  - - meta
+    - name: keywords
+      content: Zenmux, best practices, integration, copilot, API
+---
+
 # Guide to Using VS Code Copilot with ZenMux
 
 ## Overview

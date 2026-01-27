@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: 成本分析
+  - - meta
+    - name: keywords
+      content: Zenmux, guide, tutorial, cost, OpenAI, API
+---
+
 # 成本分析
 
 ZenMux 提供了强大的成本分析功能，帮助您实时监控和分析 API 使用所产生的费用。通过成本分析页面，您可以查看不同维度下的支出明细，包括按模型、API Key、服务提供商等分类的成本数据，从而更好地优化应用使用策略，控制开支。

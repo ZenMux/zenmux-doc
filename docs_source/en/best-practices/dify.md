@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: Dify Integration Guide
+  - - meta
+    - name: keywords
+      content: Zenmux, best practices, integration, dify, OpenAI, API
+---
+
 # Dify Integration Guide
 
 Dify is an open-source large language model (LLM) application development platform. It combines Backend as a Service (BaaS) and LLMOps concepts, enabling developers to quickly build production-grade generative AI applications. By configuring ZenMux, you can access a wider selection of models beyond the base models provided by Dify.

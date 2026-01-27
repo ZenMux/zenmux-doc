@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: 多模态
+  - - meta
+    - name: keywords
+      content: Zenmux, guide, tutorial, multimodal, API
+---
+
 # 多模态
 
 ZenMux 支持多模态输入：

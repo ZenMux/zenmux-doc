@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: 计费透明度
+  - - meta
+    - name: keywords
+      content: Zenmux, guide, tutorial, pricing, API
+---
+
 # 计费透明度
 
 ZenMux 采用透明的计费体系，确保每一笔调用都被精确计量计费。不同模型的价格存在差异，而同一模型在不同供应商下的价格也可能有所不同。

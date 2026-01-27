@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: 通过 ZenMux 使用 Codex CLI 指南
+  - - meta
+    - name: keywords
+      content: Zenmux, best practices, integration, codex, OpenAI, API
+---
+
 # 通过 ZenMux 使用 Codex CLI 指南
 
 Codex CLI 是 OpenAI 推出的开源编程助手工具，可以在本地终端运行，能够在您选择的目录中读取、修改和运行代码。它使用 Rust 构建，速度快、效率高，并在 GitHub 上持续改进。通过与 ZenMux 的集成，您可以使用更多模型选择，而不仅仅局限于 OpenAI 官方 API。

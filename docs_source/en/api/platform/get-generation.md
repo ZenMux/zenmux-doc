@@ -1,6 +1,13 @@
 ---
 pageClass: api-page
 title: Interface
+head:
+  - - meta
+    - name: description
+      content: Get generation
+  - - meta
+    - name: keywords
+      content: Zenmux, API, documentation, get, generation
 ---
 
 # Get generation

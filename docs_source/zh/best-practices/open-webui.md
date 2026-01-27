@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: 通过 ZenMux 使用 Open WebUI 指南
+  - - meta
+    - name: keywords
+      content: Zenmux, best practices, integration, open, webui, OpenAI, API
+---
+
 # 通过 ZenMux 使用 Open WebUI 指南
 
 Open WebUI 是一款可扩展、功能丰富且用户友好的自托管人工智能平台，专为完全离线运行而设计。该平台支持 Ollama 及 OpenAI 兼容 API 等多种大语言模型运行器，并内置 RAG 推理引擎，是功能强大的 AI 部署解决方案。

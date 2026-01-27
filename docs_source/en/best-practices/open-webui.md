@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: Guide to Using Open WebUI with ZenMux
+  - - meta
+    - name: keywords
+      content: Zenmux, best practices, integration, open, webui, OpenAI, API
+---
+
 # Guide to Using Open WebUI with ZenMux
 
 Open WebUI is an extensible, feature-rich, and user-friendly self-hosted AI platform designed to run fully offline. It supports multiple large language model runtimes such as Ollama and OpenAI-compatible APIs, and includes a built-in RAG inference engine, making it a powerful solution for AI deployment.

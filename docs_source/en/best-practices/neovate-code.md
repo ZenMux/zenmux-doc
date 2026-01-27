@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: ZenMux Integration Guide for Neovate
+  - - meta
+    - name: keywords
+      content: Zenmux, best practices, integration, neovate, code, API
+---
+
 # ZenMux Integration Guide for Neovate
 
 ZenMux is an AI model aggregation platform similar to OpenRouter that provides unified access to multiple AI models. This guide shows you how to integrate ZenMux with [Neovate](https://neovateai.dev).

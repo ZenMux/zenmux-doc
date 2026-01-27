@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: FAQ
+  - - meta
+    - name: keywords
+      content: Zenmux, help, FAQ, faq
+---
+
 # FAQ
 
 ## 1. I can’t register an account right now. What should I do?

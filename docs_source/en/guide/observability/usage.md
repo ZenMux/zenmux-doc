@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: Usage Analytics
+  - - meta
+    - name: keywords
+      content: Zenmux, guide, tutorial, usage, OpenAI, API
+---
+
 # Usage Analytics
 
 ZenMux provides comprehensive usage analytics capabilities to help you monitor and analyze API calls, service provider performance, and model efficiency in real-time. Through usage analytics, you can gain deep insights into key metrics such as token consumption, API request volume, and response times, enabling you to optimize application performance and control costs.
