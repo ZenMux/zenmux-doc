@@ -34,7 +34,7 @@ export default defineConfig({
   outDir: "../docs",
   base: "/",
   assetsDir: "docs",
-  title: "ZenMux Developer Documentation",
+  title: "ZenMux | Documentation",
   ignoreDeadLinks: true,
 
   transformHtml: (html) => {
