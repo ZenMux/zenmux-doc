@@ -2,7 +2,7 @@
 head:
   - - meta
     - name: description
-      content: **保险补偿（Insurance）**
+      content: 保险补偿（Insurance）
   - - meta
     - name: keywords
       content: Zenmux, guide, tutorial, insurance, API

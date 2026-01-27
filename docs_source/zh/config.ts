@@ -70,6 +70,10 @@ export default defineLoacaleConfig({
             link: "/zh/guide/pay-as-you-go",
           },
           {
+            text: "下载发票",
+            link: "/zh/guide/invoice",
+          },
+          {
             text: "可观测性",
             items: [
               { text: "模型价格", link: "/zh/guide/observability/pricing" },
@@ -117,8 +121,8 @@ export default defineLoacaleConfig({
             link: "/zh/best-practices/neovate-code",
           },
           {
-            text: "VS Code Copilot 接入 ZenMux 指南",
-            link: "/zh/best-practices/copilot",
+            text: "Github Copilot 接入 ZenMux 指南",
+            link: "/zh/best-practices/github-copilot",
           },
         ],
       },
@@ -172,7 +176,7 @@ export default defineLoacaleConfig({
             text: "Platform API",
             items: [
               {
-                text: "Get generation",
+                text: "Get Generation",
                 link: "/zh/api/platform/get-generation",
               },
             ],

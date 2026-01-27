@@ -79,18 +79,29 @@ console.log(
   `\n完成！更新了 ${updatedCount} 个文件，跳过了 ${skippedCount} 个文件。`,
 );
 
+// 清理 Markdown 格式标记
+function cleanMarkdown(text) {
+  return text
+    .replace(/\*\*(.+?)\*\*/g, '$1')  // 移除粗体
+    .replace(/\*(.+?)\*/g, '$1')      // 移除斜体
+    .replace(/`(.+?)`/g, '$1')        // 移除代码标记
+    .replace(/\[(.+?)\]\(.+?\)/g, '$1') // 移除链接，保留文本
+    .replace(/#/g, '')                // 移除标题标记
+    .trim();
+}
+
 // 生成描述的辅助函数
 function generateDescription(filePath, content) {
   // 提取第一个标题或段落作为描述
   const titleMatch = content.match(/^#\s+(.+)$/m);
   if (titleMatch) {
-    return titleMatch[1].trim();
+    return cleanMarkdown(titleMatch[1]);
   }
 
   // 提取第一段文字
   const paragraphMatch = content.match(/\n\n([^#\n].{20,150})/);
   if (paragraphMatch) {
-    return paragraphMatch[1].trim().substring(0, 150) + "...";
+    return cleanMarkdown(paragraphMatch[1].substring(0, 150)) + "...";
   }
 
   // 基于文件路径生成
