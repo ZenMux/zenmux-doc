@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: Provider Routing
+  - - meta
+    - name: keywords
+      content: Zenmux, guide, tutorial, provider, routing, OpenAI, Anthropic, Claude, API
+---
+
 # Provider Routing
 
 ZenMux adopts a multi-provider architecture, integrating multiple providers for the same model and selecting the optimal provider through intelligent routing to ensure the best performance and availability. When calling large models via ZenMux, developers do not need to worry about the underlying provider selection logic—simply specify the model name.

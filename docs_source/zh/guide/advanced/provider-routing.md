@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: 供应商路由
+  - - meta
+    - name: keywords
+      content: Zenmux, guide, tutorial, provider, routing, OpenAI, Anthropic, Claude, API
+---
+
 # 供应商路由
 
 ZenMux 采用**多供应商**架构，针对同一模型配置多家供应商接入，通过智能路由选择合适的供应商进行调用，确保最佳的性能和可用性。通过 ZenMux 调用大模型时，开发者无需关心底层的供应商选择逻辑，只需指定模型名称即可。

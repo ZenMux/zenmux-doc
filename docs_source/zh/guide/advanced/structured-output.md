@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: 结构化输出
+  - - meta
+    - name: keywords
+      content: Zenmux, guide, tutorial, structured, output, OpenAI, GPT, API
+---
+
 # 结构化输出
 
 ZenMux 提供结构化输出功能，确保模型响应严格遵循您定义的[JSON Schema](https://json-schema.org/)格式。

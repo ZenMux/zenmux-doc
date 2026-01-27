@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: Pay As You Go
+  - - meta
+    - name: keywords
+      content: Zenmux, guide, tutorial, pay, you, OpenAI, API
+---
+
 # Pay As You Go
 
 Welcome to the **ZenMux Pay As You Go** plan! This guide will help you understand the key benefits of Pay As You Go, and how to top up, manage your balance, and create production-grade API keys.

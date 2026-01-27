@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: 用量分析（Usage Analytics）
+  - - meta
+    - name: keywords
+      content: Zenmux, guide, tutorial, usage, OpenAI, API
+---
+
 # 用量分析（Usage Analytics）
 
 ZenMux 提供了全面的使用量分析功能，帮助您实时监控和分析 API 调用的使用情况、服务提供商表现以及模型性能。通过使用分析功能，您可以深入了解 Token 消耗、API 请求量、响应速度等关键指标，从而优化应用效率并控制成本。

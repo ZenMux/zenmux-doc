@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: 联系我们
+  - - meta
+    - name: keywords
+      content: Zenmux, help, FAQ, contact, API
+---
+
 # 联系我们
 
 无论您需要技术支持、商务咨询，还是希望与我们分享反馈和建议，ZenMux 团队都欢迎您的联系。我们提供多种沟通渠道，确保您能够便捷地获得所需的帮助。

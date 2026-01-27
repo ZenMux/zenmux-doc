@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: ZenMux-Benchmark 测评榜单
+  - - meta
+    - name: keywords
+      content: Zenmux, about, zenmux, benchmark, OpenAI, GPT
+---
+
 # ZenMux-Benchmark 测评榜单
 
 ## 关于 ZenMux-Benchmark

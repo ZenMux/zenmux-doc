@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: Model Routing
+  - - meta
+    - name: keywords
+      content: Zenmux, guide, tutorial, model, routing, OpenAI, API
+---
+
 # Model Routing
 
 Model routing is an intelligent feature of ZenMux that helps you automatically select the most suitable model from a wide range of large language models. The system intelligently balances performance and cost based on the request content, task characteristics, and your preference settings.

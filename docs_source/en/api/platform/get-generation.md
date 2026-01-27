@@ -1,6 +1,13 @@
 ---
 pageClass: api-page
-title: API
+title: Interface
+head:
+  - - meta
+    - name: description
+      content: Get generation
+  - - meta
+    - name: keywords
+      content: Zenmux, API, documentation, get, generation
 ---
 
 # Get generation
@@ -19,9 +26,10 @@ This endpoint supports retrieving generation details for all API protocols, incl
 This endpoint only supports billing queries for **Pay As You Go** API keys. If you call this endpoint with a subscription-plan API key (prefixed with `sk-ss-v1-`), billing-related fields (such as `usage`, `ratingResponses`, etc.) will not be returned.
 
 To retrieve billing information, please use a Pay As You Go API key. See:
+
 - [Pay As You Go Guide](../../guide/pay-as-you-go.md)
 - [Subscription Guide](../../guide/subscription.md)
-:::
+  :::
 
 ## Metering and Billing Information
 
@@ -59,9 +67,10 @@ Authorization: Bearer <ZENMUX_API_KEY>
   - **Subscription API key** (prefixed with `sk-ss-v1-`): supports metering only; billing information is not supported
 
 ::: tip 💡 Get an API key
+
 - Pay As You Go API key: create one in the [ZenMux Console](https://zenmux.ai/platform/pay-as-you-go)
 - Subscription API key: create one in the [Subscription Management](https://zenmux.ai/platform/subscription)
-:::
+  :::
 
 ### generate_id `string` <font color="red">Required</font>
 

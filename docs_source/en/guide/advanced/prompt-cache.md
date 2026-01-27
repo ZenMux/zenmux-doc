@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: Prompt Cache
+  - - meta
+    - name: keywords
+      content: Zenmux, guide, tutorial, prompt, cache, OpenAI, Anthropic, Claude, GPT, API
+---
+
 # Prompt Cache
 
 Prompt Caching is a powerful performance optimization feature that allows you to reuse specific prefix content in your requests. This approach can significantly reduce processing time and call costs, particularly suitable for scenarios containing large amounts of static content.

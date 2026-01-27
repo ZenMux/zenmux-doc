@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: 订阅制套餐
+  - - meta
+    - name: keywords
+      content: Zenmux, guide, tutorial, subscription, OpenAI, Anthropic, Claude, GPT, API
+---
+
 # 订阅制套餐
 
 ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的 AI 模型调用方案,让您专注于编程和创作,无需担心每次 API 调用的费用。

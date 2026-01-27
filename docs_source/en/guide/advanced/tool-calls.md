@@ -1,6 +1,13 @@
 ---
 title: Tool Calling
 subtitle: Use tools in your prompt
+head:
+  - - meta
+    - name: description
+      content: Tool Calling
+  - - meta
+    - name: keywords
+      content: Zenmux, guide, tutorial, tool, calls, OpenAI, GPT, API
 ---
 
 # Tool Calling

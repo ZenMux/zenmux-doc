@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: 通过 ZenMux 使用 OpenCode 指南
+  - - meta
+    - name: keywords
+      content: Zenmux, best practices, integration, opencode, Claude, GPT, API
+---
+
 # 通过 ZenMux 使用 OpenCode 指南
 
 OpenCode 是一款专为终端设计的 AI 编程智能体，通过与 ZenMux 的集成，您可以获得更多强大模型的支持，提升开发效率。

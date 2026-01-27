@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: Guide to Using Claude Code CLI via ZenMux
+  - - meta
+    - name: keywords
+      content: Zenmux, best practices, integration, claude, code, Anthropic, Claude, GPT, API
+---
+
 # Using Claude Code CLI with ZenMux: A Complete Guide
 
 ::: info Compatibility Notes
@@ -245,17 +255,18 @@ Make sure you replace `sk-ss-v1-xxx` or `sk-ai-v1-xxx` in the config with your r
 - Format: `sk-ai-v1-xxx`
 - Where to get it: [Pay-as-you-go page](https://zenmux.ai/platform/pay-as-you-go)
 - Detailed guide: [Pay-as-you-go docs](/guide/pay-as-you-go)
-:::
+  :::
 
 ::: tip 📋 Environment Variable Reference
 
-| Variable | Purpose | Notes |
-|--------|------|------|
-| `ANTHROPIC_BASE_URL` | Service endpoint | Redirects Claude Code requests to ZenMux |
-| `ANTHROPIC_AUTH_TOKEN` | Auth token | Your ZenMux API Key (subscription or pay-as-you-go) |
-| `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` | Traffic control | Disables non-essential telemetry to improve privacy |
-| `ANTHROPIC_API_KEY` | Conflict avoidance | Clear it to avoid conflicts with existing local Anthropic settings |
-| `ANTHROPIC_DEFAULT_*_MODEL` | Model mapping | Maps Haiku/Sonnet/Opus tiers to actual models |
+| Variable                                   | Purpose            | Notes                                                              |
+| ------------------------------------------ | ------------------ | ------------------------------------------------------------------ |
+| `ANTHROPIC_BASE_URL`                       | Service endpoint   | Redirects Claude Code requests to ZenMux                           |
+| `ANTHROPIC_AUTH_TOKEN`                     | Auth token         | Your ZenMux API Key (subscription or pay-as-you-go)                |
+| `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` | Traffic control    | Disables non-essential telemetry to improve privacy                |
+| `ANTHROPIC_API_KEY`                        | Conflict avoidance | Clear it to avoid conflicts with existing local Anthropic settings |
+| `ANTHROPIC_DEFAULT_*_MODEL`                | Model mapping      | Maps Haiku/Sonnet/Opus tiers to actual models                      |
+
 :::
 
 ### Step 2: Launch Claude Code and Complete Authentication
@@ -383,7 +394,7 @@ You can use the `/model` command to confirm the model currently in use:
 5. **Create a new API Key**:
    - [Subscription API Key guide](/guide/subscription#step-3-manage-your-subscription-and-get-an-api-key)
    - [Pay-as-you-go API Key guide](/guide/pay-as-you-go#create-and-manage-api-keys)
-  :::
+     :::
 
 ::: details The Model Does Not Support the Anthropic Protocol
 **Issue**: You see an error that a model does not support the Anthropic protocol
@@ -438,7 +449,7 @@ This is a Windows PowerShell security mechanism. You need to change the executio
 - `Restricted` (default): no scripts are allowed to run
 - `RemoteSigned`: local scripts can run; scripts downloaded from the internet require a digital signature
 - `Unrestricted`: all scripts can run (not recommended)
-:::
+  :::
 
 ::: details Windows: `claude` Command Not Found
 **Issue**: After installing Claude Code, PowerShell reports it cannot find the `claude` command
@@ -544,7 +555,7 @@ This is usually because the npm global package path is not added to your PATH en
    ```
 
 3. If the issue persists, avoid using Chinese characters in environment variable values
-:::
+   :::
 
 ::: info More Models
 See the [ZenMux model list](https://zenmux.ai/models) for all available models and detailed information.

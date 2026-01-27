@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: Contact Us
+  - - meta
+    - name: keywords
+      content: Zenmux, help, FAQ, contact, API
+---
+
 # Contact Us
 
 Whether you need technical support, have business inquiries, or want to share feedback and suggestions, the ZenMux team welcomes your contact. We provide multiple communication channels to ensure you can easily get the help you need.

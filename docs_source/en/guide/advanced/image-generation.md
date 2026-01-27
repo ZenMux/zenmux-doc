@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: Image Generation
+  - - meta
+    - name: keywords
+      content: Zenmux, guide, tutorial, image, generation, API
+---
+
 # Image Generation
 
 ZenMux supports invoking image generation models via the Vertex AI protocol. This guide explains how to use ZenMux to generate images and save them locally.

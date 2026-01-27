@@ -1,6 +1,13 @@
 ---
 pageClass: api-page
 title: 接口
+head:
+  - - meta
+    - name: description
+      content: List Models
+  - - meta
+    - name: keywords
+      content: Zenmux, API, documentation, openai, list, models, OpenAI, Anthropic, Claude, GPT
 ---
 
 # List Models

@@ -1,6 +1,13 @@
 ---
 pageClass: api-page
 title: API
+head:
+  - - meta
+    - name: description
+      content: List Models
+  - - meta
+    - name: keywords
+      content: Zenmux, API, documentation, anthropic, list, models, Anthropic, Claude
 ---
 
 # List Models

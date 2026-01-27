@@ -1,6 +1,13 @@
 ---
 pageClass: api-page
 title: Create a Message
+head:
+  - - meta
+    - name: description
+      content: Create a Message
+  - - meta
+    - name: keywords
+      content: Zenmux, API, documentation, create, messages, new, Anthropic, Claude
 ---
 
 # Create a Message

@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: Guide to Using Cline with ZenMux
+  - - meta
+    - name: keywords
+      content: Zenmux, best practices, integration, cline, OpenAI, API
+---
+
 # Guide to Using Cline with ZenMux
 
 *Cline* is a collaborative programming agent for complex tasks. By integrating with ZenMux, you can access more powerful models to enhance development efficiency.

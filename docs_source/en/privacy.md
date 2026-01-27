@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: ZenMux Privacy Policy
+  - - meta
+    - name: keywords
+      content: Zenmux, privacy, API
+---
+
 # ZenMux Privacy Policy
 
 **Effective date:** 2025/9/30

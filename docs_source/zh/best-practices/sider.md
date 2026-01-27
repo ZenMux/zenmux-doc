@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: Sider 接入指南
+  - - meta
+    - name: keywords
+      content: Zenmux, best practices, integration, sider, OpenAI, Anthropic, Claude, API
+---
+
 # Sider 接入指南
 
 Sider 是一款功能强大的浏览器 AI 助手插件，以侧边栏形式为用户提供便捷的 AI 服务。它支持多种 AI 功能，包括：写作、阅读、关于任何话题的聊天，甚至制作内容摘要。通过配置 ZenMux，可以使用更多模型选择，而不仅仅局限于 Sider 提供的基础模型。

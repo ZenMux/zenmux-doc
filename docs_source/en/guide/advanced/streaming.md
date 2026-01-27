@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: Streaming
+  - - meta
+    - name: keywords
+      content: Zenmux, guide, tutorial, streaming, OpenAI, API
+---
+
 # Streaming
 
 ZenMux allows any model to return generated results incrementally in a streaming fashion, rather than returning the full response at once. Streaming output lets users see the first token from the model immediately, reducing wait time. This can significantly improve user experience, especially for real-time conversations and long-form generation.

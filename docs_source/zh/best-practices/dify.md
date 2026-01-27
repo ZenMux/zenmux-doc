@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: Dify 接入指南
+  - - meta
+    - name: keywords
+      content: Zenmux, best practices, integration, dify, OpenAI, API
+---
+
 # Dify 接入指南
 
 Dify 是一款开源的大语言模型（LLM）应用开发平台。它融合了后端即服务（Backend as Service）和 LLMOps 的理念，使开发者可以快速搭建生产级的生成式 AI 应用。通过配置 ZenMux，可以使用更多模型选择，而不仅仅局限于 Dify 提供的基础模型。
