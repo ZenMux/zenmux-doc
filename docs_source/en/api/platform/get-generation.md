@@ -9,17 +9,65 @@ title: API
 GET https://zenmux.ai/api/v1/generation?id=<generation_id>
 ```
 
-The Get generation endpoint is used to query generation details, such as usage and cost.
+The Get generation endpoint is used to retrieve generation details, such as usage and costs.
 
 ::: tip
-This endpoint supports querying generation details for all API protocols, including OpenAI Chat Completions, OpenAI Responses, Anthropic, and Vertex AI.
+This endpoint supports retrieving generation details for all API protocols, including OpenAI Chat Completions, OpenAI Responses, Anthropic, and Vertex AI.
+:::
+
+::: warning ⚠️ Subscription Plan Limitations
+This endpoint only supports billing queries for **Pay As You Go** API keys. If you call this endpoint with a subscription-plan API key (prefixed with `sk-ss-v1-`), billing-related fields (such as `usage`, `ratingResponses`, etc.) will not be returned.
+
+To retrieve billing information, please use a Pay As You Go API key. See:
+- [Pay As You Go Guide](../../guide/pay-as-you-go.md)
+- [Subscription Guide](../../guide/subscription.md)
+:::
+
+## Metering and Billing Information
+
+### Metering (Token Usage)
+
+**Metering data** (e.g., token usage in the `nativeTokens` field) is returned **synchronously with the request** in the protocol’s native format:
+
+- **OpenAI Chat Completions protocol**: returned in the response `usage` field
+- **OpenAI Responses protocol**: returned in the response `usage` field
+- **Anthropic protocol**: returned in the response `usage` field
+- **Vertex AI protocol**: returned in the response `usageMetadata` field
+
+### Billing (Billing & Costs)
+
+**Billing data** (cost-related fields such as `usage`, `ratingResponses`, etc.) is **not currently returned synchronously** with the request. After the request completes, you must query it via this endpoint **3–5 minutes** later.
+
+::: info 💡 Billing upgrade in progress
+We’re improving and upgrading our billing architecture to enable synchronous billing data in responses as soon as possible. Stay tuned!
 :::
 
 ## Request params
 
+### Authorization Header <font color="red">Required</font>
+
+**Header parameters:**
+
+```http
+Authorization: Bearer <ZENMUX_API_KEY>
+```
+
+- **Name**: `Authorization`
+- **Format**: `Bearer <API_KEY>`
+- **Description**: Your ZenMux API key
+  - **Pay As You Go API key**: supports querying full metering and billing information
+  - **Subscription API key** (prefixed with `sk-ss-v1-`): supports metering only; billing information is not supported
+
+::: tip 💡 Get an API key
+- Pay As You Go API key: create one in the [ZenMux Console](https://zenmux.ai/platform/pay-as-you-go)
+- Subscription API key: create one in the [Subscription Management](https://zenmux.ai/platform/subscription)
+:::
+
 ### generate_id `string` <font color="red">Required</font>
 
-The generation ID returned by the ZenMux API, which you can obtain from the following endpoints:
+**Query parameters:**
+
+The generation id returned by ZenMux API endpoints. You can obtain it from:
 
 - [Create Chat Completion](../openai/create-chat-completion.md) - OpenAI Chat Completions protocol
 - [Create a Model Response](../openai/openai-responses.md) - OpenAI Responses protocol
@@ -30,7 +78,7 @@ The generation ID returned by the ZenMux API, which you can obtain from the foll
 
 ### api `string`
 
-The API type. Depending on the protocol used, the possible values are:
+API type. Values vary by protocol:
 
 - `chat.completions` - OpenAI Chat Completions protocol
 - `responses` - OpenAI Responses protocol
@@ -39,7 +87,7 @@ The API type. Depending on the protocol used, the possible values are:
 
 ### generationId `string`
 
-The current generation ID.
+The current generation id.
 
 ### model `string`
 
@@ -51,7 +99,7 @@ The time when the server received the inference request.
 
 ### generationTime `integer`
 
-The duration of this inference from the first token to completion, in milliseconds.
+Total duration of this inference from first token to completion, in milliseconds.
 
 ### latency `integer`
 
@@ -59,15 +107,15 @@ Time to first token, in milliseconds.
 
 ### nativeTokens `object`
 
-Usage details for this inference, including the following fields:
+Usage information consumed by this inference, including:
 
-- `completion_tokens` `integer` - Number of tokens consumed by the completion
-- `prompt_tokens` `integer` - Number of tokens consumed by the prompt
-- `total_tokens` `integer` - Total number of tokens
-- `completion_tokens_details` `object` - Detailed completion token information
-  - `reasoning_tokens` `integer` - Number of tokens consumed by reasoning
-- `prompt_tokens_details` `object` - Detailed prompt token information
-  - `cached_tokens` `integer` - Number of cached tokens
+- `completion_tokens` `integer` - Tokens used for the completion
+- `prompt_tokens` `integer` - Tokens used for the prompt
+- `total_tokens` `integer` - Total tokens
+- `completion_tokens_details` `object` - Completion token details
+  - `reasoning_tokens` `integer` - Tokens used for reasoning
+- `prompt_tokens_details` `object` - Prompt token details
+  - `cached_tokens` `integer` - Cached tokens
 
 ### streamed `boolean`
 
@@ -83,13 +131,13 @@ Credits consumed by this inference.
 
 ### ratingResponses `object`
 
-Billing response details, including the following fields:
+Billing response details, including:
 
 - `billAmount` `number` - Billed amount
 - `discountAmount` `number` - Discount amount
 - `originAmount` `number` - Original amount
 - `priceVersion` `string` - Price version
-- `ratingDetails` `array` - Billing details array. Each item includes:
+- `ratingDetails` `array` - Billing detail items, each containing:
   - `billAmount` `number` - Billed amount
   - `discountAmount` `number` - Discount amount
   - `feeItemCode` `string` - Fee item code (e.g., `completion`, `prompt`)
