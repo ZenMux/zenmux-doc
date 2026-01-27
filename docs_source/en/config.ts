@@ -71,6 +71,10 @@ export default defineLoacaleConfig({
             link: "/guide/pay-as-you-go",
           },
           {
+            text: "Download Invoices",
+            link: "/guide/invoice",
+          },
+          {
             text: "Observability",
             items: [
               { text: "Model Pricing", link: "/guide/observability/pricing" },
@@ -107,7 +111,7 @@ export default defineLoacaleConfig({
           },
           { text: "Dify Integration", link: "/best-practices/dify" },
           { text: "Neovate Integration", link: "/best-practices/neovate-code" },
-          { text: "VS Code Copilot", link: "/best-practices/copilot" },
+          { text: "Github Copilot", link: "/best-practices/github-copilot" },
         ],
       },
       {
@@ -159,7 +163,7 @@ export default defineLoacaleConfig({
           {
             text: "Platform API",
             items: [
-              { text: "Get generation", link: "/api/platform/get-generation" },
+              { text: "Get Generation", link: "/api/platform/get-generation" },
             ],
           },
         ],
