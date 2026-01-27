@@ -1,39 +1,39 @@
-import { defineConfig } from 'vitepress';
-import container from 'markdown-it-container';
-import fs from 'node:fs';
-import LZString from 'lz-string';
-import { groupIconVitePlugin } from 'vitepress-plugin-group-icons';
-import { locales } from '../config';
+import { defineConfig } from "vitepress";
+import container from "markdown-it-container";
+import fs from "node:fs";
+import LZString from "lz-string";
+import { groupIconVitePlugin } from "vitepress-plugin-group-icons";
+import { locales } from "../config";
 
-const basePath = process.cwd() + '/docs_source/';
+const basePath = process.cwd() + "/docs_source/";
 
 function extractTitle(info: string, html = false) {
   if (html) {
     return (
-      info.replace(/<!--[^]*?-->/g, '').match(/data-title="(.*?)"/)?.[1] || ''
+      info.replace(/<!--[^]*?-->/g, "").match(/data-title="(.*?)"/)?.[1] || ""
     );
   }
-  return info.match(/\[(.*)\]/)?.[1] || extractLang(info) || 'txt';
+  return info.match(/\[(.*)\]/)?.[1] || extractLang(info) || "txt";
 }
 
 function extractLang(info: string) {
   return info
     .trim()
-    .replace(/=(\d*)/, '')
-    .replace(/:(no-)?line-numbers({| |$|=\d*).*/, '')
-    .replace(/(-vue|{| ).*$/, '')
-    .replace(/^vue-html$/, 'template')
-    .replace(/^ansi$/, '');
+    .replace(/=(\d*)/, "")
+    .replace(/:(no-)?line-numbers({| |$|=\d*).*/, "")
+    .replace(/(-vue|{| ).*$/, "")
+    .replace(/^vue-html$/, "template")
+    .replace(/^ansi$/, "");
 }
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  lang: 'en-US',
-  description: 'zenmux.ai document',
-  outDir: '../docs',
-  base: '/',
-  assetsDir: 'docs',
-  title: 'ZenMux',
+  lang: "en-US",
+  description: "zenmux.ai document",
+  outDir: "../docs",
+  base: "/",
+  assetsDir: "docs",
+  title: "ZenMux",
   ignoreDeadLinks: true,
 
   transformHtml: (html) => {
@@ -43,20 +43,36 @@ export default defineConfig({
   },
 
   sitemap: {
-    hostname: 'https://docs.zenmux.ai',
+    hostname: "https://docs.zenmux.ai",
+  },
+
+  transformHead: ({ pageData }) => {
+    const canonicalUrl = `https://zenmux.ai/docs${pageData.relativePath.replace(/\.md$/, ".html")}`;
+    return [["link", { rel: "canonical", href: canonicalUrl }]];
   },
 
   head: [
-    ['link', { rel: 'icon', href: '/docs/favicon.svg' }],
+    ["link", { rel: "icon", href: "/docs/favicon.svg" }],
     [
-      'script',
+      "script",
+      {},
+      `
+      // 自动重定向：docs.zenmux.ai -> zenmux.ai/docs/
+      if (window.location.hostname === 'docs.zenmux.ai') {
+        const newUrl = 'https://zenmux.ai/docs' + window.location.pathname + window.location.search + window.location.hash;
+        window.location.replace(newUrl);
+      }
+      `,
+    ],
+    [
+      "script",
       {
-        async: 'true',
-        src: 'https://www.googletagmanager.com/gtag/js?id=G-6FF0RJ6DGB',
+        async: "true",
+        src: "https://www.googletagmanager.com/gtag/js?id=G-6FF0RJ6DGB",
       },
     ],
     [
-      'script',
+      "script",
       {},
       `
       window.dataLayer = window.dataLayer || [];
@@ -70,87 +86,87 @@ export default defineConfig({
 
   vite: {
     server: {
-      host: '127.0.0.1',
+      host: "127.0.0.1",
     },
     plugins: [
       groupIconVitePlugin({
         customIcon: {
-          python: 'vscode-icons:file-type-python',
-          javascript: 'vscode-icons:file-type-js',
-          typescript: 'vscode-icons:file-type-typescript',
-          vue: 'vscode-icons:file-type-vue',
-          html: 'vscode-icons:file-type-html',
-          css: 'vscode-icons:file-type-css',
-          json: 'vscode-icons:file-type-json',
-          markdown: 'vscode-icons:file-type-markdown',
-          c: 'vscode-icons:file-type-c',
-          cpp: 'vscode-icons:file-type-cpp',
-          java: 'vscode-icons:file-type-java',
-          go: 'vscode-icons:file-type-go',
-          ruby: 'vscode-icons:file-type-ruby',
-          php: 'vscode-icons:file-type-php',
-          shell: 'vscode-icons:file-type-shell',
-          bash: 'vscode-icons:file-type-shell',
-          sql: 'vscode-icons:file-type-sql',
-          xml: 'vscode-icons:file-type-xml',
-          yaml: 'vscode-icons:file-type-yaml',
-          dockerfile: 'vscode-icons:file-type-docker',
-          kotlin: 'vscode-icons:file-type-kotlin',
-          swift: 'vscode-icons:file-type-swift',
-          rust: 'vscode-icons:file-type-rust',
-          scala: 'vscode-icons:file-type-scala',
-          perl: 'vscode-icons:file-type-perl',
-          haskell: 'vscode-icons:file-type-haskell',
-          elixir: 'vscode-icons:file-type-elixir',
-          lua: 'vscode-icons:file-type-lua',
-          r: 'vscode-icons:file-type-r',
-          matlab: 'vscode-icons:file-type-matlab',
-          powershell: 'vscode-icons:file-type-powershell',
-          typescriptreact: 'vscode-icons:file-type-tsx',
-          javascriptreact: 'vscode-icons:file-type-js',
-          vuejs: 'vscode-icons:file-type-vue',
-          svelte: 'vscode-icons:file-type-svelte',
-          json5: 'vscode-icons:file-type-json',
-          jsonc: 'vscode-icons:file-type-json',
-          graphql: 'vscode-icons:file-type-graphql',
-          markdownlint: 'vscode-icons:file-type-markdown',
-          vuepress: 'vscode-icons:file-type-vue',
-          nuxt: 'vscode-icons:file-type-nuxt',
-          nextjs: 'vscode-icons:file-type-nextjs',
-          astro: 'vscode-icons:file-type-astro',
+          python: "vscode-icons:file-type-python",
+          javascript: "vscode-icons:file-type-js",
+          typescript: "vscode-icons:file-type-typescript",
+          vue: "vscode-icons:file-type-vue",
+          html: "vscode-icons:file-type-html",
+          css: "vscode-icons:file-type-css",
+          json: "vscode-icons:file-type-json",
+          markdown: "vscode-icons:file-type-markdown",
+          c: "vscode-icons:file-type-c",
+          cpp: "vscode-icons:file-type-cpp",
+          java: "vscode-icons:file-type-java",
+          go: "vscode-icons:file-type-go",
+          ruby: "vscode-icons:file-type-ruby",
+          php: "vscode-icons:file-type-php",
+          shell: "vscode-icons:file-type-shell",
+          bash: "vscode-icons:file-type-shell",
+          sql: "vscode-icons:file-type-sql",
+          xml: "vscode-icons:file-type-xml",
+          yaml: "vscode-icons:file-type-yaml",
+          dockerfile: "vscode-icons:file-type-docker",
+          kotlin: "vscode-icons:file-type-kotlin",
+          swift: "vscode-icons:file-type-swift",
+          rust: "vscode-icons:file-type-rust",
+          scala: "vscode-icons:file-type-scala",
+          perl: "vscode-icons:file-type-perl",
+          haskell: "vscode-icons:file-type-haskell",
+          elixir: "vscode-icons:file-type-elixir",
+          lua: "vscode-icons:file-type-lua",
+          r: "vscode-icons:file-type-r",
+          matlab: "vscode-icons:file-type-matlab",
+          powershell: "vscode-icons:file-type-powershell",
+          typescriptreact: "vscode-icons:file-type-tsx",
+          javascriptreact: "vscode-icons:file-type-js",
+          vuejs: "vscode-icons:file-type-vue",
+          svelte: "vscode-icons:file-type-svelte",
+          json5: "vscode-icons:file-type-json",
+          jsonc: "vscode-icons:file-type-json",
+          graphql: "vscode-icons:file-type-graphql",
+          markdownlint: "vscode-icons:file-type-markdown",
+          vuepress: "vscode-icons:file-type-vue",
+          nuxt: "vscode-icons:file-type-nuxt",
+          nextjs: "vscode-icons:file-type-nextjs",
+          astro: "vscode-icons:file-type-astro",
         },
       }),
     ],
   },
 
   rewrites: {
-    'en/:rest*': ':rest*',
+    "en/:rest*": ":rest*",
   },
 
   markdown: {
     config(md) {
-      md.use(container, 'api-request', {
+      md.use(container, "api-request", {
         render(tokens, idx) {
           if (tokens[idx].nesting === 1) {
-            let tabs = '';
-            let checked = 'checked';
+            let tabs = "";
+            let checked = "checked";
             const info = tokens[idx].info
               .trim()
-              .slice('api-request'.length)
+              .slice("api-request".length)
               .trim();
 
             for (
               let i = idx + 1;
               !(
                 tokens[i].nesting === -1 &&
-                tokens[i].type === 'container_api-request_close'
+                tokens[i].type === "container_api-request_close"
               );
               ++i
             ) {
-              const isHtml = tokens[i].type === 'html_block';
+              const isHtml = tokens[i].type === "html_block";
 
               if (
-                (tokens[i].type === 'fence' && tokens[i].tag === 'code') ||
+                (tokens[i].type === "fence" && tokens[i].tag === "code") ||
                 isHtml
               ) {
                 const title = extractTitle(
@@ -163,8 +179,8 @@ export default defineConfig({
                     title,
                   )}" for="tab-${i}">${title}</label>`;
 
-                  if (checked && !isHtml) tokens[i].info += ' active';
-                  checked = '';
+                  if (checked && !isHtml) tokens[i].info += " active";
+                  checked = "";
                 }
               }
             }
@@ -175,27 +191,27 @@ export default defineConfig({
         },
       });
 
-      md.use(container, 'api-response', {
+      md.use(container, "api-response", {
         render(tokens, idx) {
           if (tokens[idx].nesting === 1) {
-            let tabs = '';
-            let checked = 'checked';
+            let tabs = "";
+            let checked = "checked";
             const info =
-              tokens[idx].info.trim().slice('api-response'.length).trim() ||
-              'Response';
+              tokens[idx].info.trim().slice("api-response".length).trim() ||
+              "Response";
 
             for (
               let i = idx + 1;
               !(
                 tokens[i].nesting === -1 &&
-                tokens[i].type === 'container_api-response_close'
+                tokens[i].type === "container_api-response_close"
               );
               ++i
             ) {
-              const isHtml = tokens[i].type === 'html_block';
+              const isHtml = tokens[i].type === "html_block";
 
               if (
-                (tokens[i].type === 'fence' && tokens[i].tag === 'code') ||
+                (tokens[i].type === "fence" && tokens[i].tag === "code") ||
                 isHtml
               ) {
                 const title = extractTitle(
@@ -208,8 +224,8 @@ export default defineConfig({
                     title,
                   )}" for="tab-${i}">${title}</label>`;
 
-                  if (checked && !isHtml) tokens[i].info += ' active';
-                  checked = '';
+                  if (checked && !isHtml) tokens[i].info += " active";
+                  checked = "";
                 }
               }
             }
@@ -223,7 +239,7 @@ export default defineConfig({
   },
 
   transformPageData(pageData, ctx) {
-    if (pageData.frontmatter.pageClass === 'api-page') {
+    if (pageData.frontmatter.pageClass === "api-page") {
       pageData.frontmatter.aside = false;
     }
     // @ts-expect-error not error
@@ -231,20 +247,20 @@ export default defineConfig({
       fs
         .readFileSync(basePath + pageData.filePath)
         .toString()
-        .replace(/<Copy \/>/g, ''),
+        .replace(/<Copy \/>/g, ""),
     );
   },
 
   themeConfig: {
     logo: {
       light:
-        'https://cdn.marmot-cloud.com/storage/zenmux/2025/10/20/bl9Q1WT/text-logo-dark.svg',
-      dark: 'https://cdn.marmot-cloud.com/storage/zenmux/2025/10/20/KNgZ27t/text-logo-light.svg',
-      alt: 'ZenMux Logo',
+        "https://cdn.marmot-cloud.com/storage/zenmux/2025/10/20/bl9Q1WT/text-logo-dark.svg",
+      dark: "https://cdn.marmot-cloud.com/storage/zenmux/2025/10/20/KNgZ27t/text-logo-light.svg",
+      alt: "ZenMux Logo",
     },
     siteTitle: false,
-    search: { provider: 'local' },
-    logoLink: 'https://zenmux.ai',
+    search: { provider: "local" },
+    logoLink: "https://zenmux.ai",
   },
 
   // locales: English (root) and Simplified Chinese (zh)
