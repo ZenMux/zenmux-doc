@@ -14,15 +14,23 @@
 
     <!-- 卡片列表 -->
     <div class="card-list">
-      <div v-for="(card, index) in currentCardList" :key="index" class="card-item">
-        <img :src="card.img" :alt="card.alt" />
+      <div
+        v-for="(card, index) in currentCardList"
+        :key="index"
+        class="card-item"
+      >
+        <span class="card-text">{{ card.text }}</span>
         <span class="card-tag">{{ card.status }}</span>
       </div>
     </div>
 
     <!-- 控制措施列表 -->
     <div class="controls-list">
-      <div v-for="(control, index) in controlsList" :key="index" class="control-item">
+      <div
+        v-for="(control, index) in controlsList"
+        :key="index"
+        class="control-item"
+      >
         {{ control }}
       </div>
     </div>
@@ -30,26 +38,29 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useData } from 'vitepress'
+import { computed } from "vue";
+import { useData } from "vitepress";
 
-const { isDark } = useData()
+const { isDark } = useData();
 
 const cardList = [
   {
     img: "https://cdn.marmot-cloud.com/storage/zenmux/2025/12/29/XeFOBdl/AICPA-SOC-2.svg",
     status: "In progress",
     alt: "SOC2 Type1",
+    text: "AICPA SOC 2",
   },
   {
     img: "https://cdn.marmot-cloud.com/storage/zenmux/2025/12/29/p2o1ZKt/ISO-27001.svg",
     status: "In progress",
     alt: "ISO27001",
+    text: "ISO 27001",
   },
   {
     img: "https://cdn.marmot-cloud.com/storage/zenmux/2025/12/29/4PHBRxb/GDPR.svg",
     status: "In progress",
     alt: "GDPR",
+    text: "GDPR",
   },
 ];
 
@@ -58,20 +69,25 @@ const darkCardList = [
     img: "https://cdn.marmot-cloud.com/storage/zenmux/2026/01/01/Vw09mBu/AICPA-SOC-2_dark.svg",
     status: "In progress",
     alt: "SOC2 Type1",
+    text: "AICPA SOC 2",
   },
   {
     img: "https://cdn.marmot-cloud.com/storage/zenmux/2026/01/01/Ij3mF4N/ISO-27001_dark.svg",
     status: "In progress",
     alt: "ISO27001",
+    text: "ISO 27001",
   },
   {
     img: "https://cdn.marmot-cloud.com/storage/zenmux/2026/01/01/2dROIPA/GDPR_dark.svg",
     status: "In progress",
     alt: "GDPR",
+    text: "GDPR",
   },
 ];
 
-const currentCardList = computed(() => isDark.value ? darkCardList : cardList)
+const currentCardList = computed(() =>
+  isDark.value ? darkCardList : cardList,
+);
 
 const controlsList: string[] = [
   "CC1.1.2 Contractual agreements with terms, conditions and responsibilities are established with third parties or subcontractors.",
@@ -120,9 +136,27 @@ html.dark .compliance-line {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 8px;
+  height: 200px;
+  min-width: 170px;
+  border: 0.5px solid #e5e7eb;
+  border-radius: 12px;
 }
-
+.card-text {
+  font-weight: 700;
+  font-size: 20px;
+  font-family:
+    "PT Sans",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Roboto",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+}
 .card-tag {
   border: 1px solid #e6e6e6;
   font-size: 12px;
@@ -133,9 +167,9 @@ html.dark .compliance-line {
   border-radius: 4px;
 }
 
-html.dark .card-tag{
+html.dark .card-tag {
   background-color: #262626;
-  color:#dfdfd6;
+  color: #dfdfd6;
 }
 
 html.dark .card-tag {
@@ -153,7 +187,6 @@ html.dark .card-tag {
 html.dark .controls-list {
   border-top: 1px solid #2e2e32;
 }
-
 
 .control-item {
   border-bottom: 1px solid #eee;
