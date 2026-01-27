@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: 通过 ZenMux 使用 Cline 指南
+  - - meta
+    - name: keywords
+      content: Zenmux, best practices, integration, cline, OpenAI, API
+---
+
 # 通过 ZenMux 使用 Cline 指南
 
 _Cline_ 是一款用于复杂工作的协作式编程智能体，通过与 ZenMux 的集成，您可以获得更多强大模型的支持，提升开发效率。

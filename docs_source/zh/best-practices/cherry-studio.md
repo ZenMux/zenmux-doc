@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: 通过 ZenMux 使用 Cherry Studio 指南
+  - - meta
+    - name: keywords
+      content: Zenmux, best practices, integration, cherry, studio, OpenAI, API
+---
+
 # 通过 ZenMux 使用 Cherry Studio 指南
 
 Cherry Studio 是一款优雅的跨平台 AI 桌面客户端,支持多种主流大语言模型服务。通过与 ZenMux 的集成,您可以在 Cherry Studio 中访问 ZenMux 平台上聚合的海量模型资源,享受更灵活的模型选择和更优惠的价格。

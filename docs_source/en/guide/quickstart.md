@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: Quick Start
+  - - meta
+    - name: keywords
+      content: Zenmux, guide, tutorial, quickstart, OpenAI, Anthropic, Claude, API
+---
+
 # Quick Start
 
 Welcome to **[ZenMux](https://docs.zenmux.ai/about/intro.html)**! This guide will help you get started quickly and shows how to call the ZenMux API in three different ways.

@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: ZenMux 与 Neovate 的集成指南
+  - - meta
+    - name: keywords
+      content: Zenmux, best practices, integration, neovate, code, API
+---
+
 
 # ZenMux 与 Neovate 的集成指南
 

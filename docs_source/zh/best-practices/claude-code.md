@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: 通过 ZenMux 使用 Claude Code CLI 指南
+  - - meta
+    - name: keywords
+      content: Zenmux, best practices, integration, claude, code, Anthropic, Claude, GPT, API
+---
+
 # 通过 ZenMux 使用 Claude Code CLI 指南
 
 ::: info 兼容性说明

@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: 通过 ZenMux 使用 Obsidian Copilot 指南
+  - - meta
+    - name: keywords
+      content: Zenmux, best practices, integration, obsidian, OpenAI, API
+---
+
 # 通过 ZenMux 使用 Obsidian Copilot 指南
 
 Obsidian Copilot 是一个强大的 AI 助手插件,通过与 ZenMux 的集成,您可以在 Obsidian 笔记中使用多种先进的 AI 模型,获得更智能的写作和思考体验。

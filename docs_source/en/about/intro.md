@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: Introduction
+  - - meta
+    - name: keywords
+      content: Zenmux, about, intro, OpenAI, Anthropic, Claude, API
+---
+
 # Introduction
 
 ## ZenMux Overview

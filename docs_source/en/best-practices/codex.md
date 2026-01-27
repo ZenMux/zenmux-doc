@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: Guide to Using Codex CLI via ZenMux
+  - - meta
+    - name: keywords
+      content: Zenmux, best practices, integration, codex, OpenAI, API
+---
+
 # Guide to Using Codex CLI via ZenMux
 
 Codex CLI is an open-source programming assistant tool from OpenAI that runs in your local terminal and can read, modify, and execute code in the directory you choose. Built in Rust, it's fast and efficient, and continuously improved on GitHub. Through integration with ZenMux, you can access a wider selection of models beyond the official OpenAI API.

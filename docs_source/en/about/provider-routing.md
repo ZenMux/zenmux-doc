@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: Provider Routing
+  - - meta
+    - name: keywords
+      content: Zenmux, about, provider, routing, Anthropic, Claude, API
+---
+
 # Provider Routing
 
 As described in [Models and Providers](https://docs.zenmux.ai/zh/about/models-and-providers.html), for the same model, ZenMux intelligently routes requests to the most suitable provider to ensure optimal performance and availability. When invoking LLMs through ZenMux, developers don’t need to worry about the underlying provider selection logic—simply specify the model name.

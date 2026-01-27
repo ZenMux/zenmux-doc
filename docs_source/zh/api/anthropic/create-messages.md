@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: Anthropic API: Messages
+  - - meta
+    - name: keywords
+      content: Zenmux, API, documentation, create, messages, Anthropic, Claude
+---
+
 # Anthropic API: Messages
 
 ZenMux 支持 Anthropic API, 使用方式见 API 调用示例，具体请求参数和返回结构详见[Anthropic 官网](https://docs.anthropic.com/en/api/messages)

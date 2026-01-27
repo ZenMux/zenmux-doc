@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: 模型路由
+  - - meta
+    - name: keywords
+      content: Zenmux, guide, tutorial, model, routing, OpenAI, API
+---
+
 # 模型路由
 
 模型路由是 ZenMux 的智能化特性，帮助您在众多大语言模型中自动选择最适合的模型。系统会根据请求内容、任务特征和您的偏好设置，智能地在性能和成本之间找到最优平衡。

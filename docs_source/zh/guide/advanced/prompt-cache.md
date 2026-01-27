@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: 提示词缓存
+  - - meta
+    - name: keywords
+      content: Zenmux, guide, tutorial, prompt, cache, OpenAI, Anthropic, Claude, GPT, API
+---
+
 # 提示词缓存
 
 提示词缓存(Prompt Caching)是一种强大的性能优化功能,可以让你重复使用请求中的特定前缀内容。这种方式能够显著减少处理时间和调用成本,特别适用于包含大量静态内容的场景。

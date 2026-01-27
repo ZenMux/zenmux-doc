@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: 模型兜底机制
+  - - meta
+    - name: keywords
+      content: Zenmux, guide, tutorial, fallback, OpenAI, Anthropic, API
+---
+
 # 模型兜底机制
 
 模型兜底（Fallback）是 ZenMux 的容错保障机制，当主要模型或路由策略失败时，自动切换到备用模型继续处理请求。这确保您的应用始终能够获得响应，最大程度降低服务中断的风险。

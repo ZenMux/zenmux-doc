@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: Google Vertex AI API: Generate Content
+  - - meta
+    - name: keywords
+      content: Zenmux, API, documentation, generate, content
+---
+
 # Google Vertex AI API: Generate Content
 
 ZenMux supports the Google Vertex AI API using the Generative AI SDK. For detailed request parameters and response structures, see the [Google Vertex AI official documentation](https://cloud.google.com/vertex-ai/generative-ai/docs/model-reference/inference).

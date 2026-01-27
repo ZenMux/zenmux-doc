@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: 简介
+  - - meta
+    - name: keywords
+      content: Zenmux, about, intro, OpenAI, Anthropic, Claude, API
+---
+
 # 简介
 
 ## ZenMux 概述

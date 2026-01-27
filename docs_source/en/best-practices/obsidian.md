@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: Guide to Using Obsidian Copilot via ZenMux
+  - - meta
+    - name: keywords
+      content: Zenmux, best practices, integration, obsidian, OpenAI, API
+---
+
 # Guide to Using Obsidian Copilot via ZenMux
 
 Obsidian Copilot is a powerful AI assistant plugin. Through its integration with ZenMux, you can use multiple advanced AI models within your Obsidian notes for a smarter writing and thinking experience.

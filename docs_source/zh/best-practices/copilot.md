@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: 通过 ZenMux 使用 VS Code Copilot 指南
+  - - meta
+    - name: keywords
+      content: Zenmux, best practices, integration, copilot, API
+---
+
 # 通过 ZenMux 使用 VS Code Copilot 指南
 
 ## 概述

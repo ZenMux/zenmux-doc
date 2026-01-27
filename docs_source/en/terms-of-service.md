@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: ZenMux User Agreement
+  - - meta
+    - name: keywords
+      content: Zenmux, terms, service, OpenAI, Anthropic, Claude, GPT
+---
+
 # ZenMux User Agreement
 
 Last updated: 9/28/2025

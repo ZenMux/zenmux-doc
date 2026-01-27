@@ -18,6 +18,13 @@ canonical-url: 'https://zenmux.ai/docs/api-reference/overview'
 'twitter:site': '@OpenRouterAI'
 noindex: false
 nofollow: false
+head:
+  - - meta
+    - name: description
+      content: OpenRouter's request and response schemas are very similar to the OpenAI Chat API, with a few small differences. At a high level, **OpenRouter normali...
+  - - meta
+    - name: keywords
+      content: Zenmux, API, documentation, overview, OpenAI, GPT
 ---
 
 OpenRouter's request and response schemas are very similar to the OpenAI Chat API, with a few small differences. At a high level, **OpenRouter normalizes the schema across models and providers** so you only need to learn one.

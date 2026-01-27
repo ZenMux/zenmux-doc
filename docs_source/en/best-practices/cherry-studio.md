@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: Guide to Using Cherry Studio via ZenMux
+  - - meta
+    - name: keywords
+      content: Zenmux, best practices, integration, cherry, studio, OpenAI, API
+---
+
 # Guide to Using Cherry Studio via ZenMux
 
 Cherry Studio is an elegant cross-platform AI desktop client that supports multiple mainstream large language model services. Through integration with ZenMux, you can access the extensive model catalog aggregated on the ZenMux platform within Cherry Studio, enjoying more flexible model selection and better pricing.

@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: Pricing and Fees
+  - - meta
+    - name: keywords
+      content: Zenmux, about, pricing, and, cost, Anthropic, Claude, API
+---
+
 # Pricing and Fees
 
 ZenMux uses a transparent billing system to ensure every call is precisely measured and billed. Pricing varies by model, and the same model may be priced differently across providers.

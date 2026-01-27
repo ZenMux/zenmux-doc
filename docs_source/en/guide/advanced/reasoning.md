@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: Reasoning Models
+  - - meta
+    - name: keywords
+      content: Zenmux, guide, tutorial, reasoning, OpenAI, API
+---
+
 # Reasoning Models
 
 ZenMux provides fine-grained control over model reasoning behavior in the Create Chat Completion endpoint. With the two configuration options, `reasoning_effort` and `reasoning`, you can flexibly adjust reasoning depth and resource allocation based on task complexity.

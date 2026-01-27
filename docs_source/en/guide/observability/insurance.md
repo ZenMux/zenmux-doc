@@ -1,3 +1,13 @@
+---
+head:
+  - - meta
+    - name: description
+      content: **Insurance Compensation**
+  - - meta
+    - name: keywords
+      content: Zenmux, guide, tutorial, insurance, API
+---
+
 # **Insurance Compensation**
 
 ZenMux provides a comprehensive insurance compensation system to help you monitor and analyze compensation cases resulting from service anomalies or performance issues in real-time. You can view aggregated compensation data, statistical charts categorized by type and model, as well as detailed compensation records, enabling you to better understand service performance and optimize cost control.
