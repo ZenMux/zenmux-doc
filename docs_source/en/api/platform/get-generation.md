@@ -1,6 +1,6 @@
 ---
 pageClass: api-page
-title: Get Generation
+title: API
 ---
 
 # Get generation
@@ -9,27 +9,41 @@ title: Get Generation
 GET https://zenmux.ai/api/v1/generation?id=<generation_id>
 ```
 
-The Get generation endpoint is used to retrieve generation details, such as usage and cost.
+The Get generation endpoint is used to query generation details, such as usage and cost.
+
+::: tip
+This endpoint supports querying generation details for all API protocols, including OpenAI Chat Completions, OpenAI Responses, Anthropic, and Vertex AI.
+:::
 
 ## Request params
 
 ### generate_id `string` <font color="red">Required</font>
 
-The generation id returned by the [Create Chat Completion](../openai/create-chat-completion.md) endpoint.
+The generation ID returned by the ZenMux API, which you can obtain from the following endpoints:
+
+- [Create Chat Completion](../openai/create-chat-completion.md) - OpenAI Chat Completions protocol
+- [Create a Model Response](../openai/openai-responses.md) - OpenAI Responses protocol
+- [Create Messages](../anthropic/create-messages-new.md) - Anthropic protocol
+- [Generate Content](../vertexai/generate-content.md) - Vertex AI protocol
 
 ## Returns
 
 ### api `string`
 
-The API type, e.g. `chat.completions`.
+The API type. Depending on the protocol used, the possible values are:
+
+- `chat.completions` - OpenAI Chat Completions protocol
+- `responses` - OpenAI Responses protocol
+- `messages` - Anthropic protocol
+- `generateContent` - Vertex AI protocol
 
 ### generationId `string`
 
-The current generation id.
+The current generation ID.
 
 ### model `string`
 
-The model ID.
+Model ID.
 
 ### createAt `string`
 
@@ -45,14 +59,14 @@ Time to first token, in milliseconds.
 
 ### nativeTokens `object`
 
-Usage details consumed by this inference, including the following fields:
+Usage details for this inference, including the following fields:
 
 - `completion_tokens` `integer` - Number of tokens consumed by the completion
 - `prompt_tokens` `integer` - Number of tokens consumed by the prompt
 - `total_tokens` `integer` - Total number of tokens
-- `completion_tokens_details` `object` - Detailed breakdown for completion tokens
+- `completion_tokens_details` `object` - Detailed completion token information
   - `reasoning_tokens` `integer` - Number of tokens consumed by reasoning
-- `prompt_tokens_details` `object` - Detailed breakdown for prompt tokens
+- `prompt_tokens_details` `object` - Detailed prompt token information
   - `cached_tokens` `integer` - Number of cached tokens
 
 ### streamed `boolean`
@@ -74,11 +88,11 @@ Billing response details, including the following fields:
 - `billAmount` `number` - Billed amount
 - `discountAmount` `number` - Discount amount
 - `originAmount` `number` - Original amount
-- `priceVersion` `string` - Pricing version
-- `ratingDetails` `array` - Array of billing details; each item includes:
+- `priceVersion` `string` - Price version
+- `ratingDetails` `array` - Billing details array. Each item includes:
   - `billAmount` `number` - Billed amount
   - `discountAmount` `number` - Discount amount
-  - `feeItemCode` `string` - Fee item code (e.g. `completion`, `prompt`)
+  - `feeItemCode` `string` - Fee item code (e.g., `completion`, `prompt`)
   - `originAmount` `number` - Original amount
   - `rate` `number` - Rate
 
