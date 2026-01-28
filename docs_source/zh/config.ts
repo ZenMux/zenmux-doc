@@ -59,6 +59,7 @@ export default defineLoacaleConfig({
               { text: "推理模型", link: "/zh/guide/advanced/reasoning" },
               { text: "提示词缓存", link: "/zh/guide/advanced/prompt-cache" },
               { text: "图片生成", link: "/zh/guide/advanced/image-generation" },
+              { text: "网络搜索", link: "/zh/guide/advanced/web-search" },
             ],
           },
           {

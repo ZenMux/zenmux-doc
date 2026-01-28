@@ -82,11 +82,11 @@ console.log(
 // 清理 Markdown 格式标记
 function cleanMarkdown(text) {
   return text
-    .replace(/\*\*(.+?)\*\*/g, '$1')  // 移除粗体
-    .replace(/\*(.+?)\*/g, '$1')      // 移除斜体
-    .replace(/`(.+?)`/g, '$1')        // 移除代码标记
-    .replace(/\[(.+?)\]\(.+?\)/g, '$1') // 移除链接，保留文本
-    .replace(/#/g, '')                // 移除标题标记
+    .replace(/\*\*(.+?)\*\*/g, "$1") // 移除粗体
+    .replace(/\*(.+?)\*/g, "$1") // 移除斜体
+    .replace(/`(.+?)`/g, "$1") // 移除代码标记
+    .replace(/\[(.+?)\]\(.+?\)/g, "$1") // 移除链接，保留文本
+    .replace(/#/g, "") // 移除标题标记
     .trim();
 }
 
