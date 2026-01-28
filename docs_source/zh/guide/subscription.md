@@ -14,11 +14,22 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 
 ## 什么是 Flows?
 
-**Flow** 是 ZenMux 订阅制中使用的计量单位,综合了 token 使用量和请求次数。为了便于理解:
+**Flow** 是 ZenMux 订阅制中使用的计量单位，综合了 token 使用量和请求次数。
 
-- **1 Flow ≈ 1 次 Claude Sonnet 4.5 coding 场景的请求 或者 10 次 Claude Haiku 4.5 Coding场景的请求**， Coding典型场景为30000 Token 输入 + 1000 Token输出。
+### 📖 Pro 套餐（$20/月，50 Flows/5h）实际能做什么？
 
-这种计量方式确保了不同模型和使用场景下的公平计费,让您更清晰地了解订阅额度的使用情况。
+| 使用场景        | 模型示例             | 每 5 小时用量            | 每月用量      |
+| --------------- | -------------------- | ------------------------ | ------------- |
+| **生图场景**    | NanoBananaPro 等     | 2K 分辨率 16:9，~30 张   | ~2000 张      |
+| **Coding 场景** | Claude Sonnet 4.5 等 | 完成 5~10 个 Coding Task | ~500+ 个 Task |
+| **对话场景**    | GPT-5.2 等           | ~200 次对话              | ~1.2 万次对话 |
+
+::: tip 💡 说明
+
+- Coding 场景：Task 复杂度不同会直接影响模型 Token 消耗，导致 Flow 消耗差异较大
+- 对话场景：按 5000 Tokens 输入 + 1000 Tokens 输出计算
+- 不同模型根据单价可等比例换算
+  :::
 
 ## 为什么选择 Builder Plan?
 
@@ -26,27 +37,34 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 
 ### 💡 核心优势
 
-| 痛点场景 | 订阅制解决方案 |
-|---------|--------------|
-| **Vibe Coding 时担心烧钱** | 固定 $20/月起,放开手脚编程 |
-| **学习新技术成本太高** | 提供 5-10 倍价值杠杆,低成本探索 |
-| **多平台账号管理混乱** | 一个 API Key 调用所有模型 |
-| **个人项目预算有限** | Pro 套餐等值 $100+ API 调用额度 |
+| 痛点场景                   | 订阅制解决方案                   |
+| -------------------------- | -------------------------------- |
+| **Vibe Coding 时担心烧钱** | 固定 $20/月起，放开手脚编程      |
+| **学习新技术成本太高**     | 低成本探索各类 AI 模型           |
+| **多平台账号管理混乱**     | 一个 API Key 调用所有模型        |
+| **需求场景多样**           | Coding + 生图 + 对话，全场景覆盖 |
 
 </div>
 
 ### 🚀 三大核心价值
 
-1. **全明星模型矩阵**
-   一个订阅,同时调度全球顶尖模型(Gemini 2.5 Pro、GPT-5 系列、Claude Opus/Sonnet 4 系列等)。最新顶尖模型第一时间使用,像拥有全网最强算力协同作战。
+1. **全场景模型覆盖**
 
-2. **超值价格杠杆**
-   - **Pro 套餐** ($20/月):提供 50 Flows/5h,约等价于 $100 的 API 调用额度
-   - **Max 套餐** ($100/月):300 Flows/5h,是 Pro 的 6 倍用量
-   - **Ultra 套餐** ($200/月):1200 Flows/5h,是 Pro 的 24 倍用量
+   Builder Plan 已覆盖三大模型类型，无论你是开发者、设计师、产品经理还是运营，一个订阅覆盖 Vibe Builder 的全场景需求：
+
+   | 模型类型        | 代表模型                                                   |
+   | --------------- | ---------------------------------------------------------- |
+   | **Coding 模型** | Claude Opus 4.5 / GPT-5.2-Codex / Gemini-3-Pro-Preview ... |
+   | **生图模型**    | NanoBananaPro / GPT-Image-1.5 ...（陆续上线）              |
+   | **生文模型**    | GPT-5.2 / Qwen3-Max-Thinking / ERNIE 5.0 ...               |
+
+2. **全明星模型矩阵**
+
+   一个订阅，同时调度全球顶尖模型（Gemini 2.5 Pro、GPT-5 系列、Claude Opus/Sonnet 4 系列等）。最新顶尖模型第一时间使用，像拥有全网最强算力协同作战。
 
 3. **IDE 无缝适配**
-   拒绝工具绑定,一套订阅 API Key 搞定 Claude Code、Cursor、CodeX 等各类社区主流开发工具。
+
+   拒绝工具绑定，一套订阅 API Key 搞定 Claude Code、Cursor、CodeX 等各类社区主流开发工具。
 
 ## 套餐对比
 
@@ -55,6 +73,7 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 ### Free - 免费体验
 
 ---
+
 <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/HkD8Bgz/dingyuezhi-freetaocan.png" alt="subscription-free" style="width:300px; border-radius:8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 
 **支持的模型:**
@@ -75,6 +94,7 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 ### Pro - 开发者首选
 
 ---
+
 <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/oI2koKx/dingyuezhi-protaocan.png" alt="subscription-free" style="width:300px; border-radius:8px;">
 
 **支持的模型：** 共 **70+** 个高级模型，按厂商整理如下（`模型Slug` - 说明）
@@ -83,180 +103,191 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 
 **Anthropic Claude 系列**
 
-- `anthropic/claude-opus-4.5` - Claude Opus 4.5  
-- `anthropic/claude-sonnet-4.5` - Claude Sonnet 4.5  
-- `anthropic/claude-haiku-4.5` - Claude Haiku 4.5  
+- `anthropic/claude-opus-4.5` - Claude Opus 4.5
+- `anthropic/claude-sonnet-4.5` - Claude Sonnet 4.5
+- `anthropic/claude-haiku-4.5` - Claude Haiku 4.5
 - `anthropic/claude-opus-4.1` - Claude Opus 4.1
 - `anthropic/claude-opus-4` - Claude Opus 4
-- `anthropic/claude-3.5-sonnet` - Claude 3.5 Sonnet  
-- `anthropic/claude-3.5-haiku` - Claude 3.5 Haiku  
-- `anthropic/claude-3.7-sonnet` - Claude 3.7 Sonnet  
-- `anthropic/claude-sonnet-4` - Claude Sonnet 4  
+- `anthropic/claude-3.5-sonnet` - Claude 3.5 Sonnet
+- `anthropic/claude-3.5-haiku` - Claude 3.5 Haiku
+- `anthropic/claude-3.7-sonnet` - Claude 3.7 Sonnet
+- `anthropic/claude-sonnet-4` - Claude Sonnet 4
 
 ---
 
 **OpenAI GPT 系列**
 
-- `openai/gpt-5.2` - GPT‑5.2  
-- `openai/gpt-5.2-chat` - GPT‑5.2 Chat  
-- `openai/gpt-5.2-codex` - GPT‑5.2 Codex  
-- `openai/gpt-5` - GPT‑5  
-- `openai/gpt-5-chat` - GPT‑5 Chat  
-- `openai/gpt-5-codex` - GPT‑5 Codex  
-- `openai/gpt-5-mini` - GPT‑5 Mini  
-- `openai/gpt-5-nano` - GPT‑5 Nano  
-- `openai/gpt-5.1` - GPT‑5.1  
-- `openai/gpt-5.1-chat` - GPT‑5.1 Chat  
-- `openai/gpt-5.1-codex` - GPT‑5.1 Codex  
-- `openai/gpt-5.1-codex-mini` - GPT‑5.1 Codex Mini  
-- `openai/gpt-4.1` - GPT‑4.1  
-- `openai/gpt-4.1-mini` - GPT‑4.1 Mini  
-- `openai/gpt-4.1-nano` - GPT‑4.1 Nano  
-- `openai/gpt-4o` - GPT‑4o  
-- `openai/gpt-4o-mini` - GPT‑4o Mini  
-- `openai/o4-mini` - o4-mini  
+- `openai/gpt-5.2` - GPT‑5.2
+- `openai/gpt-5.2-chat` - GPT‑5.2 Chat
+- `openai/gpt-5.2-codex` - GPT‑5.2 Codex
+- `openai/gpt-5` - GPT‑5
+- `openai/gpt-5-chat` - GPT‑5 Chat
+- `openai/gpt-5-codex` - GPT‑5 Codex
+- `openai/gpt-5-mini` - GPT‑5 Mini
+- `openai/gpt-5-nano` - GPT‑5 Nano
+- `openai/gpt-5.1` - GPT‑5.1
+- `openai/gpt-5.1-chat` - GPT‑5.1 Chat
+- `openai/gpt-5.1-codex` - GPT‑5.1 Codex
+- `openai/gpt-5.1-codex-mini` - GPT‑5.1 Codex Mini
+- `openai/gpt-4.1` - GPT‑4.1
+- `openai/gpt-4.1-mini` - GPT‑4.1 Mini
+- `openai/gpt-4.1-nano` - GPT‑4.1 Nano
+- `openai/gpt-4o` - GPT‑4o
+- `openai/gpt-4o-mini` - GPT‑4o Mini
+- `openai/o4-mini` - o4-mini
 
 ---
 
 **Google Gemini / Gemma 系列**
 
-- `google/gemini-2.0-flash` - Gemini 2.0 Flash  
-- `google/gemini-2.0-flash-lite-001` - Gemini 2.0 Flash Lite  
-- `google/gemini-2.5-flash` - Gemini 2.5 Flash  
-- `google/gemini-2.5-flash-lite` - Gemini 2.5 Flash Lite  
-- `google/gemini-2.5-flash-image` - Gemini 2.5 Flash Image  
-- `google/gemini-2.5-pro` - Gemini 2.5 Pro  
-- `google/gemini-3-flash-preview` - Gemini 3 Flash Preview  
-- `google/gemini-3-pro-preview` - Gemini 3 Pro Preview  
-- `google/gemini-3-pro-image-preview` - Gemini 3 Pro Image Preview  
-- `google/gemma-3-12b-it` - Gemma 3 12B IT  
+- `google/gemini-2.0-flash` - Gemini 2.0 Flash
+- `google/gemini-2.0-flash-lite-001` - Gemini 2.0 Flash Lite
+- `google/gemini-2.5-flash` - Gemini 2.5 Flash
+- `google/gemini-2.5-flash-lite` - Gemini 2.5 Flash Lite
+- `google/gemini-2.5-flash-image` - Gemini 2.5 Flash Image
+- `google/gemini-2.5-pro` - Gemini 2.5 Pro
+- `google/gemini-3-flash-preview` - Gemini 3 Flash Preview
+- `google/gemini-3-pro-preview` - Gemini 3 Pro Preview
+- `google/gemini-3-pro-image-preview` - Gemini 3 Pro Image Preview
+- `google/gemma-3-12b-it` - Gemma 3 12B IT
 
 ---
 
 **xAI Grok 系列**
 
-- `x-ai/grok-4` - Grok 4  
-- `x-ai/grok-4-fast` - Grok 4 Fast  
-- `x-ai/grok-4-fast-non-reasoning` - Grok 4 Fast Non‑Reasoning  
-- `x-ai/grok-4.1-fast` - Grok 4.1 Fast  
-- `x-ai/grok-4.1-fast-non-reasoning` - Grok 4.1 Fast Non‑Reasoning  
-- `x-ai/grok-code-fast-1` - Grok Code Fast 1  
+- `x-ai/grok-4` - Grok 4
+- `x-ai/grok-4-fast` - Grok 4 Fast
+- `x-ai/grok-4-fast-non-reasoning` - Grok 4 Fast Non‑Reasoning
+- `x-ai/grok-4.1-fast` - Grok 4.1 Fast
+- `x-ai/grok-4.1-fast-non-reasoning` - Grok 4.1 Fast Non‑Reasoning
+- `x-ai/grok-code-fast-1` - Grok Code Fast 1
 
 ---
 
 **Z.AI GLM 系列**
 
-- `z-ai/glm-4.6v` - GLM 4.6V  
-- `z-ai/glm-4.6v-flash` - GLM 4.6V Flash  
-- `z-ai/glm-4.7` - GLM 4.7  
-- `z-ai/glm-4.5` - GLM 4.5  
-- `z-ai/glm-4.5-air` - GLM 4.5 Air  
-- `z-ai/glm-4.6` - GLM 4.6  
+- `z-ai/glm-4.6v` - GLM 4.6V
+- `z-ai/glm-4.6v-flash` - GLM 4.6V Flash
+- `z-ai/glm-4.7` - GLM 4.7
+- `z-ai/glm-4.5` - GLM 4.5
+- `z-ai/glm-4.5-air` - GLM 4.5 Air
+- `z-ai/glm-4.6` - GLM 4.6
 
 ---
 
 **DeepSeek 系列**
 
-- `deepseek/deepseek-chat` - DeepSeek Chat  
-- `deepseek/deepseek-chat-v3.1` - DeepSeek Chat V3.1  
-- `deepseek/deepseek-v3.2` - DeepSeek V3.2  
-- `deepseek/deepseek-v3.2-exp` - DeepSeek V3.2 Exp  
-- `deepseek/deepseek-r1-0528` - DeepSeek R1 0528  
-- `deepseek/deepseek-reasoner` - DeepSeek Reasoner  
+- `deepseek/deepseek-chat` - DeepSeek Chat
+- `deepseek/deepseek-chat-v3.1` - DeepSeek Chat V3.1
+- `deepseek/deepseek-v3.2` - DeepSeek V3.2
+- `deepseek/deepseek-v3.2-exp` - DeepSeek V3.2 Exp
+- `deepseek/deepseek-r1-0528` - DeepSeek R1 0528
+- `deepseek/deepseek-reasoner` - DeepSeek Reasoner
 
 ---
 
 **Qwen / 通义千问 系列**
 
-- `qwen/qwen3-coder` - Qwen3 Coder  
-- `qwen/qwen3-coder-plus` - Qwen3 Coder Plus  
-- `qwen/qwen3-max` - Qwen3 Max  
-- `qwen/qwen3-max-preview` - Qwen3 Max Preview  
-- `qwen/qwen3-vl-plus` - Qwen3 VL Plus  
-- `qwen/qwen3-14b` - Qwen3 14B  
-- `qwen/qwen3-235b-a22b-2507` - Qwen3 235B A22B 2507  
-- `qwen/qwen3-235b-a22b-thinking-2507` - Qwen3 235B A22B Thinking 2507  
+- `qwen/qwen3-coder` - Qwen3 Coder
+- `qwen/qwen3-coder-plus` - Qwen3 Coder Plus
+- `qwen/qwen3-max` - Qwen3 Max
+- `qwen/qwen3-max-preview` - Qwen3 Max Preview
+- `qwen/qwen3-vl-plus` - Qwen3 VL Plus
+- `qwen/qwen3-14b` - Qwen3 14B
+- `qwen/qwen3-235b-a22b-2507` - Qwen3 235B A22B 2507
+- `qwen/qwen3-235b-a22b-thinking-2507` - Qwen3 235B A22B Thinking 2507
 
 ---
 
 **Moonshot / Kimi 系列**
 
-- `moonshotai/kimi-k2-thinking` - Kimi K2 Thinking  
+- `moonshotai/kimi-k2.5` - Kimi K2.5
+- `moonshotai/kimi-k2-thinking` - Kimi K2 Thinking
 - `moonshotai/kimi-k2-thinking-turbo` - Kimi K2 Thinking Turbo
-- `moonshotai/kimi-k2-0711` - Kimi K2 0711  
-- `moonshotai/kimi-k2-0905` - Kimi K2 0905  
+- `moonshotai/kimi-k2-0711` - Kimi K2 0711
+- `moonshotai/kimi-k2-0905` - Kimi K2 0905
 
 ---
 
 **Baidu ERNIE 系列**
 
-- `baidu/ernie-5.0-thinking-preview` - ERNIE 5.0 Thinking Preview  
-- `baidu/ernie-x1.1-preview` - ERNIE X1.1 Preview  
+- `baidu/ernie-5.0-thinking-preview` - ERNIE 5.0 Thinking Preview
+- `baidu/ernie-x1.1-preview` - ERNIE X1.1 Preview
 
 ---
 
 **InclusionAI 系列**
 
-- `inclusionai/ling-1t` - Ling‑1T  
-- `inclusionai/ling-flash-2.0` - Ling Flash 2.0  
-- `inclusionai/ling-mini-2.0` - Ling Mini 2.0  
-- `inclusionai/llada2.0-flash-cap` - LLADA 2.0 Flash Cap  
-- `inclusionai/ming-flash-omni-preview` - Ming Flash Omni Preview  
-- `inclusionai/ring-1t` - Ring‑1T  
-- `inclusionai/ring-flash-2.0` - Ring Flash 2.0  
-- `inclusionai/ring-mini-2.0` - Ring Mini 2.0  
+- `inclusionai/ling-1t` - Ling‑1T
+- `inclusionai/ling-flash-2.0` - Ling Flash 2.0
+- `inclusionai/ling-mini-2.0` - Ling Mini 2.0
+- `inclusionai/llada2.0-flash-cap` - LLADA 2.0 Flash Cap
+- `inclusionai/ming-flash-omni-preview` - Ming Flash Omni Preview
+- `inclusionai/ring-1t` - Ring‑1T
+- `inclusionai/ring-flash-2.0` - Ring Flash 2.0
+- `inclusionai/ring-mini-2.0` - Ring Mini 2.0
 
 ---
 
 **Meta Llama 系列**
 
-- `meta/llama-3.3-70b-instruct` - Llama 3.3 70B Instruct  
-- `meta/llama-4-scout-17b-16e-instruct` - Llama 4 Scout 17B 16E Instruct  
+- `meta/llama-3.3-70b-instruct` - Llama 3.3 70B Instruct
+- `meta/llama-4-scout-17b-16e-instruct` - Llama 4 Scout 17B 16E Instruct
 
 ---
 
 **Mistral 系列**
 
-- `mistralai/mistral-large-2512` - Mistral Large 2512  
+- `mistralai/mistral-large-2512` - Mistral Large 2512
 
 ---
 
 **MiniMax 系列**
 
-- `minimax/minimax-m2` - MiniMax M2  
-- `minimax/minimax-m2.1` - MiniMax M2.1  
+- `minimax/minimax-m2-her` - MiniMax M2 her
+- `minimax/minimax-m2.1` - MiniMax M2.1
+- `minimax/minimax-m2` - MiniMax M2
 
 ---
 
 **快手 Kuaishou**
 
-- `kuaishou/kat-coder-pro-v1` - KAT‑Coder‑Pro‑V1  
+- `kuaishou/kat-coder-pro-v1` - KAT‑Coder‑Pro‑V1
 
 ---
 
 **阶跃 Stepfun**
 
-- `stepfun/step-3` - Step 3  
+- `stepfun/step-3` - Step 3
 
 ---
 
 **字节 Volcengine Doubao**
 
-- `volcengine/doubao-seed-1-6-vision` - Doubao Seed 1.6 Vision  
-- `volcengine/doubao-seed-1.8` - Doubao Seed 1.8  
-- `volcengine/doubao-seed-code` - Doubao Seed Code  
+- `volcengine/doubao-seed-1-6-vision` - Doubao Seed 1.6 Vision
+- `volcengine/doubao-seed-1.8` - Doubao Seed 1.8
+- `volcengine/doubao-seed-code` - Doubao Seed Code
 
 ---
 
 **小米 Xiaomi**
 
-- `xiaomi/mimo-v2-flash` - MiMo V2 Flash  
+- `xiaomi/mimo-v2-flash` - MiMo V2 Flash
+
+---
+
+**生图模型（Image Generation）**
+
+- `nanobanana/nanobanana-pro` - NanoBananaPro（2K 分辨率，支持 16:9 等多种比例）
+- `openai/gpt-image-1.5` - GPT-Image-1.5（即将上线）
+- `tencent/hunyuan-image3` - Hunyuan-Image3（即将上线）
 
 ---
 
 ### Max - 高强度开发
 
 ---
+
 <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/8PXHCx9/dingyuezhi-maxtaocan.png" alt="subscription-free" style="width:300px; border-radius:8px;">
 
 **额外支持的超旗舰模型:**
@@ -269,6 +300,7 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 ### Ultra - 专业级旗舰
 
 ---
+
 <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/aJFjhWL/dingyuezhi-ultrataocan.png" alt="subscription-free" style="width:300px; border-radius:8px;">
 
 **支持模型:** 与 Max 套餐相同,包含所有高级模型和超旗舰模型。
@@ -308,7 +340,7 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 - 更稳定的服务质量
 - 更灵活的扩展能力
 - 专业的商业支持
-:::
+  :::
 
 ## 如何订阅
 
@@ -445,14 +477,14 @@ Studio Chat 和 API 调用使用相同的订阅配额池。在 Studio Chat 中�
 
 ### 订阅制和按量付费有什么区别?
 
-| 特性 | 订阅制 (Builder Plan) | 按量付费 (Pay-As-You-Go) |
-|-----|---------------------|----------------------|
-| **计费方式** | 固定月费 | 按实际使用量计费 |
-| **适用场景** | 个人开发、学习 | 生产环境、商业应用 |
-| **费用可预测性** | ✅ 高(固定月费) | ⚠️ 中(随用量波动) |
-| **速率限制** | 10-15 RPM | 更高,支持自定义 |
-| **SLA 保障** | 标准 | 更高 |
-| **价格杠杆** | ✅ 5-10 倍 | 标准 API 定价 |
+| 特性             | 订阅制 (Builder Plan) | 按量付费 (Pay-As-You-Go) |
+| ---------------- | --------------------- | ------------------------ |
+| **计费方式**     | 固定月费              | 按实际使用量计费         |
+| **适用场景**     | 个人开发、学习        | 生产环境、商业应用       |
+| **费用可预测性** | ✅ 高(固定月费)        | ⚠️ 中(随用量波动)         |
+| **速率限制**     | 10-15 RPM             | 更高,支持自定义          |
+| **SLA 保障**     | 标准                  | 更高                     |
+| **价格杠杆**     | ✅ 5-10 倍             | 标准 API 定价            |
 
 ### 什么时候配额会重置?
 
