@@ -70,17 +70,18 @@ https://docs.zenmux.ai/guide/pay-as-you-go
 
 ## Method 1: Use the ZenMux PR
 
-The easiest way to use ZenMux with Moltbot is to use the pending ZenMux integration PR, which provides full auto-discovery of ZenMux models.
+The easiest way to use ZenMux with Moltbot is to use the pending [ZenMux integration PR #3305](https://github.com/moltbot/moltbot/pull/3305), which provides full auto-discovery of ZenMux models.
 
-### Step 1: Clone and Checkout the PR Branch
+### Step 1: Clone and Checkout the PR
 
 ```bash
 # Clone the Moltbot repository
 git clone https://github.com/moltbot/moltbot.git
 cd moltbot
 
-# Checkout the ZenMux feature branch
-git checkout feat/zenmux
+# Checkout PR #3305 (ZenMux integration)
+git fetch origin pull/3305/head:zenmux-integration
+git checkout zenmux-integration
 
 # Install dependencies
 pnpm install
@@ -322,7 +323,7 @@ moltbot agent --local --agent main --model zenmux/deepseek/deepseek-chat --messa
 **Solutions**:
 
 1. **For Method 1 (PR branch)**:
-   - Ensure you're on the `feat/zenmux` branch
+   - Ensure you're on the `zenmux-integration` branch (checked out from PR #3305)
    - Run `pnpm build` after pulling the latest changes
 
 2. **For Method 2 (Manual config)**:
