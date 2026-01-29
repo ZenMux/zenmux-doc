@@ -13,7 +13,7 @@ head:
 # Create a Message
 
 ```
-POST https://zenmux.ai/api/anthropic
+POST https://zenmux.ai/api/anthropic/v1/messages
 ```
 
 ZenMux 支持 Anthropic API, 使用方式见 API 调用示例。
@@ -129,7 +129,6 @@ Message = {
 - citations `TextCitationParam[]` <font color="gray">可选</font>  
   用于**标注文本引用来源**（典型场景：把 PDF / 文本文档 / 内容文档作为 document 块输入后，标注「这一段回答来自哪一页 / 哪一段 / 哪个搜索结果」）。  
   `TextCitationParam` 是以下几种之一（取决于被引用内容的类型）：
-
   - **char_location：按字符区间引用纯文本或内容文档**
 
     ```ts
@@ -144,7 +143,6 @@ Message = {
     ```
 
     字段说明：
-
     - `type` `string` <font color="red">必选</font>  
       固定为 `"char_location"`，表示该引用是通过**字符位置区间**来定位的。
 
@@ -179,7 +177,6 @@ Message = {
     ```
 
     字段说明：
-
     - `type` `string` <font color="red">必选</font>  
       固定为 `"page_location"`，表示引用位置以**页号区间**来描述。
 
@@ -217,7 +214,6 @@ Message = {
     用于引用以「多内容块形式」提供的文档（例如一个 `document` 的 `source.type = "content"`，内部包含多个 `text`/`image` 等块）。
 
     字段说明：
-
     - `type` `string` <font color="red">必选</font>  
       固定为 `"content_block_location"`。
 
@@ -255,7 +251,6 @@ Message = {
     当启用了 Anthropic 的 Web Search 工具（server tool），Claude 从某个网页引用内容时使用。
 
     字段说明：
-
     - `type` `string` <font color="red">必选</font>  
       固定为 `"web_search_result_location"`，表示本引用来自 Web 搜索结果。
 
@@ -289,7 +284,6 @@ Message = {
     当你通过 `type: "search_result"` 的内容块向 Claude 提供**自有搜索 / RAG 结果**并开启 citations 时，Claude 在回答中引用这些结果会使用该类型。
 
     字段说明：
-
     - `type` `string` <font color="red">必选</font>  
       固定为 `"search_result_location"`，表示该引用来自你提供的 SearchResultBlock。
 
@@ -298,7 +292,6 @@ Message = {
 
     - `source` `string | null` <font color="red">必选</font>  
       搜索结果来源标识：
-
       - 通常是一个 URL（例如知识库文档地址）；
       - 也可以是你自定义的字符串 ID；
       - 若你在原始 `search_result` 中未提供，则可能为 `null`。
@@ -377,6 +370,7 @@ Message = {
     data: string
   }
   ```
+
   - PlainTextSource：整段纯文本作为文档
     ```ts
     {
@@ -482,7 +476,6 @@ Message = {
 
 - name `string` <font color="red">必选</font>  
   要调用的服务器端工具名称，例如：
-
   - `"web_search"`：Web 搜索工具
 
 - input `object` <font color="gray">可选</font>  
@@ -550,8 +543,8 @@ Message = {
   "tool_use_id": "servertoolu_a93jad",
   "content": {
     "type": "web_search_tool_result_error",
-    "error_code": "max_uses_exceeded"
-  }
+    "error_code": "max_uses_exceeded",
+  },
 }
 ```
 
@@ -628,7 +621,6 @@ Message = {
 
 - source `string` <font color="gray">可选</font>  
   搜索结果的来源标识：
-
   - 通常是一个 URL（例如知识库文档地址、内部文档查看链接）；
   - 也可以是你自定义的字符串 ID（如文档主键 ID）；
   - 若不方便提供，则可以省略或设为 `null`。  
@@ -636,7 +628,6 @@ Message = {
 
 - title `string` <font color="gray">可选</font>  
   搜索结果的标题：
-
   - 如「API 参考：身份验证」「员工手册 · 请假规则」；
   - 若没有合适标题可用，可以为 `null`。  
     在 citations 中会直接用作引用标题，方便 UI 呈现。
@@ -679,7 +670,6 @@ Message = {
 
 - type `string` <font color="red">必选</font>  
   固定为 `"redacted_thinking"`，表示这是一个**脱敏后的思考块**。
-
   - 与 `type: "thinking"` 的区别在于：
     - `thinking`：返回的是可读的自然语言推理文本 + 签名；
     - `redacted_thinking`：返回的是**无法直接解读的加密数据**，不包含可读推理内容。
@@ -1055,7 +1045,6 @@ Claude 的回复内容数组，元素类型与前文 ContentBlock 描述一致�
 
 - **web_search_requests** `number`
   本次请求中，**实际触发 Web Search 工具调用的次数**。
-
   - 每当 Claude 生成一个 `type: "server_tool_use"` 且 `name: "web_search"` 的调用，并由后端成功执行，  
     就会在这里计数一次；
   - 可用于统计「本次回答为获取实时信息，调用了几次 Web 搜索」。
@@ -1412,7 +1401,7 @@ data: { ...JSON 对象... }
 
 :::
 
-::: api-request POST /api/anthropic
+::: api-request POST /api/anthropic/v1/messages
 
 ```TypeScript
 import Anthropic from '@anthropic-ai/sdk';
@@ -1422,7 +1411,7 @@ const anthropic = new Anthropic({
   // 2. 替换为你从 ZenMux 用户控制台获取的 API Key
   apiKey: '<你的 ZENMUX_API_KEY>', // [!code highlight]
   // 3. 将基础 URL 指向 ZenMux 端点
-  baseURL: "https://zenmux.ai/api/anthropic", // [!code highlight]
+  baseURL: "https://zenmux.ai/api/anthropic/v1/messages", // [!code highlight]
 });
 
 async function main () {
@@ -1445,7 +1434,7 @@ client = anthropic.Anthropic(
     # 替换为你从 ZenMux 用户控制台获取的 API Key
     api_key="<你的 ZENMUX_API_KEY>", # [!code highlight]
     # 3. 将基础 URL 指向 ZenMux 端点
-    base_url="https://zenmux.ai/api/anthropic"  # [!code highlight]
+    base_url="https://zenmux.ai/api/anthropic/v1/messages"  # [!code highlight]
 )
 message = client.messages.create(
     model="anthropic/claude-sonnet-4.5",
@@ -1458,7 +1447,7 @@ print(message.content)
 ```
 
 ```cURL
-curl https://zenmux.ai/api/anthropic/v1/messages \
+curl https://zenmux.ai/api/anthropic/v1/messages/v1/messages \
      --header "x-api-key: $ZENMUX_API_KEY" \
      --header "anthropic-version: 2023-06-01" \
      --header "content-type: application/json" \

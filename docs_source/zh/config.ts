@@ -165,7 +165,7 @@ export default defineLoacaleConfig({
             items: [
               {
                 text: "Generate Content",
-                link: "/zh/api/vertexai/generate-content",
+                link: "/zh/api/vertexai/generate-content-new",
               },
               {
                 text: "List Models",
