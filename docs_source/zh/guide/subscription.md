@@ -68,13 +68,13 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 
 ## 套餐对比
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/7shxqbP/dingyuezhi-jiage2-dapingbanben.png" alt="subscription-free" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/28/iszJOqe/ss-1.png" alt="subscription-free" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 
 ### Free - 免费体验
 
 ---
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/HkD8Bgz/dingyuezhi-freetaocan.png" alt="subscription-free" style="width:300px; border-radius:8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/28/ow9Dlvg/ss-free.png" alt="subscription-free" style="width:300px; border-radius:8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 
 **支持的模型:**
 
@@ -95,7 +95,7 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 
 ---
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/oI2koKx/dingyuezhi-protaocan.png" alt="subscription-free" style="width:300px; border-radius:8px;">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/28/co3ieFF/ss-2.png" alt="subscription-free" style="width:300px; border-radius:8px;">
 
 **支持的模型：** 共 **70+** 个高级模型，按厂商整理如下（`模型Slug` - 说明）
 
@@ -288,7 +288,7 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 
 ---
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/8PXHCx9/dingyuezhi-maxtaocan.png" alt="subscription-free" style="width:300px; border-radius:8px;">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/28/VLvrYZp/ss-3.png" alt="subscription-free" style="width:300px; border-radius:8px;">
 
 **额外支持的超旗舰模型:**
 
@@ -301,7 +301,7 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 
 ---
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/aJFjhWL/dingyuezhi-ultrataocan.png" alt="subscription-free" style="width:300px; border-radius:8px;">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/28/pqFhcnQ/ss-4.png" alt="subscription-free" style="width:300px; border-radius:8px;">
 
 **支持模型:** 与 Max 套餐相同,包含所有高级模型和超旗舰模型。
 

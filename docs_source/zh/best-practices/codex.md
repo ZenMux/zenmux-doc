@@ -13,7 +13,7 @@ head:
 Codex CLI 是 OpenAI 推出的开源编程助手工具，可以在本地终端运行，能够在您选择的目录中读取、修改和运行代码。它使用 Rust 构建，速度快、效率高，并在 GitHub 上持续改进。通过与 ZenMux 的集成，您可以使用更多模型选择，而不仅仅局限于 OpenAI 官方 API。
 
 ::: info 兼容性说明
-ZenMux 完全支持 OpenAI API 协议，可以无缝集成到 Codex CLI、Cursor 等工具中。只需简单配置即可使用。
+OpenAI 已明确将 Responses 作为新一代统一接口，Chat Completions 仍可使用但不再是新项目首选；Codex 也将顺应这一方向，把 Chat Completions 视为兼容选项并逐步迁移到 Responses（本文配置即按 Responses 给出）。
 
 注意 OpenAI 协议的 base_url="https://zenmux.ai/api/v1"。
 :::
@@ -53,12 +53,13 @@ export ZENMUX_API_KEY="sk-ai-v1-xxx"  # [!code highlight]
 
 ```toml
 model_provider = "zenmux"  # [!code highlight]
-model = "openai/gpt-5-codex"  # [!code highlight]
+model = "openai/gpt-5.2-codex"  # [!code highlight]
 
 [model_providers.zenmux]  # [!code highlight]
 name = "ZenMux"  # [!code highlight]
 base_url = "https://zenmux.ai/api/v1"  # [!code highlight]
 env_key = "ZENMUX_API_KEY"  # [!code highlight]
+wire_api = "responses"  # [!code highlight]
 ```
 
 ::: tip 配置说明
@@ -67,6 +68,7 @@ env_key = "ZENMUX_API_KEY"  # [!code highlight]
 - `model`: 设置要使用的模型，可以是 ZenMux 支持的任何模型
 - `base_url`: ZenMux API 的基础 URL
 - `env_key`: 环境变量中 API Key 的名称
+- `wire_api`: 指定使用 Responses 协议（推荐）
   :::
 
 ### 直接启动使用
@@ -94,29 +96,12 @@ codex  # [!code highlight]
 
 ::: info 获取模型列表
 
-- 通过 [ZenMux 模型列表](https://zenmux.ai/models) 查看所有可用模型
-- 使用模型的 slug 名称（如 `openai/gpt-5-codex`）
+- 通过 [ZenMux 模型列表](https://zenmux.ai/models?sort=newest&supported_protocol=responses) 查看 Responses 协议可用模型
+- 使用模型的 slug 名称（如 `openai/gpt-5.2-codex`）
 - 如需指定特定供应商，请参考 [Provider Routing 文档](/zh/guide/provider-routing)
   :::
 
-下面是一些推荐使用的编程能力较强的模型：
-
-| 序号 | 模型 slug                     | 特点         |
-| ---- | ----------------------------- | ------------ |
-| 1    | `openai/gpt-5-codex`          | 专为编程优化 |
-| 2    | `openai/gpt-5`                | 通用能力强   |
-| 3    | `anthropic/claude-sonnet-4.5` | 推理能力出色 |
-| 4    | `anthropic/claude-opus-4.1`   | 复杂任务处理 |
-| 5    | `google/gemini-2.5-pro`       | 多模态支持   |
-| 6    | `x-ai/grok-code-fast-1`       | 快速响应     |
-| 7    | `x-ai/grok-4-fast`            | 高效编程     |
-| 8    | `deepseek/deepseek-chat`      | 成本效益高   |
-| 9    | `qwen/qwen3-coder-plus`       | 中文编程友好 |
-| 10   | `moonshotai/kimi-k2-0905`     | 长上下文支持 |
-| 11   | `z-ai/glm-4.6`                | 综合能力均衡 |
-| 12   | `inclusionai/ring-1t`         | 推理能力强   |
-
-更多模型请访问 [ZenMux 模型列表](https://zenmux.ai/models) 查看！
+支持Responses协议的模型请访问 [ZenMux 模型列表](https://zenmux.ai/models?sort=newest&supported_protocol=responses) 查看！
 
 ## 故障排除
 
@@ -170,7 +155,7 @@ codex  # [!code highlight]
 
 **解决方案**：
 
-- 访问 [ZenMux 模型列表](https://zenmux.ai/models) 确认模型是否可用
+- 访问 [ZenMux 模型列表](https://zenmux.ai/models?sort=newest&supported_protocol=responses) 确认模型是否可用
 - 检查模型 slug 拼写是否正确
 - 尝试使用其他推荐的模型进行测试
 - 确认您的账户是否有权限访问该模型
@@ -193,17 +178,19 @@ model = "anthropic/claude-sonnet-4.5"
 name = "ZenMux"
 base_url = "https://zenmux.ai/api/v1"
 env_key = "ZENMUX_API_KEY"
+wire_api = "responses"
 ```
 
 ```toml [性能优先配置]
 # 注重性能表现的模型选择
 model_provider = "zenmux"
-model = "openai/gpt-5-codex"
+model = "openai/gpt-5.2-codex"
 
 [model_providers.zenmux]
 name = "ZenMux"
 base_url = "https://zenmux.ai/api/v1"
 env_key = "ZENMUX_API_KEY"
+wire_api = "responses"
 ```
 
 ```toml [成本优化配置]
@@ -215,6 +202,7 @@ model = "deepseek/deepseek-chat"
 name = "ZenMux"
 base_url = "https://zenmux.ai/api/v1"
 env_key = "ZENMUX_API_KEY"
+wire_api = "responses"
 ```
 
 :::
