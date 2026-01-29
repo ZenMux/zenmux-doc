@@ -74,7 +74,7 @@ A **Flow** is the metering unit used in ZenMux subscriptions, combining token us
 
 ---
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/HkD8Bgz/dingyuezhi-freetaocan.png" alt="subscription-free" style="width:300px; border-radius:8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/28/ow9Dlvg/ss-free.png" alt="subscription-free" style="width:300px; border-radius:8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 
 **Supported models:**
 
@@ -95,7 +95,7 @@ A **Flow** is the metering unit used in ZenMux subscriptions, combining token us
 
 ---
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/oI2koKx/dingyuezhi-protaocan.png" alt="subscription-free" style="width:300px; border-radius:8px;">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/28/co3ieFF/ss-2.png" alt="subscription-free" style="width:300px; border-radius:8px;">
 
 **Supported models:** **70+** advanced models, organized by provider below (`model slug` - description)
 
@@ -288,7 +288,7 @@ A **Flow** is the metering unit used in ZenMux subscriptions, combining token us
 
 ---
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/8PXHCx9/dingyuezhi-maxtaocan.png" alt="subscription-free" style="width:300px; border-radius:8px;">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/28/VLvrYZp/ss-3.png" alt="subscription-free" style="width:300px; border-radius:8px;">
 
 **Additional supported ultra-flagship models:**
 
@@ -301,7 +301,7 @@ A **Flow** is the metering unit used in ZenMux subscriptions, combining token us
 
 ---
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/aJFjhWL/dingyuezhi-ultrataocan.png" alt="subscription-free" style="width:300px; border-radius:8px;">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/28/pqFhcnQ/ss-4.png" alt="subscription-free" style="width:300px; border-radius:8px;">
 
 **Supported models:** Same as the Max plan, including all advanced models and ultra-flagship models.
 
@@ -348,7 +348,7 @@ If your project is about to go live or is already commercialized, switch to the 
 
 Visit the [ZenMux Pricing page](https://zenmux.ai/pricing) to view detailed information and pricing for all subscription plans.
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/7shxqbP/dingyuezhi-jiage2-dapingbanben.png" alt="subscription-free" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/28/iszJOqe/ss-1.png" alt="subscription-free" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 
 ### Step 2: Choose and subscribe
 
@@ -364,7 +364,7 @@ To request whitelist access, please visit the official [Contact Us page](https:/
 
 After subscribing, go to the [Subscription Management page](https://zenmux.ai/platform/subscription):
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/4I6M3by/dingyuezhi-gerenguanliyemian2.png" alt="subscription-free" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/28/ow9Dlvg/ss-free.png" alt="subscription-free" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 
 - 📊 **View usage**
   - Usage and remaining time in the current 5-hour window
