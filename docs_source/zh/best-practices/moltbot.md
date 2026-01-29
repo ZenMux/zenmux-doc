@@ -70,7 +70,7 @@ https://docs.zenmux.ai/zh/guide/pay-as-you-go
 
 ## 方式一：使用 ZenMux PR
 
-使用 ZenMux 与 Moltbot 最简单的方式是使用待合并的 ZenMux 集成 PR，它提供了完整的 ZenMux 模型自动发现功能。
+使用 ZenMux 与 Moltbot 最简单的方式是使用待合并的 [ZenMux 集成 PR #3305](https://github.com/moltbot/moltbot/pull/3305)，它提供了完整的 ZenMux 模型自动发现功能。
 
 ### 第 1 步：克隆并切换到 PR 分支
 
@@ -79,8 +79,9 @@ https://docs.zenmux.ai/zh/guide/pay-as-you-go
 git clone https://github.com/moltbot/moltbot.git
 cd moltbot
 
-# 切换到 ZenMux 功能分支
-git checkout feat/zenmux
+# 切换到 PR #3305（ZenMux 集成）
+git fetch origin pull/3305/head:zenmux-integration
+git checkout zenmux-integration
 
 # 安装依赖
 pnpm install
@@ -322,7 +323,7 @@ moltbot agent --local --agent main --model zenmux/deepseek/deepseek-chat --messa
 **解决方案**：
 
 1. **方式一（PR 分支）**：
-   - 确保您在 `feat/zenmux` 分支上
+   - 确保您在 `zenmux-integration` 分支上（从 PR #3305 检出）
    - 拉取最新更改后运行 `pnpm build`
 
 2. **方式二（手动配置）**：
