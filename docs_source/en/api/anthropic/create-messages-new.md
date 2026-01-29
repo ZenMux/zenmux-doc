@@ -13,7 +13,7 @@ head:
 # Create a Message
 
 ```
-POST https://zenmux.ai/api/anthropic
+POST https://zenmux.ai/api/anthropic/v1/messages
 ```
 
 ZenMux supports the Anthropic API. See the API call examples below for usage.
@@ -129,7 +129,6 @@ Message = {
 - citations `TextCitationParam[]` <font color="gray">Optional</font>  
   Used to **attribute text citations** (typical scenario: after providing a PDF / text document / content document as a `document` block, annotate “which page/section/search result this part of the answer comes from”).  
   `TextCitationParam` is one of the following (depending on the cited content type):
-
   - **char_location: cite plain text or a content document by character range**
 
     ```ts
@@ -144,7 +143,6 @@ Message = {
     ```
 
     Field descriptions:
-
     - `type` `string` <font color="red">Required</font>  
       Must be `"char_location"`, meaning the citation is located by a **character range**.
 
@@ -179,7 +177,6 @@ Message = {
     ```
 
     Field descriptions:
-
     - `type` `string` <font color="red">Required</font>  
       Must be `"page_location"`, meaning the location is described by a **page range**.
 
@@ -217,7 +214,6 @@ Message = {
     Used to cite documents provided in “multi-content-block form” (for example, a `document` with `source.type = "content"` that contains multiple `text`/`image` blocks).
 
     Field descriptions:
-
     - `type` `string` <font color="red">Required</font>  
       Must be `"content_block_location"`.
 
@@ -255,7 +251,6 @@ Message = {
     Used when Anthropic’s Web Search tool (server tool) is enabled and Claude cites content from a webpage.
 
     Field descriptions:
-
     - `type` `string` <font color="red">Required</font>  
       Must be `"web_search_result_location"`, meaning this citation comes from Web search results.
 
@@ -289,7 +284,6 @@ Message = {
     When you provide your own search / RAG results to Claude using a `type: "search_result"` content block and enable citations, Claude uses this type to cite those results in its answer.
 
     Field descriptions:
-
     - `type` `string` <font color="red">Required</font>  
       Must be `"search_result_location"`, meaning this citation comes from the SearchResultBlock you provided.
 
@@ -298,7 +292,6 @@ Message = {
 
     - `source` `string | null` <font color="red">Required</font>  
       Search result source identifier:
-
       - Usually a URL (e.g., knowledge base document link);
       - Can also be a custom string ID;
       - May be `null` if not provided in the original `search_result`.
@@ -377,6 +370,7 @@ Message = {
     data: string
   }
   ```
+
   - PlainTextSource: an entire plain-text passage as the document
     ```ts
     {
@@ -482,7 +476,6 @@ Field descriptions:
 
 - name `string` <font color="red">Required</font>  
   The server tool name, for example:
-
   - `"web_search"`: Web Search tool
 
 - input `object` <font color="gray">Optional</font>  
@@ -550,8 +543,8 @@ If the Web Search tool itself errors (e.g., max calls exceeded, invalid request)
   "tool_use_id": "servertoolu_a93jad",
   "content": {
     "type": "web_search_tool_result_error",
-    "error_code": "max_uses_exceeded"
-  }
+    "error_code": "max_uses_exceeded",
+  },
 }
 ```
 
@@ -628,7 +621,6 @@ Field descriptions:
 
 - source `string` <font color="gray">Optional</font>  
   The source identifier of the search result:
-
   - Usually a URL (e.g., knowledge base document link, internal doc viewer link);
   - Can also be a custom string ID (e.g., a document primary key);
   - If inconvenient to provide, you can omit it or set it to `null`.  
@@ -636,7 +628,6 @@ Field descriptions:
 
 - title `string` <font color="gray">Optional</font>  
   The title of the search result:
-
   - e.g., “API Reference: Authentication”, “Employee Handbook · Leave Policy”;
   - If no suitable title is available, it can be `null`.  
     In citations, it is used directly as the citation title for UI rendering.
@@ -679,7 +670,6 @@ Field descriptions:
 
 - type `string` <font color="red">Required</font>  
   Must be `"redacted_thinking"`, indicating a **redacted thinking block**.
-
   - Compared with `type: "thinking"`:
     - `thinking`: returns readable natural-language reasoning text + a signature;
     - `redacted_thinking`: returns **encrypted data that cannot be directly interpreted**, without readable reasoning.
@@ -1053,7 +1043,6 @@ Usage statistics for server-side tools (server tools hosted by Anthropic) in thi
 
 - **web_search_requests** `number`
   The number of times a Web Search tool call was **actually triggered** in this request.
-
   - Each time Claude generates a `type: "server_tool_use"` with `name: "web_search"` and the backend successfully executes it, this counter increments by 1;
   - Useful for tracking “how many web searches were used to fetch up-to-date info in this answer”.
 
@@ -1409,7 +1398,7 @@ Error details.
 
 :::
 
-::: api-request POST /api/anthropic
+::: api-request POST /api/anthropic/v1/messages
 
 ```TypeScript
 import Anthropic from '@anthropic-ai/sdk';
@@ -1419,7 +1408,7 @@ const anthropic = new Anthropic({
   // 2. Replace with the API Key from the ZenMux user console
   apiKey: '<your ZENMUX_API_KEY>', // [!code highlight]
   // 3. Point the base URL to the ZenMux endpoint
-  baseURL: "https://zenmux.ai/api/anthropic", // [!code highlight]
+  baseURL: "https://zenmux.ai/api/anthropic/v1/messages", // [!code highlight]
 });
 
 async function main () {
@@ -1442,7 +1431,7 @@ client = anthropic.Anthropic(
     # Replace with the API Key from the ZenMux user console
     api_key="<your ZENMUX_API_KEY>", # [!code highlight]
     # 3. Point the base URL to the ZenMux endpoint
-    base_url="https://zenmux.ai/api/anthropic"  # [!code highlight]
+    base_url="https://zenmux.ai/api/anthropic/v1/messages"  # [!code highlight]
 )
 message = client.messages.create(
     model="anthropic/claude-sonnet-4.5",
@@ -1455,7 +1444,7 @@ print(message.content)
 ```
 
 ```cURL
-curl https://zenmux.ai/api/anthropic/v1/messages \
+curl https://zenmux.ai/api/anthropic/v1/messages/v1/messages \
      --header "x-api-key: $ZENMUX_API_KEY" \
      --header "anthropic-version: 2023-06-01" \
      --header "content-type: application/json" \
