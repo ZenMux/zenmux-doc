@@ -2474,7 +2474,7 @@ MCP list tools 进行中事件。
 import OpenAI from "openai";
 
 const openai = new OpenAI({
-  baseURL: 'https://zenmux.ai/api/v1/responses',
+  baseURL: 'https://zenmux.ai/api/v1',
   apiKey: '<ZENMUX_API_KEY>',
 });
 
@@ -2494,7 +2494,7 @@ main();
 from openai import OpenAI
 
 client = OpenAI(
-    base_url="https://zenmux.ai/api/v1/responses",
+    base_url="https://zenmux.ai/api/v1",
     api_key="<your_ZENMUX_API_KEY>",
 )
 

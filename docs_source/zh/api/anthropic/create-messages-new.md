@@ -363,6 +363,7 @@ Message = {
   固定为 `"document"`。
 - source `Base64PDFSource | PlainTextSource | ContentBlockSource | URLPDFSource` <font color="red">必选</font> ：
   - Base64PDFSource：base64 PDF
+
   ```ts
   {
     type: "base64",
@@ -393,6 +394,7 @@ Message = {
       url: string
     }
     ```
+
 - cache_control `CacheControlEphemeral` <font color="gray">可选</font>：同上，可为文档建立缓存断点。
 - citations `TextCitationParam[]` <font color="gray">可选</font>：同上，用于**标注文本引用来源**（典型场景：把 PDF / 文本文档 / 内容文档作为 document 块输入后，标注「这一段回答来自哪一页 / 哪一段 / 哪个搜索结果」）。
 - context `string` <font color="gray">可选</font>：文档上下文。
@@ -1411,7 +1413,7 @@ const anthropic = new Anthropic({
   // 2. 替换为你从 ZenMux 用户控制台获取的 API Key
   apiKey: '<你的 ZENMUX_API_KEY>', // [!code highlight]
   // 3. 将基础 URL 指向 ZenMux 端点
-  baseURL: "https://zenmux.ai/api/anthropic/v1/messages", // [!code highlight]
+  baseURL: "https://zenmux.ai/api/anthropic", // [!code highlight]
 });
 
 async function main () {
@@ -1434,7 +1436,7 @@ client = anthropic.Anthropic(
     # 替换为你从 ZenMux 用户控制台获取的 API Key
     api_key="<你的 ZENMUX_API_KEY>", # [!code highlight]
     # 3. 将基础 URL 指向 ZenMux 端点
-    base_url="https://zenmux.ai/api/anthropic/v1/messages"  # [!code highlight]
+    base_url="https://zenmux.ai/api/anthropic"  # [!code highlight]
 )
 message = client.messages.create(
     model="anthropic/claude-sonnet-4.5",
