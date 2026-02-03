@@ -363,6 +363,7 @@ Message = {
   Must be `"document"`.
 - source `Base64PDFSource | PlainTextSource | ContentBlockSource | URLPDFSource` <font color="red">Required</font> :
   - Base64PDFSource: base64 PDF
+
   ```ts
   {
     type: "base64",
@@ -393,6 +394,7 @@ Message = {
       url: string
     }
     ```
+
 - cache_control `CacheControlEphemeral` <font color="gray">Optional</font>: Same as above; can create a cache breakpoint for documents.
 - citations `TextCitationParam[]` <font color="gray">Optional</font>: Same as above; used to **attribute text citations** (typical scenario: provide PDF / text document / content document as a document block input, then annotate “which page/section/search result this part comes from”).
 - context `string` <font color="gray">Optional</font>: Document context.
@@ -1408,7 +1410,7 @@ const anthropic = new Anthropic({
   // 2. Replace with the API Key from the ZenMux user console
   apiKey: '<your ZENMUX_API_KEY>', // [!code highlight]
   // 3. Point the base URL to the ZenMux endpoint
-  baseURL: "https://zenmux.ai/api/anthropic/v1/messages", // [!code highlight]
+  baseURL: "https://zenmux.ai/api/anthropic", // [!code highlight]
 });
 
 async function main () {
@@ -1431,7 +1433,7 @@ client = anthropic.Anthropic(
     # Replace with the API Key from the ZenMux user console
     api_key="<your ZENMUX_API_KEY>", # [!code highlight]
     # 3. Point the base URL to the ZenMux endpoint
-    base_url="https://zenmux.ai/api/anthropic/v1/messages"  # [!code highlight]
+    base_url="https://zenmux.ai/api/anthropic"  # [!code highlight]
 )
 message = client.messages.create(
     model="anthropic/claude-sonnet-4.5",
@@ -1444,7 +1446,7 @@ print(message.content)
 ```
 
 ```cURL
-curl https://zenmux.ai/api/anthropic/v1/messages/v1/messages \
+curl https://zenmux.ai/api/anthropic/v1/messages \
      --header "x-api-key: $ZENMUX_API_KEY" \
      --header "anthropic-version: 2023-06-01" \
      --header "content-type: application/json" \
