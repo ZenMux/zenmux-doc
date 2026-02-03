@@ -715,6 +715,14 @@ metadata?: {
 - `"auto"`（默认）：由系统在可用容量中自动选择，必要时可使用优先容量。
 - `"standard_only"`：只使用标准容量，不占用优先通道。 -->
 
+### output_config `object` <font color="gray">可选</font>
+
+模型输出的配置选项，例如输出格式。
+
+- format `object` 一个用于指定 Claude 响应输出格式的模式。
+  - schema `Record<string, unknown>` 该格式的 JSON 模式
+  - type `string` 固定为`"json_schema"`
+
 ### stop_sequences `string[]` <font color="gray">可选</font>
 
 自定义**停止序列**。
