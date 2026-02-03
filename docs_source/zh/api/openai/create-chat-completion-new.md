@@ -497,7 +497,7 @@ Nucleus sampling（核采样）参数：只从累积概率质量前 `top_p` 的 
 
 ### reasoning `object` <font color="gray">可选</font>
 
-用于配置**推理过程（chain-of-thought / reasoning trace）**相关行为，包括是否启用、推理深度与长度控制，以及是否对外暴露推理内容。
+用于配置推理过程（chain-of-thought / reasoning trace）相关行为，包括是否启用、推理深度与长度控制，以及是否对外暴露推理内容。
 
 如果不配置，则由系统或模型使用默认的推理策略。
 
@@ -543,6 +543,45 @@ Nucleus sampling（核采样）参数：只从累积概率质量前 `top_p` 的 
 ##### include `boolean` <font color="red">必选</font>
 
 是否在响应中包含使用统计信息
+
+### response_format `object` <font color="gray">可选</font>
+
+一个指定模型必须输出格式的对象。
+
+设置为 { "type": "json_schema", "json_schema": {...} } 启用结构化输出，确保模型将匹配您提供的 JSON 架构。
+
+设置为 { "type": "json_object" } 启用旧版 JSON 模式，确保模型生成的消息是有效的 JSON。使用 json_schema 对于支持它的模型更为优选。
+
+:::details Text `object`
+
+- type `string` <font color="red">必选</font>
+  正在定义的响应格式的类型。始终为 text
+
+:::
+
+:::details JSON schema `object`
+
+- json_schema `object` <font color="red">必选</font>
+  定义响应格式的 JSON schema。
+  - name `string` <font color="red">必选</font>
+    响应格式的名称。必须是 a-z、A-Z、0-9，或包含下划线和破折号，最大长度为 64。
+  - schema `object` <font color="gray">可选</font>
+    响应格式的模式，描述为一个 JSON Schema 对象。
+  - strict `boolean` <font color="gray">可选</font>
+    是否严格遵循 JSON schema。
+  - description `string` <font color="gray">可选</font>
+    对响应格式用途的描述，模型根据该描述来确定如何以该格式进行响应。
+- type `string` <font color="red">必选</font>
+  正在定义的响应格式的类型。始终为 json_schema
+
+:::
+
+:::details JSON object `object`
+
+- type `string` <font color="red">必选</font>
+  正在定义的响应格式的类型。始终为 json_object
+
+:::
 
 ### 不支持字段
 
