@@ -356,8 +356,8 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 2. 点击对应套餐的 **"Get Max"** 或 **"Get Ultra"** 按钮(Pro 用户点击 **"Upgrade"**)
 3. 完成支付流程
 
-::: tip 💡 白名单申请
-如需申请白名单,请访问官网[联系我们页面](https://zenmux.ai/supports),通过页面上提供的任意联系方式(优先小红书、微信、Discord)向我们提交申请。
+::: tip 💡 公测名额限制
+订阅制现已开放公测,总计提供 **999 个名额**。名额用尽后将暂时关闭开通渠道,请尽早订阅以确保获得体验资格。
 :::
 
 ### 第 3 步:管理订阅和获取 API Key
@@ -380,6 +380,68 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
   - 查看当前套餐信息
   - 升级或降级套餐
   - 查看账单历史
+
+### Extra Usage - 超额自动切换
+
+当订阅制的 5 小时窗口或周窗口配额用尽时,Extra Usage 功能可以自动切换到你设定的 Pay As You Go API Key,让你无缝继续使用,不受时间窗口限额的困扰。当订阅配额恢复后,系统会自动切换回订阅制计费。
+
+#### 💡 核心优势
+
+- **无缝切换** - 配额用尽时自动切换到按量付费,无需手动更换 API Key
+- **不中断工作流** - 不影响你的开发、编程或对话流程
+- **自动恢复** - 订阅配额恢复后自动切换回订阅制计费
+- **灵活可控** - 可随时启用或禁用此功能
+
+#### 设置步骤
+
+访问 [订阅管理页面](https://zenmux.ai/platform/subscription),按照以下步骤配置 Extra Usage:
+
+**步骤 1: 启用 Extra Usage**
+
+在订阅管理页面找到 **Extra Usage** 部分,点击右侧的开关按钮启用此功能。
+
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/02/03/8Ed42do/extra-1.png" alt="Enable Extra Usage" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+
+**步骤 2: 选择 Pay As You Go API Key**
+
+点击开关后会弹出 **"Select a Key"** 对话框,你可以:
+
+- 从下拉列表中选择一个现有的 Pay As You Go API Key
+- 或点击 **"Create new key"** 创建一个新的按量付费 API Key
+
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/02/03/iJZufsS/extra-2.png" alt="Select API Key" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+
+选择完成后点击 **"Select"** 按钮确认。
+
+**步骤 3: 配置完成**
+
+启用成功后,页面会显示你选择的 Pay As You Go API Key 的详细信息,包括:
+
+- API Key 名称和密钥
+- 启用状态
+- 创建时间和最后使用时间
+- 当前已使用金额
+- 操作选项(可重新选择其他 Key)
+
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/02/03/7ivqY3m/extra-3.png" alt="Extra Usage Enabled" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+
+#### 工作原理
+
+1. **正常使用** - 优先使用订阅制配额(Flows)
+2. **配额用尽** - 当 5 小时窗口或周窗口配额达到上限时,自动切换到设定的 Pay As You Go API Key
+3. **按量计费** - 此时的调用会从你的账户余额中扣费
+4. **自动恢复** - 当订阅配额窗口重置后,自动切换回订阅制计费
+
+::: tip 💡 使用建议
+
+- 确保你的 Pay As You Go 账户有足够余额,以避免超额切换后因余额不足而中断服务
+- 可以随时在订阅管理页面查看 Extra Usage 的使用情况和消费金额
+- 如需更换备用 Key,点击 **"Reselect"** 按钮重新选择即可
+:::
+
+::: warning ⚠️ 计费提醒
+启用 Extra Usage 后,当订阅配额用尽时会自动从你的 Pay As You Go 余额中扣费。请注意监控账户余额,避免产生意外费用。
+:::
 
 ### 第 4 步:在开发工具中使用
 
@@ -429,9 +491,11 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 
 ### 切换计费方式
 
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/02/03/l48igiH/studio-chat-mode.png" alt="Studio Chat 计费模式切换" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+
 在 Studio Chat 页面,你可以在每个对话中灵活选择使用订阅制配额还是 Pay As You Go 余额:
 
-在对话设置中可以看到 **Billing Mode(计费模式)** 选项:
+如图，在对话设置中可以看到 **Billing Mode(计费模式)** 选项:
 
 - **Subscription(订阅制)** - 使用订阅制配额(Flows),不消耗账户余额
 - **Pay As You Go(按量付费)** - 从账户余额中按实际使用量扣费
@@ -445,33 +509,11 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 两种模式可以随时切换,互不影响,让你在不同场景下都能选择最合适的计费方式。
 :::
 
-### Studio Chat 功能特性
-
-使用订阅制在 Studio Chat 中对话时,你可以享受:
-
-- ✅ 访问所有订阅套餐支持的模型(70+ 高级模型)
-- ✅ 支持多模态对话(文本、图片、文件上传)
-- ✅ 完整的对话历史管理
-- ✅ 支持导出对话记录
-- ✅ 与 API 调用共享订阅配额
-
 ::: warning ⚠️ 配额共享
 Studio Chat 和 API 调用使用相同的订阅配额池。在 Studio Chat 中的对话会消耗订阅 Flows,请合理分配使用。
 :::
 
 ---
-
-## 开发者共创奖励
-
-我们重视每一位用户的反馈!参与 ZenMux 改进计划,即可获得奖励:
-
-- 🐛 **提交有效 Bug 报告:** 每个被采纳的 bug 奖励 $5 Credit
-- 💡 **提出改进建议:** 每个被采纳的建议奖励 $5 Credit
-- 🎁 **奖励上限:** 每人最高可获得 $50 Credit(相当于报销 2.5 个月 Pro 订阅费)
-
-如何参与:
-
-请访问官网[联系我们页面](https://zenmux.ai/supports),通过页面上提供的任意联系方式(优先小红书、微信、Discord)向我们提交您的反馈或建议。
 
 ## 常见问题
 
@@ -508,7 +550,7 @@ Studio Chat 和 API 调用使用相同的订阅配额池。在 Studio Chat 中�
 - 💵 查看 [成本分析](./observability/cost),了解如何优化使用成本
 
 ::: tip 联系我们
-如果您在使用过程中遇到任何问题,或有任何建议和反馈,欢迎通过以下方式联系我们:
+如果您在使用过程中遇到任何问题,欢迎通过以下方式联系我们:
 
 - **官方网站**: <https://zenmux.ai>
 - **技术支持邮箱**: [support@zenmux.ai](mailto:support@zenmux.ai)
