@@ -81,7 +81,7 @@ import OpenAI from "openai";
 
 const client = new OpenAI({
   apiKey: "YOUR_API_KEY",
-  baseURL: "https://zenmux.ai/api/v1/chat/completions",
+  baseURL: "https://zenmux.ai/api/v1",
 });
 
 async function chatWithWebSearch() {
@@ -130,7 +130,7 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key="YOUR_API_KEY",
-    base_url="https://zenmux.ai/api/v1/chat/completions"
+    base_url="https://zenmux.ai/api/v1"
 )
 
 response = client.chat.completions.create(
@@ -228,7 +228,7 @@ import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic({
   apiKey: "YOUR_API_KEY",
-  baseURL: "https://zenmux.ai/api/anthropic/v1/messages",
+  baseURL: "https://zenmux.ai/api/anthropic",
 });
 
 async function messageWithWebSearch() {
@@ -285,7 +285,7 @@ import anthropic
 
 client = anthropic.Anthropic(
     api_key="YOUR_API_KEY",
-    base_url="https://zenmux.ai/api/anthropic/v1/messages"
+    base_url="https://zenmux.ai/api/anthropic"
 )
 
 response = client.messages.create(
@@ -403,7 +403,7 @@ import OpenAI from "openai";
 
 const client = new OpenAI({
   apiKey: "YOUR_API_KEY",
-  baseURL: "https://zenmux.ai/api/v1/responses",
+  baseURL: "https://zenmux.ai/api/v1",
 });
 
 async function responsesWithWebSearch() {
@@ -486,7 +486,7 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key="YOUR_API_KEY",
-    base_url="https://zenmux.ai/api/v1/responses"
+    base_url="https://zenmux.ai/api/v1"
 )
 
 # Non-streaming request
