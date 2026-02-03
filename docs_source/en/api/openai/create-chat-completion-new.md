@@ -977,7 +977,7 @@ When `stream_options: {"include_usage": true}` is set in the request, the final 
 import OpenAI from "openai";
 
 const openai = new OpenAI({
-  baseURL: 'https://zenmux.ai/api/v1/chat/completions',
+  baseURL: 'https://zenmux.ai/api/v1',
   apiKey: '<ZENMUX_API_KEY>',
 });
 
@@ -1002,7 +1002,7 @@ main();
 from openai import OpenAI
 
 client = OpenAI(
-    base_url="https://zenmux.ai/api/v1/chat/completions",
+    base_url="https://zenmux.ai/api/v1",
     api_key="<your_ZENMUX_API_KEY>",
 )
 
