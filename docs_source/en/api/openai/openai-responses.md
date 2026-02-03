@@ -1012,15 +1012,15 @@ Deprecated. Use `safety_identifier` and `prompt_cache_key`. -->
 
 ### Unsupported fields
 
-| Field name                    | Type        | Supported                                            | Description                                                                                  |
-| ---------------------------- | ----------- | ---------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| service_tier                 | string      | <span style="white-space: nowrap;">❌ Not supported</span> | Service tier                                                                                 |
-| user                         | string      | ❌ Not supported                                     | Legacy user identifier; its main role is now replaced by `safety_identifier` and `prompt_cache_key`. |
-| background                   | boolean     | ❌ Not supported                                     | Whether to run this response in the background                                               |
-| metadata                     | object(map) | ❌ Not supported                                     | Up to 16 key-value metadata pairs                                                            |
-| tools(Code interpreter)      | object      | ❌ Not supported                                     | Code interpreter                                                                             |
-| tools(Image generation tool) | object      | ❌ Not supported                                     | Image generation tool                                                                        |
-| tools(File search)           | object      | ❌ Not supported                                     | File search                                                                                  |
+| Field name                   | Type        | Supported                                                  | Description                                                                                          |
+| ---------------------------- | ----------- | ---------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| service_tier                 | string      | <span style="white-space: nowrap;">❌ Not supported</span> | Service tier                                                                                         |
+| user                         | string      | ❌ Not supported                                           | Legacy user identifier; its main role is now replaced by `safety_identifier` and `prompt_cache_key`. |
+| background                   | boolean     | ❌ Not supported                                           | Whether to run this response in the background                                                       |
+| metadata                     | object(map) | ❌ Not supported                                           | Up to 16 key-value metadata pairs                                                                    |
+| tools(Code interpreter)      | object      | ❌ Not supported                                           | Code interpreter                                                                                     |
+| tools(Image generation tool) | object      | ❌ Not supported                                           | Image generation tool                                                                                |
+| tools(File search)           | object      | ❌ Not supported                                           | File search                                                                                          |
 
 **<font color="red">Note: zenmux does not support three tool types: tools(Code interpreter), tools(Image generation tool), and tools(File search). Therefore, any fields related to these three tool types will not take effect. This document has already filtered out those fields.</font>**
 
@@ -2474,7 +2474,7 @@ Fields:
 import OpenAI from "openai";
 
 const openai = new OpenAI({
-  baseURL: 'https://zenmux.ai/api/v1/responses',
+  baseURL: 'https://zenmux.ai/api/v1',
   apiKey: '<ZENMUX_API_KEY>',
 });
 
@@ -2494,7 +2494,7 @@ main();
 from openai import OpenAI
 
 client = OpenAI(
-    base_url="https://zenmux.ai/api/v1/responses",
+    base_url="https://zenmux.ai/api/v1",
     api_key="<your_ZENMUX_API_KEY>",
 )
 
