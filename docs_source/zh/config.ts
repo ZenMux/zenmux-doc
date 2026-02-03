@@ -125,6 +125,10 @@ export default defineLoacaleConfig({
             text: "Github Copilot 接入 ZenMux 指南",
             link: "/zh/best-practices/github-copilot",
           },
+          {
+            text: "Moltbot 接入 ZenMux 指南",
+            link: "/zh/best-practices/moltbot",
+          },
         ],
       },
       {
