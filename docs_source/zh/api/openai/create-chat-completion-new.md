@@ -240,6 +240,35 @@ messages 里的每个元素表示一条对话消息，每条消息由 role 和 c
   - arguments `string` <font color="red">必选</font>  
      以 JSON 字符串形式表示的函数调用参数（由模型生成），同样需要在业务侧校验后再实际
 
+- reasoning `string` 可选
+
+  助手消息的推理过程文本内容。当开启 reasoning 功能时，模型返回的推理过程会包含在此字段中。在多轮对话场景下，可以将此字段传回以保持上下文连贯性。
+
+- reasoning_details `array` 可选（**多轮工具调用场景必需**）
+
+  推理过程的详细信息数组。**在开启 reasoning 的多轮工具调用场景中，必须将此字段完整传回，特别是其中包含的 `signature` 字段，否则后续对话将无法正常进行。**
+
+  每个元素包含以下字段：
+  - type `string` <font color="red">必选</font>
+
+    推理内容类型，如 `reasoning.text`。
+
+  - text `string` <font color="red">必选</font>
+
+    推理过程的文本内容。
+
+  - signature `string` <font color="red">必选</font>
+
+    推理过程的签名凭证。**这是多轮对话中保持推理上下文的关键字段，必须原样传回。** 该签名由模型生成，用于验证推理内容的完整性和连续性。
+
+  - format `string` <font color="gray">可选</font>
+
+    签名格式标识，如 `anthropic-claude-v1`。
+
+  - index `number` <font color="gray">可选</font>
+
+    推理片段的索引位置。
+
 :::
 
 ::: details Tool message `object`  
@@ -702,7 +731,7 @@ Nucleus sampling（核采样）参数：只从累积概率质量前 `top_p` 的 
 
 推理过程的文本内容，用于展示模型对答案的思考过程或中间分析。实际是否返回取决于模型和请求中的推理配置。
 
-#### reasoning_content `string`（ZenMux 拓展字段）
+#### reasoning_details `string`（ZenMux 拓展字段）
 
 推理内容的文本主体，通常比 `reasoning` 更完整或更详细，可作为推理链（chain‑of‑thought）的主要承载字段。
 
@@ -1131,3 +1160,102 @@ curl https://zenmux.ai/api/v1/chat/completions \
 ```
 
 :::
+
+## 多轮工具调用场景：传入 reasoning_details 和 signature
+
+当使用 Claude Opus 4.5 等 Anthropic 模型并开启 `reasoning` 功能时，在多轮工具调用场景中，**必须将上一轮模型返回的 `reasoning_details`（包含 `signature` 字段）完整传回**，否则后续对话将无法正常进行。
+
+::: warning 重要说明
+
+- **背景**：Claude Opus 4.5 原生使用 Anthropic Messages 协议，Zenmux 将 Chat Completion 协议转换为 Messages 协议。
+- **问题**：开启 reasoning 时，工具调用场景的第二轮对话需要传入 reasoning 的 `signature`，用于验证推理内容的完整性和连续性。
+- **解决方案**：将上一轮 assistant 消息中的 `reasoning`、`reasoning_details` 字段完整传回即可。
+  :::
+
+### 请求示例
+
+```json
+{
+  "model": "anthropic/claude-sonnet-4.5",
+  "messages": [
+    {
+      "content": "今天是2025年8月15日，上海今天天气怎么样",
+      "role": "user"
+    },
+    {
+      "role": "assistant",
+      "tool_calls": [
+        {
+          "function": {
+            "name": "search_city_weather",
+            "arguments": "{\"city\":\"上海\"}"
+          },
+          "id": "toolu_bdrk_01S7xyqV3GYLJYrvBC5SwtPP",
+          "type": "function"
+        }
+      ],
+      "content": "",
+      "reasoning": "用户想知道2025年8月15日上海的天气情况。我需要使用search_city_weather函数来查询。\n\n参数：\n- city: \"上海\"\n- date: \"2025-08-15\"",
+      "reasoning_details": [
+        {
+          "type": "reasoning.text",
+          "text": "用户想知道2025年8月15日上海的天气情况。我需要使用search_city_weather函数来查询。\n\n参数：\n- city: \"上海\"\n- date: \"2025-08-15\"",
+          "signature": "EscCCkgICxABGAIqQF3ngnbIR+15nndalNEqnr7vq0v0Hyvle+twPh2SCMpMmNKf1oXiRPsjZG6Z46M69x06wks+4jm4N4FO3RH2mkgSDLChkfyKfk3ZndjatxoMi+H4ghd4hlGd+MRVIjBLKGRIcRwXS09pK50C2/ygvhnTlVMPkcARYG3nXV2ZWr2IPRHzY9XAK6QBJeVrmcsqrAGoL7TTMBUsMqMkfXlcRYABi+OPDht/9BOPKnV1k0RIWnnqzLfx4MQ/WSvTALBchQkYbXtO2v1nn5EhG/b9FZ+ZjUK0pAObWxv8aAIK47N1cTK+OB+iByPvlFb2vi0gX7xVOQXrmR5FLH03/JzmtqLpjgX/uYCYHddOvZzTx65STtajQ94FVKS35XkmHlbOIXqi4j1FIAioP4oqvDXqlZOMh8IKMJypT2I3vF2eGAE=",
+          "format": "anthropic-claude-v1",
+          "index": 0
+        }
+      ]
+    },
+    {
+      "role": "tool",
+      "tool_call_id": "toolu_bdrk_01S7xyqV3GYLJYrvBC5SwtPP",
+      "content": "{\"city\":\"上海市\",\"date\":\"2025-08-15\",\"week\":\"1\",\"dayweather\":\"多云\",\"nightweather\":\"多云\",\"daywind\":\"东南\",\"nightwind\":\"东南\",\"daypower\":\"1-3\",\"nightpower\":\"1-3\",\"daytemp_float\":\"35.0\",\"nighttemp_float\":\"28.0\"}"
+    }
+  ],
+  "stream": false,
+  "tools": [
+    {
+      "function": {
+        "name": "search_city_weather",
+        "description": "搜索城市天气",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "city": {
+              "type": "string",
+              "description": "城市名称"
+            },
+            "date": {
+              "type": "string",
+              "description": "yyyy-mm-dd格式的日期"
+            }
+          },
+          "required": ["city", "date"],
+          "additionalProperties": false
+        }
+      },
+      "type": "function"
+    }
+  ],
+  "reasoning": {
+    "enabled": true
+  }
+}
+```
+
+### 关键字段说明
+
+| 字段                            | 说明                                             |
+| ------------------------------- | ------------------------------------------------ |
+| `reasoning`                     | assistant 消息中的推理过程文本，可选传回         |
+| `reasoning_details`             | **必须完整传回**，包含推理过程的详细信息数组     |
+| `reasoning_details[].signature` | **最关键字段**，推理过程的签名凭证，必须原样传回 |
+| `reasoning_details[].format`    | 签名格式标识，如 `anthropic-claude-v1`           |
+| `reasoning_details[].type`      | 推理内容类型，如 `reasoning.text`                |
+
+### 工作流程
+
+1. **第一轮请求**：用户发送问题，模型返回包含 `tool_calls` 的 assistant 消息，同时返回 `reasoning` 和 `reasoning_details`（包含 `signature`）
+2. **执行工具**：应用程序执行工具调用，获取结果
+3. **第二轮请求**：将上一轮的 assistant 消息（**包含 `reasoning` 和 `reasoning_details`**）和工具执行结果（tool message）一起传回
+4. **模型响应**：模型基于完整上下文生成最终回答
