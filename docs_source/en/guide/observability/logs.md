@@ -10,136 +10,160 @@ head:
 
 # Request Logs
 
-ZenMux provides a comprehensive logging system that helps you monitor and analyze all API call records in real time. With the logging feature, you can view detailed information for each request, including token usage, cost, performance metrics, and more, enabling you to better optimize your application and control expenses.
+ZenMux provides a comprehensive logging system to help you monitor and analyze all API call records in real time. With logging, you can review detailed information for each request—including token usage, cost, performance metrics, and more—so you can better optimize your application and control costs.
 
 ## Viewing Logs
 
-### Logs Interface
+### Logs UI
 
-![logs](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/23/mztJndv/logs-1.png)
+![logs](https://cdn.marmot-cloud.com/storage/zenmux/2026/02/04/hRufjb7/C1924254-C6BA-4BE9-A8EA-37ED8DA28955.png)
 
-On the console's **Logs** page, you can view detailed records of all API calls. The interface offers powerful filtering and analysis capabilities:
+On the **Logs** page in the console, you can view detailed records for all API calls. The UI provides powerful filtering and analysis capabilities:
 
-**Filter Options:**
+**Filters:**
 
-- **Time Range Filter**: Select a specific date range to view historical records
-- **API Key Filter**: Filter logs by different API keys for multi-project management
+- **Time range (Time)**: Select a specific date range to view historical records
+- **API key (API Keys)**: Filter logs by different API keys for easier multi-project management
+- **Request ID search (Request)**: Enter a request ID to quickly locate a specific request
+- **Provider (Provider)**: Filter by provider, such as Anthropic, OpenAI, etc.
+- **Model (Model)**: Filter by model to quickly find call records for a specific model
+- **Finish reason (Finish Reason)**: Filter by finish reason, such as `stop`, `end_turn`, `max_tokens`, etc.
 
-**Log List Fields:**
+**Log list fields:**
 
-| Field Name      | Description                                                        |
-| :-------------- | :----------------------------------------------------------------- |
-| `Timestamp`     | The timestamp when the request was initiated                       |
-| `Model`         | The model name used (e.g., anthropic/claude-sonnet-4.5)            |
-| `Input Tokens`  | Number of input tokens; click to view detailed token types         |
-| `Output Tokens` | Number of output tokens                                            |
-| `Cost`          | Cost for this call (USD)                                           |
-| `Latency`       | Request response latency (milliseconds)                            |
-| `Throughput`    | Throughput in tokens per second                                    |
-| `Finish`        | Completion status (e.g., `end_turn`, `tool_use`, `stop`, `length`) |
-| `Action`        | Action button; click **Details** to view full request/response     |
+| Field Name      | Description                                                                 |
+| :-------------- | :-------------------------------------------------------------------------- |
+| `Timestamp`     | Timestamp when the request was initiated                                    |
+| `Model`         | Model name used (e.g., openai/gpt-5.2, anthropic/claude-opus-4.5)           |
+| `Input Tokens`  | Number of input tokens; click to view a detailed token breakdown            |
+| `Output Tokens` | Number of output tokens                                                     |
+| `Cost`          | Cost of this call (USD)                                                     |
+| `Latency`       | Request latency (ms)                                                        |
+| `Throughput`    | Throughput, tokens generated per second (tokens per second)                 |
+| `Finish`        | Completion status (e.g., `end_turn`, `tool_use`, `stop`, `max_tokens`, `length`) |
+| `Action`        | Action button; click **Details** to view full request and response details  |
 
-::: tip View Token Details
+::: tip Viewing token details
 
-![logs](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/23/l7x9hSz/logs-3.png)
+![logs](https://cdn.marmot-cloud.com/storage/zenmux/2026/02/04/oB9QNOh/20260204163548.jpg)
 
-Click the number in the Input Tokens column to open a popover showing detailed token categories, including:
+Click the number in the Input Tokens column to open a popover showing a detailed token breakdown, including:
 
 - `prompt`: Base input tokens
 - `input_cache_read`: Tokens read from cache
 - `input_cache_write`: Tokens written to cache
-- `input_cache_write_5_min`: 5-minute cache writes
-- `input_cache_write_1_h`: 1-hour cache writes
+- `input_cache_write_5_min`: 5-minute cache write
+- `input_cache_write_1_h`: 1-hour cache write
 
-This helps you understand cache utilization and optimize caching strategies.
-
-:::
-
-::: tip Billing Wallet Details
-
-![logs](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/23/euBJCl9/logs-2.png)
-
-Click the number in the Cost column to open a popover showing detailed billing wallet categories, including:
-
-- `Top-up Wallet`: User-recharged funds; used when the Bonus Wallet balance is insufficient
-- `Bonus Wallet`: Funds from promotions or compensation; charged first
+This helps you understand cache usage and optimize your caching strategy.
 
 :::
 
-### Request Details Page
+::: tip Viewing billing details
 
-![logs](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/EClzQU6/logs-provider-model.png)
+Hover over the number in the Cost column to open a popover showing billing details. What you see depends on your account type:
 
-Click the **Details** button on any log record to view complete information for that call. The details page is split into left and right sections:
+**Pay-as-you-go users (Pay As You Go):**
+![logs](https://cdn.marmot-cloud.com/storage/zenmux/2026/02/04/sxs9R74/20260204163702.jpg)
 
-#### Left: Conversation Content
+Shows a detailed breakdown by wallet category and settlement status:
 
-The left section displays the full request and response content, including:
+- `Purchased Credits`: Funds topped up by the user; used when Reward Credits are insufficient
+- `Reward Credits`: Credits such as top-up bonuses or insurance compensation; deducted first
+- Status tags (e.g., `Settled`) indicate that the charge has been settled
 
-- **User messages**: The input content sent by the user
-- **System messages**: System prompts (if any)
-- **Assistant messages**: The model-generated response
-- **Tool calls**: If tool calling was used, the tool inputs and outputs are shown
+**Subscription users (Subscription):**
+![logs](https://cdn.marmot-cloud.com/storage/zenmux/2026/02/04/LsEH46N/20260204163622.jpg)
+Shows the message: `Included in your subscription usage - no separate charge.`
 
-**Display Mode Switch:**
+:::
 
-The left section supports two display modes, which you can switch via the toggle at the top:
+### Request Details page
 
-- **Preview mode**: Displays the conversation in a formatted, readable layout with messages grouped by role and syntax highlighting for code, making it easier for human review
-- **Raw mode**: Shows the complete raw request and response data in JSON format, including all technical details, suitable for development and troubleshooting
+![logs](https://cdn.marmot-cloud.com/storage/zenmux/2026/02/04/z7KBWgU/20260204163740.jpg)
 
-::: tip Switch Display Modes
-Choose the appropriate display mode based on your needs:
+Click **Details** on any log entry to view the full information for that call. The details page is split into two sections:
 
-- Use **Preview mode** to review conversation content and analyze interaction quality
-- Use **Raw mode** to debug API integrations or troubleshoot technical issues
+#### Left: Conversation content
+
+The left panel displays the complete request and response content, split into **Request** and **Response** sections. Each section includes:
+
+- **User message**: The input sent by the user
+- **System message**: System prompt (if any)
+- **Assistant message**: The response generated by the model
+- **Tool calls**: If tool calling is used, the tool inputs and outputs are shown
+
+**Display mode toggle:**
+
+The left panel supports two display modes, switchable via the tabs at the top:
+
+- **Pretty mode (formatted)**: Presents the conversation in a formatted, readable view. Messages are grouped by role, and code is syntax-highlighted for easier reading and understanding.
+- **JSON mode (raw data)**: Shows the complete raw request and response data in JSON format, including all technical details—ideal for development debugging and troubleshooting.
+
+**Data source switching in JSON mode:**
+
+In JSON mode, you can further choose which stage of data to view:
+
+- **Request:**
+  - `User -> ZenMux`: The original request sent by the user to ZenMux
+  - `ZenMux -> Origin`: The request ZenMux forwarded to the upstream provider
+- **Response:**
+  - `ZenMux -> User`: The response returned by ZenMux to the user
+  - `Origin -> ZenMux`: The original response returned by the upstream provider to ZenMux
+
+::: tip Switching display modes
+Choose the display mode that best fits your needs:
+
+- Use **Pretty mode** when reviewing the conversation and analyzing interaction quality
+- Use **JSON mode** when debugging your API integration or troubleshooting technical issues, and switch data sources as needed to inspect request/response details at different stages
   :::
 
-#### Right: Technical Metrics and Metadata
+#### Right: Metrics and metadata
 
-The right section shows detailed technical metrics and metadata:
+The right panel shows detailed technical metrics and metadata:
 
-**Model Information:**
+**Model information (Model Information):**
 
-- Model name and provider
-- Endpoint information used
+- **Model**: Model name used
+- **Provider**: Model provider
 
-**Token Counting:**
+**Token counting (Token Counting):**
 
-- Detailed counts of input and output tokens
-- Usage of various cache token types
-- Special tokens (e.g., reasoning tokens) statistics
+- **Input Tokens:**
+  - `prompt`: Prompt token count
+  - `input_cache_write`: Tokens written to cache
+  - `input_cache_write_5_min`: 5-minute cache write token count
+  - `input_cache_write_1_h`: 1-hour cache write token count
+  - `input_cache_read`: Tokens read from cache
+- **Output Tokens:**
+  - `completion`: Generated content token count
+  - `internal_reasoning`: Internal reasoning token count
+  - `audio`: Audio token count
 
-**Performance Metrics:**
+**Requests counting (Requests Counting):**
 
-- **First Token Latency**: Time from request sent to receiving the first token
-- **Generation Time**: Time to generate the complete response
-- **Throughput**: Token generation rate
+- `web_search`: Number of web search requests
 
-**Raw Metadata:**
+**Multimodalities counting (Multimodalities Counting):**
 
-- Full request and response JSON data
-- Billing breakdown and rate information
-- Call trace ID
+- `image`: Number of images processed
 
-## Cost Details
+**Performance metrics (Performance Metrics):**
 
-The logging system not only records API call information but also provides detailed cost analysis. You can view cost details in multiple ways:
+- **First Token Latency (ms)**: Time from sending the request to receiving the first token (ms)
+- **Generation Time (ms)**: Time to generate the full response (ms)
+- **Throughput (tps)**: Token generation rate (tokens per second)
 
-### View in the Logs Interface
+**Raw metadata (Raw Metadata):**
 
-In the Logs list, each record displays:
-
-- **Cost column**: Shows the total cost for the call and deductions from different wallets
-
-![logs](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/23/euBJCl9/logs-2.png)
-Click a specific call record to see a more detailed cost breakdown:
+- Displays the full request metadata in JSON format
+- Supports one-click copying of the JSON data
 
 ### Raw Meta Information
 
-Beyond the console, you can also inspect the raw meta information returned by the API to understand cost details for a call. Below is a complete sample payload:
+In addition to the console UI, you can also use the raw Meta information returned by the API to understand cost details for a call. Below is a complete example:
 
-::: details Cost Details JSON Example
+::: details Billing details JSON example
 
 ```json
 {
@@ -232,14 +256,14 @@ Beyond the console, you can also inspect the raw meta information returned by th
 
 :::
 
-::: tip Contact Us
-If you encounter any issues during use or have suggestions and feedback, feel free to contact us:
+::: tip Contact us
+If you run into any issues while using ZenMux, or if you have suggestions or feedback, feel free to reach out via:
 
-- **Official Website**: <https://zenmux.ai>
-- **Technical Support**: [support@zenmux.ai](mailto:support@zenmux.ai)
-- **Business Inquiries**: [bd@zenmux.ai](mailto:bd@zenmux.ai)
+- **Website**: <https://zenmux.ai>
+- **Support email**: [support@zenmux.ai](mailto:support@zenmux.ai)
+- **Business inquiries**: [bd@zenmux.ai](mailto:bd@zenmux.ai)
 - **Twitter**: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
-- **Discord Community**: <http://discord.gg/vHZZzj84Bm>
+- **Discord community**: <http://discord.gg/vHZZzj84Bm>
 
-For more contact options and details, please visit our [Contact Us page](/help/contact).
+For more contact options and details, visit our [Contact Us page](/help/contact).
 :::
