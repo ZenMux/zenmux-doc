@@ -67,6 +67,71 @@ export default defineConfig({
     ],
     [
       "script",
+      {},
+      `
+      // 主题同步：从官网 zenmux-theme 同步到 VitePress
+      (function() {
+        var ZENMUX_KEY = 'zenmux-theme';
+        var VP_KEY = 'vitepress-theme-appearance';
+
+        function getSystemDark() {
+          return window.matchMedia('(prefers-color-scheme: dark)').matches;
+        }
+
+        function applyTheme(isDark) {
+          var html = document.documentElement;
+          if (isDark) {
+            html.classList.add('dark');
+          } else {
+            html.classList.remove('dark');
+          }
+        }
+
+        function syncFromZenmux() {
+          var zenmuxTheme = localStorage.getItem(ZENMUX_KEY);
+          if (!zenmuxTheme) return false;
+
+          var isDark = false;
+          var vpValue = 'auto';
+
+          if (zenmuxTheme === 'dark') {
+            isDark = true;
+            vpValue = 'dark';
+          } else if (zenmuxTheme === 'light') {
+            isDark = false;
+            vpValue = 'light';
+          } else if (zenmuxTheme === 'system') {
+            isDark = getSystemDark();
+            vpValue = 'auto';
+          }
+
+          localStorage.setItem(VP_KEY, vpValue);
+          applyTheme(isDark);
+          return true;
+        }
+
+        // 立即同步主题
+        syncFromZenmux();
+
+        // 监听 storage 事件（其他标签页的主题变化）
+        window.addEventListener('storage', function(e) {
+          if (e.key === ZENMUX_KEY) {
+            syncFromZenmux();
+          }
+        });
+
+        // 监听系统主题变化（当使用 system 模式时）
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
+          var zenmuxTheme = localStorage.getItem(ZENMUX_KEY);
+          if (zenmuxTheme === 'system') {
+            applyTheme(getSystemDark());
+          }
+        });
+      })();
+      `,
+    ],
+    [
+      "script",
       {
         async: "true",
         src: "https://www.googletagmanager.com/gtag/js?id=G-6FF0RJ6DGB",
