@@ -31,6 +31,44 @@ if (typeof window !== "undefined") {
   window.addEventListener("beforeunload", () => {
     NProgress.start();
   });
+
+  // 双向主题同步：监听 VitePress 主题切换，同步到官网的 zenmux-theme
+  const ZENMUX_KEY = "zenmux-theme";
+  const VP_KEY = "vitepress-theme-appearance";
+
+  const syncToZenmux = () => {
+    const vpTheme = localStorage.getItem(VP_KEY);
+    const isDark = document.documentElement.classList.contains("dark");
+
+    let zenmuxValue: string;
+    if (vpTheme === "auto") {
+      zenmuxValue = "system";
+    } else if (isDark) {
+      zenmuxValue = "dark";
+    } else {
+      zenmuxValue = "light";
+    }
+
+    localStorage.setItem(ZENMUX_KEY, zenmuxValue);
+  };
+
+  // 监听 html class 变化（VitePress 切换主题时会修改 dark class）
+  const observer = new MutationObserver((mutations) => {
+    for (const mutation of mutations) {
+      if (
+        mutation.type === "attributes" &&
+        mutation.attributeName === "class"
+      ) {
+        syncToZenmux();
+        break;
+      }
+    }
+  });
+
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
 }
 
 export default {
