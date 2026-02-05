@@ -84,6 +84,12 @@ export default defineLoacaleConfig({
               { text: "保险补偿", link: "/zh/guide/observability/insurance" },
             ],
           },
+          {
+            text: "Studio",
+            items: [
+              { text: "Studio-Chat", link: "/zh/guide/studio/studio-chat" },
+            ],
+          },
         ],
       },
       {
