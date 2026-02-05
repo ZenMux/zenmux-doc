@@ -113,7 +113,7 @@ export default defineLoacaleConfig({
           { text: "Dify Integration", link: "/best-practices/dify" },
           { text: "Neovate Integration", link: "/best-practices/neovate-code" },
           { text: "Github Copilot", link: "/best-practices/github-copilot" },
-          { text: "Moltbot", link: "/best-practices/moltbot" },
+          { text: "OpenClaw", link: "/best-practices/openclaw" },
         ],
       },
       {
