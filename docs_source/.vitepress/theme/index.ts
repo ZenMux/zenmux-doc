@@ -42,11 +42,11 @@ if (typeof window !== "undefined") {
 
     let zenmuxValue: string;
     if (vpTheme === "auto") {
-      zenmuxValue = "system";
+      zenmuxValue = "System";
     } else if (isDark) {
-      zenmuxValue = "dark";
+      zenmuxValue = "Dark";
     } else {
-      zenmuxValue = "light";
+      zenmuxValue = "Light";
     }
 
     localStorage.setItem(ZENMUX_KEY, zenmuxValue);
