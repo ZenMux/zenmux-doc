@@ -77,6 +77,9 @@ Artifacts 是一个强大的内容生成和预览功能，支持生成可交互�
 
 ### Artifact 面板功能
 
+![studio-Chat](https://cdn.marmot-cloud.com/storage/zenmux/2026/02/05/3FcHasL/20260205163615.jpg)
+![studio-Chat](https://cdn.marmot-cloud.com/storage/zenmux/2026/02/05/oeaQnij/20260205163634.jpg)
+
 - **Content / Preview 切换**：查看源代码或预览效果
 - **复制代码**：一键复制生成的内容
 - **下载文件**：将内容保存为对应格式的文件
@@ -172,6 +175,13 @@ Web Search 功能允许 AI 在回答问题时搜索互联网获取最新信息�
 2. 发送消息
 3. AI 的回复将包含语音内容，可直接播放
 
+## API调用示例
+
+![studio-Chat](https://cdn.marmot-cloud.com/storage/zenmux/2026/02/05/gq0Lim5/20260205163217.jpg)
+![studio-Chat](https://cdn.marmot-cloud.com/storage/zenmux/2026/02/05/VVg5YLl/20260205162944.jpg)
+
+点击模型选择区域的 **</>** 图标，可以查看复制模型的API调用示例。
+
 ## 高级参数设定
 
 ![studio-Chat](https://cdn.marmot-cloud.com/storage/zenmux/2026/02/05/LieLZeb/20260205143826.jpg)
@@ -212,7 +222,7 @@ Web Search 功能允许 AI 在回答问题时搜索互联网获取最新信息�
 - **可选开启**：部分模型支持选择性开启推理模式
 - **不支持**：部分模型不支持推理模式
 
-## 计费模式选择（PayGo vs Subscription）
+## 计费模式选择（PAYGo vs Subscription）
 
 ![studio-Chat](https://cdn.marmot-cloud.com/storage/zenmux/2026/02/05/AV9ykpF/20260205144006.jpg)
 
@@ -251,17 +261,21 @@ ZenMux 提供两种计费模式，您可以根据使用情况灵活选择。
 
 ## 文件上传功能
 
+![studio-Chat](https://cdn.marmot-cloud.com/storage/zenmux/2026/02/05/YozJ8yn/20260205163758.jpg)
+
 Studio-Chat 支持多种类型的文件上传。
 
 ### 支持的文件类型
 
-| 类型     | 格式                   | 说明                     |
-| -------- | ---------------------- | ------------------------ |
-| **图片** | jpg, png, gif, webp 等 | 图像理解和分析           |
-| **文档** | pdf                    | PDF 文档分析             |
-| **文本** | txt, md, json, yaml 等 | 文本文件分析             |
-| **视频** | mp4 等                 | 视频理解（需模型支持）   |
-| **音频** | wav, mp3 等            | 语音转文字（需模型支持） |
+上传具体文件类型需模型支持，如果选项呈灰色/禁用状态，表示当前模型不支持
+
+| 类型     | 格式                   | 说明           |
+| -------- | ---------------------- | -------------- |
+| **图片** | jpg, png, gif, webp 等 | 图像理解和分析 |
+| **文档** | pdf                    | PDF 文档分析   |
+| **文本** | txt, md, json, yaml 等 | 文本文件分析   |
+| **视频** | mp4 等                 | 视频理解       |
+| **音频** | wav, mp3 等            | 语音转文字     |
 
 ### 上传方式
 
@@ -306,14 +320,13 @@ Studio-Chat 支持多种类型的文件上传。
 
 ## 快捷操作
 
-| 操作         | 快捷键/方式            |
-| ------------ | ---------------------- |
-| 发送消息     | `Enter`                |
-| 换行         | `Shift + Enter`        |
-| 停止生成     | 点击 Stop 按钮         |
-| 复制回复     | 点击消息下方的复制图标 |
-| 重新生成     | 点击消息下方的刷新图标 |
-| 查看代码示例 | 点击 `</>` 图标        |
+| 操作     | 快捷键/方式            |
+| -------- | ---------------------- |
+| 发送消息 | `Enter`                |
+| 换行     | `Shift + Enter`        |
+| 停止生成 | 点击 Stop 按钮         |
+| 复制回复 | 点击消息下方的复制图标 |
+| 重新生成 | 点击消息下方的刷新图标 |
 
 ## 常见问题
 
