@@ -85,6 +85,10 @@ export default defineLoacaleConfig({
               { text: "Insurance", link: "/guide/observability/insurance" },
             ],
           },
+          {
+            text: "Studio",
+            items: [{ text: "Studio-Chat", link: "/guide/studio/studio-chat" }],
+          },
         ],
       },
       {
