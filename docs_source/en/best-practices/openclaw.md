@@ -2,18 +2,18 @@
 head:
   - - meta
     - name: description
-      content: Guide to Using Moltbot with ZenMux
+      content: Guide to Using OpenClaw with ZenMux
   - - meta
     - name: keywords
-      content: Zenmux, best practices, integration, moltbot, OpenAI, API, messaging, gateway
+      content: Zenmux, best practices, integration, openclaw, moltbot, OpenAI, API, messaging, gateway
 ---
 
-# Guide to Using Moltbot with ZenMux
+# Guide to Using OpenClaw with ZenMux
 
-Moltbot is a powerful AI messaging gateway that connects multiple messaging platforms (WhatsApp, Telegram, Discord, Slack, Signal, iMessage, and more) to AI models. By integrating with ZenMux, you can access a wide range of models including GPT-5.2, Claude-4.5, Gemini-3, DeepSeek, and more.
+OpenClaw (formerly Moltbot, originally Clawdbot) is a powerful AI messaging gateway that connects multiple messaging platforms (WhatsApp, Telegram, Discord, Slack, Signal, iMessage, and more) to AI models. By integrating with ZenMux, you can access a wide range of models including GPT-5.2, Claude-4.5, Gemini-3, DeepSeek, and more.
 
 ::: info Compatibility Note
-ZenMux fully supports the OpenAI API protocol and can be used with Moltbot through simple configuration.
+ZenMux fully supports the OpenAI API protocol and can be used with OpenClaw through simple configuration.
 
 Note that the OpenAI protocol base_url is `https://zenmux.ai/api/v1`.
 :::
@@ -25,7 +25,7 @@ Note that the OpenAI protocol base_url is `https://zenmux.ai/api/v1`.
 
 ## Integration Methods
 
-There are two ways to use ZenMux with Moltbot:
+There are two ways to use ZenMux with OpenClaw:
 
 | Method | Best For | Complexity |
 | ------ | -------- | ---------- |
@@ -34,7 +34,7 @@ There are two ways to use ZenMux with Moltbot:
 
 ## Step 0: Get a ZenMux API Key
 
-Before configuring Moltbot, you need a ZenMux API Key. ZenMux offers two billing options:
+Before configuring OpenClaw, you need a ZenMux API Key. ZenMux offers two billing options:
 
 ::: code-group
 
@@ -70,14 +70,14 @@ https://docs.zenmux.ai/guide/pay-as-you-go
 
 ## Method 1: Use the ZenMux PR
 
-The easiest way to use ZenMux with Moltbot is to use the pending [ZenMux integration PR #3305](https://github.com/moltbot/moltbot/pull/3305), which provides full auto-discovery of ZenMux models.
+The easiest way to use ZenMux with OpenClaw is to use the pending [ZenMux integration PR #3305](https://github.com/openclaw/openclaw/pull/3305), which provides full auto-discovery of ZenMux models.
 
 ### Step 1: Clone and Checkout the PR
 
 ```bash
-# Clone the Moltbot repository
-git clone https://github.com/moltbot/moltbot.git
-cd moltbot
+# Clone the OpenClaw repository
+git clone https://github.com/openclaw/openclaw.git
+cd openclaw
 
 # Checkout PR #3305 (ZenMux integration)
 git fetch origin pull/3305/head:zenmux-integration
@@ -95,7 +95,7 @@ pnpm build
 Run the onboarding wizard and select ZenMux as your auth provider:
 
 ```bash
-pnpm moltbot onboard --auth-choice zenmux-api-key
+pnpm openclaw onboard --auth-choice zenmux-api-key
 ```
 
 Follow the prompts to enter your ZenMux API Key. The wizard will automatically:
@@ -108,7 +108,7 @@ Follow the prompts to enter your ZenMux API Key. The wizard will automatically:
 List the available models to verify the configuration:
 
 ```bash
-pnpm moltbot models list
+pnpm openclaw models list
 ```
 
 You should see ZenMux models listed with the `zenmux/` prefix, such as:
@@ -122,30 +122,30 @@ You should see ZenMux models listed with the `zenmux/` prefix, such as:
 Send a test message to verify everything works:
 
 ```bash
-pnpm moltbot agent --local --agent main --message "Hello, respond with just 'Hi!'"
+pnpm openclaw agent --local --agent main --message "Hello, respond with just 'Hi!'"
 ```
 
 ## Method 2: Manual Configuration
 
-If you prefer to use a stable release of Moltbot or want more control over the configuration, you can manually configure ZenMux as an explicit provider in your `moltbot.json` config file.
+If you prefer to use a stable release of OpenClaw or want more control over the configuration, you can manually configure ZenMux as an explicit provider in your `openclaw.json` config file.
 
-### Step 1: Install Moltbot
+### Step 1: Install OpenClaw
 
-Install Moltbot globally via npm:
+Install OpenClaw globally via npm:
 
 ```bash
-npm install -g moltbot
+npm install -g openclaw@latest
 ```
 
-Or run the onboarding wizard to set up Moltbot:
+Or run the onboarding wizard to set up OpenClaw:
 
 ```bash
-moltbot onboard
+openclaw onboard --install-daemon
 ```
 
 ### Step 2: Configure ZenMux Provider
 
-Add the ZenMux provider configuration to your `~/.clawdbot/moltbot.json` (or `~/.moltbot/moltbot.json`) file:
+Add the ZenMux provider configuration to your `~/.openclaw/openclaw.json` file:
 
 ```json
 {
@@ -238,7 +238,7 @@ Each model definition requires:
 List the available models:
 
 ```bash
-moltbot models list
+openclaw models list
 ```
 
 You should see your configured ZenMux models:
@@ -256,7 +256,7 @@ zenmux/anthropic/claude-sonnet-4.5         text+image 195k     no    yes   confi
 Set your preferred default model:
 
 ```bash
-moltbot models set zenmux/openai/gpt-5.2
+openclaw models set zenmux/openai/gpt-5.2
 ```
 
 ## Using ZenMux Models
@@ -267,7 +267,7 @@ Once configured, you can use ZenMux models in various ways:
 
 ```bash
 # Run a quick agent command
-moltbot agent --local --agent main --message "Explain quantum computing in simple terms"
+openclaw agent --local --agent main --message "Explain quantum computing in simple terms"
 ```
 
 ### Via Messaging Channels
@@ -276,10 +276,10 @@ Configure your messaging channels (WhatsApp, Telegram, Discord, etc.) and the ga
 
 ```bash
 # Start the gateway
-moltbot gateway run
+openclaw gateway run
 
 # Check channel status
-moltbot channels status
+openclaw channels status
 ```
 
 ### Switching Models
@@ -288,10 +288,10 @@ You can switch models at any time:
 
 ```bash
 # Set a different default model
-moltbot models set zenmux/anthropic/claude-sonnet-4.5
+openclaw models set zenmux/anthropic/claude-sonnet-4.5
 
 # Or specify a model inline (Method 1 only)
-moltbot agent --local --agent main --model zenmux/deepseek/deepseek-chat --message "Hello"
+openclaw agent --local --agent main --model zenmux/deepseek/deepseek-chat --message "Hello"
 ```
 
 ## Troubleshooting
@@ -318,7 +318,7 @@ moltbot agent --local --agent main --model zenmux/deepseek/deepseek-chat --messa
 :::
 
 ::: details Model Not Found
-**Issue**: Moltbot reports that the model cannot be found
+**Issue**: OpenClaw reports that the model cannot be found
 
 **Solutions**:
 
@@ -333,7 +333,7 @@ moltbot agent --local --agent main --model zenmux/deepseek/deepseek-chat --messa
 :::
 
 ::: details Connection Failure
-**Issue**: Moltbot cannot connect to ZenMux
+**Issue**: OpenClaw cannot connect to ZenMux
 
 **Solutions**:
 
@@ -350,7 +350,7 @@ moltbot agent --local --agent main --model zenmux/deepseek/deepseek-chat --messa
 
 1. Kill any running gateway process:
    ```bash
-   pkill -9 -f moltbot-gateway
+   pkill -9 -f openclaw-gateway
    ```
 
 2. Rebuild the project (if using Method 1):
@@ -360,13 +360,13 @@ moltbot agent --local --agent main --model zenmux/deepseek/deepseek-chat --messa
 
 3. List models again:
    ```bash
-   moltbot models list
+   openclaw models list
    ```
 :::
 
 ## Supported Models
 
-ZenMux provides access to a wide range of models. Here are some popular options for Moltbot:
+ZenMux provides access to a wide range of models. Here are some popular options for OpenClaw:
 
 | Model | ID | Best For |
 | ----- | -- | -------- |
