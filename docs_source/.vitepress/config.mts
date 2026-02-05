@@ -94,13 +94,13 @@ export default defineConfig({
           var isDark = false;
           var vpValue = 'auto';
 
-          if (zenmuxTheme === 'dark') {
+          if (zenmuxTheme === 'Dark') {
             isDark = true;
             vpValue = 'dark';
-          } else if (zenmuxTheme === 'light') {
+          } else if (zenmuxTheme === 'Light') {
             isDark = false;
             vpValue = 'light';
-          } else if (zenmuxTheme === 'system') {
+          } else if (zenmuxTheme === 'System') {
             isDark = getSystemDark();
             vpValue = 'auto';
           }
@@ -120,10 +120,10 @@ export default defineConfig({
           }
         });
 
-        // 监听系统主题变化（当使用 system 模式时）
+        // 监听系统主题变化（当使用 System 模式时）
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
           var zenmuxTheme = localStorage.getItem(ZENMUX_KEY);
-          if (zenmuxTheme === 'system') {
+          if (zenmuxTheme === 'System') {
             applyTheme(getSystemDark());
           }
         });
