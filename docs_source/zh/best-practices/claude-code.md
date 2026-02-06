@@ -176,6 +176,7 @@ Claude Code 默认直接连接到 Anthropic 官方服务，但通过配置环境
 export ANTHROPIC_BASE_URL="https://zenmux.ai/api/anthropic"  # ZenMux Anthropic 兼容端点
 export ANTHROPIC_AUTH_TOKEN="sk-ss-v1-xxx"                   # 替换为您的 ZenMux API Key（订阅制 sk-ss-v1-xxx 或按量付费 sk-ai-v1-xxx）
 export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC="1"          # 禁用非必要流量
+export API_TIMEOUT_MS="30000000"                              # API 超时时间（毫秒）
 
 # 避免冲突：如果您本机曾设置过 ANTHROPIC_API_KEY，建议显式置空
 export ANTHROPIC_API_KEY=""
@@ -221,6 +222,7 @@ notepad $PROFILE
 $env:ANTHROPIC_BASE_URL = "https://zenmux.ai/api/anthropic"  # ZenMux Anthropic 兼容端点
 $env:ANTHROPIC_AUTH_TOKEN = "sk-ss-v1-xxx"                   # 替换为您的 ZenMux API Key（订阅制 sk-ss-v1-xxx 或按量付费 sk-ai-v1-xxx）
 $env:CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC = "1"          # 禁用非必要流量
+$env:API_TIMEOUT_MS = "30000000"                              # API 超时时间（毫秒）
 
 # 避免冲突：如果您本机曾设置过 ANTHROPIC_API_KEY，建议显式置空
 $env:ANTHROPIC_API_KEY = ""
@@ -265,6 +267,7 @@ Write-Host "ANTHROPIC_AUTH_TOKEN: $env:ANTHROPIC_AUTH_TOKEN"
 | `ANTHROPIC_AUTH_TOKEN` | 认证密钥 | 您的 ZenMux API Key（订阅制或按量付费） |
 | `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` | 流量控制 | 禁用非必要的数据上报，提升隐私性 |
 | `ANTHROPIC_API_KEY` | 冲突避免 | 置空以避免与本机已有 Anthropic 配置冲突 |
+| `API_TIMEOUT_MS` | API 超时设置 | 设置 API 请求超时时间（毫秒） |
 | `ANTHROPIC_DEFAULT_*_MODEL` | 模型映射 | 定义 Haiku/Sonnet/Opus 档位对应的实际模型 |
 :::
 
@@ -529,6 +532,7 @@ export ANTHROPIC_DEFAULT_OPUS_MODEL="google/gemini-3-pro-preview"
    export ANTHROPIC_BASE_URL="https://zenmux.ai/api/anthropic"
    export ANTHROPIC_AUTH_TOKEN="sk-ss-v1-xxx"  # 替换为您的 ZenMux API Key
    export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC="1"
+   export API_TIMEOUT_MS="30000000"
    export ANTHROPIC_API_KEY=""  # 清空以避免冲突
    export ANTHROPIC_DEFAULT_HAIKU_MODEL="anthropic/claude-haiku-4.5"
    export ANTHROPIC_DEFAULT_SONNET_MODEL="anthropic/claude-sonnet-4.5"

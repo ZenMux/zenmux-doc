@@ -176,6 +176,7 @@ This step writes the ZenMux connection configuration into your shell config file
 export ANTHROPIC_BASE_URL="https://zenmux.ai/api/anthropic"  # ZenMux Anthropic-compatible endpoint
 export ANTHROPIC_AUTH_TOKEN="sk-ss-v1-xxx"                   # Replace with your ZenMux API Key (subscription sk-ss-v1-xxx or pay-as-you-go sk-ai-v1-xxx)
 export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC="1"          # Disable non-essential traffic
+export API_TIMEOUT_MS="30000000"                              # API timeout in milliseconds
 
 # Avoid conflicts: if you previously set ANTHROPIC_API_KEY locally, explicitly clear it
 export ANTHROPIC_API_KEY=""
@@ -221,6 +222,7 @@ notepad $PROFILE
 $env:ANTHROPIC_BASE_URL = "https://zenmux.ai/api/anthropic"  # ZenMux Anthropic-compatible endpoint
 $env:ANTHROPIC_AUTH_TOKEN = "sk-ss-v1-xxx"                   # Replace with your ZenMux API Key (subscription sk-ss-v1-xxx or pay-as-you-go sk-ai-v1-xxx)
 $env:CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC = "1"          # Disable non-essential traffic
+$env:API_TIMEOUT_MS = "30000000"                              # API timeout in milliseconds
 
 # Avoid conflicts: if you previously set ANTHROPIC_API_KEY locally, explicitly clear it
 $env:ANTHROPIC_API_KEY = ""
@@ -265,6 +267,7 @@ Be sure to replace `sk-ss-v1-xxx` or `sk-ai-v1-xxx` in the configuration with yo
 | `ANTHROPIC_AUTH_TOKEN` | Auth token | Your ZenMux API Key (subscription or pay-as-you-go) |
 | `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` | Traffic control | Disables non-essential telemetry to improve privacy |
 | `ANTHROPIC_API_KEY` | Conflict avoidance | Clear it to avoid conflicts with existing local Anthropic config |
+| `API_TIMEOUT_MS` | API timeout | Sets the API request timeout in milliseconds |
 | `ANTHROPIC_DEFAULT_*_MODEL` | Model mapping | Maps Haiku/Sonnet/Opus tiers to actual models |
 :::
 
@@ -529,6 +532,7 @@ This usually happens because old config files cached prior authentication info, 
    export ANTHROPIC_BASE_URL="https://zenmux.ai/api/anthropic"
    export ANTHROPIC_AUTH_TOKEN="sk-ss-v1-xxx"  # Replace with your ZenMux API Key
    export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC="1"
+   export API_TIMEOUT_MS="30000000"
    export ANTHROPIC_API_KEY=""  # Clear to avoid conflicts
    export ANTHROPIC_DEFAULT_HAIKU_MODEL="anthropic/claude-haiku-4.5"
    export ANTHROPIC_DEFAULT_SONNET_MODEL="anthropic/claude-sonnet-4.5"
