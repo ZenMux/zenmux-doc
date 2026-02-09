@@ -150,6 +150,10 @@ export default defineLoacaleConfig({
             text: "OpenClaw 接入 ZenMux 指南",
             link: "/zh/best-practices/openclaw",
           },
+          {
+            text: "CC-Switch 接入 ZenMux 指南",
+            link: "/zh/best-practices/cc-switch",
+          },
         ],
       },
       {
