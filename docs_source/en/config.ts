@@ -143,7 +143,7 @@ export default defineLoacaleConfig({
             items: [
               {
                 text: "Create Chat Completion",
-                link: "/api/openai/create-chat-completion-new",
+                link: "/api/openai/create-chat-completion",
               },
               {
                 text: "Create a Model Response",
@@ -160,7 +160,7 @@ export default defineLoacaleConfig({
             items: [
               {
                 text: "Create a Message",
-                link: "/api/anthropic/create-messages-new",
+                link: "/api/anthropic/create-messages",
               },
               {
                 text: "List Models",
@@ -173,7 +173,7 @@ export default defineLoacaleConfig({
             items: [
               {
                 text: "Generate Content",
-                link: "/api/vertexai/generate-content-new",
+                link: "/api/vertexai/generate-content",
               },
               {
                 text: "List Models",
