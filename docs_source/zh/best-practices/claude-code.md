@@ -176,6 +176,7 @@ Claude Code 默认直接连接到 Anthropic 官方服务，但通过配置环境
 export ANTHROPIC_BASE_URL="https://zenmux.ai/api/anthropic"  # ZenMux Anthropic 兼容端点
 export ANTHROPIC_AUTH_TOKEN="sk-ss-v1-xxx"                   # 替换为您的 ZenMux API Key（订阅制 sk-ss-v1-xxx 或按量付费 sk-ai-v1-xxx）
 export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC="1"          # 禁用非必要流量
+export API_TIMEOUT_MS="30000000"                              # API 超时时间（毫秒）
 
 # 避免冲突：如果您本机曾设置过 ANTHROPIC_API_KEY，建议显式置空
 export ANTHROPIC_API_KEY=""
@@ -221,6 +222,7 @@ notepad $PROFILE
 $env:ANTHROPIC_BASE_URL = "https://zenmux.ai/api/anthropic"  # ZenMux Anthropic 兼容端点
 $env:ANTHROPIC_AUTH_TOKEN = "sk-ss-v1-xxx"                   # 替换为您的 ZenMux API Key（订阅制 sk-ss-v1-xxx 或按量付费 sk-ai-v1-xxx）
 $env:CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC = "1"          # 禁用非必要流量
+$env:API_TIMEOUT_MS = "30000000"                              # API 超时时间（毫秒）
 
 # 避免冲突：如果您本机曾设置过 ANTHROPIC_API_KEY，建议显式置空
 $env:ANTHROPIC_API_KEY = ""
@@ -265,6 +267,7 @@ Write-Host "ANTHROPIC_AUTH_TOKEN: $env:ANTHROPIC_AUTH_TOKEN"
 | `ANTHROPIC_AUTH_TOKEN` | 认证密钥 | 您的 ZenMux API Key（订阅制或按量付费） |
 | `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` | 流量控制 | 禁用非必要的数据上报，提升隐私性 |
 | `ANTHROPIC_API_KEY` | 冲突避免 | 置空以避免与本机已有 Anthropic 配置冲突 |
+| `API_TIMEOUT_MS` | API 超时设置 | 设置 API 请求超时时间（毫秒） |
 | `ANTHROPIC_DEFAULT_*_MODEL` | 模型映射 | 定义 Haiku/Sonnet/Opus 档位对应的实际模型 |
 :::
 
@@ -336,6 +339,113 @@ export ANTHROPIC_DEFAULT_OPUS_MODEL="google/gemini-3-pro-preview"
 ![anthropic-support](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/16/I9JHS8b/detail-anthropic-support.png)
 :::
 
+## 在 VSCode 中使用 Claude Code 扩展
+
+除了命令行版本，Claude Code 还提供了 VSCode 扩展，让您可以在 VSCode 编辑器中直接使用 Claude Code 进行 AI 辅助编程。
+
+### 第 1 步：安装 Claude Code 扩展
+
+在 VSCode 扩展市场中搜索并安装 **Claude Code Extension**：
+
+<div style="text-align: center;">
+  <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/02/03/S4ThMGS/cc-vs.png"
+       alt="安装 Claude Code Extension"
+       style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); margin: 20px 0;"
+       loading="lazy" />
+</div>
+
+### 第 2 步：打开设置
+
+安装完成后，点击扩展的**设置**图标进入配置界面：
+
+<div style="text-align: center;">
+  <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/02/03/lDKDS2r/cc-vs2.png"
+       alt="打开 Claude Code 设置"
+       style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); margin: 20px 0;"
+       loading="lazy" />
+</div>
+
+### 第 3 步：配置模型和环境变量
+
+点击 **Edit in settings.json**，在配置文件中添加或修改以下内容：
+
+<div style="text-align: center;">
+  <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/02/03/w8EeQzh/cc-vs3.png"
+       alt="配置模型和环境变量"
+       style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); margin: 20px 0;"
+       loading="lazy" />
+</div>
+
+```json
+{
+  "claude-code.selectedModel": "anthropic/claude-sonnet-4.5",
+  "claudeCode.environmentVariables": [
+    {
+      "name": "ANTHROPIC_BASE_URL",
+      "value": "https://zenmux.ai/api/anthropic"
+    },
+    {
+      "name": "ANTHROPIC_AUTH_TOKEN",
+      "value": "sk-ss-v1-xxx"
+    },
+    {
+      "name": "API_TIMEOUT_MS",
+      "value": "3000000"
+    },
+    {
+      "name": "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC",
+      "value": "1"
+    },
+    {
+      "name": "ANTHROPIC_DEFAULT_HAIKU_MODEL",
+      "value": "anthropic/claude-haiku-4.5"
+    },
+    {
+      "name": "ANTHROPIC_DEFAULT_SONNET_MODEL",
+      "value": "anthropic/claude-sonnet-4.5"
+    },
+    {
+      "name": "ANTHROPIC_DEFAULT_OPUS_MODEL",
+      "value": "anthropic/claude-opus-4.5"
+    }
+  ]
+}
+```
+
+::: warning 🔑 重要配置说明
+
+1. **替换 API Key**：将 `sk-ss-v1-xxx` 替换为您的真实 ZenMux API Key
+   - 订阅制 API Key（`sk-ss-v1-xxx`）：适合个人开发
+   - 按量付费 API Key（`sk-ai-v1-xxx`）：适合生产环境
+
+2. **配置优先级**：
+   - 如果您之前在命令行中配置了 shell 环境变量（`~/.bashrc` / `~/.zshrc` / PowerShell Profile），VSCode 扩展会优先使用 `settings.json` 中的配置
+   - 为避免冲突，建议在使用 VSCode 扩展时，仅在 `settings.json` 中配置环境变量
+
+3. **模型选择**：
+   - `claude-code.selectedModel` 设置当前使用的模型
+   - `ANTHROPIC_DEFAULT_*_MODEL` 设置三个速度档位的默认模型
+   - 您可以在对话过程中使用 `/model` 命令切换模型
+
+:::
+
+### 第 4 步：开始使用
+
+配置完成后，您就可以在 VSCode 中使用 Claude Code 扩展了：
+
+1. 点击 VSCode 侧边栏的 Claude Code 图标
+2. 在聊天界面中输入您的问题或任务
+3. Claude 会自动读取项目文件并提供帮助
+
+::: tip 💡 使用提示
+
+- **信任工作区**：首次使用时，Claude Code 会要求您信任当前工作区，点击 **Trust This Folder** 允许其访问项目文件
+- **切换模型**：在对话过程中输入 `/model`，可以查看当前使用的模型或切换到其他模型
+- **查看状态**：输入 `/status` 可以查看当前的连接状态和配置信息
+- **环境变量冲突**：如果遇到认证问题，请确认 `ANTHROPIC_AUTH_TOKEN` 和 `ANTHROPIC_BASE_URL` 环境变量未被系统级环境变量覆盖
+
+:::
+
 ## 使用效果
 
 配置完成后，您就可以在 Claude Code 中使用 ZenMux 的多种模型了：
@@ -395,6 +505,105 @@ export ANTHROPIC_DEFAULT_OPUS_MODEL="google/gemini-3-pro-preview"
    - [按量付费 API Key 获取指南](/zh/guide/pay-as-you-go#创建和管理-api-key)
   :::
 
+::: details 从其他平台切换到 ZenMux 时认证失败
+**问题**：之前使用过 Claude Code 官方账号或其他平台（如 MiniMax、GLM 等），切换到 ZenMux 后出现认证失败或配置冲突
+
+**解决方案**：
+
+这通常是因为旧的配置文件缓存了之前的认证信息，导致与新的 ZenMux 配置冲突。按照以下步骤清理并重新配置：
+
+1. **删除旧的配置文件**：
+
+   ```bash [macOS/Linux]
+   # 删除 Claude Code 的配置文件
+   rm -rf ~/.claude/settings.json
+   ```
+
+   ```powershell [Windows PowerShell]
+   # 删除 Claude Code 的配置文件
+   Remove-Item -Path "$env:USERPROFILE\.claude\settings.json" -Force
+   ```
+
+2. **确认 shell 环境变量配置正确**：
+
+   检查您的 shell 配置文件（`~/.zshrc` 或 `~/.bashrc`）中是否包含完整的 ZenMux 配置。参考本文档上方的 [步骤 1：配置 Shell 环境变量](#步骤-1-配置-shell-环境变量-推荐方式) 章节，确保包含以下关键环境变量：
+
+   ```bash
+   export ANTHROPIC_BASE_URL="https://zenmux.ai/api/anthropic"
+   export ANTHROPIC_AUTH_TOKEN="sk-ss-v1-xxx"  # 替换为您的 ZenMux API Key
+   export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC="1"
+   export API_TIMEOUT_MS="30000000"
+   export ANTHROPIC_API_KEY=""  # 清空以避免冲突
+   export ANTHROPIC_DEFAULT_HAIKU_MODEL="anthropic/claude-haiku-4.5"
+   export ANTHROPIC_DEFAULT_SONNET_MODEL="anthropic/claude-sonnet-4.5"
+   export ANTHROPIC_DEFAULT_OPUS_MODEL="anthropic/claude-opus-4.5"
+   ```
+
+3. **重新加载环境变量**：
+
+   ```bash [使用 zsh]
+   source ~/.zshrc
+   ```
+
+   ```bash [使用 bash]
+   source ~/.bashrc
+   ```
+
+   ```powershell [Windows PowerShell]
+   . $PROFILE
+   ```
+
+4. **验证环境变量已生效**：
+
+   ```bash [macOS/Linux]
+   # 检查 ZenMux 服务地址
+   echo $ANTHROPIC_BASE_URL
+   # 应输出：https://zenmux.ai/api/anthropic
+
+   # 检查 API Key 是否已设置
+   echo $ANTHROPIC_AUTH_TOKEN
+   # 应输出您的 ZenMux API Key
+
+   # 确认旧的 API Key 已清空
+   echo $ANTHROPIC_API_KEY
+   # 应输出为空
+   ```
+
+   ```powershell [Windows PowerShell]
+   # 检查 ZenMux 服务地址
+   Write-Host "ANTHROPIC_BASE_URL: $env:ANTHROPIC_BASE_URL"
+   # 应输出：https://zenmux.ai/api/anthropic
+
+   # 检查 API Key 是否已设置
+   Write-Host "ANTHROPIC_AUTH_TOKEN: $env:ANTHROPIC_AUTH_TOKEN"
+   # 应输出您的 ZenMux API Key
+
+   # 确认旧的 API Key 已清空
+   Write-Host "ANTHROPIC_API_KEY: $env:ANTHROPIC_API_KEY"
+   # 应输出为空
+   ```
+
+5. **重新启动 Claude Code**：
+
+   ```bash
+   # 进入您的项目目录
+   cd /path/to/your/project
+
+   # 启动 Claude Code
+   claude
+   ```
+
+6. **验证连接状态**：
+
+   启动成功后，在 Claude Code 中输入 `/status` 命令，确认显示以下信息：
+
+   ```text
+   Auth token: ANTHROPIC_AUTH_TOKEN
+   Anthropic base URL: https://zenmux.ai/api/anthropic
+   ```
+
+:::
+
 ::: details 模型不支持 Anthropic 协议
 **问题**：使用某个模型时提示不支持 Anthropic 协议
 
@@ -415,15 +624,41 @@ export ANTHROPIC_DEFAULT_OPUS_MODEL="google/gemini-3-pro-preview"
 - 确认防火墙设置是否阻止了外部连接
   :::
 
-::: details VSCode Claude Code 插件配置
-**问题**：在 VSCode 的 Claude Code 插件 GUI 模式下遇到问题
+::: details VSCode Claude Code 扩展配置问题
+**问题**：在 VSCode 的 Claude Code 扩展中遇到认证失败、模型无法使用等问题
 
 **解决方案**：
 
-您可以通过 VSCode 插件设置直接调整 Claude Code 的模型配置，修改为您配置文件中配置的模型 slug。具体操作方式如下图所示：
+1. **确认环境变量配置正确**：
+   - 打开 VSCode 设置（`Cmd/Ctrl + ,`）
+   - 搜索 "Claude Code"
+   - 点击 "Edit in settings.json"
+   - 确认 `claudeCode.environmentVariables` 中包含正确的 `ANTHROPIC_BASE_URL` 和 `ANTHROPIC_AUTH_TOKEN`
 
-![VSCode Claude Code 插件配置](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/16/alNj8F2/cc-plugin-settings.png)
-![VSCode Claude Code 插件配置](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/16/S7fuYF9/cc-plugin-model.png)
+2. **检查模型配置**：
+   - 在设置中搜索 "claude-code.selectedModel"
+   - 确认模型名称格式正确（如 `anthropic/claude-sonnet-4.5`）
+   - 确认该模型支持 Anthropic 协议（通过[模型列表](https://zenmux.ai/models?sort=newest&supported_protocol=messages)查看）
+
+3. **解决环境变量冲突**：
+   - VSCode 扩展的 `settings.json` 配置优先级高于系统环境变量
+   - 如果之前在 shell profile 中配置了环境变量，建议仅保留一处配置
+   - 避免同时在多处设置 `ANTHROPIC_AUTH_TOKEN`，可能导致冲突
+
+4. **重启 VSCode**：
+   - 修改配置后，完全退出并重新启动 VSCode
+   - 重启后重新打开项目，让新配置生效
+
+5. **查看扩展日志**：
+   - 在 VSCode 中打开输出面板（`View > Output`）
+   - 选择 "Claude Code" 通道
+   - 查看详细的错误信息以定位问题
+
+6. **验证连接**：
+   - 在 Claude Code 聊天界面中输入 `/status`
+   - 确认显示的 API endpoint 和认证方式正确
+
+详细的配置步骤请参考上方的 [在 VSCode 中使用 Claude Code 扩展](#在-vscode-中使用-claude-code-扩展) 章节。
 :::
 
 ::: details Windows PowerShell 脚本执行策略问题

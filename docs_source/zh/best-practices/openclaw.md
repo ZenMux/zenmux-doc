@@ -2,18 +2,18 @@
 head:
   - - meta
     - name: description
-      content: Moltbot 接入 ZenMux 使用指南
+      content: OpenClaw 接入 ZenMux 使用指南
   - - meta
     - name: keywords
-      content: Zenmux, 最佳实践, 集成, moltbot, OpenAI, API, 消息网关
+      content: Zenmux, 最佳实践, 集成, openclaw, moltbot, OpenAI, API, 消息网关
 ---
 
-# Moltbot 接入 ZenMux 使用指南
+# OpenClaw 接入 ZenMux 使用指南
 
-Moltbot 是一个强大的 AI 消息网关，可以将多个消息平台（WhatsApp、Telegram、Discord、Slack、Signal、iMessage 等）连接到 AI 模型。通过接入 ZenMux，您可以使用包括 GPT-5.2、Claude-4.5、Gemini-3、DeepSeek 等在内的多种模型。
+OpenClaw（原名 Moltbot，最初名为 Clawdbot）是一个强大的 AI 消息网关，可以将多个消息平台（WhatsApp、Telegram、Discord、Slack、Signal、iMessage 等）连接到 AI 模型。通过接入 ZenMux，您可以使用包括 GPT-5.2、Claude-4.5、Gemini-3、DeepSeek 等在内的多种模型。
 
 ::: info 兼容性说明
-ZenMux 完全支持 OpenAI API 协议，可以通过简单配置与 Moltbot 配合使用。
+ZenMux 完全支持 OpenAI API 协议，可以通过简单配置与 OpenClaw 配合使用。
 
 注意 OpenAI 协议的 base_url 为 `https://zenmux.ai/api/v1`。
 :::
@@ -25,7 +25,7 @@ ZenMux 完全支持 OpenAI API 协议，可以通过简单配置与 Moltbot 配�
 
 ## 接入方式
 
-有两种方式将 ZenMux 与 Moltbot 配合使用：
+有两种方式将 ZenMux 与 OpenClaw 配合使用：
 
 | 方式 | 适用场景 | 复杂度 |
 | ---- | -------- | ------ |
@@ -34,7 +34,7 @@ ZenMux 完全支持 OpenAI API 协议，可以通过简单配置与 Moltbot 配�
 
 ## 第 0 步：获取 ZenMux API Key
 
-在配置 Moltbot 之前，您需要一个 ZenMux API Key。ZenMux 提供两种计费方式：
+在配置 OpenClaw 之前，您需要一个 ZenMux API Key。ZenMux 提供两种计费方式：
 
 ::: code-group
 
@@ -70,14 +70,14 @@ https://docs.zenmux.ai/zh/guide/pay-as-you-go
 
 ## 方式一：使用 ZenMux PR
 
-使用 ZenMux 与 Moltbot 最简单的方式是使用待合并的 [ZenMux 集成 PR #3305](https://github.com/moltbot/moltbot/pull/3305)，它提供了完整的 ZenMux 模型自动发现功能。
+使用 ZenMux 与 OpenClaw 最简单的方式是使用待合并的 [ZenMux 集成 PR #3305](https://github.com/openclaw/openclaw/pull/3305)，它提供了完整的 ZenMux 模型自动发现功能。
 
 ### 第 1 步：克隆并切换到 PR 分支
 
 ```bash
-# 克隆 Moltbot 仓库
-git clone https://github.com/moltbot/moltbot.git
-cd moltbot
+# 克隆 OpenClaw 仓库
+git clone https://github.com/openclaw/openclaw.git
+cd openclaw
 
 # 切换到 PR #3305（ZenMux 集成）
 git fetch origin pull/3305/head:zenmux-integration
@@ -95,7 +95,7 @@ pnpm build
 运行引导向导并选择 ZenMux 作为认证提供商：
 
 ```bash
-pnpm moltbot onboard --auth-choice zenmux-api-key
+pnpm openclaw onboard --auth-choice zenmux-api-key
 ```
 
 按照提示输入您的 ZenMux API Key。向导将自动：
@@ -108,7 +108,7 @@ pnpm moltbot onboard --auth-choice zenmux-api-key
 列出可用模型以验证配置：
 
 ```bash
-pnpm moltbot models list
+pnpm openclaw models list
 ```
 
 您应该看到带有 `zenmux/` 前缀的 ZenMux 模型，例如：
@@ -122,30 +122,30 @@ pnpm moltbot models list
 发送测试消息以验证一切正常：
 
 ```bash
-pnpm moltbot agent --local --agent main --message "你好，请只回复'嗨！'"
+pnpm openclaw agent --local --agent main --message "你好，请只回复'嗨！'"
 ```
 
 ## 方式二：手动配置
 
-如果您希望使用 Moltbot 的稳定版本或需要更多配置控制，可以在 `moltbot.json` 配置文件中手动将 ZenMux 配置为显式提供商。
+如果您希望使用 OpenClaw 的稳定版本或需要更多配置控制，可以在 `openclaw.json` 配置文件中手动将 ZenMux 配置为显式提供商。
 
-### 第 1 步：安装 Moltbot
+### 第 1 步：安装 OpenClaw
 
-通过 npm 全局安装 Moltbot：
+通过 npm 全局安装 OpenClaw：
 
 ```bash
-npm install -g moltbot
+npm install -g openclaw@latest
 ```
 
-或运行引导向导设置 Moltbot：
+或运行引导向导设置 OpenClaw：
 
 ```bash
-moltbot onboard
+openclaw onboard --install-daemon
 ```
 
 ### 第 2 步：配置 ZenMux 提供商
 
-将 ZenMux 提供商配置添加到您的 `~/.clawdbot/moltbot.json`（或 `~/.moltbot/moltbot.json`）文件：
+将 ZenMux 提供商配置添加到您的 `~/.openclaw/openclaw.json` 文件：
 
 ```json
 {
@@ -238,7 +238,7 @@ moltbot onboard
 列出可用模型：
 
 ```bash
-moltbot models list
+openclaw models list
 ```
 
 您应该看到已配置的 ZenMux 模型：
@@ -256,7 +256,7 @@ zenmux/anthropic/claude-sonnet-4.5         text+image 195k     no    yes   confi
 设置您偏好的默认模型：
 
 ```bash
-moltbot models set zenmux/openai/gpt-5.2
+openclaw models set zenmux/openai/gpt-5.2
 ```
 
 ## 使用 ZenMux 模型
@@ -267,7 +267,7 @@ moltbot models set zenmux/openai/gpt-5.2
 
 ```bash
 # 运行快速 agent 命令
-moltbot agent --local --agent main --message "用简单的话解释量子计算"
+openclaw agent --local --agent main --message "用简单的话解释量子计算"
 ```
 
 ### 通过消息通道
@@ -276,10 +276,10 @@ moltbot agent --local --agent main --message "用简单的话解释量子计算"
 
 ```bash
 # 启动网关
-moltbot gateway run
+openclaw gateway run
 
 # 检查通道状态
-moltbot channels status
+openclaw channels status
 ```
 
 ### 切换模型
@@ -288,10 +288,10 @@ moltbot channels status
 
 ```bash
 # 设置不同的默认模型
-moltbot models set zenmux/anthropic/claude-sonnet-4.5
+openclaw models set zenmux/anthropic/claude-sonnet-4.5
 
 # 或在命令中指定模型（仅方式一）
-moltbot agent --local --agent main --model zenmux/deepseek/deepseek-chat --message "你好"
+openclaw agent --local --agent main --model zenmux/deepseek/deepseek-chat --message "你好"
 ```
 
 ## 故障排除
@@ -318,7 +318,7 @@ moltbot agent --local --agent main --model zenmux/deepseek/deepseek-chat --messa
 :::
 
 ::: details 模型未找到
-**问题**：Moltbot 报告找不到模型
+**问题**：OpenClaw 报告找不到模型
 
 **解决方案**：
 
@@ -333,7 +333,7 @@ moltbot agent --local --agent main --model zenmux/deepseek/deepseek-chat --messa
 :::
 
 ::: details 连接失败
-**问题**：Moltbot 无法连接到 ZenMux
+**问题**：OpenClaw 无法连接到 ZenMux
 
 **解决方案**：
 
@@ -350,7 +350,7 @@ moltbot agent --local --agent main --model zenmux/deepseek/deepseek-chat --messa
 
 1. 终止运行中的网关进程：
    ```bash
-   pkill -9 -f moltbot-gateway
+   pkill -9 -f openclaw-gateway
    ```
 
 2. 重新构建项目（如果使用方式一）：
@@ -360,13 +360,13 @@ moltbot agent --local --agent main --model zenmux/deepseek/deepseek-chat --messa
 
 3. 再次列出模型：
    ```bash
-   moltbot models list
+   openclaw models list
    ```
 :::
 
 ## 支持的模型
 
-ZenMux 提供多种模型供选择。以下是 Moltbot 的一些热门选项：
+ZenMux 提供多种模型供选择。以下是 OpenClaw 的一些热门选项：
 
 | 模型 | ID | 最佳用途 |
 | ---- | -- | -------- |

@@ -135,7 +135,7 @@ export default defineLoacaleConfig({
             text: "Github Copilot Integration",
             link: "/best-practices/github-copilot",
           },
-          { text: "Moltbot Integration", link: "/best-practices/moltbot" },
+          { text: "OpenClaw Integration", link: "/best-practices/openclaw" },
           { text: "CC-Switch Integration", link: "/best-practices/cc-switch" },
         ],
       },

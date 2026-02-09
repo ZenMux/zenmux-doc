@@ -10,81 +10,102 @@ head:
 
 # Contact Us
 
-Whether you need technical support, have business inquiries, or want to share feedback and suggestions, the ZenMux team welcomes your contact. We provide multiple communication channels to ensure you can easily get the help you need.
+Whether you need technical support, business inquiries, or want to share feedback and suggestions, the ZenMux team welcomes you to reach out.
 
-## Technical Support
+::: tip 💡 Get the Latest Contact Information
+Visit our official support page for team contact details and all social media accounts:
 
-### Email Support
+**🔗 [https://zenmux.ai/supports](https://zenmux.ai/supports)**
 
-Having a technical issue? Please contact our technical support team via email:
-
-**Support Email**: <support@zenmux.ai>
-
-To help us diagnose and resolve the issue more quickly, please include as much of the following information as possible in your email:
-
-- **Account Email**: The email address you used to register with ZenMux
-- **Issue Description**: A detailed description of the issue and the expected behavior
-- **Error Details**: Relevant error codes, logs, or screenshots
-- **Time of Occurrence**: When the issue first occurred
-- **Technical Environment**: Programming language, SDK version, operating system, etc.
-
-::: tip Get Faster Responses
-Before contacting technical support, we recommend checking our [FAQ](/zh/help/faq), where many common questions are answered instantly.
+There you can find:
+- **Core team members**: Contact the founding team directly
+- **Social media accounts**: Follow us on X (Twitter), Discord, YouTube, WeChat, Xiaohongshu, and more
+- **Latest updates**: Get product updates, technical news, and community event information
 :::
 
-## Business Partnerships
+## Quick Contact Options
 
-### Enterprise Solutions
+### Technical Support
 
-If you represent an enterprise customer or would like to learn about customized enterprise solutions, please contact our business team:
+Running into technical issues or need help? Contact us via:
 
-**Business Contact Email**: <bd@zenmux.ai>
+**📧 Technical support email**: <support@zenmux.ai>
 
-We provide the following for enterprise customers:
+We typically respond within 24 hours.
 
+::: tip Faster Response
+Before contacting technical support, we recommend checking our [Frequently Asked Questions (FAQ)](/help/faq), where many common questions have instant answers.
+
+When emailing us, please provide as much of the following information as possible so we can identify and resolve the issue faster:
+- **Account email**: The email address you used to register for ZenMux
+- **Issue description**: A detailed description of the problem and the expected behavior
+- **Error details**: Relevant error codes, logs, or screenshots
+- **Time of occurrence**: When the issue first appeared
+- **Technical environment**: Programming language, SDK version, operating system, etc.
+:::
+
+### Business Partnerships
+
+If you represent an enterprise customer or would like to learn about customized enterprise solutions:
+
+**💼 Business partnership email**: <bd@zenmux.ai>
+
+We provide enterprise customers with:
 - Dedicated technical support and service guarantees
 - Flexible pricing plans and volume discounts
 - Customized API integration solutions
 - Professional technical consulting services
 
-## Community and Social Media
+## Join the Community
 
-### Join Our Community
+We’ve built an active developer community—join us to connect and share:
 
-We have an active developer community and welcome you to join the conversation:
+### Global Community
 
-- **Discord Community**: <http://discord.gg/vHZZzj84Bm>  
-  Here you can exchange experiences with other developers, get technical help, and stay up to date with the latest features.
+- **🐦 X (Twitter)**: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
+  Get product updates, technical news, and industry insights
 
-- **Twitter**: [@ZenMuxAI](https://twitter.com/ZenMuxAI)  
-  Follow our official account for product updates, technical news, and industry insights.
+- **💬 Discord**: [discord.gg/vHZZzj84Bm](http://discord.gg/vHZZzj84Bm)
+  Connect with other developers, get technical help, and stay up to date with the latest features
 
-- **Official Website**: <https://zenmux.ai>  
-  Visit our website to learn more about our products and services.
+- **📺 YouTube**: [@ZenMuxAI](https://www.youtube.com/@ZenMuxAI)
+  Watch product demos, tutorials, and technical talks
 
-::: tip Community First
-For general technical discussions and sharing usage experiences, we recommend joining the Discord community first. There, you can get help from team members and benefit from other developers’ experiences.
+### Chinese Community
+
+- **💚 WeChat group**: Add us on WeChat to join the developer group
+  Visit the [support page](https://zenmux.ai/supports) to scan the QR code and join
+
+- **📕 Xiaohongshu**: @ZenMuxAI
+  Visit the [support page](https://zenmux.ai/supports) to scan the QR code and follow
+
+::: tip 💡 Community First
+For general technical discussions and experience sharing, we recommend joining Discord or the WeChat community first. There, you can get help from team members and benefit from other developers’ experiences.
 :::
 
-## Feedback and Suggestions
+## Product Feedback
 
-### Product Feedback
+Your feedback is a key driver of our continuous improvement. Whether it’s feature requests, UX improvements, or documentation enhancements, we’d love to hear from you.
 
-Your feedback is a key driver for our continuous improvement of products and services. Whether it’s feature suggestions, experience optimization, or documentation improvements, we’d love to hear from you.
-
-**Feedback Email**: <support@zenmux.ai>
+**📮 Feedback email**: <support@zenmux.ai>
 
 We welcome feedback on:
 
-- **Feature Requests**: New features you’d like to see or improvements to existing ones
-- **User Experience**: Issues encountered during use and optimization suggestions
-- **API Endpoints**: Suggestions on interface design, performance, or compatibility
-- **Documentation**: Improvements to accuracy, completeness, and readability
-
-::: details Other Contact Methods
-If you have an urgent technical issue, please be sure to contact the technical support team via email and mark the subject line as “Urgent.” For general inquiries and feedback, we typically respond within 1–2 business days.
-:::
+- **Feature requests**: New features you’d like to see or improvements to existing ones
+- **User experience**: Issues and optimization suggestions from your usage experience
+- **API**: Suggestions on API design, performance, or compatibility
+- **Documentation**: Improvements to documentation accuracy, completeness, and readability
 
 ---
 
-Thank you for choosing ZenMux. We are committed to providing you with a high-quality service experience and look forward to building a long-term partnership with you.
+## Other Resources
+
+- **📘 Official website**: [zenmux.ai](https://zenmux.ai)
+- **📚 Documentation hub**: [docs.zenmux.ai](https://docs.zenmux.ai)
+- **🔧 Model list**: [zenmux.ai/models](https://zenmux.ai/models)
+- **💳 Subscription management**: [zenmux.ai/platform/subscription](https://zenmux.ai/platform/subscription)
+- **💰 Pay-as-you-go**: [zenmux.ai/platform/pay-as-you-go](https://zenmux.ai/platform/pay-as-you-go)
+
+---
+
+Thank you for choosing ZenMux. We’re committed to delivering a high-quality service experience and look forward to building a long-term partnership with you.
