@@ -150,6 +150,10 @@ export default defineLoacaleConfig({
             text: "Moltbot 接入 ZenMux 指南",
             link: "/zh/best-practices/moltbot",
           },
+          {
+            text: "CC-Switch 接入 ZenMux 指南",
+            link: "/zh/best-practices/cc-switch",
+          },
         ],
       },
       {
