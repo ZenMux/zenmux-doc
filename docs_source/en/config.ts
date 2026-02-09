@@ -7,6 +7,7 @@ export default defineLoacaleConfig({
   themeConfig: {
     nav: [
       { text: "Models", link: "https://zenmux.ai/models", noIcon: true },
+      { text: "Pricing", link: "https://zenmux.ai/pricing", noIcon: true },
       { text: "Chat", link: "https://zenmux.ai/chat", noIcon: true },
       {
         text: "Developers",
@@ -21,7 +22,21 @@ export default defineLoacaleConfig({
         ],
       },
       { text: "Benchmarks", link: "https://zenmux.ai/benchmark", noIcon: true },
-      { text: "About Us", link: "https://zenmux.ai/aboutus", noIcon: true },
+      {
+        text: "About Us",
+        items: [
+          {
+            text: "The ZenMux Way",
+            link: "https://zenmux.ai/aboutus",
+            noIcon: true,
+          },
+          {
+            text: "Supports",
+            link: "https://zenmux.ai/supports",
+            noIcon: true,
+          },
+        ],
+      },
     ],
     outline: {
       level: [2, 3],
@@ -128,7 +143,7 @@ export default defineLoacaleConfig({
             items: [
               {
                 text: "Create Chat Completion",
-                link: "/api/openai/create-chat-completion-new",
+                link: "/api/openai/create-chat-completion",
               },
               {
                 text: "Create a Model Response",
@@ -145,7 +160,7 @@ export default defineLoacaleConfig({
             items: [
               {
                 text: "Create a Message",
-                link: "/api/anthropic/create-messages-new",
+                link: "/api/anthropic/create-messages",
               },
               {
                 text: "List Models",
@@ -158,7 +173,7 @@ export default defineLoacaleConfig({
             items: [
               {
                 text: "Generate Content",
-                link: "/api/vertexai/generate-content-new",
+                link: "/api/vertexai/generate-content",
               },
               {
                 text: "List Models",
