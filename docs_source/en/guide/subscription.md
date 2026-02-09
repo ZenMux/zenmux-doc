@@ -10,39 +10,39 @@ head:
 
 # Subscription Plans
 
-The ZenMux Builder Plan subscription provides individual developers with a flat monthly fee and a predictable way to call AI models—so you can focus on building and creating without worrying about per-request API costs.
+ZenMux Builder Plan subscriptions provide individual developers with a fixed monthly fee and a predictable way to use AI models—so you can focus on coding and creating without worrying about the cost of each API call.
 
 ## What are Flows?
 
-A **Flow** is the metering unit used in ZenMux subscriptions, combining token usage and request count into a single measure.
+A **Flow** is the metering unit used in ZenMux subscriptions, combining both token usage and request count.
 
 ### 📖 What can the Pro plan ($20/month, 50 Flows/5h) actually do?
 
-| Use Case              | Example Models         | Usage per 5 Hours                 | Monthly Usage     |
-| --------------------- | ---------------------- | --------------------------------- | ----------------- |
-| **Image Generation**  | NanoBananaPro, etc.    | 2K resolution 16:9, ~30 images    | ~2,000 images     |
-| **Coding**            | Claude Sonnet 4.5, etc.| Complete 5–10 coding tasks        | ~500+ tasks       |
-| **Chat**              | GPT-5.2, etc.          | ~200 conversations                | ~12,000 chats     |
+| Use Case              | Example Models          | Usage per 5 Hours                   | Monthly Usage    |
+| --------------------- | ----------------------- | ----------------------------------- | ---------------- |
+| **Image generation**  | NanoBananaPro, etc.     | 2K resolution 16:9, ~30 images      | ~2000 images     |
+| **Coding**            | Claude Sonnet 4.5, etc. | Complete 5–10 coding tasks          | ~500+ tasks      |
+| **Chat**              | GPT-5.2, etc.           | ~200 conversations                  | ~12,000 chats    |
 
 ::: tip 💡 Notes
 
-- Coding: Task complexity directly affects token usage, which can lead to large differences in Flow consumption.
-- Chat: Calculated as 5,000 input tokens + 1,000 output tokens.
-- Different models can be converted proportionally based on unit price.
+- Coding: Task complexity directly affects token consumption, which can cause significant differences in Flow usage.
+- Chat: Calculated based on 5000 input tokens + 1000 output tokens.
+- Different models can be converted proportionally based on unit pricing.
   :::
 
-## Why choose the Builder Plan?
+## Why choose Builder Plan?
 
 <div style="border: 1px solid #e1e4e8; border-radius: 6px; padding: 20px; margin: 20px 0;">
 
-### 💡 Key Benefits
+### 💡 Key Advantages
 
-| Pain Point Scenario                          | Subscription Solution                          |
-| -------------------------------------------- | ---------------------------------------------- |
-| **Worried about burning money while vibe coding** | Starting at a fixed $20/month—build freely |
-| **Learning new tech is too expensive**       | Explore a wide range of AI models at low cost  |
-| **Messy multi-platform account management**  | One API Key to call all models                 |
-| **Diverse requirements**                     | Coding + image generation + chat—full coverage |
+| Pain Point                              | Subscription Solution                                 |
+| --------------------------------------- | ----------------------------------------------------- |
+| **Worried about burning money while vibe coding** | Fixed pricing from $20/month—code freely              |
+| **Learning new tech is too expensive**  | Explore a wide range of AI models at low cost         |
+| **Messy multi-platform account management** | One API Key for all models                            |
+| **Diverse needs**                       | Coding + image generation + chat—full-scenario coverage |
 
 </div>
 
@@ -50,27 +50,27 @@ A **Flow** is the metering unit used in ZenMux subscriptions, combining token us
 
 1. **Full-scenario model coverage**
 
-   The Builder Plan covers three major model categories. Whether you’re a developer, designer, PM, or operator, one subscription meets the full-spectrum needs of Vibe Builders:
+   Builder Plan covers three major model categories. Whether you’re a developer, designer, PM, or operator, one subscription covers the full set of Vibe Builder use cases:
 
-   | Model Type              | Representative Models                                           |
-   | ----------------------- | --------------------------------------------------------------- |
-   | **Coding models**       | Claude Opus 4.5 / GPT-5.2-Codex / Gemini-3-Pro-Preview ...      |
-   | **Image generation**    | NanoBananaPro / GPT-Image-1.5 ... (rolling out)                 |
-   | **Text generation**     | GPT-5.2 / Qwen3-Max-Thinking / ERNIE 5.0 ...                    |
+   | Model Type            | Representative Models                                             |
+   | --------------------- | ------------------------------------------------------------------ |
+   | **Coding models**     | Claude Opus 4.5 / GPT-5.2-Codex / Gemini-3-Pro-Preview ...         |
+   | **Image models**      | NanoBananaPro / GPT-Image-1.5 ... (rolling out)                    |
+   | **Text generation**   | GPT-5.2 / Qwen3-Max-Thinking / ERNIE 5.0 ...                       |
 
-2. **All-star model lineup**
+2. **An all-star model lineup**
 
-   With a single subscription, you can route to top-tier models worldwide (Gemini 2.5 Pro, GPT‑5 family, Claude Opus/Sonnet 4 family, etc.). Access the latest flagship models as soon as they’re available—like having the strongest compute fleet working together.
+   One subscription lets you orchestrate the world’s top models (Gemini 2.5 Pro, GPT-5 series, Claude Opus/Sonnet 4 series, etc.). Get the latest flagship models as soon as they’re available—like having the strongest compute fleet working together.
 
 3. **Seamless IDE compatibility**
 
-   No tool lock-in. One subscription API Key works across mainstream community developer tools like Claude Code, Cursor, CodeX, and more.
+   No tool lock-in. One subscription API Key works across popular community developer tools like Claude Code, Cursor, CodeX, and more.
 
 ## Plan Comparison
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/7shxqbP/dingyuezhi-jiage2-dapingbanben.png" alt="subscription-free" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/28/iszJOqe/ss-1.png" alt="subscription-free" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 
-### Free - Free Trial
+### Free - Try for Free
 
 ---
 
@@ -91,18 +91,19 @@ A **Flow** is the metering unit used in ZenMux subscriptions, combining token us
 - `z-ai/glm-4.6v-flash` - Z.AI: GLM 4.6V Flash
 - `z-ai/glm-4.7` - Z.AI: GLM 4.7
 
-### Pro - Developer Favorite
+### Pro - Best for Developers
 
 ---
 
 <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/28/co3ieFF/ss-2.png" alt="subscription-free" style="width:300px; border-radius:8px;">
 
-**Supported models:** **70+** advanced models, organized by provider below (`model slug` - description)
+**Supported models:** **70+** premium models, organized by provider below (`modelSlug` - description)
 
 ---
 
 **Anthropic Claude Series**
 
+- `anthropic/claude-opus-4.6` - Claude Opus 4.6
 - `anthropic/claude-opus-4.5` - Claude Opus 4.5
 - `anthropic/claude-sonnet-4.5` - Claude Sonnet 4.5
 - `anthropic/claude-haiku-4.5` - Claude Haiku 4.5
@@ -186,7 +187,7 @@ A **Flow** is the metering unit used in ZenMux subscriptions, combining token us
 
 ---
 
-**Qwen / Tongyi Qianwen Series**
+**Qwen / Tongyi Qwen Series**
 
 - `qwen/qwen3-coder` - Qwen3 Coder
 - `qwen/qwen3-coder-plus` - Qwen3 Coder Plus
@@ -256,13 +257,13 @@ A **Flow** is the metering unit used in ZenMux subscriptions, combining token us
 
 ---
 
-**StepFun**
+**Stepfun**
 
 - `stepfun/step-3` - Step 3
 
 ---
 
-**ByteDance Volcengine Doubao**
+**Volcengine Doubao**
 
 - `volcengine/doubao-seed-1-6-vision` - Doubao Seed 1.6 Vision
 - `volcengine/doubao-seed-1.8` - Doubao Seed 1.8
@@ -278,7 +279,7 @@ A **Flow** is the metering unit used in ZenMux subscriptions, combining token us
 
 **Image Generation Models**
 
-- `nanobanana/nanobanana-pro` - NanoBananaPro (2K resolution; supports 16:9 and many other aspect ratios)
+- `nanobanana/nanobanana-pro` - NanoBananaPro (2K resolution; supports 16:9 and more aspect ratios)
 - `openai/gpt-image-1.5` - GPT-Image-1.5 (coming soon)
 - `tencent/hunyuan-image3` - Hunyuan-Image3 (coming soon)
 
@@ -290,7 +291,7 @@ A **Flow** is the metering unit used in ZenMux subscriptions, combining token us
 
 <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/28/VLvrYZp/ss-3.png" alt="subscription-free" style="width:300px; border-radius:8px;">
 
-**Additional supported ultra-flagship models:**
+**Additional top-tier flagship models:**
 
 - `openai/gpt-5.2-pro` - GPT-5.2 Pro
 - `openai/gpt-5-pro` - GPT-5 Pro
@@ -303,19 +304,19 @@ A **Flow** is the metering unit used in ZenMux subscriptions, combining token us
 
 <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/28/pqFhcnQ/ss-4.png" alt="subscription-free" style="width:300px; border-radius:8px;">
 
-**Supported models:** Same as the Max plan, including all advanced models and ultra-flagship models.
+**Supported models:** Same as the Max plan, including all premium models and all top-tier flagship models.
 
 ## Usage Limits
 
 ::: warning ⚠️ Important
-Subscription plans are designed for **individual development, learning/exploration, and vibe coding** in non-production scenarios. Please follow these usage guidelines:
+Subscription plans are designed for **personal development, learning/exploration, vibe coding**, and other non-production use cases. Please follow the usage rules below:
 :::
 
 ### Rate Limits
 
 - **Rate Limit:** 10–15 RPM (requests per minute)
-- **Quota window:** Refreshes on a rolling 5-hour window
-- **Weekly limit:** Resets on a rolling weekly window
+- **Quota window:** Refreshed within a rolling 5-hour window
+- **Weekly limit:** Resets within a rolling weekly window
 
 ### Applicable Scenarios
 
@@ -330,16 +331,16 @@ Subscription plans are designed for **individual development, learning/explorati
 
 - Production environments that are already live
 - Commercial products or services
-- End-user facing applications
-- Abuse such as multi-account pooling/round-robin
+- End-user–facing applications
+- Abusive behavior such as pooling multiple accounts for round-robin usage
 
 ::: tip 💡 Production recommendation
-If your project is about to go live or is already commercialized, switch to the usage-based [Pay-As-You-Go](./pay-as-you-go) plan to get:
+If your project is about to go live or is already commercialized, switch to the [Pay-As-You-Go](./pay-as-you-go) usage-based plan to get:
 
 - Higher SLA guarantees
 - More stable service quality
 - More flexible scalability
-- Professional business support
+- Professional commercial support
   :::
 
 ## How to Subscribe
@@ -348,46 +349,108 @@ If your project is about to go live or is already commercialized, switch to the 
 
 Visit the [ZenMux Pricing page](https://zenmux.ai/pricing) to view detailed information and pricing for all subscription plans.
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/28/iszJOqe/ss-1.png" alt="subscription-free" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/7shxqbP/dingyuezhi-jiage2-dapingbanben.png" alt="subscription-free" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 
-### Step 2: Choose and subscribe
+### Step 2: Choose a plan and subscribe
 
 1. Select the plan that fits you on the Pricing page
-2. Click the **"Get Max"** or **"Get Ultra"** button for the corresponding plan (Pro users click **"Upgrade"**)
+2. Click the corresponding **"Get Max"** or **"Get Ultra"** button (Pro users click **"Upgrade"**)
 3. Complete the payment process
 
-::: tip 💡 Whitelist request
-To request whitelist access, please visit the official [Contact Us page](https://zenmux.ai/supports) and submit your request through any of the provided channels (Xiaohongshu, WeChat, and Discord preferred).
+::: tip 💡 Public beta capacity
+Subscriptions are now available in public beta, with a total of **999 spots**. Once spots are filled, new sign-ups will be temporarily closed—subscribe early to secure access.
 :::
 
 ### Step 3: Manage your subscription and get an API Key
 
-After subscribing, go to the [Subscription Management page](https://zenmux.ai/platform/subscription):
+After subscribing, go to the [Subscription management page](https://zenmux.ai/platform/subscription):
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/28/ow9Dlvg/ss-free.png" alt="subscription-free" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/4I6M3by/dingyuezhi-gerenguanliyemian2.png" alt="subscription-free" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 
 - 📊 **View usage**
   - Usage and remaining time in the current 5-hour window
-  - Weekly cumulative usage statistics
+  - Cumulative usage stats for the current week
   - Flow consumption breakdown
 
 - 🔑 **Get a subscription API Key**
-  - Generate an API Key dedicated to subscriptions
+  - Generate an API Key specifically for subscriptions
   - Manage and rotate existing keys
-  - View each key’s last-used time
+  - View the key’s last-used time
 
 - 💳 **Manage subscription**
   - View current plan information
   - Upgrade or downgrade your plan
   - View billing history
 
+### Extra Usage - Automatic Overages Fallback
+
+When your subscription’s 5-hour window or weekly window quota is exhausted, Extra Usage can automatically switch to the Pay As You Go API Key you set, so you can continue seamlessly without being blocked by time-window limits. Once your subscription quota is restored, the system automatically switches back to subscription billing.
+
+#### 💡 Key Benefits
+
+- **Seamless switching** - Automatically switches to usage-based billing when quota runs out—no manual API Key changes
+- **No workflow interruption** - Does not affect your development, coding, or chat flows
+- **Auto restore** - Automatically switches back to subscription billing once your quota is restored
+- **Flexible control** - Enable or disable at any time
+
+#### Setup Steps
+
+Go to the [Subscription management page](https://zenmux.ai/platform/subscription) and configure Extra Usage as follows:
+
+**Step 1: Enable Extra Usage**
+
+In the subscription management page, find the **Extra Usage** section and toggle the switch on the right to enable it.
+
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/02/03/8Ed42do/extra-1.png" alt="Enable Extra Usage" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+
+**Step 2: Select a Pay As You Go API Key**
+
+After toggling, a **"Select a Key"** dialog appears. You can:
+
+- Select an existing Pay As You Go API Key from the dropdown list
+- Or click **"Create new key"** to create a new usage-based API Key
+
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/02/03/iJZufsS/extra-2.png" alt="Select API Key" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+
+After selecting, click **"Select"** to confirm.
+
+**Step 3: Done**
+
+After enabling, the page will show details for your selected Pay As You Go API Key, including:
+
+- API Key name and secret
+- Enablement status
+- Created time and last-used time
+- Current amount spent
+- Actions (you can reselect another key)
+
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/02/03/7ivqY3m/extra-3.png" alt="Extra Usage Enabled" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+
+#### How It Works
+
+1. **Normal usage** - Subscription quota (Flows) is used first
+2. **Quota exhausted** - When the 5-hour window or weekly window reaches its limit, automatically switch to the configured Pay As You Go API Key
+3. **Usage-based billing** - Calls are charged against your account balance
+4. **Auto restore** - When the subscription quota window resets, automatically switch back to subscription billing
+
+::: tip 💡 Recommendations
+
+- Make sure your Pay As You Go account has sufficient balance to avoid service interruption after fallback switching due to insufficient funds
+- You can view Extra Usage usage and spend at any time from the subscription management page
+- To change the backup key, just click **"Reselect"** and choose again
+:::
+
+::: warning ⚠️ Billing notice
+After you enable Extra Usage, when your subscription quota is exhausted, charges will be automatically deducted from your Pay As You Go balance. Monitor your balance to avoid unexpected costs.
+:::
+
 ### Step 4: Use it in developer tools
 
-After obtaining your subscription API Key, you can use it in various developer tools and applications.
+After you obtain your subscription API Key, you can use it in various developer tools and applications.
 
 #### Same usage as Pay As You Go
 
-A subscription API Key works exactly the same as [Pay As You Go](./pay-as-you-go.md): it supports the OpenAI SDK, Anthropic SDK, and direct HTTP calls. The **only difference** is that you use a subscription-only API Key (starting with `sk-ss-v1-`); usage is automatically deducted from your subscription quota instead of charging your balance.
+Using a subscription API Key is exactly the same as [Pay As You Go](./pay-as-you-go.md): it works with the OpenAI SDK, Anthropic SDK, and direct HTTP calls. The **only difference** is that you use a subscription-specific API Key (starting with `sk-ss-v1-`), and usage is deducted from your subscription quota instead of your balance.
 
 ::: tip 💡 API call examples
 For complete API call examples, see the [Quickstart](./quickstart.md). Just replace the API Key in the examples with your subscription API Key.
@@ -395,7 +458,7 @@ For complete API call examples, see the [Quickstart](./quickstart.md). Just repl
 
 #### Integrate with mainstream developer tools
 
-A subscription API Key can be seamlessly integrated into many AI coding tools and applications. For step-by-step configuration, see:
+Subscription API Keys integrate seamlessly with popular AI coding tools and apps. For detailed configuration steps, see:
 
 **🔧 AI Coding Tools**
 
@@ -404,7 +467,7 @@ A subscription API Key can be seamlessly integrated into many AI coding tools an
 - [Cline Integration Guide](/best-practices/cline) - VS Code AI assistant extension
 - [VS Code Copilot Integration Guide](/best-practices/copilot) - GitHub Copilot alternative
 - [Neovate Integration Guide](/best-practices/neovate-code) - Modern AI coding tool
-- [OpenCode Integration Guide](/best-practices/opencode) - Open-source AI coding assistant
+- [OpenCode Integration Guide](/best-practices/opencode) - Open-source AI code assistant
 
 **💬 Knowledge Management & Chat Tools**
 
@@ -412,109 +475,89 @@ A subscription API Key can be seamlessly integrated into many AI coding tools an
 - [Obsidian Integration Guide](/best-practices/obsidian) - Knowledge management AI plugin
 - [Sider Integration Guide](/best-practices/sider) - Browser sidebar AI assistant
 
-**🤖 AI App Platforms**
+**🤖 AI Application Platforms**
 
-- [Dify Integration Guide](/best-practices/dify) - LLM app development platform
+- [Dify Integration Guide](/best-practices/dify) - LLM application development platform
 - [Open WebUI Integration Guide](/best-practices/open-webui) - Self-hosted AI chat UI
 
 ::: info 📚 More integrations
-More integration guides are continuously being added. If you need help, visit the [Discord community](http://discord.gg/vHZZzj84Bm) or contact technical support.
+More integration guides are continuously being added. If you need help, visit our [Discord community](http://discord.gg/vHZZzj84Bm) or contact technical support.
 :::
 
 ---
 
 ## Using Subscriptions in Studio Chat
 
-In addition to using your API Key in developer tools, you can also chat directly on the web in **[ZenMux Studio Chat](https://zenmux.ai/chat)** using your subscription quota.
+In addition to using your API Key in developer tools, you can also use your subscription quota directly in **[ZenMux Studio Chat](https://zenmux.ai/chat)** (web) for conversations.
 
-### Switch billing modes
+### Switch billing mode
 
-On the Studio Chat page, you can choose per conversation whether to use subscription quota or your Pay As You Go balance:
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/02/03/l48igiH/studio-chat-mode.png" alt="Studio Chat billing mode switch" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 
-In the conversation settings, you’ll see the **Billing Mode** option:
+On the Studio Chat page, you can choose per conversation whether to use subscription quota or Pay As You Go balance.
 
-- **Subscription** - Uses subscription quota (Flows) and does not consume account balance
-- **Pay As You Go** - Charges your account balance based on actual usage
+As shown, you can find the **Billing Mode** option in conversation settings:
+
+- **Subscription** - Use subscription quota (Flows); does not consume account balance
+- **Pay As You Go** - Charges are deducted from your account balance based on actual usage
 
 ::: tip 💡 Flexible switching
-You can use different billing modes in different conversations. For example:
+You can use different billing modes for different conversations. For example:
 
-- Daily development, learning, prototype validation → Subscription
-- Production testing, commercial project validation → Pay As You Go
+- Daily development, learning, prototyping → use Subscription
+- Production testing, commercial validation → use Pay As You Go
 
-You can switch anytime; the two modes do not affect each other, so you can always choose the most suitable billing method for each scenario.
+You can switch between the two modes at any time. They don’t affect each other, so you can always pick the most suitable billing mode for each scenario.
 :::
 
-### Studio Chat features
-
-When chatting in Studio Chat with a subscription, you get:
-
-- ✅ Access to all models supported by your subscription plan (70+ advanced models)
-- ✅ Multimodal chat (text, images, file upload)
-- ✅ Full conversation history management
-- ✅ Export chat transcripts
-- ✅ Shared subscription quota with API calls
-
 ::: warning ⚠️ Shared quota
-Studio Chat and API calls use the same subscription quota pool. Conversations in Studio Chat consume subscription Flows—please allocate usage accordingly.
+Studio Chat and API calls share the same subscription quota pool. Conversations in Studio Chat consume subscription Flows—plan your usage accordingly.
 :::
 
 ---
-
-## Developer Co-Creation Rewards
-
-We value every user’s feedback. Join the ZenMux improvement program and earn rewards:
-
-- 🐛 **Submit a valid bug report:** $5 credit for each accepted bug
-- 💡 **Suggest an improvement:** $5 credit for each accepted suggestion
-- 🎁 **Reward cap:** Up to $50 credit per person (equivalent to reimbursing 2.5 months of the Pro subscription)
-
-How to participate:
-
-Visit the official [Contact Us page](https://zenmux.ai/supports) and send your feedback or suggestions through any of the provided channels (Xiaohongshu, WeChat, and Discord preferred).
 
 ## FAQ
 
 ### What’s the difference between subscriptions and Pay As You Go?
 
-| Feature                | Subscription (Builder Plan) | Pay-As-You-Go |
+| Feature                 | Subscription (Builder Plan) | Pay-As-You-Go |
 | ---------------------- | --------------------------- | ------------- |
-| **Billing**            | Flat monthly fee            | Usage-based   |
+| **Billing**            | Fixed monthly fee           | Billed by actual usage |
 | **Best for**           | Personal dev, learning      | Production, commercial apps |
-| **Cost predictability**| ✅ High (fixed monthly fee)  | ⚠️ Medium (varies with usage) |
-| **Rate limits**        | 10–15 RPM                   | Higher; customizable |
-| **SLA**                | Standard                    | Higher        |
-| **Pricing leverage**   | ✅ 5–10×                     | Standard API pricing |
+| **Cost predictability**| ✅ High (fixed monthly)      | ⚠️ Medium (varies with usage) |
+| **Rate limits**        | 10–15 RPM                   | Higher; configurable |
+| **SLA**                | Standard                    | Higher |
+| **Price leverage**     | ✅ 5–10×                     | Standard API pricing |
 
-### When does the quota reset?
+### When does quota reset?
 
-- **5-hour window:** Uses a rolling window mechanism measured from when requests are sent; resets once every 5 hours
-- **Weekly limit:** Measured from when requests are sent; resets every 7 days
+- **5-hour window:** Uses a rolling window mechanism, metered from when the request is sent; resets every 5 hours
+- **Weekly limit:** Metered from when the request is sent; resets every 7 days
 
-You can view remaining quota and reset time in real time on the [Subscription Management page](https://zenmux.ai/platform/subscription).
+You can view remaining quota and reset times in real time on the [Subscription management page](https://zenmux.ai/platform/subscription).
 
 ### Can I use multiple plans at the same time?
 
-No. One account can have only one active subscription plan at a time. If you need higher limits, upgrade to Max or Ultra.
+No. One account can have only one active subscription plan at a time. If you need higher limits, upgrade to the Max or Ultra plan.
 
 ## Next Steps
 
-Now that you understand how the Builder Plan subscription works, you can:
+Now that you understand how Builder Plan subscriptions work, you can:
 
-- 📚 Read the [Quickstart](./quickstart) to learn detailed API usage
-- 🔧 Refer to [Best Practices](/best-practices/claude-code) to integrate the subscription API Key into developer tools
-- 💰 Learn about the [Pay-As-You-Go plan](./pay-as-you-go) for production billing
-- 📊 Visit the [Usage Analytics](./observability/usage) page to monitor subscription quota usage in real time
-- 💵 Read [Cost Analysis](./observability/cost) to learn how to optimize costs
+- 📚 Read the [Quickstart](./quickstart) to learn detailed API calling methods
+- 🔧 See [Best Practices](/best-practices/claude-code) to integrate your subscription API Key into developer tools
+- 💰 Learn about [Pay As You Go](./pay-as-you-go), the billing option for production
+- 📊 Visit [Usage Analytics](./observability/usage) to monitor subscription quota usage in real time
+- 💵 Review [Cost Analytics](./observability/cost) to learn how to optimize usage costs
 
 ::: tip Contact Us
-If you run into any issues, or have suggestions and feedback, reach us via:
+If you encounter any issues while using the service, feel free to reach us via:
 
-- **Website**: <https://zenmux.ai>
-- **Support Email**: [support@zenmux.ai](mailto:support@zenmux.ai)
-- **Business Email**: [bd@zenmux.ai](mailto:bd@zenmux.ai)
+- **Official website**: <https://zenmux.ai>
+- **Support email**: [support@zenmux.ai](mailto:support@zenmux.ai)
+- **Business email**: [bd@zenmux.ai](mailto:bd@zenmux.ai)
 - **Twitter**: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
 - **Discord**: <https://discord.gg/vHZZzj84Bm>
 
-For more contact options and details, visit our [Contact Us page](/help/contact).
+For more contact options and details, visit our [Contact page](/help/contact).
 :::

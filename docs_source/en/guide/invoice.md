@@ -145,11 +145,11 @@ Yes. The PDF invoices provided by ZenMux contain complete transaction informatio
 
 After a successful top-up or subscription payment, the invoice is generated immediately. If you still don't see the invoice after 10 minutes, please contact customer support.
 
-### Can I get an invoice in Chinese?
+### Invoicing & Compliance
 
-Currently, ZenMux provides invoices in English. If you need a Chinese invoice or have other special invoice requirements, please contact our business team:
+ZenMux provides standard electronic invoices in English, available for download via your dashboard. For inquiries regarding corporate procurement processes or specific financial compliance requirements, please contact our business team:
 
-- **Business Cooperation Email**: [bd@zenmux.ai](mailto:bd@zenmux.ai)
+- **Business Inquiry**: [bd@zenmux.ai](mailto:bd@zenmux.ai)
 
 ## Next Steps
 
