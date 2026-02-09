@@ -136,6 +136,8 @@ CC-Switch 还提供了 Web UI 版本，适用于无图形界面的服务器或 S
 
 ### 步骤 1：打开供应商管理
 
+![cc-switch](https://cdn.marmot-cloud.com/storage/zenmux/2026/02/09/uswXpro/20260209164412.jpg)
+
 启动 CC-Switch 后，在头部导航栏中选择您要配置的编码工具（如 **Claude Code**），进入供应商管理页面。
 
 ::: tip 💡 首次启动
@@ -143,6 +145,8 @@ CC-Switch 首次启动时会自动导入您本机已有的 Claude Code / Codex /
 :::
 
 ### 步骤 2：添加 ZenMux 供应商
+
+![cc-switch](https://cdn.marmot-cloud.com/storage/zenmux/2026/02/09/T5cWxov/20260209164503.jpg)
 
 点击添加供应商按钮，填写以下配置信息：
 
@@ -189,6 +193,9 @@ CC-Switch 首次启动时会自动导入您本机已有的 Claude Code / Codex /
 }
 ```
 
+![cc-switch](https://cdn.marmot-cloud.com/storage/zenmux/2026/02/09/kkTHUGK/20260209164546.jpg)
+将上述代码复制粘贴到 Claude Code 的配置文件中，保存后即可完成配置。
+
 #### Codex
 
 | 配置项            | 值                               | 说明                   |
@@ -209,6 +216,9 @@ base_url = "https://zenmux.ai/api/v1"
 wire_api = "responses"
 ```
 
+![cc-switch](https://cdn.marmot-cloud.com/storage/zenmux/2026/02/09/eOrFLVY/20260209164614.jpg)
+将上述代码复制粘贴到 Codex 的配置文件中，保存后即可完成配置。
+
 #### Gemini CLI 配置（Vertex AI 协议）
 
 | 配置项            | 值                                | 说明                      |
@@ -224,6 +234,9 @@ GOOGLE_GEMINI_BASE_URL=https://zenmux.ai/api/vertex-ai
 GEMINI_API_KEY=<ZENMUX_API_KEY>
 GEMINI_MODEL=google/gemini-3-flash-preview
 ```
+
+![cc-switch](https://cdn.marmot-cloud.com/storage/zenmux/2026/02/09/erTlGCt/20260209164639.jpg)
+将上述代码复制粘贴到 Gemini CLI 的配置文件中，保存后即可完成配置。
 
 #### OpenCode 配置（OpenAI 协议）
 
@@ -250,8 +263,11 @@ GEMINI_MODEL=google/gemini-3-flash-preview
 }
 ```
 
+![cc-switch](https://cdn.marmot-cloud.com/storage/zenmux/2026/02/09/48cGZ8v/20260209164702.jpg)
+将上述代码复制粘贴到 OpenCode 的配置文件中，保存后即可完成配置。
+
 ::: warning 🔑 重要：替换 API Key
-请确保将配置中的 `sk-ss-v1-xxx` 或 `sk-ai-v1-xxx` 替换为您的真实 ZenMux API Key：
+请确保将配置中的 `<ZENMUX_API_KEY>` 替换为您的真实 ZenMux API Key：
 
 **订阅制 API Key（推荐个人开发）**
 
