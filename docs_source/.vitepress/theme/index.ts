@@ -86,6 +86,7 @@ export default {
     if (inBrowser) {
       if (!isDocsHost) {
         const originPushState = history.pushState;
+        const originReplaceState = history.replaceState;
         history.pushState = function (data, title, url) {
           if (inBrowser) {
             // @ts-expect-error not error
@@ -96,6 +97,12 @@ export default {
             if (!urlObj.pathname.startsWith("/docs")) {
               urlObj.pathname = "/docs" + urlObj.pathname;
               url = urlObj.toString();
+            }
+            // If the resulting path matches the current path (e.g. during
+            // VitePress hydration), use replaceState instead of pushState
+            // to avoid creating a duplicate history entry.
+            if (urlObj.pathname === location.pathname) {
+              return originReplaceState.call(this, data, title, url);
             }
           }
           return originPushState.call(this, data, title, url);
