@@ -26,18 +26,16 @@ head:
   - - meta
     - name: keywords
       content: Zenmux, index, OpenAI, Anthropic, Claude, API
+  - - script
+    - {}
+    - |
+      (function() {
+        var h = location.hostname;
+        var isDocsHost = h.startsWith('docs.') || h === 'localhost' || h === '127.0.0.1';
+        var path = isDocsHost ? '/zh/about/intro' : '/docs/zh/about/intro';
+        location.replace(path);
+      })();
 ---
-
-<script setup>
-import { onMounted } from 'vue'
-
-onMounted(() => {
-  // 重定向到简介页面（使用 replace 避免产生多余的历史记录）
-  const isDocsHost = location.hostname.startsWith('docs.') || location.hostname === 'localhost' || location.hostname === '127.0.0.1'
-  const path = isDocsHost ? '/zh/about/intro' : '/docs/zh/about/intro'
-  location.replace(path)
-})
-</script>
 
 ::: info 欢迎来到 ZenMux 文档
 关于 ZenMux 的详细信息，请访问我们的[简介页面](/zh/about/intro)，其中包含详细的产品概述、功能特性和 Beta 申请信息。
