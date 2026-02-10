@@ -76,6 +76,7 @@ export default defineLoacaleConfig({
               { text: "Reasoning Models", link: "/guide/advanced/reasoning" },
               { text: "Prompt Cache", link: "/guide/advanced/prompt-cache" },
               { text: "Web Search", link: "/guide/advanced/web-search" },
+              { text: "1M Long Context", link: "/guide/advanced/long-context" },
             ],
           },
           {
