@@ -30,13 +30,12 @@ head:
 
 <script setup>
 import { onMounted } from 'vue'
-import { useRouter } from 'vitepress'
-
-const router = useRouter()
 
 onMounted(() => {
-  // Redirect to the introduction page
-  router.go('/about/intro')
+  // Redirect to the introduction page (use replace to avoid double history entry)
+  const isDocsHost = location.hostname.startsWith('docs.') || location.hostname === 'localhost' || location.hostname === '127.0.0.1'
+  const path = isDocsHost ? '/about/intro' : '/docs/about/intro'
+  location.replace(path)
 })
 </script>
 

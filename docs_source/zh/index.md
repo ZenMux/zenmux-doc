@@ -30,13 +30,12 @@ head:
 
 <script setup>
 import { onMounted } from 'vue'
-import { useRouter } from 'vitepress'
-
-const router = useRouter()
 
 onMounted(() => {
-  // 重定向到简介页面
-  router.go('/zh/about/intro')
+  // 重定向到简介页面（使用 replace 避免产生多余的历史记录）
+  const isDocsHost = location.hostname.startsWith('docs.') || location.hostname === 'localhost' || location.hostname === '127.0.0.1'
+  const path = isDocsHost ? '/zh/about/intro' : '/docs/zh/about/intro'
+  location.replace(path)
 })
 </script>
 
