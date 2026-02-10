@@ -208,11 +208,15 @@ Bearer Token 鉴权
 
 #### temperature `number` <font color="gray">可选</font>
 
-控制输出随机性/发散程度。值越低越确定、越“考试型”；值越高越有创造性/多样性。`0` 倾向总选最高概率 token，因此更接近确定性（但仍可能有少量差异）。如果回复过于模板/过短，可尝试调高；如果出现“无限生成”等异常，也可尝试把温度提高到至少 `0.1`。不同模型范围/默认值可能不同（例如部分 Gemini Flash 系列常见范围 `0.0~2.0`，默认 `1.0`）。
+控制输出随机性/发散程度。值越低越确定、越"考试型"；值越高越有创造性/多样性。`0` 倾向总选最高概率 token，因此更接近确定性（但仍可能有少量差异）。如果回复过于模板/过短，可尝试调高；如果出现"无限生成"等异常，也可尝试把温度提高到至少 `0.1`。不同模型范围/默认值可能不同（例如部分 Gemini Flash 系列常见范围 `0.0~2.0`，默认 `1.0`）。
 
 #### topP `number` <font color="gray">可选</font>
 
-核采样（Nucleus sampling）阈值：模型只在“累计概率达到 `topP` 的最小 token 集合”中采样。值越低越保守、越不随机；值越高越发散。范围 `0.0~1.0`（不同模型默认值可能不同）。一般建议 **temperature 与 topP 二选一**做主要调节，不建议两者都大幅调整。
+核采样（Nucleus sampling）阈值：模型只在"累计概率达到 `topP` 的最小 token 集合"中采样。值越低越保守、越不随机；值越高越发散。范围 `0.0~1.0`（不同模型默认值可能不同）。一般建议 **temperature 与 topP 二选一**做主要调节，不建议两者都大幅调整。
+
+#### topK `integer` <font color="gray">可选</font>
+
+Top-K 采样阈值：模型仅在概率最高的 `topK` 个 token 中采样。例如 `topK=40` 表示每步只从概率最高的 40 个 token 中选择下一个 token。值越小越保守，值越大越发散。不同模型默认值可能不同。
 
 #### candidateCount `integer` <font color="gray">可选</font>
 
@@ -228,15 +232,15 @@ Bearer Token 鉴权
 
 #### presencePenalty `number` <font color="gray">可选</font>
 
-出现惩罚：对已经在“已生成文本”中出现过的 token 施加惩罚，从而提高生成新内容/多样性的概率。取值范围 `-2.0 ~ <2.0`。
+出现惩罚：对已经在"已生成文本"中出现过的 token 施加惩罚，从而提高生成新内容/多样性的概率。取值范围 `-2.0 ~ <2.0`。
 
 #### frequencyPenalty `number` <font color="gray">可选</font>
 
-频率惩罚：对“重复出现”的 token 施加惩罚，从而降低重复生成的概率。取值范围 `-2.0 ~ <2.0`。
+频率惩罚：对"重复出现"的 token 施加惩罚，从而降低重复生成的概率。取值范围 `-2.0 ~ <2.0`。
 
 #### seed `integer` <font color="gray">可选</font>
 
-随机种子：固定 seed 时，模型会“尽力”对重复请求给出相同结果，但**不保证完全确定**；模型版本或参数（如 temperature）变化也可能导致差异。不传时默认使用随机 seed。
+随机种子：固定 seed 时，模型会"尽力"对重复请求给出相同结果，但**不保证完全确定**；模型版本或参数（如 temperature）变化也可能导致差异。不传时默认使用随机 seed。
 
 #### responseMimeType `string` <font color="gray">可选</font>
 
@@ -248,28 +252,249 @@ Bearer Token 鉴权
 
 注意：如果你要用 `responseSchema` 约束结构化输出，需要把 `responseMimeType` 设为**非** `text/plain`（例如 `application/json`）。
 
-#### responseSchema `object` <font color="gray">可选</font>
+#### responseSchema `Schema` <font color="gray">可选</font>
 
-结构化输出的 Schema：约束候选文本必须符合该 schema（用于“控制生成输出/JSON Schema”场景）。使用该字段时，必须把 `responseMimeType` 设为支持的非 `text/plain` 类型。
+结构化输出的 Schema：约束候选文本必须符合该 schema（用于"控制生成输出/JSON Schema"场景）。使用该字段时，必须把 `responseMimeType` 设为支持的非 `text/plain` 类型（例如 `application/json`）。
+
+::: details Schema 对象字段
+
+- `type` `enum (Type)` <font color="red">必填</font>
+
+  数据类型。支持值：
+
+  - `STRING`：字符串类型，支持 `enum`、`format`（如 `date-time`、`email`、`byte`）、`minLength`、`maxLength`、`pattern` 等约束。
+  - `INTEGER`：整数类型，支持 `format`（如 `int32`、`int64`）、`minimum`、`maximum` 等约束。
+  - `NUMBER`：浮点数类型，支持 `format`（如 `float`、`double`）、`minimum`、`maximum` 等约束。
+  - `BOOLEAN`：布尔类型。
+  - `ARRAY`：数组类型，支持 `items`、`minItems`、`maxItems` 等约束。
+  - `OBJECT`：对象类型，支持 `properties`、`required`、`propertyOrdering`、`nullable` 等约束。
+
+- `format` `string` <font color="gray">可选</font>
+
+  数据格式补充。对 `NUMBER` 可用 `float`、`double`；对 `INTEGER` 可用 `int32`、`int64`；对 `STRING` 可用 `email`、`byte`、`date`、`date-time`、`password` 等。
+
+- `description` `string` <font color="gray">可选</font>
+
+  属性/字段的文本描述，帮助模型理解需要生成的内容。
+
+- `enum` `array<string>` <font color="gray">可选</font>
+
+  枚举值列表；模型只能从中选择一个输出。通常配合 `type: STRING` 使用。
+
+- `items` `Schema` <font color="gray">可选</font>
+
+  当 `type` 为 `ARRAY` 时，指定数组元素的 schema。
+
+- `properties` `map<string, Schema>` <font color="gray">可选</font>
+
+  当 `type` 为 `OBJECT` 时，定义对象中各属性及其 schema。
+
+- `required` `array<string>` <font color="gray">可选</font>
+
+  对象中必填属性列表。
+
+- `propertyOrdering` `array<string>` <font color="gray">可选</font>
+
+  指定对象属性的输出顺序。
+
+- `nullable` `boolean` <font color="gray">可选</font>
+
+  是否允许值为 `null`。
+
+- `minimum` `number` <font color="gray">可选</font>
+
+  当 `type` 为 `INTEGER` 或 `NUMBER` 时，指定允许的最小值。
+
+- `maximum` `number` <font color="gray">可选</font>
+
+  当 `type` 为 `INTEGER` 或 `NUMBER` 时，指定允许的最大值。
+
+- `minItems` `integer` <font color="gray">可选</font>
+
+  当 `type` 为 `ARRAY` 时，指定数组最少元素数。
+
+- `maxItems` `integer` <font color="gray">可选</font>
+
+  当 `type` 为 `ARRAY` 时，指定数组最多元素数。
+
+- `minLength` `integer` <font color="gray">可选</font>
+
+  当 `type` 为 `STRING` 时，指定字符串最小长度。
+
+- `maxLength` `integer` <font color="gray">可选</font>
+
+  当 `type` 为 `STRING` 时，指定字符串最大长度。
+
+- `pattern` `string` <font color="gray">可选</font>
+
+  当 `type` 为 `STRING` 时，指定正则约束。例如：`"^[\\w\\s,.-]+$"`。
+
+- `title` `string` <font color="gray">可选</font>
+
+  schema 的标题标签。
+
+- `anyOf` `array<Schema>` <font color="gray">可选</font>
+
+  联合类型 / 条件类型：值必须满足 `anyOf` 中至少一个 schema。`oneOf` 也会按照 `anyOf` 的语义被解释。
+
+> **注意**：Schema 复杂度过高（属性名过长、enum 值过多、嵌套层级过深等）可能导致 `InvalidArgument: 400` 错误。建议尽量简化 schema。不支持循环引用（仅在非必填属性中允许有限展开）。
+
+:::
+
+#### responseJsonSchema `object` <font color="gray">可选</font>
+
+替代 `responseSchema` 的 JSON Schema 格式；当设置此字段时，必须省略 `responseSchema`，同时 `responseMimeType` 需设为 `application/json`。直接接受标准 JSON Schema 语法。
+
+#### responseLogprobs `boolean` <font color="gray">可选</font>
+
+是否返回输出 token 的 log probability（对数概率）。设为 `true` 时，在响应的 `logprobsResult` 中会包含每个生成 token 的对数概率信息。**使用 `logprobs` 字段前，必须先启用此参数**。
 
 #### logprobs `integer` <font color="gray">可选</font>
 
 返回每一步生成中 **top 候选 token** 的 log probability（对数概率）。取值范围 `1~20`。**需要同时启用 `responseLogprobs=true` 才能使用该字段**；并且模型选中的 token 不一定等于 top 候选 token。
 
+#### responseModalities `array<enum>` <font color="gray">可选</font>
+
+指定响应返回的模态类型。仅部分 Gemini 模型支持多模态输出。未设置时默认只返回文本。支持值：
+
+- `TEXT`：文本输出（默认）。
+- `IMAGE`：图像输出；使用时必须同时包含 `TEXT`，即 `["TEXT", "IMAGE"]`。仅支持部分模型（如 `gemini-2.5-flash-image`、`gemini-3-pro-image-preview`）。
+- `AUDIO`：音频输出；主要用于 Live API（实时流式）场景。
+
 #### audioTimestamp `boolean` <font color="gray">可选</font>
 
 音频时间戳理解：用于**纯音频文件**的时间戳理解能力（preview）。仅部分模型支持（例如部分 Gemini Flash 系列）。
 
-#### thinkingConfig `object` <font color="gray">可选</font>
+#### thinkingConfig `ThinkingConfig` <font color="gray">可选</font>
 
-Gemini 2.5 及更高版本的 “thinking” 配置。官网给出的字段包括：
+Gemini 2.5 及更高版本的 "thinking"（内部推理）配置。对不支持 thinking 的模型设置此字段会返回错误。
 
-- `thinkingBudget` `integer`：thinking 的 token 预算；默认由模型自动控制，上限常见为 `8192` tokens。
-- `thinkingLevel` `enum`：控制内部推理强度，常见值 `LOW` / `HIGH`；更高可能提升复杂任务质量，但会增加延迟与成本。
+- `thinkingBudget` `integer` <font color="gray">可选</font>
 
-#### mediaResolution `enum` <font color="gray">可选</font>
+  thinking 的 token 预算（适用于 **Gemini 2.5** 系列）。不同模型范围：
+  - Gemini 2.5 Pro：`128` ~ `32768`（不可关闭 thinking）
+  - Gemini 2.5 Flash：`0` ~ `24576`（`0` = 关闭 thinking）
+  - Gemini 2.5 Flash Lite：`512` ~ `24576`
 
-控制输入媒体（图像/视频）处理方式：`LOW` 会降低每张图/每段视频占用的 token（可能损失细节，但允许更长视频进入上下文）；支持值通常为 `HIGH`、`MEDIUM`、`LOW`。
+  设为 `-1` 表示动态 thinking（模型根据请求复杂度自动调整预算）。不传时默认由模型自动控制。
+
+  > **注意**：不可与 `thinkingLevel` 同时使用；`thinkingBudget` 仅适用于 Gemini 2.5 系列。
+
+- `thinkingLevel` `enum (ThinkingLevel)` <font color="gray">可选</font>
+
+  控制内部推理强度（适用于 **Gemini 3** 系列，推荐用法）。支持值：
+  - `THINKING_LEVEL_UNSPECIFIED`：未指定，使用模型默认的动态行为。
+  - `MINIMAL`：尽可能少地使用 thinking token（仅 Gemini 3 Flash 支持）。
+  - `LOW`：低推理强度，适合简单任务。
+  - `MEDIUM`：中等推理强度（仅 Gemini 3 Flash 支持）。
+  - `HIGH`：高推理强度（Gemini 3 默认值），适合数学、代码、逻辑分析等复杂任务。
+
+  > **注意**：不可与 `thinkingBudget` 同时使用；`thinkingLevel` 仅适用于 Gemini 3 系列。
+
+- `includeThoughts` `boolean` <font color="gray">可选</font>
+
+  是否在响应中返回思考过程摘要。设为 `true` 时，在可用的情况下会返回 thought 摘要。属于 best-effort 能力，即使设置了也不保证一定会返回 thoughts。
+
+#### mediaResolution `enum (MediaResolution)` <font color="gray">可选</font>
+
+控制输入媒体（图像/视频/PDF）处理时的 token 分辨率，用于在响应质量与 token 消耗之间取得平衡。更高分辨率允许模型感知更多细节，但会消耗更多 token。支持值：
+
+- `MEDIA_RESOLUTION_UNSPECIFIED`：未指定，使用模型默认设置（不同代模型默认 token 数不同）。
+- `MEDIA_RESOLUTION_LOW`：低分辨率，更少 token，更快更省成本。
+- `MEDIA_RESOLUTION_MEDIUM`：中分辨率，质量与成本的平衡。
+- `MEDIA_RESOLUTION_HIGH`：高分辨率，更多 token，更精细。
+- `MEDIA_RESOLUTION_ULTRA_HIGH`：超高分辨率（仅 Gemini 3 支持）。
+
+> Gemini 3 参考 token 数（图像）：`ULTRA_HIGH` ≈ 2240、`HIGH` ≈ 1120、`MEDIUM` ≈ 560。
+
+#### speechConfig `SpeechConfig` <font color="gray">可选</font>
+
+语音生成配置；当 `responseModalities` 包含 `AUDIO` 时使用。
+
+- `voiceConfig` `VoiceConfig` <font color="gray">可选</font>
+
+  单一语音配置（与 `multiSpeakerVoiceConfig` 互斥）。
+
+  - `prebuiltVoiceConfig` `PrebuiltVoiceConfig` <font color="gray">可选</font>
+
+    预置语音配置。
+
+    - `voiceName` `string` <font color="gray">可选</font>
+
+      预置语音名称（如 `Kore`、`Puck`、`Charon` 等）。
+
+  - `replicatedVoiceConfig` `ReplicatedVoiceConfig` <font color="gray">可选</font>
+
+    复刻语音配置（通过音频样本复刻语音）。
+
+    - `mimeType` `string` <font color="gray">可选</font>
+
+      语音样本的 MIME 类型；目前仅支持 `audio/wav`（16-bit signed little-endian，24kHz 采样率）。
+
+    - `voiceSample` `string(bytes)` <font color="gray">可选</font>
+
+      自定义语音样本（base64 编码）。
+
+- `multiSpeakerVoiceConfig` `MultiSpeakerVoiceConfig` <font color="gray">可选</font>
+
+  多人语音配置（与 `voiceConfig` 互斥）；用于多角色 TTS 场景。
+
+  - `speakerVoiceConfigs` `array<SpeakerVoiceConfig>`
+
+    每个说话人的语音配置列表。
+
+    - `speaker` `string`：说话人名称。
+    - `voiceConfig` `VoiceConfig`：该说话人使用的语音配置（结构同上）。
+
+- `languageCode` `string` <font color="gray">可选</font>
+
+  语音输出的语言代码（如 `en-US`）。
+
+#### routingConfig `RoutingConfig` <font color="gray">可选</font>
+
+路由配置（Vertex AI）：将请求路由到特定模型。`autoMode` 和 `manualMode` 互斥。
+
+> **注意**：此字段已废弃（deprecated），Google 建议使用 `modelConfig` 替代。
+
+- `autoMode` `AutoRoutingMode` <font color="gray">可选</font>
+
+  自动路由：由预训练的路由模型和用户偏好共同决定路由。
+
+  - `modelRoutingPreference` `enum (ModelRoutingPreference)` <font color="gray">可选</font>
+
+    路由偏好。支持值：`BALANCED` 等。
+
+- `manualMode` `ManualRoutingMode` <font color="gray">可选</font>
+
+  手动路由：直接指定目标模型。
+
+  - `modelName` `string` <font color="gray">可选</font>
+
+    目标模型名称（如 `gemini-1.5-pro-001`）。
+
+#### imageConfig `ImageConfig` <font color="gray">可选</font>
+
+图像生成配置；当 `responseModalities` 包含 `IMAGE` 时使用。
+
+- `aspectRatio` `string` <font color="gray">可选</font>
+
+  生成图像的宽高比。支持值：`1:1`、`2:3`、`3:2`、`3:4`、`4:3`、`9:16`、`16:9`、`21:9`；部分模型还支持 `4:5`、`5:4`。
+
+- `imageSize` `string` <font color="gray">可选</font>
+
+  生成图像的尺寸。支持值：`1K`、`2K`、`4K`。默认 `1K`。
+
+- `outputCompressionQuality` `number` <font color="gray">可选</font>
+
+  生成图像的压缩质量（仅 `image/jpeg` 格式适用）。
+
+- `outputMimeType` `string` <font color="gray">可选</font>
+
+  生成图像的 MIME 类型。
+
+#### enableAffectiveDialog `boolean` <font color="gray">可选</font>
+
+是否启用情感对话：开启后模型会检测用户情绪并据此调整回复风格。
 
 ### systemInstruction `Content` <font color="gray">可选</font>
 

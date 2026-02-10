@@ -26,18 +26,16 @@ head:
   - - meta
     - name: keywords
       content: Zenmux, index, OpenAI, Anthropic, Claude, API
+  - - script
+    - {}
+    - |
+      (function() {
+        var h = location.hostname;
+        var isDocsHost = h.startsWith('docs.') || h === 'localhost' || h === '127.0.0.1';
+        var path = isDocsHost ? '/about/intro' : '/docs/about/intro';
+        location.replace(path);
+      })();
 ---
-
-<script setup>
-import { onMounted } from 'vue'
-
-onMounted(() => {
-  // Redirect to the introduction page (use replace to avoid double history entry)
-  const isDocsHost = location.hostname.startsWith('docs.') || location.hostname === 'localhost' || location.hostname === '127.0.0.1'
-  const path = isDocsHost ? '/about/intro' : '/docs/about/intro'
-  location.replace(path)
-})
-</script>
 
 ::: info Welcome to the ZenMux Documentation
 For more information about ZenMux, please visit our [Introduction page](/about/intro), which includes a detailed product overview, key features, and Beta application information.
