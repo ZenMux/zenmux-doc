@@ -12,7 +12,31 @@ export default defineLoacaleConfig({
     },
     nav: [
       { text: "Models", link: "https://zenmux.ai/models", noIcon: true },
-      { text: "Pricing", link: "https://zenmux.ai/pricing", noIcon: true },
+      {
+        text: "Pricing",
+        items: [
+          {
+            text: "Overview",
+            link: "https://zenmux.ai/pricing/overview",
+            noIcon: true,
+          },
+          {
+            text: "Pay As You Go",
+            link: "https://zenmux.ai/pricing/pay-as-you-go",
+            noIcon: true,
+          },
+          {
+            text: "Subscription",
+            link: "https://zenmux.ai/pricing/subscription",
+            noIcon: true,
+          },
+          {
+            text: "Promotions",
+            link: "https://zenmux.ai/pricing/promotions",
+            noIcon: true,
+          },
+        ],
+      },
       { text: "Chat", link: "https://zenmux.ai/chat", noIcon: true },
       {
         text: "Developers",
@@ -218,7 +242,7 @@ export default defineLoacaleConfig({
         text: "帮助中心",
         items: [
           { text: "隐私政策", link: "/zh/privacy" },
-          { text: "安全合规", link: "/zh/compliance" },
+          // { text: "安全合规", link: "/zh/compliance" },
           { text: "服务协议", link: "/zh/terms-of-service" },
           // { text: "常见问题", link: "/zh/help/faq" },
           { text: "联系我们", link: "/zh/help/contact" },
