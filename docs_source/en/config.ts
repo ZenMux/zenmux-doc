@@ -7,7 +7,31 @@ export default defineLoacaleConfig({
   themeConfig: {
     nav: [
       { text: "Models", link: "https://zenmux.ai/models", noIcon: true },
-      { text: "Pricing", link: "https://zenmux.ai/pricing", noIcon: true },
+      {
+        text: "Pricing",
+        items: [
+          {
+            text: "Overview",
+            link: "https://zenmux.ai/pricing/overview",
+            noIcon: true,
+          },
+          {
+            text: "Pay As You Go",
+            link: "https://zenmux.ai/pricing/pay-as-you-go",
+            noIcon: true,
+          },
+          {
+            text: "Subscription",
+            link: "https://zenmux.ai/pricing/subscription",
+            noIcon: true,
+          },
+          {
+            text: "Promotions",
+            link: "https://zenmux.ai/pricing/promotions",
+            noIcon: true,
+          },
+        ],
+      },
       { text: "Chat", link: "https://zenmux.ai/chat", noIcon: true },
       {
         text: "Developers",
@@ -198,7 +222,7 @@ export default defineLoacaleConfig({
         text: "Help Center",
         items: [
           { text: "Privacy Policy", link: "/privacy" },
-          { text: "Security and Compliance", link: "/compliance" },
+          // { text: "Security and Compliance", link: "/compliance" },
           { text: "Terms of Service", link: "/terms-of-service" },
           // { text: "FAQ", link: "/help/faq" },
           { text: "Contact Us", link: "/help/contact" },
