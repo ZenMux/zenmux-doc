@@ -21,7 +21,7 @@ POST https://zenmux.ai/api/vertex-ai/v1/publishers/{provider}/models/{model}:gen
 ### Streaming:
 
 ```
-POST https://zenmux.ai/api/anthropic/v1/publishers/{provider}/models/{model}:streamGenerateContent
+POST https://zenmux.ai/api/vertex-ai/v1/publishers/{provider}/models/{model}:streamGenerateContent
 ```
 
 ZenMux supports the Google Vertex AI API via the Gen AI SDK. For detailed request parameters and response schemas, see the [official Google Vertex AI documentation](https://cloud.google.com/vertex-ai/generative-ai/docs/model-reference/inference).
