@@ -80,6 +80,7 @@ A **Flow** is the metering unit used in ZenMux subscriptions, combining both tok
 
 - `deepseek/deepseek-chat` - DeepSeek-V3.2 (Non-thinking Mode)
 - `deepseek/deepseek-reasoner` - DeepSeek-R1.8
+- `google/gemini-3.1-pro-preview` - Google: Gemini 3.1 Pro Preview
 - `inclusionai/ling-1t` - inclusionAI: Ling-1T
 - `inclusionai/ling-mini-2.0` - inclusionAI: Ling-Mini-2.0
 - `inclusionai/ring-1t` - inclusionAI: Ring-1T
