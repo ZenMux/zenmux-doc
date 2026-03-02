@@ -176,6 +176,10 @@ export default defineLoacaleConfig({
             link: "/zh/best-practices/openclaw",
           },
           {
+            text: "阿里云部署 OpenClaw 并集成 ZenMux 指南",
+            link: "/zh/best-practices/openclaw-alibaba",
+          },
+          {
             text: "CC-Switch 接入 ZenMux 指南",
             link: "/zh/best-practices/cc-switch",
           },
