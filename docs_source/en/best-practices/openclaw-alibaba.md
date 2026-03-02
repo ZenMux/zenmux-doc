@@ -7,16 +7,12 @@
 > - **Google Gemini 3.1 Pro** — Native multimodal support with strong image-and-text understanding
 >
 > 💡 **No need to register separately for overseas platforms like OpenAI, Google, or Anthropic**—one ZenMux account covers it all, so you can skip complicated credit card binding and regional restrictions.
->
-> ⚠️ **Security warning**: Per the current [OpenClaw Secure Usage Guidelines](https://s.antgroup-inc.cn/home/talk/articleDetail?regionId=100001&id=20900001), ZenMux is an external model service. Direct use is **prohibited** in internal office environments. If you want to try it out, deploy in a **non-office environment**, such as an Alibaba Cloud server or a personal Mac mini.
 
 ## Deploy OpenClaw
 
 > Deploying OpenClaw itself isn’t complicated. If you don’t have a spare Mac, a cloud server is a good option. Cloud servers are online 24/7, don’t suffer from power outages, and don’t consume your local machine’s resources. Major cloud providers also offer one-click OpenClaw deployment solutions. This guide uses Alibaba Cloud and costs only ~~RMB 68/year~~ (it seems the promotion has ended; you can purchase monthly to try it out).
 
 [Deploy the OpenClaw image and build a DingTalk AI employee](https://help.aliyun.com/zh/simple-application-server/use-cases/quickly-deploy-and-use-openclaw)
-
-Follow Alibaba Cloud’s documentation and you should be able to finish deployment quickly. Note that the DingTalk referenced in the docs is not Ant DingTalk. Currently, the app application process for Ant DingTalk is relatively cumbersome, so you can first follow the doc to integrate with DingTalk (create an enterprise using your personal DingTalk account, then access the DingTalk Open Platform).
 
 > **Alibaba Cloud integrates Bailian API Key by default**, which comes with some free quota—enough to get the Web UI and DingTalk integration working.
 
