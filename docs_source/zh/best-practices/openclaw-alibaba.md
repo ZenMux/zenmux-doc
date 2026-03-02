@@ -7,16 +7,12 @@
 > - **Google Gemini 3.1 Pro** —— 原生多模态支持，图文理解能力强
 >
 > 💡 **无需分别注册 OpenAI、Google、Anthropic 等海外平台**，一个 ZenMux 账号全搞定，告别复杂的信用卡绑定和区域限制。
->
-> ⚠️ **安全警告**：按照当前[《OpenClaw 安全使用规范》](https://s.antgroup-inc.cn/home/talk/articleDetail?regionId=100001&id=20900001)要求，ZenMux 背后属于外部模型服务，内部办公环境**禁止直接使用**。如需体验，请使用**非办公环境**部署，例如：阿里云服务器、个人 Mac mini 等。
 
 ## 部署 OpenClaw
 
 > 部署 OpenClaw 本身不复杂，如果没有闲置的Mac，可以考虑云服务器，云服务器优点 24 小时在线，不怕断电，不占你电脑资源，各大云服务厂商也推出了各种 OpenClaw 的一键部署方案，这里用的阿里云，只要 ~~68 元/年~~（当前活动好像结束了，可按月购买体验）
 
 [部署 OpenClaw 镜像并构建钉钉 AI 员工](https://help.aliyun.com/zh/simple-application-server/use-cases/quickly-deploy-and-use-openclaw)
-
-参照阿里云提供的文档，部署基本可以快速搞定，注意文档里的钉钉不是蚂蚁钉，目前蚂蚁钉申请应用的流程比较麻烦，可以先按照文档使用钉钉接入（用自己的个人钉钉账号创建一个企业，再访问钉钉开放平台就可以）
 
 > **阿里云默认接入百炼 API Key**，有一定免费额度，调通 Web UI 和钉钉足够了
 
