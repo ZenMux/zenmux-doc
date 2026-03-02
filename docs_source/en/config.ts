@@ -161,6 +161,10 @@ export default defineLoacaleConfig({
             link: "/best-practices/github-copilot",
           },
           { text: "OpenClaw Integration", link: "/best-practices/openclaw" },
+          {
+            text: "Deploying OpenClaw on Alibaba Cloud with ZenMux Integration",
+            link: "/best-practices/openclaw-alibaba",
+          },
           { text: "CC-Switch Integration", link: "/best-practices/cc-switch" },
         ],
       },
