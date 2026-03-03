@@ -8,6 +8,7 @@ import "element-plus/theme-chalk/dark/css-vars.css";
 import Select from "./select.vue";
 import Login from "./login.vue";
 import ApiContainer from "./api-container.vue";
+import EndpointDrawer from "./endpoint-drawer.vue";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import "./style.css";
@@ -78,7 +79,7 @@ export default {
       // https://vitepress.dev/guide/extending-default-theme#layout-slots
       "doc-top": () => h(ApiContainer),
       "doc-before": () => h(Select),
-      "nav-bar-content-after": () => h(Login),
+      "nav-bar-content-after": () => [h(Login), h(EndpointDrawer)],
     });
   },
   enhanceApp({ app, router, siteData }) {
@@ -138,6 +139,17 @@ export default {
       return ret;
     };
     if (inBrowser) {
+      // Use event delegation to capture clicks on "Endpoints" nav item
+      document.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement;
+        const anchor = target.closest('a');
+        if (anchor && anchor.textContent?.trim() === 'Endpoints') {
+          e.preventDefault();
+          e.stopPropagation();
+          document.dispatchEvent(new CustomEvent('endpoints'));
+        }
+      }, true);
+
       console.info("isDocsHost:", isDocsHost);
       updateLogoLink();
       if (!isDocsHost) {
