@@ -6,6 +6,7 @@ export default defineLoacaleConfig({
   description: "zenmux.ai document",
   themeConfig: {
     nav: [
+      { text: "Chat", link: "https://zenmux.ai/chat", noIcon: true },
       { text: "Models", link: "https://zenmux.ai/models", noIcon: true },
       {
         text: "Pricing",
@@ -32,11 +33,11 @@ export default defineLoacaleConfig({
           },
         ],
       },
-      { text: "Chat", link: "https://zenmux.ai/chat", noIcon: true },
       {
         text: "Developers",
         items: [
           { text: "Docs", link: "/", noIcon: true },
+          { text: "Endpoints", link: "javascript:void(0)", noIcon: true },
           { text: "Blog", link: "https://zenmux.ai/blog", noIcon: true },
           {
             text: "Changelog",
