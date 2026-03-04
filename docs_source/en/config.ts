@@ -171,6 +171,10 @@ export default defineLoacaleConfig({
             link: "/best-practices/openclaw-alibaba",
           },
           { text: "CC-Switch Integration", link: "/best-practices/cc-switch" },
+          {
+            text: "Cursor Integration",
+            link: "/best-practices/cursor",
+          },
         ],
       },
       {
