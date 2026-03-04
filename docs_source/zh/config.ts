@@ -99,6 +99,7 @@ export default defineLoacaleConfig({
               { text: "推理模型", link: "/zh/guide/advanced/reasoning" },
               { text: "提示词缓存", link: "/zh/guide/advanced/prompt-cache" },
               { text: "图片生成", link: "/zh/guide/advanced/image-generation" },
+              { text: "视频生成", link: "/zh/guide/advanced/video-generation" },
               { text: "网络搜索", link: "/zh/guide/advanced/web-search" },
               { text: "1M 长上下文", link: "/zh/guide/advanced/long-context" },
             ],
@@ -184,6 +185,10 @@ export default defineLoacaleConfig({
             text: "CC-Switch 接入 ZenMux 指南",
             link: "/zh/best-practices/cc-switch",
           },
+          // {
+          //   text: "Cursor 接入 ZenMux 指南",
+          //   link: "/zh/best-practices/cursor",
+          // },
         ],
       },
       {

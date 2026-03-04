@@ -90,16 +90,20 @@ export default defineLoacaleConfig({
               { text: "Streaming", link: "/guide/advanced/streaming" },
               { text: "Multimodal", link: "/guide/advanced/multimodal" },
               {
-                text: "Image Generation",
-                link: "/guide/advanced/image-generation",
-              },
-              {
                 text: "Structured Output",
                 link: "/guide/advanced/structured-output",
               },
               { text: "Tool Calling", link: "/guide/advanced/tool-calls" },
               { text: "Reasoning Models", link: "/guide/advanced/reasoning" },
               { text: "Prompt Cache", link: "/guide/advanced/prompt-cache" },
+              {
+                text: "Image Generation",
+                link: "/guide/advanced/image-generation",
+              },
+              {
+                text: "Video Generation",
+                link: "/guide/advanced/video-generation",
+              },
               { text: "Web Search", link: "/guide/advanced/web-search" },
               { text: "1M Long Context", link: "/guide/advanced/long-context" },
             ],
