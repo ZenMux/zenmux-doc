@@ -185,10 +185,10 @@ export default defineLoacaleConfig({
             text: "CC-Switch 接入 ZenMux 指南",
             link: "/zh/best-practices/cc-switch",
           },
-          // {
-          //   text: "Cursor 接入 ZenMux 指南",
-          //   link: "/zh/best-practices/cursor",
-          // },
+          {
+            text: "Cursor 接入 ZenMux 指南",
+            link: "/zh/best-practices/cursor",
+          },
         ],
       },
       {
