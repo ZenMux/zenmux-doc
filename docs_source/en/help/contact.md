@@ -18,10 +18,11 @@ Visit our official support page for team contact details and all social media ac
 **🔗 [https://zenmux.ai/supports](https://zenmux.ai/supports)**
 
 There you can find:
+
 - **Core team members**: Contact the founding team directly
-- **Social media accounts**: Follow us on X (Twitter), Discord, YouTube, WeChat, Xiaohongshu, and more
+- **Social media accounts**: Follow us on X (Twitter), Discord, YouTube, and more
 - **Latest updates**: Get product updates, technical news, and community event information
-:::
+  :::
 
 ## Quick Contact Options
 
@@ -37,12 +38,13 @@ We typically respond within 24 hours.
 Before contacting technical support, we recommend checking our [Frequently Asked Questions (FAQ)](/help/faq), where many common questions have instant answers.
 
 When emailing us, please provide as much of the following information as possible so we can identify and resolve the issue faster:
+
 - **Account email**: The email address you used to register for ZenMux
 - **Issue description**: A detailed description of the problem and the expected behavior
 - **Error details**: Relevant error codes, logs, or screenshots
 - **Time of occurrence**: When the issue first appeared
 - **Technical environment**: Programming language, SDK version, operating system, etc.
-:::
+  :::
 
 ### Business Partnerships
 
@@ -51,6 +53,7 @@ If you represent an enterprise customer or would like to learn about customized 
 **💼 Business partnership email**: <bd@zenmux.ai>
 
 We provide enterprise customers with:
+
 - Dedicated technical support and service guarantees
 - Flexible pricing plans and volume discounts
 - Customized API integration solutions
@@ -71,16 +74,16 @@ We’ve built an active developer community—join us to connect and share:
 - **📺 YouTube**: [@ZenMuxAI](https://www.youtube.com/@ZenMuxAI)
   Watch product demos, tutorials, and technical talks
 
-### Chinese Community
+<!-- ### Chinese Community
 
 - **💚 WeChat group**: Add us on WeChat to join the developer group
   Visit the [support page](https://zenmux.ai/supports) to scan the QR code and join
 
 - **📕 Xiaohongshu**: @ZenMuxAI
-  Visit the [support page](https://zenmux.ai/supports) to scan the QR code and follow
+  Visit the [support page](https://zenmux.ai/supports) to scan the QR code and follow -->
 
 ::: tip 💡 Community First
-For general technical discussions and experience sharing, we recommend joining Discord or the WeChat community first. There, you can get help from team members and benefit from other developers’ experiences.
+For general technical discussions and experience sharing, we recommend joining Discord community first. There, you can get help from team members and benefit from other developers’ experiences.
 :::
 
 ## Product Feedback
