@@ -20,6 +20,20 @@ const isDocsHost =
     location.hostname.startsWith("localhost") ||
     location.hostname.startsWith("127.0.0.1"));
 
+// Capture ?endpoints=open at module level before VitePress router normalizes the URL
+const shouldOpenEndpoints =
+  inBrowser &&
+  new URLSearchParams(window.location.search).get("endpoints") === "open";
+
+if (shouldOpenEndpoints) {
+  const params = new URLSearchParams(window.location.search);
+  params.delete("endpoints");
+  const newUrl = params.toString()
+    ? `${window.location.pathname}?${params.toString()}`
+    : window.location.pathname;
+  window.history.replaceState({}, document.title, newUrl);
+}
+
 console.info("isDocsHost:", isDocsHost);
 
 NProgress.configure({
@@ -139,6 +153,13 @@ export default {
       return ret;
     };
     if (inBrowser) {
+      // Auto-open endpoints drawer if ?endpoints=open was in the initial URL
+      if (shouldOpenEndpoints) {
+        setTimeout(() => {
+          document.dispatchEvent(new CustomEvent("endpoints"));
+        }, 100);
+      }
+
       // Use event delegation to capture clicks on "Endpoints" nav item
       document.addEventListener('click', (e) => {
         const target = e.target as HTMLElement;
