@@ -11,7 +11,13 @@ export default defineLoacaleConfig({
       level: [2, 3],
     },
     nav: [
-      { text: "Chat", link: "https://zenmux.ai/chat", noIcon: true },
+      {
+        text: "Studio",
+        items: [
+          { text: "Chat", link: "https://zenmux.ai/chat", noIcon: true },
+          { text: "Video", link: "https://zenmux.ai/video", noIcon: true },
+        ],
+      },
       { text: "Models", link: "https://zenmux.ai/models", noIcon: true },
       {
         text: "Pricing",

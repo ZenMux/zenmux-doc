@@ -120,6 +120,7 @@ const providersData: Provider[] = [
 
 const open = ref(false);
 const copyTip = ref<string | null>(null);
+const shareLinkCopied = ref(false);
 
 const handleToggle = () => {
   open.value = !open.value;
@@ -153,6 +154,19 @@ const openDoc = (url: string) => {
   }
 };
 
+const handleCopyShareLink = async () => {
+  try {
+    const shareUrl = `${window.location.origin}/?endpoints=open`;
+    await navigator.clipboard.writeText(shareUrl);
+    shareLinkCopied.value = true;
+    setTimeout(() => {
+      shareLinkCopied.value = false;
+    }, 1500);
+  } catch {
+    // silently fail
+  }
+};
+
 const handleKeydown = (e: KeyboardEvent) => {
   if (e.key === "Escape") handleClose();
 };
@@ -160,6 +174,17 @@ const handleKeydown = (e: KeyboardEvent) => {
 onMounted(() => {
   document.addEventListener("endpoints", handleToggle);
   document.addEventListener("keydown", handleKeydown);
+
+  // Auto-open drawer if URL has ?endpoints=open
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("endpoints") === "open") {
+    open.value = true;
+    params.delete("endpoints");
+    const newUrl = params.toString()
+      ? `${window.location.pathname}?${params.toString()}`
+      : window.location.pathname;
+    window.history.replaceState({}, document.title, newUrl);
+  }
 });
 
 onUnmounted(() => {
@@ -179,21 +204,48 @@ onUnmounted(() => {
         <div class="endpoint-drawer">
           <div class="endpoint-drawer-header">
             <h2 class="endpoint-drawer-title">API Endpoints</h2>
-            <button class="endpoint-drawer-close" @click="handleClose">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+            <div class="endpoint-drawer-header-actions">
+              <button
+                class="icon-btn share-link-btn"
+                title="Copy share link"
+                @click="handleCopyShareLink"
               >
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
-              </svg>
-            </button>
+                <!-- Link icon -->
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M6.667 8.667a3.333 3.333 0 0 0 5.026.36l2-2a3.334 3.334 0 0 0-4.713-4.714L8 3.293"
+                  />
+                  <path
+                    d="M9.333 7.333a3.333 3.333 0 0 0-5.026-.36l-2 2a3.334 3.334 0 0 0 4.713 4.714L8 12.707"
+                  />
+                </svg>
+                <span v-if="shareLinkCopied" class="copy-tooltip">Copied!</span>
+              </button>
+              <button class="endpoint-drawer-close" @click="handleClose">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+            </div>
           </div>
           <div class="endpoint-drawer-body">
             <div
@@ -458,6 +510,16 @@ onUnmounted(() => {
   font-size: 16px;
   font-weight: 600;
   color: var(--vp-c-text-1);
+}
+
+.endpoint-drawer-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.share-link-btn {
+  position: relative;
 }
 
 .endpoint-drawer-close {
