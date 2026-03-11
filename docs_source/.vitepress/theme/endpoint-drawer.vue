@@ -156,7 +156,7 @@ const openDoc = (url: string) => {
 
 const handleCopyShareLink = async () => {
   try {
-    const shareUrl = `${window.location.origin}/?endpoints=open`;
+    const shareUrl = `${window.location.origin}${window.location.pathname}?endpoints=open`;
     await navigator.clipboard.writeText(shareUrl);
     shareLinkCopied.value = true;
     setTimeout(() => {
@@ -174,17 +174,6 @@ const handleKeydown = (e: KeyboardEvent) => {
 onMounted(() => {
   document.addEventListener("endpoints", handleToggle);
   document.addEventListener("keydown", handleKeydown);
-
-  // Auto-open drawer if URL has ?endpoints=open
-  const params = new URLSearchParams(window.location.search);
-  if (params.get("endpoints") === "open") {
-    open.value = true;
-    params.delete("endpoints");
-    const newUrl = params.toString()
-      ? `${window.location.pathname}?${params.toString()}`
-      : window.location.pathname;
-    window.history.replaceState({}, document.title, newUrl);
-  }
 });
 
 onUnmounted(() => {
