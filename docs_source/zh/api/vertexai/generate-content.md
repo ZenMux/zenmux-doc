@@ -21,7 +21,7 @@ POST https://zenmux.ai/api/vertex-ai/v1/publishers/{provider}/models/{model}:gen
 ### 流式：
 
 ```
-POST https://zenmux.ai/api/anthropic/v1/publishers/{provider}/models/{model}:streamGenerateContent
+POST https://zenmux.ai/api/vertex-ai/v1/publishers/{provider}/models/{model}:streamGenerateContent
 ```
 
 ZenMux 支持 Google Vertex AI API，使用 Gen AI SDK，具体请求参数和返回结构详见 [Google Vertex AI 官网](https://cloud.google.com/vertex-ai/generative-ai/docs/model-reference/inference)。
