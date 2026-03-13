@@ -105,7 +105,48 @@ cd my-project
 gemini  # [!code highlight]
 ```
 
----
+## 已知问题：工具调用报错 {#tool-call-error}
+
+::: warning 工具调用报错：Unknown name "id" at function_response
+当模型尝试使用内置工具（如 Google Search）时，可能出现以下报错：
+
+```
+[API Error: {"error":{"code":"400","type":"invalid_params","message":"Invalid JSON payload received. Unknown name \"id\" at 'contents[...].parts[0].function_response': Cannot find field."}}]
+```
+
+**原因**：Gemini CLI 在向 API 发送工具调用结果时，会在 `functionResponse` 中携带 `id` 字段。该字段在部分 API 版本中尚未支持，导致请求被拒绝。
+:::
+
+**解决方案**：修改 Gemini CLI 本地安装文件，注释掉 `callId` 的传递。
+
+1. 找到文件（路径中的 Node 版本号请替换为您的实际版本）：
+
+   ```
+   ~/.nvm/versions/node/<版本号>/lib/node_modules/@google/gemini-cli/node_modules/@google/gemini-cli-core/dist/src/core/turn.js
+   ```
+
+2. 找到 `handlePendingFunctionCall` 方法（约第 183 行），将 `callId,` 注释掉：
+
+   ```js
+   handlePendingFunctionCall(fnCall, traceId) {
+       const name = fnCall.name || 'undefined_tool_name';
+       const args = fnCall.args || {};
+       const callId = fnCall.id ?? `${name}_${Date.now()}_${this.callCounter++}`;
+       const toolCallRequest = {
+           // callId,  // [!code warning]
+           name,
+           args,
+           isClientInitiated: false,
+           prompt_id: this.prompt_id,
+           traceId,
+       };
+   ```
+
+3. 保存文件后重启 Gemini CLI 即可。
+
+::: tip 注意
+每次更新或重装 Gemini CLI 后需要重新执行此修改。
+:::
 
 ## 核心功能
 
@@ -197,8 +238,6 @@ gemini mcp remove <server-name>
 }
 ```
 
----
-
 ## 支持的模型
 
 通过 ZenMux，您可以在 Gemini CLI 中使用多种 Gemini 模型。可以通过 `GEMINI_MODEL` 环境变量指定模型：
@@ -214,8 +253,6 @@ export GEMINI_MODEL="gemini-2.5-pro"  # [!code highlight]
 - Gemini CLI 默认使用 Gemini 系列模型
 - 如需指定特定供应商，请参考 [Provider Routing 文档](/zh/guide/advanced/provider-routing)
   :::
-
----
 
 ## 认证方式
 
@@ -234,8 +271,6 @@ Gemini CLI 原生支持三种认证方式：
 ```bash
 gemini --reauth
 ```
-
----
 
 ## 故障排除
 
@@ -295,8 +330,6 @@ gemini --reauth
 - 尝试禁用沙盒模式测试：在 `settings.json` 中设置 `"sandbox": false`
 - 如果使用自定义沙盒，检查 `.gemini/sandbox.Dockerfile` 配置
   :::
-
----
 
 ## 进阶配置
 
