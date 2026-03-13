@@ -150,6 +150,10 @@ export default defineLoacaleConfig({
             link: "/best-practices/claude-code",
           },
           { text: "CodeX Integration", link: "/best-practices/codex" },
+          {
+            text: "Gemini CLI Integration",
+            link: "/best-practices/gemini-cli",
+          },
           { text: "opencode Integration", link: "/best-practices/opencode" },
           { text: "Cline Integration", link: "/best-practices/cline" },
           {

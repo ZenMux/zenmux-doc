@@ -149,6 +149,10 @@ export default defineLoacaleConfig({
           },
           { text: "CodeX接入ZenMux指南", link: "/zh/best-practices/codex" },
           {
+            text: "Gemini CLI接入ZenMux指南",
+            link: "/zh/best-practices/gemini-cli",
+          },
+          {
             text: "opencode接入ZenMux指南",
             link: "/zh/best-practices/opencode",
           },
