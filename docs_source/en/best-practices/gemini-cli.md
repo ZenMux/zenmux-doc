@@ -2,173 +2,278 @@
 head:
   - - meta
     - name: description
-      content: Using Gemini CLI via ZenMux Guide
+      content: Guide to Using Gemini CLI with ZenMux
   - - meta
     - name: keywords
-      content: Zenmux, best practices, integration, Gemini CLI, Google, AI, terminal, agent
+      content: Zenmux, best practices, integration, Gemini CLI, Google, Vertex AI, AI, terminal, agent
 ---
 
-# Using Gemini CLI via ZenMux Guide
+# Guide to Using Gemini CLI with ZenMux
 
-Gemini CLI is Google’s open-source AI terminal agent that brings Gemini capabilities directly into your terminal. Built on a ReAct (Reason + Act) loop architecture, it can autonomously handle complex tasks such as coding, debugging, file operations, and content generation. Gemini CLI provides a 1M-token context window, a request rate of 60 requests/minute, and rich MCP tool integration. With ZenMux, you can configure a custom API endpoint for Gemini CLI to get more flexible model choices and a more stable service experience.
+Gemini CLI is an open-source AI terminal agent tool released by Google that brings Gemini’s capabilities directly into your terminal. Built on the ReAct (Reason + Act) loop architecture, it can autonomously handle complex tasks such as coding, debugging, file operations, and content generation. Gemini CLI offers a 1M-token context window, a request rate limit of 60 requests/minute, and rich MCP tool integration. With ZenMux, you can configure a custom API endpoint for Gemini CLI, enabling more flexible model selection and a more stable service experience.
 
-::: info Compatibility Notes
-Gemini CLI natively uses the Google Gemini API protocol (not the OpenAI protocol). By setting the `GOOGLE_GEMINI_BASE_URL` environment variable, you can route requests to a custom endpoint. ZenMux supports the Vertex AI protocol and is directly compatible with Gemini CLI’s API request format.
-:::
+## Prerequisites
 
-## Configuration Options
+- Node.js 18+
+- ZenMux API Key (see [Get a ZenMux API Key](#get-a-zenmux-api-key) below)
 
-### Step 0: Install Gemini CLI
-
-Gemini CLI requires Node.js 18+.
+## Install Gemini CLI
 
 ::: code-group
 
-```bash [npm (recommended)]
+```bash [npm (Recommended)]
 npm install -g @google/gemini-cli
 ```
 
-```bash [npx (try without installing)]
+```bash [pnpm]
+pnpm install -g @google/gemini-cli
+```
+
+```bash [npx (Try without installing)]
 npx @google/gemini-cli
 ```
 
 :::
 
+Verify the installation:
+
+```bash
+gemini --version
+```
+
 After installation, type `gemini` in your terminal to start it.
 
-### Step 1: Configure Environment Variables
+## Get a ZenMux API Key
 
-Add your ZenMux API Key and custom endpoint to your shell config file:
+::: code-group
+
+```text [Subscription API Key (Recommended)]
+Use cases: personal development, learning/exploration, lightweight team collaboration
+Features: fixed monthly fee, predictable cost
+API Key format: sk-ss-v1-xxx
+
+How to get:
+1. Visit https://zenmux.ai/platform/subscription
+2. Choose a plan
+3. Create a subscription API Key in the console
+```
+
+```text [Pay-as-you-go API Key]
+Use cases: production, commercial products, enterprise applications
+Features: billed by actual usage, convenient for centralized cost accounting
+API Key format: sk-ai-v1-xxx
+
+How to get:
+1. Visit https://zenmux.ai/platform/pay-as-you-go
+2. Top up your account
+3. Create a pay-as-you-go API Key in the console
+```
+
+:::
+
+## Configuration Options
+
+There are currently two ways to use Gemini CLI with ZenMux:
+
+| Method                                          | Use Case                                               | Recommendation |
+| ----------------------------------------------- | ------------------------------------------------------ | -------------- |
+| [Gemini API Mode](#option-1-gemini-api-mode-recommended) | Simple setup, quick Q&A and read-only analysis          | Recommended    |
+| [Vertex AI Mode](#option-2-vertex-ai-mode-alternative)   | Semantics align with ZenMux `/api/vertex-ai` endpoint   | Alternative    |
+
+### Option 1: Gemini API Mode (Recommended)
+
+A simple setup—connect in minutes with just 3 environment variables.
+
+#### Step 1: Create the config directory
+
+```bash
+mkdir -p ~/.gemini
+```
+
+#### Step 2: Configure environment variables
+
+You can configure environment variables in `~/.gemini/.env`. Gemini CLI will automatically load them from this file:
+
+```env
+GEMINI_API_KEY=sk-ss-v1-xxx  # [!code highlight]
+GEMINI_MODEL=google/gemini-2.5-pro  # [!code highlight]
+GOOGLE_GEMINI_BASE_URL=https://zenmux.ai/api/vertex-ai  # [!code highlight]
+```
+
+Alternatively, set them in your shell profile:
 
 ::: code-group
 
 ```bash [macOS/Linux/WSL]
 # Edit ~/.zshrc or ~/.bashrc
-export GEMINI_API_KEY="sk-ai-v1-xxx"  # [!code highlight]
+export GEMINI_API_KEY="sk-ss-v1-xxx"  # [!code highlight]
+export GEMINI_MODEL="google/gemini-2.5-pro"  # [!code highlight]
 export GOOGLE_GEMINI_BASE_URL="https://zenmux.ai/api/vertex-ai"  # [!code highlight]
 ```
 
 ```powershell [Windows PowerShell]
 # Edit your PowerShell profile
-$env:GEMINI_API_KEY = "sk-ai-v1-xxx"  # [!code highlight]
+$env:GEMINI_API_KEY = "sk-ss-v1-xxx"  # [!code highlight]
+$env:GEMINI_MODEL = "google/gemini-2.5-pro"  # [!code highlight]
 $env:GOOGLE_GEMINI_BASE_URL = "https://zenmux.ai/api/vertex-ai"  # [!code highlight]
 
-# To persist permanently, add to your PowerShell profile:
+# To make it persistent, add it to your PowerShell profile:
 # notepad $PROFILE
 ```
 
 :::
 
 ::: warning Important
-Make sure to replace `sk-ai-v1-xxx` with your real ZenMux API Key. You can get your API Key from the [ZenMux Console](https://zenmux.ai/settings/keys).
+Be sure to replace `sk-ss-v1-xxx` with your real ZenMux API Key. You can get your API Key in the [ZenMux Console](https://zenmux.ai/settings/keys).
 :::
 
-### Step 2: Configure Gemini CLI
+#### Step 3: Configure settings.json
 
-Gemini CLI’s config file is located at `~/.gemini/settings.json`. It is created automatically the first time you start Gemini CLI, but you can also create or edit it manually:
+Set the auth method to Gemini API Key to avoid being prompted to sign in with Google when Gemini CLI starts:
 
 ```json
 {
-  "theme": "GitHub",
-  "sandbox": false
+  "security": {
+    "auth": {
+      "selectedType": "gemini-api-key" // [!code highlight]
+    }
+  }
 }
 ```
 
 ::: tip Configuration Notes
 
-- `theme`: Sets the UI theme. Options include `GitHub`, `Dracula`, `Monokai`, etc.
-- `sandbox`: Whether to run commands in sandbox mode (off by default). It’s recommended to enable this in production environments.
+- `GEMINI_API_KEY`: your ZenMux API Key
+- `GEMINI_MODEL`: the model to use (any ZenMux-supported Google model)
+- `GOOGLE_GEMINI_BASE_URL`: ZenMux Vertex AI–compatible endpoint
+- `selectedType`: auth type—set to `gemini-api-key` to skip Google sign-in
+  :::
 
-Gemini CLI primarily controls models and API endpoints via environment variables rather than `settings.json`.
-:::
-
-You can also manage environment variables via a `.env` file. Gemini CLI automatically loads it from your project directory or from `~/.gemini/.env`:
-
-```bash
-# .gemini/.env
-GEMINI_API_KEY=sk-ai-v1-xxx
-GOOGLE_GEMINI_BASE_URL=https://zenmux.ai/api/vertex-ai
-```
-
-### Step 3: Start Using It
-
-After configuration, reload your shell settings and start Gemini CLI:
+#### Step 4: Verify connectivity
 
 ```bash
-# Reload your config
+# Reload your profile (if you configured via shell profile)
 source ~/.zshrc  # or source ~/.bashrc
 
-# Enter your project directory
+# Minimal smoke test
+gemini -p "Reply with OK only." --output-format json  # [!code highlight]
+```
+
+If the response contains `"response": "OK"`, the basic connection is working.
+
+Next, test read-only file analysis:
+
+```bash
+# Go to any project directory
 cd my-project
 
-# Start Gemini CLI
-gemini  # [!code highlight]
+# Reference a file for analysis
+gemini -p "@README.md Summarize this file in one sentence." --output-format json  # [!code highlight]
 ```
 
-## Known Issue: Tool Call Error {#tool-call-error}
+If it can read the file and return a summary, ZenMux + Gemini CLI read-only analysis is working.
 
-::: warning Tool call error: Unknown name "id" at function_response
-When the model attempts to use built-in tools (such as Google Search), you may see the following error:
+### Option 2: Vertex AI Mode (Alternative)
 
+This aligns with the semantics of the ZenMux `/api/vertex-ai` endpoint, but requires an additional API version setting.
+
+#### Step 1: Create the config directory
+
+```bash
+mkdir -p ~/.gemini
 ```
-[API Error: {"error":{"code":"400","type":"invalid_params","message":"Invalid JSON payload received. Unknown name \"id\" at 'contents[...].parts[0].function_response': Cannot find field."}}]
+
+#### Step 2: Configure environment variables
+
+Configure `~/.gemini/.env`:
+
+```env
+GOOGLE_API_KEY=sk-ss-v1-xxx  # [!code highlight]
+GEMINI_MODEL=google/gemini-2.5-pro  # [!code highlight]
+GOOGLE_VERTEX_BASE_URL=https://zenmux.ai/api/vertex-ai  # [!code highlight]
+GOOGLE_GENAI_USE_VERTEXAI=true  # [!code highlight]
+GOOGLE_GENAI_API_VERSION=v1  # [!code highlight]
 ```
 
-**Cause**: When Gemini CLI sends tool call results to the API, it includes an `id` field in `functionResponse`. This field is not supported in some API versions yet, causing the request to be rejected.
+::: warning Key Notes
+
+- `GOOGLE_GENAI_API_VERSION=v1` is **required**. If omitted, Gemini CLI defaults to the `v1beta1` path and returns a 404 error.
+- `GOOGLE_GENAI_USE_VERTEXAI` must be lowercase `true`
+- Do not keep `GEMINI_API_KEY` or `GOOGLE_GEMINI_BASE_URL` at the same time, to avoid confusion with Gemini API mode
+  :::
+
+#### Step 3: Configure settings.json
+
+```json
+{
+  "security": {
+    "auth": {
+      "selectedType": "vertex-ai" // [!code highlight]
+    }
+  }
+}
+```
+
+#### Step 4: Verify connectivity
+
+```bash
+gemini -p "Reply with OK only." --output-format json
+```
+
+### Variable Mapping Between the Two Modes
+
+| Setting          | Gemini API Mode           | Vertex AI Mode                    |
+| ---------------- | ------------------------- | --------------------------------- |
+| API Key variable | `GEMINI_API_KEY`          | `GOOGLE_API_KEY`                  |
+| Base URL variable| `GOOGLE_GEMINI_BASE_URL`  | `GOOGLE_VERTEX_BASE_URL`          |
+| Enable Vertex AI | Not set                   | `GOOGLE_GENAI_USE_VERTEXAI=true`  |
+| API version      | Not set                   | `GOOGLE_GENAI_API_VERSION=v1`     |
+| Auth type        | `gemini-api-key`          | `vertex-ai`                       |
+| # of variables   | 3                         | 5                                 |
+
+::: warning Do not mix the two modes
+Do not mix environment variables from the two modes, or behavior may become unpredictable. Keep only the variables for the mode you choose.
 :::
 
-**Solution**: Modify the locally installed Gemini CLI files and comment out the passing of `callId`.
+## Authentication
 
-1. Locate the file (replace the Node version in the path with your actual version):
+Gemini CLI natively supports three authentication methods:
 
-   ```
-   ~/.nvm/versions/node/<version>/lib/node_modules/@google/gemini-cli/node_modules/@google/gemini-cli-core/dist/src/core/turn.js
-   ```
+| Method                    | Use Case     | Notes                                  |
+| :------------------------ | :----------- | :------------------------------------- |
+| Google Account (OAuth)    | Local dev    | Highest free tier: 60 RPM / 1000 RPD   |
+| API Key                   | CI/CD, scripts | Set via the `GEMINI_API_KEY` env var |
+| Vertex AI                 | Enterprise   | Authenticate via ADC or service account |
 
-2. Find the `handlePendingFunctionCall` method (around line 183) and comment out `callId,`:
+**When using ZenMux**, choose either API Key or Vertex AI auth, and set your ZenMux API Key in the corresponding environment variable.
 
-   ```js
-   handlePendingFunctionCall(fnCall, traceId) {
-       const name = fnCall.name || 'undefined_tool_name';
-       const args = fnCall.args || {};
-       const callId = fnCall.id ?? `${name}_${Date.now()}_${this.callCounter++}`;
-       const toolCallRequest = {
-           // callId,  // [!code warning]
-           name,
-           args,
-           isClientInitiated: false,
-           prompt_id: this.prompt_id,
-           traceId,
-       };
-   ```
+To re-authenticate, run:
 
-3. Save the file and restart Gemini CLI.
-
-::: tip Note
-You must reapply this change after every Gemini CLI update or reinstallation.
-:::
+```bash
+gemini --reauth
+```
 
 ## Core Features
 
-### The `GEMINI.md` Context File
+### GEMINI.md Context File
 
-`GEMINI.md` is one of Gemini CLI’s core features, similar to Claude Code’s `CLAUDE.md`. It serves as persistent context and is automatically loaded at the start of each session, helping the AI understand project background and conventions.
+`GEMINI.md` is one of Gemini CLI’s core features, similar to Claude Code’s `CLAUDE.md`. It serves as persistent context that is automatically loaded at the start of each session, helping the AI understand the project background and conventions.
 
 Gemini CLI searches for and merges `GEMINI.md` files in the following order:
 
-| Location                | Scope     | Description                           |
-| :---------------------- | :-------- | :------------------------------------ |
+| Location                | Scope     | Description                          |
+| :---------------------- | :-------- | :----------------------------------- |
 | `~/.gemini/GEMINI.md`   | Global    | General instructions for all projects |
-| `project-root/GEMINI.md`| Project   | Project-specific rules and conventions|
-| `current-dir/GEMINI.md` | Directory | Context specific to a subdirectory    |
+| `<project-root>/GEMINI.md` | Project | Project-specific rules and conventions |
+| `<current-dir>/GEMINI.md`  | Directory | Subdirectory-specific context        |
 
-::: tip Recommendations for Writing `GEMINI.md`
+::: tip GEMINI.md Writing Tips
 
 - Describe the project’s tech stack and architecture
-- Specify code style and naming conventions
-- Explain the build, test, and deployment workflow
+- Specify coding style and naming conventions
+- Document build, test, and deployment workflows
 - List commonly used project commands
-- Supports importing other files via the `@path/to/file.md` syntax
+- Support importing other files via `@path/to/file.md`
   :::
 
 ### Common Slash Commands
@@ -177,21 +282,21 @@ Gemini CLI provides many built-in commands to manage sessions and configuration:
 
 | Command              | Description                                      |
 | :------------------- | :----------------------------------------------- |
-| `/help`              | Show help and a list of available commands       |
+| `/help`              | Show help and the list of available commands     |
 | `/stats`             | View token usage and statistics for the session  |
-| `/memory show`       | Show the currently loaded `GEMINI.md` context    |
+| `/memory show`       | Show the currently loaded GEMINI.md context      |
 | `/memory add <text>` | Add content to the AI’s memory                   |
-| `/theme`             | Switch UI theme                                  |
-| `/tools`             | Show the list of currently available tools       |
+| `/theme`             | Switch the UI theme                              |
+| `/tools`             | List currently available tools                   |
 | `/mcp`               | Manage MCP server connections                    |
 | `/chat`              | Save and restore chat history                    |
-| `/copy`              | Copy the last output to the clipboard            |
+| `/copy`              | Copy the latest output to the clipboard          |
 
 ### Custom Slash Commands
 
-Gemini CLI supports custom commands stored in the following locations:
+Gemini CLI supports custom commands stored in:
 
-- **Global commands**: `~/.gemini/commands/` — available in all projects
+- **Global commands**: `~/.gemini/commands/` — available across all projects
 - **Project commands**: `<project-root>/.gemini/commands/` — available only in the current project
 
 For example, create a `/plan` command:
@@ -212,7 +317,7 @@ Request: $input
 
 ### MCP Integration
 
-Gemini CLI supports MCP (Model Context Protocol) servers, which extend the AI’s tool capabilities:
+Gemini CLI supports MCP (Model Context Protocol) servers to extend tool capabilities:
 
 ```bash
 # Add an MCP server
@@ -238,130 +343,280 @@ You can also configure MCP servers in `settings.json`:
 }
 ```
 
+### Non-Interactive Mode
+
+Gemini CLI supports non-interactive usage, suitable for scripts and CI:
+
+```bash
+# One-off Q&A with JSON output
+gemini -p "Explain what a REST API is" --output-format json
+
+# Reference a file for analysis
+gemini -p "@src/main.ts What is this file’s entry-point logic?" --output-format json
+```
+
 ## Supported Models
 
 With ZenMux, you can use multiple Gemini models in Gemini CLI. Use the `GEMINI_MODEL` environment variable to specify a model:
 
 ```bash
-# Set in .gemini/.env or your shell config
-export GEMINI_MODEL="gemini-2.5-pro"  # [!code highlight]
+# Set in .gemini/.env or your shell profile
+export GEMINI_MODEL="google/gemini-2.5-pro"  # [!code highlight]
 ```
 
-::: info Get the Model List
+Recommended models for Gemini CLI:
 
-- View Google AI protocol-available models via the [ZenMux Model List](https://zenmux.ai/models?sort=newest&supported_protocol=google)
-- Gemini CLI uses Gemini-family models by default
-- To target a specific provider, see the [Provider Routing docs](/guide/advanced/provider-routing)
+| Model Name       | Model Slug                | Notes                               |
+| ---------------- | ------------------------- | ----------------------------------- |
+| Gemini 2.5 Pro   | `google/gemini-2.5-pro`   | Google’s flagship model (recommended) |
+| Gemini 2.5 Flash | `google/gemini-2.5-flash` | Faster responses; ideal for rapid iteration |
+
+::: info Get the model list
+
+- View available Google AI protocol models via the [ZenMux model list](https://zenmux.ai/models?sort=newest&supported_protocol=google)
+- Use the model slug (e.g., `google/gemini-2.5-pro`)
+- To route to a specific provider, see the [Provider Routing docs](/guide/advanced/provider-routing)
   :::
 
-## Authentication
+::: tip Switching models
+Even if a model name switch works, it does not guarantee tool calling will work as well. Current limitations mainly come from ZenMux’s compatibility with the Gemini CLI Agent protocol, not just the model itself.
+:::
 
-Gemini CLI natively supports three authentication methods:
+## Known Issue: Tool Calls Error {#tool-call-error}
 
-| Method                      | Use Case        | Description                                  |
-| :-------------------------- | :-------------- | :------------------------------------------- |
-| Google Account Login (OAuth)| Local development | Max free quota: 60 RPM / 1000 RPD         |
-| API Key                     | CI/CD, scripts  | Set via the `GEMINI_API_KEY` environment variable |
-| Vertex AI                   | Enterprise      | Authenticate via ADC or a service account     |
+::: warning Tool call error: Unknown name "id" at function_response
+When the model tries to use built-in tools (such as Google Search), you may see the following error:
 
-**When using ZenMux**, choose the API Key method and set your ZenMux API Key as `GEMINI_API_KEY`.
-
-To re-authenticate, run:
-
-```bash
-gemini --reauth
 ```
+[API Error: {"error":{"code":"400","type":"invalid_params","message":"Invalid JSON payload received. Unknown name \"id\" at 'contents[...].parts[0].function_response': Cannot find field."}}]
+```
+
+**Cause**: When Gemini CLI sends tool call results to the API, it includes an `id` field in `functionResponse`. This field is not yet supported in some API versions, causing the request to be rejected.
+:::
+
+**Temporary workaround**: Modify the locally installed Gemini CLI file and comment out passing `callId`.
+
+1. Locate the file (replace the Node version in the path with your actual version):
+
+   ```
+   ~/.nvm/versions/node/<version>/lib/node_modules/@google/gemini-cli/node_modules/@google/gemini-cli-core/dist/src/core/turn.js
+   ```
+
+2. Find the `handlePendingFunctionCall` method (around line 183) and comment out `callId,`:
+
+   ```js
+   handlePendingFunctionCall(fnCall, traceId) {
+       const name = fnCall.name || 'undefined_tool_name';
+       const args = fnCall.args || {};
+       const callId = fnCall.id ?? `${name}_${Date.now()}_${this.callCounter++}`;
+       const toolCallRequest = {
+           // callId,  // [!code warning]
+           name,
+           args,
+           isClientInitiated: false,
+           prompt_id: this.prompt_id,
+           traceId,
+       };
+   ```
+3. Save the file and restart Gemini CLI.
+
+::: tip Notes
+
+- You must re-apply this change after each Gemini CLI update or reinstall
+- Once ZenMux completes function calling compatibility, this will be supported automatically and you won’t need this modification
+  :::
 
 ## Troubleshooting
 
-### Common Issues
+### Common Issues and Fixes
 
-::: details API Key errors
-**Issue**: You see an error indicating the API Key is invalid or unauthorized.
+::: details Gemini CLI prompts for Google sign-in after startup
+**Issue**: A Google OAuth sign-in page opens when starting Gemini CLI.
 
 **Solution**:
 
-- Check whether the `GEMINI_API_KEY` environment variable is set correctly
-- Use `echo $GEMINI_API_KEY` to verify the value
-- Confirm the API Key is active and has sufficient balance
-- Verify the API Key format starts with `sk-ai-v1-`
+- Check whether `selectedType` in `~/.gemini/settings.json` is set correctly
+- For Gemini API mode, it should be `"gemini-api-key"`; for Vertex AI mode, it should be `"vertex-ai"`
+- Confirm you are not mixing variables from both modes
+- Verify the config using `cat ~/.gemini/settings.json`
   :::
 
-::: details Connection failures
-**Issue**: Gemini CLI cannot connect to the ZenMux service.
+::: details Vertex AI mode returns a 404 error
+**Issue**: Requests return 404 when using Vertex AI mode.
 
 **Solution**:
 
-- Check that your network connection is working
-- Verify `GOOGLE_GEMINI_BASE_URL` is set to `https://zenmux.ai/api/vertex-ai`
-- Confirm firewall settings are not blocking outbound connections
+- Confirm `GOOGLE_GENAI_API_VERSION=v1` is set in `~/.gemini/.env`
+- Gemini CLI defaults to the `v1beta1` path, which ZenMux does not support
+- Check variable completeness via `cat ~/.gemini/.env`
+  :::
+
+::: details API Key error
+**Issue**: The API Key is reported as invalid or unauthorized.
+
+**Solution**:
+
+- Check that the API Key is correct (subscription keys start with `sk-ss-v1-`, pay-as-you-go keys start with `sk-ai-v1-`)
+- Ensure the API Key is active and has sufficient balance
+- Verify the key status in the [ZenMux Console](https://zenmux.ai/settings/keys)
+- Note that different modes use different variable names: `GEMINI_API_KEY` (Gemini API mode) or `GOOGLE_API_KEY` (Vertex AI mode)
+  :::
+
+::: details Connection failure
+**Issue**: Gemini CLI cannot connect to ZenMux.
+
+**Solution**:
+
+- Check your network connection
+- Verify the Base URL is set to `https://zenmux.ai/api/vertex-ai`
+- Check whether firewall settings are blocking outbound connections
 - Try `curl https://zenmux.ai/api/vertex-ai/models` to test connectivity
   :::
 
-::: details Environment variables not taking effect
-**Issue**: Even after setting environment variables, Gemini CLI still reports they are not configured.
+::: details .env file not taking effect
+**Issue**: Variables set in `~/.gemini/.env` do not take effect.
 
 **Solution**:
 
-- Reopen your terminal, or run `source ~/.zshrc` to reload settings
-- Use `echo $GEMINI_API_KEY` and `echo $GOOGLE_GEMINI_BASE_URL` to verify values
-- Ensure you added the environment variables to the correct shell config file
-- Confirm the `.gemini/.env` file is in the correct directory
+- Gemini CLI loads `.env` using a nearest-first rule; once it finds the first one, it stops
+- Check whether there is already a `.env` or `.gemini/.env` in the current project directory (it will override the global config)
+- Check whether the same variables were already `export`ed in your shell: `env | grep -E "GEMINI_|GOOGLE_"`
+- Check whether an earlier `.env` file exists in a parent directory that is being matched first
+- Reopen the terminal window, or run `source ~/.zshrc` to reload your profile
+  :::
+
+::: details function_response-related errors when editing files
+**Issue**: When attempting to have Gemini CLI edit files automatically, you see errors like:
+
+```text
+Invalid JSON payload received. Unknown name "id" at 'contents[3].parts[0].function_response': Cannot find field.
+```
+
+**Solution**:
+
+- This is a known limitation—see the [Tool Calls Error](#tool-call-error) section
+- For now, limit usage to Q&A and read-only analysis
+- Do not rely on Gemini CLI for agent actions such as auto-editing or command execution
+- Once ZenMux completes function calling compatibility, this will be supported automatically
   :::
 
 ::: details Model unavailable
-**Issue**: When using a model, Gemini CLI reports that the model is unavailable or unsupported.
+**Issue**: A model is reported as unavailable or unsupported.
 
 **Solution**:
 
-- Check availability via the [ZenMux Model List](https://zenmux.ai/models?sort=newest&supported_protocol=google)
-- Confirm the model name in `GEMINI_MODEL` is spelled correctly
-- Test with a default model such as `gemini-2.5-pro`
+- Check availability via the [ZenMux model list](https://zenmux.ai/models?sort=newest&supported_protocol=google)
+- Verify the spelling of the model name in the `GEMINI_MODEL` environment variable
+- Try a default model such as `google/gemini-2.5-pro`
 - Confirm your account has access to the model
   :::
 
-::: details Sandbox mode issues
-**Issue**: Commands fail to execute after enabling sandbox mode.
+::: details Occasional request timeouts
+**Issue**: Read-only file analysis requests occasionally time out.
 
 **Solution**:
 
-- Ensure Docker is installed on your system
-- Check whether Docker is running: `docker ps`
-- Try disabling sandbox mode: set `"sandbox": false` in `settings.json`
-- If using a custom sandbox, verify the `.gemini/sandbox.Dockerfile` configuration
+- Retrying usually works
+- Reduce the size of the prompt and referenced files
+- If timeouts are frequent, try a smaller model (e.g., `google/gemini-2.5-flash`)
+- Check that your network connection is stable
+  :::
+
+::: details Sandbox mode issues
+**Issue**: Command execution fails after enabling sandbox mode.
+
+**Solution**:
+
+- Ensure Docker is installed
+- Check that Docker is running: `docker ps`
+- Try disabling sandbox mode to test: set `"sandbox": false` in `settings.json`
+- If using a custom sandbox, check the `.gemini/sandbox.Dockerfile` configuration
   :::
 
 ## Advanced Configuration
+
+### Project-Level Configuration
+
+Gemini CLI supports creating a separate configuration in the project root to override global settings:
+
+```bash
+mkdir -p <project-root>/.gemini
+```
+
+::: code-group
+
+```json [Project-level settings.json]
+// <project-root>/.gemini/settings.json
+{
+  "model": {
+    "name": "google/gemini-2.5-pro"
+  }
+}
+```
+
+```env [Project-level .env]
+# <project-root>/.gemini/.env
+GEMINI_MODEL=google/gemini-2.5-pro
+```
+
+:::
+
+Use cases:
+
+- Different projects use different models
+- Teams standardize default behavior
+- Commercial projects use pay-as-you-go keys, personal projects use subscription keys
+
+::: warning Security Notice
+Do not commit `.env` files containing real API keys to your repository. If you need to share configuration with your team, consider committing only a `settings.json` template.
+:::
+
+### Session Retention
+
+Gemini CLI supports retaining session history for reviewing previous conversations:
+
+```json
+{
+  "general": {
+    "sessionRetention": {
+      "enabled": true,
+      "maxAge": "30d"
+    }
+  }
+}
+```
+
+Session history is stored in `~/.gemini/history/`. Adjust `maxAge` as needed, or set it to `false` to disable retention.
 
 ### Recommended Configurations for Different Scenarios
 
 ::: code-group
 
-```bash [Daily development]
+```bash [Daily Development]
 # Balance performance and cost
-export GEMINI_API_KEY="sk-ai-v1-xxx"
+export GEMINI_API_KEY="sk-ss-v1-xxx"
 export GOOGLE_GEMINI_BASE_URL="https://zenmux.ai/api/vertex-ai"
-export GEMINI_MODEL="gemini-2.5-pro"
+export GEMINI_MODEL="google/gemini-2.5-pro"
 ```
 
-```bash [Code review]
+```bash [Code Review]
 # Prioritize reasoning capability
-export GEMINI_API_KEY="sk-ai-v1-xxx"
+export GEMINI_API_KEY="sk-ss-v1-xxx"
 export GOOGLE_GEMINI_BASE_URL="https://zenmux.ai/api/vertex-ai"
-export GEMINI_MODEL="gemini-2.5-pro"
+export GEMINI_MODEL="google/gemini-2.5-pro"
 ```
 
-```bash [Rapid iteration]
+```bash [Rapid Iteration]
 # Prioritize response speed
-export GEMINI_API_KEY="sk-ai-v1-xxx"
+export GEMINI_API_KEY="sk-ss-v1-xxx"
 export GOOGLE_GEMINI_BASE_URL="https://zenmux.ai/api/vertex-ai"
-export GEMINI_MODEL="gemini-2.5-flash"
+export GEMINI_MODEL="google/gemini-2.5-flash"
 ```
 
 :::
 
 ::: tip Contact Us
-If you run into any issues while using the service, or if you have suggestions or feedback, feel free to contact us via:
+If you run into any issues while using the service, or if you have suggestions and feedback, feel free to reach out through:
 
 - **Official website**: <https://zenmux.ai>
 - **Support email**: [support@zenmux.ai](mailto:support@zenmux.ai)
@@ -369,5 +624,5 @@ If you run into any issues while using the service, or if you have suggestions o
 - **Twitter**: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
 - **Discord community**: <http://discord.gg/vHZZzj84Bm>
 
-For more contact methods and details, please visit our [Contact Us page](/help/contact).
+For more contact channels and details, visit our [Contact Us page](/help/contact).
 :::
