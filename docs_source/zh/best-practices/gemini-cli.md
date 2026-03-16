@@ -5,7 +5,7 @@ head:
       content: 通过 ZenMux 使用 Gemini CLI 指南
   - - meta
     - name: keywords
-      content: Zenmux, best practices, integration, Gemini CLI, Google, Vertex AI, AI, terminal, agent
+      content: Zenmux, best practices, integration, Gemini CLI, Google, AI, terminal, agent
 ---
 
 # 通过 ZenMux 使用 Gemini CLI 指南
@@ -72,15 +72,6 @@ API Key 格式：sk-ai-v1-xxx
 :::
 
 ## 配置方案
-
-当前有两种方式将 Gemini CLI 与 ZenMux 配合使用：
-
-| 方式                                            | 适用场景                                    | 推荐度 |
-| ----------------------------------------------- | ------------------------------------------- | ------ |
-| [Gemini API 模式](#方式一-gemini-api-模式-推荐) | 配置简洁，快速接通问答与只读分析            | 推荐   |
-| [Vertex AI 模式](#方式二-vertex-ai-模式-备选)   | 与 ZenMux `/api/vertex-ai` 端点语义保持一致 | 备选   |
-
-### 方式一: Gemini API 模式（推荐）
 
 配置简洁，仅需 3 个环境变量即可快速接通。
 
@@ -173,79 +164,16 @@ gemini -p "@README.md Summarize this file in one sentence." --output-format json
 
 如果能正确读取文件并返回摘要，说明 ZenMux + Gemini CLI 的只读分析链路可用。
 
-### 方式二: Vertex AI 模式（备选）
-
-与 ZenMux `/api/vertex-ai` 端点语义保持一致，需要额外设置 API 版本。
-
-#### Step 1: 创建配置目录
-
-```bash
-mkdir -p ~/.gemini
-```
-
-#### Step 2: 配置环境变量
-
-在 `~/.gemini/.env` 中配置：
-
-```env
-GOOGLE_API_KEY=sk-ss-v1-xxx  # [!code highlight]
-GEMINI_MODEL=google/gemini-2.5-pro  # [!code highlight]
-GOOGLE_VERTEX_BASE_URL=https://zenmux.ai/api/vertex-ai  # [!code highlight]
-GOOGLE_GENAI_USE_VERTEXAI=true  # [!code highlight]
-GOOGLE_GENAI_API_VERSION=v1  # [!code highlight]
-```
-
-::: warning 关键提示
-
-- `GOOGLE_GENAI_API_VERSION=v1` 是**必需项**。若不设置，Gemini CLI 默认走 `v1beta1` 路径，会返回 404 错误
-- `GOOGLE_GENAI_USE_VERTEXAI` 请使用小写 `true`
-- 不要同时保留 `GEMINI_API_KEY` 或 `GOOGLE_GEMINI_BASE_URL`，以免与 Gemini API 模式混淆
-  :::
-
-#### Step 3: 配置 settings.json
-
-```json
-{
-  "security": {
-    "auth": {
-      "selectedType": "vertex-ai" // [!code highlight]
-    }
-  }
-}
-```
-
-#### Step 4: 验证连接
-
-```bash
-gemini -p "Reply with OK only." --output-format json
-```
-
-### 两种模式变量对比
-
-| 配置项         | Gemini API 模式          | Vertex AI 模式                   |
-| -------------- | ------------------------ | -------------------------------- |
-| API Key 变量   | `GEMINI_API_KEY`         | `GOOGLE_API_KEY`                 |
-| Base URL 变量  | `GOOGLE_GEMINI_BASE_URL` | `GOOGLE_VERTEX_BASE_URL`         |
-| 启用 Vertex AI | 不设置                   | `GOOGLE_GENAI_USE_VERTEXAI=true` |
-| API 版本       | 不设置                   | `GOOGLE_GENAI_API_VERSION=v1`    |
-| 认证类型       | `gemini-api-key`         | `vertex-ai`                      |
-| 所需变量数     | 3 个                     | 5 个                             |
-
-::: warning 请勿混用两种模式
-两种模式的变量集不要混合使用，否则会导致行为不可预测。请根据您选择的模式，仅保留对应的变量。
-:::
-
 ## 认证方式
 
-Gemini CLI 原生支持三种认证方式：
+Gemini CLI 原生支持多种认证方式：
 
 | 方式                     | 适用场景    | 说明                               |
 | :----------------------- | :---------- | :--------------------------------- |
 | Google 账号登录（OAuth） | 本地开发    | 最高免费额度：60 RPM / 1000 RPD    |
 | API Key                  | CI/CD、脚本 | 通过 `GEMINI_API_KEY` 环境变量设置 |
-| Vertex AI                | 企业级      | 通过 ADC 或服务账号认证            |
 
-**通过 ZenMux 使用时**，选择 API Key 方式或 Vertex AI 方式，将 ZenMux API Key 设置到对应环境变量即可。
+**通过 ZenMux 使用时**，选择 API Key 方式，将 ZenMux API Key 设置到 `GEMINI_API_KEY` 环境变量即可。
 
 如需重新认证，可使用以下命令：
 
@@ -436,20 +364,8 @@ export GEMINI_MODEL="google/gemini-2.5-pro"  # [!code highlight]
 
 **解决方案**：
 
-- 检查 `~/.gemini/settings.json` 中的 `selectedType` 是否正确设置
-- Gemini API 模式应为 `"gemini-api-key"`，Vertex AI 模式应为 `"vertex-ai"`
-- 确认没有混用两种模式的变量
+- 检查 `~/.gemini/settings.json` 中的 `selectedType` 是否正确设置为 `"gemini-api-key"`
 - 使用 `cat ~/.gemini/settings.json` 验证配置内容
-  :::
-
-::: details Vertex AI 模式返回 404 错误
-**问题**：使用 Vertex AI 模式发送请求时返回 404
-
-**解决方案**：
-
-- 确认 `~/.gemini/.env` 中已设置 `GOOGLE_GENAI_API_VERSION=v1`
-- Gemini CLI 默认请求 `v1beta1` 路径，ZenMux 不支持该路径
-- 使用 `cat ~/.gemini/.env` 检查变量是否完整
   :::
 
 ::: details API Key 错误
@@ -460,7 +376,6 @@ export GEMINI_MODEL="google/gemini-2.5-pro"  # [!code highlight]
 - 检查 API Key 是否正确（订阅制以 `sk-ss-v1-` 开头，按量付费以 `sk-ai-v1-` 开头）
 - 确认 API Key 已激活且有足够余额
 - 在 [ZenMux 控制台](https://zenmux.ai/settings/keys) 中验证 Key 状态
-- 注意不同模式使用不同的变量名：`GEMINI_API_KEY`（Gemini API 模式）或 `GOOGLE_API_KEY`（Vertex AI 模式）
   :::
 
 ::: details 连接失败问题
