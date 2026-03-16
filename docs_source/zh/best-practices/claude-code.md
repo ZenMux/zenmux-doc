@@ -776,6 +776,31 @@ export ANTHROPIC_DEFAULT_OPUS_MODEL="google/gemini-3-pro-preview"
 
 :::
 
+::: details 如何开启 1M 上下文窗口
+**问题**：使用 `anthropic/claude-opus-4.6` 或 `anthropic/claude-sonnet-4.6` 时，1M 上下文窗口无法开启
+
+**原因**：Claude Code 通过模型名称来判断是否启用扩展上下文窗口，带有 `anthropic/` 前缀的模型名称无法被正确识别，会回退到默认的上下文窗口大小。
+
+**解决方案**：
+
+将模型名称替换为 Claude Code 可识别的格式：
+
+- `anthropic/claude-opus-4.6` → `claude-opus-4-6`
+- `anthropic/claude-sonnet-4.6` → `claude-sonnet-4-6`
+
+```bash
+# ❌ 无法开启 1M 上下文
+export ANTHROPIC_DEFAULT_SONNET_MODEL="anthropic/claude-sonnet-4.6"
+export ANTHROPIC_DEFAULT_OPUS_MODEL="anthropic/claude-opus-4.6"
+
+# ✅ 可以正常开启 1M 上下文
+export ANTHROPIC_DEFAULT_SONNET_MODEL="claude-sonnet-4-6"  # [!code highlight]
+export ANTHROPIC_DEFAULT_OPUS_MODEL="claude-opus-4-6"  # [!code highlight]
+```
+
+修改后记得重新加载配置：`source ~/.zshrc` 或 `source ~/.bashrc`，然后重启 Claude Code。
+:::
+
 ::: details Windows 环境变量中的中文字符问题
 **问题**：环境变量中包含中文路径或值时出现乱码
 
