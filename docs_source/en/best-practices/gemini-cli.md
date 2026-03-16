@@ -5,7 +5,7 @@ head:
       content: Guide to Using Gemini CLI with ZenMux
   - - meta
     - name: keywords
-      content: Zenmux, best practices, integration, Gemini CLI, Google, Vertex AI, AI, terminal, agent
+      content: Zenmux, best practices, integration, Gemini CLI, Google, AI, terminal, agent
 ---
 
 # Guide to Using Gemini CLI with ZenMux
@@ -71,16 +71,7 @@ How to get:
 
 :::
 
-## Configuration Options
-
-There are currently two ways to use Gemini CLI with ZenMux:
-
-| Method                                          | Use Case                                               | Recommendation |
-| ----------------------------------------------- | ------------------------------------------------------ | -------------- |
-| [Gemini API Mode](#option-1-gemini-api-mode-recommended) | Simple setup, quick Q&A and read-only analysis          | Recommended    |
-| [Vertex AI Mode](#option-2-vertex-ai-mode-alternative)   | Semantics align with ZenMux `/api/vertex-ai` endpoint   | Alternative    |
-
-### Option 1: Gemini API Mode (Recommended)
+## Configuration
 
 A simple setup—connect in minutes with just 3 environment variables.
 
@@ -173,79 +164,16 @@ gemini -p "@README.md Summarize this file in one sentence." --output-format json
 
 If it can read the file and return a summary, ZenMux + Gemini CLI read-only analysis is working.
 
-### Option 2: Vertex AI Mode (Alternative)
-
-This aligns with the semantics of the ZenMux `/api/vertex-ai` endpoint, but requires an additional API version setting.
-
-#### Step 1: Create the config directory
-
-```bash
-mkdir -p ~/.gemini
-```
-
-#### Step 2: Configure environment variables
-
-Configure `~/.gemini/.env`:
-
-```env
-GOOGLE_API_KEY=sk-ss-v1-xxx  # [!code highlight]
-GEMINI_MODEL=google/gemini-2.5-pro  # [!code highlight]
-GOOGLE_VERTEX_BASE_URL=https://zenmux.ai/api/vertex-ai  # [!code highlight]
-GOOGLE_GENAI_USE_VERTEXAI=true  # [!code highlight]
-GOOGLE_GENAI_API_VERSION=v1  # [!code highlight]
-```
-
-::: warning Key Notes
-
-- `GOOGLE_GENAI_API_VERSION=v1` is **required**. If omitted, Gemini CLI defaults to the `v1beta1` path and returns a 404 error.
-- `GOOGLE_GENAI_USE_VERTEXAI` must be lowercase `true`
-- Do not keep `GEMINI_API_KEY` or `GOOGLE_GEMINI_BASE_URL` at the same time, to avoid confusion with Gemini API mode
-  :::
-
-#### Step 3: Configure settings.json
-
-```json
-{
-  "security": {
-    "auth": {
-      "selectedType": "vertex-ai" // [!code highlight]
-    }
-  }
-}
-```
-
-#### Step 4: Verify connectivity
-
-```bash
-gemini -p "Reply with OK only." --output-format json
-```
-
-### Variable Mapping Between the Two Modes
-
-| Setting          | Gemini API Mode           | Vertex AI Mode                    |
-| ---------------- | ------------------------- | --------------------------------- |
-| API Key variable | `GEMINI_API_KEY`          | `GOOGLE_API_KEY`                  |
-| Base URL variable| `GOOGLE_GEMINI_BASE_URL`  | `GOOGLE_VERTEX_BASE_URL`          |
-| Enable Vertex AI | Not set                   | `GOOGLE_GENAI_USE_VERTEXAI=true`  |
-| API version      | Not set                   | `GOOGLE_GENAI_API_VERSION=v1`     |
-| Auth type        | `gemini-api-key`          | `vertex-ai`                       |
-| # of variables   | 3                         | 5                                 |
-
-::: warning Do not mix the two modes
-Do not mix environment variables from the two modes, or behavior may become unpredictable. Keep only the variables for the mode you choose.
-:::
-
 ## Authentication
 
-Gemini CLI natively supports three authentication methods:
+Gemini CLI natively supports multiple authentication methods:
 
 | Method                    | Use Case     | Notes                                  |
 | :------------------------ | :----------- | :------------------------------------- |
 | Google Account (OAuth)    | Local dev    | Highest free tier: 60 RPM / 1000 RPD   |
 | API Key                   | CI/CD, scripts | Set via the `GEMINI_API_KEY` env var |
-| Vertex AI                 | Enterprise   | Authenticate via ADC or service account |
 
-**When using ZenMux**, choose either API Key or Vertex AI auth, and set your ZenMux API Key in the corresponding environment variable.
+**When using ZenMux**, choose the API Key method and set your ZenMux API Key in the `GEMINI_API_KEY` environment variable.
 
 To re-authenticate, run:
 
@@ -435,20 +363,8 @@ When the model tries to use built-in tools (such as Google Search), you may see 
 
 **Solution**:
 
-- Check whether `selectedType` in `~/.gemini/settings.json` is set correctly
-- For Gemini API mode, it should be `"gemini-api-key"`; for Vertex AI mode, it should be `"vertex-ai"`
-- Confirm you are not mixing variables from both modes
+- Check whether `selectedType` in `~/.gemini/settings.json` is correctly set to `"gemini-api-key"`
 - Verify the config using `cat ~/.gemini/settings.json`
-  :::
-
-::: details Vertex AI mode returns a 404 error
-**Issue**: Requests return 404 when using Vertex AI mode.
-
-**Solution**:
-
-- Confirm `GOOGLE_GENAI_API_VERSION=v1` is set in `~/.gemini/.env`
-- Gemini CLI defaults to the `v1beta1` path, which ZenMux does not support
-- Check variable completeness via `cat ~/.gemini/.env`
   :::
 
 ::: details API Key error
@@ -459,7 +375,6 @@ When the model tries to use built-in tools (such as Google Search), you may see 
 - Check that the API Key is correct (subscription keys start with `sk-ss-v1-`, pay-as-you-go keys start with `sk-ai-v1-`)
 - Ensure the API Key is active and has sufficient balance
 - Verify the key status in the [ZenMux Console](https://zenmux.ai/settings/keys)
-- Note that different modes use different variable names: `GEMINI_API_KEY` (Gemini API mode) or `GOOGLE_API_KEY` (Vertex AI mode)
   :::
 
 ::: details Connection failure
