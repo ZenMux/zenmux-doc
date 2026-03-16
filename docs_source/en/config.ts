@@ -6,7 +6,13 @@ export default defineLoacaleConfig({
   description: "zenmux.ai document",
   themeConfig: {
     nav: [
-      { text: "Chat", link: "https://zenmux.ai/chat", noIcon: true },
+      {
+        text: "Studio",
+        items: [
+          { text: "Chat", link: "https://zenmux.ai/chat", noIcon: true },
+          { text: "Video", link: "https://zenmux.ai/video", noIcon: true },
+        ],
+      },
       { text: "Models", link: "https://zenmux.ai/models", noIcon: true },
       {
         text: "Pricing",
@@ -144,6 +150,10 @@ export default defineLoacaleConfig({
             link: "/best-practices/claude-code",
           },
           { text: "CodeX Integration", link: "/best-practices/codex" },
+          {
+            text: "Gemini CLI Integration",
+            link: "/best-practices/gemini-cli",
+          },
           { text: "opencode Integration", link: "/best-practices/opencode" },
           { text: "Cline Integration", link: "/best-practices/cline" },
           {

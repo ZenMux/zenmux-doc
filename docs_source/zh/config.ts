@@ -11,7 +11,13 @@ export default defineLoacaleConfig({
       level: [2, 3],
     },
     nav: [
-      { text: "Chat", link: "https://zenmux.ai/chat", noIcon: true },
+      {
+        text: "Studio",
+        items: [
+          { text: "Chat", link: "https://zenmux.ai/chat", noIcon: true },
+          { text: "Video", link: "https://zenmux.ai/video", noIcon: true },
+        ],
+      },
       { text: "Models", link: "https://zenmux.ai/models", noIcon: true },
       {
         text: "Pricing",
@@ -142,6 +148,10 @@ export default defineLoacaleConfig({
             link: "/zh/best-practices/claude-code",
           },
           { text: "CodeX接入ZenMux指南", link: "/zh/best-practices/codex" },
+          {
+            text: "Gemini CLI接入ZenMux指南",
+            link: "/zh/best-practices/gemini-cli",
+          },
           {
             text: "opencode接入ZenMux指南",
             link: "/zh/best-practices/opencode",
