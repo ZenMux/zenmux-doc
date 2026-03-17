@@ -1,0 +1,69 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "title": "ZenMux 知识问答题库",
+    "description": "用于 ZenMux 订阅购买环节的知识问答题目，欢迎社区贡献。题型包括单选题和判断题。",
+    "lastUpdated": "2026-03-17",
+    "categories": [
+      "claude-code",
+      "zenmux-basics",
+      "pricing",
+      "api-usage",
+      "observability"
+    ]
+  },
+  "questions": [
+    {
+      "id": "q001",
+      "type": "single-choice",
+      "category": "claude-code",
+      "difficulty": "easy",
+      "question": "CC 在当前的 AI 背景下是什么的缩写？",
+      "options": [
+        { "id": "A", "text": "Claude Code" },
+        { "id": "B", "text": "Carbon Copy" },
+        { "id": "C", "text": "Creative Computing" },
+        { "id": "D", "text": "Coding Canvas" }
+      ],
+      "answer": "A",
+      "explanation": "CC 在当前 AI 开发背景下特指 Claude Code，即 Anthropic 推出的 AI 编程助手 CLI 工具，可直接在终端中运行，支持代码生成、重构、调试等任务。",
+      "tags": ["claude-code", "基础概念", "缩写"],
+      "contributor": "zenmux-team",
+      "references": ["https://docs.zenmux.ai/guide/quickstart"]
+    },
+    {
+      "id": "q002",
+      "type": "single-choice",
+      "category": "claude-code",
+      "difficulty": "medium",
+      "question": "在一个中等规模的项目下启动 Claude Code，发送 hello，其对应的 token 消耗以及实际请求数大概是什么级别？",
+      "options": [
+        { "id": "A", "text": "~10000 tokens，5 次请求" },
+        { "id": "B", "text": "~2 tokens，1 次请求" },
+        { "id": "C", "text": "~500 tokens，2 次请求" },
+        { "id": "D", "text": "~100000 tokens，50 次请求" }
+      ],
+      "answer": "A",
+      "explanation": "Claude Code 启动时会自动读取项目目录结构、CLAUDE.md、相关代码文件等上下文，即使只发送 "hello"，也会在后台触发多次 API 请求（如文件索引、上下文构建等），总 token 消耗通常在数千至数万量级，请求数一般在 3–10 次之间。这也是 Claude Code 与直接调用 API 的关键区别之一。",
+      "tags": ["claude-code", "token", "请求数", "成本"],
+      "contributor": "zenmux-team",
+      "references": ["https://docs.zenmux.ai/guide/observability/cost"]
+    },
+    {
+      "id": "q003",
+      "type": "true-false",
+      "category": "pricing",
+      "difficulty": "medium",
+      "question": "当发送同样的 hello 消息分别给 Opus 4.6 和 Sonnet 4.6 两个模型，消耗的 ZenMux Flows 数一样。",
+      "options": [
+        { "id": "A", "text": "正确" },
+        { "id": "B", "text": "错误" }
+      ],
+      "answer": "B",
+      "explanation": "ZenMux Flows 是统一的计费单位，但不同模型的每 token 价格不同。Opus 4.6 的输入/输出 token 单价均高于 Sonnet 4.6，因此即使发送相同内容，消耗的 Flows 数也不同。模型能力越强，价格越高，消耗的 Flows 也越多。",
+      "tags": ["flows", "pricing", "模型对比", "Opus", "Sonnet"],
+      "contributor": "zenmux-team",
+      "references": ["https://docs.zenmux.ai/guide/observability/pricing"]
+    }
+  ]
+}
