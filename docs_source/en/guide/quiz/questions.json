@@ -3,7 +3,7 @@
   "metadata": {
     "title": "ZenMux Knowledge Quiz Bank",
     "description": "Knowledge quiz questions used during the ZenMux subscription purchase flow. Community contributions are welcome. Question types include single-choice and true/false.",
-    "lastUpdated": "2026-03-17",
+    "lastUpdated": "2026-03-18",
     "categories": [
       "claude-code",
       "zenmux-basics",
@@ -64,6 +64,195 @@
       "tags": ["flows", "pricing", "model-comparison", "Opus", "Sonnet"],
       "contributor": "zenmux-team",
       "references": ["https://docs.zenmux.ai/guide/observability/pricing"]
+    },
+    {
+      "id": "q004",
+      "type": "true-false",
+      "category": "pricing",
+      "difficulty": "easy",
+      "question": "In the ZenMux Builder Plan subscription, one Flow equals one API request.",
+      "options": [
+        { "id": "A", "text": "True" },
+        { "id": "B", "text": "False" }
+      ],
+      "answer": "B",
+      "explanation": "A Flow is the billing unit for ZenMux subscriptions — it is not equivalent to a request count. Think of Flows as a currency: there is a floating exchange rate between Flows and USD (currently 1 Flow ≈ $0.03283). How many Flows a single request consumes depends on the model used and the token volume: more capable models charge more per token, so the same message will consume more Flows.",
+      "tags": ["flows", "pricing", "fundamentals", "subscription"],
+      "contributor": "zenmux-team",
+      "references": ["https://docs.zenmux.ai/guide/subscription"]
+    },
+    {
+      "id": "q005",
+      "type": "single-choice",
+      "category": "pricing",
+      "difficulty": "medium",
+      "question": "Which of the following accurately describes ZenMux's two billing methods?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Both Flows and Pay As You Go Credits are fixed at 1 USD each"
+        },
+        {
+          "id": "B",
+          "text": "Flows have a floating exchange rate against USD; Pay As You Go Credits are fixed at 1 Credit = $1"
+        },
+        {
+          "id": "C",
+          "text": "Pay As You Go Credits have a floating value; Flows are fixed at 1 Flow = $1"
+        },
+        { "id": "D", "text": "Both are billed per API request, with no relation to token consumption" }
+      ],
+      "answer": "B",
+      "explanation": "ZenMux has two billing systems. The subscription plan uses Flows, which have a floating exchange rate against USD (currently ~1 Flow = $0.03283); this rate is adjusted periodically in response to market conditions and model pricing. Pay As You Go uses Credits, where 1 Credit = $1 exactly, with charges based on actual token consumption. The two systems suit different use cases: the subscription plan is ideal for individual development and vibe coding, while PAYG is designed for production environments.",
+      "tags": ["flows", "credits", "pricing", "pay-as-you-go", "subscription"],
+      "contributor": "zenmux-team",
+      "references": [
+        "https://docs.zenmux.ai/guide/subscription",
+        "https://docs.zenmux.ai/guide/pay-as-you-go"
+      ]
+    },
+    {
+      "id": "q006",
+      "type": "single-choice",
+      "category": "zenmux-basics",
+      "difficulty": "easy",
+      "question": "Which of the following scenarios is the ZenMux Builder Plan subscription designed for?",
+      "options": [
+        { "id": "A", "text": "A live, monetized SaaS product serving end users" },
+        { "id": "B", "text": "Personal vibe coding, learning, and rapid prototyping" },
+        { "id": "C", "text": "High-concurrency API integration in an enterprise production environment" },
+        { "id": "D", "text": "Rotating multiple accounts to bypass rate limits" }
+      ],
+      "answer": "B",
+      "explanation": "The Builder Plan subscription is designed for personal development, learning, vibe coding, and other non-production use cases. Once a project goes live or becomes commercial, you must switch to Pay As You Go. Options A and C represent production environments; option D (pooling multiple accounts to bypass rate limits) violates the Terms of Service. All three are prohibited under the subscription plan.",
+      "tags": ["builder-plan", "use-cases", "subscription", "restrictions"],
+      "contributor": "zenmux-team",
+      "references": ["https://docs.zenmux.ai/guide/subscription"]
+    },
+    {
+      "id": "q007",
+      "type": "single-choice",
+      "category": "api-usage",
+      "difficulty": "medium",
+      "question": "Approximately what is the rate limit (RPM) when calling the API with a ZenMux Builder Plan subscription key?",
+      "options": [
+        { "id": "A", "text": "Unlimited — no cap on requests per minute" },
+        { "id": "B", "text": "10–15 RPM" },
+        { "id": "C", "text": "100 RPM" },
+        { "id": "D", "text": "1,000 RPM" }
+      ],
+      "answer": "B",
+      "explanation": "The Builder Plan subscription enforces a rate limit of approximately 10–15 requests per minute (RPM), along with a rolling 5-hour quota window and a weekly usage cap. This is one of the core reasons the subscription plan is not suitable for production environments. If you need high-concurrency, rate-limit-free API access, use the Pay As You Go plan instead.",
+      "tags": ["rate-limit", "RPM", "api-usage", "subscription"],
+      "contributor": "zenmux-team",
+      "references": ["https://docs.zenmux.ai/guide/subscription"]
+    },
+    {
+      "id": "q008",
+      "type": "true-false",
+      "category": "pricing",
+      "difficulty": "easy",
+      "question": "Topping up $100 on the ZenMux Pay As You Go plan gives you exactly $100 in usable API credit.",
+      "options": [
+        { "id": "A", "text": "True" },
+        { "id": "B", "text": "False" }
+      ],
+      "answer": "B",
+      "explanation": "At the time of writing, Pay As You Go top-ups include an automatic 5% bonus (the exact bonus rate may change — refer to the official site for the current offer). Topping up $100 therefore gives you $105 in usable API credit. The bonus arrives as Bonus Credits, which are drawn down first before your paid credits are used.",
+      "tags": ["pay-as-you-go", "top-up", "bonus", "pricing"],
+      "contributor": "zenmux-team",
+      "references": ["https://docs.zenmux.ai/guide/pay-as-you-go"]
+    },
+    {
+      "id": "q009",
+      "type": "true-false",
+      "category": "api-usage",
+      "difficulty": "easy",
+      "question": "The ZenMux Builder Plan subscription API key and the Pay As You Go API key are the same and can be used interchangeably.",
+      "options": [
+        { "id": "A", "text": "True" },
+        { "id": "B", "text": "False" }
+      ],
+      "answer": "B",
+      "explanation": "The two API keys are completely separate and cannot be used interchangeably. PAYG keys begin with `sk-ai-`, while subscription keys begin with `sk-ss-v1-`. Using the wrong key will result in failed calls or billing errors — make sure to use the correct key for each plan.",
+      "tags": ["api-key", "pay-as-you-go", "subscription", "fundamentals"],
+      "contributor": "zenmux-team",
+      "references": [
+        "https://docs.zenmux.ai/guide/subscription",
+        "https://docs.zenmux.ai/guide/pay-as-you-go"
+      ]
+    },
+    {
+      "id": "q010",
+      "type": "single-choice",
+      "category": "zenmux-basics",
+      "difficulty": "easy",
+      "question": "Which types of AI models does the ZenMux platform currently support (applicable to both the subscription plan and PAYG)?",
+      "options": [
+        { "id": "A", "text": "Text generation models (chat, coding, etc.)" },
+        { "id": "B", "text": "Image generation models (AI image creation)" },
+        { "id": "C", "text": "Video generation models (AI video creation)" },
+        { "id": "D", "text": "All of the above" }
+      ],
+      "answer": "D",
+      "explanation": "ZenMux covers a broad range of AI model types: text generation models (Claude, GPT-5, Gemini, etc., for chat and coding), image generation models (NanoBananaPro, GPT-Image-1.5, etc.), and video generation models — delivering true all-in-one coverage across Coding, Image, Video, and Chat with a single API key.",
+      "tags": ["model-types", "image-generation", "video-generation", "text-generation", "zenmux-basics"],
+      "contributor": "zenmux-team",
+      "references": ["https://docs.zenmux.ai/guide/subscription"]
+    },
+    {
+      "id": "q011",
+      "type": "single-choice",
+      "category": "pricing",
+      "difficulty": "easy",
+      "question": "For both PAYG top-ups and subscriptions on ZenMux, how long after purchase must a refund request be submitted?",
+      "options": [
+        { "id": "A", "text": "Within 24 hours" },
+        { "id": "B", "text": "Within 48 hours" },
+        { "id": "C", "text": "Within 7 days" },
+        { "id": "D", "text": "Within 14 days" }
+      ],
+      "answer": "A",
+      "explanation": "Under Section IX of the ZenMux Terms of Service, refund requests for both PAYG top-ups and subscriptions must be submitted within 24 hours of purchase. Requests submitted after this window will not be honored. Additionally, a 5% platform service fee is deducted from the refund amount. To apply, email support@zenmux.ai with your account details, purchase time, and reason for the refund.",
+      "tags": ["refund", "pricing", "terms-of-service"],
+      "contributor": "zenmux-team",
+      "references": ["https://docs.zenmux.ai/terms-of-service"]
+    },
+    {
+      "id": "q012",
+      "type": "single-choice",
+      "category": "zenmux-basics",
+      "difficulty": "medium",
+      "question": "According to the ZenMux Privacy Policy, in which region is user-uploaded data (including personal information and content) typically stored?",
+      "options": [
+        { "id": "A", "text": "United States" },
+        { "id": "B", "text": "China" },
+        { "id": "C", "text": "Singapore" },
+        { "id": "D", "text": "European Union" }
+      ],
+      "answer": "C",
+      "explanation": "Under Section II of the ZenMux Privacy Policy, all data uploaded or transmitted by users — including personal information and user content — is typically stored in Singapore. ZenMux's operating entity, AI Force Singapore Pte. Ltd., is incorporated in Singapore, operates under Singapore law, and disputes are subject to the exclusive jurisdiction of Singapore courts.",
+      "tags": ["privacy-policy", "data-storage", "Singapore"],
+      "contributor": "zenmux-team",
+      "references": ["https://docs.zenmux.ai/privacy"]
+    },
+    {
+      "id": "q013",
+      "type": "single-choice",
+      "category": "pricing",
+      "difficulty": "medium",
+      "question": "What percentage of the refund amount does ZenMux deduct as a platform service fee when processing a refund?",
+      "options": [
+        { "id": "A", "text": "0% — full refund" },
+        { "id": "B", "text": "5%" },
+        { "id": "C", "text": "10%" },
+        { "id": "D", "text": "20%" }
+      ],
+      "answer": "B",
+      "explanation": "Under Section 9.2.1 of the ZenMux Terms of Service, a 5% platform service fee is deducted from all refunds. The calculation is as follows — PAYG refund: unused top-up credit value × 95%; subscription refund: (total subscription fee paid − amount already consumed) × 95%. Refunds must be requested within 24 hours of purchase, and once approved, funds take 3–10 business days to arrive.",
+      "tags": ["refund", "service-fee", "pricing", "terms-of-service"],
+      "contributor": "zenmux-team",
+      "references": ["https://docs.zenmux.ai/terms-of-service"]
     }
   ]
 }
