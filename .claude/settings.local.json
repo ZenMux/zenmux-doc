@@ -1,7 +1,5 @@
 {
   "permissions": {
-    "allow": [
-      "WebSearch"
-    ]
+    "allow": ["WebSearch", "Bash(gh --version)"]
   }
 }

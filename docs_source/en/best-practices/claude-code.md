@@ -776,6 +776,31 @@ This is usually caused by the npm global package path not being added to the PAT
 
 :::
 
+::: details How to Enable the 1M Context Window
+**Issue**: The 1M context window is not enabled when using `anthropic/claude-opus-4.6` or `anthropic/claude-sonnet-4.6`.
+
+**Cause**: Claude Code determines whether to enable the extended context window based on the model name. Model names with the `anthropic/` prefix are not recognized, causing it to fall back to the default context window size.
+
+**Solution**:
+
+Replace the model names with the format that Claude Code can recognize:
+
+- `anthropic/claude-opus-4.6` → `claude-opus-4-6`
+- `anthropic/claude-sonnet-4.6` → `claude-sonnet-4-6`
+
+```bash
+# ❌ 1M context window NOT enabled
+export ANTHROPIC_DEFAULT_SONNET_MODEL="anthropic/claude-sonnet-4.6"
+export ANTHROPIC_DEFAULT_OPUS_MODEL="anthropic/claude-opus-4.6"
+
+# ✅ 1M context window enabled
+export ANTHROPIC_DEFAULT_SONNET_MODEL="claude-sonnet-4-6"  # [!code highlight]
+export ANTHROPIC_DEFAULT_OPUS_MODEL="claude-opus-4-6"  # [!code highlight]
+```
+
+After making the change, reload your config with `source ~/.zshrc` or `source ~/.bashrc`, then restart Claude Code.
+:::
+
 ::: details Windows: Chinese Characters in Environment Variables
 **Issue**: Garbled text appears when environment variables contain Chinese paths or values.
 
