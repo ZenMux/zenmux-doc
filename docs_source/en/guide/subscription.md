@@ -538,6 +538,72 @@ You can switch between the two modes anytime without affecting each other, so yo
 Studio Chat and API calls share the same subscription quota pool. Conversations in Studio Chat consume subscription Flows, so allocate your usage accordingly.
 :::
 
+## Refunds
+
+If you're unsatisfied with your current subscription or need to cancel, you can submit a refund request from the Subscription Management page.
+
+### Refund Eligibility
+
+- ✅ **Paid subscriptions** (Pro / Max / Ultra) can request a refund **within 24 hours** of subscribing
+
+::: warning ⚠️ Refund time limit
+Refund requests must be submitted **within 24 hours** of successful subscription. Requests submitted after this window cannot be processed. Please confirm whether the plan meets your needs promptly after subscribing.
+:::
+
+### Refund Calculation
+
+Refund amounts are calculated as follows:
+
+| Item                        | Description                                              |
+| --------------------------- | -------------------------------------------------------- |
+| **Total paid**              | Full amount paid in the current billing cycle             |
+| **- Actual usage**          | Equivalent value of API calls consumed during the subscription |
+| **- Already refunded**      | Amount previously refunded (if any)                      |
+| **= Refundable balance**    | Remaining refundable amount after deducting usage and prior refunds |
+| **- Stripe fee (5%)**       | Payment platform refund processing fee                   |
+| **= Final refund amount**   | Amount actually returned to your payment method          |
+
+::: warning ⚠️ Non-refundable cases
+If the equivalent API usage value has **exceeded your subscription payment amount**, the subscription is not eligible for a refund.
+:::
+
+### Refund Process
+
+**Step 1: Initiate a refund**
+
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/03/20/fsjS4Sr/20260320154313.jpg" alt="Initiate refund" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+
+Go to the [Subscription Management page](https://zenmux.ai/platform/subscription) and click the **"Refund"** button in the Billing History section.
+
+**Step 2: Confirm refund details**
+
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/03/20/7AmamOi/20260320153822.jpg" alt="Confirm refund details" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+
+The system will display a refund preview including the total paid, actual usage, fees, and final refund amount. After confirming, click **"Submit Refund"**.
+
+**Step 3: Wait for processing**
+
+After submitting the refund, you can check the processing status in the refund dialog:
+
+| Status        | Description                                                  |
+| ------------- | ------------------------------------------------------------ |
+| 🔵 Processing | Refund is being processed and will be returned within **1-3 business days** |
+| 🟢 Succeeded  | Refund is complete and funds have been returned to your payment method |
+| 🔴 Failed     | Refund could not be processed — please contact support       |
+| ⚪ Canceled   | Refund request has been canceled                             |
+
+### After Refund
+
+Please note the following changes after a successful refund:
+
+- Your subscription will be **immediately downgraded to the Free plan**
+- Refunded funds will be returned to the original payment method within **1-3 business days**
+- Pending API calls may affect the final refund amount
+
+::: tip 💡 Need help?
+If you have questions about the refund calculation or need manual assistance, email [support@zenmux.ai](mailto:support@zenmux.ai).
+:::
+
 ---
 
 ## FAQ
