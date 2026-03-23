@@ -381,9 +381,6 @@ Visit the [ZenMux Pricing page](https://zenmux.ai/pricing/subscription) to see d
 2. Click **"Get Max"** or **"Get Ultra"** for the corresponding plan (Pro users click **"Upgrade"**)
 3. Complete the payment flow
 
-::: tip 💡 Public beta seat limit
-Subscriptions are now available in public beta, with a total of **999 seats**. Once all seats are taken, new sign-ups will be temporarily closed. Subscribe early to secure access.
-:::
 
 ### Step 3: Manage your subscription and get an API Key
 

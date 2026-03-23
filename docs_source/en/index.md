@@ -38,14 +38,14 @@ head:
 ---
 
 ::: info Welcome to the ZenMux Documentation
-For more information about ZenMux, please visit our [Introduction page](/about/intro), which includes a detailed product overview, key features, and Beta application information.
+For more information about ZenMux, please visit our [Introduction page](/about/intro), which includes a detailed product overview and key features.
 :::
 
 ## Quick Navigation
 
 ### About ZenMux
 
-- [Introduction](/about/intro) - Comprehensive product overview and Beta application
+- [Introduction](/about/intro) - Comprehensive product overview
 - [Models & Providers](/about/models-and-providers) - Supported models and providers
 - [Pricing & Costs](/about/pricing-and-cost) - Pricing information and costs
 
