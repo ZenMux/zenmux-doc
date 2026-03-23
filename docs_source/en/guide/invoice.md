@@ -120,12 +120,17 @@ All invoices are in **PDF format** and can be printed directly or used for corpo
 
 ### What if I forgot to fill in invoice information?
 
-If you forgot to fill in invoice information during payment, we recommend contacting customer support as soon as possible:
+If you forgot to fill in invoice information during payment, you can add it yourself through the Stripe billing portal without contacting customer support:
 
-- **Technical Support Email**: [support@zenmux.ai](mailto:support@zenmux.ai)
-- **Discord Community**: <http://discord.gg/vHZZzj84Bm>
+**Step 1: Go to the Transaction History Page**
 
-Please provide the transaction date, amount, and transaction type, and customer support will assist you with invoice issuance.
+Find the order in Transaction History and click the **"click here"** link in the prompt to enter the Stripe billing portal.
+
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/03/23/Xgn9aAa/20260323142642.jpg" alt="Transaction History page - click here to enter the billing portal" style="border-radius:8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+
+**Step 2: Update Billing Information**
+
+In the Stripe billing portal, find the **"Billing and shipping information"** section and click the **"Update information"** button to fill in or modify your invoice information (company name, email address, etc.). Once updated, future invoices will automatically use the new information.
 
 ### How can I modify invoice information for an already issued invoice?
 
