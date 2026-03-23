@@ -10,13 +10,13 @@ head:
 
 # FAQ
 
-## 1. I can’t register an account right now. What should I do?
+## 1. How do I register an account?
 
-The product is currently in closed beta. Please email [bd@zenmux.ai](mailto:bd@zenmux.ai) to request access. Once your registration is approved, we will provide complimentary credits for testing.
+You can register directly on the [ZenMux website](https://zenmux.ai).
 
 ## 2. What exactly is the LLM Insurance feature, and how should I use it?
 
-LLM Insurance means we will provide coverage/compensation for large model outputs that do not meet expectations. This feature is currently in internal testing and will be launched soon—stay tuned.
+LLM Insurance provides coverage and compensation for large model outputs that do not meet expectations. This feature is now available. For details, please refer to the [AI Insurance documentation](/guide/insurance).
 
 ## 3. I’m unsure how to use certain parameters or features. What should I do?
 
