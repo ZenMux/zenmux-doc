@@ -1,6 +1,14 @@
 // https://vitepress.dev/guide/custom-theme
-import { h } from "vue";
+import { h, defineComponent, ref, onMounted } from "vue";
 import { inBrowser, type Theme } from "vitepress";
+
+const ClientOnly = defineComponent({
+  setup(_, { slots }) {
+    const mounted = ref(false);
+    onMounted(() => { mounted.value = true; });
+    return () => mounted.value ? slots.default?.() : null;
+  },
+});
 import DefaultTheme from "vitepress/theme";
 import "virtual:group-icons.css";
 import "element-plus/theme-chalk/index.css";
@@ -91,9 +99,9 @@ export default {
   Layout: () => {
     return h(DefaultTheme.Layout, null, {
       // https://vitepress.dev/guide/extending-default-theme#layout-slots
-      "doc-top": () => h(ApiContainer),
-      "doc-before": () => h(Select),
-      "nav-bar-content-after": () => [h(Login), h(EndpointDrawer)],
+      "doc-top": () => h(ClientOnly, null, { default: () => h(ApiContainer) }),
+      "doc-before": () => h(ClientOnly, null, { default: () => h(Select) }),
+      "nav-bar-content-after": () => h(ClientOnly, null, { default: () => [h(Login), h(EndpointDrawer)] }),
     });
   },
   enhanceApp({ app, router, siteData }) {
