@@ -13,8 +13,12 @@ head:
 # Get generation
 
 ```
-GET https://zenmux.ai/api/v1/generation?id=<generation_id>
+GET https://zenmux.ai/api/v1/management/generation?id=<generation_id>
 ```
+
+::: warning ⚠️ 旧版地址已废弃
+旧版接口地址 `GET /api/v1/generation` 已废弃，请迁移至新版地址 `GET /api/v1/management/generation`。旧版地址将在后续版本中下线。
+:::
 
 Get generation 接口用于查询生成信息，如用量和费用等。
 
@@ -159,10 +163,10 @@ API 类型，根据调用的协议不同，取值如下：
 
 是否为最终重试
 
-::: api-request GET /api/v1/generation
+::: api-request GET /api/v1/management/generation
 
 ```cURL
-curl https://zenmux.ai/api/v1/generation?id=<generation_id> \
+curl https://zenmux.ai/api/v1/management/generation?id=<generation_id> \
   -H "Authorization: Bearer $ZENMUX_API_KEY"
 ```
 
