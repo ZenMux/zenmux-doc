@@ -251,6 +251,18 @@ export default defineLoacaleConfig({
             text: "Platform API",
             items: [
               {
+                text: "Get Flow Rate",
+                link: "/zh/api/platform/flow-rate",
+              },
+              {
+                text: "Get PAYG Balance",
+                link: "/zh/api/platform/payg-balance",
+              },
+              {
+                text: "Get Subscription Detail",
+                link: "/zh/api/platform/subscription-detail",
+              },
+              {
                 text: "Get Generation",
                 link: "/zh/api/platform/get-generation",
               },
