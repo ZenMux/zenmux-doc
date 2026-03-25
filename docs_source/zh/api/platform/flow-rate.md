@@ -19,7 +19,7 @@ GET https://zenmux.ai/api/v1/management/flow_rate
 获取当前账号的 Flow 汇率信息，包括平台基准汇率和账号实际有效汇率。
 
 ::: tip 💡 什么是 Flow？
-Flow 是 ZenMux 的统一计量单位，用于衡量 AI 推理请求的资源消耗。1 Flow ≈ 某一参考模型处理一次标准请求的成本。详见 [定价说明](../../guide/pricing.md)。
+Flow 是 ZenMux 的统一计量单位，用于衡量 AI 推理请求的资源消耗。1 Flow ≈ 某一参考模型处理一次标准请求的成本。详见 [定价说明](https://zenmux.ai/pricing/subscription)。
 :::
 
 ## 鉴权
