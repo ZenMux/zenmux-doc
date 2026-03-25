@@ -1,5 +1,9 @@
 {
   "permissions": {
-    "allow": ["WebSearch", "Bash(gh --version)"]
+    "allow": [
+      "WebSearch",
+      "Bash(gh --version)",
+      "Bash(pnpm install:*)"
+    ]
   }
 }
