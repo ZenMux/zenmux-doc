@@ -8,7 +8,7 @@ body:
       value: |
         Thanks for your suggestion! Your ideas help shape the future of ZenMux. Please describe what you'd like to see.
 
-        You can also check our [public roadmap](https://github.com/orgs/ZenMux/projects) to see what's already planned.
+        You can also check our [public roadmap](https://github.com/orgs/ZenMux/projects/2) to see what's already planned.
 
   - type: dropdown
     id: category
