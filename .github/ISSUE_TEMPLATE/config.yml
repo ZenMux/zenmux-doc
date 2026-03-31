@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question or Discussion
+    url: https://github.com/zenmux/zenmux-doc/discussions
+    about: Ask questions or discuss ideas with the community
+  - name: Documentation Site
+    url: https://docs.zenmux.ai
+    about: Visit the official ZenMux documentation
+  - name: ZenMux Main Repository
+    url: https://github.com/zenmux/zenmux
+    about: Report issues with ZenMux itself (not documentation)

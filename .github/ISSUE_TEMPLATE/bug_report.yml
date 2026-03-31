@@ -1,0 +1,142 @@
+name: Bug Report
+description: Report a bug or issue with the documentation
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug! Please fill out the information below to help us resolve the issue.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      description: A clear description of what the bug is
+      placeholder: When I navigate to X page, Y happens instead of Z
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Detailed steps to reproduce the behavior
+      placeholder: |
+        1. Go to https://docs.zenmux.ai/...
+        2. Click on...
+        3. Scroll down to...
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What you expected to happen
+      placeholder: I expected the page to load with correct content
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: What actually happened (include error messages if any)
+      placeholder: The page shows a 404 error / broken links / incorrect translation
+    validations:
+      required: true
+
+  - type: dropdown
+    id: issue-type
+    attributes:
+      label: Issue type
+      description: What kind of issue is this?
+      multiple: true
+      options:
+        - Broken link
+        - Translation error
+        - Missing content
+        - Incorrect information
+        - Formatting/display issue
+        - Search not working
+        - Navigation issue
+        - Image not loading
+        - Code example error
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: language
+    attributes:
+      label: Language
+      description: Which language version is affected?
+      options:
+        - English
+        - Chinese (简体中文)
+        - Both
+    validations:
+      required: true
+
+  - type: input
+    id: page-url
+    attributes:
+      label: Page URL
+      description: Full URL of the affected page
+      placeholder: "https://docs.zenmux.ai/guide/getting-started"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Browser
+      options:
+        - Chrome
+        - Firefox
+        - Safari
+        - Brave
+        - Edge
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: device
+    attributes:
+      label: Device
+      options:
+        - Desktop
+        - Mobile
+        - Tablet
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: Add screenshots to help explain the problem
+      placeholder: Drag and drop images here
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: Any other context about the problem
+      placeholder: |
+        - This started happening after...
+        - Only occurs when...
+        - Related to issue #123
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission checklist
+      options:
+        - label: I have searched existing issues to avoid duplicates
+          required: true
+        - label: I have checked the page in the latest version
+          required: true
