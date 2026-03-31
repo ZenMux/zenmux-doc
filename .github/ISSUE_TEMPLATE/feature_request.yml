@@ -8,6 +8,8 @@ body:
       value: |
         Thanks for your suggestion! Your ideas help shape the future of ZenMux. Please describe what you'd like to see.
 
+        You can also check our [public roadmap](https://github.com/orgs/ZenMux/projects) to see what's already planned.
+
   - type: dropdown
     id: category
     attributes:
@@ -15,12 +17,24 @@ body:
       description: Which area does this feature relate to?
       multiple: true
       options:
-        - API (new endpoints, parameters, formats)
-        - Routing (model routing, load balancing, fallback strategies)
+        - API (new endpoints, parameters, response formats)
+        - Protocol support (OpenAI / Anthropic / Gemini compatibility)
+        - Routing (provider routing, model routing, fallback strategies)
+        - Streaming / Real-time
+        - Multimodal (vision, image generation, video generation)
+        - Tool calling / Function calling
+        - Prompt cache / Performance optimization
+        - Structured output / JSON mode
+        - Reasoning / Thinking models
+        - Web search / Grounding
+        - Long context (1M tokens)
+        - Insurance / Quality assurance (HLE testing, auto-compensation)
+        - Observability (logs, cost tracking, usage analytics)
+        - Studio Chat (built-in chat UI)
         - Dashboard (web console, analytics, monitoring)
-        - SDK (client libraries, developer tools)
+        - SDK / Developer tools
         - Billing / Pricing (plans, usage, cost optimization)
-        - Developer Experience (docs, onboarding, error messages)
+        - Developer experience (docs, onboarding, error messages)
         - Security (authentication, rate limiting, access control)
         - Other
     validations:
@@ -34,7 +48,7 @@ body:
       placeholder: |
         Currently I have to manually switch between providers when one is down...
         There's no way to set spending limits per API key...
-        I need to monitor token usage in real time but...
+        I need to monitor token usage across models in real time but...
     validations:
       required: true
 
@@ -58,6 +72,7 @@ body:
       placeholder: |
         I'm building a chatbot that needs to...
         Our team uses ZenMux to aggregate multiple LLM providers and we need...
+        I use ZenMux with Claude Code / Cursor / Cline and I want...
 
   - type: dropdown
     id: priority

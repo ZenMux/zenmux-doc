@@ -8,12 +8,14 @@ body:
       value: |
         Want ZenMux to support a new LLM provider or model? Let us know! This helps us prioritize which integrations to build next.
 
+        You can check currently supported models at [zenmux.ai/models](https://zenmux.ai/models).
+
   - type: input
     id: provider-name
     attributes:
       label: Provider name
       description: The name of the LLM provider
-      placeholder: "e.g., Mistral, Cohere, Yi, Baichuan, DeepSeek"
+      placeholder: "e.g., Mistral, Cohere, xAI (Grok), Minimax, Zhipu, 01.AI"
     validations:
       required: true
 
@@ -23,9 +25,8 @@ body:
       label: Model(s) requested
       description: Which specific model(s) would you like to use?
       placeholder: |
-        - mistral-large-latest
-        - mistral-medium
-        - codestral
+        - model-name-1
+        - model-name-2
     validations:
       required: true
 
@@ -37,6 +38,26 @@ body:
         - New provider (not yet supported)
         - New model from existing provider
         - Update to existing model (new version available)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: model-type
+    attributes:
+      label: Model type
+      description: What kind of model is this?
+      multiple: true
+      options:
+        - Text generation (chat / completion)
+        - Code generation
+        - Image generation
+        - Video generation
+        - Embedding
+        - Multimodal (vision / image input)
+        - Reasoning / Thinking
+        - Web search / Grounding
+        - Long context (100K+ tokens)
+        - Other
     validations:
       required: true
 
@@ -64,6 +85,18 @@ body:
     validations:
       required: true
 
+  - type: dropdown
+    id: protocol
+    attributes:
+      label: API protocol compatibility
+      description: Does this provider's API follow any standard protocol?
+      options:
+        - OpenAI-compatible API
+        - Custom API (provider-specific)
+        - Not sure
+    validations:
+      required: false
+
   - type: input
     id: api-docs
     attributes:
@@ -87,4 +120,6 @@ body:
       label: Pre-submission checklist
       options:
         - label: I have searched existing issues to avoid duplicates
+          required: true
+        - label: I have checked the [model list](https://zenmux.ai/models) and confirmed this is not yet supported
           required: true
