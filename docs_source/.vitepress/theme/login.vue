@@ -33,6 +33,11 @@
           <el-dropdown-item @click="() => handleAction('platform/chat')"
             >Chat</el-dropdown-item
           >
+          <el-dropdown-item
+            v-if="user?.flags?.internalMember"
+            @click="() => handleAction('platform/video')"
+            >Video</el-dropdown-item
+          >
           <el-dropdown-item @click="() => handleAction('platform/logs')"
             >Logs</el-dropdown-item
           >
@@ -97,6 +102,7 @@ export default defineComponent({
       email: string;
       flags?: {
         subscription?: boolean;
+        internalMember?: boolean;
       };
     } | null>(null);
 
@@ -172,7 +178,7 @@ export default defineComponent({
       }
       return `https://zenmux.ai/api/frontend/public/image/${url.replace(
         /^\/+/,
-        ""
+        "",
       )}`;
     };
 

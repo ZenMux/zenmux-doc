@@ -11,6 +11,13 @@ export default defineLoacaleConfig({
       level: [2, 3],
     },
     nav: [
+      {
+        text: "Studio",
+        items: [
+          { text: "Chat", link: "https://zenmux.ai/chat", noIcon: true },
+          { text: "Video", link: "https://zenmux.ai/video", noIcon: true },
+        ],
+      },
       { text: "Models", link: "https://zenmux.ai/models", noIcon: true },
       {
         text: "Pricing",
@@ -37,11 +44,11 @@ export default defineLoacaleConfig({
           },
         ],
       },
-      { text: "Chat", link: "https://zenmux.ai/chat", noIcon: true },
       {
         text: "Developers",
         items: [
           { text: "Docs", link: "/", noIcon: true },
+          { text: "Endpoints", link: "javascript:void(0)", noIcon: true },
           { text: "Blog", link: "https://zenmux.ai/blog", noIcon: true },
           {
             text: "Changelog",
@@ -98,6 +105,7 @@ export default defineLoacaleConfig({
               { text: "推理模型", link: "/zh/guide/advanced/reasoning" },
               { text: "提示词缓存", link: "/zh/guide/advanced/prompt-cache" },
               { text: "图片生成", link: "/zh/guide/advanced/image-generation" },
+              { text: "视频生成", link: "/zh/guide/advanced/video-generation" },
               { text: "网络搜索", link: "/zh/guide/advanced/web-search" },
               { text: "1M 长上下文", link: "/zh/guide/advanced/long-context" },
             ],
@@ -141,6 +149,10 @@ export default defineLoacaleConfig({
           },
           { text: "CodeX接入ZenMux指南", link: "/zh/best-practices/codex" },
           {
+            text: "Gemini CLI接入ZenMux指南",
+            link: "/zh/best-practices/gemini-cli",
+          },
+          {
             text: "opencode接入ZenMux指南",
             link: "/zh/best-practices/opencode",
           },
@@ -176,8 +188,20 @@ export default defineLoacaleConfig({
             link: "/zh/best-practices/openclaw",
           },
           {
+            text: "阿里云部署 OpenClaw 并集成 ZenMux 指南",
+            link: "/zh/best-practices/openclaw-alibaba",
+          },
+          {
             text: "CC-Switch 接入 ZenMux 指南",
             link: "/zh/best-practices/cc-switch",
+          },
+          {
+            text: "Cursor 接入 ZenMux 指南",
+            link: "/zh/best-practices/cursor",
+          },
+          {
+            text: "RikkaHub 接入 ZenMux 指南",
+            link: "/zh/best-practices/rikkahub",
           },
         ],
       },
@@ -230,6 +254,18 @@ export default defineLoacaleConfig({
           {
             text: "Platform API",
             items: [
+              {
+                text: "Get Flow Rate",
+                link: "/zh/api/platform/flow-rate",
+              },
+              {
+                text: "Get PAYG Balance",
+                link: "/zh/api/platform/payg-balance",
+              },
+              {
+                text: "Get Subscription Detail",
+                link: "/zh/api/platform/subscription-detail",
+              },
               {
                 text: "Get Generation",
                 link: "/zh/api/platform/get-generation",

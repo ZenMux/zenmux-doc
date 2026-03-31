@@ -1,0 +1,258 @@
+{
+  "version": "1.0.0",
+  "metadata": {
+    "title": "ZenMux 知识问答题库",
+    "description": "用于 ZenMux 订阅购买环节的知识问答题目，欢迎社区贡献。题型包括单选题和判断题。",
+    "lastUpdated": "2026-03-18",
+    "categories": [
+      "claude-code",
+      "zenmux-basics",
+      "pricing",
+      "api-usage",
+      "observability"
+    ]
+  },
+  "questions": [
+    {
+      "id": "q001",
+      "type": "single-choice",
+      "category": "claude-code",
+      "difficulty": "easy",
+      "question": "CC 在当前的 AI 背景下是什么的缩写？",
+      "options": [
+        { "id": "A", "text": "Claude Code" },
+        { "id": "B", "text": "Carbon Copy" },
+        { "id": "C", "text": "Creative Computing" },
+        { "id": "D", "text": "Coding Canvas" }
+      ],
+      "answer": "A",
+      "explanation": "CC 在当前 AI 开发背景下特指 Claude Code，即 Anthropic 推出的 AI 编程助手 CLI 工具，可直接在终端中运行，支持代码生成、重构、调试等任务。",
+      "tags": ["claude-code", "基础概念", "缩写"],
+      "contributor": "zenmux-team",
+      "references": ["https://docs.zenmux.ai/guide/quickstart"]
+    },
+    {
+      "id": "q002",
+      "type": "single-choice",
+      "category": "claude-code",
+      "difficulty": "medium",
+      "question": "在一个中等规模的项目下启动 Claude Code，发送 hello，其对应的 token 消耗以及实际请求数大概是什么级别？",
+      "options": [
+        { "id": "A", "text": "~10000 tokens，5 次请求" },
+        { "id": "B", "text": "~2 tokens，1 次请求" },
+        { "id": "C", "text": "~500 tokens，2 次请求" },
+        { "id": "D", "text": "~100000 tokens，50 次请求" }
+      ],
+      "answer": "A",
+      "explanation": "Claude Code 启动时会自动读取项目目录结构、CLAUDE.md、相关代码文件等上下文，即使只发送 \"hello\"，也会在后台触发多次 API 请求（如文件索引、上下文构建等），总 token 消耗通常在数千至数万量级，请求数一般在 3–10 次之间。这也是 Claude Code 与直接调用 API 的关键区别之一。",
+      "tags": ["claude-code", "token", "请求数", "成本"],
+      "contributor": "zenmux-team",
+      "references": ["https://docs.zenmux.ai/guide/observability/cost"]
+    },
+    {
+      "id": "q003",
+      "type": "true-false",
+      "category": "pricing",
+      "difficulty": "medium",
+      "question": "当发送同样的 hello 消息分别给 Opus 4.6 和 Sonnet 4.6 两个模型，消耗的 ZenMux Flows 数一样。",
+      "options": [
+        { "id": "A", "text": "正确" },
+        { "id": "B", "text": "错误" }
+      ],
+      "answer": "B",
+      "explanation": "ZenMux Flows 是统一的计费单位，但不同模型的每 token 价格不同。Opus 4.6 的输入/输出 token 单价均高于 Sonnet 4.6，因此即使发送相同内容，消耗的 Flows 数也不同。模型能力越强，价格越高，消耗的 Flows 也越多。",
+      "tags": ["flows", "pricing", "模型对比", "Opus", "Sonnet"],
+      "contributor": "zenmux-team",
+      "references": ["https://docs.zenmux.ai/guide/observability/pricing"]
+    },
+    {
+      "id": "q004",
+      "type": "true-false",
+      "category": "pricing",
+      "difficulty": "easy",
+      "question": "ZenMux Builder Plan 订阅制里，一个 Flow 就等于一次 API 请求。",
+      "options": [
+        { "id": "A", "text": "正确" },
+        { "id": "B", "text": "错误" }
+      ],
+      "answer": "B",
+      "explanation": "Flow 是 ZenMux 订阅制的计费单位，不等于请求次数。你可以把 Flow 理解为一种\"货币\"——它与美元之间有浮动汇率（当前 1 Flow ≈ $0.03283）。一次请求实际消耗多少 Flow，取决于所用模型和 token 消耗量：能力越强的模型每个 token 更贵，同一条消息消耗的 Flow 也更多。",
+      "tags": ["flows", "pricing", "基础概念", "订阅制"],
+      "contributor": "zenmux-team",
+      "references": ["https://docs.zenmux.ai/guide/subscription"]
+    },
+    {
+      "id": "q005",
+      "type": "single-choice",
+      "category": "pricing",
+      "difficulty": "medium",
+      "question": "关于 ZenMux 的两种计费方式，以下哪项描述是正确的？",
+      "options": [
+        {
+          "id": "A",
+          "text": "Flows 和 Pay As You Go Credits 都固定等值于 1 美元"
+        },
+        {
+          "id": "B",
+          "text": "Flows 价值浮动，与美元有动态汇率；Pay As You Go Credits 固定 1 Credit = 1 美元"
+        },
+        {
+          "id": "C",
+          "text": "Pay As You Go Credits 价值浮动，Flows 固定 1 Flow = 1 美元"
+        },
+        { "id": "D", "text": "两者都按 API 请求次数计费，与 token 消耗无关" }
+      ],
+      "answer": "B",
+      "explanation": "ZenMux 有两套计费体系：订阅制使用 Flows，Flows 与美元之间有浮动汇率（当前约 1 Flow = $0.03283），该汇率会随市场和模型定价周期性调整；而 Pay As You Go 使用 Credits，固定 1 Credit = 1 美元，按实际 token 消耗精准扣费。两者适用场景不同：订阅制适合个人开发和 Vibe Coding，PAYG 适合生产环境。",
+      "tags": ["flows", "credits", "pricing", "pay-as-you-go", "订阅制"],
+      "contributor": "zenmux-team",
+      "references": [
+        "https://docs.zenmux.ai/guide/subscription",
+        "https://docs.zenmux.ai/guide/pay-as-you-go"
+      ]
+    },
+    {
+      "id": "q006",
+      "type": "single-choice",
+      "category": "zenmux-basics",
+      "difficulty": "easy",
+      "question": "以下哪种场景适合使用 ZenMux Builder Plan 订阅制？",
+      "options": [
+        { "id": "A", "text": "已上线、面向终端用户的商业化 SaaS 产品" },
+        { "id": "B", "text": "个人 Vibe Coding、技术学习和快速原型探索" },
+        { "id": "C", "text": "企业级生产环境高并发 API 集成" },
+        { "id": "D", "text": "多账号轮询以突破速率限制" }
+      ],
+      "answer": "B",
+      "explanation": "Builder Plan 订阅制专为个人开发、学习探索、Vibe Coding 等非生产场景设计。项目一旦上线或商业化，必须切换到 Pay As You Go。选项 A、C 属于生产环境，选项 D（多账号池化轮询）属于违反服务条款的滥用行为，三者均不可使用订阅制。",
+      "tags": ["builder-plan", "使用场景", "订阅制", "限制"],
+      "contributor": "zenmux-team",
+      "references": ["https://docs.zenmux.ai/guide/subscription"]
+    },
+    {
+      "id": "q007",
+      "type": "single-choice",
+      "category": "api-usage",
+      "difficulty": "medium",
+      "question": "使用 ZenMux Builder Plan 订阅制 API Key 调用时，速率限制（RPM）大约是多少？",
+      "options": [
+        { "id": "A", "text": "无限制，不限每分钟请求数" },
+        { "id": "B", "text": "10–15 RPM" },
+        { "id": "C", "text": "100 RPM" },
+        { "id": "D", "text": "1000 RPM" }
+      ],
+      "answer": "B",
+      "explanation": "Builder Plan 订阅制有明确的速率限制：每分钟请求数（RPM）约为 10–15 次，并采用滚动 5 小时配额窗口和每周限额机制。这也是订阅制不适合生产环境的核心原因之一。如需高并发、无速率限制的调用，应选择 Pay As You Go 方案。",
+      "tags": ["rate-limit", "RPM", "api-usage", "订阅制"],
+      "contributor": "zenmux-team",
+      "references": ["https://docs.zenmux.ai/guide/subscription"]
+    },
+    {
+      "id": "q008",
+      "type": "true-false",
+      "category": "pricing",
+      "difficulty": "easy",
+      "question": "使用 ZenMux Pay As You Go 方案充值 $100，实际可用的 API 调用额度正好是 $100。",
+      "options": [
+        { "id": "A", "text": "正确" },
+        { "id": "B", "text": "错误" }
+      ],
+      "answer": "B",
+      "explanation": "假如当前Pay As You Go 充值时会自动赠送 5% 额外积分(后续额外赠送比例可能会调整，以官网公示为准)。充值 $100 实际获得 $105 等值的 API 调用额度。赠送部分以 Bonus Credits 形式到账，消耗时优先扣除奖励积分，再扣充值积分。",
+      "tags": ["pay-as-you-go", "top-up", "bonus", "pricing"],
+      "contributor": "zenmux-team",
+      "references": ["https://docs.zenmux.ai/guide/pay-as-you-go"]
+    },
+    {
+      "id": "q009",
+      "type": "true-false",
+      "category": "api-usage",
+      "difficulty": "easy",
+      "question": "ZenMux 订阅制（Builder Plan）的 API Key 和 Pay As You Go 的 API Key 是同一个，可以互相通用。",
+      "options": [
+        { "id": "A", "text": "正确" },
+        { "id": "B", "text": "错误" }
+      ],
+      "answer": "B",
+      "explanation": "两者是完全独立的 API Key，不可互通。PAYG 的 API Key 以 sk-ai- 开头，订阅制专属的 API Key 以 sk-ss-v1- 开头。用错 Key 会导致调用失败或计费异常，请注意区分，勿混用。",
+      "tags": ["api-key", "pay-as-you-go", "订阅制", "基础概念"],
+      "contributor": "zenmux-team",
+      "references": [
+        "https://docs.zenmux.ai/guide/subscription",
+        "https://docs.zenmux.ai/guide/pay-as-you-go"
+      ]
+    },
+    {
+      "id": "q010",
+      "type": "single-choice",
+      "category": "zenmux-basics",
+      "difficulty": "easy",
+      "question": "目前 ZenMux 平台支持哪些类型的 AI 模型（订阅制和 PAYG 均适用）？",
+      "options": [
+        { "id": "A", "text": "生文模型（文字对话、编程等）" },
+        { "id": "B", "text": "生图模型（AI 图像生成）" },
+        { "id": "C", "text": "生视频模型（AI 视频生成）" },
+        { "id": "D", "text": "以上都是" }
+      ],
+      "answer": "D",
+      "explanation": "ZenMux 平台覆盖多种 AI 模型类型：生文模型（Claude、GPT-5、Gemini 等，用于文字对话和编程）、生图模型（NanoBananaPro、GPT-Image-1.5 等）以及生视频模型，真正实现了 Coding + Image + Video + Chat 全场景覆盖，一个 API Key 满足所有创作和开发需求。",
+      "tags": ["模型类型", "生图", "生视频", "生文", "zenmux-basics"],
+      "contributor": "zenmux-team",
+      "references": ["https://docs.zenmux.ai/guide/subscription"]
+    },
+    {
+      "id": "q011",
+      "type": "single-choice",
+      "category": "pricing",
+      "difficulty": "easy",
+      "question": "ZenMux 的 PAYG 充值和订阅制均支持退款，退款申请须在购买后多长时间内提交？",
+      "options": [
+        { "id": "A", "text": "24 小时内" },
+        { "id": "B", "text": "48 小时内" },
+        { "id": "C", "text": "7 天内" },
+        { "id": "D", "text": "14 天内" }
+      ],
+      "answer": "A",
+      "explanation": "根据 ZenMux 用户协议第 IX 条，无论是 PAYG 充值还是订阅制，退款申请均须在购买后 24 小时内提交，超时不予退款。此外，退款还需扣除 5% 的平台服务费。退款申请须发邮件至 support@zenmux.ai，并附上账号信息、购买时间、退款原因等。",
+      "tags": ["refund", "退款", "pricing", "用户协议"],
+      "contributor": "zenmux-team",
+      "references": ["https://docs.zenmux.ai/terms-of-service"]
+    },
+    {
+      "id": "q012",
+      "type": "single-choice",
+      "category": "zenmux-basics",
+      "difficulty": "medium",
+      "question": "根据 ZenMux 隐私政策，用户上传的数据（包括个人信息和内容）通常存储在哪个地区？",
+      "options": [
+        { "id": "A", "text": "美国" },
+        { "id": "B", "text": "中国" },
+        { "id": "C", "text": "新加坡" },
+        { "id": "D", "text": "欧盟" }
+      ],
+      "answer": "C",
+      "explanation": "根据 ZenMux 隐私政策第 II 条，用户上传或传输的所有数据（包括个人信息和用户内容）通常存储在新加坡。ZenMux 的运营主体 AI Force Singapore Pte. Ltd. 注册于新加坡，适用新加坡法律管辖，争议解决也由新加坡法院具有专属管辖权。",
+      "tags": ["隐私政策", "数据存储", "新加坡"],
+      "contributor": "zenmux-team",
+      "references": ["https://docs.zenmux.ai/privacy"]
+    },
+    {
+      "id": "q013",
+      "type": "single-choice",
+      "category": "pricing",
+      "difficulty": "medium",
+      "question": "申请 ZenMux 退款时，平台会从退款金额中扣除多少比例的平台服务费？",
+      "options": [
+        { "id": "A", "text": "0%，全额退款" },
+        { "id": "B", "text": "5%" },
+        { "id": "C", "text": "10%" },
+        { "id": "D", "text": "20%" }
+      ],
+      "answer": "B",
+      "explanation": "根据 ZenMux 用户协议第 9.2.1 条，申请退款时平台将扣除退款金额的 5% 作为平台服务费。实际退款金额计算：PAYG 退款 = 未使用充值积分对应金额 × 95%；订阅制退款 = （已付订阅费 - 已消耗费用）× 95%。退款需在购买后 24 小时内申请，处理完成后还需等待 3–10 个工作日到账。",
+      "tags": ["refund", "退款", "服务费", "pricing", "用户协议"],
+      "contributor": "zenmux-team",
+      "references": ["https://docs.zenmux.ai/terms-of-service"]
+    }
+  ]
+}

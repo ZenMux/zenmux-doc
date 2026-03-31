@@ -257,18 +257,19 @@ Write-Host "ANTHROPIC_AUTH_TOKEN: $env:ANTHROPIC_AUTH_TOKEN"
 - 格式：`sk-ai-v1-xxx`
 - 获取位置：[按量付费页面](https://zenmux.ai/platform/pay-as-you-go)
 - 详细指南：[按量付费文档](/zh/guide/pay-as-you-go)
-:::
+  :::
 
 ::: tip 📋 环境变量说明
 
-| 变量名 | 作用 | 说明 |
-|--------|------|------|
-| `ANTHROPIC_BASE_URL` | 服务端点地址 | 将 Claude Code 的请求重定向到 ZenMux 服务 |
-| `ANTHROPIC_AUTH_TOKEN` | 认证密钥 | 您的 ZenMux API Key（订阅制或按量付费） |
-| `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` | 流量控制 | 禁用非必要的数据上报，提升隐私性 |
-| `ANTHROPIC_API_KEY` | 冲突避免 | 置空以避免与本机已有 Anthropic 配置冲突 |
-| `API_TIMEOUT_MS` | API 超时设置 | 设置 API 请求超时时间（毫秒） |
-| `ANTHROPIC_DEFAULT_*_MODEL` | 模型映射 | 定义 Haiku/Sonnet/Opus 档位对应的实际模型 |
+| 变量名                                     | 作用         | 说明                                      |
+| ------------------------------------------ | ------------ | ----------------------------------------- |
+| `ANTHROPIC_BASE_URL`                       | 服务端点地址 | 将 Claude Code 的请求重定向到 ZenMux 服务 |
+| `ANTHROPIC_AUTH_TOKEN`                     | 认证密钥     | 您的 ZenMux API Key（订阅制或按量付费）   |
+| `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` | 流量控制     | 禁用非必要的数据上报，提升隐私性          |
+| `ANTHROPIC_API_KEY`                        | 冲突避免     | 置空以避免与本机已有 Anthropic 配置冲突   |
+| `API_TIMEOUT_MS`                           | API 超时设置 | 设置 API 请求超时时间（毫秒）             |
+| `ANTHROPIC_DEFAULT_*_MODEL`                | 模型映射     | 定义 Haiku/Sonnet/Opus 档位对应的实际模型 |
+
 :::
 
 ### 步骤 2：启动 Claude Code 并完成认证
@@ -378,7 +379,7 @@ export ANTHROPIC_DEFAULT_OPUS_MODEL="google/gemini-3-pro-preview"
 
 ```json
 {
-  "claude-code.selectedModel": "anthropic/claude-sonnet-4.5",
+  "claudeCode.selectedModel": "anthropic/claude-sonnet-4.5",
   "claudeCode.environmentVariables": [
     {
       "name": "ANTHROPIC_BASE_URL",
@@ -423,7 +424,7 @@ export ANTHROPIC_DEFAULT_OPUS_MODEL="google/gemini-3-pro-preview"
    - 为避免冲突，建议在使用 VSCode 扩展时，仅在 `settings.json` 中配置环境变量
 
 3. **模型选择**：
-   - `claude-code.selectedModel` 设置当前使用的模型
+   - `claudeCode.selectedModel` 设置当前使用的模型
    - `ANTHROPIC_DEFAULT_*_MODEL` 设置三个速度档位的默认模型
    - 您可以在对话过程中使用 `/model` 命令切换模型
 
@@ -503,7 +504,7 @@ export ANTHROPIC_DEFAULT_OPUS_MODEL="google/gemini-3-pro-preview"
 5. **获取新的 API Key**：
    - [订阅制 API Key 获取指南](/zh/guide/subscription#第-3-步管理订阅和获取-api-key)
    - [按量付费 API Key 获取指南](/zh/guide/pay-as-you-go#创建和管理-api-key)
-  :::
+     :::
 
 ::: details 从其他平台切换到 ZenMux 时认证失败
 **问题**：之前使用过 Claude Code 官方账号或其他平台（如 MiniMax、GLM 等），切换到 ZenMux 后出现认证失败或配置冲突
@@ -683,7 +684,7 @@ export ANTHROPIC_DEFAULT_OPUS_MODEL="google/gemini-3-pro-preview"
 - `Restricted`（默认）：不允许运行任何脚本
 - `RemoteSigned`：本地脚本可运行，远程下载的脚本需要数字签名
 - `Unrestricted`：允许运行所有脚本（不推荐）
-:::
+  :::
 
 ::: details Windows 找不到 claude 命令
 **问题**：安装 Claude Code 后，PowerShell 提示找不到 `claude` 命令
@@ -776,6 +777,31 @@ export ANTHROPIC_DEFAULT_OPUS_MODEL="google/gemini-3-pro-preview"
 
 :::
 
+::: details 如何开启 1M 上下文窗口
+**问题**：使用 `anthropic/claude-opus-4.6` 或 `anthropic/claude-sonnet-4.6` 时，1M 上下文窗口无法开启
+
+**原因**：Claude Code 通过模型名称来判断是否启用扩展上下文窗口，带有 `anthropic/` 前缀的模型名称无法被正确识别，会回退到默认的上下文窗口大小。
+
+**解决方案**：
+
+将模型名称替换为 Claude Code 可识别的格式：
+
+- `anthropic/claude-opus-4.6` → `claude-opus-4-6`
+- `anthropic/claude-sonnet-4.6` → `claude-sonnet-4-6`
+
+```bash
+# ❌ 无法开启 1M 上下文
+export ANTHROPIC_DEFAULT_SONNET_MODEL="anthropic/claude-sonnet-4.6"
+export ANTHROPIC_DEFAULT_OPUS_MODEL="anthropic/claude-opus-4.6"
+
+# ✅ 可以正常开启 1M 上下文
+export ANTHROPIC_DEFAULT_SONNET_MODEL="claude-sonnet-4-6"  # [!code highlight]
+export ANTHROPIC_DEFAULT_OPUS_MODEL="claude-opus-4-6"  # [!code highlight]
+```
+
+修改后记得重新加载配置：`source ~/.zshrc` 或 `source ~/.bashrc`，然后重启 Claude Code。
+:::
+
 ::: details Windows 环境变量中的中文字符问题
 **问题**：环境变量中包含中文路径或值时出现乱码
 
@@ -789,7 +815,7 @@ export ANTHROPIC_DEFAULT_OPUS_MODEL="google/gemini-3-pro-preview"
    ```
 
 3. 如果问题持续，建议避免在环境变量值中使用中文字符
-:::
+   :::
 
 ::: info 更多模型
 查看 [ZenMux 模型列表](https://zenmux.ai/models) 了解所有可用模型及其详细信息

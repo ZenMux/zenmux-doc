@@ -18,13 +18,13 @@ A VitePress-based multilingual documentation site. This is the source repository
 pnpm install
 ```
 
-2. Local development (hot reload)
+2. Start local development server (hot reload)
 
 ```sh
 pnpm run dev
 ```
 
-3. Production build (outputs to docs/ directory)
+3. Build for production (outputs to `docs/` directory)
 
 ```sh
 pnpm run build
@@ -36,145 +36,141 @@ pnpm run build
 pnpm run preview
 ```
 
-## Scripts
+## Writing Documentation
 
-This project provides several handy scripts to streamline development:
+This project follows a **Chinese-first** workflow: content is written in Chinese first, then translated to English.
 
-### 📖 Docs Development
+### AI-Powered Tools (Claude Code Skills)
 
-```sh
-# Start dev server (hot reload)
-pnpm run dev
+Translation and optimization are handled by [Claude Code](https://claude.ai/code) skills — no manual scripts or API keys required. Simply open this repo in Claude Code and describe what you want:
 
-# Build production version (outputs to docs/ directory)
-pnpm run build
+**Translate Chinese docs to English:**
 
-# Preview the built site
-pnpm run preview
-```
+> "Translate `docs_source/zh/guide/quickstart.md` to English"
+>
+> "Translate all files in `docs_source/zh/best-practices/` to English"
+>
+> "Force re-translate `docs_source/zh/guide/intro.md`"
 
-### 🌐 Translation Tool
+The skill handles path conversion (`zh/` → `en/`), skips already-translated files by default, and automatically updates both sidebar configs.
 
-```sh
-# Translate Chinese docs to English (single file or entire folder supported)
-pnpm run translate <path-to-chinese-file-or-folder> [--force] [--concurrency=5]
+**Optimize Chinese documentation:**
 
-# Example: translate a single doc
-pnpm run translate docs_source/zh/guide/quickstart.md
+> "Optimize `docs_source/zh/guide/quickstart.md`"
+>
+> "Polish this draft and save it to `docs_source/zh/guide/new-feature.md`"
 
-# Example: translate an entire folder (recursively process all Markdown files)
-pnpm run translate docs_source/zh/
+The skill improves language clarity, structure, and VitePress syntax — no extra setup needed.
 
-# Force re-translation (overwrite existing English files)
-pnpm run translate docs_source/zh/guide/quickstart.md --force
-
-# Customize concurrency (translate multiple files in parallel, default is 5)
-pnpm run translate docs_source/zh/ --concurrency=10
-
-# Full example: translate an entire folder, force overwrite, use 10-way concurrency
-pnpm run translate docs_source/zh/ --force --concurrency=10
-```
-
-**Translation Tool Notes**:
-
-- Supports single-file or folder input; folders are processed recursively for all Markdown files
-- Automatically converts paths from `zh/` to `en/`
-- Uses AI model (openai/gpt-5) for high-quality translation
-- Preserves code blocks, variable names, and Markdown formatting
-- Supports parallel processing of multiple files to improve translation throughput
-- Requires the `ZENMUX_API_KEY` environment variable
-
-**Parameters**:
-
-- `--force`: force overwrite of existing target files
-- `--concurrency=N`: set the number of concurrent translations (default 5; recommended not to exceed 10 to avoid API rate limiting)
-
-### ✨ Docs Optimization
+### Image Formatting
 
 ```sh
-# Optimize the language and structure of Chinese docs
-pnpm run optimize <input-file> <output-file> [--force]
-
-# Example: optimize a draft document
-pnpm run optimize draft.md docs_source/zh/guide/quickstart.md
-
-# Force overwrite existing file
-pnpm run optimize draft.md docs_source/zh/guide/quickstart.md --force
-```
-
-**Docs Optimization Tool Notes**:
-
-- Improves expression and structure of Chinese docs
-- Ensures correct use of VitePress syntax
-- Harmonizes document style and formatting
-- Requires the `ZENMUX_API_KEY` environment variable
-
-### 🖼️ Image Formatting
-
-```sh
-# Automatically format images across all docs
+# Auto-format all images across the documentation
 pnpm run format-images
 ```
-
-**Image formatting tool features**:
-
-- Smartly categorizes different image types and sets appropriate sizes
-- Consistent styling: responsive design, rounded corners, shadow effects
-- Performance optimizations: lazy loading support, avoid redundant processing
-
-**Notes**:
-
-- In this repo, `docs_source/.vitepress/config.mts` has `outDir: '../docs'` set, so you don't need to pass `--out` on the CLI.
-- Local full-text search is enabled (`search.provider = 'local'`).
 
 ## Directory Structure
 
 ```text
-docs_source/                    # Docs source directory
-├── .vitepress/config.mts      # VitePress configuration file
-├── config.ts                  # Multi-language config center
+docs_source/                    # Documentation source
+├── .vitepress/config.mts      # VitePress configuration
+├── config.ts                  # Locale configuration hub
 ├── index.md                   # English home page
-├── en/                        # English docs directory
-│   ├── config.ts              # English language config
-│   └── [doc files]
-├── zh/                        # Chinese docs directory (source language)
-│   ├── config.ts              # Chinese language config
-│   └── [doc files]
-└── public/                    # Static assets directory
+├── en/                        # English documentation
+│   ├── config.ts              # English locale config
+│   └── [content files]
+├── zh/                        # Chinese documentation (source language)
+│   ├── config.ts              # Chinese locale config
+│   └── [content files]
+└── public/                    # Static assets
 
-scripts/                       # Automation scripts
-├── translate-zh-to-en/        # Translation scripts
-├── optimize-chinese-docs/     # Docs optimization scripts
-└── format-images.js           # Image formatting script
+.claude/
+├── skills/
+│   ├── translate-docs/        # Translation skill (zh → en)
+│   └── optimize-chinese-docs/ # Chinese doc optimization skill
+└── agents/                    # (reserved)
 
 .prompts/                      # AI prompt templates
-├── translation-zh-to-en.xml   # Translation prompts
-└── optimize-chinese-docs.xml  # Optimization prompts
+├── translation-zh-to-en.xml   # Translation guidelines
+└── optimize-chinese-docs.xml  # Optimization guidelines
 
-docs/                          # Build output directory (GitHub Pages publishing)
+scripts/                       # Utility scripts
+└── format-images.js           # Image formatting
+
+docs/                          # Build output (GitHub Pages)
 ```
 
-## How to Add New Docs
+## Contributing
 
-### Document Creation Workflow
+We welcome all contributions — whether it's fixing a typo, improving an explanation, or adding a brand-new guide.
 
-1. Chinese first: create Chinese docs under `docs_source/zh/`
-2. Auto-translate: use `pnpm run translate <path-to-chinese-file>` to generate the English version
-3. Update navigation: add sidebar entries in the corresponding language's config.ts
+### Adding a New Document
+
+1. **Write Chinese first** — create your file under `docs_source/zh/`, mirroring the structure you want in `docs_source/en/`.
+
+2. **Update the sidebar** — add an entry to `docs_source/zh/config.ts`:
+   ```ts
+   { text: "My New Page", link: "/zh/guide/my-new-page" }
+   ```
+
+3. **Translate to English** — open Claude Code and say:
+   > "Translate `docs_source/zh/guide/my-new-page.md` to English"
+
+   The skill will create the English file and add the sidebar entry to `docs_source/en/config.ts` automatically.
+
+4. **Open a pull request** against the `main` branch.
+
+### Editing an Existing Document
+
+- **Fixing typos or small errors**: edit the Chinese file directly, then re-translate if the change is substantial.
+- **Larger rewrites**: update the Chinese source, run the optimize skill if needed, then translate.
+- Always keep Chinese and English versions in sync.
+
+### File Naming Conventions
+
+- Use lowercase kebab-case: `my-new-feature.md`
+- Mirror the same filename in both `zh/` and `en/` directories
+- Match the link path in the sidebar config exactly
 
 ### Routing Rules
 
-- English docs: root paths, e.g., `/guide/getting-started`
-- Chinese docs: prefixed with `/zh/`, e.g., `/zh/guide/getting-started`
+| Language | Path pattern                  | Example                            |
+| -------- | ----------------------------- | ---------------------------------- |
+| English  | `/guide/page-name`            | `/guide/quickstart`                |
+| Chinese  | `/zh/guide/page-name`         | `/zh/guide/quickstart`             |
+
+### VitePress Syntax Tips
+
+Use these elements to make docs clearer:
+
+```markdown
+::: tip Title
+Helpful notes and best practices.
+:::
+
+::: warning
+Important cautions.
+:::
+
+::: code-group
+
+```python [Python]
+# example
+```
+
+```ts [TypeScript]
+// example
+```
+
+:::
+```
 
 ## Deployment
 
-The project is configured to auto-deploy to GitHub Pages:
+The site auto-deploys to GitHub Pages on every push to `main`:
 
-1. Run `pnpm run build` to build into the `docs/` directory
-2. Push to the main branch to automatically publish to `docs.zenmux.ai`
-
-## Development Guidelines
+1. `pnpm run build` compiles sources into `docs/`
+2. GitHub Pages serves from `docs/` at [docs.zenmux.ai](https://docs.zenmux.ai)
 
 - It is recommended to include a `title` field in the Markdown front matter
 - After adding a new page, update the sidebar configuration for the corresponding language
@@ -193,3 +189,4 @@ Please read our [Code of Conduct](CODE_OF_CONDUCT.md) before contributing.
 ## License
 
 This documentation is open source and available under the MIT License.
+> `docs_source/.vitepress/config.mts` sets `outDir: '../docs'`, so no extra flags are needed.

@@ -13,8 +13,12 @@ head:
 # Get generation
 
 ```
-GET https://zenmux.ai/api/v1/generation?id=<generation_id>
+GET https://zenmux.ai/api/v1/management/generation?id=<generation_id>
 ```
+
+::: warning ⚠️ Previous URL deprecated
+The previous endpoint `GET /api/v1/generation` is deprecated. Please migrate to the new URL `GET /api/v1/management/generation`. The old URL will be removed in a future release.
+:::
 
 The Get generation endpoint is used to retrieve generation details, such as usage and costs.
 
@@ -161,11 +165,64 @@ Number of request retries.
 
 Whether this is the final retry.
 
-::: api-request GET /api/v1/generation
+::: api-request GET /api/v1/management/generation
 
 ```cURL
-curl https://zenmux.ai/api/v1/generation?id=<generation_id> \
+curl https://zenmux.ai/api/v1/management/generation?id=<generation_id> \
   -H "Authorization: Bearer $ZENMUX_API_KEY"
+```
+
+:::
+
+::: api-response
+
+```json
+{
+  "api": "chat.completions",
+  "generationId": "gen_01abc123def456",
+  "model": "openai/gpt-4o",
+  "createAt": "2026-03-26T06:00:00.000Z",
+  "generationTime": 3200,
+  "latency": 500,
+  "nativeTokens": {
+    "completion_tokens": 128,
+    "prompt_tokens": 32,
+    "total_tokens": 160,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "streamed": true,
+  "finishReason": "stop",
+  "usage": 0.0052,
+  "ratingResponses": {
+    "billAmount": 0.0052,
+    "discountAmount": 0,
+    "originAmount": 0.0052,
+    "priceVersion": "v1",
+    "ratingDetails": [
+      {
+        "billAmount": 0.0016,
+        "discountAmount": 0,
+        "feeItemCode": "prompt",
+        "originAmount": 0.0016,
+        "rate": 0.00005
+      },
+      {
+        "billAmount": 0.0036,
+        "discountAmount": 0,
+        "feeItemCode": "completion",
+        "originAmount": 0.0036,
+        "rate": 0.00003
+      }
+    ]
+  },
+  "requestRetryTimes": 0,
+  "finalRetry": false
+}
 ```
 
 :::

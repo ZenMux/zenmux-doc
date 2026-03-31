@@ -38,14 +38,14 @@ head:
 ---
 
 ::: info 欢迎来到 ZenMux 文档
-关于 ZenMux 的详细信息，请访问我们的[简介页面](/zh/about/intro)，其中包含详细的产品概述、功能特性和 Beta 申请信息。
+关于 ZenMux 的详细信息，请访问我们的[简介页面](/zh/about/intro)，其中包含详细的产品概述和功能特性。
 :::
 
 ## 快速导航
 
 ### 关于 ZenMux
 
-- [简介](/zh/about/intro) - 全面的产品概述和 Beta 申请
+- [简介](/zh/about/intro) - 全面的产品概述
 - [模型&供应商](/zh/about/models-and-providers) - 支持的模型和供应商
 - [价格&费用](/zh/about/pricing-and-cost) - 价格信息和费用
 
