@@ -257,18 +257,19 @@ Be sure to replace `sk-ss-v1-xxx` or `sk-ai-v1-xxx` in the configuration with yo
 - Format: `sk-ai-v1-xxx`
 - Get it from: [Pay-as-you-go page](https://zenmux.ai/platform/pay-as-you-go)
 - Detailed guide: [Pay-as-you-go docs](/guide/pay-as-you-go)
-:::
+  :::
 
 ::: tip 📋 Environment Variable Reference
 
-| Variable | Purpose | Notes |
-|--------|------|------|
-| `ANTHROPIC_BASE_URL` | Service endpoint | Redirects Claude Code requests to ZenMux |
-| `ANTHROPIC_AUTH_TOKEN` | Auth token | Your ZenMux API Key (subscription or pay-as-you-go) |
-| `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` | Traffic control | Disables non-essential telemetry to improve privacy |
-| `ANTHROPIC_API_KEY` | Conflict avoidance | Clear it to avoid conflicts with existing local Anthropic config |
-| `API_TIMEOUT_MS` | API timeout | Sets the API request timeout in milliseconds |
-| `ANTHROPIC_DEFAULT_*_MODEL` | Model mapping | Maps Haiku/Sonnet/Opus tiers to actual models |
+| Variable                                   | Purpose            | Notes                                                            |
+| ------------------------------------------ | ------------------ | ---------------------------------------------------------------- |
+| `ANTHROPIC_BASE_URL`                       | Service endpoint   | Redirects Claude Code requests to ZenMux                         |
+| `ANTHROPIC_AUTH_TOKEN`                     | Auth token         | Your ZenMux API Key (subscription or pay-as-you-go)              |
+| `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` | Traffic control    | Disables non-essential telemetry to improve privacy              |
+| `ANTHROPIC_API_KEY`                        | Conflict avoidance | Clear it to avoid conflicts with existing local Anthropic config |
+| `API_TIMEOUT_MS`                           | API timeout        | Sets the API request timeout in milliseconds                     |
+| `ANTHROPIC_DEFAULT_*_MODEL`                | Model mapping      | Maps Haiku/Sonnet/Opus tiers to actual models                    |
+
 :::
 
 ### Step 2: Launch Claude Code and Complete Authentication
@@ -378,7 +379,7 @@ Click **Edit in settings.json**, then add or modify the following configuration:
 
 ```json
 {
-  "claude-code.selectedModel": "anthropic/claude-sonnet-4.5",
+  "claudeCode.selectedModel": "anthropic/claude-sonnet-4.5",
   "claudeCode.environmentVariables": [
     {
       "name": "ANTHROPIC_BASE_URL",
@@ -423,7 +424,7 @@ Click **Edit in settings.json**, then add or modify the following configuration:
    - To avoid conflicts, when using the VSCode extension, configure environment variables only in `settings.json`
 
 3. **Model selection**:
-   - `claude-code.selectedModel` sets the model currently in use
+   - `claudeCode.selectedModel` sets the model currently in use
    - `ANTHROPIC_DEFAULT_*_MODEL` sets the default models for the three speed tiers
    - You can switch models during a session using the `/model` command
 
@@ -503,7 +504,7 @@ You can use the '/model' command to confirm which model is currently in use:
 5. **Get a new API Key**:
    - [Subscription API Key guide](/guide/subscription#step-3-manage-your-subscription-and-get-an-api-key)
    - [Pay-as-you-go API Key guide](/guide/pay-as-you-go#create-and-manage-api-keys)
-  :::
+     :::
 
 ::: details Authentication Failure When Switching from Another Platform to ZenMux
 **Issue**: You previously used a Claude Code official account or another platform (e.g., MiniMax, GLM, etc.). After switching to ZenMux, authentication fails or configuration conflicts occur.
@@ -683,7 +684,7 @@ This is a Windows PowerShell security mechanism. You need to change the executio
 - `Restricted` (default): no scripts can run
 - `RemoteSigned`: local scripts can run; downloaded scripts require a digital signature
 - `Unrestricted`: all scripts can run (not recommended)
-:::
+  :::
 
 ::: details Windows: `claude` Command Not Found
 **Issue**: After installing Claude Code, PowerShell cannot find the `claude` command.
@@ -776,6 +777,31 @@ This is usually caused by the npm global package path not being added to the PAT
 
 :::
 
+::: details How to Enable the 1M Context Window
+**Issue**: The 1M context window is not enabled when using `anthropic/claude-opus-4.6` or `anthropic/claude-sonnet-4.6`.
+
+**Cause**: Claude Code determines whether to enable the extended context window based on the model name. Model names with the `anthropic/` prefix are not recognized, causing it to fall back to the default context window size.
+
+**Solution**:
+
+Replace the model names with the format that Claude Code can recognize:
+
+- `anthropic/claude-opus-4.6` → `claude-opus-4-6`
+- `anthropic/claude-sonnet-4.6` → `claude-sonnet-4-6`
+
+```bash
+# ❌ 1M context window NOT enabled
+export ANTHROPIC_DEFAULT_SONNET_MODEL="anthropic/claude-sonnet-4.6"
+export ANTHROPIC_DEFAULT_OPUS_MODEL="anthropic/claude-opus-4.6"
+
+# ✅ 1M context window enabled
+export ANTHROPIC_DEFAULT_SONNET_MODEL="claude-sonnet-4-6"  # [!code highlight]
+export ANTHROPIC_DEFAULT_OPUS_MODEL="claude-opus-4-6"  # [!code highlight]
+```
+
+After making the change, reload your config with `source ~/.zshrc` or `source ~/.bashrc`, then restart Claude Code.
+:::
+
 ::: details Windows: Chinese Characters in Environment Variables
 **Issue**: Garbled text appears when environment variables contain Chinese paths or values.
 
@@ -789,7 +815,7 @@ This is usually caused by the npm global package path not being added to the PAT
    ```
 
 3. If the issue persists, avoid using Chinese characters in environment variable values
-:::
+   :::
 
 ::: info More Models
 See the [ZenMux model list](https://zenmux.ai/models) for all available models and detailed information.

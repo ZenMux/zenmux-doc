@@ -1,6 +1,14 @@
 // https://vitepress.dev/guide/custom-theme
-import { h } from "vue";
+import { h, defineComponent, ref, onMounted } from "vue";
 import { inBrowser, type Theme } from "vitepress";
+
+const ClientOnly = defineComponent({
+  setup(_, { slots }) {
+    const mounted = ref(false);
+    onMounted(() => { mounted.value = true; });
+    return () => mounted.value ? slots.default?.() : null;
+  },
+});
 import DefaultTheme from "vitepress/theme";
 import "virtual:group-icons.css";
 import "element-plus/theme-chalk/index.css";
@@ -8,6 +16,7 @@ import "element-plus/theme-chalk/dark/css-vars.css";
 import Select from "./select.vue";
 import Login from "./login.vue";
 import ApiContainer from "./api-container.vue";
+import EndpointDrawer from "./endpoint-drawer.vue";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import "./style.css";
@@ -18,6 +27,20 @@ const isDocsHost =
   (location.hostname.startsWith("docs.") ||
     location.hostname.startsWith("localhost") ||
     location.hostname.startsWith("127.0.0.1"));
+
+// Capture ?endpoints=open at module level before VitePress router normalizes the URL
+const shouldOpenEndpoints =
+  inBrowser &&
+  new URLSearchParams(window.location.search).get("endpoints") === "open";
+
+if (shouldOpenEndpoints) {
+  const params = new URLSearchParams(window.location.search);
+  params.delete("endpoints");
+  const newUrl = params.toString()
+    ? `${window.location.pathname}?${params.toString()}`
+    : window.location.pathname;
+  window.history.replaceState({}, document.title, newUrl);
+}
 
 console.info("isDocsHost:", isDocsHost);
 
@@ -76,9 +99,9 @@ export default {
   Layout: () => {
     return h(DefaultTheme.Layout, null, {
       // https://vitepress.dev/guide/extending-default-theme#layout-slots
-      "doc-top": () => h(ApiContainer),
-      "doc-before": () => h(Select),
-      "nav-bar-content-after": () => h(Login),
+      "doc-top": () => h(ClientOnly, null, { default: () => h(ApiContainer) }),
+      "doc-before": () => h(ClientOnly, null, { default: () => h(Select) }),
+      "nav-bar-content-after": () => h(ClientOnly, null, { default: () => [h(Login), h(EndpointDrawer)] }),
     });
   },
   enhanceApp({ app, router, siteData }) {
@@ -138,6 +161,24 @@ export default {
       return ret;
     };
     if (inBrowser) {
+      // Auto-open endpoints drawer if ?endpoints=open was in the initial URL
+      if (shouldOpenEndpoints) {
+        setTimeout(() => {
+          document.dispatchEvent(new CustomEvent("endpoints"));
+        }, 100);
+      }
+
+      // Use event delegation to capture clicks on "Endpoints" nav item
+      document.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement;
+        const anchor = target.closest('a');
+        if (anchor && anchor.textContent?.trim() === 'Endpoints') {
+          e.preventDefault();
+          e.stopPropagation();
+          document.dispatchEvent(new CustomEvent('endpoints'));
+        }
+      }, true);
+
       console.info("isDocsHost:", isDocsHost);
       updateLogoLink();
       if (!isDocsHost) {

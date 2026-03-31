@@ -13,8 +13,12 @@ head:
 # Get generation
 
 ```
-GET https://zenmux.ai/api/v1/generation?id=<generation_id>
+GET https://zenmux.ai/api/v1/management/generation?id=<generation_id>
 ```
+
+::: warning ⚠️ 旧版地址已废弃
+旧版接口地址 `GET /api/v1/generation` 已废弃，请迁移至新版地址 `GET /api/v1/management/generation`。旧版地址将在后续版本中下线。
+:::
 
 Get generation 接口用于查询生成信息，如用量和费用等。
 
@@ -159,11 +163,64 @@ API 类型，根据调用的协议不同，取值如下：
 
 是否为最终重试
 
-::: api-request GET /api/v1/generation
+::: api-request GET /api/v1/management/generation
 
 ```cURL
-curl https://zenmux.ai/api/v1/generation?id=<generation_id> \
+curl https://zenmux.ai/api/v1/management/generation?id=<generation_id> \
   -H "Authorization: Bearer $ZENMUX_API_KEY"
+```
+
+:::
+
+::: api-response
+
+```json
+{
+  "api": "chat.completions",
+  "generationId": "gen_01abc123def456",
+  "model": "openai/gpt-4o",
+  "createAt": "2026-03-26T06:00:00.000Z",
+  "generationTime": 3200,
+  "latency": 500,
+  "nativeTokens": {
+    "completion_tokens": 128,
+    "prompt_tokens": 32,
+    "total_tokens": 160,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "streamed": true,
+  "finishReason": "stop",
+  "usage": 0.0052,
+  "ratingResponses": {
+    "billAmount": 0.0052,
+    "discountAmount": 0,
+    "originAmount": 0.0052,
+    "priceVersion": "v1",
+    "ratingDetails": [
+      {
+        "billAmount": 0.0016,
+        "discountAmount": 0,
+        "feeItemCode": "prompt",
+        "originAmount": 0.0016,
+        "rate": 0.00005
+      },
+      {
+        "billAmount": 0.0036,
+        "discountAmount": 0,
+        "feeItemCode": "completion",
+        "originAmount": 0.0036,
+        "rate": 0.00003
+      }
+    ]
+  },
+  "requestRetryTimes": 0,
+  "finalRetry": false
+}
 ```
 
 :::

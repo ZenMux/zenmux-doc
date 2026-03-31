@@ -6,6 +6,13 @@ export default defineLoacaleConfig({
   description: "zenmux.ai document",
   themeConfig: {
     nav: [
+      {
+        text: "Studio",
+        items: [
+          { text: "Chat", link: "https://zenmux.ai/chat", noIcon: true },
+          { text: "Video", link: "https://zenmux.ai/video", noIcon: true },
+        ],
+      },
       { text: "Models", link: "https://zenmux.ai/models", noIcon: true },
       {
         text: "Pricing",
@@ -32,11 +39,11 @@ export default defineLoacaleConfig({
           },
         ],
       },
-      { text: "Chat", link: "https://zenmux.ai/chat", noIcon: true },
       {
         text: "Developers",
         items: [
           { text: "Docs", link: "/", noIcon: true },
+          { text: "Endpoints", link: "javascript:void(0)", noIcon: true },
           { text: "Blog", link: "https://zenmux.ai/blog", noIcon: true },
           {
             text: "Changelog",
@@ -89,16 +96,20 @@ export default defineLoacaleConfig({
               { text: "Streaming", link: "/guide/advanced/streaming" },
               { text: "Multimodal", link: "/guide/advanced/multimodal" },
               {
-                text: "Image Generation",
-                link: "/guide/advanced/image-generation",
-              },
-              {
                 text: "Structured Output",
                 link: "/guide/advanced/structured-output",
               },
               { text: "Tool Calling", link: "/guide/advanced/tool-calls" },
               { text: "Reasoning Models", link: "/guide/advanced/reasoning" },
               { text: "Prompt Cache", link: "/guide/advanced/prompt-cache" },
+              {
+                text: "Image Generation",
+                link: "/guide/advanced/image-generation",
+              },
+              {
+                text: "Video Generation",
+                link: "/guide/advanced/video-generation",
+              },
               { text: "Web Search", link: "/guide/advanced/web-search" },
               { text: "1M Long Context", link: "/guide/advanced/long-context" },
             ],
@@ -139,6 +150,10 @@ export default defineLoacaleConfig({
             link: "/best-practices/claude-code",
           },
           { text: "CodeX Integration", link: "/best-practices/codex" },
+          {
+            text: "Gemini CLI Integration",
+            link: "/best-practices/gemini-cli",
+          },
           { text: "opencode Integration", link: "/best-practices/opencode" },
           { text: "Cline Integration", link: "/best-practices/cline" },
           {
@@ -161,7 +176,19 @@ export default defineLoacaleConfig({
             link: "/best-practices/github-copilot",
           },
           { text: "OpenClaw Integration", link: "/best-practices/openclaw" },
+          {
+            text: "Deploying OpenClaw on Alibaba Cloud with ZenMux Integration",
+            link: "/best-practices/openclaw-alibaba",
+          },
           { text: "CC-Switch Integration", link: "/best-practices/cc-switch" },
+          {
+            text: "Cursor Integration",
+            link: "/best-practices/cursor",
+          },
+          {
+            text: "RikkaHub Integration",
+            link: "/best-practices/rikkahub",
+          },
         ],
       },
       {
@@ -213,6 +240,9 @@ export default defineLoacaleConfig({
           {
             text: "Platform API",
             items: [
+              { text: "Get Flow Rate", link: "/api/platform/flow-rate" },
+              { text: "Get PAYG Balance", link: "/api/platform/payg-balance" },
+              { text: "Get Subscription Detail", link: "/api/platform/subscription-detail" },
               { text: "Get Generation", link: "/api/platform/get-generation" },
             ],
           },
