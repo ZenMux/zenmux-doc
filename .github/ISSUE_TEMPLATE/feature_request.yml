@@ -1,22 +1,40 @@
 name: Feature Request
-description: Suggest a new feature or improvement for the documentation
+description: Suggest a new feature or improvement for ZenMux
 title: "[Feature]: "
 labels: ["enhancement", "needs-triage"]
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for suggesting a feature! Please provide as much detail as possible.
+        Thanks for your suggestion! Your ideas help shape the future of ZenMux. Please describe what you'd like to see.
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      description: Which area does this feature relate to?
+      multiple: true
+      options:
+        - API (new endpoints, parameters, formats)
+        - Routing (model routing, load balancing, fallback strategies)
+        - Dashboard (web console, analytics, monitoring)
+        - SDK (client libraries, developer tools)
+        - Billing / Pricing (plans, usage, cost optimization)
+        - Developer Experience (docs, onboarding, error messages)
+        - Security (authentication, rate limiting, access control)
+        - Other
+    validations:
+      required: true
 
   - type: textarea
     id: problem
     attributes:
-      label: Problem statement
-      description: What problem does this feature solve?
+      label: Problem / Pain point
+      description: What problem does this feature solve? What's your current pain point?
       placeholder: |
-        I'm trying to find information about...
-        Currently, the docs don't explain...
-        It would be helpful if...
+        Currently I have to manually switch between providers when one is down...
+        There's no way to set spending limits per API key...
+        I need to monitor token usage in real time but...
     validations:
       required: true
 
@@ -24,69 +42,43 @@ body:
     id: solution
     attributes:
       label: Proposed solution
-      description: How would you like this feature to work?
+      description: How would you like this to work? Describe your ideal experience.
       placeholder: |
-        Add a new page about...
-        Include code examples for...
-        Add a search filter for...
-    validations:
-      required: true
-
-  - type: dropdown
-    id: feature-area
-    attributes:
-      label: Which area does this feature relate to?
-      description: Select all that apply
-      multiple: true
-      options:
-        - Content (new documentation page)
-        - Translation improvements
-        - Code examples
-        - Navigation/sidebar
-        - Search functionality
-        - UI/UX improvements
-        - Images/diagrams
-        - Video tutorials
-        - API reference
-        - Configuration examples
-        - Troubleshooting guide
-        - Other
-    validations:
-      required: true
-
-  - type: dropdown
-    id: language
-    attributes:
-      label: Language
-      description: Which language should this feature be added to?
-      options:
-        - English
-        - Chinese (简体中文)
-        - Both
+        It would be great if ZenMux could automatically...
+        I'd like a dashboard page that shows...
+        The API should support a new parameter...
     validations:
       required: true
 
   - type: textarea
-    id: examples
+    id: use-case
     attributes:
-      label: Examples from other documentation sites
-      description: Are there similar features in other docs that inspired this?
+      label: Use case
+      description: Describe the real-world scenario where you need this feature
       placeholder: |
-        VitePress docs have a feature where...
-        Next.js docs show...
-        Vercel docs include...
+        I'm building a chatbot that needs to...
+        Our team uses ZenMux to aggregate multiple LLM providers and we need...
 
   - type: dropdown
     id: priority
     attributes:
-      label: How important is this feature to you?
+      label: How important is this to you?
       options:
-        - Critical - Blocking my understanding
-        - High - Would significantly improve the docs
+        - Critical - Blocking my adoption or usage
+        - High - Would significantly improve my experience
         - Medium - Nice to have
         - Low - Minor improvement
     validations:
       required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Have you found any workarounds or seen this feature in similar products?
+      placeholder: |
+        Currently I work around this by...
+        I've seen similar features in OpenRouter / LiteLLM / ...
 
   - type: textarea
     id: additional
@@ -94,16 +86,15 @@ body:
       label: Additional context
       description: Any other context, mockups, or examples
       placeholder: |
-        Here's a draft of the content...
+        Here's a diagram of what I'm imagining...
         This would help users who...
-        Related to issue #123
 
   - type: checkboxes
     id: contribution
     attributes:
       label: Contribution
       options:
-        - label: I'm willing to submit a PR to implement this feature
+        - label: I'm willing to help implement or test this feature
           required: false
 
   - type: checkboxes
@@ -112,6 +103,4 @@ body:
       label: Pre-submission checklist
       options:
         - label: I have searched existing issues to avoid duplicates
-          required: true
-        - label: This feature aligns with ZenMux documentation goals
           required: true

@@ -1,0 +1,68 @@
+name: General Feedback
+description: Share your experience, thoughts, or any feedback about ZenMux
+title: "[Feedback]: "
+labels: ["feedback", "community"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        We're building ZenMux in public and your voice matters! Whether it's a compliment, a concern, a comparison, or just a thought — we want to hear it. Every piece of feedback helps us build a better product.
+
+  - type: dropdown
+    id: feedback-type
+    attributes:
+      label: Feedback type
+      options:
+        - User experience / Usability
+        - Product impressions / First experience
+        - Comparison with similar products
+        - Pricing / Value feedback
+        - Community / Ecosystem
+        - General thoughts
+    validations:
+      required: true
+
+  - type: textarea
+    id: feedback
+    attributes:
+      label: Your feedback
+      description: Tell us what's on your mind — be as detailed or concise as you like
+      placeholder: |
+        I've been using ZenMux for a week and here's what I think...
+        Compared to [other product], ZenMux does X better but could improve on Y...
+        As a [role], I find that...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: role
+    attributes:
+      label: How would you describe yourself?
+      description: This helps us understand our user base better
+      options:
+        - Individual developer
+        - Startup / Small team
+        - Enterprise / Large organization
+        - Student / Learner
+        - Open-source contributor
+        - Evaluating / Haven't started using yet
+        - Prefer not to say
+    validations:
+      required: false
+
+  - type: textarea
+    id: improvement
+    attributes:
+      label: If you could change one thing about ZenMux, what would it be?
+      description: Optional but very helpful!
+      placeholder: |
+        I wish ZenMux could...
+        The one thing holding me back is...
+
+  - type: checkboxes
+    id: follow-up
+    attributes:
+      label: Follow-up
+      options:
+        - label: I'm open to being contacted for more detailed feedback
+          required: false

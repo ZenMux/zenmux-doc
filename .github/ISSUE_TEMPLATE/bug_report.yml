@@ -1,19 +1,37 @@
 name: Bug Report
-description: Report a bug or issue with the documentation
+description: Report a bug or issue with ZenMux
 title: "[Bug]: "
 labels: ["bug", "needs-triage"]
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for reporting a bug! Please fill out the information below to help us resolve the issue.
+        Thanks for reporting a bug! Please fill out the information below to help us resolve the issue quickly.
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      description: Which area of ZenMux is affected?
+      options:
+        - API (request handling, response, errors)
+        - Routing (model routing, load balancing, fallback)
+        - Dashboard (web console, settings, analytics)
+        - SDK (client libraries, code generation)
+        - Billing (pricing, usage, invoices)
+        - Documentation (docs site content, examples)
+        - Other
+    validations:
+      required: true
 
   - type: textarea
     id: description
     attributes:
       label: Describe the bug
       description: A clear description of what the bug is
-      placeholder: When I navigate to X page, Y happens instead of Z
+      placeholder: |
+        When I call the API with model X, I get an unexpected error...
+        The dashboard shows incorrect usage data...
     validations:
       required: true
 
@@ -23,10 +41,9 @@ body:
       label: Steps to reproduce
       description: Detailed steps to reproduce the behavior
       placeholder: |
-        1. Go to https://docs.zenmux.ai/...
-        2. Click on...
-        3. Scroll down to...
-        4. See error
+        1. Send a request to /v1/chat/completions with model "openai/gpt-4o"
+        2. Set temperature to 0.7
+        3. Observe the response
     validations:
       required: true
 
@@ -35,7 +52,6 @@ body:
     attributes:
       label: Expected behavior
       description: What you expected to happen
-      placeholder: I expected the page to load with correct content
     validations:
       required: true
 
@@ -43,83 +59,41 @@ body:
     id: actual
     attributes:
       label: Actual behavior
-      description: What actually happened (include error messages if any)
-      placeholder: The page shows a 404 error / broken links / incorrect translation
+      description: What actually happened (include error messages, status codes, or response bodies if applicable)
     validations:
       required: true
 
   - type: dropdown
-    id: issue-type
+    id: severity
     attributes:
-      label: Issue type
-      description: What kind of issue is this?
-      multiple: true
+      label: Severity
+      description: How severely does this affect your usage?
       options:
-        - Broken link
-        - Translation error
-        - Missing content
-        - Incorrect information
-        - Formatting/display issue
-        - Search not working
-        - Navigation issue
-        - Image not loading
-        - Code example error
-        - Other
-    validations:
-      required: true
-
-  - type: dropdown
-    id: language
-    attributes:
-      label: Language
-      description: Which language version is affected?
-      options:
-        - English
-        - Chinese (简体中文)
-        - Both
-    validations:
-      required: true
-
-  - type: input
-    id: page-url
-    attributes:
-      label: Page URL
-      description: Full URL of the affected page
-      placeholder: "https://docs.zenmux.ai/guide/getting-started"
-    validations:
-      required: true
-
-  - type: dropdown
-    id: browser
-    attributes:
-      label: Browser
-      options:
-        - Chrome
-        - Firefox
-        - Safari
-        - Brave
-        - Edge
-        - Other
-    validations:
-      required: true
-
-  - type: dropdown
-    id: device
-    attributes:
-      label: Device
-      options:
-        - Desktop
-        - Mobile
-        - Tablet
+        - Critical - Service is down or data loss
+        - High - Major feature is broken, no workaround
+        - Medium - Feature is broken but has a workaround
+        - Low - Minor issue, cosmetic or edge case
     validations:
       required: true
 
   - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Help us understand your setup
+      placeholder: |
+        - API Base URL: https://api.zenmux.ai
+        - SDK: Python / Node.js / Go / cURL
+        - SDK Version: x.x.x
+        - Model: openai/gpt-4o
+      render: markdown
+
+  - type: textarea
     id: screenshots
     attributes:
-      label: Screenshots
-      description: Add screenshots to help explain the problem
-      placeholder: Drag and drop images here
+      label: Screenshots / Logs
+      description: Add screenshots, error logs, or request/response examples
+      placeholder: Drag and drop images here, or paste error logs
 
   - type: textarea
     id: additional
@@ -137,6 +111,4 @@ body:
       label: Pre-submission checklist
       options:
         - label: I have searched existing issues to avoid duplicates
-          required: true
-        - label: I have checked the page in the latest version
           required: true

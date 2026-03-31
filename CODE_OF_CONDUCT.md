@@ -27,7 +27,7 @@ This Code of Conduct applies to all project spaces, including GitHub issues, pul
 
 ## Enforcement
 
-Instances of unacceptable behavior may be reported to the project maintainers. All complaints will be reviewed and investigated promptly and fairly.
+Instances of unacceptable behavior may be reported by contacting the project team at [support@zenmux.ai](mailto:support@zenmux.ai). All complaints will be reviewed and investigated promptly and fairly.
 
 Project maintainers have the right to remove, edit, or reject comments, commits, code, issues, and other contributions that do not align with this Code of Conduct.
 
