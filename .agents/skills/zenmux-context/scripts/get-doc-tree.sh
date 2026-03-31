@@ -5,12 +5,12 @@
 # Used by the zenmux-context skill to understand available documentation.
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-PROJECT_ROOT="$(cd "$SCRIPT_DIR/../../.." && pwd)"
-DOCS_DIR="$PROJECT_ROOT/.context/references/zenmux-doc/docs_source"
+SKILL_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+DOCS_DIR="$SKILL_DIR/references/zenmux-doc/docs_source"
 
 if [ ! -d "$DOCS_DIR" ]; then
   echo "ERROR: Documentation directory not found at $DOCS_DIR"
-  echo "Run 'bash scripts/update-references.sh' first to clone the docs repo."
+  echo "Run 'bash skills/zenmux-context/scripts/update-references.sh' first to clone the docs repo."
   exit 1
 fi
 

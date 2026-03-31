@@ -8,6 +8,8 @@ body:
       value: |
         Thanks for reporting a bug! Please fill out the information below to help us resolve the issue quickly.
 
+        If you have a `generation_id` from the API response, please include it — it helps us locate the issue faster.
+
   - type: dropdown
     id: category
     attributes:
@@ -15,12 +17,39 @@ body:
       description: Which area of ZenMux is affected?
       options:
         - API (request handling, response, errors)
-        - Routing (model routing, load balancing, fallback)
-        - Dashboard (web console, settings, analytics)
-        - SDK (client libraries, code generation)
-        - Billing (pricing, usage, invoices)
+        - Streaming (SSE, chunked responses)
+        - Routing (provider routing, model routing, fallback)
+        - Protocol compatibility (OpenAI / Anthropic / Gemini)
+        - Prompt cache (cache hit, cache behavior)
+        - Multimodal (image input, vision)
+        - Tool calling / Function calling
+        - Structured output / JSON mode
+        - Reasoning / Thinking models
+        - Image generation / Video generation
+        - Web search / Grounding
+        - Long context (1M tokens)
+        - Insurance (quality detection, auto-compensation)
+        - Observability (logs, cost analytics, usage analytics)
+        - Studio Chat (built-in chat UI)
+        - Dashboard (web console, settings)
+        - Billing (pricing, usage tracking, invoices)
         - Documentation (docs site content, examples)
         - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: protocol
+    attributes:
+      label: API protocol used
+      description: Which API protocol were you using?
+      options:
+        - OpenAI Chat Completions (/api/v1)
+        - OpenAI Responses (/api/v1)
+        - Anthropic Messages (/api/anthropic)
+        - Google Gemini / Vertex AI (/api/vertex-ai)
+        - Platform Management API
+        - Not applicable
     validations:
       required: true
 
@@ -41,7 +70,7 @@ body:
       label: Steps to reproduce
       description: Detailed steps to reproduce the behavior
       placeholder: |
-        1. Send a request to /v1/chat/completions with model "openai/gpt-4o"
+        1. Send a request to /api/v1/chat/completions with model "openai/gpt-5"
         2. Set temperature to 0.7
         3. Observe the response
     validations:
@@ -82,11 +111,27 @@ body:
       label: Environment
       description: Help us understand your setup
       placeholder: |
-        - API Base URL: https://api.zenmux.ai
-        - SDK: Python / Node.js / Go / cURL
+        - API Protocol: OpenAI / Anthropic / Gemini
+        - Base URL: https://zenmux.ai/api/v1
+        - SDK: Python (openai) / Node.js (openai) / Python (anthropic) / cURL
         - SDK Version: x.x.x
-        - Model: openai/gpt-4o
+        - Model slug: openai/gpt-5
+        - Plan: Builder Plan / Pay As You Go
       render: markdown
+
+  - type: input
+    id: generation-id
+    attributes:
+      label: Generation ID (if available)
+      description: The `generation_id` returned in the API response header or body — helps us trace the exact request
+      placeholder: "gen_01abc123def456"
+
+  - type: input
+    id: integration-tool
+    attributes:
+      label: Integration tool (if applicable)
+      description: Are you using ZenMux through a specific tool?
+      placeholder: "e.g., Claude Code, Cursor, Cline, Codex CLI, Gemini CLI, Cherry Studio, Open WebUI"
 
   - type: textarea
     id: screenshots
