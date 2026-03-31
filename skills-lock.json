@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "skills": {
+    "zenmux-context": {
+      "source": "ZenMux/skills",
+      "sourceType": "github",
+      "computedHash": "ed5f3ea1e77c0bcf8e25cbdab9641003bec22fd2b8402cbb58dd26ea4f16699c"
+    },
+    "zenmux-setup": {
+      "source": "ZenMux/skills",
+      "sourceType": "github",
+      "computedHash": "ce3ae08e65ca3d6bc79e68ebee10188b9d3595a72b6b5ed188e625d28001655e"
+    },
+    "zenmux-usage": {
+      "source": "ZenMux/skills",
+      "sourceType": "github",
+      "computedHash": "5079b54c8cea7ff903a17310b69bbff12abee78b08856790326c44f13ff5099c"
+    }
+  }
+}

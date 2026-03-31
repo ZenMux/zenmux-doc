@@ -102,7 +102,7 @@ docs/                          # Build output (GitHub Pages)
 
 ## Contributing
 
-We welcome all contributions — whether it's fixing a typo, improving an explanation, or adding a brand-new guide.
+We welcome all contributions — whether it's fixing a typo, improving an explanation, or adding a brand-new guide. Please read our [Code of Conduct](CODE_OF_CONDUCT.md) before contributing. For detailed guidelines, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ### Adding a New Document
 
@@ -119,6 +119,10 @@ We welcome all contributions — whether it's fixing a typo, improving an explan
    The skill will create the English file and add the sidebar entry to `docs_source/en/config.ts` automatically.
 
 4. **Open a pull request** against the `main` branch.
+
+> **Tips:**
+> - It is recommended to include a `title` field in the Markdown front matter.
+> - After adding a new page, update the sidebar configuration for the corresponding language.
 
 ### Editing an Existing Document
 
@@ -172,21 +176,8 @@ The site auto-deploys to GitHub Pages on every push to `main`:
 1. `pnpm run build` compiles sources into `docs/`
 2. GitHub Pages serves from `docs/` at [docs.zenmux.ai](https://docs.zenmux.ai)
 
-- It is recommended to include a `title` field in the Markdown front matter
-- After adding a new page, update the sidebar configuration for the corresponding language
-
-## Contributing
-
-We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on:
-
-- Setting up the development environment
-- Documentation workflow (Chinese-first approach)
-- Translation and optimization tools
-- VitePress syntax and best practices
-
-Please read our [Code of Conduct](CODE_OF_CONDUCT.md) before contributing.
+> `docs_source/.vitepress/config.mts` sets `outDir: '../docs'`, so no extra flags are needed.
 
 ## License
 
 This documentation is open source and available under the MIT License.
-> `docs_source/.vitepress/config.mts` sets `outDir: '../docs'`, so no extra flags are needed.
