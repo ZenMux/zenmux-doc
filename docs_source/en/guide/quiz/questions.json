@@ -150,22 +150,6 @@
     {
       "id": "q008",
       "type": "true-false",
-      "category": "pricing",
-      "difficulty": "easy",
-      "question": "Topping up $100 on the ZenMux Pay As You Go plan gives you exactly $100 in usable API credit.",
-      "options": [
-        { "id": "A", "text": "True" },
-        { "id": "B", "text": "False" }
-      ],
-      "answer": "B",
-      "explanation": "At the time of writing, Pay As You Go top-ups include an automatic 5% bonus (the exact bonus rate may change — refer to the official site for the current offer). Topping up $100 therefore gives you $105 in usable API credit. The bonus arrives as Bonus Credits, which are drawn down first before your paid credits are used.",
-      "tags": ["pay-as-you-go", "top-up", "bonus", "pricing"],
-      "contributor": "zenmux-team",
-      "references": ["https://docs.zenmux.ai/guide/pay-as-you-go"]
-    },
-    {
-      "id": "q009",
-      "type": "true-false",
       "category": "api-usage",
       "difficulty": "easy",
       "question": "The ZenMux Builder Plan subscription API key and the Pay As You Go API key are the same and can be used interchangeably.",
@@ -183,7 +167,7 @@
       ]
     },
     {
-      "id": "q010",
+      "id": "q009",
       "type": "single-choice",
       "category": "zenmux-basics",
       "difficulty": "easy",
@@ -201,7 +185,7 @@
       "references": ["https://docs.zenmux.ai/guide/subscription"]
     },
     {
-      "id": "q011",
+      "id": "q010",
       "type": "single-choice",
       "category": "pricing",
       "difficulty": "easy",
@@ -219,7 +203,7 @@
       "references": ["https://docs.zenmux.ai/terms-of-service"]
     },
     {
-      "id": "q012",
+      "id": "q011",
       "type": "single-choice",
       "category": "zenmux-basics",
       "difficulty": "medium",
@@ -237,7 +221,7 @@
       "references": ["https://docs.zenmux.ai/privacy"]
     },
     {
-      "id": "q013",
+      "id": "q012",
       "type": "single-choice",
       "category": "pricing",
       "difficulty": "medium",
