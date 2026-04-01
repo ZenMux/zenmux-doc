@@ -150,22 +150,6 @@
     {
       "id": "q008",
       "type": "true-false",
-      "category": "pricing",
-      "difficulty": "easy",
-      "question": "使用 ZenMux Pay As You Go 方案充值 $100，实际可用的 API 调用额度正好是 $100。",
-      "options": [
-        { "id": "A", "text": "正确" },
-        { "id": "B", "text": "错误" }
-      ],
-      "answer": "B",
-      "explanation": "假如当前Pay As You Go 充值时会自动赠送 5% 额外积分(后续额外赠送比例可能会调整，以官网公示为准)。充值 $100 实际获得 $105 等值的 API 调用额度。赠送部分以 Bonus Credits 形式到账，消耗时优先扣除奖励积分，再扣充值积分。",
-      "tags": ["pay-as-you-go", "top-up", "bonus", "pricing"],
-      "contributor": "zenmux-team",
-      "references": ["https://docs.zenmux.ai/guide/pay-as-you-go"]
-    },
-    {
-      "id": "q009",
-      "type": "true-false",
       "category": "api-usage",
       "difficulty": "easy",
       "question": "ZenMux 订阅制（Builder Plan）的 API Key 和 Pay As You Go 的 API Key 是同一个，可以互相通用。",
@@ -183,7 +167,7 @@
       ]
     },
     {
-      "id": "q010",
+      "id": "q009",
       "type": "single-choice",
       "category": "zenmux-basics",
       "difficulty": "easy",
@@ -201,7 +185,7 @@
       "references": ["https://docs.zenmux.ai/guide/subscription"]
     },
     {
-      "id": "q011",
+      "id": "q010",
       "type": "single-choice",
       "category": "pricing",
       "difficulty": "easy",
@@ -219,7 +203,7 @@
       "references": ["https://docs.zenmux.ai/terms-of-service"]
     },
     {
-      "id": "q012",
+      "id": "q011",
       "type": "single-choice",
       "category": "zenmux-basics",
       "difficulty": "medium",
@@ -237,7 +221,7 @@
       "references": ["https://docs.zenmux.ai/privacy"]
     },
     {
-      "id": "q013",
+      "id": "q012",
       "type": "single-choice",
       "category": "pricing",
       "difficulty": "medium",
