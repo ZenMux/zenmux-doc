@@ -49,7 +49,7 @@ client = genai.Client(
     vertexai=True,
     http_options=types.HttpOptions(
         api_version='v1',
-        base_url='https://zenmux.ai/api/vertex-ai'
+        base_url='https://zenmux.ai/api/vertex-ai/v1'
     ),
 )
 
@@ -83,7 +83,7 @@ const client = new genai.GoogleGenAI({
   apiKey: "$ZENMUX_API_KEY",  // 替换为你的 API Key
   vertexai: true,
   httpOptions: {
-    baseUrl: "https://zenmux.ai/api/vertex-ai",
+    baseUrl: "https://zenmux.ai/api/vertex-ai/v1",
     apiVersion: "v1"
   }
 });
@@ -110,7 +110,7 @@ console.log(response);
 
 - **api_key**: 你的 ZenMux API 密钥
 - **vertexai**: 必须设置为 `true` 以启用 Vertex AI 协议
-- **base_url**: ZenMux Vertex AI 端点 `https://zenmux.ai/api/vertex-ai`
+- **base_url**: ZenMux Vertex AI 端点 `https://zenmux.ai/api/vertex-ai/v1`
 - **responseModalities**: 响应模态,图片生成必须包含 `["TEXT", "IMAGE"]`
 
 ### 调用模式

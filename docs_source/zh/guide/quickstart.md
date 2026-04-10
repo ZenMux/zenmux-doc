@@ -104,7 +104,7 @@ ZenMux 支持四种主流 API 协议，你可以使用最熟悉的 SDK 调用 Ze
 | **OpenAI Chat Completions** | `https://zenmux.ai/api/v1` | OpenAI SDK | 最广泛使用的 Chat API |
 | **OpenAI Responses** | `https://zenmux.ai/api/v1` | OpenAI SDK | OpenAI 新一代 Responses API |
 | **Anthropic Messages** | `https://zenmux.ai/api/anthropic` | Anthropic SDK | Claude 系列原生协议 |
-| **Google Gemini** | `https://zenmux.ai/api/vertex-ai` | Google GenAI SDK | Gemini 系列原生协议 |
+| **Google Gemini** | `https://zenmux.ai/api/vertex-ai/v1` | Google GenAI SDK | Gemini 系列原生协议 |
 
 ::: tip 💡 跨协议调用
 ZenMux 的核心优势之一是**协议无关性**——你可以通过任意支持的协议调用任意模型。例如，用 OpenAI SDK 调用 Claude 模型，或用 Anthropic SDK 调用 Gemini 模型。
@@ -353,7 +353,7 @@ curl https://zenmux.ai/api/anthropic/v1/messages \
 ::: info 兼容性说明
 ZenMux 支持 Google Gemini（Vertex AI）协议，可以使用 Google GenAI SDK 直接调用。
 
-Base URL 为 `https://zenmux.ai/api/vertex-ai`，需要设置 `vertexai=True` 和自定义 `http_options`。
+Base URL 为 `https://zenmux.ai/api/vertex-ai/v1`，需要设置 `vertexai=True` 和自定义 `http_options`。
 :::
 
 ::: code-group
@@ -370,7 +370,7 @@ client = genai.Client(
     # 3. 将 base_url 指向 ZenMux 端点
     http_options=types.HttpOptions(
         api_version='v1',
-        base_url='https://zenmux.ai/api/vertex-ai' # [!code highlight]
+        base_url='https://zenmux.ai/api/vertex-ai/v1' # [!code highlight]
     )
 )
 
@@ -394,7 +394,7 @@ const ai = new GoogleGenAI({
   // 3. 将 base_url 指向 ZenMux 端点
   httpOptions: {
     apiVersion: "v1",
-    baseUrl: "https://zenmux.ai/api/vertex-ai", // [!code highlight]
+    baseUrl: "https://zenmux.ai/api/vertex-ai/v1", // [!code highlight]
   },
 });
 

@@ -224,13 +224,13 @@ Copy and paste the configuration above into Codex’s config file, then save to 
 | Setting           | Value                             | Notes                                |
 | ----------------- | --------------------------------- | ------------------------------------ |
 | **Provider Name** | `ZenMux`                          | Custom name for easy identity        |
-| **Base URL**      | `https://zenmux.ai/api/vertex-ai` | ZenMux Vertex AI-compatible endpoint |
+| **Base URL**      | `https://zenmux.ai/api/vertex-ai/v1` | ZenMux Vertex AI-compatible endpoint |
 | **API Key**       | `sk-ss-v1-xxx` or `sk-ai-v1-xxx`  | Your ZenMux API key                  |
 
 ##### Environment Variable Example (Copy & Paste)
 
 ```env
-GOOGLE_GEMINI_BASE_URL=https://zenmux.ai/api/vertex-ai
+GOOGLE_GEMINI_BASE_URL=https://zenmux.ai/api/vertex-ai/v1
 GEMINI_API_KEY=<ZENMUX_API_KEY>
 GEMINI_MODEL=google/gemini-3-flash-preview
 ```
@@ -243,7 +243,7 @@ Copy and paste the configuration above into Gemini CLI’s config file, then sav
 | Setting           | Value                             | Notes                                |
 | ----------------- | --------------------------------- | ------------------------------------ |
 | **Provider Name** | `ZenMux`                          | Custom name for easy identity        |
-| **Base URL**      | `https://zenmux.ai/api/vertex-ai` | ZenMux Vertex AI-compatible endpoint |
+| **Base URL**      | `https://zenmux.ai/api/vertex-ai/v1` | ZenMux Vertex AI-compatible endpoint |
 | **API Key**       | `sk-ss-v1-xxx` or `sk-ai-v1-xxx`  | Your ZenMux API key                  |
 
 ##### JSON Config Example (Copy & Paste)

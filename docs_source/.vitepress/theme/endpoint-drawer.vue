@@ -86,7 +86,7 @@ const providersData: Provider[] = [
   {
     name: "Google Vertex AI",
     subtitle: "Vertex AI Compatible",
-    baseUrl: "https://zenmux.ai/api/vertex-ai",
+    baseUrl: "https://zenmux.ai/api/vertex-ai/v1",
     iconType: "google",
     supportedModels: {
       iconList: [

@@ -88,7 +88,7 @@ You can configure environment variables in `~/.gemini/.env`. Gemini CLI will aut
 ```env
 GEMINI_API_KEY=sk-ss-v1-xxx  # [!code highlight]
 GEMINI_MODEL=google/gemini-2.5-pro  # [!code highlight]
-GOOGLE_GEMINI_BASE_URL=https://zenmux.ai/api/vertex-ai  # [!code highlight]
+GOOGLE_GEMINI_BASE_URL=https://zenmux.ai/api/vertex-ai/v1  # [!code highlight]
 ```
 
 Alternatively, set them in your shell profile:
@@ -99,14 +99,14 @@ Alternatively, set them in your shell profile:
 # Edit ~/.zshrc or ~/.bashrc
 export GEMINI_API_KEY="sk-ss-v1-xxx"  # [!code highlight]
 export GEMINI_MODEL="google/gemini-2.5-pro"  # [!code highlight]
-export GOOGLE_GEMINI_BASE_URL="https://zenmux.ai/api/vertex-ai"  # [!code highlight]
+export GOOGLE_GEMINI_BASE_URL="https://zenmux.ai/api/vertex-ai/v1"  # [!code highlight]
 ```
 
 ```powershell [Windows PowerShell]
 # Edit your PowerShell profile
 $env:GEMINI_API_KEY = "sk-ss-v1-xxx"  # [!code highlight]
 $env:GEMINI_MODEL = "google/gemini-2.5-pro"  # [!code highlight]
-$env:GOOGLE_GEMINI_BASE_URL = "https://zenmux.ai/api/vertex-ai"  # [!code highlight]
+$env:GOOGLE_GEMINI_BASE_URL = "https://zenmux.ai/api/vertex-ai/v1"  # [!code highlight]
 
 # To make it persistent, add it to your PowerShell profile:
 # notepad $PROFILE
@@ -383,9 +383,9 @@ When the model tries to use built-in tools (such as Google Search), you may see 
 **Solution**:
 
 - Check your network connection
-- Verify the Base URL is set to `https://zenmux.ai/api/vertex-ai`
+- Verify the Base URL is set to `https://zenmux.ai/api/vertex-ai/v1`
 - Check whether firewall settings are blocking outbound connections
-- Try `curl https://zenmux.ai/api/vertex-ai/models` to test connectivity
+- Try `curl https://zenmux.ai/api/vertex-ai/v1/models` to test connectivity
   :::
 
 ::: details .env file not taking effect
@@ -510,21 +510,21 @@ Session history is stored in `~/.gemini/history/`. Adjust `maxAge` as needed, or
 ```bash [Daily Development]
 # Balance performance and cost
 export GEMINI_API_KEY="sk-ss-v1-xxx"
-export GOOGLE_GEMINI_BASE_URL="https://zenmux.ai/api/vertex-ai"
+export GOOGLE_GEMINI_BASE_URL="https://zenmux.ai/api/vertex-ai/v1"
 export GEMINI_MODEL="google/gemini-2.5-pro"
 ```
 
 ```bash [Code Review]
 # Prioritize reasoning capability
 export GEMINI_API_KEY="sk-ss-v1-xxx"
-export GOOGLE_GEMINI_BASE_URL="https://zenmux.ai/api/vertex-ai"
+export GOOGLE_GEMINI_BASE_URL="https://zenmux.ai/api/vertex-ai/v1"
 export GEMINI_MODEL="google/gemini-2.5-pro"
 ```
 
 ```bash [Rapid Iteration]
 # Prioritize response speed
 export GEMINI_API_KEY="sk-ss-v1-xxx"
-export GOOGLE_GEMINI_BASE_URL="https://zenmux.ai/api/vertex-ai"
+export GOOGLE_GEMINI_BASE_URL="https://zenmux.ai/api/vertex-ai/v1"
 export GEMINI_MODEL="google/gemini-2.5-flash"
 ```
 

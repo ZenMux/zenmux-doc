@@ -44,7 +44,7 @@ client = genai.Client(
     vertexai=True,
     http_options=types.HttpOptions(
         api_version="v1",
-        base_url="https://zenmux.ai/api/vertex-ai"
+        base_url="https://zenmux.ai/api/vertex-ai/v1"
     )
 )
 
@@ -74,7 +74,7 @@ client = genai.Client(
     vertexai=True,
     http_options=types.HttpOptions(
         api_version="v1",
-        base_url="https://zenmux.ai/api/vertex-ai"
+        base_url="https://zenmux.ai/api/vertex-ai/v1"
     )
 )
 
@@ -104,7 +104,7 @@ client = genai.Client(
     vertexai=True,
     http_options=types.HttpOptions(
         api_version="v1",
-        base_url="https://zenmux.ai/api/vertex-ai"
+        base_url="https://zenmux.ai/api/vertex-ai/v1"
     )
 )
 
@@ -142,7 +142,7 @@ client = genai.Client(
     vertexai=True,
     http_options=types.HttpOptions(
         api_version="v1",
-        base_url="https://zenmux.ai/api/vertex-ai"
+        base_url="https://zenmux.ai/api/vertex-ai/v1"
     )
 )
 
@@ -177,7 +177,7 @@ client = genai.Client(
     vertexai=True,
     http_options=types.HttpOptions(
         api_version="v1",
-        base_url="https://zenmux.ai/api/vertex-ai"
+        base_url="https://zenmux.ai/api/vertex-ai/v1"
     )
 )
 
@@ -212,7 +212,7 @@ client = genai.Client(
     vertexai=True,
     http_options=types.HttpOptions(
         api_version="v1",
-        base_url="https://zenmux.ai/api/vertex-ai"
+        base_url="https://zenmux.ai/api/vertex-ai/v1"
     )
 )
 
@@ -252,7 +252,7 @@ for video in operation.response.generated_videos:
 
 - **api_key**: Your ZenMux API key
 - **vertexai**: Must be set to `true` to enable the Vertex AI protocol
-- **base_url**: ZenMux Vertex AI endpoint `https://zenmux.ai/api/vertex-ai`
+- **base_url**: ZenMux Vertex AI endpoint `https://zenmux.ai/api/vertex-ai/v1`
 - **model**: The video generation model name, such as `google/veo-3.1-generate-001`
 - **prompt**: A text prompt describing the video content to generate
 

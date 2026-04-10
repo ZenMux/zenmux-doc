@@ -224,13 +224,13 @@ wire_api = "responses"
 | 配置项            | 值                                | 说明                      |
 | ----------------- | --------------------------------- | ------------------------- |
 | **Provider Name** | `ZenMux`                          | 自定义名称，便于识别      |
-| **Base URL**      | `https://zenmux.ai/api/vertex-ai` | ZenMux Vertex AI 兼容端点 |
+| **Base URL**      | `https://zenmux.ai/api/vertex-ai/v1` | ZenMux Vertex AI 兼容端点 |
 | **API Key**       | `sk-ss-v1-xxx` 或 `sk-ai-v1-xxx`  | 您的 ZenMux API Key       |
 
 ##### 配置环境变量示例（可直接复制）
 
 ```env
-GOOGLE_GEMINI_BASE_URL=https://zenmux.ai/api/vertex-ai
+GOOGLE_GEMINI_BASE_URL=https://zenmux.ai/api/vertex-ai/v1
 GEMINI_API_KEY=<ZENMUX_API_KEY>
 GEMINI_MODEL=google/gemini-3-flash-preview
 ```
@@ -243,7 +243,7 @@ GEMINI_MODEL=google/gemini-3-flash-preview
 | 配置项            | 值                                | 说明                      |
 | ----------------- | --------------------------------- | ------------------------- |
 | **Provider Name** | `ZenMux`                          | 自定义名称，便于识别      |
-| **Base URL**      | `https://zenmux.ai/api/vertex-ai` | ZenMux Vertex AI 兼容端点 |
+| **Base URL**      | `https://zenmux.ai/api/vertex-ai/v1` | ZenMux Vertex AI 兼容端点 |
 | **API Key**       | `sk-ss-v1-xxx` 或 `sk-ai-v1-xxx`  | 您的 ZenMux API Key       |
 
 ##### 配置JSON示例（可直接复制）

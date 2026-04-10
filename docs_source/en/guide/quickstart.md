@@ -104,7 +104,7 @@ ZenMux supports four major API protocols, letting you use your preferred SDK to 
 | **OpenAI Chat Completions** | `https://zenmux.ai/api/v1` | OpenAI SDK | The most widely used Chat API |
 | **OpenAI Responses** | `https://zenmux.ai/api/v1` | OpenAI SDK | OpenAI's next-gen Responses API |
 | **Anthropic Messages** | `https://zenmux.ai/api/anthropic` | Anthropic SDK | Native protocol for the Claude family |
-| **Google Gemini** | `https://zenmux.ai/api/vertex-ai` | Google GenAI SDK | Native protocol for the Gemini family |
+| **Google Gemini** | `https://zenmux.ai/api/vertex-ai/v1` | Google GenAI SDK | Native protocol for the Gemini family |
 
 ::: tip 💡 Cross-Protocol Calling
 One of ZenMux's core strengths is **protocol agnosticism** — you can call any model through any supported protocol. For example, use the OpenAI SDK to call Claude models, or the Anthropic SDK to call Gemini models.
@@ -353,7 +353,7 @@ curl https://zenmux.ai/api/anthropic/v1/messages \
 ::: info Compatibility
 ZenMux supports the Google Gemini (Vertex AI) protocol, allowing you to call models directly with the Google GenAI SDK.
 
-The base URL is `https://zenmux.ai/api/vertex-ai`. You need to set `vertexai=True` and configure custom `http_options`.
+The base URL is `https://zenmux.ai/api/vertex-ai/v1`. You need to set `vertexai=True` and configure custom `http_options`.
 :::
 
 ::: code-group
@@ -370,7 +370,7 @@ client = genai.Client(
     # 3. Point the base URL to the ZenMux endpoint
     http_options=types.HttpOptions(
         api_version='v1',
-        base_url='https://zenmux.ai/api/vertex-ai' # [!code highlight]
+        base_url='https://zenmux.ai/api/vertex-ai/v1' # [!code highlight]
     )
 )
 
@@ -394,7 +394,7 @@ const ai = new GoogleGenAI({
   // 3. Point the base URL to the ZenMux endpoint
   httpOptions: {
     apiVersion: "v1",
-    baseUrl: "https://zenmux.ai/api/vertex-ai", // [!code highlight]
+    baseUrl: "https://zenmux.ai/api/vertex-ai/v1", // [!code highlight]
   },
 });
 

@@ -44,7 +44,7 @@ client = genai.Client(
     vertexai=True,
     http_options=types.HttpOptions(
         api_version="v1",
-        base_url="https://zenmux.ai/api/vertex-ai"
+        base_url="https://zenmux.ai/api/vertex-ai/v1"
     )
 )
 
@@ -74,7 +74,7 @@ client = genai.Client(
     vertexai=True,
     http_options=types.HttpOptions(
         api_version="v1",
-        base_url="https://zenmux.ai/api/vertex-ai"
+        base_url="https://zenmux.ai/api/vertex-ai/v1"
     )
 )
 
@@ -104,7 +104,7 @@ client = genai.Client(
     vertexai=True,
     http_options=types.HttpOptions(
         api_version="v1",
-        base_url="https://zenmux.ai/api/vertex-ai"
+        base_url="https://zenmux.ai/api/vertex-ai/v1"
     )
 )
 
@@ -142,7 +142,7 @@ client = genai.Client(
     vertexai=True,
     http_options=types.HttpOptions(
         api_version="v1",
-        base_url="https://zenmux.ai/api/vertex-ai"
+        base_url="https://zenmux.ai/api/vertex-ai/v1"
     )
 )
 
@@ -177,7 +177,7 @@ client = genai.Client(
     vertexai=True,
     http_options=types.HttpOptions(
         api_version="v1",
-        base_url="https://zenmux.ai/api/vertex-ai"
+        base_url="https://zenmux.ai/api/vertex-ai/v1"
     )
 )
 
@@ -212,7 +212,7 @@ client = genai.Client(
     vertexai=True,
     http_options=types.HttpOptions(
         api_version="v1",
-        base_url="https://zenmux.ai/api/vertex-ai"
+        base_url="https://zenmux.ai/api/vertex-ai/v1"
     )
 )
 
@@ -252,7 +252,7 @@ for video in operation.response.generated_videos:
 
 - **api_key**: 你的 ZenMux API 密钥
 - **vertexai**: 必须设置为 `true` 以启用 Vertex AI 协议
-- **base_url**: ZenMux Vertex AI 端点 `https://zenmux.ai/api/vertex-ai`
+- **base_url**: ZenMux Vertex AI 端点 `https://zenmux.ai/api/vertex-ai/v1`
 - **model**: 视频生成模型名称，如 `google/veo-3.1-generate-001`
 - **prompt**: 描述要生成的视频内容的文本提示词
 

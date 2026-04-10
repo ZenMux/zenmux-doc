@@ -88,7 +88,7 @@ mkdir -p ~/.gemini
 ```env
 GEMINI_API_KEY=sk-ss-v1-xxx  # [!code highlight]
 GEMINI_MODEL=google/gemini-2.5-pro  # [!code highlight]
-GOOGLE_GEMINI_BASE_URL=https://zenmux.ai/api/vertex-ai  # [!code highlight]
+GOOGLE_GEMINI_BASE_URL=https://zenmux.ai/api/vertex-ai/v1  # [!code highlight]
 ```
 
 也可以在 shell 配置文件中设置：
@@ -99,14 +99,14 @@ GOOGLE_GEMINI_BASE_URL=https://zenmux.ai/api/vertex-ai  # [!code highlight]
 # 编辑 ~/.zshrc 或 ~/.bashrc 文件
 export GEMINI_API_KEY="sk-ss-v1-xxx"  # [!code highlight]
 export GEMINI_MODEL="google/gemini-2.5-pro"  # [!code highlight]
-export GOOGLE_GEMINI_BASE_URL="https://zenmux.ai/api/vertex-ai"  # [!code highlight]
+export GOOGLE_GEMINI_BASE_URL="https://zenmux.ai/api/vertex-ai/v1"  # [!code highlight]
 ```
 
 ```powershell [Windows PowerShell]
 # 编辑 PowerShell 配置文件
 $env:GEMINI_API_KEY = "sk-ss-v1-xxx"  # [!code highlight]
 $env:GEMINI_MODEL = "google/gemini-2.5-pro"  # [!code highlight]
-$env:GOOGLE_GEMINI_BASE_URL = "https://zenmux.ai/api/vertex-ai"  # [!code highlight]
+$env:GOOGLE_GEMINI_BASE_URL = "https://zenmux.ai/api/vertex-ai/v1"  # [!code highlight]
 
 # 若需永久生效，请添加到 PowerShell 配置文件中：
 # notepad $PROFILE
@@ -384,9 +384,9 @@ export GEMINI_MODEL="google/gemini-2.5-pro"  # [!code highlight]
 **解决方案**：
 
 - 检查网络连接是否正常
-- 验证 Base URL 是否配置正确为 `https://zenmux.ai/api/vertex-ai`
+- 验证 Base URL 是否配置正确为 `https://zenmux.ai/api/vertex-ai/v1`
 - 确认防火墙设置是否阻止了外部连接
-- 尝试使用 `curl https://zenmux.ai/api/vertex-ai/models` 测试连接
+- 尝试使用 `curl https://zenmux.ai/api/vertex-ai/v1/models` 测试连接
   :::
 
 ::: details .env 配置文件不生效
@@ -511,21 +511,21 @@ Gemini CLI 支持会话历史保留，方便回顾之前的对话：
 ```bash [日常开发]
 # 平衡性能和成本
 export GEMINI_API_KEY="sk-ss-v1-xxx"
-export GOOGLE_GEMINI_BASE_URL="https://zenmux.ai/api/vertex-ai"
+export GOOGLE_GEMINI_BASE_URL="https://zenmux.ai/api/vertex-ai/v1"
 export GEMINI_MODEL="google/gemini-2.5-pro"
 ```
 
 ```bash [代码审查]
 # 注重推理能力
 export GEMINI_API_KEY="sk-ss-v1-xxx"
-export GOOGLE_GEMINI_BASE_URL="https://zenmux.ai/api/vertex-ai"
+export GOOGLE_GEMINI_BASE_URL="https://zenmux.ai/api/vertex-ai/v1"
 export GEMINI_MODEL="google/gemini-2.5-pro"
 ```
 
 ```bash [快速迭代]
 # 注重响应速度
 export GEMINI_API_KEY="sk-ss-v1-xxx"
-export GOOGLE_GEMINI_BASE_URL="https://zenmux.ai/api/vertex-ai"
+export GOOGLE_GEMINI_BASE_URL="https://zenmux.ai/api/vertex-ai/v1"
 export GEMINI_MODEL="google/gemini-2.5-flash"
 ```
 

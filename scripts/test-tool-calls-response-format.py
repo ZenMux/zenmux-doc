@@ -270,7 +270,7 @@ def test_vertex_ai_response_format():
             vertexai=True,
             http_options=types.HttpOptions(
                 api_version='v1',
-                base_url='https://zenmux.ai/api/vertex-ai'
+                base_url='https://zenmux.ai/api/vertex-ai/v1'
             ),
         )
         

@@ -1435,7 +1435,7 @@ client = genai.Client(
     vertexai=True,
     http_options=types.HttpOptions(
         api_version='v1',
-        base_url='https://zenmux.ai/api/vertex-ai' # [!code highlight]
+        base_url='https://zenmux.ai/api/vertex-ai/v1' # [!code highlight]
     ),
 )
 
@@ -1512,7 +1512,7 @@ const client = new GoogleGenAI({
   apiKey: "<your ZENMUX_API_KEY>", // [!code highlight]
   vertexai: true,
   httpOptions: {
-    baseUrl: "https://zenmux.ai/api/vertex-ai", // [!code highlight]
+    baseUrl: "https://zenmux.ai/api/vertex-ai/v1", // [!code highlight]
     apiVersion: "v1",
   },
 });
