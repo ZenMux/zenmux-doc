@@ -108,6 +108,7 @@ export default defineLoacaleConfig({
               { text: "视频生成", link: "/zh/guide/advanced/video-generation" },
               { text: "网络搜索", link: "/zh/guide/advanced/web-search" },
               { text: "1M 长上下文", link: "/zh/guide/advanced/long-context" },
+              { text: "错误码参考", link: "/zh/guide/advanced/error-codes" },
             ],
           },
           {

@@ -12,6 +12,10 @@ head:
 
 # Google Vertex AI API: Generate Content
 
+::: tip 💡 Troubleshooting
+Encountering errors? See the [API Error Codes Reference](/guide/advanced/error-codes) for a complete list of error types and troubleshooting steps.
+:::
+
 ### Non-streaming:
 
 ```

@@ -12,6 +12,10 @@ head:
 
 # Create a Model Response
 
+::: tip 💡 Troubleshooting
+Encountering errors? See the [API Error Codes Reference](/guide/advanced/error-codes) for a complete list of error types and troubleshooting steps.
+:::
+
 ```
 POST https://zenmux.ai/api/v1/responses
 ```
