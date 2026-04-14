@@ -12,6 +12,10 @@ head:
 
 # List Models
 
+::: tip 💡 Troubleshooting
+Encountering errors? See the [API Error Codes Reference](/guide/advanced/error-codes) for a complete list of error types and troubleshooting steps.
+:::
+
 ```
 GET https://zenmux.ai/api/vertex-ai/v1beta/models
 ```

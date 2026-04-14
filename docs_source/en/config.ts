@@ -112,6 +112,7 @@ export default defineLoacaleConfig({
               },
               { text: "Web Search", link: "/guide/advanced/web-search" },
               { text: "1M Long Context", link: "/guide/advanced/long-context" },
+              { text: "Error Codes", link: "/guide/advanced/error-codes" },
             ],
           },
           {
