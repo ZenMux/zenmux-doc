@@ -50,3 +50,36 @@
   max-height: none !important;
   height: auto !important;
 }
+
+/* --- AI Assistant: position trigger button right after search --- */
+.VPNavBar .content-body > .search {
+  order: -2;
+}
+.VPNavBar .content-body > .ai-trigger {
+  order: -1;
+}
+
+/* --- AI Assistant Sidebar: push content left when open --- */
+@media (min-width: 960px) {
+  html.ai-panel-open .VPContent {
+    transition: padding-right 0.3s ease;
+    padding-right: 380px !important;
+  }
+  html.ai-panel-open.ai-panel-maximized .VPContent {
+    padding-right: 520px !important;
+  }
+  /* Also shrink the api-container (fixed-position panel on API pages) */
+  html.ai-panel-open .api-container {
+    right: 400px;
+    transition: right 0.3s ease;
+  }
+  html.ai-panel-open.ai-panel-maximized .api-container {
+    right: 540px;
+  }
+}
+
+@media (max-width: 959px) {
+  html.ai-panel-open .VPContent {
+    /* On mobile, sidebar is full-width overlay, don't push content */
+  }
+}

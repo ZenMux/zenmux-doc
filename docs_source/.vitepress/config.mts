@@ -3,6 +3,7 @@ import container from "markdown-it-container";
 import fs from "node:fs";
 import LZString from "lz-string";
 import { groupIconVitePlugin } from "vitepress-plugin-group-icons";
+import { docsIndexPlugin } from "./plugins/docs-index-plugin";
 import { locales } from "../config";
 
 const basePath = process.cwd() + "/docs_source/";
@@ -153,8 +154,16 @@ export default defineConfig({
   vite: {
     server: {
       host: "127.0.0.1",
+      proxy: {
+        '/api/docs': {
+          target: 'https://pre.zenmux.ai',
+          changeOrigin: true,
+          secure: true,
+        },
+      },
     },
     plugins: [
+      docsIndexPlugin({ docsRoot: basePath }),
       groupIconVitePlugin({
         customIcon: {
           python: "vscode-icons:file-type-python",
