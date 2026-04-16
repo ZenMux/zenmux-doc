@@ -17,7 +17,7 @@ import Select from "./select.vue";
 import Login from "./login.vue";
 import ApiContainer from "./api-container.vue";
 import EndpointDrawer from "./endpoint-drawer.vue";
-import AiAssistant from "./ai-assistant.vue";
+// import AiAssistant from "./ai-assistant.vue";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import "./style.css";
@@ -102,7 +102,7 @@ export default {
       // https://vitepress.dev/guide/extending-default-theme#layout-slots
       "doc-top": () => h(ClientOnly, null, { default: () => h(ApiContainer) }),
       "doc-before": () => h(ClientOnly, null, { default: () => h(Select) }),
-      "nav-bar-content-after": () => h(ClientOnly, null, { default: () => [h(AiAssistant), h(Login), h(EndpointDrawer)] }),
+      "nav-bar-content-after": () => h(ClientOnly, null, { default: () => [/* h(AiAssistant), */ h(Login), h(EndpointDrawer)] }),
     });
   },
   enhanceApp({ app, router, siteData }) {
