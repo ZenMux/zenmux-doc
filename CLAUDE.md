@@ -18,74 +18,50 @@ This is the documentation repository for ZenMux, an LLM API aggregation service.
 **IMPORTANT: This project uses pnpm, not npm. Always use `pnpm` commands.**
 
 ```bash
-# Development server with hot reload
-pnpm run dev
-# or
-pnpm run docs:dev
+# Development server with hot reload (do NOT start this yourself — user runs pnpm dev locally)
+pnpm run dev               # alias: pnpm run docs:dev
 
-# Production build (outputs to docs/ directory)
-pnpm run build
-# or
-pnpm run docs:build
+# Production build: vitepress build → copy-docs → copy-to-root
+pnpm run build             # alias: pnpm run docs:build
 
 # Preview built site locally
-pnpm run preview
-# or
-pnpm run docs:preview
-
-# Translate Chinese docs to English (supports single file or entire folder)
-pnpm run translate <path-to-zh-file-or-folder> [--force] [--concurrency=5]
-# Example (single file): pnpm run translate docs_source/zh/guide/quickstart.md
-# Example (folder): pnpm run translate docs_source/zh/
-# Example (parallel): pnpm run translate docs_source/zh/ --concurrency=10
-
-# Optimize Chinese docs using AI
-pnpm run optimize <input-file> <output-file> [--force]
-# Example: pnpm run optimize draft.md docs_source/zh/guide/quickstart.md
+pnpm run preview           # alias: pnpm run docs:preview
 
 # Format images in markdown files
 pnpm run format-images
 ```
+
+The `build` pipeline chains three steps:
+1. `vitepress build docs_source` — outputs to `docs/`
+2. `copy-docs` — copies `docs/vp-icons.css` → `docs/docs/vp-icons.css`
+3. `copy-to-root` ([scripts/copy-to-root.sh](scripts/copy-to-root.sh)) — duplicates built pages into `docs/docs/` so both `/xx/` and `/docs/xx/` URLs resolve under GitHub Pages
 
 ## Directory Structure
 
 ```
 docs_source/
 ├── .vitepress/config.mts          # VitePress configuration
-├── config.ts                     # Locale configuration hub
-├── en/                           # English documentation
-│   ├── config.ts                 # English locale config
-│   └── [content files]
-├── zh/                           # Chinese documentation (source)
-│   ├── config.ts                 # Chinese locale config
-│   └── [content files]
-└── public/                       # Static assets
+├── config.ts                      # Locale configuration hub
+├── index.ts                       # Entry
+├── component/                     # Custom Vue components used in docs
+├── en/                            # English documentation + locale config
+├── zh/                            # Chinese documentation (source) + locale config
+└── public/                        # Static assets
 
-scripts/translate-zh-to-en/       # Translation automation
-├── translate-zh-to-en.ts         # Main translation script
-└── README.md                     # Translation script documentation
+scripts/
+├── copy-to-root.sh                # Post-build: duplicate docs/* into docs/docs/*
+├── format-images.js               # Image formatting automation
+├── postinstall.js                 # Runs after pnpm install
+├── add-seo-meta.js                # SEO metadata injection
+├── fake-router.js                 # Dev helper
+└── test-*.py                      # Standalone API smoke tests (not wired into build)
 
-scripts/optimize-chinese-docs/    # Documentation optimization
-└── optimize-chinese-docs.ts      # Chinese docs optimization script
-
-scripts/format-images.js          # Image formatting automation
-
-.prompts/                         # Custom prompts for AI scripts
-├── translation-zh-to-en.xml      # Translation prompt template
-└── optimize-chinese-docs.xml     # Chinese docs optimization prompt
+docs/                              # Build output — committed, served by GitHub Pages
 ```
 
 ## Translation Workflow
 
-1. Write Chinese documentation in `docs_source/zh/`
-2. Use translation script: `pnpm run translate docs_source/zh/[file].md` (or entire folder)
-3. Script automatically:
-   - Converts `zh` paths to `en` paths
-   - Uses AI model (openai/gpt-5) via ZenMux API for translation
-   - Applies translation rules from `.prompts/translation-zh-to-en.xml`
-   - Preserves code blocks, variable names, and markdown formatting
-   - Supports parallel translation of multiple files with `--concurrency` flag (default: 5)
-   - Skips existing files unless `--force` flag is used
+Content is bilingual (Chinese source + English translation) but **there is no translation script in this repo**. New/updated English content must be written or translated manually and placed in `docs_source/en/` mirroring `docs_source/zh/`.
 
 ## VitePress Configuration Details
 
@@ -118,21 +94,6 @@ scripts/format-images.js          # Image formatting automation
 - English files: Direct paths like `/guide/quickstart`
 - Chinese files: Prefixed paths like `/zh/guide/quickstart`
 - Ensure consistent naming between language versions
-
-## Script Environment Requirements
-
-### Translation Script
-
-- Environment variable: `ZENMUX_API_KEY` (required)
-- Model: Uses `openai/gpt-5` via ZenMux API
-- Prompt template: `.prompts/translation-zh-to-en.xml`
-- Dependencies: `openai` SDK, `glob` for file matching
-
-### Optimization Script
-
-- Environment variable: `ZENMUX_API_KEY` (required)
-- Prompt template: `.prompts/optimize-chinese-docs.xml`
-- Purpose: Improve Chinese doc structure, style, and VitePress syntax before translation
 
 ## GitHub Pages Deployment
 
