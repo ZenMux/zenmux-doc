@@ -18,14 +18,14 @@ A **Flow** is ZenMux’s composite billing unit that combines token consumption 
 
 ### 💱 Real-Time Flow/USD Exchange Rate
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/03/04/cZHC0QH/94FE2E7E-2C1B-4DFE-A685-C653E8066B4F.png" alt="Real-time Flow/USD exchange rate" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/04/20/6DiXe7y/20260420141907.jpg" alt="Real-time Flow/USD exchange rate" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 
 ::: tip 💡 Screenshot example
 The Flow/USD exchange rate and related data are **dynamically calculated**. The screenshot is for reference only. Please refer to the real-time data shown on the [Pricing page](https://zenmux.ai/pricing/subscription).
 :::
 
 ::: warning Exchange rate notes
-The Flow/USD exchange rate is currently anchored at **1 Flow = $0.02525** (approximately 40 Flows = $1). This rate may be adjusted periodically based on market conditions and model pricing changes. The latest exchange rate will always be published and displayed here in real time.
+The Flow/USD exchange rate is currently anchored at **1 Flow ≈ $0.03283** (approximately 30 Flows = $1). This rate may be adjusted periodically based on market conditions and model pricing changes. The latest exchange rate will always be published and displayed here in real time.
 :::
 
 ::: tip 💡 Insider member Flow value
@@ -38,7 +38,7 @@ For accounts found violating the Builder Plan Terms of Service (e.g., automated 
 
 ### 📊 Plan Comparison — Monthly Max Flows and USD Equivalent Value
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/03/04/yQvCKu9/6DBE4742-48AC-4631-A849-8F1692B5AC44.png" alt="Plan comparison - monthly max Flows and USD equivalent value" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/04/20/ySQMzyd/20260420140640.jpg" alt="Plan comparison - monthly max Flows and USD equivalent value" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 
 ::: tip 💡 Screenshot example
 Plan comparison data is **dynamically calculated**. The screenshot is for reference only. Please refer to the real-time data shown on the [Pricing page](https://zenmux.ai/pricing/subscription).
@@ -46,12 +46,12 @@ Plan comparison data is **dynamically calculated**. The screenshot is for refere
 
 | Plan  | Price   | 5h Quota (Flows) | Weekly Max Flows | Monthly Max Flows | USD Equivalent Value | Value Multiplier |
 | ----- | ------- | ---------------- | ---------------- | ----------------- | -------------------- | ---------------- |
-| Free  | $0/mo   | 5                | 50.4             | 216               | -                    | -                |
-| Pro   | $20/mo  | 50               | 504              | 2,160             | $54.55               | 2.73x            |
-| Max   | $100/mo | 300              | 3,024            | 12,960            | $327.27              | 3.27x            |
-| Ultra | $200/mo | 800              | 8,064            | 34,560            | $872.73              | 4.36x            |
+| Free  | $0/mo   | 5                | 38.64            | 165.6             | $5.44                | -                |
+| Pro   | $20/mo  | 50               | 213.37           | 914.443           | $30.03               | 1.50x            |
+| Max   | $100/mo | 300              | 1,280.22         | 5,486.659         | $180.15              | 1.80x            |
+| Ultra | $200/mo | 800              | 3,413.921        | 14,631.091        | $480.40              | 2.40x            |
 
-> **USD Equivalent Value** = Monthly Max Flows × Flow unit price ($0.02525/Flow)
+> **USD Equivalent Value** = Monthly Max Flows × Flow unit price ($0.03283/Flow)
 >
 > **Value Multiplier** = USD Equivalent Value / Plan price — indicates how many times more API value you get compared to the subscription fee
 
@@ -61,12 +61,12 @@ Plan comparison data is **dynamically calculated**. The screenshot is for refere
 
 ### 💡 Key Benefits
 
-| Pain Point Scenario                     | Subscription Solution                                 |
-| --------------------------------------- | ----------------------------------------------------- |
+| Pain Point Scenario                               | Subscription Solution                           |
+| ------------------------------------------------- | ----------------------------------------------- |
 | **Worried about burning money while vibe coding** | Fixed pricing starting at $20/month—code freely |
-| **High cost to learn new tech**         | Explore a wide range of AI models at low cost         |
-| **Messy multi-platform account management** | One API Key to call all models                    |
-| **Diverse use cases**                   | Coding + image generation + chat—full coverage        |
+| **High cost to learn new tech**                   | Explore a wide range of AI models at low cost   |
+| **Messy multi-platform account management**       | One API Key to call all models                  |
+| **Diverse use cases**                             | Coding + image generation + chat—full coverage  |
 
 </div>
 
@@ -76,11 +76,11 @@ Plan comparison data is **dynamically calculated**. The screenshot is for refere
 
    The Builder Plan covers three major model categories. Whether you’re a developer, designer, product manager, or operator, one subscription meets the full-spectrum needs of Vibe Builders:
 
-   | Model Category          | Representative Models                                         |
-   | ----------------------- | ------------------------------------------------------------- |
-   | **Coding models**       | Claude Opus 4.5 / GPT-5.2-Codex / Gemini-3-Pro-Preview ...     |
-   | **Image generation**    | NanoBananaPro / GPT-Image-1.5 ... (rolling out)                |
-   | **Text generation**     | GPT-5.2 / Qwen3-Max-Thinking / ERNIE 5.0 ...                   |
+   | Model Category       | Representative Models                                      |
+   | -------------------- | ---------------------------------------------------------- |
+   | **Coding models**    | Claude Opus 4.5 / GPT-5.2-Codex / Gemini-3-Pro-Preview ... |
+   | **Image generation** | NanoBananaPro / GPT-Image-1.5 ... (rolling out)            |
+   | **Text generation**  | GPT-5.2 / Qwen3-Max-Thinking / ERNIE 5.0 ...               |
 
 2. **An all-star model lineup**
 
@@ -381,7 +381,6 @@ Visit the [ZenMux Pricing page](https://zenmux.ai/pricing/subscription) to see d
 2. Click **"Get Max"** or **"Get Ultra"** for the corresponding plan (Pro users click **"Upgrade"**)
 3. Complete the payment flow
 
-
 ### Step 3: Manage your subscription and get an API Key
 
 After subscribing successfully, visit the [Subscription Management page](https://zenmux.ai/platform/subscription):
@@ -459,7 +458,7 @@ Once enabled, the page will display details of the Pay As You Go API Key you sel
 - Make sure your Pay As You Go account has sufficient balance to avoid interruptions after switching
 - You can view Extra Usage consumption and spending at any time on the Subscription Management page
 - To change the backup key, click **"Reselect"** and choose again
-:::
+  :::
 
 ::: warning ⚠️ Billing reminder
 After enabling Extra Usage, when your subscription quota runs out, charges will be automatically deducted from your Pay As You Go balance. Monitor your balance to avoid unexpected costs.
@@ -551,14 +550,14 @@ Refund requests must be submitted **within 24 hours** of successful subscription
 
 Refund amounts are calculated as follows:
 
-| Item                        | Description                                              |
-| --------------------------- | -------------------------------------------------------- |
-| **Total paid**              | Full amount paid in the current billing cycle             |
-| **- Actual usage**          | Equivalent value of API calls consumed during the subscription |
-| **- Already refunded**      | Amount previously refunded (if any)                      |
-| **= Refundable balance**    | Remaining refundable amount after deducting usage and prior refunds |
-| **- Stripe fee (5%)**       | Payment platform refund processing fee                   |
-| **= Final refund amount**   | Amount actually returned to your payment method          |
+| Item                      | Description                                                         |
+| ------------------------- | ------------------------------------------------------------------- |
+| **Total paid**            | Full amount paid in the current billing cycle                       |
+| **- Actual usage**        | Equivalent value of API calls consumed during the subscription      |
+| **- Already refunded**    | Amount previously refunded (if any)                                 |
+| **= Refundable balance**  | Remaining refundable amount after deducting usage and prior refunds |
+| **- Stripe fee (5%)**     | Payment platform refund processing fee                              |
+| **= Final refund amount** | Amount actually returned to your payment method                     |
 
 ::: warning ⚠️ Non-refundable cases
 If the equivalent API usage value has **exceeded your subscription payment amount**, the subscription is not eligible for a refund.
@@ -582,12 +581,12 @@ The system will display a refund preview including the total paid, actual usage,
 
 After submitting the refund, you can check the processing status in the refund dialog:
 
-| Status        | Description                                                  |
-| ------------- | ------------------------------------------------------------ |
+| Status        | Description                                                                 |
+| ------------- | --------------------------------------------------------------------------- |
 | 🔵 Processing | Refund is being processed and will be returned within **1-3 business days** |
-| 🟢 Succeeded  | Refund is complete and funds have been returned to your payment method |
-| 🔴 Failed     | Refund could not be processed — please contact support       |
-| ⚪ Canceled   | Refund request has been canceled                             |
+| 🟢 Succeeded  | Refund is complete and funds have been returned to your payment method      |
+| 🔴 Failed     | Refund could not be processed — please contact support                      |
+| ⚪ Canceled   | Refund request has been canceled                                            |
 
 ### After Refund
 
@@ -607,14 +606,14 @@ If you have questions about the refund calculation or need manual assistance, em
 
 ### What’s the difference between subscriptions and pay-as-you-go?
 
-| Feature          | Subscription (Builder Plan) | Pay-As-You-Go |
-| ---------------- | --------------------------- | ------------- |
-| **Billing model** | Fixed monthly fee          | Usage-based billing |
-| **Best for**     | Personal dev, learning      | Production, commercial apps |
+| Feature                 | Subscription (Builder Plan) | Pay-As-You-Go                 |
+| ----------------------- | --------------------------- | ----------------------------- |
+| **Billing model**       | Fixed monthly fee           | Usage-based billing           |
+| **Best for**            | Personal dev, learning      | Production, commercial apps   |
 | **Cost predictability** | ✅ High (fixed monthly fee) | ⚠️ Medium (varies with usage) |
-| **Rate limits**  | 10-15 RPM                   | Higher, customizable |
-| **SLA**          | Standard                    | Higher |
-| **Value multiplier** | ✅ 2.73-4.36x            | Standard API pricing |
+| **Rate limits**         | 10-15 RPM                   | Higher, customizable          |
+| **SLA**                 | Standard                    | Higher                        |
+| **Value multiplier**    | ✅ 1.50-2.40x               | Standard API pricing          |
 
 ### When does the quota reset?
 
