@@ -50,9 +50,14 @@ export default defineLoacaleConfig({
             link: "https://zenmux.ai/changelog",
             noIcon: true,
           },
+          {
+            text: "Roadmap & Feedback",
+            link: "https://github.com/orgs/ZenMux/projects/2",
+            noIcon: true,
+          },
         ],
       },
-      { text: "Benchmarks", link: "https://zenmux.ai/benchmark", noIcon: true },
+      { text: "Analytics", link: "https://zenmux.ai/analytics", noIcon: true },
       {
         text: "About Us",
         items: [
