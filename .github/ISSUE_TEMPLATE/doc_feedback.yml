@@ -1,0 +1,101 @@
+name: Documentation Feedback
+description: Report an issue or suggest improvements to the documentation
+title: "[Docs]: "
+labels: ["documentation", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Found an issue with our docs or have a suggestion to make them better? We'd love to hear it!
+
+        Our documentation lives at [docs.zenmux.ai](https://docs.zenmux.ai) and is [open source](https://github.com/ZenMux/zenmux-doc) — PRs are always welcome.
+
+  - type: input
+    id: page-url
+    attributes:
+      label: Page URL
+      description: Link to the documentation page (if applicable)
+      placeholder: "https://docs.zenmux.ai/guide/quickstart"
+
+  - type: dropdown
+    id: doc-section
+    attributes:
+      label: Documentation section
+      description: Which section of the docs does this relate to?
+      options:
+        - Getting started / Quickstart
+        - API reference (OpenAI / Anthropic / Gemini / Platform)
+        - Advanced usage (routing, streaming, caching, reasoning, etc.)
+        - Best practices (Claude Code, Cursor, Cline, and other tool guides)
+        - Pricing / Billing guides
+        - Observability (logs, cost tracking, usage analytics)
+        - Insurance / Quality assurance (HLE benchmark)
+        - Studio Chat
+        - About / Overview / Architecture
+        - Help / FAQ
+        - Other / Multiple sections
+    validations:
+      required: true
+
+  - type: dropdown
+    id: issue-type
+    attributes:
+      label: What kind of issue?
+      multiple: true
+      options:
+        - Incorrect or outdated information
+        - Missing content or documentation
+        - Translation error or improvement
+        - Broken link or image
+        - Formatting / display issue
+        - Code example error
+        - Unclear explanation
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: language
+    attributes:
+      label: Language version affected
+      options:
+        - English
+        - Chinese (简体中文)
+        - Both
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe the issue or your suggestion
+      placeholder: |
+        The quickstart guide says to use endpoint X, but the actual endpoint is Y...
+        It would be helpful to add an example showing how to...
+        The code example for Anthropic protocol is missing the max_tokens parameter...
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: Screenshots, suggested rewording, or any other helpful details
+      placeholder: Drag and drop images here, or paste your suggested text
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      options:
+        - label: I'm willing to submit a PR to fix this
+          required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission checklist
+      options:
+        - label: I have searched existing issues to avoid duplicates
+          required: true

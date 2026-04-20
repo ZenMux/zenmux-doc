@@ -1,0 +1,159 @@
+name: Bug Report
+description: Report a bug or issue with ZenMux
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug! Please fill out the information below to help us resolve the issue quickly.
+
+        If you have a `generation_id` from the API response, please include it — it helps us locate the issue faster.
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      description: Which area of ZenMux is affected?
+      options:
+        - API (request handling, response, errors)
+        - Streaming (SSE, chunked responses)
+        - Routing (provider routing, model routing, fallback)
+        - Protocol compatibility (OpenAI / Anthropic / Gemini)
+        - Prompt cache (cache hit, cache behavior)
+        - Multimodal (image input, vision)
+        - Tool calling / Function calling
+        - Structured output / JSON mode
+        - Reasoning / Thinking models
+        - Image generation / Video generation
+        - Web search / Grounding
+        - Long context (1M tokens)
+        - Insurance (quality detection, auto-compensation)
+        - Observability (logs, cost analytics, usage analytics)
+        - Studio Chat (built-in chat UI)
+        - Dashboard (web console, settings)
+        - Billing (pricing, usage tracking, invoices)
+        - Documentation (docs site content, examples)
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: protocol
+    attributes:
+      label: API protocol used
+      description: Which API protocol were you using?
+      options:
+        - OpenAI Chat Completions (/api/v1)
+        - OpenAI Responses (/api/v1)
+        - Anthropic Messages (/api/anthropic)
+        - Google Gemini / Vertex AI (/api/vertex-ai)
+        - Platform Management API
+        - Not applicable
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      description: A clear description of what the bug is
+      placeholder: |
+        When I call the API with model X, I get an unexpected error...
+        The dashboard shows incorrect usage data...
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Detailed steps to reproduce the behavior
+      placeholder: |
+        1. Send a request to /api/v1/chat/completions with model "openai/gpt-5"
+        2. Set temperature to 0.7
+        3. Observe the response
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What you expected to happen
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: What actually happened (include error messages, status codes, or response bodies if applicable)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: How severely does this affect your usage?
+      options:
+        - Critical - Service is down or data loss
+        - High - Major feature is broken, no workaround
+        - Medium - Feature is broken but has a workaround
+        - Low - Minor issue, cosmetic or edge case
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Help us understand your setup
+      placeholder: |
+        - API Protocol: OpenAI / Anthropic / Gemini
+        - Base URL: https://zenmux.ai/api/v1
+        - SDK: Python (openai) / Node.js (openai) / Python (anthropic) / cURL
+        - SDK Version: x.x.x
+        - Model slug: openai/gpt-5
+        - Plan: Builder Plan / Pay As You Go
+      render: markdown
+
+  - type: input
+    id: generation-id
+    attributes:
+      label: Generation ID (if available)
+      description: The `generation_id` returned in the API response header or body — helps us trace the exact request
+      placeholder: "gen_01abc123def456"
+
+  - type: input
+    id: integration-tool
+    attributes:
+      label: Integration tool (if applicable)
+      description: Are you using ZenMux through a specific tool?
+      placeholder: "e.g., Claude Code, Cursor, Cline, Codex CLI, Gemini CLI, Cherry Studio, Open WebUI"
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots / Logs
+      description: Add screenshots, error logs, or request/response examples
+      placeholder: Drag and drop images here, or paste error logs
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: Any other context about the problem
+      placeholder: |
+        - This started happening after...
+        - Only occurs when...
+        - Related to issue #123
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission checklist
+      options:
+        - label: I have searched existing issues to avoid duplicates
+          required: true

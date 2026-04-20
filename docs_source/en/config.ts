@@ -191,6 +191,14 @@ export default defineLoacaleConfig({
             text: "Cursor Integration",
             link: "/best-practices/cursor",
           },
+          {
+            text: "RikkaHub Integration",
+            link: "/best-practices/rikkahub",
+          },
+          {
+            text: "Hermes Agent Integration",
+            link: "/best-practices/hermes-agent",
+          },
         ],
       },
       {

@@ -1,0 +1,125 @@
+name: Provider / Model Request
+description: Request support for a new LLM provider or model
+title: "[Provider]: "
+labels: ["provider-request", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Want ZenMux to support a new LLM provider or model? Let us know! This helps us prioritize which integrations to build next.
+
+        You can check currently supported models at [zenmux.ai/models](https://zenmux.ai/models).
+
+  - type: input
+    id: provider-name
+    attributes:
+      label: Provider name
+      description: The name of the LLM provider
+      placeholder: "e.g., Mistral, Cohere, xAI (Grok), Minimax, Zhipu, 01.AI"
+    validations:
+      required: true
+
+  - type: textarea
+    id: model-names
+    attributes:
+      label: Model(s) requested
+      description: Which specific model(s) would you like to use?
+      placeholder: |
+        - model-name-1
+        - model-name-2
+    validations:
+      required: true
+
+  - type: dropdown
+    id: request-type
+    attributes:
+      label: Request type
+      options:
+        - New provider (not yet supported)
+        - New model from existing provider
+        - Update to existing model (new version available)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: model-type
+    attributes:
+      label: Model type
+      description: What kind of model is this?
+      multiple: true
+      options:
+        - Text generation (chat / completion)
+        - Code generation
+        - Image generation
+        - Video generation
+        - Embedding
+        - Multimodal (vision / image input)
+        - Reasoning / Thinking
+        - Web search / Grounding
+        - Long context (100K+ tokens)
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use case
+      description: How do you plan to use this provider/model?
+      placeholder: |
+        I need this model for code generation because...
+        This provider offers competitive pricing for...
+        This model supports [language/capability] that others don't...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: How urgently do you need this?
+      options:
+        - Critical - Blocking my adoption of ZenMux
+        - High - Key part of my planned usage
+        - Medium - Would be nice to have
+        - Low - Just exploring options
+    validations:
+      required: true
+
+  - type: dropdown
+    id: protocol
+    attributes:
+      label: API protocol compatibility
+      description: Does this provider's API follow any standard protocol?
+      options:
+        - OpenAI-compatible API
+        - Custom API (provider-specific)
+        - Not sure
+    validations:
+      required: false
+
+  - type: input
+    id: api-docs
+    attributes:
+      label: Provider API documentation
+      description: Link to the provider's API documentation (optional)
+      placeholder: "https://docs.example.com/api"
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: Any other information that might help us evaluate this request
+      placeholder: |
+        This provider recently launched and is gaining traction...
+        Their API follows the OpenAI-compatible format...
+        Pricing info: ...
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission checklist
+      options:
+        - label: I have searched existing issues to avoid duplicates
+          required: true
+        - label: I have checked the [model list](https://zenmux.ai/models) and confirmed this is not yet supported
+          required: true

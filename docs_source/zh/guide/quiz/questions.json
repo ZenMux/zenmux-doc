@@ -3,7 +3,7 @@
   "metadata": {
     "title": "ZenMux 知识问答题库",
     "description": "用于 ZenMux 订阅购买环节的知识问答题目，欢迎社区贡献。题型包括单选题和判断题。",
-    "lastUpdated": "2026-03-18",
+    "lastUpdated": "2026-04-20",
     "categories": [
       "claude-code",
       "zenmux-basics",
@@ -150,22 +150,6 @@
     {
       "id": "q008",
       "type": "true-false",
-      "category": "pricing",
-      "difficulty": "easy",
-      "question": "使用 ZenMux Pay As You Go 方案充值 $100，实际可用的 API 调用额度正好是 $100。",
-      "options": [
-        { "id": "A", "text": "正确" },
-        { "id": "B", "text": "错误" }
-      ],
-      "answer": "B",
-      "explanation": "假如当前Pay As You Go 充值时会自动赠送 5% 额外积分(后续额外赠送比例可能会调整，以官网公示为准)。充值 $100 实际获得 $105 等值的 API 调用额度。赠送部分以 Bonus Credits 形式到账，消耗时优先扣除奖励积分，再扣充值积分。",
-      "tags": ["pay-as-you-go", "top-up", "bonus", "pricing"],
-      "contributor": "zenmux-team",
-      "references": ["https://docs.zenmux.ai/guide/pay-as-you-go"]
-    },
-    {
-      "id": "q009",
-      "type": "true-false",
       "category": "api-usage",
       "difficulty": "easy",
       "question": "ZenMux 订阅制（Builder Plan）的 API Key 和 Pay As You Go 的 API Key 是同一个，可以互相通用。",
@@ -183,7 +167,7 @@
       ]
     },
     {
-      "id": "q010",
+      "id": "q009",
       "type": "single-choice",
       "category": "zenmux-basics",
       "difficulty": "easy",
@@ -201,7 +185,7 @@
       "references": ["https://docs.zenmux.ai/guide/subscription"]
     },
     {
-      "id": "q011",
+      "id": "q010",
       "type": "single-choice",
       "category": "pricing",
       "difficulty": "easy",
@@ -219,7 +203,7 @@
       "references": ["https://docs.zenmux.ai/terms-of-service"]
     },
     {
-      "id": "q012",
+      "id": "q011",
       "type": "single-choice",
       "category": "zenmux-basics",
       "difficulty": "medium",
@@ -237,7 +221,7 @@
       "references": ["https://docs.zenmux.ai/privacy"]
     },
     {
-      "id": "q013",
+      "id": "q012",
       "type": "single-choice",
       "category": "pricing",
       "difficulty": "medium",
@@ -253,6 +237,113 @@
       "tags": ["refund", "退款", "服务费", "pricing", "用户协议"],
       "contributor": "zenmux-team",
       "references": ["https://docs.zenmux.ai/terms-of-service"]
+    },
+    {
+      "id": "q013",
+      "type": "single-choice",
+      "category": "pricing",
+      "difficulty": "easy",
+      "question": "当 ZenMux Builder Plan 订阅用量达到 5 小时或每周额度上限后，Extra Usage（额度外自动切换）功能会做什么？",
+      "options": [
+        { "id": "A", "text": "立即中断服务，必须等待配额重置才能继续使用" },
+        { "id": "B", "text": "自动切换到已关联的 Pay As You Go API Key，继续使用不中断" },
+        { "id": "C", "text": "将后续请求放入队列，等配额恢复后批量重试" },
+        { "id": "D", "text": "自动帮用户升级订阅到更高等级套餐" }
+      ],
+      "answer": "B",
+      "explanation": "Extra Usage 是 Builder Plan 的额度外自动切换机制：订阅用量触及 5 小时或每周额度上限后，系统会自动切换到用户在 Subscription Management 页面预先关联的 Pay As You Go API Key，使用 PAYG 账户余额继续计费，确保开发 / 编程 / 对话等工作流不被打断。订阅配额窗口重置后，会自动切回订阅制 Key 计费。",
+      "tags": ["extra-usage", "subscription", "pay-as-you-go", "额度"],
+      "contributor": "zenmux-team",
+      "references": ["https://zenmux.ai/platform/subscription"]
+    },
+    {
+      "id": "q014",
+      "type": "true-false",
+      "category": "pricing",
+      "difficulty": "easy",
+      "question": "启用 Extra Usage 后，一旦订阅配额窗口重置，系统会自动切换回使用订阅制 Key 计费，无需手动操作。",
+      "options": [
+        { "id": "A", "text": "正确" },
+        { "id": "B", "text": "错误" }
+      ],
+      "answer": "A",
+      "explanation": "Extra Usage 的核心行为就是\"自动恢复\"：订阅配额耗尽时自动切换到 PAYG Key，订阅窗口（5 小时 / 每周）重置后自动切回订阅制 Key 计费。整个过程对客户端无感，用户始终使用同一个订阅制 Key，不需要在 IDE / 终端中频繁更换 API Key。",
+      "tags": ["extra-usage", "subscription", "自动恢复"],
+      "contributor": "zenmux-team",
+      "references": ["https://zenmux.ai/platform/subscription"]
+    },
+    {
+      "id": "q015",
+      "type": "single-choice",
+      "category": "pricing",
+      "difficulty": "medium",
+      "question": "关于 Extra Usage 的配置方式，以下哪项描述是正确的？",
+      "options": [
+        { "id": "A", "text": "只能关联一个新创建的 PAYG API Key，不支持选择已有的" },
+        { "id": "B", "text": "在 Subscription Management 页面既可以选择已有的 PAYG API Key，也可以点击 Create new key 新建一个" },
+        { "id": "C", "text": "配置后不可修改，除非注销订阅" },
+        { "id": "D", "text": "需要邮件联系客服开启，不能在控制台自助配置" }
+      ],
+      "answer": "B",
+      "explanation": "在 Subscription Management 页面的 Extra Usage 模块开启开关后，会弹出 \"Select a Key\" 对话框：用户可以从下拉列表中选择已有的 PAYG API Key，也可以点击 \"Create new key\" 即时新建一个 PAYG Key。配置完成后依然可以随时点击 \"Reselect\" 更换备用 Key，或关闭开关停用功能，完全自助。",
+      "tags": ["extra-usage", "api-key", "配置"],
+      "contributor": "zenmux-team",
+      "references": ["https://zenmux.ai/platform/subscription"]
+    },
+    {
+      "id": "q016",
+      "type": "single-choice",
+      "category": "pricing",
+      "difficulty": "medium",
+      "question": "Extra Usage 触发切换到 PAYG Key 后，这段期间产生的调用费用从哪里扣除？",
+      "options": [
+        { "id": "A", "text": "继续消耗订阅的 Flows 额度" },
+        { "id": "B", "text": "按 Pay As You Go Credits 的规则，根据实际 token 消耗从 PAYG 账户余额中扣费" },
+        { "id": "C", "text": "免费使用，不产生任何费用" },
+        { "id": "D", "text": "记为欠款，待下个订阅周期一并补扣" }
+      ],
+      "answer": "B",
+      "explanation": "当 Extra Usage 触发切换后，计费方式从 Flows 切换为 PAYG：按实际 token 消耗以 Credits 形式从 Pay As You Go 账户余额中扣费（1 Credit = 1 美元）。因此使用此功能前需确保 PAYG 账户有足够余额，否则切换后依然会因余额不足而调用失败；同时建议在订阅管理页持续关注 Extra Usage 的消耗明细，避免产生意外成本。",
+      "tags": ["extra-usage", "pay-as-you-go", "billing", "credits"],
+      "contributor": "zenmux-team",
+      "references": [
+        "https://zenmux.ai/platform/subscription",
+        "https://docs.zenmux.ai/guide/pay-as-you-go"
+      ]
+    },
+    {
+      "id": "q017",
+      "type": "true-false",
+      "category": "pricing",
+      "difficulty": "medium",
+      "question": "启用 Extra Usage 后，用户需要在客户端中手动把 API Key 从订阅制 Key 切换成 PAYG Key，切换和恢复都要手动完成。",
+      "options": [
+        { "id": "A", "text": "正确" },
+        { "id": "B", "text": "错误" }
+      ],
+      "answer": "B",
+      "explanation": "Extra Usage 的关键卖点是\"无缝自动切换\"：用户在客户端仍然使用原有的订阅制 Key（sk-ss-v1- 开头），配额耗尽时 ZenMux 后端自动切换到关联的 PAYG Key（sk-ai- 开头）计费，配额重置后自动切回。整个过程对开发 / 编程 / 对话工作流无感，不需要手动更换客户端中的 API Key。",
+      "tags": ["extra-usage", "无缝切换", "api-key"],
+      "contributor": "zenmux-team",
+      "references": ["https://zenmux.ai/platform/subscription"]
+    },
+    {
+      "id": "q018",
+      "type": "single-choice",
+      "category": "pricing",
+      "difficulty": "medium",
+      "question": "下列哪个场景最适合使用 Extra Usage 功能？",
+      "options": [
+        { "id": "A", "text": "希望完全规避订阅制速率限制的高并发生产环境" },
+        { "id": "B", "text": "订阅制用量平时够用，但偶尔在 5 小时或每周窗口末尾被耗尽，导致开发 / 编程流程被打断" },
+        { "id": "C", "text": "不想开通 PAYG，只用订阅制的新手用户" },
+        { "id": "D", "text": "想用一份订阅额度在多个账号间共享使用" }
+      ],
+      "answer": "B",
+      "explanation": "Extra Usage 的设计初衷是解决\"订阅额度总体够用，但偶尔在窗口末尾被耗尽\"这一痛点，让开发 / 编程 / 对话流程不中断。它不适合 A（生产高并发应直接使用 PAYG 以获得无速率限制和更高 RPM）、C（必须预先开通 PAYG 并有余额才能使用本功能）和 D（多账号池化共享额度违反服务条款）。",
+      "tags": ["extra-usage", "use-cases", "订阅制"],
+      "contributor": "zenmux-team",
+      "references": ["https://zenmux.ai/platform/subscription"]
     }
   ]
 }

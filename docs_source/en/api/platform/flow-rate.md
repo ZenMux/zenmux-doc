@@ -89,7 +89,7 @@ const data = await response.json();
 
 :::
 
-## Example Response
+::: api-response
 
 ```json
 {
@@ -101,3 +101,5 @@ const data = await response.json();
   }
 }
 ```
+
+:::
