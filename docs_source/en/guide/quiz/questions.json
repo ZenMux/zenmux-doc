@@ -3,7 +3,7 @@
   "metadata": {
     "title": "ZenMux Knowledge Quiz Bank",
     "description": "Knowledge quiz questions used during the ZenMux subscription purchase flow. Community contributions are welcome. Question types include single-choice and true/false.",
-    "lastUpdated": "2026-03-18",
+    "lastUpdated": "2026-04-20",
     "categories": [
       "claude-code",
       "zenmux-basics",
@@ -150,22 +150,6 @@
     {
       "id": "q008",
       "type": "true-false",
-      "category": "pricing",
-      "difficulty": "easy",
-      "question": "Topping up $100 on the ZenMux Pay As You Go plan gives you exactly $100 in usable API credit.",
-      "options": [
-        { "id": "A", "text": "True" },
-        { "id": "B", "text": "False" }
-      ],
-      "answer": "B",
-      "explanation": "At the time of writing, Pay As You Go top-ups include an automatic 5% bonus (the exact bonus rate may change — refer to the official site for the current offer). Topping up $100 therefore gives you $105 in usable API credit. The bonus arrives as Bonus Credits, which are drawn down first before your paid credits are used.",
-      "tags": ["pay-as-you-go", "top-up", "bonus", "pricing"],
-      "contributor": "zenmux-team",
-      "references": ["https://docs.zenmux.ai/guide/pay-as-you-go"]
-    },
-    {
-      "id": "q009",
-      "type": "true-false",
       "category": "api-usage",
       "difficulty": "easy",
       "question": "The ZenMux Builder Plan subscription API key and the Pay As You Go API key are the same and can be used interchangeably.",
@@ -183,7 +167,7 @@
       ]
     },
     {
-      "id": "q010",
+      "id": "q009",
       "type": "single-choice",
       "category": "zenmux-basics",
       "difficulty": "easy",
@@ -201,7 +185,7 @@
       "references": ["https://docs.zenmux.ai/guide/subscription"]
     },
     {
-      "id": "q011",
+      "id": "q010",
       "type": "single-choice",
       "category": "pricing",
       "difficulty": "easy",
@@ -219,7 +203,7 @@
       "references": ["https://docs.zenmux.ai/terms-of-service"]
     },
     {
-      "id": "q012",
+      "id": "q011",
       "type": "single-choice",
       "category": "zenmux-basics",
       "difficulty": "medium",
@@ -237,7 +221,7 @@
       "references": ["https://docs.zenmux.ai/privacy"]
     },
     {
-      "id": "q013",
+      "id": "q012",
       "type": "single-choice",
       "category": "pricing",
       "difficulty": "medium",
@@ -253,6 +237,113 @@
       "tags": ["refund", "service-fee", "pricing", "terms-of-service"],
       "contributor": "zenmux-team",
       "references": ["https://docs.zenmux.ai/terms-of-service"]
+    },
+    {
+      "id": "q013",
+      "type": "single-choice",
+      "category": "pricing",
+      "difficulty": "easy",
+      "question": "When a ZenMux Builder Plan subscription reaches its 5-hour or weekly quota limit, what does the Extra Usage (automatic overage switching) feature do?",
+      "options": [
+        { "id": "A", "text": "Immediately interrupts service — you must wait until the quota resets to continue" },
+        { "id": "B", "text": "Automatically switches to the linked Pay As You Go API Key so usage continues uninterrupted" },
+        { "id": "C", "text": "Queues subsequent requests and retries them in batch once the quota resets" },
+        { "id": "D", "text": "Automatically upgrades the user's subscription to a higher tier" }
+      ],
+      "answer": "B",
+      "explanation": "Extra Usage is the Builder Plan's automatic overage switching mechanism. When subscription usage hits the 5-hour or weekly quota limit, ZenMux automatically switches to the Pay As You Go API Key pre-linked on the Subscription Management page, billing against your PAYG balance so your dev/coding/chat workflow isn't interrupted. When the subscription quota window resets, it switches back to the subscription key automatically.",
+      "tags": ["extra-usage", "subscription", "pay-as-you-go", "quota"],
+      "contributor": "zenmux-team",
+      "references": ["https://zenmux.ai/platform/subscription"]
+    },
+    {
+      "id": "q014",
+      "type": "true-false",
+      "category": "pricing",
+      "difficulty": "easy",
+      "question": "Once Extra Usage is enabled, the system automatically switches back to subscription billing as soon as the subscription quota window resets — no manual action required.",
+      "options": [
+        { "id": "A", "text": "True" },
+        { "id": "B", "text": "False" }
+      ],
+      "answer": "A",
+      "explanation": "Automatic recovery is a core behavior of Extra Usage: when the subscription quota is exhausted it switches to the PAYG key, and as soon as the 5-hour or weekly window resets it switches back to subscription billing. The whole process is transparent to the client — you keep using the same subscription key and never need to swap API keys in your IDE or terminal.",
+      "tags": ["extra-usage", "subscription", "auto-recovery"],
+      "contributor": "zenmux-team",
+      "references": ["https://zenmux.ai/platform/subscription"]
+    },
+    {
+      "id": "q015",
+      "type": "single-choice",
+      "category": "pricing",
+      "difficulty": "medium",
+      "question": "Which of the following correctly describes how Extra Usage is configured?",
+      "options": [
+        { "id": "A", "text": "You can only link a newly created PAYG API Key — existing keys are not supported" },
+        { "id": "B", "text": "On the Subscription Management page you can pick an existing PAYG API Key from the dropdown, or click Create new key to create one" },
+        { "id": "C", "text": "Once configured it cannot be changed unless you cancel your subscription" },
+        { "id": "D", "text": "You must email support to enable it — it cannot be self-configured in the console" }
+      ],
+      "answer": "B",
+      "explanation": "On the Subscription Management page, toggling Extra Usage opens a \"Select a Key\" dialog where you can choose an existing PAYG API Key from the dropdown, or click \"Create new key\" to create one on the fly. After setup, you can click \"Reselect\" anytime to change the backup key, or flip the toggle off to disable the feature — everything is fully self-service.",
+      "tags": ["extra-usage", "api-key", "configuration"],
+      "contributor": "zenmux-team",
+      "references": ["https://zenmux.ai/platform/subscription"]
+    },
+    {
+      "id": "q016",
+      "type": "single-choice",
+      "category": "pricing",
+      "difficulty": "medium",
+      "question": "After Extra Usage switches over to the PAYG key, how are calls made during the overage period billed?",
+      "options": [
+        { "id": "A", "text": "They continue to consume the subscription's Flows quota" },
+        { "id": "B", "text": "They are billed as Pay As You Go Credits against actual token consumption, deducted from the PAYG balance" },
+        { "id": "C", "text": "They are free and incur no charges" },
+        { "id": "D", "text": "They are recorded as debt and deducted together in the next subscription cycle" }
+      ],
+      "answer": "B",
+      "explanation": "Once Extra Usage triggers a switch, billing shifts from Flows to PAYG: charges are deducted from the Pay As You Go balance as Credits based on actual token consumption (1 Credit = $1). Before relying on the feature, make sure your PAYG account has enough balance — otherwise calls will still fail after the switch. It's also a good idea to monitor Extra Usage spending on the Subscription Management page to avoid unexpected costs.",
+      "tags": ["extra-usage", "pay-as-you-go", "billing", "credits"],
+      "contributor": "zenmux-team",
+      "references": [
+        "https://zenmux.ai/platform/subscription",
+        "https://docs.zenmux.ai/guide/pay-as-you-go"
+      ]
+    },
+    {
+      "id": "q017",
+      "type": "true-false",
+      "category": "pricing",
+      "difficulty": "medium",
+      "question": "After enabling Extra Usage, users must manually swap the API key in their client from the subscription key to the PAYG key, and then swap it back when the quota resets.",
+      "options": [
+        { "id": "A", "text": "True" },
+        { "id": "B", "text": "False" }
+      ],
+      "answer": "B",
+      "explanation": "The key selling point of Extra Usage is seamless, automatic switching. The client continues to use the original subscription key (starting with `sk-ss-v1-`); when the quota is exhausted, the ZenMux backend silently switches billing to the linked PAYG key (starting with `sk-ai-`), and switches back when the quota resets. The entire process is transparent to your dev/coding/chat workflow — no manual key changes are required.",
+      "tags": ["extra-usage", "seamless-switching", "api-key"],
+      "contributor": "zenmux-team",
+      "references": ["https://zenmux.ai/platform/subscription"]
+    },
+    {
+      "id": "q018",
+      "type": "single-choice",
+      "category": "pricing",
+      "difficulty": "medium",
+      "question": "Which scenario is Extra Usage best suited for?",
+      "options": [
+        { "id": "A", "text": "A high-concurrency production environment that needs to bypass subscription rate limits entirely" },
+        { "id": "B", "text": "Cases where the subscription quota is generally enough, but occasionally runs out near the end of the 5-hour or weekly window, interrupting ongoing dev/coding work" },
+        { "id": "C", "text": "Beginner users who don't want to set up PAYG and only want to use the subscription plan" },
+        { "id": "D", "text": "Sharing a single subscription quota across multiple accounts" }
+      ],
+      "answer": "B",
+      "explanation": "Extra Usage is designed to solve the specific pain point of \"my subscription quota is normally enough, but occasionally runs out at the end of a window and interrupts my work.\" It's not a fit for A (high-concurrency production workloads should use PAYG directly for unrestricted RPM), C (the feature requires an active PAYG balance to function), or D (pooling a subscription across multiple accounts violates the Terms of Service).",
+      "tags": ["extra-usage", "use-cases", "subscription"],
+      "contributor": "zenmux-team",
+      "references": ["https://zenmux.ai/platform/subscription"]
     }
   ]
 }

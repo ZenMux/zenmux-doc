@@ -1,0 +1,145 @@
+name: General Feedback
+description: Share your experience, thoughts, or any feedback about ZenMux
+title: "[Feedback]: "
+labels: ["feedback", "community"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **We're building ZenMux in public and your voice matters!**
+
+        Whether it's a first impression, a feature comparison, a pricing thought, or a workflow tip — we want to hear it all. Every piece of feedback directly shapes the product. Past community suggestions have led to new protocol support, routing improvements, and pricing adjustments.
+
+        No feedback is too small. Thank you for being part of the journey!
+
+  - type: dropdown
+    id: feedback-type
+    attributes:
+      label: Feedback type
+      options:
+        - Product impressions / First experience
+        - User experience / Usability
+        - Model quality / Response quality
+        - Latency / Performance
+        - Insurance / Quality assurance (HLE testing, auto-compensation)
+        - Observability (logs, cost analytics, usage dashboard)
+        - Pricing / Value feedback
+        - Comparison with similar products (OpenRouter, LiteLLM, etc.)
+        - AI coding tools experience (Claude Code, Cursor, Cline, Copilot, etc.)
+        - Community / Ecosystem
+        - General thoughts
+    validations:
+      required: true
+
+  - type: textarea
+    id: feedback
+    attributes:
+      label: Your feedback
+      description: Tell us what's on your mind — be as detailed or concise as you like
+      placeholder: |
+        I've been using ZenMux for a week and here's what I think...
+        Compared to [other product], ZenMux does X better but could improve on Y...
+        As a [role], I find that...
+        The provider routing saved me when [provider] went down during...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: satisfaction
+    attributes:
+      label: How satisfied are you with ZenMux overall?
+      description: Quick pulse check — no wrong answer!
+      options:
+        - Very satisfied - Love it, recommending to others
+        - Satisfied - Works well for my needs
+        - Neutral - It's okay, room for improvement
+        - Unsatisfied - Significant issues affecting my experience
+        - Very unsatisfied - Considering alternatives
+    validations:
+      required: false
+
+  - type: dropdown
+    id: use-case
+    attributes:
+      label: What do you primarily use ZenMux for?
+      description: Helps us understand our user scenarios
+      multiple: true
+      options:
+        - AI-assisted coding (Claude Code, Cursor, Cline, Copilot, Codex, Gemini CLI, etc.)
+        - Chatbot / Conversational AI
+        - Content generation / Writing
+        - Image / Video generation
+        - API aggregation for production apps
+        - Observability / Cost management
+        - Learning / Exploring AI models
+        - Rapid prototyping / Vibe coding
+        - Research / Benchmarking models
+        - Other
+    validations:
+      required: false
+
+  - type: dropdown
+    id: role
+    attributes:
+      label: How would you describe yourself?
+      description: This helps us understand our user base better
+      options:
+        - Individual developer
+        - Startup / Small team
+        - Enterprise / Large organization
+        - Student / Learner
+        - Open-source contributor
+        - AI/ML researcher
+        - Evaluating / Haven't started using yet
+        - Prefer not to say
+    validations:
+      required: false
+
+  - type: dropdown
+    id: plan
+    attributes:
+      label: Which plan are you on?
+      options:
+        - Builder Plan (subscription)
+        - Pay As You Go
+        - Both
+        - Free trial / Not yet subscribed
+        - Prefer not to say
+    validations:
+      required: false
+
+  - type: textarea
+    id: improvement
+    attributes:
+      label: If you could change one thing about ZenMux, what would it be?
+      description: Optional but very helpful!
+      placeholder: |
+        I wish ZenMux could...
+        The one thing holding me back is...
+        If only the dashboard showed...
+
+  - type: dropdown
+    id: discovery
+    attributes:
+      label: How did you hear about ZenMux?
+      description: Helps us understand what's working
+      options:
+        - Twitter / X
+        - GitHub
+        - Discord
+        - Friend / Colleague recommendation
+        - Blog post / Article
+        - Search engine
+        - YouTube / Video
+        - Reddit
+        - Other
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: follow-up
+    attributes:
+      label: Follow-up
+      options:
+        - label: I'm open to being contacted for more detailed feedback
+          required: false

@@ -1,0 +1,121 @@
+name: Feature Request
+description: Suggest a new feature or improvement for ZenMux
+title: "[Feature]: "
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for your suggestion! Your ideas help shape the future of ZenMux. Please describe what you'd like to see.
+
+        You can also check our [public roadmap](https://github.com/orgs/ZenMux/projects/2) to see what's already planned.
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      description: Which area does this feature relate to?
+      multiple: true
+      options:
+        - API (new endpoints, parameters, response formats)
+        - Protocol support (OpenAI / Anthropic / Gemini compatibility)
+        - Routing (provider routing, model routing, fallback strategies)
+        - Streaming / Real-time
+        - Multimodal (vision, image generation, video generation)
+        - Tool calling / Function calling
+        - Prompt cache / Performance optimization
+        - Structured output / JSON mode
+        - Reasoning / Thinking models
+        - Web search / Grounding
+        - Long context (1M tokens)
+        - Insurance / Quality assurance (HLE testing, auto-compensation)
+        - Observability (logs, cost tracking, usage analytics)
+        - Studio Chat (built-in chat UI)
+        - Dashboard (web console, analytics, monitoring)
+        - SDK / Developer tools
+        - Billing / Pricing (plans, usage, cost optimization)
+        - Developer experience (docs, onboarding, error messages)
+        - Security (authentication, rate limiting, access control)
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / Pain point
+      description: What problem does this feature solve? What's your current pain point?
+      placeholder: |
+        Currently I have to manually switch between providers when one is down...
+        There's no way to set spending limits per API key...
+        I need to monitor token usage across models in real time but...
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: How would you like this to work? Describe your ideal experience.
+      placeholder: |
+        It would be great if ZenMux could automatically...
+        I'd like a dashboard page that shows...
+        The API should support a new parameter...
+    validations:
+      required: true
+
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use case
+      description: Describe the real-world scenario where you need this feature
+      placeholder: |
+        I'm building a chatbot that needs to...
+        Our team uses ZenMux to aggregate multiple LLM providers and we need...
+        I use ZenMux with Claude Code / Cursor / Cline and I want...
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: How important is this to you?
+      options:
+        - Critical - Blocking my adoption or usage
+        - High - Would significantly improve my experience
+        - Medium - Nice to have
+        - Low - Minor improvement
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Have you found any workarounds or seen this feature in similar products?
+      placeholder: |
+        Currently I work around this by...
+        I've seen similar features in OpenRouter / LiteLLM / ...
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: Any other context, mockups, or examples
+      placeholder: |
+        Here's a diagram of what I'm imagining...
+        This would help users who...
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      options:
+        - label: I'm willing to help implement or test this feature
+          required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission checklist
+      options:
+        - label: I have searched existing issues to avoid duplicates
+          required: true

@@ -1,0 +1,20 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question or Discussion
+    url: https://github.com/ZenMux/zenmux-doc/discussions
+    about: Ask questions or discuss ideas with the community
+  - name: Public Roadmap
+    url: https://github.com/orgs/ZenMux/projects/2
+    about: View the ZenMux public roadmap and track what we're building
+  - name: Discord Community
+    url: http://discord.gg/vHZZzj84Bm
+    about: Join our Discord for real-time chat, support, and community discussions
+  - name: Documentation Site
+    url: https://docs.zenmux.ai
+    about: Visit the official ZenMux documentation
+  - name: Model List
+    url: https://zenmux.ai/models
+    about: Browse all supported models and providers
+  - name: HLE Benchmark Leaderboard
+    url: https://docs.zenmux.ai/about/zenmux-benchmark
+    about: View the ZenMux-Benchmark quality testing results for all model channels

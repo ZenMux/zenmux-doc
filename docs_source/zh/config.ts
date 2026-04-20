@@ -205,6 +205,14 @@ export default defineLoacaleConfig({
             text: "Cursor 接入 ZenMux 指南",
             link: "/zh/best-practices/cursor",
           },
+          {
+            text: "RikkaHub 接入 ZenMux 指南",
+            link: "/zh/best-practices/rikkahub",
+          },
+          {
+            text: "Hermes Agent 接入 ZenMux 指南",
+            link: "/zh/best-practices/hermes-agent",
+          },
         ],
       },
       {

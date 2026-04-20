@@ -90,7 +90,7 @@ const data = await response.json();
 
 :::
 
-## 响应示例
+::: api-response
 
 ```json
 {
@@ -103,3 +103,5 @@ const data = await response.json();
   }
 }
 ```
+
+:::
