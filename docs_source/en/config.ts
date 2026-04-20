@@ -190,6 +190,10 @@ export default defineLoacaleConfig({
             text: "RikkaHub Integration",
             link: "/best-practices/rikkahub",
           },
+          {
+            text: "Hermes Agent Integration",
+            link: "/best-practices/hermes-agent",
+          },
         ],
       },
       {
