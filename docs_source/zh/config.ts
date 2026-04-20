@@ -280,6 +280,18 @@ export default defineLoacaleConfig({
                 text: "Get Generation",
                 link: "/zh/api/platform/get-generation",
               },
+              {
+                text: "Get Statistics Timeseries",
+                link: "/zh/api/platform/statistics-timeseries",
+              },
+              {
+                text: "Get Statistics Leaderboard",
+                link: "/zh/api/platform/statistics-leaderboard",
+              },
+              {
+                text: "Get Statistics Market Share",
+                link: "/zh/api/platform/statistics-market-share",
+              },
             ],
           },
         ],
