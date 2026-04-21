@@ -115,6 +115,7 @@ export default defineLoacaleConfig({
                 text: "Video Generation",
                 link: "/guide/advanced/video-generation",
               },
+              { text: "Embeddings", link: "/guide/advanced/embeddings" },
               { text: "Web Search", link: "/guide/advanced/web-search" },
               { text: "1M Long Context", link: "/guide/advanced/long-context" },
               { text: "Error Codes", link: "/guide/advanced/error-codes" },
@@ -214,6 +215,10 @@ export default defineLoacaleConfig({
               {
                 text: "Create a Model Response",
                 link: "/api/openai/openai-responses",
+              },
+              {
+                text: "Create Embeddings",
+                link: "/api/openai/create-embeddings",
               },
               {
                 text: "List Models",
