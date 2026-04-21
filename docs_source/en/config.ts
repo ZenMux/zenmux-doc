@@ -97,6 +97,7 @@ export default defineLoacaleConfig({
                 link: "/guide/advanced/provider-routing",
               },
               { text: "Model Routing", link: "/guide/advanced/model-routing" },
+              { text: "Model Aliases", link: "/guide/advanced/model-alias" },
               { text: "Fallback Model", link: "/guide/advanced/fallback" },
               { text: "Streaming", link: "/guide/advanced/streaming" },
               { text: "Multimodal", link: "/guide/advanced/multimodal" },

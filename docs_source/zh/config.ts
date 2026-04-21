@@ -99,6 +99,7 @@ export default defineLoacaleConfig({
                 link: "/zh/guide/advanced/provider-routing",
               },
               { text: "模型路由", link: "/zh/guide/advanced/model-routing" },
+              { text: "模型别名", link: "/zh/guide/advanced/model-alias" },
               { text: "兜底模型", link: "/zh/guide/advanced/fallback" },
               { text: "流式", link: "/zh/guide/advanced/streaming" },
               { text: "多模态", link: "/zh/guide/advanced/multimodal" },
