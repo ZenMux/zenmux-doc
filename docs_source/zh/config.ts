@@ -111,6 +111,7 @@ export default defineLoacaleConfig({
               { text: "提示词缓存", link: "/zh/guide/advanced/prompt-cache" },
               { text: "图片生成", link: "/zh/guide/advanced/image-generation" },
               { text: "视频生成", link: "/zh/guide/advanced/video-generation" },
+              { text: "文本嵌入", link: "/zh/guide/advanced/embeddings" },
               { text: "网络搜索", link: "/zh/guide/advanced/web-search" },
               { text: "1M 长上下文", link: "/zh/guide/advanced/long-context" },
               { text: "错误码参考", link: "/zh/guide/advanced/error-codes" },
@@ -228,6 +229,10 @@ export default defineLoacaleConfig({
               {
                 text: "Create a Model Response",
                 link: "/zh/api/openai/openai-responses",
+              },
+              {
+                text: "Create Embeddings",
+                link: "/zh/api/openai/create-embeddings",
               },
               {
                 text: "List Models",
