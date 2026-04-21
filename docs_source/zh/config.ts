@@ -146,6 +146,10 @@ export default defineLoacaleConfig({
               { text: "Studio-Chat", link: "/zh/guide/studio/studio-chat" },
             ],
           },
+          {
+            text: "ZenMux Skills",
+            link: "/zh/guide/zenmux-skills",
+          },
         ],
       },
       {
