@@ -175,16 +175,16 @@ This step writes the ZenMux connection configuration into your shell config file
 # Core settings: ZenMux endpoint and authentication
 export ANTHROPIC_BASE_URL="https://zenmux.ai/api/anthropic"  # ZenMux Anthropic-compatible endpoint
 export ANTHROPIC_AUTH_TOKEN="sk-ss-v1-xxx"                   # Replace with your ZenMux API Key (subscription sk-ss-v1-xxx or pay-as-you-go sk-ai-v1-xxx)
-export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC="1"          # Disable non-essential traffic
-export API_TIMEOUT_MS="30000000"                              # API timeout in milliseconds
-
 # Avoid conflicts: if you previously set ANTHROPIC_API_KEY locally, explicitly clear it
 export ANTHROPIC_API_KEY=""
 
-# Default model configuration (required): map the Haiku / Sonnet / Opus speed tiers to actual models
-export ANTHROPIC_DEFAULT_HAIKU_MODEL="anthropic/claude-haiku-4.5"   # Fast model
-export ANTHROPIC_DEFAULT_SONNET_MODEL="anthropic/claude-sonnet-4.5" # Balanced model
-export ANTHROPIC_DEFAULT_OPUS_MODEL="anthropic/claude-opus-4.5"     # Most capable model
+# Optional tweaks
+export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC="1"          # Disable non-essential telemetry
+export API_TIMEOUT_MS="30000000"                              # API request timeout (milliseconds)
+
+# Note: The three core variables above are sufficient. If you do NOT set the model variables,
+#       Claude Code will use its built-in defaults (the official Anthropic Claude series).
+#       See the "Switch / Set Default Models" section below if you want to customize.
 
 # 3. Apply the configuration (choose one):
 # Option 1: Reload the config file (recommended)
@@ -221,16 +221,16 @@ notepad $PROFILE
 # Core settings: ZenMux endpoint and authentication
 $env:ANTHROPIC_BASE_URL = "https://zenmux.ai/api/anthropic"  # ZenMux Anthropic-compatible endpoint
 $env:ANTHROPIC_AUTH_TOKEN = "sk-ss-v1-xxx"                   # Replace with your ZenMux API Key (subscription sk-ss-v1-xxx or pay-as-you-go sk-ai-v1-xxx)
-$env:CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC = "1"          # Disable non-essential traffic
-$env:API_TIMEOUT_MS = "30000000"                              # API timeout in milliseconds
-
 # Avoid conflicts: if you previously set ANTHROPIC_API_KEY locally, explicitly clear it
 $env:ANTHROPIC_API_KEY = ""
 
-# Default model configuration (required): map the Haiku / Sonnet / Opus speed tiers to actual models
-$env:ANTHROPIC_DEFAULT_HAIKU_MODEL = "anthropic/claude-haiku-4.5"   # Fast model
-$env:ANTHROPIC_DEFAULT_SONNET_MODEL = "anthropic/claude-sonnet-4.5" # Balanced model
-$env:ANTHROPIC_DEFAULT_OPUS_MODEL = "anthropic/claude-opus-4.5"     # Most capable model
+# Optional tweaks
+$env:CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC = "1"          # Disable non-essential telemetry
+$env:API_TIMEOUT_MS = "30000000"                              # API request timeout (milliseconds)
+
+# Note: The three core variables above are sufficient. If you do NOT set the model variables,
+#       Claude Code will use its built-in defaults (the official Anthropic Claude series).
+#       See the "Switch / Set Default Models" section below if you want to customize.
 
 # 5. Save the file, then restart PowerShell to apply
 # Or run this in the current window: . $PROFILE
@@ -261,14 +261,14 @@ Be sure to replace `sk-ss-v1-xxx` or `sk-ai-v1-xxx` in the configuration with yo
 
 ::: tip 📋 Environment Variable Reference
 
-| Variable                                   | Purpose            | Notes                                                            |
-| ------------------------------------------ | ------------------ | ---------------------------------------------------------------- |
-| `ANTHROPIC_BASE_URL`                       | Service endpoint   | Redirects Claude Code requests to ZenMux                         |
-| `ANTHROPIC_AUTH_TOKEN`                     | Auth token         | Your ZenMux API Key (subscription or pay-as-you-go)              |
-| `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` | Traffic control    | Disables non-essential telemetry to improve privacy              |
-| `ANTHROPIC_API_KEY`                        | Conflict avoidance | Clear it to avoid conflicts with existing local Anthropic config |
-| `API_TIMEOUT_MS`                           | API timeout        | Sets the API request timeout in milliseconds                     |
-| `ANTHROPIC_DEFAULT_*_MODEL`                | Model mapping      | Maps Haiku/Sonnet/Opus tiers to actual models                    |
+| Variable                                   | Required | Purpose            | Notes                                                                                      |
+| ------------------------------------------ | -------- | ------------------ | ------------------------------------------------------------------------------------------ |
+| `ANTHROPIC_BASE_URL`                       | ✅        | Service endpoint   | Redirects Claude Code requests to ZenMux                                                   |
+| `ANTHROPIC_AUTH_TOKEN`                     | ✅        | Auth token         | Your ZenMux API Key (subscription or pay-as-you-go)                                        |
+| `ANTHROPIC_API_KEY`                        | ✅        | Conflict avoidance | Clear to `""` to avoid conflicts with an existing local Anthropic config                   |
+| `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` |          | Traffic control    | Disables non-essential telemetry to improve privacy                                        |
+| `API_TIMEOUT_MS`                           |          | API timeout        | Sets the API request timeout in milliseconds                                               |
+| `ANTHROPIC_DEFAULT_*_MODEL`                |          | Model mapping      | Maps Haiku/Sonnet/Opus tiers. Leave unset to use Claude Code's built-in Claude defaults    |
 
 :::
 
@@ -321,7 +321,30 @@ If everything matches, your setup is complete—you can now use Claude Code thro
 
 ## Switch / Set Default Models
 
-You’ve already configured the default models in your shell profile (**required**). If you want to switch to other models, just update the same set of environment variables:
+Configuring default models is **optional**. If you leave `ANTHROPIC_DEFAULT_*_MODEL` unset, Claude Code falls back to its built-in defaults — the official Anthropic Claude series.
+
+### Using Official Claude Models (Recommended: Aliases)
+
+For official Claude models, use the **Claude model alias format** — e.g., `claude-opus-4-7`, `claude-sonnet-4-6`, `claude-haiku-4-5` — rather than the full ZenMux id (`anthropic/claude-sonnet-4.6`).
+
+```bash
+# ✅ Recommended: aliases unlock all Claude Code features (1M context, effort control, etc.)
+export ANTHROPIC_DEFAULT_HAIKU_MODEL="claude-haiku-4-5"    # Fast tier
+export ANTHROPIC_DEFAULT_SONNET_MODEL="claude-sonnet-4-6"  # Balanced tier
+export ANTHROPIC_DEFAULT_OPUS_MODEL="claude-opus-4-7"      # Most capable tier
+```
+
+::: tip 💡 Why use aliases?
+
+Claude Code validates model names against hardcoded strings to enable features like the **1M context window** and **reasoning effort control**. When the validator sees `claude-sonnet-4-6`, the feature activates; when it sees `anthropic/claude-sonnet-4.6`, the check fails and the feature silently turns off.
+
+ZenMux's model alias feature makes `claude-sonnet-4-6` fully equivalent to `anthropic/claude-sonnet-4.6`, so Claude Code's checks pass and every downstream feature works as designed. See [Model Aliases](/guide/advanced/model-alias) for the full list and more details.
+
+:::
+
+### Using Non-Claude Models
+
+When pointing Claude Code at a non-Claude model (e.g., GPT, Gemini, Doubao), you must use the **full ZenMux model id** — aliases only cover the native Claude family:
 
 ```bash
 export ANTHROPIC_DEFAULT_HAIKU_MODEL="volcengine/doubao-seed-code"
@@ -379,7 +402,10 @@ Click **Edit in settings.json**, then add or modify the following configuration:
 
 ```json
 {
-  "claudeCode.selectedModel": "anthropic/claude-sonnet-4.5",
+  // Optional: picks the model shown in the editor UI. Omit to use Claude Code's default.
+  // For official Claude models, prefer aliases (e.g., "claude-sonnet-4-6") so that Claude Code
+  // features such as the 1M context window and effort control stay enabled.
+  "claudeCode.selectedModel": "claude-sonnet-4-6",
   "claudeCode.environmentVariables": [
     {
       "name": "ANTHROPIC_BASE_URL",
@@ -396,19 +422,11 @@ Click **Edit in settings.json**, then add or modify the following configuration:
     {
       "name": "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC",
       "value": "1"
-    },
-    {
-      "name": "ANTHROPIC_DEFAULT_HAIKU_MODEL",
-      "value": "anthropic/claude-haiku-4.5"
-    },
-    {
-      "name": "ANTHROPIC_DEFAULT_SONNET_MODEL",
-      "value": "anthropic/claude-sonnet-4.5"
-    },
-    {
-      "name": "ANTHROPIC_DEFAULT_OPUS_MODEL",
-      "value": "anthropic/claude-opus-4.5"
     }
+    // Note: ANTHROPIC_DEFAULT_*_MODEL is optional. Leave unset to use Claude Code's built-in
+    // Claude defaults. To customize, add them here using Claude aliases for official Claude
+    // models (claude-haiku-4-5 / claude-sonnet-4-6 / claude-opus-4-7). See the Model Alias
+    // guide: /guide/advanced/model-alias
   ]
 }
 ```
@@ -532,12 +550,12 @@ This usually happens because old config files cached prior authentication info, 
    ```bash
    export ANTHROPIC_BASE_URL="https://zenmux.ai/api/anthropic"
    export ANTHROPIC_AUTH_TOKEN="sk-ss-v1-xxx"  # Replace with your ZenMux API Key
+   export ANTHROPIC_API_KEY=""                 # Clear to avoid conflicts
    export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC="1"
    export API_TIMEOUT_MS="30000000"
-   export ANTHROPIC_API_KEY=""  # Clear to avoid conflicts
-   export ANTHROPIC_DEFAULT_HAIKU_MODEL="anthropic/claude-haiku-4.5"
-   export ANTHROPIC_DEFAULT_SONNET_MODEL="anthropic/claude-sonnet-4.5"
-   export ANTHROPIC_DEFAULT_OPUS_MODEL="anthropic/claude-opus-4.5"
+   # ANTHROPIC_DEFAULT_*_MODEL is optional — unset means "use Claude Code's built-in Claude defaults".
+   # To customize Claude models, prefer aliases so features like 1M context stay enabled. See:
+   # /guide/advanced/model-alias
    ```
 
 3. **Reload environment variables**:
@@ -777,29 +795,46 @@ This is usually caused by the npm global package path not being added to the PAT
 
 :::
 
-::: details How to Enable the 1M Context Window
-**Issue**: The 1M context window is not enabled when using `anthropic/claude-opus-4.6` or `anthropic/claude-sonnet-4.6`.
+::: details How to Enable the 1M Context Window (and Other Claude Code Features)
+**Issue**: Features like the 1M context window or reasoning effort control are not enabled when using model ids such as `anthropic/claude-opus-4.6` or `anthropic/claude-sonnet-4.6`.
 
-**Cause**: Claude Code determines whether to enable the extended context window based on the model name. Model names with the `anthropic/` prefix are not recognized, causing it to fall back to the default context window size.
+**Cause**: Claude Code validates the model name against hardcoded strings to decide whether to enable these features. Ids prefixed with `anthropic/` do not match, so the feature silently falls back to the default behavior.
 
-**Solution**:
-
-Replace the model names with the format that Claude Code can recognize:
-
-- `anthropic/claude-opus-4.6` → `claude-opus-4-6`
-- `anthropic/claude-sonnet-4.6` → `claude-sonnet-4-6`
+**Solution**: Use the **Claude model alias** form instead — aliases are exactly the strings Claude Code expects:
 
 ```bash
-# ❌ 1M context window NOT enabled
+# ❌ 1M context window NOT enabled (full ZenMux id)
 export ANTHROPIC_DEFAULT_SONNET_MODEL="anthropic/claude-sonnet-4.6"
 export ANTHROPIC_DEFAULT_OPUS_MODEL="anthropic/claude-opus-4.6"
 
-# ✅ 1M context window enabled
+# ✅ 1M context window enabled (alias form)
 export ANTHROPIC_DEFAULT_SONNET_MODEL="claude-sonnet-4-6"  # [!code highlight]
-export ANTHROPIC_DEFAULT_OPUS_MODEL="claude-opus-4-6"  # [!code highlight]
+export ANTHROPIC_DEFAULT_OPUS_MODEL="claude-opus-4-6"      # [!code highlight]
 ```
 
 After making the change, reload your config with `source ~/.zshrc` or `source ~/.bashrc`, then restart Claude Code.
+
+For the full list of supported aliases and more background, see the [Model Aliases guide](/guide/advanced/model-alias).
+:::
+
+::: details Cannot Use Opus 4.7 Correctly
+**Issue**: After pointing Claude Code at `claude-opus-4-7` or `anthropic/claude-opus-4.7`, the call errors out or the model refuses to load.
+
+**Solution**:
+
+1. **Upgrade Claude Code to the latest version.** Opus 4.7 is only supported from **v2.1.111** onward. Run `claude --version` first — if it reports a lower version, upgrade before trying again (see the [Install Claude Code](#install-claude-code) section above; the native installer auto-updates, while Homebrew / WinGet require a manual upgrade command).
+
+2. **Configure the model name correctly.** Claude Code enforces a hardcoded check for Opus 4.7, so the model identifier must match exactly what it expects. Pick one of the following:
+
+   - **Option A (Recommended): Use the model alias.** Following the [Model Aliases guide](/guide/advanced/model-alias), set the model to `claude-opus-4-7`:
+
+     ```bash
+     export ANTHROPIC_DEFAULT_OPUS_MODEL="claude-opus-4-7"  # [!code highlight]
+     ```
+
+   - **Option B: Leave the model variables unset.** Comment out or remove `ANTHROPIC_DEFAULT_*_MODEL` and let Claude Code fall back to its built-in defaults — the check never trips in that case.
+
+After editing, reload your shell (`source ~/.zshrc` or `source ~/.bashrc`) and restart Claude Code.
 :::
 
 ::: details Windows: Chinese Characters in Environment Variables

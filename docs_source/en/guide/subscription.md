@@ -534,6 +534,46 @@ You can switch between the two modes anytime without affecting each other, so yo
 Studio Chat and API calls share the same subscription quota pool. Conversations in Studio Chat consume subscription Flows, so allocate your usage accordingly.
 :::
 
+## Upgrades & Downgrades
+
+You can switch plans at any time during an active subscription. **Upgrades** (e.g., Pro → Max) take effect immediately and are billed only for the remaining time in the current cycle; **downgrades** take effect at the end of the current cycle and incur no additional charge.
+
+### Upgrade Proration
+
+When you upgrade, you only pay the price difference for the time left in the current billing cycle — not a full month of the new plan.
+
+**Variables**:
+
+| Symbol      | Meaning                                              |
+| ----------- | ---------------------------------------------------- |
+| `P_old`     | Monthly price of the current plan (USD)              |
+| `P_new`     | Monthly price of the target plan (USD)               |
+| `T`         | Total length of the current billing cycle (~1 month) |
+| `T_rem`     | Time remaining until the current cycle ends         |
+| `Δ`         | Prorated charge due at upgrade                       |
+
+**Formula**:
+
+```text
+Δ = max(0, (P_new − P_old) × (T_rem / T))
+```
+
+In plain English: **proration = plan price difference × fraction of the cycle remaining.** If `P_new ≤ P_old` (i.e., not actually an upgrade), the charge is 0.
+
+**Example**: Upgrading from Pro ($20/month) to Max ($100/month) with 15 days left in a 30-day cycle:
+
+```text
+Δ = (100 − 20) × (15 / 30) = 80 × 0.5 = $40
+```
+
+You are charged **$40** at upgrade time; the next renewal bills the full Max price ($100) as usual.
+
+::: tip 💡 Billing cycle stays anchored
+
+Upgrading **does not reset** your billing cycle — the next renewal date remains the same. This avoids an "upgrade equals renewal" double-charge.
+
+:::
+
 ## Refunds
 
 If you're unsatisfied with your current subscription or need to cancel, you can submit a refund request from the Subscription Management page.

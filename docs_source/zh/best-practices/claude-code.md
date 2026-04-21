@@ -175,16 +175,16 @@ Claude Code 默认直接连接到 Anthropic 官方服务，但通过配置环境
 # 核心配置：ZenMux 服务端点和认证
 export ANTHROPIC_BASE_URL="https://zenmux.ai/api/anthropic"  # ZenMux Anthropic 兼容端点
 export ANTHROPIC_AUTH_TOKEN="sk-ss-v1-xxx"                   # 替换为您的 ZenMux API Key（订阅制 sk-ss-v1-xxx 或按量付费 sk-ai-v1-xxx）
-export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC="1"          # 禁用非必要流量
-export API_TIMEOUT_MS="30000000"                              # API 超时时间（毫秒）
-
 # 避免冲突：如果您本机曾设置过 ANTHROPIC_API_KEY，建议显式置空
 export ANTHROPIC_API_KEY=""
 
-# 默认模型配置（必需）：定义 Haiku / Sonnet / Opus 三个速度档位对应的模型
-export ANTHROPIC_DEFAULT_HAIKU_MODEL="anthropic/claude-haiku-4.5"   # 快速模型
-export ANTHROPIC_DEFAULT_SONNET_MODEL="anthropic/claude-sonnet-4.5" # 平衡模型
-export ANTHROPIC_DEFAULT_OPUS_MODEL="anthropic/claude-opus-4.5"     # 强力模型
+# 可选配置项
+export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC="1"          # 禁用非必要遥测流量
+export API_TIMEOUT_MS="30000000"                              # API 请求超时时间（毫秒）
+
+# 说明：上面三项核心变量已经足够。若不设置模型相关变量，
+#      Claude Code 将使用其内置默认模型（Anthropic 官方 Claude 系列）。
+#      如需自定义模型，请参考下方「更换/指定默认模型」章节。
 
 # 3. 使配置生效（二选一）：
 # 方式 1：重新加载配置文件（推荐）
@@ -221,16 +221,16 @@ notepad $PROFILE
 # 核心配置：ZenMux 服务端点和认证
 $env:ANTHROPIC_BASE_URL = "https://zenmux.ai/api/anthropic"  # ZenMux Anthropic 兼容端点
 $env:ANTHROPIC_AUTH_TOKEN = "sk-ss-v1-xxx"                   # 替换为您的 ZenMux API Key（订阅制 sk-ss-v1-xxx 或按量付费 sk-ai-v1-xxx）
-$env:CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC = "1"          # 禁用非必要流量
-$env:API_TIMEOUT_MS = "30000000"                              # API 超时时间（毫秒）
-
 # 避免冲突：如果您本机曾设置过 ANTHROPIC_API_KEY，建议显式置空
 $env:ANTHROPIC_API_KEY = ""
 
-# 默认模型配置（必需）：定义 Haiku / Sonnet / Opus 三个速度档位对应的模型
-$env:ANTHROPIC_DEFAULT_HAIKU_MODEL = "anthropic/claude-haiku-4.5"   # 快速模型
-$env:ANTHROPIC_DEFAULT_SONNET_MODEL = "anthropic/claude-sonnet-4.5" # 平衡模型
-$env:ANTHROPIC_DEFAULT_OPUS_MODEL = "anthropic/claude-opus-4.5"     # 强力模型
+# 可选配置项
+$env:CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC = "1"          # 禁用非必要遥测流量
+$env:API_TIMEOUT_MS = "30000000"                              # API 请求超时时间（毫秒）
+
+# 说明：上面三项核心变量已经足够。若不设置模型相关变量，
+#      Claude Code 将使用其内置默认模型（Anthropic 官方 Claude 系列）。
+#      如需自定义模型，请参考下方「更换/指定默认模型」章节。
 
 # 5. 保存文件后，重启 PowerShell 窗口使配置生效
 # 或者在当前窗口执行：. $PROFILE
@@ -261,14 +261,14 @@ Write-Host "ANTHROPIC_AUTH_TOKEN: $env:ANTHROPIC_AUTH_TOKEN"
 
 ::: tip 📋 环境变量说明
 
-| 变量名                                     | 作用         | 说明                                      |
-| ------------------------------------------ | ------------ | ----------------------------------------- |
-| `ANTHROPIC_BASE_URL`                       | 服务端点地址 | 将 Claude Code 的请求重定向到 ZenMux 服务 |
-| `ANTHROPIC_AUTH_TOKEN`                     | 认证密钥     | 您的 ZenMux API Key（订阅制或按量付费）   |
-| `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` | 流量控制     | 禁用非必要的数据上报，提升隐私性          |
-| `ANTHROPIC_API_KEY`                        | 冲突避免     | 置空以避免与本机已有 Anthropic 配置冲突   |
-| `API_TIMEOUT_MS`                           | API 超时设置 | 设置 API 请求超时时间（毫秒）             |
-| `ANTHROPIC_DEFAULT_*_MODEL`                | 模型映射     | 定义 Haiku/Sonnet/Opus 档位对应的实际模型 |
+| 变量名                                     | 必填 | 作用         | 说明                                                                 |
+| ------------------------------------------ | ---- | ------------ | -------------------------------------------------------------------- |
+| `ANTHROPIC_BASE_URL`                       | ✅    | 服务端点地址 | 将 Claude Code 的请求重定向到 ZenMux 服务                            |
+| `ANTHROPIC_AUTH_TOKEN`                     | ✅    | 认证密钥     | 您的 ZenMux API Key（订阅制或按量付费）                              |
+| `ANTHROPIC_API_KEY`                        | ✅    | 冲突避免     | 置为 `""` 以避免与本机已有 Anthropic 配置冲突                        |
+| `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` |      | 流量控制     | 禁用非必要的数据上报，提升隐私性                                     |
+| `API_TIMEOUT_MS`                           |      | API 超时设置 | 设置 API 请求超时时间（毫秒）                                        |
+| `ANTHROPIC_DEFAULT_*_MODEL`                |      | 模型映射     | 定义 Haiku/Sonnet/Opus 档位。不设置即使用 Claude Code 内置默认 Claude |
 
 :::
 
@@ -321,7 +321,30 @@ Anthropic base URL: https://zenmux.ai/api/anthropic  # [!code highlight]
 
 ## 更换/指定默认模型
 
-上面我们已经在 shell profile 中配置了默认模型（**不可或缺**）。如果您希望切换到其他模型，只需要修改同一组环境变量即可：
+配置默认模型是**可选的**。如果不设置 `ANTHROPIC_DEFAULT_*_MODEL`，Claude Code 会使用其内置默认模型——即 Anthropic 官方 Claude 系列。
+
+### 使用官方 Claude 模型（推荐：别名）
+
+对于官方 Claude 模型，推荐使用 **Claude 模型别名** 形式（如 `claude-opus-4-7`、`claude-sonnet-4-6`、`claude-haiku-4-5`），而不是完整的 ZenMux 模型 ID（`anthropic/claude-sonnet-4.6`）。
+
+```bash
+# ✅ 推荐：使用别名可以启用 Claude Code 的所有原生特性（1M 上下文、effort 调节等）
+export ANTHROPIC_DEFAULT_HAIKU_MODEL="claude-haiku-4-5"    # 快速档
+export ANTHROPIC_DEFAULT_SONNET_MODEL="claude-sonnet-4-6"  # 平衡档
+export ANTHROPIC_DEFAULT_OPUS_MODEL="claude-opus-4-7"      # 强力档
+```
+
+::: tip 💡 为什么要用别名？
+
+Claude Code 通过硬编码字符串校验模型名称，以启用 **1M 上下文窗口**、**effort 推理强度调节** 等特性。当校验器看到 `claude-sonnet-4-6` 时，相应功能会被激活；而看到 `anthropic/claude-sonnet-4.6` 时校验失败，功能会静默失效。
+
+ZenMux 的模型别名功能让 `claude-sonnet-4-6` 与 `anthropic/claude-sonnet-4.6` 完全等效，Claude Code 的校验通过，所有下游特性都能正常工作。完整别名列表与更多说明请见 [模型别名](/zh/guide/advanced/model-alias)。
+
+:::
+
+### 使用非 Claude 模型
+
+在 Claude Code 中切换到非 Claude 模型（如 GPT、Gemini、Doubao）时，必须使用**完整的 ZenMux 模型 ID**——别名仅覆盖原生 Claude 系列：
 
 ```bash
 export ANTHROPIC_DEFAULT_HAIKU_MODEL="volcengine/doubao-seed-code"
@@ -379,7 +402,10 @@ export ANTHROPIC_DEFAULT_OPUS_MODEL="google/gemini-3-pro-preview"
 
 ```json
 {
-  "claudeCode.selectedModel": "anthropic/claude-sonnet-4.5",
+  // 可选：编辑器当前使用的模型。不填则使用 Claude Code 默认模型。
+  // 使用官方 Claude 模型时推荐使用别名（如 "claude-sonnet-4-6"），
+  // 这样 Claude Code 的 1M 上下文、effort 调节等特性才能正常启用。
+  "claudeCode.selectedModel": "claude-sonnet-4-6",
   "claudeCode.environmentVariables": [
     {
       "name": "ANTHROPIC_BASE_URL",
@@ -396,19 +422,11 @@ export ANTHROPIC_DEFAULT_OPUS_MODEL="google/gemini-3-pro-preview"
     {
       "name": "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC",
       "value": "1"
-    },
-    {
-      "name": "ANTHROPIC_DEFAULT_HAIKU_MODEL",
-      "value": "anthropic/claude-haiku-4.5"
-    },
-    {
-      "name": "ANTHROPIC_DEFAULT_SONNET_MODEL",
-      "value": "anthropic/claude-sonnet-4.5"
-    },
-    {
-      "name": "ANTHROPIC_DEFAULT_OPUS_MODEL",
-      "value": "anthropic/claude-opus-4.5"
     }
+    // 说明：ANTHROPIC_DEFAULT_*_MODEL 为可选项。不配置即使用 Claude Code 的内置默认
+    // Claude 模型。如需自定义，请在此处补充，并对官方 Claude 使用别名
+    // （claude-haiku-4-5 / claude-sonnet-4-6 / claude-opus-4-7）。
+    // 详见模型别名指南：/zh/guide/advanced/model-alias
   ]
 }
 ```
@@ -532,12 +550,12 @@ export ANTHROPIC_DEFAULT_OPUS_MODEL="google/gemini-3-pro-preview"
    ```bash
    export ANTHROPIC_BASE_URL="https://zenmux.ai/api/anthropic"
    export ANTHROPIC_AUTH_TOKEN="sk-ss-v1-xxx"  # 替换为您的 ZenMux API Key
+   export ANTHROPIC_API_KEY=""                 # 清空以避免冲突
    export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC="1"
    export API_TIMEOUT_MS="30000000"
-   export ANTHROPIC_API_KEY=""  # 清空以避免冲突
-   export ANTHROPIC_DEFAULT_HAIKU_MODEL="anthropic/claude-haiku-4.5"
-   export ANTHROPIC_DEFAULT_SONNET_MODEL="anthropic/claude-sonnet-4.5"
-   export ANTHROPIC_DEFAULT_OPUS_MODEL="anthropic/claude-opus-4.5"
+   # ANTHROPIC_DEFAULT_*_MODEL 为可选项——不设置即使用 Claude Code 内置默认 Claude 模型。
+   # 如需自定义 Claude 模型，请使用别名以保证 1M 上下文等特性正常启用。详见：
+   # /zh/guide/advanced/model-alias
    ```
 
 3. **重新加载环境变量**：
@@ -777,29 +795,46 @@ export ANTHROPIC_DEFAULT_OPUS_MODEL="google/gemini-3-pro-preview"
 
 :::
 
-::: details 如何开启 1M 上下文窗口
-**问题**：使用 `anthropic/claude-opus-4.6` 或 `anthropic/claude-sonnet-4.6` 时，1M 上下文窗口无法开启
+::: details 如何开启 1M 上下文窗口（以及其他 Claude Code 原生特性）
+**问题**：使用 `anthropic/claude-opus-4.6` 或 `anthropic/claude-sonnet-4.6` 等模型 ID 时，1M 上下文窗口、effort 调节等特性无法启用。
 
-**原因**：Claude Code 通过模型名称来判断是否启用扩展上下文窗口，带有 `anthropic/` 前缀的模型名称无法被正确识别，会回退到默认的上下文窗口大小。
+**原因**：Claude Code 通过硬编码字符串校验模型名称来决定是否开启这些特性。带 `anthropic/` 前缀的模型 ID 无法匹配，特性会静默回退到默认行为。
 
-**解决方案**：
-
-将模型名称替换为 Claude Code 可识别的格式：
-
-- `anthropic/claude-opus-4.6` → `claude-opus-4-6`
-- `anthropic/claude-sonnet-4.6` → `claude-sonnet-4-6`
+**解决方案**：改用 **Claude 模型别名** 形式——别名正是 Claude Code 所期待的字符串：
 
 ```bash
-# ❌ 无法开启 1M 上下文
+# ❌ 无法开启 1M 上下文（完整 ZenMux ID）
 export ANTHROPIC_DEFAULT_SONNET_MODEL="anthropic/claude-sonnet-4.6"
 export ANTHROPIC_DEFAULT_OPUS_MODEL="anthropic/claude-opus-4.6"
 
-# ✅ 可以正常开启 1M 上下文
+# ✅ 可以正常开启 1M 上下文（别名形式）
 export ANTHROPIC_DEFAULT_SONNET_MODEL="claude-sonnet-4-6"  # [!code highlight]
-export ANTHROPIC_DEFAULT_OPUS_MODEL="claude-opus-4-6"  # [!code highlight]
+export ANTHROPIC_DEFAULT_OPUS_MODEL="claude-opus-4-6"      # [!code highlight]
 ```
 
 修改后记得重新加载配置：`source ~/.zshrc` 或 `source ~/.bashrc`，然后重启 Claude Code。
+
+完整的别名列表与背景说明请见 [模型别名指南](/zh/guide/advanced/model-alias)。
+:::
+
+::: details 无法正常使用 Opus 4.7 模型怎么办
+**问题**：在 Claude Code 中指定 `claude-opus-4-7` 或 `anthropic/claude-opus-4.7` 后，报错或无法正常调用。
+
+**解决方案**：
+
+1. **升级 Claude Code 到最新版本**：Opus 4.7 自 **v2.1.111** 起才被官方支持。请先运行 `claude --version` 检查版本号，版本低于该值请升级（参见上方的[安装 Claude Code](#安装-claude-code)章节；原生安装版本会自动更新，Homebrew / WinGet 需要手动执行升级命令）。
+
+2. **正确配置模型名**：Claude Code 对 Opus 4.7 做了硬编码校验，模型标识必须与其期望一致。请从以下二选一：
+
+   - **方案 A（推荐）：使用模型别名**。参考上方[模型别名指南](/zh/guide/advanced/model-alias)，将模型名设置为 `claude-opus-4-7`：
+
+     ```bash
+     export ANTHROPIC_DEFAULT_OPUS_MODEL="claude-opus-4-7"  # [!code highlight]
+     ```
+
+   - **方案 B：不配置模型变量**。注释或移除 `ANTHROPIC_DEFAULT_*_MODEL`，走 Claude Code 客户端的默认模型映射，这样也不会触发校验报错。
+
+修改后重新加载配置（`source ~/.zshrc` 或 `source ~/.bashrc`）并重启 Claude Code。
 :::
 
 ::: details Windows 环境变量中的中文字符问题
