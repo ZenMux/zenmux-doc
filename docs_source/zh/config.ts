@@ -99,6 +99,7 @@ export default defineLoacaleConfig({
                 link: "/zh/guide/advanced/provider-routing",
               },
               { text: "模型路由", link: "/zh/guide/advanced/model-routing" },
+              { text: "模型别名", link: "/zh/guide/advanced/model-alias" },
               { text: "兜底模型", link: "/zh/guide/advanced/fallback" },
               { text: "流式", link: "/zh/guide/advanced/streaming" },
               { text: "多模态", link: "/zh/guide/advanced/multimodal" },
@@ -284,6 +285,18 @@ export default defineLoacaleConfig({
               {
                 text: "Get Generation",
                 link: "/zh/api/platform/get-generation",
+              },
+              {
+                text: "Get Statistics Timeseries",
+                link: "/zh/api/platform/statistics-timeseries",
+              },
+              {
+                text: "Get Statistics Leaderboard",
+                link: "/zh/api/platform/statistics-leaderboard",
+              },
+              {
+                text: "Get Statistics Market Share",
+                link: "/zh/api/platform/statistics-market-share",
               },
             ],
           },

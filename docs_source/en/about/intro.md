@@ -19,7 +19,6 @@ Our core philosophy is developer friendliness. Beyond a unified API interface fo
 Core advantages of the platform:
 
 - Native dual-protocol support: Fully compatible with both OpenAI and Anthropic protocol standards; seamlessly integrates with mainstream tools like Claude Code
-- Transparent quality assurance: Routine “degradation checks” (HLE tests) across all channels and models, with processes and results open-sourced on GitHub (each run costs approximately $4,000)
 - Intelligent routing with insurance: Automatically selects the optimal model and provides insurance-backed quality guarantees
 - Enterprise-grade services: High capacity reserves, automatic failover, and global edge acceleration
 
@@ -81,23 +80,6 @@ We maintain ample capacity for every LLM to ensure your business is unaffected b
 :::
 
 Through multi-layered capacity reserves and intelligent failover, ZenMux guarantees high availability for your AI applications.
-
-### Platform-Wide “Degradation Checks”
-
-ZenMux is the first platform in the industry to conduct open, continuous quality assessments across all model channels.
-
-::: tip Transparent Quality Assurance
-We regularly conduct Human Last Exam (HLE) tests for all models across all channels on the platform, with the testing process and results open-sourced on GitHub.
-:::
-
-Core mechanisms:
-
-- Routine quality checks: Continuous monitoring of truthfulness and reliability across all model channels
-- Open-source transparency: Complete testing processes and results are publicly available on GitHub for community oversight
-- Real-time leaderboard: Test results are published on the official site to form a dynamic HLE leaderboard
-- Quality traceability: Ensures that all channels and models on the platform are authentic and reliable, eliminating degraded models
-
-This mechanism provides trustworthy quality assurance so you can select models with confidence.
 
 ### AI Model Insurance Service
 
