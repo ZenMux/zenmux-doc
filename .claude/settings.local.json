@@ -4,7 +4,8 @@
       "WebSearch",
       "Bash(gh --version)",
       "Bash(bash scripts/update-references.sh)",
-      "Bash(bash .agents/skills/zenmux-context/scripts/get-doc-tree.sh)"
+      "Bash(bash .agents/skills/zenmux-context/scripts/get-doc-tree.sh)",
+      "Bash(pnpm run *)"
     ]
   }
 }
