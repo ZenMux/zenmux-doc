@@ -4,7 +4,7 @@ import { ref, onMounted, onUnmounted } from "vue";
 interface Endpoint {
   title: string;
   path: string;
-  iconType: "chat" | "models" | "generate";
+  iconType: "chat" | "models" | "generate" | "embeddings";
   docUrl?: string;
 }
 
@@ -46,6 +46,12 @@ const providersData: Provider[] = [
         path: "/responses",
         iconType: "chat",
         docUrl: "/docs/api/openai/openai-responses.html",
+      },
+      {
+        title: "Embeddings",
+        path: "/embeddings",
+        iconType: "embeddings",
+        docUrl: "/docs/api/openai/create-embeddings.html",
       },
       {
         title: "List Models",
@@ -350,6 +356,16 @@ onUnmounted(() => {
                         <path
                           d="M10 14.666V14H8.666v.666a.667.667 0 1 1-1.333 0V14H6v.666a.667.667 0 0 1-1.334 0v-.734a3.34 3.34 0 0 1-2.6-2.599h-.733a.667.667 0 0 1 0-1.333H2V8.666h-.667a.667.667 0 1 1 0-1.333H2V6h-.667a.667.667 0 0 1 0-1.334h.734a3.34 3.34 0 0 1 2.6-2.6v-.733a.667.667 0 0 1 1.333 0V2h1.333v-.667a.667.667 0 0 1 1.333 0V2H10v-.667a.667.667 0 1 1 1.333 0v.734a3.34 3.34 0 0 1 2.6 2.6h.733a.667.667 0 0 1 0 1.333H14v1.333h.666a.667.667 0 0 1 0 1.333H14V10h.666a.667.667 0 1 1 0 1.333h-.733a3.34 3.34 0 0 1-2.6 2.599v.734a.667.667 0 0 1-1.333 0M5.333 3.333a2 2 0 0 0-2 2v5.333a2 2 0 0 0 2 2h5.333a2 2 0 0 0 2-2V5.333a2 2 0 0 0-2-2zm1.333 3.333v2.667h2.667V6.666zm4 2.667c0 .737-.596 1.333-1.333 1.333H6.666a1.333 1.333 0 0 1-1.333-1.333V6.666c0-.736.597-1.333 1.333-1.333h2.667c.736 0 1.333.597 1.333 1.333z"
                         />
+                      </svg>
+                      <!-- Embeddings icon -->
+                      <svg
+                        v-else-if="endpoint.iconType === 'embeddings'"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="currentColor"
+                      >
+                        <path d="M2 3.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0m4.5 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0m4.5 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0M2 8a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0m4.5 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0m4.5 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0M2 12.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0m4.5 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0m4.5 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0" />
                       </svg>
                       <!-- Generate icon -->
                       <svg
