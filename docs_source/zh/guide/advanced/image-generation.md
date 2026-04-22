@@ -88,23 +88,24 @@ for part in response.parts:
 const genai = require("@google/genai");
 
 const client = new genai.GoogleGenAI({
-  apiKey: "$ZENMUX_API_KEY",  // 替换为你的 API Key
+  apiKey: "$ZENMUX_API_KEY", // 替换为你的 API Key
   vertexai: true,
   httpOptions: {
     baseUrl: "https://zenmux.ai/api/vertex-ai",
-    apiVersion: "v1"
-  }
+    apiVersion: "v1",
+  },
 });
 
 // 流式调用: generateContentStream
 // 非流式调用: generateContent
 const response = await client.models.generateContent({
   model: "google/gemini-3-pro-image-preview",
-  contents: "Generate an image of the Eiffel tower with fireworks in the background",
+  contents:
+    "Generate an image of the Eiffel tower with fireworks in the background",
   config: {
-    responseModalities: ["TEXT", "IMAGE"],  // 必须指定响应模态
+    responseModalities: ["TEXT", "IMAGE"], // 必须指定响应模态
     // 更多配置参数请参考 Vertex AI 官方文档
-  }
+  },
 });
 
 console.log(response);
@@ -134,7 +135,7 @@ client = genai.Client(
 )
 
 response = client.models.generate_images(
-    model="openai/gpt-image-1.5",  # 或 qwen/qwen-image-2.0
+    model="openai/gpt-image-2",  # 或 qwen/qwen-image-2.0
     prompt="A cat and a dog"
 )
 
@@ -148,17 +149,17 @@ for i, img in enumerate(response.generated_images):
 const genai = require("@google/genai");
 
 const client = new genai.GoogleGenAI({
-  apiKey: "$ZENMUX_API_KEY",  // 替换为你的 API Key
+  apiKey: "$ZENMUX_API_KEY", // 替换为你的 API Key
   vertexai: true,
   httpOptions: {
     baseUrl: "https://zenmux.ai/api/vertex-ai",
-    apiVersion: "v1"
-  }
+    apiVersion: "v1",
+  },
 });
 
 const response = await client.models.generateImages({
-  model: "openai/gpt-image-1.5",  // 或 qwen/qwen-image-2.0
-  prompt: "A cat and a dog"
+  model: "openai/gpt-image-2", // 或 qwen/qwen-image-2.0
+  prompt: "A cat and a dog",
 });
 
 console.log(response);
@@ -187,13 +188,13 @@ client = genai.Client(
 
 # 先生成一张图片
 generate_response = client.models.generate_images(
-    model="openai/gpt-image-1.5",
+    model="openai/gpt-image-2",
     prompt="A cat sitting on a table"
 )
 
 # 基于生成的图片进行编辑
 edit_response = client.models.edit_image(
-    model="openai/gpt-image-1.5",
+    model="openai/gpt-image-2",
     prompt="Add a robot next to the cat",
     reference_images=[
         types.RawReferenceImage(
@@ -213,30 +214,30 @@ for i, img in enumerate(edit_response.generated_images):
 const genai = require("@google/genai");
 
 const client = new genai.GoogleGenAI({
-  apiKey: "$ZENMUX_API_KEY",  // 替换为你的 API Key
+  apiKey: "$ZENMUX_API_KEY", // 替换为你的 API Key
   vertexai: true,
   httpOptions: {
     baseUrl: "https://zenmux.ai/api/vertex-ai",
-    apiVersion: "v1"
-  }
+    apiVersion: "v1",
+  },
 });
 
 // 先生成一张图片
 const generateResponse = await client.models.generateImages({
-  model: "openai/gpt-image-1.5",
-  prompt: "A cat sitting on a table"
+  model: "openai/gpt-image-2",
+  prompt: "A cat sitting on a table",
 });
 
 // 基于生成的图片进行编辑
 const editResponse = await client.models.editImage({
-  model: "openai/gpt-image-1.5",
+  model: "openai/gpt-image-2",
   prompt: "Add a robot next to the cat",
   referenceImages: [
     {
       referenceId: 1,
-      referenceImage: generateResponse.generatedImages[0].image
-    }
-  ]
+      referenceImage: generateResponse.generatedImages[0].image,
+    },
+  ],
 });
 
 console.log(editResponse);
@@ -245,9 +246,10 @@ console.log(editResponse);
 :::
 
 ::: tip 💡 接口区别
+
 - **Google Gemini 模型**使用 `generate_content` 接口,需要指定 `response_modalities: ["TEXT", "IMAGE"]`,响应中同时包含文本和图片。
 - **非 Google 模型**使用 `generate_images` / `edit_image` 接口,直接返回图片对象,支持图片编辑功能。
-:::
+  :::
 
 ## 配置说明
 
