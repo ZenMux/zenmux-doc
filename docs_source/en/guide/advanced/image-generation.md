@@ -88,23 +88,24 @@ for part in response.parts:
 const genai = require("@google/genai");
 
 const client = new genai.GoogleGenAI({
-  apiKey: "$ZENMUX_API_KEY",  // Replace with your API key
+  apiKey: "$ZENMUX_API_KEY", // Replace with your API key
   vertexai: true,
   httpOptions: {
     baseUrl: "https://zenmux.ai/api/vertex-ai",
-    apiVersion: "v1"
-  }
+    apiVersion: "v1",
+  },
 });
 
 // Streaming call: generateContentStream
 // Non-streaming call: generateContent
 const response = await client.models.generateContent({
   model: "google/gemini-3-pro-image-preview",
-  contents: "Generate an image of the Eiffel tower with fireworks in the background",
+  contents:
+    "Generate an image of the Eiffel tower with fireworks in the background",
   config: {
-    responseModalities: ["TEXT", "IMAGE"],  // Response modalities must be specified
+    responseModalities: ["TEXT", "IMAGE"], // Response modalities must be specified
     // For more configuration options, refer to the Vertex AI official documentation
-  }
+  },
 });
 
 console.log(response);
@@ -134,7 +135,7 @@ client = genai.Client(
 )
 
 response = client.models.generate_images(
-    model="openai/gpt-image-1.5",  # or qwen/qwen-image-2.0
+    model="openai/gpt-image-2",  # or qwen/qwen-image-2.0
     prompt="A cat and a dog"
 )
 
@@ -148,17 +149,17 @@ for i, img in enumerate(response.generated_images):
 const genai = require("@google/genai");
 
 const client = new genai.GoogleGenAI({
-  apiKey: "$ZENMUX_API_KEY",  // Replace with your API key
+  apiKey: "$ZENMUX_API_KEY", // Replace with your API key
   vertexai: true,
   httpOptions: {
     baseUrl: "https://zenmux.ai/api/vertex-ai",
-    apiVersion: "v1"
-  }
+    apiVersion: "v1",
+  },
 });
 
 const response = await client.models.generateImages({
-  model: "openai/gpt-image-1.5",  // or qwen/qwen-image-2.0
-  prompt: "A cat and a dog"
+  model: "openai/gpt-image-2", // or qwen/qwen-image-2.0
+  prompt: "A cat and a dog",
 });
 
 console.log(response);
@@ -187,13 +188,13 @@ client = genai.Client(
 
 # First generate an image
 generate_response = client.models.generate_images(
-    model="openai/gpt-image-1.5",
+    model="openai/gpt-image-2",
     prompt="A cat sitting on a table"
 )
 
 # Edit the generated image
 edit_response = client.models.edit_image(
-    model="openai/gpt-image-1.5",
+    model="openai/gpt-image-2",
     prompt="Add a robot next to the cat",
     reference_images=[
         types.RawReferenceImage(
@@ -213,30 +214,30 @@ for i, img in enumerate(edit_response.generated_images):
 const genai = require("@google/genai");
 
 const client = new genai.GoogleGenAI({
-  apiKey: "$ZENMUX_API_KEY",  // Replace with your API key
+  apiKey: "$ZENMUX_API_KEY", // Replace with your API key
   vertexai: true,
   httpOptions: {
     baseUrl: "https://zenmux.ai/api/vertex-ai",
-    apiVersion: "v1"
-  }
+    apiVersion: "v1",
+  },
 });
 
 // First generate an image
 const generateResponse = await client.models.generateImages({
-  model: "openai/gpt-image-1.5",
-  prompt: "A cat sitting on a table"
+  model: "openai/gpt-image-2",
+  prompt: "A cat sitting on a table",
 });
 
 // Edit the generated image
 const editResponse = await client.models.editImage({
-  model: "openai/gpt-image-1.5",
+  model: "openai/gpt-image-2",
   prompt: "Add a robot next to the cat",
   referenceImages: [
     {
       referenceId: 1,
-      referenceImage: generateResponse.generatedImages[0].image
-    }
-  ]
+      referenceImage: generateResponse.generatedImages[0].image,
+    },
+  ],
 });
 
 console.log(editResponse);
@@ -245,9 +246,10 @@ console.log(editResponse);
 :::
 
 ::: tip 💡 API Differences
+
 - **Google Gemini models** use the `generate_content` API and require `response_modalities: ["TEXT", "IMAGE"]`; responses contain both text and images.
 - **Non-Google models** use the `generate_images` / `edit_image` API, returning image objects directly with support for image editing.
-:::
+  :::
 
 ## Configuration
 
