@@ -76,15 +76,15 @@ Plan comparison data is **dynamically calculated**. The screenshot is for refere
 
    The Builder Plan covers three major model categories. Whether you’re a developer, designer, product manager, or operator, one subscription meets the full-spectrum needs of Vibe Builders:
 
-   | Model Category       | Representative Models                                      |
-   | -------------------- | ---------------------------------------------------------- |
-   | **Coding models**    | Claude Opus 4.5 / GPT-5.2-Codex / Gemini-3-Pro-Preview ... |
-   | **Image generation** | NanoBananaPro / GPT-Image-1.5 ... (rolling out)            |
-   | **Text generation**  | GPT-5.2 / Qwen3-Max-Thinking / ERNIE 5.0 ...               |
+   | Model Category       | Representative Models                                          |
+   | -------------------- | -------------------------------------------------------------- |
+   | **Coding models**    | Claude Opus 4.7 / GPT-5.4 / Gemini-3.1-Pro-Preview ...        |
+   | **Image generation** | NanoBananaPro / GPT-Image-1.5 ... (rolling out)                |
+   | **Text generation**  | GPT-5.4 / Qwen3.6-Plus / GLM 5.1 / ERNIE 5.0 ...             |
 
 2. **An all-star model lineup**
 
-   One subscription, orchestrating world-class models (Gemini 2.5 Pro, the GPT‑5 series, Claude Opus/Sonnet 4 series, etc.). Get access to the latest top models immediately—like commanding the strongest compute fleet on the internet.
+   One subscription, orchestrating world-class models (Gemini 2.5 Pro, the GPT‑5 series, Claude Opus/Sonnet 4 series, Grok 4 series, etc.). Get access to the latest top models immediately—like commanding the strongest compute fleet on the internet.
 
 3. **Seamless IDE integration**
 
@@ -92,7 +92,7 @@ Plan comparison data is **dynamically calculated**. The screenshot is for refere
 
 ## Plan Comparison
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/28/iszJOqe/ss-1.png" alt="subscription-free" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/04/22/BsZgRQH/20260422225424.jpg" alt="subscription-free" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 
 ### Free - Free Trial
 
@@ -102,79 +102,95 @@ Plan comparison data is **dynamically calculated**. The screenshot is for refere
 
 **Supported models:**
 
-- `deepseek/deepseek-chat` - DeepSeek-V3.2 (Non-thinking Mode)
-- `deepseek/deepseek-reasoner` - DeepSeek-R1.8
+- `deepseek/deepseek-chat` - DeepSeek V3.2 (Non-thinking Mode)
+- `deepseek/deepseek-reasoner` - DeepSeek V3.2 (Thinking Mode)
 - `inclusionai/ling-1t` - inclusionAI: Ling-1T
 - `inclusionai/ling-mini-2.0` - inclusionAI: Ling-Mini-2.0
 - `inclusionai/ring-1t` - inclusionAI: Ring-1T
 - `inclusionai/ring-mini-2.0` - inclusionAI: Ring-Mini-2.0
-- `minimax/minimax-m2.1` - MiniMax: MiniMax M2.1
+- `kuaishou/kat-coder-pro-v1-free` - KAT Coder Pro V1 (Free)
+- `minimax/minimax-m2.1` - MiniMax M2.1
+- `sapiens-ai/agnes-1.5-lite` - Sapiens AI: Agnes 1.5 Lite
+- `sapiens-ai/agnes-1.5-pro` - Sapiens AI: Agnes 1.5 Pro
+- `sapiens-ai/agnes-image-1.2` - Sapiens AI: Agnes Image 1.2 (Image Generation)
 - `stepfun/step-3` - StepFun: Step-3
-- `volcengine/doubao-seed-1.8` - VolcanoEngine: Doubao-Seed-1.8
-- `xiaomi/mimo-v2-flash` - Xiaomi: MiMo-V2-Flash
-- `z-ai/glm-4.6v-flash` - Z.AI: GLM 4.6V Flash
+- `stepfun/step-3.5-flash` - StepFun: Step 3.5 Flash
+- `stepfun/step-3.5-flash-free` - StepFun: Step 3.5 Flash (Free)
+- `xiaomi/mimo-v2-flash` - Xiaomi: MiMo V2 Flash
+- `xiaomi/mimo-v2-flash-free` - Xiaomi: MiMo V2 Flash (Free)
+- `z-ai/glm-4.6v-flash` - Z.AI: GLM 4.6V FlashX
+- `z-ai/glm-4.6v-flash-free` - Z.AI: GLM 4.6V Flash (Free)
 - `z-ai/glm-4.7` - Z.AI: GLM 4.7
+- `z-ai/glm-4.7-flash-free` - Z.AI: GLM 4.7 Flash (Free)
+- `openai/gpt-image-2` - OpenAI: GPT Image 2 (Image Generation)
 
 ### Pro - Top Choice for Developers
 
 ---
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/28/co3ieFF/ss-2.png" alt="subscription-free" style="width:300px; border-radius:8px;">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/04/22/kRFpXun/20260422225025.jpg" alt="subscription-free" style="width:300px; border-radius:8px;">
 
-**Supported models:** **70+** premium models, organized by provider below (`model slug` - description)
+**Supported models:** **150+** models (text, image generation, video generation, embedding), organized by provider below
 
 ---
 
 **Anthropic Claude Series**
 
+- `anthropic/claude-opus-4.7` - Claude Opus 4.7
 - `anthropic/claude-opus-4.6` - Claude Opus 4.6
 - `anthropic/claude-opus-4.5` - Claude Opus 4.5
-- `anthropic/claude-sonnet-4.5` - Claude Sonnet 4.5
-- `anthropic/claude-haiku-4.5` - Claude Haiku 4.5
 - `anthropic/claude-opus-4.1` - Claude Opus 4.1
 - `anthropic/claude-opus-4` - Claude Opus 4
+- `anthropic/claude-sonnet-4.6` - Claude Sonnet 4.6
+- `anthropic/claude-sonnet-4.5` - Claude Sonnet 4.5
+- `anthropic/claude-sonnet-4` - Claude Sonnet 4
+- `anthropic/claude-haiku-4.5` - Claude Haiku 4.5
+- `anthropic/claude-3.7-sonnet` - Claude 3.7 Sonnet
 - `anthropic/claude-3.5-sonnet` - Claude 3.5 Sonnet
 - `anthropic/claude-3.5-haiku` - Claude 3.5 Haiku
-- `anthropic/claude-3.7-sonnet` - Claude 3.7 Sonnet
-- `anthropic/claude-sonnet-4` - Claude Sonnet 4
 
 ---
 
 **OpenAI GPT Series**
 
+- `openai/gpt-5.4` - GPT‑5.4
+- `openai/gpt-5.4-mini` - GPT‑5.4 Mini
+- `openai/gpt-5.4-nano` - GPT‑5.4 Nano
+- `openai/gpt-5.3-chat` - GPT‑5.3 Chat
+- `openai/gpt-5.3-codex` - GPT‑5.3 Codex
 - `openai/gpt-5.2` - GPT‑5.2
 - `openai/gpt-5.2-chat` - GPT‑5.2 Chat
 - `openai/gpt-5.2-codex` - GPT‑5.2 Codex
+- `openai/gpt-5.1` - GPT‑5.1
+- `openai/gpt-5.1-chat` - GPT‑5.1 Chat
+- `openai/gpt-5.1-codex` - GPT‑5.1 Codex
+- `openai/gpt-5.1-codex-mini` - GPT‑5.1 Codex Mini
 - `openai/gpt-5` - GPT‑5
 - `openai/gpt-5-chat` - GPT‑5 Chat
 - `openai/gpt-5-codex` - GPT‑5 Codex
 - `openai/gpt-5-mini` - GPT‑5 Mini
 - `openai/gpt-5-nano` - GPT‑5 Nano
-- `openai/gpt-5.1` - GPT‑5.1
-- `openai/gpt-5.1-chat` - GPT‑5.1 Chat
-- `openai/gpt-5.1-codex` - GPT‑5.1 Codex
-- `openai/gpt-5.1-codex-mini` - GPT‑5.1 Codex Mini
 - `openai/gpt-4.1` - GPT‑4.1
 - `openai/gpt-4.1-mini` - GPT‑4.1 Mini
 - `openai/gpt-4.1-nano` - GPT‑4.1 Nano
 - `openai/gpt-4o` - GPT‑4o
 - `openai/gpt-4o-mini` - GPT‑4o Mini
-- `openai/o4-mini` - o4-mini
+- `openai/o4-mini` - o4 Mini
 
 ---
 
 **Google Gemini / Gemma Series**
 
-- `google/gemini-2.0-flash` - Gemini 2.0 Flash
-- `google/gemini-2.0-flash-lite-001` - Gemini 2.0 Flash Lite
-- `google/gemini-2.5-flash` - Gemini 2.5 Flash
-- `google/gemini-2.5-flash-lite` - Gemini 2.5 Flash Lite
-- `google/gemini-2.5-flash-image` - Gemini 2.5 Flash Image
-- `google/gemini-2.5-pro` - Gemini 2.5 Pro
+- `google/gemini-3.1-pro-preview` - Gemini 3.1 Pro Preview
+- `google/gemini-3.1-flash-lite-preview` - Gemini 3.1 Flash Lite Preview
 - `google/gemini-3-flash-preview` - Gemini 3 Flash Preview
 - `google/gemini-3-pro-preview` - Gemini 3 Pro Preview
-- `google/gemini-3-pro-image-preview` - Gemini 3 Pro Image Preview
-- `google/gemma-3-12b-it` - Gemma 3 12B IT
+- `google/gemini-2.5-pro` - Gemini 2.5 Pro
+- `google/gemini-2.5-flash` - Gemini 2.5 Flash
+- `google/gemini-2.5-flash-lite` - Gemini 2.5 Flash Lite
+- `google/gemini-2.0-flash` - Gemini 2.0 Flash
+- `google/gemini-2.0-flash-lite-001` - Gemini 2.0 Flash Lite
+- `google/gemma-3-12b-it` - Gemma 3 12B
 
 ---
 
@@ -185,47 +201,60 @@ Plan comparison data is **dynamically calculated**. The screenshot is for refere
 - `x-ai/grok-4-fast-non-reasoning` - Grok 4 Fast Non‑Reasoning
 - `x-ai/grok-4.1-fast` - Grok 4.1 Fast
 - `x-ai/grok-4.1-fast-non-reasoning` - Grok 4.1 Fast Non‑Reasoning
+- `x-ai/grok-4.2-fast` - Grok 4.2 Fast
+- `x-ai/grok-4.2-fast-non-reasoning` - Grok 4.2 Fast Non‑Reasoning
 - `x-ai/grok-code-fast-1` - Grok Code Fast 1
 
 ---
 
 **Z.AI GLM Series**
 
-- `z-ai/glm-4.6v` - GLM 4.6V
-- `z-ai/glm-4.6v-flash` - GLM 4.6V Flash
+- `z-ai/glm-5.1` - GLM 5.1
+- `z-ai/glm-5` - GLM 5
+- `z-ai/glm-5-turbo` - GLM 5 Turbo
+- `z-ai/glm-5v-turbo` - GLM 5V Turbo
 - `z-ai/glm-4.7` - GLM 4.7
+- `z-ai/glm-4.7-flashx` - GLM 4.7 FlashX
+- `z-ai/glm-4.7-flash-free` - GLM 4.7 Flash (Free)
+- `z-ai/glm-4.6v` - GLM 4.6V
+- `z-ai/glm-4.6v-flash` - GLM 4.6V FlashX
+- `z-ai/glm-4.6v-flash-free` - GLM 4.6V Flash (Free)
+- `z-ai/glm-4.6` - GLM 4.6
 - `z-ai/glm-4.5` - GLM 4.5
 - `z-ai/glm-4.5-air` - GLM 4.5 Air
-- `z-ai/glm-4.6` - GLM 4.6
 
 ---
 
 **DeepSeek Series**
 
-- `deepseek/deepseek-chat` - DeepSeek Chat
-- `deepseek/deepseek-chat-v3.1` - DeepSeek Chat V3.1
 - `deepseek/deepseek-v3.2` - DeepSeek V3.2
 - `deepseek/deepseek-v3.2-exp` - DeepSeek V3.2 Exp
+- `deepseek/deepseek-chat` - DeepSeek Chat (V3.2 Non-thinking)
+- `deepseek/deepseek-chat-v3.1` - DeepSeek Chat V3.1
+- `deepseek/deepseek-reasoner` - DeepSeek Reasoner (V3.2 Thinking)
 - `deepseek/deepseek-r1-0528` - DeepSeek R1 0528
-- `deepseek/deepseek-reasoner` - DeepSeek Reasoner
 
 ---
 
 **Qwen Series**
 
+- `qwen/qwen3.6-plus` - Qwen3.6 Plus
+- `qwen/qwen3.5-plus` - Qwen3.5 Plus
+- `qwen/qwen3.5-flash` - Qwen3.5 Flash
 - `qwen/qwen3-coder` - Qwen3 Coder
 - `qwen/qwen3-coder-plus` - Qwen3 Coder Plus
-- `qwen/qwen3-max` - Qwen3 Max
-- `qwen/qwen3-max-preview` - Qwen3 Max Preview
+- `qwen/qwen3-max` - Qwen3 Max Thinking
+- `qwen/qwen3-max-preview` - Qwen3 Max Thinking Preview
 - `qwen/qwen3-vl-plus` - Qwen3 VL Plus
 - `qwen/qwen3-14b` - Qwen3 14B
-- `qwen/qwen3-235b-a22b-2507` - Qwen3 235B A22B 2507
+- `qwen/qwen3-235b-a22b-2507` - Qwen3 235B A22B Instruct 2507
 - `qwen/qwen3-235b-a22b-thinking-2507` - Qwen3 235B A22B Thinking 2507
 
 ---
 
 **Moonshot / Kimi Series**
 
+- `moonshotai/kimi-k2.6` - Kimi K2.6
 - `moonshotai/kimi-k2.5` - Kimi K2.5
 - `moonshotai/kimi-k2-thinking` - Kimi K2 Thinking
 - `moonshotai/kimi-k2-thinking-turbo` - Kimi K2 Thinking Turbo
@@ -236,19 +265,20 @@ Plan comparison data is **dynamically calculated**. The screenshot is for refere
 
 **Baidu ERNIE Series**
 
-- `baidu/ernie-5.0-thinking-preview` - ERNIE 5.0 Thinking Preview
+- `baidu/ernie-5.0-thinking-preview` - ERNIE 5.0
 - `baidu/ernie-x1.1-preview` - ERNIE X1.1 Preview
 
 ---
 
 **InclusionAI Series**
 
-- `inclusionai/ling-1t` - Ling‑1T
+- `inclusionai/ling-1t` - Ling-1T
 - `inclusionai/ling-flash-2.0` - Ling Flash 2.0
 - `inclusionai/ling-mini-2.0` - Ling Mini 2.0
-- `inclusionai/llada2.0-flash-cap` - LLADA 2.0 Flash Cap
-- `inclusionai/ming-flash-omni-preview` - Ming Flash Omni Preview
-- `inclusionai/ring-1t` - Ring‑1T
+- `inclusionai/llada2.1-flash` - LLaDA 2.1 Flash
+- `inclusionai/llada2.0-flash-cap` - LLaDA 2.0 Flash Cap
+- `inclusionai/ming-flash-omni-2.0` - Ming Flash Omni 2.0
+- `inclusionai/ring-1t` - Ring-1T
 - `inclusionai/ring-flash-2.0` - Ring Flash 2.0
 - `inclusionai/ring-mini-2.0` - Ring Mini 2.0
 
@@ -257,55 +287,106 @@ Plan comparison data is **dynamically calculated**. The screenshot is for refere
 **Meta Llama Series**
 
 - `meta/llama-3.3-70b-instruct` - Llama 3.3 70B Instruct
-- `meta/llama-4-scout-17b-16e-instruct` - Llama 4 Scout 17B 16E Instruct
+- `meta/llama-4-scout-17b-16e-instruct` - Llama 4 Scout Instruct
 
 ---
 
 **Mistral Series**
 
-- `mistralai/mistral-large-2512` - Mistral Large 2512
+- `mistralai/mistral-large-2512` - Mistral Large 3
 
 ---
 
 **MiniMax Series**
 
-- `minimax/minimax-m2-her` - MiniMax M2 her
+- `minimax/minimax-m2.7` - MiniMax M2.7
+- `minimax/minimax-m2.7-highspeed` - MiniMax M2.7 Highspeed
+- `minimax/minimax-m2.5` - MiniMax M2.5
+- `minimax/minimax-m2.5-lightning` - MiniMax M2.5 Highspeed
 - `minimax/minimax-m2.1` - MiniMax M2.1
 - `minimax/minimax-m2` - MiniMax M2
+- `minimax/minimax-m2-her` - MiniMax M2 Her
 
 ---
 
 **Kuaishou**
 
-- `kuaishou/kat-coder-pro-v1` - KAT‑Coder‑Pro‑V1
+- `kuaishou/kat-coder-pro-v2` - KAT Coder Pro V2
+- `kuaishou/kat-coder-pro-v1` - KAT Coder Pro V1
+- `kuaishou/kat-coder-pro-v1-free` - KAT Coder Pro V1 (Free)
 
 ---
 
-**Stepfun**
+**StepFun**
 
+- `stepfun/step-3.5-flash` - Step 3.5 Flash
+- `stepfun/step-3.5-flash-free` - Step 3.5 Flash (Free)
 - `stepfun/step-3` - Step 3
 
 ---
 
-**Volcengine Doubao**
+**ByteDance / Volcengine Doubao**
 
+> Doubao models support both `bytedance/*` and `volcengine/*` slug prefixes with identical functionality.
+
+- `bytedance/doubao-seed-2.0-pro` - Doubao Seed 2.0 Pro
+- `bytedance/doubao-seed-2.0-code` - Doubao Seed 2.0 Code
+- `bytedance/doubao-seed-2.0-mini` - Doubao Seed 2.0 Mini
+- `bytedance/doubao-seed-2.0-lite` - Doubao Seed 2.0 Lite
+- `bytedance/doubao-seed-1.8` - Doubao Seed 1.8
+- `bytedance/doubao-seed-code` - Doubao Seed Code
 - `volcengine/doubao-seed-1-6-vision` - Doubao Seed 1.6 Vision
-- `volcengine/doubao-seed-1.8` - Doubao Seed 1.8
-- `volcengine/doubao-seed-code` - Doubao Seed Code
+
+---
+
+**Tencent**
+
+- `tencent/hunyuan-2.0-thinking` - HunyuanTurbo 2.0 Thinking
+
+---
+
+**Sapiens AI Series**
+
+- `sapiens-ai/agnes-1.5-pro` - Agnes 1.5 Pro
+- `sapiens-ai/agnes-1.5-lite` - Agnes 1.5 Lite
 
 ---
 
 **Xiaomi**
 
+- `xiaomi/mimo-v2-pro` - MiMo V2 Pro
+- `xiaomi/mimo-v2-omni` - MiMo V2 Omni
 - `xiaomi/mimo-v2-flash` - MiMo V2 Flash
+- `xiaomi/mimo-v2-flash-free` - MiMo V2 Flash (Free)
 
 ---
 
 **Image Generation Models**
 
-- `nanobanana/nanobanana-pro` - NanoBananaPro (2K resolution, supports multiple aspect ratios such as 16:9)
-- `openai/gpt-image-1.5` - GPT-Image-1.5 (coming soon)
-- `tencent/hunyuan-image3` - Hunyuan-Image3 (coming soon)
+- `openai/gpt-image-2` - GPT Image 2
+- `openai/gpt-image-1.5` - GPT Image 1.5
+- `google/gemini-3.1-flash-image-preview` - Gemini 3.1 Flash Image Preview
+- `google/gemini-3-pro-image-preview` - Gemini 3 Pro Image Preview
+- `google/gemini-2.5-flash-image` - Gemini 2.5 Flash Image
+- `qwen/qwen-image-2.0-pro` - Qwen Image 2.0 Pro
+- `qwen/qwen-image-2.0` - Qwen Image 2.0
+- `sapiens-ai/agnes-image-1.2` - Agnes Image 1.2
+- `tencent/hunyuan-image3` - Hunyuan Image 3
+- `z-ai/glm-image` - GLM Image
+- `bytedance/doubao-seedream-5.0-lite` - Doubao Seedream 5.0 Lite
+
+---
+
+**Video Generation Models**
+
+- `klingai/kling-v2` - Kling V2
+- `sapiens-ai/agnes-video-v1.2` - Agnes Video V1.2
+
+---
+
+**Embedding Models**
+
+- `openai/text-embedding-3-small` - Text Embedding 3 Small
 
 ---
 
@@ -313,12 +394,23 @@ Plan comparison data is **dynamically calculated**. The screenshot is for refere
 
 ---
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/28/VLvrYZp/ss-3.png" alt="subscription-free" style="width:300px; border-radius:8px;">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/04/22/3jGyUDK/20260422225040.jpg" alt="subscription-free" style="width:300px; border-radius:8px;">
 
-**Additional ultra-flagship models:**
+**Additional exclusive models (all Pro models + the following):**
 
+Ultra-flagship text models:
+
+- `openai/gpt-5.4-pro` - GPT-5.4 Pro
 - `openai/gpt-5.2-pro` - GPT-5.2 Pro
 - `openai/gpt-5-pro` - GPT-5 Pro
+
+Ultra-flagship video generation models:
+
+- `google/veo-3.1-generate-001` - Google Veo 3.1
+- `google/veo-3.1-fast-generate-001` - Google Veo 3.1 Fast
+- `google/veo-3.1-lite-generate-001` - Google Veo 3.1 Lite
+- `bytedance/doubao-seedance-2.0` - Doubao Seedance 2.0
+- `bytedance/doubao-seedance-1.5-pro` - Doubao Seedance 1.5 Pro
 
 ---
 
@@ -326,7 +418,7 @@ Plan comparison data is **dynamically calculated**. The screenshot is for refere
 
 ---
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/28/pqFhcnQ/ss-4.png" alt="subscription-free" style="width:300px; border-radius:8px;">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/04/22/Qyl1Ezo/20260422225055.jpg" alt="subscription-free" style="width:300px; border-radius:8px;">
 
 **Supported models:** Same as the Max plan, including all premium models and ultra-flagship models.
 
