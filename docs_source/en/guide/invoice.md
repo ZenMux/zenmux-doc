@@ -132,16 +132,6 @@ Find the order in Transaction History and click the **"click here"** link in the
 
 In the Stripe billing portal, find the **"Billing and shipping information"** section and click the **"Update information"** button to fill in or modify your invoice information (company name, email address, etc.). Once updated, future invoices will automatically use the new information.
 
-### How can I modify invoice information for an already issued invoice?
-
-Generated invoices cannot be directly modified. If there is an error in your invoice information, please contact customer support with the following details:
-
-- Screenshot of the original invoice transaction record
-- Correct invoice information
-- Explanation of the reason for modification
-
-Customer support will assist you based on the actual situation.
-
 ### Can the invoice be used for corporate reimbursement?
 
 Yes. The PDF invoices provided by ZenMux contain complete transaction information and billing details, which meet the requirements for corporate reimbursement and financial audits.

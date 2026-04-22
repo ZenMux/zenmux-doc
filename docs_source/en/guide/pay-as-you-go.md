@@ -16,8 +16,6 @@ Welcome to the **ZenMux Pay As You Go** plan! This guide will help you understan
 Pay As You Go is a usage-based billing plan built specifically for production. It offers **no rate limits**, **no concurrency limits**, **production-grade stability**, and **transparent, precise billing**.
 :::
 
----
-
 ## What is Pay As You Go?
 
 **Pay As You Go** is ZenMux’s billing plan tailored for enterprise customers and production use. Unlike subscription plans, Pay As You Go uses a **prepaid balance + pay-as-you-consume** model, so you only pay for the API usage you actually consume.
@@ -30,8 +28,6 @@ Pay As You Go is a usage-based billing plan built specifically for production. I
 | **Production-grade stability** | SLA coverage plus an AI insurance compensation mechanism |
 | **Precise billing** | Token-level billing for transparent and controllable costs |
 | **Enterprise services** | Full request logs, cost analytics, and billing statistics |
-
----
 
 ## Why choose Pay As You Go?
 
@@ -59,13 +55,11 @@ Pay As You Go is especially suitable for:
 If your project is already live or about to be commercialized, you **must use Pay As You Go**. The subscription plan (Builder Plan) is only for personal development and learning scenarios (Vibe Coding and Media Create scenarios) and must not be used in production. Violations may impact your account.
 :::
 
----
-
 ## How to use Pay As You Go
 
 ### Step 1: Sign in to the console
 
-Go to the **[ZenMux Console](https://zenmux.ai/plantform/pay-as-you-go)** and navigate to **Manage > Pay As You Go**.
+Go to the **[ZenMux Console](https://zenmux.ai/platform/pay-as-you-go)** and navigate to **Manage > Pay As You Go**.
 
 ![Pay As You Go page](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/rsGoojf/pay-as-you-go.png)
 
@@ -86,62 +80,51 @@ All credits are denominated in USD ($). 1 credit equals $1 worth of API usage. D
 #### Manual top-up
 
 1. Click the **Top Up** button in the top-right corner
-2. Choose a top-up amount (custom amounts supported)
+2. Choose a top-up amount ($5 – $25,000; custom amounts supported)
 3. Complete payment (Stripe, Alipay, and more supported)
-4. After a successful top-up, credits are applied immediately and you’ll automatically receive an additional **20% bonus credits**
+4. After a successful top-up, credits are applied immediately with bonus credits added automatically
 
-**Top-up bonus examples:**
-
-| Top-up amount | Credits received | Bonus rate |
-|---------|---------|---------|
-| $100 | $120 | +20% |
-| $500 | $600 | +20% |
-| $1000 | $1200 | +20% |
-
-#### Auto Top-Up
-
-To avoid service impact from insufficient balance, you can enable **Auto Top-Up**:
-
-1. Click **Auto Top-Up**
-2. Set the trigger threshold (e.g., trigger when balance falls below $10)
-3. Set the top-up amount per charge (e.g., $100 each time)
-4. Link a payment method and save
-
-Once enabled, the system will automatically top up when your balance falls below the configured threshold—ensuring your API service won’t be interrupted due to low balance.
-
----
+::: tip 💡 Top-up benefits
+- **0% service fee**: ZenMux currently charges no service fee on top-ups
+- **Top-up bonus**: every top-up includes bonus credits; the exact percentage is shown on the page
+:::
 
 ## Create and manage API keys
 
-### Create a Pay As You Go API key
+Pay As You Go API keys are completely separate from subscription keys and are designed for production. In the **Pay As You Go API Keys** section, click **+ Create API Key** to create a new key. You can also click **Edit** at any time to modify its configuration.
 
-Pay As You Go API keys are completely separate from subscription keys and are designed for production:
+![Create API key](https://cdn.marmot-cloud.com/storage/zenmux/2026/04/22/DHfAbVz/20260422174504.jpg)
 
-1. In **Pay As You Go API Keys**, click **+ Create API Key**
-2. Enter a name for the API key (e.g., `production-app`)
-3. Click **Create** to finish
+### API key settings
 
-![Create API key](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/BNdWYST/pay-as-you-go-details.png)
-
-### API key management
-
-In the API Keys list, you can view and manage all Pay As You Go API keys:
-
-| Column | Description |
+| Setting | Description |
 |------|------|
-| **Name** | API key name |
-| **API Key** | API key prefix (click to copy the full key) |
-| **Status** | Status (Enabled/Disabled) |
-| **Created** | Created date |
-| **Last Used** | Last used time |
-| **Used** | Amount consumed |
-| **Activity** | Actions (view details, edit, delete) |
+| **Name** | API key name — use a clear, descriptive name for easy identification |
+| **Tags** | Tags for organizing and categorizing keys (e.g., `production`, `frontend`) |
+| **Key Status** | Enable/Disable toggle. Disabling stops all requests using this key |
 
 ::: tip 💡 API key best practices
-
 - Create separate API keys for different projects/environments to simplify cost attribution and management
 - Regularly review **Last Used** and **Used** to identify inactive or high-spend keys
-- If you suspect a key has been leaked, immediately disable or delete it via the **Actions** column
+- If you suspect a key has been leaked, immediately disable or delete it
+:::
+
+### Limits configuration
+
+Turn on the **Enable Limits** toggle to set independent rate and spending limits for each API key, enabling fine-grained cost and access control:
+
+![Edit Key](https://cdn.marmot-cloud.com/storage/zenmux/2026/04/22/dWTyjcQ/20260422172958.jpg)
+
+| Setting | Description |
+|------|------|
+| **Credit Limit** | Maximum credit allowance for this key. Requests are rejected once the limit is reached — useful for controlling per-project or per-customer budgets |
+| **Credit Threshold (%)** | Credit threshold percentage. Triggers an email alert when usage reaches this ratio of the Credit Limit, for early warning |
+| **RPM Limit** | Requests per minute limit — prevents traffic spikes or abuse |
+| **TPM Limit** | Tokens per minute limit — controls token consumption rate for large model calls |
+| **Supported Models** | Restrict which models this key can access. Defaults to All models (no restriction); can be set to allow only specific models |
+
+::: warning ⚠️ Caution
+Disabling an API key immediately stops all requests using that key. Use caution in production environments. Changes may take up to 3 minutes to apply.
 :::
 
 ### Call the API with a Pay As You Go API key
@@ -202,20 +185,18 @@ main();
 For complete API usage examples, see the [Quickstart Guide](/guide/quickstart).
 :::
 
----
-
 ## Balance management and billing
 
 ### View balance breakdown
 
 Click the info icon next to **Total Balance** to view the **Credits Breakdown**:
 
-![Credits breakdown](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/YqxRLvm/pay-as-you-go-keys.png)
+![Credits breakdown](https://cdn.marmot-cloud.com/storage/zenmux/2026/04/22/4BSAkMo/20260422174540.jpg)
 
 The breakdown includes:
 
 - **Top-ups**: your top-up records
-- **Bonuses**: the 20% bonus credits from top-ups
+- **Bonuses**: bonus credits from top-ups
 - **Gifts**: credits granted by the platform
 - **Referrals**: rewards earned from referring friends
 - **Compensations**: AI insurance compensation credits
@@ -223,6 +204,17 @@ The breakdown includes:
 - **Expired**: expired bonus credits
 - **Usage**: credits consumed by API calls
 - **Total Balance**: current total available credits
+
+### Low Balance Alert
+
+You can set up a low balance alert so that the system sends you an email when your balance drops below a custom threshold:
+
+1. On the **Total Balance** card, click the **"Set Balance Alert"** link in the top-right corner
+   ![Set Balance Alert](https://cdn.marmot-cloud.com/storage/zenmux/2026/04/22/iggRJxK/20260422172846.jpg)
+2. Turn on the **Low Balance Alert** toggle
+   ![Low Balance Alert](https://cdn.marmot-cloud.com/storage/zenmux/2026/04/22/Gpzqp0H/20260422172931.jpg)
+3. Set a custom threshold amount (default: $3)
+4. When your balance drops below the threshold, the system will automatically send a notification to your registered email
 
 ### View transaction history
 
@@ -232,18 +224,29 @@ In **Transaction History**, you can review all top-ups, usage, and compensation 
 |------|------|
 | **Date** | Transaction date and time |
 | **Amount** | Transaction amount |
-| **Type / Method** | Transaction type (Insurance compensation, Stripe top-up, Discount, etc.) |
+| **Type / Method** | Transaction type |
 | **Description / Invoice** | Transaction description or invoice link |
 
-Click **View Invoice** to download the corresponding top-up invoice for reimbursements and billing audits.
+Common transaction types include:
 
----
+| Type | Description |
+|------|------|
+| **Stripe** | Top-up via Stripe |
+| **Antom** | Top-up via Antom |
+| **Discount** | Bonus credits from top-ups |
+| **Gift** | Credits granted by the platform |
+| **Referral** | Rewards from referring friends |
+| **Insurance** | AI insurance compensation |
+| **Refund** | Refunds |
+| **Expire** | Expired credits |
+
+Click **View Invoice** to download the corresponding top-up invoice for reimbursements and billing audits.
 
 ## FAQ
 
 ### How can I avoid service interruptions due to insufficient balance?
 
-Enable **Auto Top-Up**. With a reasonable trigger threshold and top-up amount configured, the system will automatically top up when your balance is low, ensuring uninterrupted service.
+Enable **Low Balance Alert** to receive email notifications when your balance drops below a custom threshold, so you can top up in time.
 
 ### Can I use Pay As You Go and a subscription plan at the same time?
 
@@ -251,7 +254,7 @@ Yes. You can use the **Builder Plan (Subscription)** during personal development
 
 ### How long does it take for credits to arrive after topping up?
 
-Credits are applied **immediately** after a successful top-up—no waiting required. The system also automatically adds a 20% bonus.
+Credits are applied **immediately** after a successful top-up—no waiting required. The system also automatically adds bonus credits (the exact percentage is shown on the page).
 
 ### How do I view usage details for a specific API key?
 
@@ -261,15 +264,13 @@ In the **Pay As You Go API Keys** list, click **Details** for the corresponding 
 
 In **Transaction History**, click **View Invoice** for the relevant top-up record to download an official top-up invoice (PDF), suitable for reimbursement and financial audits.
 
----
-
 ## Next steps
 
 Now that you understand how Pay As You Go works, you can:
 
 - Read the [Advanced Calling Guide](/guide/advanced/streaming) to learn streaming, multimodal, and other advanced features
 - Review the [AI Insurance Docs](/guide/insurance) to learn how to file claims
-- Visit the [Cost Analytics page](https://zenmux.ai/settings/cost) for detailed cost attribution and usage trends
+- Visit the [Cost Analytics page](https://zenmux.ai/platform/cost) for detailed cost attribution and usage trends
 - Join the [Discord community](http://discord.gg/vHZZzj84Bm) to connect with other developers
 
 ::: tip Contact us

@@ -52,15 +52,17 @@
           >
           <el-dropdown-item
             @click="() => handleAction('platform/pay-as-you-go')"
-            >Pay As You Go</el-dropdown-item
+            >PAYG API</el-dropdown-item
           >
           <el-dropdown-item
-            v-if="user?.flags?.subscription"
             @click="() => handleAction('platform/subscription')"
-            >Subscription</el-dropdown-item
+            >Subscription API</el-dropdown-item
           >
-          <el-dropdown-item @click="() => handleAction('platform/strategy')"
-            >Strategy</el-dropdown-item
+          <el-dropdown-item @click="() => handleAction('platform/management')"
+            >Platform API</el-dropdown-item
+          >
+          <el-dropdown-item @click="() => handleAction('platform/settings')"
+            >Settings</el-dropdown-item
           >
           <el-dropdown-item @click="goLogout">Sign out</el-dropdown-item>
         </el-dropdown-menu>
