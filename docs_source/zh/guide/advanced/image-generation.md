@@ -115,7 +115,46 @@ console.log(response);
 
 ## 非 Google 模型使用方式
 
-对于 `openai/gpt-image-1.5`、`qwen/qwen-image-2.0` 等非 Google 模型,请使用 `generate_images` 和 `edit_image` 接口。
+对于 `openai/gpt-image-1.5`、`openai/gpt-image-2`、`qwen/qwen-image-2.0` 等非 Google 模型,请使用 `generate_images` 和 `edit_image` 接口。
+
+ZenMux 内部将 Vertex AI 协议的参数转换为 OpenAI 图片生成 API 格式,下面的参数对照表可以帮助你理解如何使用各项功能。
+
+### 支持的参数
+
+#### generate_images 参数
+
+以下是 [OpenAI 官方图片生成参数](https://developers.openai.com/api/reference/resources/images/methods/generate) 与 ZenMux Vertex AI 协议的对照:
+
+| OpenAI 参数 | Vertex AI 对应写法 | 类型 | 说明 | 支持 |
+|---|---|---|---|---|
+| `prompt` | `prompt`（SDK 直传） | string | 文本描述（必填） | ✅ |
+| `model` | `model`（SDK 直传） | string | 模型名称 | ✅ |
+| `n` | `config.number_of_images` | number | 生成图片数量（1-10） | ✅ |
+| `size` | `config.image_size` | string | 图片尺寸：`1024x1024`、`1536x1024`（横版）、`1024x1536`（竖版）、`auto` | ✅ |
+| `quality` | `config.quality` | string | 图片质量：`low` / `medium` / `high` / `auto`（仅 TypeScript SDK） | ✅ |
+| `output_format` | `config.output_mime_type` | string | 输出格式：`image/png`、`image/jpeg`、`image/webp` | ✅ |
+| `output_compression` | `config.output_compression_quality` | number | 压缩质量（0-100）,仅 webp/jpeg 有效 | ✅ |
+| `background` | — | string | 背景透明度设置 | ❌ |
+| `moderation` | — | string | 内容审核级别 | ❌ |
+| `style` | — | string | DALL-E 3 风格参数 | ❌ |
+| `response_format` | — | string | 不适用（统一返回 base64） | ❌ |
+
+#### edit_image 参数
+
+以下是 [OpenAI 官方图片编辑参数](https://developers.openai.com/api/reference/resources/images/methods/edit) 与 ZenMux Vertex AI 协议的对照:
+
+| OpenAI 参数 | Vertex AI 对应写法 | 类型 | 说明 | 支持 |
+|---|---|---|---|---|
+| `prompt` | `prompt`（SDK 直传） | string | 编辑描述（必填） | ✅ |
+| `model` | `model`（SDK 直传） | string | 模型名称 | ✅ |
+| `image` | `reference_images`（`referenceType` 非 MASK） | file/base64 | 参考图片,支持多张 | ✅ |
+| `mask` | `reference_images`（`referenceType = REFERENCE_TYPE_MASK`） | file/base64 | 蒙版图片,透明区域为编辑区域 | ✅ |
+| `n` | `config.number_of_images` | number | 生成数量（1-10） | ✅ |
+| `size` | `config.image_size` | string | 图片尺寸：`1024x1024`、`1536x1024`、`1024x1536`、`auto` | ✅ |
+| `quality` | `config.quality` | string | 图片质量：`low` / `medium` / `high` / `auto`（仅 TypeScript SDK） | ✅ |
+| `output_format` | `config.output_mime_type` | string | 输出格式 | ✅ |
+| `output_compression` | `config.output_compression_quality` | number | 压缩质量 | ✅ |
+| `background` | — | — | 不支持 | ❌ |
 
 ### 生成图片
 
@@ -146,9 +185,9 @@ for i, img in enumerate(response.generated_images):
 ```
 
 ```ts [TypeScript]
-const genai = require("@google/genai");
+const { GoogleGenAI } = require("@google/genai");
 
-const client = new genai.GoogleGenAI({
+const client = new GoogleGenAI({
   apiKey: "$ZENMUX_API_KEY", // 替换为你的 API Key
   vertexai: true,
   httpOptions: {
@@ -165,6 +204,197 @@ const response = await client.models.generateImages({
 console.log(response);
 ```
 
+:::
+
+### 高级参数示例
+
+#### 生成高清大尺寸图片
+
+通过 `image_size` 和 `quality` 参数生成高质量大尺寸图片:
+
+::: code-group
+
+```Python [Python]
+from google import genai
+from google.genai import types
+
+client = genai.Client(
+    api_key="$ZENMUX_API_KEY",
+    vertexai=True,
+    http_options=types.HttpOptions(
+        api_version='v1',
+        base_url='https://zenmux.ai/api/vertex-ai'
+    ),
+)
+
+response = client.models.generate_images(
+    model="openai/gpt-image-2",
+    prompt="A futuristic cityscape at sunset, ultra detailed",
+    config=types.GenerateImagesConfig(
+        number_of_images=1,          # 生成 1 张
+        image_size="1536x1024",      # 横版高分辨率
+    )
+)
+
+for i, img in enumerate(response.generated_images):
+    img.image.save(f"hd_{i}.png")
+    print(f"HD image saved as hd_{i}.png")
+```
+
+```ts [TypeScript]
+const { GoogleGenAI } = require("@google/genai");
+
+const client = new GoogleGenAI({
+  apiKey: "$ZENMUX_API_KEY",
+  vertexai: true,
+  httpOptions: {
+    baseUrl: "https://zenmux.ai/api/vertex-ai",
+    apiVersion: "v1",
+  },
+});
+
+const response = await client.models.generateImages({
+  model: "openai/gpt-image-2",
+  prompt: "A futuristic cityscape at sunset, ultra detailed",
+  config: {
+    numberOfImages: 1,          // 生成 1 张
+    imageSize: "1536x1024",     // 横版高分辨率
+    quality: "high",            // 高质量（仅 TypeScript SDK 支持）
+  },
+});
+
+for (const img of response.generatedImages) {
+  console.log("Image generated:", img.image.imageBytes.length, "bytes");
+}
+```
+
+:::
+
+#### 生成 4K 图片
+
+`openai/gpt-image-2` 支持自定义尺寸,可以生成 4K 分辨率的图片:
+
+::: code-group
+
+```Python [Python]
+from google import genai
+from google.genai import types
+
+client = genai.Client(
+    api_key="$ZENMUX_API_KEY",
+    vertexai=True,
+    http_options=types.HttpOptions(
+        api_version='v1',
+        base_url='https://zenmux.ai/api/vertex-ai'
+    ),
+)
+
+# 生成 4K 横版图片（3840x2160）
+response = client.models.generate_images(
+    model="openai/gpt-image-2",
+    prompt="A breathtaking mountain landscape at golden hour, photorealistic",
+    config=types.GenerateImagesConfig(
+        number_of_images=1,
+        image_size="3840x2160",      # 4K UHD 分辨率
+    )
+)
+
+for i, img in enumerate(response.generated_images):
+    img.image.save(f"4k_{i}.png")
+    print(f"4K image saved as 4k_{i}.png")
+```
+
+```ts [TypeScript]
+const { GoogleGenAI } = require("@google/genai");
+
+const client = new GoogleGenAI({
+  apiKey: "$ZENMUX_API_KEY",
+  vertexai: true,
+  httpOptions: {
+    baseUrl: "https://zenmux.ai/api/vertex-ai",
+    apiVersion: "v1",
+  },
+});
+
+// 生成 4K 横版图片（3840x2160）
+const response = await client.models.generateImages({
+  model: "openai/gpt-image-2",
+  prompt: "A breathtaking mountain landscape at golden hour, photorealistic",
+  config: {
+    numberOfImages: 1,
+    imageSize: "3840x2160",          // 4K UHD 分辨率
+    quality: "high",                 // 高质量（仅 TypeScript SDK 支持）
+  },
+});
+
+for (const img of response.generatedImages) {
+  console.log("4K image generated:", img.image.imageBytes.length, "bytes");
+}
+```
+
+:::
+
+::: tip 💡 尺寸选项
+
+**预设尺寸:** `1024x1024`（正方形）、`1536x1024`（横版）、`1024x1536`（竖版）、`auto`（自动）
+
+**自定义尺寸**（仅 `openai/gpt-image-2`）: 支持传入任意自定义尺寸,需满足以下条件:
+- 宽和高都必须是 **16 的倍数**
+- 单边最大 **3840px**
+- 宽高比不超过 **3:1**
+- 总像素在 655,360 ~ 8,294,400 之间
+
+常用自定义尺寸参考:
+
+| 尺寸 | 分辨率 | 适用场景 |
+|---|---|---|
+| `1920x1080` | 1080p | 博客封面、网页横幅 |
+| `1080x1920` | 1080p 竖版 | 手机壁纸、社交媒体故事 |
+| `2560x1440` | 2K QHD | 桌面壁纸 |
+| `3840x2160` | 4K UHD | 高清海报、大屏展示 |
+
+不同尺寸会影响生成耗时和 token 消耗,尺寸越大费用越高。超过 2560x1440 的尺寸为实验性功能,生成结果可能存在不稳定性。
+:::
+
+#### 指定输出格式和压缩质量
+
+通过 `output_mime_type` 和 `output_compression_quality` 控制输出格式:
+
+::: code-group
+
+```Python [Python]
+response = client.models.generate_images(
+    model="openai/gpt-image-2",
+    prompt="A minimalist logo design",
+    config=types.GenerateImagesConfig(
+        number_of_images=2,                 # 生成 2 张
+        output_mime_type="image/webp",      # WebP 格式,体积更小
+        output_compression_quality=80,      # 80% 压缩质量
+    )
+)
+
+for i, img in enumerate(response.generated_images):
+    img.image.save(f"logo_{i}.webp")
+```
+
+```ts [TypeScript]
+const response = await client.models.generateImages({
+  model: "openai/gpt-image-2",
+  prompt: "A minimalist logo design",
+  config: {
+    numberOfImages: 2,                    // 生成 2 张
+    outputMimeType: "image/webp",         // WebP 格式,体积更小
+    outputCompressionQuality: 80,         // 80% 压缩质量
+  },
+});
+```
+
+:::
+
+::: tip 💡 输出格式
+- `image/png`: 无损格式,适合需要高保真的场景（默认）
+- `image/webp`: 体积更小,适合 Web 展示
+- `image/jpeg`: 通用有损格式,可配合 `output_compression_quality` 控制质量
 :::
 
 ### 编辑图片
@@ -211,9 +441,9 @@ for i, img in enumerate(edit_response.generated_images):
 ```
 
 ```ts [TypeScript]
-const genai = require("@google/genai");
+const { GoogleGenAI, RawReferenceImage } = require("@google/genai");
 
-const client = new genai.GoogleGenAI({
+const client = new GoogleGenAI({
   apiKey: "$ZENMUX_API_KEY", // 替换为你的 API Key
   vertexai: true,
   httpOptions: {
@@ -233,11 +463,112 @@ const editResponse = await client.models.editImage({
   model: "openai/gpt-image-2",
   prompt: "Add a robot next to the cat",
   referenceImages: [
-    {
+    new RawReferenceImage({
       referenceId: 1,
       referenceImage: generateResponse.generatedImages[0].image,
-    },
+    }),
   ],
+});
+
+console.log(editResponse);
+```
+
+:::
+
+#### 使用蒙版编辑图片
+
+通过蒙版（Mask）指定图片中需要编辑的区域,蒙版的透明区域即为编辑区域:
+
+::: code-group
+
+```Python [Python]
+from google import genai
+from google.genai import types
+from PIL import Image
+import io
+
+client = genai.Client(
+    api_key="$ZENMUX_API_KEY",
+    vertexai=True,
+    http_options=types.HttpOptions(
+        api_version='v1',
+        base_url='https://zenmux.ai/api/vertex-ai'
+    ),
+)
+
+# 加载原图和蒙版
+original_image = types.Image.from_file("original.png")
+mask_image = types.Image.from_file("mask.png")  # 透明区域为需要编辑的部分
+
+edit_response = client.models.edit_image(
+    model="openai/gpt-image-2",
+    prompt="Replace the background with a beach scene",
+    reference_images=[
+        types.RawReferenceImage(
+            reference_id=1,
+            reference_image=original_image
+        ),
+        types.MaskReferenceImage(
+            reference_id=2,
+            reference_image=mask_image,
+            config=types.MaskReferenceConfig(
+                mask_mode="MASK_MODE_USER_PROVIDED",
+            )
+        )
+    ],
+    config=types.EditImageConfig(
+        number_of_images=1,
+        output_mime_type="image/png",
+    )
+)
+
+for i, img in enumerate(edit_response.generated_images):
+    img.image.save(f"masked_edit_{i}.png")
+```
+
+```ts [TypeScript]
+import * as fs from "fs";
+const { GoogleGenAI, RawReferenceImage, MaskReferenceImage } = require("@google/genai");
+
+const client = new GoogleGenAI({
+  apiKey: "$ZENMUX_API_KEY",
+  vertexai: true,
+  httpOptions: {
+    baseUrl: "https://zenmux.ai/api/vertex-ai",
+    apiVersion: "v1",
+  },
+});
+
+// 加载原图和蒙版
+const originalImage = {
+  imageBytes: fs.readFileSync("original.png"),
+  mimeType: "image/png",
+};
+const maskImage = {
+  imageBytes: fs.readFileSync("mask.png"), // 透明区域为需要编辑的部分
+  mimeType: "image/png",
+};
+
+const editResponse = await client.models.editImage({
+  model: "openai/gpt-image-2",
+  prompt: "Replace the background with a beach scene",
+  referenceImages: [
+    new RawReferenceImage({
+      referenceId: 1,
+      referenceImage: originalImage,
+    }),
+    new MaskReferenceImage({
+      referenceId: 2,
+      referenceImage: maskImage,
+      config: {
+        maskMode: "MASK_MODE_USER_PROVIDED",
+      },
+    }),
+  ],
+  config: {
+    numberOfImages: 1,
+    outputMimeType: "image/png",
+  },
 });
 
 console.log(editResponse);
