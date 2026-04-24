@@ -3,12 +3,17 @@ import { ref, onMounted, onUnmounted, nextTick, watch, computed } from 'vue'
 import { marked } from 'marked'
 import { useDocContext } from './composables/use-doc-context'
 import { useChatStream } from './composables/use-chat-stream'
+import { useAuth } from './composables/use-auth'
 
 const panelOpen = ref(false)
 const maximized = ref(false)
 const inputText = ref('')
 const messagesContainer = ref<HTMLElement | null>(null)
 const inputRef = ref<HTMLTextAreaElement | null>(null)
+
+const { user: authUser } = useAuth()
+const isDev = typeof location !== 'undefined' && (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
+const isAdmin = computed(() => isDev || !!authUser.value?.flags?.internalMember)
 
 const { isZh } = useDocContext()
 const { messages, isStreaming, sendMessage, stopStream, clearChat } = useChatStream()
@@ -162,6 +167,7 @@ onUnmounted(() => {
 </script>
 
 <template>
+  <template v-if="isAdmin">
   <!-- Trigger button in navbar -->
   <button class="ai-trigger" :class="{ active: panelOpen }" title="Ask AI" @click="togglePanel">
     <span class="ai-trigger-text">Ask AI</span>
@@ -329,6 +335,7 @@ onUnmounted(() => {
       </div>
     </Transition>
   </Teleport>
+  </template>
 </template>
 
 <style scoped>
