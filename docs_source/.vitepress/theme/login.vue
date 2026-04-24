@@ -81,7 +81,7 @@ import {
 } from "element-plus";
 import MyIcon from "./icon.vue";
 import { inBrowser } from "vitepress";
-import { info, logout } from "../../component/server";
+import { useAuth } from "./composables/use-auth";
 
 export default defineComponent({
   name: "LoginButton",
@@ -94,35 +94,7 @@ export default defineComponent({
   },
   setup() {
     const isCopied = ref(false);
-    const isLoading = ref(true);
-    const user = ref<{
-      userId: string;
-      accountId: string;
-      loginType: string;
-      avatarUrl: string;
-      displayName: string;
-      email: string;
-      flags?: {
-        subscription?: boolean;
-        internalMember?: boolean;
-      };
-    } | null>(null);
-
-    if (inBrowser) {
-      info()
-        .then((res) => {
-          console.log("User info:", res);
-          if (res.data.success) {
-            user.value = res.data.data as any;
-          }
-          isLoading.value = false;
-          console.info("User info loaded:", user.value);
-        })
-        .catch((err) => {
-          console.error("Failed to fetch user info:", err);
-          isLoading.value = false;
-        });
-    }
+    const { user, isLoading, logout } = useAuth();
 
     const handleClick = () => {
       if (isCopied.value || !inBrowser) return;
@@ -134,11 +106,7 @@ export default defineComponent({
     };
 
     const goLogout = () => {
-      user.value = null;
-      if (inBrowser) {
-        logout();
-      }
-      // 可在此处添加实际的登出逻辑
+      logout();
     };
 
     const goSettings = () => {
