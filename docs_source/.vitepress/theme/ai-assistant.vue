@@ -4,12 +4,15 @@ import { marked } from 'marked'
 import { useDocContext } from './composables/use-doc-context'
 import { useChatStream } from './composables/use-chat-stream'
 import { useAuth } from './composables/use-auth'
+import { useImageAttach } from './composables/use-image-attach'
 
 const panelOpen = ref(false)
 const maximized = ref(false)
 const inputText = ref('')
 const messagesContainer = ref<HTMLElement | null>(null)
 const inputRef = ref<HTMLTextAreaElement | null>(null)
+const fileInputRef = ref<HTMLInputElement | null>(null)
+const isDragging = ref(false)
 
 const { user: authUser } = useAuth()
 const isDev = typeof location !== 'undefined' && (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
@@ -17,6 +20,7 @@ const isAdmin = computed(() => isDev || !!authUser.value?.flags?.internalMember)
 
 const { isZh } = useDocContext()
 const { messages, isStreaming, sendMessage, stopStream, clearChat } = useChatStream()
+const { pendingImages, errorMessage: imageError, addFiles, removeImage, clearImages } = useImageAttach()
 
 const welcomeMessage = computed(() =>
   isZh.value
@@ -74,10 +78,12 @@ function handleRefresh() {
 
 async function handleSend() {
   const text = inputText.value.trim()
-  if (!text || isStreaming.value) return
+  if ((!text && !pendingImages.value.length) || isStreaming.value) return
+  const images = pendingImages.value.length ? [...pendingImages.value] : undefined
   inputText.value = ''
+  clearImages()
   resetTextareaHeight()
-  await sendMessage(text, isZh.value ? 'zh' : 'en')
+  await sendMessage(text || '(image)', isZh.value ? 'zh' : 'en', images)
 }
 
 function handleStop() {
@@ -88,6 +94,44 @@ function handleKeydown(e: KeyboardEvent) {
   if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) {
     e.preventDefault()
     handleSend()
+  }
+}
+
+// --- Image attachment ---
+
+function handlePaste(e: ClipboardEvent) {
+  const files = Array.from(e.clipboardData?.files || []).filter(f => f.type.startsWith('image/'))
+  if (files.length) {
+    e.preventDefault()
+    addFiles(files)
+  }
+}
+
+function handleDragOver(e: DragEvent) {
+  e.preventDefault()
+  isDragging.value = true
+}
+
+function handleDragLeave() {
+  isDragging.value = false
+}
+
+function handleDrop(e: DragEvent) {
+  e.preventDefault()
+  isDragging.value = false
+  const files = Array.from(e.dataTransfer?.files || []).filter(f => f.type.startsWith('image/'))
+  if (files.length) addFiles(files)
+}
+
+function openFilePicker() {
+  fileInputRef.value?.click()
+}
+
+function handleFileChange(e: Event) {
+  const input = e.target as HTMLInputElement
+  if (input.files?.length) {
+    addFiles(input.files)
+    input.value = ''
   }
 }
 
@@ -258,6 +302,15 @@ onUnmounted(() => {
             <!-- User message -->
             <div v-if="msg.role === 'user'" class="ai-msg ai-msg-user">
               <div class="ai-msg-bubble-user">
+                <div v-if="msg.images?.length" class="ai-msg-images">
+                  <img
+                    v-for="(img, idx) in msg.images"
+                    :key="idx"
+                    :src="img"
+                    class="ai-msg-image-thumb"
+                    alt="Attached image"
+                  />
+                </div>
                 {{ msg.content }}
               </div>
             </div>
@@ -297,8 +350,41 @@ onUnmounted(() => {
         </div>
 
         <!-- Input area -->
-        <div class="ai-input-area">
+        <input
+          ref="fileInputRef"
+          type="file"
+          accept="image/png,image/jpeg,image/gif,image/webp"
+          multiple
+          style="display: none"
+          @change="handleFileChange"
+        />
+        <div
+          class="ai-input-area"
+          :class="{ 'ai-drag-over': isDragging }"
+          @dragover="handleDragOver"
+          @dragleave="handleDragLeave"
+          @drop="handleDrop"
+        >
+          <!-- Pending image previews -->
+          <div v-if="pendingImages.length" class="ai-image-previews">
+            <div v-for="(img, idx) in pendingImages" :key="idx" class="ai-image-preview">
+              <img :src="img" alt="Attached image" />
+              <button class="ai-image-remove" @click="removeImage(idx)">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div v-if="imageError" class="ai-image-error">{{ imageError }}</div>
           <div class="ai-input-wrapper">
+            <button class="ai-attach-btn" title="Attach image" @click="openFilePicker" :disabled="pendingImages.length >= 4">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <polyline points="21 15 16 10 5 21"/>
+              </svg>
+            </button>
             <textarea
               ref="inputRef"
               v-model="inputText"
@@ -307,6 +393,7 @@ onUnmounted(() => {
               rows="1"
               @keydown="handleKeydown"
               @input="handleInput"
+              @paste="handlePaste"
             />
             <button
               v-if="isStreaming"
@@ -321,7 +408,7 @@ onUnmounted(() => {
             <button
               v-else
               class="ai-send-btn"
-              :disabled="!inputText.trim()"
+              :disabled="!inputText.trim() && !pendingImages.length"
               title="Send"
               @click="handleSend"
             >
@@ -711,6 +798,94 @@ onUnmounted(() => {
   40% { transform: scale(1); opacity: 1; }
 }
 
+/* --- Image attachment --- */
+.ai-attach-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--vp-c-text-3);
+  border-radius: 6px;
+  flex-shrink: 0;
+  transition: color 0.2s;
+}
+.ai-attach-btn:hover:not(:disabled) {
+  color: var(--vp-c-text-1);
+}
+.ai-attach-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.ai-drag-over {
+  background: var(--vp-c-brand-soft);
+  border-radius: 12px;
+}
+
+.ai-image-previews {
+  display: flex;
+  gap: 8px;
+  padding: 0 16px 8px;
+  flex-wrap: wrap;
+}
+.ai-image-preview {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--vp-c-divider);
+  flex-shrink: 0;
+}
+.ai-image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.ai-image-remove {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 18px;
+  height: 18px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.ai-image-remove:hover {
+  background: rgba(0,0,0,0.8);
+}
+
+.ai-image-error {
+  font-size: 12px;
+  color: var(--vp-c-danger-1);
+  padding: 0 16px 4px;
+}
+
+.ai-msg-images {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+.ai-msg-image-thumb {
+  width: 120px;
+  max-height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid var(--vp-c-divider);
+}
+
 /* --- Input area --- */
 .ai-input-area {
   padding: 12px 16px;
@@ -720,7 +895,7 @@ onUnmounted(() => {
 
 .ai-input-wrapper {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   gap: 8px;
   background: var(--vp-c-bg-alt);
   border: 1px solid var(--vp-c-divider);
