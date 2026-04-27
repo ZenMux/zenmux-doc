@@ -68,6 +68,10 @@
   html.ai-panel-open.ai-panel-maximized .VPContent {
     padding-right: 520px !important;
   }
+  /* Hide "On this page" aside when AI panel is open */
+  html.ai-panel-open .VPDoc .aside {
+    display: none;
+  }
   /* Also shrink the api-container (fixed-position panel on API pages) */
   html.ai-panel-open .api-container {
     right: 400px;
