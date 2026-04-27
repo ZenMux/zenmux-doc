@@ -10,9 +10,23 @@ export interface ChatMessage {
   id: string
   role: 'user' | 'assistant'
   content: string
+  images?: string[]
   isStreaming?: boolean
   error?: string
   sources?: DocSource[]
+}
+
+type ContentPart =
+  | { type: 'text'; text: string }
+  | { type: 'image_url'; image_url: { url: string } }
+
+function buildMessageContent(text: string, images?: string[]): string | ContentPart[] {
+  if (!images?.length) return text
+  const parts: ContentPart[] = [{ type: 'text', text }]
+  for (const img of images) {
+    parts.push({ type: 'image_url', image_url: { url: img } })
+  }
+  return parts
 }
 
 let messageIdCounter = 0
@@ -38,7 +52,7 @@ export function useChatStream() {
   const isStreaming = ref(false)
   let abortController: AbortController | null = null
 
-  async function sendMessage(content: string, locale: string) {
+  async function sendMessage(content: string, locale: string, images?: string[]) {
     if (isStreaming.value || !content.trim()) return
 
     // Add user message
@@ -46,6 +60,7 @@ export function useChatStream() {
       id: generateId(),
       role: 'user',
       content: content.trim(),
+      images: images?.length ? images : undefined,
     }
     messages.value = [...messages.value, userMsg]
 
@@ -70,7 +85,7 @@ export function useChatStream() {
       const requestBody = {
         messages: [
           ...history,
-          { role: 'user', content: content.trim() },
+          { role: 'user' as const, content: buildMessageContent(content.trim(), images) },
         ],
         locale,
       }
