@@ -161,6 +161,10 @@ export default defineLoacaleConfig({
             text: "Claude Code Integration",
             link: "/best-practices/claude-code",
           },
+          {
+            text: "Claude Desktop Integration",
+            link: "/best-practices/claude-desktop",
+          },
           { text: "CodeX Integration", link: "/best-practices/codex" },
           {
             text: "Gemini CLI Integration",
