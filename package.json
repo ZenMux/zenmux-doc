@@ -11,7 +11,8 @@
     "format-images": "node scripts/format-images.js",
     "copy-docs": "cp docs/vp-icons.css docs/docs/vp-icons.css",
     "copy-to-root": "bash scripts/copy-to-root.sh",
-    "postinstall": "node scripts/postinstall.js"
+    "postinstall": "node scripts/postinstall.js",
+    "load-icons": "tsx scripts/load-icons.ts"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.2",
