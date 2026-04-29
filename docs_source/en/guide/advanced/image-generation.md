@@ -53,7 +53,7 @@ from google import genai
 from google.genai import types
 
 client = genai.Client(
-    api_key="$ZENMUX_API_KEY",  # Replace with your API key
+    api_key="$ZENMUX_API_KEY",  # Replace with your API Key
     vertexai=True,
     http_options=types.HttpOptions(
         api_version='v1',
@@ -61,8 +61,8 @@ client = genai.Client(
     ),
 )
 
-# Streaming call: generate_content_stream
-# Non-streaming call: generate_content
+# Streaming: generate_content_stream
+# Non-streaming: generate_content
 prompt = "Create a picture of a nano banana dish in a fancy restaurant with a Gemini theme"
 
 response = client.models.generate_content(
@@ -73,7 +73,7 @@ response = client.models.generate_content(
     )
 )
 
-# Handle text and image responses
+# Process text and image responses
 for part in response.parts:
     if part.text is not None:
         print(part.text)
@@ -88,7 +88,7 @@ for part in response.parts:
 const genai = require("@google/genai");
 
 const client = new genai.GoogleGenAI({
-  apiKey: "$ZENMUX_API_KEY", // Replace with your API key
+  apiKey: "$ZENMUX_API_KEY", // Replace with your API Key
   vertexai: true,
   httpOptions: {
     baseUrl: "https://zenmux.ai/api/vertex-ai",
@@ -96,15 +96,15 @@ const client = new genai.GoogleGenAI({
   },
 });
 
-// Streaming call: generateContentStream
-// Non-streaming call: generateContent
+// Streaming: generateContentStream
+// Non-streaming: generateContent
 const response = await client.models.generateContent({
   model: "google/gemini-3-pro-image-preview",
   contents:
     "Generate an image of the Eiffel tower with fireworks in the background",
   config: {
     responseModalities: ["TEXT", "IMAGE"], // Response modalities must be specified
-    // For more configuration options, refer to the Vertex AI official documentation
+    // For more configuration options, see the Vertex AI documentation
   },
 });
 
@@ -113,50 +113,56 @@ console.log(response);
 
 :::
 
-## Non-Google Models Usage
+## Non-Google Model Usage
 
-For non-Google models like `openai/gpt-image-1.5`, `openai/gpt-image-2`, and `qwen/qwen-image-2.0`, use the `generate_images` and `edit_image` APIs.
+For non-Google models such as `openai/gpt-image-1.5`, `openai/gpt-image-2`, and `qwen/qwen-image-2.0`, use the `generate_images` and `edit_image` APIs.
 
-ZenMux internally converts Vertex AI protocol parameters to the OpenAI image generation API format. The parameter mapping tables below help you understand how to use each feature.
+ZenMux internally translates Vertex AI protocol parameters into the OpenAI image generation API format. The mapping tables below help you understand how to use each feature.
 
 ### Supported Parameters
 
 #### generate_images Parameters
 
-The following maps [OpenAI's official image generation parameters](https://developers.openai.com/api/reference/resources/images/methods/generate) to ZenMux's Vertex AI protocol:
+The following table maps the [official OpenAI image generation parameters](https://developers.openai.com/api/reference/resources/images/methods/generate) to the ZenMux Vertex AI protocol:
 
 | OpenAI Parameter | Vertex AI Equivalent | Type | Description | Supported |
 |---|---|---|---|---|
-| `prompt` | `prompt` (SDK direct) | string | Text description (required) | ✅ |
-| `model` | `model` (SDK direct) | string | Model name | ✅ |
+| `prompt` | `prompt` (passed directly via SDK) | string | Text description (required) | ✅ |
+| `model` | `model` (passed directly via SDK) | string | Model name | ✅ |
 | `n` | `config.number_of_images` | number | Number of images to generate (1-10) | ✅ |
-| `size` | `config.image_size` | string | Image size: `1024x1024`, `1536x1024` (landscape), `1024x1536` (portrait), `auto` | ✅ |
-| `quality` | `config.quality` | string | Image quality: `low` / `medium` / `high` / `auto` (TypeScript SDK only) | ✅ |
+| `size` | `config.http_options.extra_body.imageSize` | string | Image size: `1024x1024`, `1536x1024` (landscape), `1024x1536` (portrait), `auto` | ✅ |
+| `quality` | `config.http_options.extra_body.quality` | string | Image quality: `low` / `medium` / `high` / `auto` | ✅ |
 | `output_format` | `config.output_mime_type` | string | Output format: `image/png`, `image/jpeg`, `image/webp` | ✅ |
-| `output_compression` | `config.output_compression_quality` | number | Compression quality (0-100), only for webp/jpeg | ✅ |
-| `background` | — | string | Background transparency | ❌ |
+| `output_compression` | `config.output_compression_quality` | number | Compression quality (0-100), only valid for webp/jpeg | ✅ |
+| `background` | — | string | Background transparency setting | ❌ |
 | `moderation` | — | string | Content moderation level | ❌ |
 | `style` | — | string | DALL-E 3 style parameter | ❌ |
 | `response_format` | — | string | Not applicable (always returns base64) | ❌ |
 
 #### edit_image Parameters
 
-The following maps [OpenAI's official image editing parameters](https://developers.openai.com/api/reference/resources/images/methods/edit) to ZenMux's Vertex AI protocol:
+The following table maps the [official OpenAI image editing parameters](https://developers.openai.com/api/reference/resources/images/methods/edit) to the ZenMux Vertex AI protocol:
 
 | OpenAI Parameter | Vertex AI Equivalent | Type | Description | Supported |
 |---|---|---|---|---|
-| `prompt` | `prompt` (SDK direct) | string | Edit description (required) | ✅ |
-| `model` | `model` (SDK direct) | string | Model name | ✅ |
-| `image` | `reference_images` (`referenceType` is not MASK) | file/base64 | Reference images, supports multiple | ✅ |
-| `mask` | `reference_images` (`referenceType = REFERENCE_TYPE_MASK`) | file/base64 | Mask image, transparent areas are edit regions | ✅ |
-| `n` | `config.number_of_images` | number | Number of images to generate (1-10) | ✅ |
-| `size` | `config.image_size` | string | Image size: `1024x1024`, `1536x1024`, `1024x1536`, `auto` | ✅ |
-| `quality` | `config.quality` | string | Image quality: `low` / `medium` / `high` / `auto` (TypeScript SDK only) | ✅ |
+| `prompt` | `prompt` (passed directly via SDK) | string | Edit description (required) | ✅ |
+| `model` | `model` (passed directly via SDK) | string | Model name | ✅ |
+| `image` | `reference_images` (with `referenceType` other than MASK) | file/base64 | Reference images, multiple supported | ✅ |
+| `mask` | `reference_images` (with `referenceType = REFERENCE_TYPE_MASK`) | file/base64 | Mask image; transparent areas are the editable region | ✅ |
+| `n` | `config.number_of_images` | number | Number of images (1-10) | ✅ |
+| `size` | `config.http_options.extra_body.imageSize` | string | Image size: `1024x1024`, `1536x1024`, `1024x1536`, `auto` | ✅ |
+| `quality` | `config.http_options.extra_body.quality` | string | Image quality: `low` / `medium` / `high` / `auto` | ✅ |
 | `output_format` | `config.output_mime_type` | string | Output format | ✅ |
 | `output_compression` | `config.output_compression_quality` | number | Compression quality | ✅ |
 | `background` | — | — | Not supported | ❌ |
 
-### Generate Images
+::: tip 💡 About Parameter Passing
+
+Pass OpenAI-specific parameters such as `imageSize` and `quality` through `httpOptions.extraBody` to ensure consistent behavior across the Python and TypeScript SDKs. Standard Vertex AI fields like `numberOfImages`, `outputMimeType`, and `outputCompressionQuality` can be set directly at the top level of `config`.
+
+:::
+
+### Generating Images
 
 ::: code-group
 
@@ -165,7 +171,7 @@ from google import genai
 from google.genai import types
 
 client = genai.Client(
-    api_key="$ZENMUX_API_KEY",  # Replace with your API key
+    api_key="$ZENMUX_API_KEY",  # Replace with your API Key
     vertexai=True,
     http_options=types.HttpOptions(
         api_version='v1',
@@ -178,7 +184,7 @@ response = client.models.generate_images(
     prompt="A cat and a dog"
 )
 
-# Save generated images
+# Save the generated images
 for i, img in enumerate(response.generated_images):
     img.image.save(f"generated_{i}.png")
     print(f"Image saved as generated_{i}.png")
@@ -188,7 +194,7 @@ for i, img in enumerate(response.generated_images):
 const { GoogleGenAI } = require("@google/genai");
 
 const client = new GoogleGenAI({
-  apiKey: "$ZENMUX_API_KEY", // Replace with your API key
+  apiKey: "$ZENMUX_API_KEY", // Replace with your API Key
   vertexai: true,
   httpOptions: {
     baseUrl: "https://zenmux.ai/api/vertex-ai",
@@ -208,9 +214,9 @@ console.log(response);
 
 ### Advanced Parameter Examples
 
-#### Generate HD Large Images
+#### Generating High-Resolution Images
 
-Use `image_size` and `quality` parameters to generate high-quality large images:
+Pass `imageSize` and `quality` through `httpOptions.extraBody` to generate high-quality, large-size images:
 
 ::: code-group
 
@@ -231,8 +237,13 @@ response = client.models.generate_images(
     model="openai/gpt-image-2",
     prompt="A futuristic cityscape at sunset, ultra detailed",
     config=types.GenerateImagesConfig(
-        number_of_images=1,          # Generate 1 image
-        image_size="1536x1024",      # Landscape high resolution
+        number_of_images=1,                         # Generate 1 image
+        http_options=types.HttpOptions(
+            extra_body={
+                "imageSize": "1536x1024",           # Landscape high resolution
+                "quality": "high",                  # High quality
+            }
+        ),
     )
 )
 
@@ -257,9 +268,13 @@ const response = await client.models.generateImages({
   model: "openai/gpt-image-2",
   prompt: "A futuristic cityscape at sunset, ultra detailed",
   config: {
-    numberOfImages: 1,          // Generate 1 image
-    imageSize: "1536x1024",     // Landscape high resolution
-    quality: "high",            // High quality (TypeScript SDK only)
+    numberOfImages: 1,                  // Generate 1 image
+    httpOptions: {
+      extraBody: {
+        imageSize: "1536x1024",         // Landscape high resolution
+        quality: "high",                // High quality
+      },
+    },
   },
 });
 
@@ -270,9 +285,9 @@ for (const img of response.generatedImages) {
 
 :::
 
-#### Generate 4K Images
+#### Generating 4K Images
 
-`openai/gpt-image-2` supports custom sizes, enabling 4K resolution image generation:
+`openai/gpt-image-2` supports custom sizes, including 4K resolution:
 
 ::: code-group
 
@@ -295,7 +310,12 @@ response = client.models.generate_images(
     prompt="A breathtaking mountain landscape at golden hour, photorealistic",
     config=types.GenerateImagesConfig(
         number_of_images=1,
-        image_size="3840x2160",      # 4K UHD resolution
+        http_options=types.HttpOptions(
+            extra_body={
+                "imageSize": "3840x2160",   # 4K UHD resolution
+                "quality": "high",          # High quality
+            }
+        ),
     )
 )
 
@@ -322,8 +342,12 @@ const response = await client.models.generateImages({
   prompt: "A breathtaking mountain landscape at golden hour, photorealistic",
   config: {
     numberOfImages: 1,
-    imageSize: "3840x2160",          // 4K UHD resolution
-    quality: "high",                 // High quality (TypeScript SDK only)
+    httpOptions: {
+      extraBody: {
+        imageSize: "3840x2160",      // 4K UHD resolution
+        quality: "high",             // High quality
+      },
+    },
   },
 });
 
@@ -336,29 +360,29 @@ for (const img of response.generatedImages) {
 
 ::: tip 💡 Size Options
 
-**Preset sizes:** `1024x1024` (square), `1536x1024` (landscape), `1024x1536` (portrait), `auto` (automatic)
+**Preset sizes:** `1024x1024` (square), `1536x1024` (landscape), `1024x1536` (portrait), `auto`
 
-**Custom sizes** (`openai/gpt-image-2` only): Supports any custom size with the following constraints:
-- Width and height must be **multiples of 16**
-- Maximum edge length: **3840px**
-- Aspect ratio no greater than **3:1**
-- Total pixels between 655,360 and 8,294,400
+**Custom sizes** (only `openai/gpt-image-2`): any custom size is supported, subject to the following constraints:
+- Width and height must each be a **multiple of 16**
+- Maximum side length is **3840px**
+- Aspect ratio must not exceed **3:1**
+- Total pixels must fall between 655,360 and 8,294,400
 
-Common custom size reference:
+Common custom sizes for reference:
 
 | Size | Resolution | Use Case |
 |---|---|---|
 | `1920x1080` | 1080p | Blog covers, web banners |
 | `1080x1920` | 1080p portrait | Phone wallpapers, social media stories |
 | `2560x1440` | 2K QHD | Desktop wallpapers |
-| `3840x2160` | 4K UHD | High-res posters, large displays |
+| `3840x2160` | 4K UHD | High-resolution posters, large displays |
 
-Larger sizes increase generation time and token consumption. Sizes above 2560x1440 are experimental and may produce less stable results.
+Different sizes affect generation time and token cost — larger sizes are more expensive. Sizes above 2560x1440 are experimental and may produce inconsistent results.
 :::
 
-#### Specify Output Format and Compression
+#### Specifying Output Format and Compression Quality
 
-Control the output format with `output_mime_type` and `output_compression_quality`:
+Use `output_mime_type` and `output_compression_quality` to control the output format:
 
 ::: code-group
 
@@ -392,14 +416,14 @@ const response = await client.models.generateImages({
 :::
 
 ::: tip 💡 Output Formats
-- `image/png`: Lossless format, ideal for high-fidelity scenarios (default)
-- `image/webp`: Smaller file size, ideal for web display
-- `image/jpeg`: Common lossy format, use with `output_compression_quality` to control quality
+- `image/png`: lossless format, ideal when high fidelity is needed (default)
+- `image/webp`: smaller file size, ideal for web display
+- `image/jpeg`: general-purpose lossy format; pair with `output_compression_quality` to control quality
 :::
 
-### Edit Images
+### Editing Images
 
-Modify an existing image using the `edit_image` API:
+To modify an existing image, use the `edit_image` API:
 
 ::: code-group
 
@@ -408,7 +432,7 @@ from google import genai
 from google.genai import types
 
 client = genai.Client(
-    api_key="$ZENMUX_API_KEY",  # Replace with your API key
+    api_key="$ZENMUX_API_KEY",  # Replace with your API Key
     vertexai=True,
     http_options=types.HttpOptions(
         api_version='v1',
@@ -416,13 +440,13 @@ client = genai.Client(
     ),
 )
 
-# First generate an image
+# First, generate an image
 generate_response = client.models.generate_images(
     model="openai/gpt-image-2",
     prompt="A cat sitting on a table"
 )
 
-# Edit the generated image
+# Then edit the generated image
 edit_response = client.models.edit_image(
     model="openai/gpt-image-2",
     prompt="Add a robot next to the cat",
@@ -434,7 +458,7 @@ edit_response = client.models.edit_image(
     ]
 )
 
-# Save edited images
+# Save the edited image
 for i, img in enumerate(edit_response.generated_images):
     img.image.save(f"edited_{i}.png")
     print(f"Edited image saved as edited_{i}.png")
@@ -444,7 +468,7 @@ for i, img in enumerate(edit_response.generated_images):
 const { GoogleGenAI, RawReferenceImage } = require("@google/genai");
 
 const client = new GoogleGenAI({
-  apiKey: "$ZENMUX_API_KEY", // Replace with your API key
+  apiKey: "$ZENMUX_API_KEY", // Replace with your API Key
   vertexai: true,
   httpOptions: {
     baseUrl: "https://zenmux.ai/api/vertex-ai",
@@ -452,13 +476,13 @@ const client = new GoogleGenAI({
   },
 });
 
-// First generate an image
+// First, generate an image
 const generateResponse = await client.models.generateImages({
   model: "openai/gpt-image-2",
   prompt: "A cat sitting on a table",
 });
 
-// Edit the generated image
+// Then edit the generated image
 const editResponse = await client.models.editImage({
   model: "openai/gpt-image-2",
   prompt: "Add a robot next to the cat",
@@ -475,17 +499,17 @@ console.log(editResponse);
 
 :::
 
-#### Edit Images with Mask
+#### Editing with a Mask
 
-Use a mask to specify the editable region of an image. The transparent areas of the mask define where edits will be applied:
+Use a mask to specify which region of the image should be edited — the transparent areas of the mask define the editable region:
 
 ::: code-group
 
 ```Python [Python]
+import urllib.request
+
 from google import genai
 from google.genai import types
-from PIL import Image
-import io
 
 client = genai.Client(
     api_key="$ZENMUX_API_KEY",
@@ -496,9 +520,12 @@ client = genai.Client(
     ),
 )
 
-# Load original image and mask
-original_image = types.Image.from_file("original.png")
-mask_image = types.Image.from_file("mask.png")  # Transparent areas are editable regions
+# Load the original image and mask (using the ZenMux Logo as an example)
+LOGO_URL = "https://cdn.marmot-cloud.com/storage/zenmux/2026/04/28/74mUf4t/Log-Light.png"
+logo_bytes = urllib.request.urlopen(LOGO_URL).read()
+
+original_image = types.Image(image_bytes=logo_bytes, mime_type="image/png")
+mask_image = types.Image(image_bytes=logo_bytes, mime_type="image/png")  # Transparent areas are the editable region
 
 edit_response = client.models.edit_image(
     model="openai/gpt-image-2",
@@ -519,6 +546,12 @@ edit_response = client.models.edit_image(
     config=types.EditImageConfig(
         number_of_images=1,
         output_mime_type="image/png",
+        http_options=types.HttpOptions(
+            extra_body={
+                "imageSize": "1024x1024",
+                "quality": "high",
+            }
+        ),
     )
 )
 
@@ -527,7 +560,6 @@ for i, img in enumerate(edit_response.generated_images):
 ```
 
 ```ts [TypeScript]
-import * as fs from "fs";
 const { GoogleGenAI, RawReferenceImage, MaskReferenceImage } = require("@google/genai");
 
 const client = new GoogleGenAI({
@@ -539,13 +571,17 @@ const client = new GoogleGenAI({
   },
 });
 
-// Load original image and mask
+// Load the original image and mask (using the ZenMux Logo as an example)
+const LOGO_URL =
+  "https://cdn.marmot-cloud.com/storage/zenmux/2026/04/28/74mUf4t/Log-Light.png";
+const logoBytes = Buffer.from(await (await fetch(LOGO_URL)).arrayBuffer());
+
 const originalImage = {
-  imageBytes: fs.readFileSync("original.png"),
+  imageBytes: logoBytes,
   mimeType: "image/png",
 };
 const maskImage = {
-  imageBytes: fs.readFileSync("mask.png"), // Transparent areas are editable regions
+  imageBytes: logoBytes, // Transparent areas are the editable region
   mimeType: "image/png",
 };
 
@@ -568,6 +604,12 @@ const editResponse = await client.models.editImage({
   config: {
     numberOfImages: 1,
     outputMimeType: "image/png",
+    httpOptions: {
+      extraBody: {
+        imageSize: "1024x1024",
+        quality: "high",
+      },
+    },
   },
 });
 
@@ -578,8 +620,8 @@ console.log(editResponse);
 
 ::: tip 💡 API Differences
 
-- **Google Gemini models** use the `generate_content` API and require `response_modalities: ["TEXT", "IMAGE"]`; responses contain both text and images.
-- **Non-Google models** use the `generate_images` / `edit_image` API, returning image objects directly with support for image editing.
+- **Google Gemini models** use the `generate_content` API with `response_modalities: ["TEXT", "IMAGE"]`; responses contain both text and images.
+- **Non-Google models** use the `generate_images` / `edit_image` APIs, which return image objects directly and support image editing.
   :::
 
 ## Configuration
@@ -595,16 +637,16 @@ console.log(editResponse);
 
 ZenMux supports two invocation modes:
 
-- **Streaming** (`generate_content_stream` / `generateContentStream`): Ideal for scenarios requiring real-time feedback
-- **Non-streaming** (`generate_content` / `generateContent`): Returns the complete response at once after processing
+- **Streaming** (`generate_content_stream` / `generateContentStream`): suitable for scenarios that need real-time feedback
+- **Non-streaming** (`generate_content` / `generateContent`): waits for the full response and returns it at once
 
 ::: warning ⚠️ Response Handling
-Responses from image generation models may contain both text and images. Iterate over `response.parts` to process all content parts.
+Image generation models may return both text and images in the same response. Iterate over `response.parts` to handle every content part.
 :::
 
 ## Best Practices
 
-1. Prompt Engineering: Use clear and specific descriptions to achieve better generation quality.
-2. Error Handling: Add exception handling to manage potential API call failures.
-3. Image Saving: The Python SDK provides a convenient `as_image()` method to convert a response part into a PIL Image object.
-4. Model Selection: Choose the appropriate model based on your needs; free models are suitable for testing, while paid models provide higher quality.
+1. **Prompt optimization**: use clear, specific descriptions for better generation results
+2. **Error handling**: add exception handling to gracefully handle API failures
+3. **Saving images**: the Python SDK provides a convenient `as_image()` method to convert the response into a PIL Image object
+4. **Model selection**: choose the right model for your needs — free models are good for testing, paid models offer higher quality
