@@ -16,3 +16,6 @@ docs
 .references/
 
 !docs_source/public/docs/
+
+# Icon loading script (run `pnpm run load-icons` to regenerate icons)
+scripts/load-icons.ts
