@@ -3,7 +3,6 @@ import { ref, onMounted, onUnmounted, nextTick, watch, computed } from "vue";
 import { marked } from "marked";
 import { useDocContext } from "./composables/use-doc-context";
 import { useChatStream } from "./composables/use-chat-stream";
-import { useAuth } from "./composables/use-auth";
 import { useImageAttach } from "./composables/use-image-attach";
 import ChatFrame from "./icons/ChatFrame.vue";
 import IconCollapse from "./icons/IconCollapse.vue";
@@ -21,14 +20,6 @@ const messagesContainer = ref<HTMLElement | null>(null);
 const inputRef = ref<HTMLTextAreaElement | null>(null);
 const fileInputRef = ref<HTMLInputElement | null>(null);
 const isDragging = ref(false);
-
-const { user: authUser } = useAuth();
-const isDev =
-  typeof location !== "undefined" &&
-  (location.hostname === "localhost" || location.hostname === "127.0.0.1");
-const isAdmin = computed(
-  () => isDev || !!authUser.value?.flags?.internalMember,
-);
 
 const { isZh } = useDocContext();
 const { messages, isStreaming, sendMessage, stopStream, clearChat } =
@@ -246,7 +237,6 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <template v-if="isAdmin">
     <!-- Trigger button in navbar -->
     <div class="ai-trigger-divider" />
     <button
@@ -457,7 +447,6 @@ onUnmounted(() => {
         </div>
       </Transition>
     </Teleport>
-  </template>
 </template>
 
 <style scoped>
