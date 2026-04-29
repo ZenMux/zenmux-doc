@@ -148,6 +148,10 @@ export default defineLoacaleConfig({
             text: "Studio",
             items: [{ text: "Studio-Chat", link: "/guide/studio/studio-chat" }],
           },
+          {
+            text: "ZenMux Skills",
+            link: "/guide/zenmux-skills",
+          },
         ],
       },
       {
@@ -156,6 +160,10 @@ export default defineLoacaleConfig({
           {
             text: "Claude Code Integration",
             link: "/best-practices/claude-code",
+          },
+          {
+            text: "Claude Desktop Integration",
+            link: "/best-practices/claude-desktop",
           },
           { text: "CodeX Integration", link: "/best-practices/codex" },
           {

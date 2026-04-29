@@ -146,6 +146,10 @@ export default defineLoacaleConfig({
               { text: "Studio-Chat", link: "/zh/guide/studio/studio-chat" },
             ],
           },
+          {
+            text: "ZenMux Skills",
+            link: "/zh/guide/zenmux-skills",
+          },
         ],
       },
       {
@@ -154,6 +158,10 @@ export default defineLoacaleConfig({
           {
             text: "ClaudeCode接入ZenMux指南",
             link: "/zh/best-practices/claude-code",
+          },
+          {
+            text: "Claude Desktop 接入 ZenMux 指南",
+            link: "/zh/best-practices/claude-desktop",
           },
           { text: "CodeX接入ZenMux指南", link: "/zh/best-practices/codex" },
           {
