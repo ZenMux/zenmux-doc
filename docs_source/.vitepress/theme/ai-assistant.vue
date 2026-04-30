@@ -1,428 +1,452 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, nextTick, watch, computed } from 'vue'
-import { marked } from 'marked'
-import { useDocContext } from './composables/use-doc-context'
-import { useChatStream } from './composables/use-chat-stream'
-import { useAuth } from './composables/use-auth'
-import { useImageAttach } from './composables/use-image-attach'
+import { ref, onMounted, onUnmounted, nextTick, watch, computed } from "vue";
+import { marked } from "marked";
+import { useDocContext } from "./composables/use-doc-context";
+import { useChatStream } from "./composables/use-chat-stream";
+import { useImageAttach } from "./composables/use-image-attach";
+import ChatFrame from "./icons/ChatFrame.vue";
+import IconCollapse from "./icons/IconCollapse.vue";
+import IconExpand from "./icons/IconExpand.vue";
+import IconSync from "./icons/IconSync.vue";
+import Close from "./icons/Close.vue";
+import ImageIcon from "./icons/Image.vue";
+import IconSendV5 from "./icons/IconSendV5.vue";
+import IconStop from "./icons/IconStop.vue";
 
-const panelOpen = ref(false)
-const maximized = ref(false)
-const inputText = ref('')
-const messagesContainer = ref<HTMLElement | null>(null)
-const inputRef = ref<HTMLTextAreaElement | null>(null)
-const fileInputRef = ref<HTMLInputElement | null>(null)
-const isDragging = ref(false)
+const panelOpen = ref(false);
+const maximized = ref(false);
+const inputText = ref("");
+const messagesContainer = ref<HTMLElement | null>(null);
+const inputRef = ref<HTMLTextAreaElement | null>(null);
+const fileInputRef = ref<HTMLInputElement | null>(null);
+const isDragging = ref(false);
 
-const { user: authUser } = useAuth()
-const isDev = typeof location !== 'undefined' && (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
-const isAdmin = computed(() => isDev || !!authUser.value?.flags?.internalMember)
-
-const { isZh } = useDocContext()
-const { messages, isStreaming, sendMessage, stopStream, clearChat } = useChatStream()
-const { pendingImages, errorMessage: imageError, addFiles, removeImage, clearImages } = useImageAttach()
+const { isZh } = useDocContext();
+const { messages, isStreaming, sendMessage, stopStream, clearChat } =
+  useChatStream();
+const {
+  pendingImages,
+  errorMessage: imageError,
+  addFiles,
+  removeImage,
+  clearImages,
+} = useImageAttach();
 
 const welcomeMessage = computed(() =>
   isZh.value
-    ? 'Hi! 我是 AI 助手，可以帮你解答关于 ZenMux 文档的问题。'
-    : "Hi! I'm an AI assistant with access to documentation and other content."
-)
+    ? "Hi! 我是 AI 助手，可以帮你解答关于 ZenMux 文档的问题。"
+    : "Hi! I'm an AI assistant with access to documentation and other content.",
+);
 
 const inputPlaceholder = computed(() =>
-  isZh.value ? '输入你的问题...' : 'Ask AI a question...'
-)
+  isZh.value ? "输入你的问题..." : "Ask AI a question...",
+);
 
 // --- Body class to push content ---
 
 function updateBodyClass() {
-  if (typeof document === 'undefined') return
+  if (typeof document === "undefined") return;
   if (panelOpen.value) {
-    document.documentElement.classList.add('ai-panel-open')
+    document.documentElement.classList.add("ai-panel-open");
     if (maximized.value) {
-      document.documentElement.classList.add('ai-panel-maximized')
+      document.documentElement.classList.add("ai-panel-maximized");
     } else {
-      document.documentElement.classList.remove('ai-panel-maximized')
+      document.documentElement.classList.remove("ai-panel-maximized");
     }
   } else {
-    document.documentElement.classList.remove('ai-panel-open', 'ai-panel-maximized')
+    document.documentElement.classList.remove(
+      "ai-panel-open",
+      "ai-panel-maximized",
+    );
   }
 }
 
-watch([panelOpen, maximized], updateBodyClass)
+watch([panelOpen, maximized], updateBodyClass);
 
 // --- Panel controls ---
 
 function togglePanel() {
-  panelOpen.value = !panelOpen.value
+  panelOpen.value = !panelOpen.value;
   if (panelOpen.value) {
     nextTick(() => {
-      inputRef.value?.focus()
-      scrollToBottom()
-    })
+      inputRef.value?.focus();
+      scrollToBottom();
+    });
   }
 }
 
 function closePanel() {
-  panelOpen.value = false
+  panelOpen.value = false;
 }
 
 function toggleMaximize() {
-  maximized.value = !maximized.value
+  maximized.value = !maximized.value;
 }
 
 function handleRefresh() {
-  clearChat()
+  clearChat();
 }
 
 // --- Messaging ---
 
 async function handleSend() {
-  const text = inputText.value.trim()
-  if ((!text && !pendingImages.value.length) || isStreaming.value) return
-  const images = pendingImages.value.length ? [...pendingImages.value] : undefined
-  inputText.value = ''
-  clearImages()
-  resetTextareaHeight()
-  await sendMessage(text || '(image)', isZh.value ? 'zh' : 'en', images)
+  const text = inputText.value.trim();
+  if ((!text && !pendingImages.value.length) || isStreaming.value) return;
+  const images = pendingImages.value.length
+    ? [...pendingImages.value]
+    : undefined;
+  inputText.value = "";
+  clearImages();
+  resetTextareaHeight();
+  await sendMessage(text || "(image)", isZh.value ? "zh" : "en", images);
 }
 
 function handleStop() {
-  stopStream()
+  stopStream();
 }
 
 function handleKeydown(e: KeyboardEvent) {
-  if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) {
-    e.preventDefault()
-    handleSend()
+  if (e.key === "Enter" && !e.shiftKey && !e.isComposing) {
+    e.preventDefault();
+    handleSend();
   }
 }
 
 // --- Image attachment ---
 
 function handlePaste(e: ClipboardEvent) {
-  const files = Array.from(e.clipboardData?.files || []).filter(f => f.type.startsWith('image/'))
+  const files = Array.from(e.clipboardData?.files || []).filter((f) =>
+    f.type.startsWith("image/"),
+  );
   if (files.length) {
-    e.preventDefault()
-    addFiles(files)
+    e.preventDefault();
+    addFiles(files);
   }
 }
 
 function handleDragOver(e: DragEvent) {
-  e.preventDefault()
-  isDragging.value = true
+  e.preventDefault();
+  isDragging.value = true;
 }
 
 function handleDragLeave() {
-  isDragging.value = false
+  isDragging.value = false;
 }
 
 function handleDrop(e: DragEvent) {
-  e.preventDefault()
-  isDragging.value = false
-  const files = Array.from(e.dataTransfer?.files || []).filter(f => f.type.startsWith('image/'))
-  if (files.length) addFiles(files)
+  e.preventDefault();
+  isDragging.value = false;
+  const files = Array.from(e.dataTransfer?.files || []).filter((f) =>
+    f.type.startsWith("image/"),
+  );
+  if (files.length) addFiles(files);
 }
 
 function openFilePicker() {
-  fileInputRef.value?.click()
+  fileInputRef.value?.click();
 }
 
 function handleFileChange(e: Event) {
-  const input = e.target as HTMLInputElement
+  const input = e.target as HTMLInputElement;
   if (input.files?.length) {
-    addFiles(input.files)
-    input.value = ''
+    addFiles(input.files);
+    input.value = "";
   }
 }
 
 // --- Auto-scroll ---
 
-let userScrolledUp = false
+let userScrolledUp = false;
 
 function onMessagesScroll() {
-  if (!messagesContainer.value) return
-  const el = messagesContainer.value
-  const atBottom = el.scrollHeight - el.scrollTop - el.clientHeight < 50
-  userScrolledUp = !atBottom
+  if (!messagesContainer.value) return;
+  const el = messagesContainer.value;
+  const atBottom = el.scrollHeight - el.scrollTop - el.clientHeight < 50;
+  userScrolledUp = !atBottom;
 }
 
 function scrollToBottom() {
-  if (userScrolledUp) return
+  if (userScrolledUp) return;
   nextTick(() => {
     if (messagesContainer.value) {
-      messagesContainer.value.scrollTop = messagesContainer.value.scrollHeight
+      messagesContainer.value.scrollTop = messagesContainer.value.scrollHeight;
     }
-  })
+  });
 }
 
-watch(messages, () => {
-  scrollToBottom()
-}, { deep: true })
+watch(
+  messages,
+  () => {
+    scrollToBottom();
+  },
+  { deep: true },
+);
 
 // --- Textarea auto-resize ---
 
 function handleInput(e: Event) {
-  const target = e.target as HTMLTextAreaElement
-  target.style.height = 'auto'
-  target.style.height = Math.min(target.scrollHeight, 120) + 'px'
+  const target = e.target as HTMLTextAreaElement;
+  target.style.height = "auto";
+  target.style.height = Math.min(target.scrollHeight, 120) + "px";
 }
 
 function resetTextareaHeight() {
   nextTick(() => {
     if (inputRef.value) {
-      inputRef.value.style.height = 'auto'
+      inputRef.value.style.height = "auto";
     }
-  })
+  });
 }
 
 // --- Markdown rendering ---
 
 function renderMarkdown(content: string): string {
-  if (!content) return ''
+  if (!content) return "";
   try {
-    return marked.parse(content, { async: false }) as string
+    return marked.parse(content, { async: false }) as string;
   } catch {
-    return content
+    return content;
   }
 }
 
 // --- Keyboard shortcut ---
 
 function handleGlobalKeydown(e: KeyboardEvent) {
-  if ((e.metaKey || e.ctrlKey) && e.key === 'j') {
-    e.preventDefault()
-    togglePanel()
-    return
+  if ((e.metaKey || e.ctrlKey) && e.key === "j") {
+    e.preventDefault();
+    togglePanel();
+    return;
   }
-  if (e.key === 'Escape' && panelOpen.value) {
-    closePanel()
+  if (e.key === "Escape" && panelOpen.value) {
+    closePanel();
   }
 }
 
 onMounted(() => {
-  document.addEventListener('keydown', handleGlobalKeydown)
-  updateBodyClass()
-})
+  document.addEventListener("keydown", handleGlobalKeydown);
+  updateBodyClass();
+});
 
 onUnmounted(() => {
-  document.removeEventListener('keydown', handleGlobalKeydown)
-  document.documentElement.classList.remove('ai-panel-open', 'ai-panel-maximized')
-})
+  document.removeEventListener("keydown", handleGlobalKeydown);
+  document.documentElement.classList.remove(
+    "ai-panel-open",
+    "ai-panel-maximized",
+  );
+});
 </script>
 
 <template>
-  <template v-if="isAdmin">
-  <!-- Trigger button in navbar -->
-  <button class="ai-trigger" :class="{ active: panelOpen }" title="Ask AI" @click="togglePanel">
-    <span class="ai-trigger-text">Ask AI</span>
-    <svg class="ai-wand-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
-      <path d="M3 21L13.5 10.5" stroke="url(#wand-grad)" stroke-width="2.2" stroke-linecap="round" />
-      <path d="M13.5 10.5L15.5 8.5L17.5 6.5" stroke="url(#wand-grad)" stroke-width="2.2" stroke-linecap="round" />
-      <path d="M15 4L15.5 2.5L16 4L17.5 4.5L16 5L15.5 6.5L15 5L13.5 4.5Z" fill="#f59e0b" />
-      <path d="M19 8L19.35 7L19.7 8L20.7 8.35L19.7 8.7L19.35 9.7L19 8.7L18 8.35Z" fill="#a78bfa" />
-      <path d="M20 3L20.25 2.25L20.5 3L21.25 3.25L20.5 3.5L20.25 4.25L20 3.5L19.25 3.25Z" fill="#f59e0b" />
-      <defs>
-        <linearGradient id="wand-grad" x1="3" y1="21" x2="17" y2="7" gradientUnits="userSpaceOnUse">
-          <stop stop-color="#8b5cf6" />
-          <stop offset="1" stop-color="#a78bfa" />
-        </linearGradient>
-      </defs>
-    </svg>
-  </button>
+    <!-- Trigger button in navbar -->
+    <div class="ai-trigger-divider" />
+    <button
+      class="ai-trigger"
+      :class="{ active: panelOpen }"
+      title="Ask AI (⌘J)"
+      @click="togglePanel"
+    >
+      <ChatFrame class="ai-trigger-icon" />
+    </button>
 
-  <!-- Right sidebar panel -->
-  <Teleport to="body">
-    <Transition name="ai-sidebar">
-      <div v-if="panelOpen" class="ai-sidebar" :class="{ maximized }">
-        <!-- Header -->
-        <div class="ai-sidebar-header">
-          <div class="ai-sidebar-title">
-            <svg class="ai-wand-icon" width="14" height="14" viewBox="0 0 24 24" fill="none">
-              <path d="M3 21L13.5 10.5" stroke="url(#wand-grad-header)" stroke-width="2.2" stroke-linecap="round" />
-              <path d="M13.5 10.5L15.5 8.5L17.5 6.5" stroke="url(#wand-grad-header)" stroke-width="2.2" stroke-linecap="round" />
-              <path d="M15 4L15.5 2.5L16 4L17.5 4.5L16 5L15.5 6.5L15 5L13.5 4.5Z" fill="#f59e0b" />
-              <path d="M19 8L19.35 7L19.7 8L20.7 8.35L19.7 8.7L19.35 9.7L19 8.7L18 8.35Z" fill="#a78bfa" />
-              <path d="M20 3L20.25 2.25L20.5 3L21.25 3.25L20.5 3.5L20.25 4.25L20 3.5L19.25 3.25Z" fill="#f59e0b" />
-              <defs>
-                <linearGradient id="wand-grad-header" x1="3" y1="21" x2="17" y2="7" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#8b5cf6" />
-                  <stop offset="1" stop-color="#a78bfa" />
-                </linearGradient>
-              </defs>
-            </svg>
-            <span>Assistant</span>
-          </div>
-          <div class="ai-sidebar-actions">
-            <!-- Maximize/minimize -->
-            <button class="ai-icon-btn" :title="maximized ? 'Minimize' : 'Maximize'" @click="toggleMaximize">
-              <svg v-if="!maximized" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
-              </svg>
-              <svg v-else width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7" />
-              </svg>
-            </button>
-            <!-- Refresh -->
-            <button class="ai-icon-btn" title="New conversation" @click="handleRefresh">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 2v6h-6M3 12a9 9 0 0 1 15-6.7L21 8M3 22v-6h6M21 12a9 9 0 0 1-15 6.7L3 16" />
-              </svg>
-            </button>
-            <!-- Close -->
-            <button class="ai-icon-btn" title="Close" @click="closePanel">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
-              </svg>
-            </button>
-          </div>
-        </div>
-
-        <!-- Disclaimer -->
-        <div class="ai-disclaimer">
-          {{ isZh ? '回答由 AI 生成，可能存在不准确之处。' : 'Responses are generated using AI and may be inaccurate.' }}
-        </div>
-
-        <!-- Messages area -->
-        <div
-          ref="messagesContainer"
-          class="ai-messages"
-          @scroll="onMessagesScroll"
-        >
-          <!-- Welcome message -->
-          <div v-if="messages.length === 0" class="ai-welcome">
-            <p class="ai-welcome-text">{{ welcomeMessage }}</p>
-            <p class="ai-welcome-tip">
-              {{ isZh ? '提示：你可以使用 ⌘ + J 来切换此面板' : 'Tip: You can toggle this pane with ⌘ + J' }}
-            </p>
-          </div>
-
-          <!-- Message list -->
-          <template v-for="msg in messages" :key="msg.id">
-            <!-- User message -->
-            <div v-if="msg.role === 'user'" class="ai-msg ai-msg-user">
-              <div class="ai-msg-bubble-user">
-                <div v-if="msg.images?.length" class="ai-msg-images">
-                  <img
-                    v-for="(img, idx) in msg.images"
-                    :key="idx"
-                    :src="img"
-                    class="ai-msg-image-thumb"
-                    alt="Attached image"
-                  />
-                </div>
-                {{ msg.content }}
-              </div>
+    <!-- Right sidebar panel -->
+    <Teleport to="body">
+      <Transition name="ai-sidebar">
+        <div v-if="panelOpen" class="ai-sidebar" :class="{ maximized }">
+          <!-- Header -->
+          <div class="ai-sidebar-header">
+            <div class="ai-sidebar-title">
+              <ChatFrame width="14" height="14" />
+              <span>Assistant</span>
             </div>
-
-            <!-- Assistant message -->
-            <div v-else class="ai-msg ai-msg-assistant">
-              <div v-if="msg.error" class="ai-msg-error">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10" />
-                  <line x1="12" y1="8" x2="12" y2="12" />
-                  <line x1="12" y1="16" x2="12.01" y2="16" />
-                </svg>
-                <span>{{ msg.error }}</span>
-              </div>
-              <div v-else-if="msg.content" class="ai-msg-content vp-doc" v-html="renderMarkdown(msg.content)" />
-              <div v-else-if="msg.isStreaming" class="ai-msg-loading">
-                <span class="ai-dot" /><span class="ai-dot" /><span class="ai-dot" />
-              </div>
-
-              <!-- Source cards -->
-              <div v-if="!msg.isStreaming && msg.sources?.length" class="ai-sources">
-                <a
-                  v-for="(src, idx) in msg.sources"
-                  :key="src.path"
-                  :href="src.path"
-                  class="ai-source-card"
-                >
-                  <span class="ai-source-index">{{ idx + 1 }}</span>
-                  <span class="ai-source-info">
-                    <span class="ai-source-title">{{ src.title }}</span>
-                    <span class="ai-source-url">{{ src.url }}</span>
-                  </span>
-                </a>
-              </div>
-            </div>
-          </template>
-        </div>
-
-        <!-- Input area -->
-        <input
-          ref="fileInputRef"
-          type="file"
-          accept="image/png,image/jpeg,image/gif,image/webp"
-          multiple
-          style="display: none"
-          @change="handleFileChange"
-        />
-        <div
-          class="ai-input-area"
-          :class="{ 'ai-drag-over': isDragging }"
-          @dragover="handleDragOver"
-          @dragleave="handleDragLeave"
-          @drop="handleDrop"
-        >
-          <!-- Pending image previews -->
-          <div v-if="pendingImages.length" class="ai-image-previews">
-            <div v-for="(img, idx) in pendingImages" :key="idx" class="ai-image-preview">
-              <img :src="img" alt="Attached image" />
-              <button class="ai-image-remove" @click="removeImage(idx)">
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
-                </svg>
+            <div class="ai-sidebar-actions">
+              <button
+                class="ai-icon-btn"
+                :title="maximized ? 'Minimize' : 'Maximize'"
+                @click="toggleMaximize"
+              >
+                <IconCollapse v-if="maximized" width="15" height="15" />
+                <IconExpand v-else width="15" height="15" />
+              </button>
+              <button
+                class="ai-icon-btn"
+                title="New conversation"
+                @click="handleRefresh"
+              >
+                <IconSync width="15" height="15" />
+              </button>
+              <button class="ai-icon-btn" title="Close" @click="closePanel">
+                <Close width="15" height="15" />
               </button>
             </div>
           </div>
-          <div v-if="imageError" class="ai-image-error">{{ imageError }}</div>
-          <div class="ai-input-wrapper">
-            <button class="ai-attach-btn" title="Attach image" @click="openFilePicker" :disabled="pendingImages.length >= 4">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                <circle cx="8.5" cy="8.5" r="1.5"/>
-                <polyline points="21 15 16 10 5 21"/>
-              </svg>
-            </button>
-            <textarea
-              ref="inputRef"
-              v-model="inputText"
-              class="ai-input"
-              :placeholder="inputPlaceholder"
-              rows="1"
-              @keydown="handleKeydown"
-              @input="handleInput"
-              @paste="handlePaste"
-            />
-            <button
-              v-if="isStreaming"
-              class="ai-send-btn ai-stop-btn"
-              title="Stop"
-              @click="handleStop"
-            >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                <rect x="6" y="6" width="12" height="12" rx="2" />
-              </svg>
-            </button>
-            <button
-              v-else
-              class="ai-send-btn"
-              :disabled="!inputText.trim() && !pendingImages.length"
-              title="Send"
-              @click="handleSend"
-            >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="12" y1="19" x2="12" y2="5" />
-                <polyline points="5 12 12 5 19 12" />
-              </svg>
-            </button>
+
+          <!-- Messages area -->
+          <div
+            ref="messagesContainer"
+            class="ai-messages"
+            @scroll="onMessagesScroll"
+          >
+            <!-- Welcome message -->
+            <div v-if="messages.length === 0" class="ai-welcome">
+              <p class="ai-welcome-text">{{ welcomeMessage }}</p>
+              <p class="ai-welcome-tip">
+                {{
+                  isZh
+                    ? "提示：你可以使用 ⌘ + J 来切换此面板"
+                    : "Tip: You can toggle this pane with ⌘ + J"
+                }}
+              </p>
+            </div>
+
+            <!-- Message list -->
+            <template v-for="msg in messages" :key="msg.id">
+              <!-- User message -->
+              <div v-if="msg.role === 'user'" class="ai-msg ai-msg-user">
+                <div class="ai-msg-bubble-user">
+                  <div v-if="msg.images?.length" class="ai-msg-images">
+                    <img
+                      v-for="(img, idx) in msg.images"
+                      :key="idx"
+                      :src="img"
+                      class="ai-msg-image-thumb"
+                      alt="Attached image"
+                    />
+                  </div>
+                  {{ msg.content }}
+                </div>
+              </div>
+
+              <!-- Assistant message -->
+              <div v-else class="ai-msg ai-msg-assistant">
+                <div v-if="msg.error" class="ai-msg-error">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="8" x2="12" y2="12" />
+                    <line x1="12" y1="16" x2="12.01" y2="16" />
+                  </svg>
+                  <span>{{ msg.error }}</span>
+                </div>
+                <div
+                  v-else-if="msg.content"
+                  class="ai-msg-content vp-doc"
+                  v-html="renderMarkdown(msg.content)"
+                />
+                <div v-else-if="msg.isStreaming" class="ai-msg-loading">
+                  <span class="ai-dot" /><span class="ai-dot" /><span
+                    class="ai-dot"
+                  />
+                </div>
+
+                <!-- Source cards -->
+                <div
+                  v-if="!msg.isStreaming && msg.sources?.length"
+                  class="ai-sources"
+                >
+                  <a
+                    v-for="(src, idx) in msg.sources"
+                    :key="src.path"
+                    :href="src.path"
+                    class="ai-source-card"
+                  >
+                    <span class="ai-source-index">{{ idx + 1 }}</span>
+                    <span class="ai-source-info">
+                      <span class="ai-source-title">{{ src.title }}</span>
+                      <span class="ai-source-url">{{ src.url }}</span>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </template>
+          </div>
+
+          <!-- Input area -->
+          <input
+            ref="fileInputRef"
+            type="file"
+            accept="image/png,image/jpeg,image/gif,image/webp"
+            multiple
+            style="display: none"
+            @change="handleFileChange"
+          />
+          <div
+            class="ai-input-area"
+            :class="{ 'ai-drag-over': isDragging }"
+            @dragover="handleDragOver"
+            @dragleave="handleDragLeave"
+            @drop="handleDrop"
+          >
+            <!-- Pending image previews -->
+            <div v-if="pendingImages.length" class="ai-image-previews">
+              <div
+                v-for="(img, idx) in pendingImages"
+                :key="idx"
+                class="ai-image-preview"
+              >
+                <img :src="img" alt="Attached image" />
+                <button class="ai-image-remove" @click="removeImage(idx)">
+                  <svg
+                    width="10"
+                    height="10"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="3"
+                  >
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div v-if="imageError" class="ai-image-error">{{ imageError }}</div>
+            <div class="ai-input-wrapper">
+              <button
+                class="ai-attach-btn"
+                title="Attach image"
+                @click="openFilePicker"
+                :disabled="pendingImages.length >= 4"
+              >
+                <ImageIcon width="16" height="16" />
+              </button>
+              <textarea
+                ref="inputRef"
+                v-model="inputText"
+                class="ai-input"
+                :placeholder="inputPlaceholder"
+                rows="1"
+                @keydown="handleKeydown"
+                @input="handleInput"
+                @paste="handlePaste"
+              />
+              <button
+                v-if="isStreaming"
+                class="ai-send-btn ai-stop-btn"
+                title="Stop"
+                @click="handleStop"
+              >
+                <IconStop width="14" height="14" />
+              </button>
+              <button
+                v-else
+                class="ai-send-btn"
+                :disabled="!inputText.trim() && !pendingImages.length"
+                title="Send"
+                @click="handleSend"
+              >
+                <IconSendV5 width="14" height="14" />
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    </Transition>
-  </Teleport>
-  </template>
+      </Transition>
+    </Teleport>
 </template>
 
 <style scoped>
@@ -430,44 +454,39 @@ onUnmounted(() => {
 .ai-trigger {
   display: flex;
   align-items: center;
-  gap: 6px;
-  height: 32px;
-  padding: 0 10px;
-  border: 1px solid var(--vp-c-divider);
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: none;
   border-radius: 8px;
-  background: var(--vp-c-bg);
+  background: none;
   color: var(--vp-c-text-2);
   cursor: pointer;
-  font-size: 13px;
-  font-weight: 500;
-  transition: all 0.2s;
-  white-space: nowrap;
-  margin-right: 8px;
+  transition: color 0.2s;
+  margin-left: 4px;
 }
 
 .ai-trigger:hover {
   color: var(--vp-c-text-1);
-  border-color: var(--vp-c-text-3);
 }
 
 .ai-trigger.active {
   color: var(--vp-c-brand-1);
-  border-color: var(--vp-c-brand-1);
-  background: var(--vp-c-brand-soft);
 }
 
-.ai-trigger svg {
+.ai-trigger-divider {
+  width: 1px;
+  height: 24px;
+  background-color: var(--vp-c-divider);
+  margin-right: 8px;
+  margin-left: 16px;
+}
+
+.ai-trigger-icon {
   flex-shrink: 0;
-}
-
-@media (max-width: 768px) {
-  .ai-trigger-text {
-    display: none;
-  }
-  .ai-trigger {
-    padding: 0 7px;
-    margin-right: 4px;
-  }
+  width: 20px;
+  height: 20px;
 }
 
 /* --- Sidebar panel --- */
@@ -534,22 +553,14 @@ onUnmounted(() => {
   cursor: pointer;
   color: var(--vp-c-text-3);
   border-radius: 6px;
-  transition: background-color 0.2s, color 0.2s;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
 }
 
 .ai-icon-btn:hover {
   background-color: var(--vp-c-default-soft);
   color: var(--vp-c-text-1);
-}
-
-/* --- Disclaimer --- */
-.ai-disclaimer {
-  padding: 8px 16px;
-  font-size: 12px;
-  color: var(--vp-c-text-3);
-  text-align: center;
-  border-bottom: 1px solid var(--vp-c-divider);
-  flex-shrink: 0;
 }
 
 /* --- Messages --- */
@@ -714,7 +725,9 @@ onUnmounted(() => {
   border-radius: 8px;
   text-decoration: none;
   color: inherit;
-  transition: border-color 0.2s, background-color 0.2s;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s;
   cursor: pointer;
 }
 
@@ -789,13 +802,27 @@ onUnmounted(() => {
   animation: ai-bounce 1.4s infinite ease-in-out both;
 }
 
-.ai-dot:nth-child(1) { animation-delay: -0.32s; }
-.ai-dot:nth-child(2) { animation-delay: -0.16s; }
-.ai-dot:nth-child(3) { animation-delay: 0s; }
+.ai-dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+.ai-dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+.ai-dot:nth-child(3) {
+  animation-delay: 0s;
+}
 
 @keyframes ai-bounce {
-  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
-  40% { transform: scale(1); opacity: 1; }
+  0%,
+  80%,
+  100% {
+    transform: scale(0.6);
+    opacity: 0.4;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 /* --- Image attachment --- */
@@ -854,7 +881,7 @@ onUnmounted(() => {
   height: 18px;
   border: none;
   border-radius: 50%;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0, 0, 0, 0.6);
   color: #fff;
   cursor: pointer;
   display: flex;
@@ -863,7 +890,7 @@ onUnmounted(() => {
   padding: 0;
 }
 .ai-image-remove:hover {
-  background: rgba(0,0,0,0.8);
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .ai-image-error {
@@ -897,7 +924,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   gap: 8px;
-  background: var(--vp-c-bg-alt);
+  background: none;
   border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
   padding: 8px 12px;
@@ -934,8 +961,8 @@ onUnmounted(() => {
   height: 26px;
   border: none;
   border-radius: 8px;
-  background: var(--vp-c-text-1);
-  color: var(--vp-c-bg);
+  background: none;
+  color: #000;
   cursor: pointer;
   flex-shrink: 0;
   transition: opacity 0.2s;
@@ -947,12 +974,7 @@ onUnmounted(() => {
 }
 
 .ai-send-btn:not(:disabled):hover {
-  opacity: 0.8;
-}
-
-.ai-stop-btn {
-  background: var(--vp-c-danger-1);
-  color: #fff;
+  opacity: 0.7;
 }
 
 /* --- Transition --- */
