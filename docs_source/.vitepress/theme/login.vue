@@ -54,8 +54,7 @@
             @click="() => handleAction('platform/pay-as-you-go')"
             >PAYG API</el-dropdown-item
           >
-          <el-dropdown-item
-            @click="() => handleAction('platform/subscription')"
+          <el-dropdown-item @click="() => handleAction('platform/subscription')"
             >Subscription API</el-dropdown-item
           >
           <el-dropdown-item @click="() => handleAction('platform/management')"
@@ -181,7 +180,6 @@ export default defineComponent({
   color: var(--vp-c-text-1);
   transition: color 0.25s;
   cursor: pointer;
-  margin-left: 16px;
 
   button.el-button {
     background-color: #000;

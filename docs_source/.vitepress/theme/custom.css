@@ -51,13 +51,6 @@
   height: auto !important;
 }
 
-/* --- AI Assistant: position trigger button right after search --- */
-.VPNavBar .content-body > .search {
-  order: -2;
-}
-.VPNavBar .content-body > .ai-trigger {
-  order: -1;
-}
 
 /* --- AI Assistant Sidebar: push content left when open --- */
 @media (min-width: 960px) {
