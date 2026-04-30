@@ -102,7 +102,8 @@ export default {
       // https://vitepress.dev/guide/extending-default-theme#layout-slots
       "doc-top": () => h(ClientOnly, null, { default: () => h(ApiContainer) }),
       "doc-before": () => h(ClientOnly, null, { default: () => h(Select) }),
-      "nav-bar-content-after": () => h(ClientOnly, null, { default: () => [h(AiAssistant), h(Login), h(EndpointDrawer)] }),
+      "nav-bar-content-before": () => h(ClientOnly, null, { default: () => h(AiAssistant) }),
+      "nav-bar-content-after": () => h(ClientOnly, null, { default: () => [h(Login), h(EndpointDrawer)] }),
     });
   },
   enhanceApp({ app, router, siteData }) {

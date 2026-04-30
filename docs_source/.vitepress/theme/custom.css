@@ -45,12 +45,11 @@
 /* 覆盖所有可能的代码块高度限制 */
 .vp-doc pre,
 .vp-doc code,
-[class*='language-'] pre,
+[class*="language-"] pre,
 .vp-code pre {
   max-height: none !important;
   height: auto !important;
 }
-
 
 /* --- AI Assistant Sidebar: push content left when open --- */
 @media (min-width: 960px) {
@@ -61,9 +60,14 @@
   html.ai-panel-open.ai-panel-maximized .VPContent {
     padding-right: 520px !important;
   }
-  /* Hide "On this page" aside when AI panel is open */
-  html.ai-panel-open .VPDoc .aside {
-    display: none;
+  html.ai-panel-open .VPDoc .aside .aside-container,
+  html.ai-panel-open .VPDoc .aside .aside-curtain {
+    right: 380px;
+    transition: right 0.3s ease;
+  }
+  html.ai-panel-open.ai-panel-maximized .VPDoc .aside .aside-container,
+  html.ai-panel-open.ai-panel-maximized .VPDoc .aside .aside-curtain {
+    right: 520px;
   }
   /* Also shrink the api-container (fixed-position panel on API pages) */
   html.ai-panel-open .api-container {
@@ -75,8 +79,22 @@
   }
 }
 
+@media (max-width: 1600px) {
+  html.ai-panel-open .VPDoc .aside {
+    display: none;
+  }
+}
+
 @media (max-width: 959px) {
   html.ai-panel-open .VPContent {
     /* On mobile, sidebar is full-width overlay, don't push content */
   }
+}
+
+.VPNavBar .content-body .search {
+  order: -1;
+}
+
+.VPNavBarSearch {
+  flex-grow: 0 !important;
 }
