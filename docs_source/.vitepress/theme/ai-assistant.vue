@@ -237,216 +237,216 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <!-- Trigger button in navbar -->
-    <div class="ai-trigger-divider" />
-    <button
-      class="ai-trigger"
-      :class="{ active: panelOpen }"
-      title="Ask AI (⌘J)"
-      @click="togglePanel"
-    >
-      <ChatFrame class="ai-trigger-icon" />
-    </button>
+  <!-- Trigger button in navbar -->
+  <button
+    class="ai-trigger"
+    :class="{ active: panelOpen }"
+    title="Ask AI (⌘J)"
+    @click="togglePanel"
+  >
+    <span class="ai-trigger-text">Ask AI</span>
+    <ChatFrame class="ai-trigger-icon" />
+  </button>
 
-    <!-- Right sidebar panel -->
-    <Teleport to="body">
-      <Transition name="ai-sidebar">
-        <div v-if="panelOpen" class="ai-sidebar" :class="{ maximized }">
-          <!-- Header -->
-          <div class="ai-sidebar-header">
-            <div class="ai-sidebar-title">
-              <ChatFrame width="14" height="14" />
-              <span>Assistant</span>
-            </div>
-            <div class="ai-sidebar-actions">
-              <button
-                class="ai-icon-btn"
-                :title="maximized ? 'Minimize' : 'Maximize'"
-                @click="toggleMaximize"
-              >
-                <IconCollapse v-if="maximized" width="15" height="15" />
-                <IconExpand v-else width="15" height="15" />
-              </button>
-              <button
-                class="ai-icon-btn"
-                title="New conversation"
-                @click="handleRefresh"
-              >
-                <IconSync width="15" height="15" />
-              </button>
-              <button class="ai-icon-btn" title="Close" @click="closePanel">
-                <Close width="15" height="15" />
-              </button>
-            </div>
+  <!-- Right sidebar panel -->
+  <Teleport to="body">
+    <Transition name="ai-sidebar">
+      <div v-if="panelOpen" class="ai-sidebar" :class="{ maximized }">
+        <!-- Header -->
+        <div class="ai-sidebar-header">
+          <div class="ai-sidebar-title">
+            <ChatFrame width="14" height="14" />
+            <span>Assistant</span>
           </div>
-
-          <!-- Messages area -->
-          <div
-            ref="messagesContainer"
-            class="ai-messages"
-            @scroll="onMessagesScroll"
-          >
-            <!-- Welcome message -->
-            <div v-if="messages.length === 0" class="ai-welcome">
-              <p class="ai-welcome-text">{{ welcomeMessage }}</p>
-              <p class="ai-welcome-tip">
-                {{
-                  isZh
-                    ? "提示：你可以使用 ⌘ + J 来切换此面板"
-                    : "Tip: You can toggle this pane with ⌘ + J"
-                }}
-              </p>
-            </div>
-
-            <!-- Message list -->
-            <template v-for="msg in messages" :key="msg.id">
-              <!-- User message -->
-              <div v-if="msg.role === 'user'" class="ai-msg ai-msg-user">
-                <div class="ai-msg-bubble-user">
-                  <div v-if="msg.images?.length" class="ai-msg-images">
-                    <img
-                      v-for="(img, idx) in msg.images"
-                      :key="idx"
-                      :src="img"
-                      class="ai-msg-image-thumb"
-                      alt="Attached image"
-                    />
-                  </div>
-                  {{ msg.content }}
-                </div>
-              </div>
-
-              <!-- Assistant message -->
-              <div v-else class="ai-msg ai-msg-assistant">
-                <div v-if="msg.error" class="ai-msg-error">
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  >
-                    <circle cx="12" cy="12" r="10" />
-                    <line x1="12" y1="8" x2="12" y2="12" />
-                    <line x1="12" y1="16" x2="12.01" y2="16" />
-                  </svg>
-                  <span>{{ msg.error }}</span>
-                </div>
-                <div
-                  v-else-if="msg.content"
-                  class="ai-msg-content vp-doc"
-                  v-html="renderMarkdown(msg.content)"
-                />
-                <div v-else-if="msg.isStreaming" class="ai-msg-loading">
-                  <span class="ai-dot" /><span class="ai-dot" /><span
-                    class="ai-dot"
-                  />
-                </div>
-
-                <!-- Source cards -->
-                <div
-                  v-if="!msg.isStreaming && msg.sources?.length"
-                  class="ai-sources"
-                >
-                  <a
-                    v-for="(src, idx) in msg.sources"
-                    :key="src.path"
-                    :href="src.path"
-                    class="ai-source-card"
-                  >
-                    <span class="ai-source-index">{{ idx + 1 }}</span>
-                    <span class="ai-source-info">
-                      <span class="ai-source-title">{{ src.title }}</span>
-                      <span class="ai-source-url">{{ src.url }}</span>
-                    </span>
-                  </a>
-                </div>
-              </div>
-            </template>
-          </div>
-
-          <!-- Input area -->
-          <input
-            ref="fileInputRef"
-            type="file"
-            accept="image/png,image/jpeg,image/gif,image/webp"
-            multiple
-            style="display: none"
-            @change="handleFileChange"
-          />
-          <div
-            class="ai-input-area"
-            :class="{ 'ai-drag-over': isDragging }"
-            @dragover="handleDragOver"
-            @dragleave="handleDragLeave"
-            @drop="handleDrop"
-          >
-            <!-- Pending image previews -->
-            <div v-if="pendingImages.length" class="ai-image-previews">
-              <div
-                v-for="(img, idx) in pendingImages"
-                :key="idx"
-                class="ai-image-preview"
-              >
-                <img :src="img" alt="Attached image" />
-                <button class="ai-image-remove" @click="removeImage(idx)">
-                  <svg
-                    width="10"
-                    height="10"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="3"
-                  >
-                    <line x1="18" y1="6" x2="6" y2="18" />
-                    <line x1="6" y1="6" x2="18" y2="18" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-            <div v-if="imageError" class="ai-image-error">{{ imageError }}</div>
-            <div class="ai-input-wrapper">
-              <button
-                class="ai-attach-btn"
-                title="Attach image"
-                @click="openFilePicker"
-                :disabled="pendingImages.length >= 4"
-              >
-                <ImageIcon width="16" height="16" />
-              </button>
-              <textarea
-                ref="inputRef"
-                v-model="inputText"
-                class="ai-input"
-                :placeholder="inputPlaceholder"
-                rows="1"
-                @keydown="handleKeydown"
-                @input="handleInput"
-                @paste="handlePaste"
-              />
-              <button
-                v-if="isStreaming"
-                class="ai-send-btn ai-stop-btn"
-                title="Stop"
-                @click="handleStop"
-              >
-                <IconStop width="14" height="14" />
-              </button>
-              <button
-                v-else
-                class="ai-send-btn"
-                :disabled="!inputText.trim() && !pendingImages.length"
-                title="Send"
-                @click="handleSend"
-              >
-                <IconSendV5 width="14" height="14" />
-              </button>
-            </div>
+          <div class="ai-sidebar-actions">
+            <button
+              class="ai-icon-btn"
+              :title="maximized ? 'Minimize' : 'Maximize'"
+              @click="toggleMaximize"
+            >
+              <IconCollapse v-if="maximized" width="15" height="15" />
+              <IconExpand v-else width="15" height="15" />
+            </button>
+            <button
+              class="ai-icon-btn"
+              title="New conversation"
+              @click="handleRefresh"
+            >
+              <IconSync width="15" height="15" />
+            </button>
+            <button class="ai-icon-btn" title="Close" @click="closePanel">
+              <Close width="15" height="15" />
+            </button>
           </div>
         </div>
-      </Transition>
-    </Teleport>
+
+        <!-- Messages area -->
+        <div
+          ref="messagesContainer"
+          class="ai-messages"
+          @scroll="onMessagesScroll"
+        >
+          <!-- Welcome message -->
+          <div v-if="messages.length === 0" class="ai-welcome">
+            <p class="ai-welcome-text">{{ welcomeMessage }}</p>
+            <p class="ai-welcome-tip">
+              {{
+                isZh
+                  ? "提示：你可以使用 ⌘ + J 来切换此面板"
+                  : "Tip: You can toggle this pane with ⌘ + J"
+              }}
+            </p>
+          </div>
+
+          <!-- Message list -->
+          <template v-for="msg in messages" :key="msg.id">
+            <!-- User message -->
+            <div v-if="msg.role === 'user'" class="ai-msg ai-msg-user">
+              <div class="ai-msg-bubble-user">
+                <div v-if="msg.images?.length" class="ai-msg-images">
+                  <img
+                    v-for="(img, idx) in msg.images"
+                    :key="idx"
+                    :src="img"
+                    class="ai-msg-image-thumb"
+                    alt="Attached image"
+                  />
+                </div>
+                {{ msg.content }}
+              </div>
+            </div>
+
+            <!-- Assistant message -->
+            <div v-else class="ai-msg ai-msg-assistant">
+              <div v-if="msg.error" class="ai-msg-error">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="12" />
+                  <line x1="12" y1="16" x2="12.01" y2="16" />
+                </svg>
+                <span>{{ msg.error }}</span>
+              </div>
+              <div
+                v-else-if="msg.content"
+                class="ai-msg-content vp-doc"
+                v-html="renderMarkdown(msg.content)"
+              />
+              <div v-else-if="msg.isStreaming" class="ai-msg-loading">
+                <span class="ai-dot" /><span class="ai-dot" /><span
+                  class="ai-dot"
+                />
+              </div>
+
+              <!-- Source cards -->
+              <div
+                v-if="!msg.isStreaming && msg.sources?.length"
+                class="ai-sources"
+              >
+                <a
+                  v-for="(src, idx) in msg.sources"
+                  :key="src.path"
+                  :href="src.path"
+                  class="ai-source-card"
+                >
+                  <span class="ai-source-index">{{ idx + 1 }}</span>
+                  <span class="ai-source-info">
+                    <span class="ai-source-title">{{ src.title }}</span>
+                    <span class="ai-source-url">{{ src.url }}</span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </template>
+        </div>
+
+        <!-- Input area -->
+        <input
+          ref="fileInputRef"
+          type="file"
+          accept="image/png,image/jpeg,image/gif,image/webp"
+          multiple
+          style="display: none"
+          @change="handleFileChange"
+        />
+        <div
+          class="ai-input-area"
+          :class="{ 'ai-drag-over': isDragging }"
+          @dragover="handleDragOver"
+          @dragleave="handleDragLeave"
+          @drop="handleDrop"
+        >
+          <!-- Pending image previews -->
+          <div v-if="pendingImages.length" class="ai-image-previews">
+            <div
+              v-for="(img, idx) in pendingImages"
+              :key="idx"
+              class="ai-image-preview"
+            >
+              <img :src="img" alt="Attached image" />
+              <button class="ai-image-remove" @click="removeImage(idx)">
+                <svg
+                  width="10"
+                  height="10"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                >
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div v-if="imageError" class="ai-image-error">{{ imageError }}</div>
+          <div class="ai-input-wrapper">
+            <button
+              class="ai-attach-btn"
+              title="Attach image"
+              @click="openFilePicker"
+              :disabled="pendingImages.length >= 4"
+            >
+              <ImageIcon width="16" height="16" />
+            </button>
+            <textarea
+              ref="inputRef"
+              v-model="inputText"
+              class="ai-input"
+              :placeholder="inputPlaceholder"
+              rows="1"
+              @keydown="handleKeydown"
+              @input="handleInput"
+              @paste="handlePaste"
+            />
+            <button
+              v-if="isStreaming"
+              class="ai-send-btn ai-stop-btn"
+              title="Stop"
+              @click="handleStop"
+            >
+              <IconStop width="14" height="14" />
+            </button>
+            <button
+              v-else
+              class="ai-send-btn"
+              :disabled="!inputText.trim() && !pendingImages.length"
+              title="Send"
+              @click="handleSend"
+            >
+              <IconSendV5 width="14" height="14" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </Transition>
+  </Teleport>
 </template>
 
 <style scoped>
@@ -454,39 +454,47 @@ onUnmounted(() => {
 .ai-trigger {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  padding: 0;
-  border: none;
+  gap: 6px;
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--vp-c-divider);
   border-radius: 8px;
-  background: none;
+  background: var(--vp-c-bg);
   color: var(--vp-c-text-2);
   cursor: pointer;
-  transition: color 0.2s;
-  margin-left: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.2s;
+  white-space: nowrap;
+  margin-left: 8px;
+  margin-right: 32px;
 }
 
 .ai-trigger:hover {
   color: var(--vp-c-text-1);
+  border-color: var(--vp-c-text-3);
 }
 
 .ai-trigger.active {
   color: var(--vp-c-brand-1);
-}
-
-.ai-trigger-divider {
-  width: 1px;
-  height: 24px;
-  background-color: var(--vp-c-divider);
-  margin-right: 8px;
-  margin-left: 16px;
+  border-color: var(--vp-c-brand-1);
+  background: var(--vp-c-brand-soft);
 }
 
 .ai-trigger-icon {
   flex-shrink: 0;
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
+}
+
+@media (max-width: 768px) {
+  .ai-trigger-text {
+    display: none;
+  }
+  .ai-trigger {
+    padding: 0 7px;
+    margin-right: 4px;
+  }
 }
 
 /* --- Sidebar panel --- */
