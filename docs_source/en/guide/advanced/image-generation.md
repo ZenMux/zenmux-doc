@@ -423,11 +423,19 @@ const response = await client.models.generateImages({
 
 ### Editing Images
 
-To modify an existing image, use the `edit_image` API:
+To modify an existing image, use the `edit_image` API. The example below uses the ZenMux logo and transforms it into Chinese paper-cut style.
+
+::: tip 💡 Prompt Tips
+
+The `edit_image` model is sensitive to the prompt. If the prompt is too vague (for example, `"Transform this logo into..."`), the model may freely generate from the style description and ignore the input image entirely. We recommend **explicitly instructing the model to preserve the subject/composition of the original image** and only change the style.
+
+:::
 
 ::: code-group
 
 ```Python [Python]
+import urllib.request
+
 from google import genai
 from google.genai import types
 
@@ -440,20 +448,24 @@ client = genai.Client(
     ),
 )
 
-# First, generate an image
-generate_response = client.models.generate_images(
-    model="openai/gpt-image-2",
-    prompt="A cat sitting on a table"
-)
+# Load the image to edit (using the ZenMux logo as an example)
+LOGO_URL = "https://cdn.marmot-cloud.com/storage/zenmux/2026/04/28/74mUf4t/Log-Light.png"
+logo_bytes = urllib.request.urlopen(LOGO_URL).read()
+original_image = types.Image(image_bytes=logo_bytes, mime_type="image/png")
 
-# Then edit the generated image
+# Edit the original image — restyle as paper-cut
 edit_response = client.models.edit_image(
     model="openai/gpt-image-2",
-    prompt="Add a robot next to the cat",
+    prompt=(
+        "Keep the exact same subject, silhouette and pose from the input image. "
+        "Re-render it in Chinese paper-cut art style: traditional red color, "
+        "intricate hollow patterns, plain white background. "
+        "Do not change the subject or composition; only restyle it as paper-cut."
+    ),
     reference_images=[
         types.RawReferenceImage(
             reference_id=1,
-            reference_image=generate_response.generated_images[0].image
+            reference_image=original_image
         )
     ]
 )
@@ -476,20 +488,27 @@ const client = new GoogleGenAI({
   },
 });
 
-// First, generate an image
-const generateResponse = await client.models.generateImages({
-  model: "openai/gpt-image-2",
-  prompt: "A cat sitting on a table",
-});
+// Load the image to edit (using the ZenMux logo as an example)
+const LOGO_URL =
+  "https://cdn.marmot-cloud.com/storage/zenmux/2026/04/28/74mUf4t/Log-Light.png";
+const logoBytes = Buffer.from(await (await fetch(LOGO_URL)).arrayBuffer());
+const originalImage = {
+  imageBytes: logoBytes,
+  mimeType: "image/png",
+};
 
-// Then edit the generated image
+// Edit the original image — restyle as paper-cut
 const editResponse = await client.models.editImage({
   model: "openai/gpt-image-2",
-  prompt: "Add a robot next to the cat",
+  prompt:
+    "Keep the exact same subject, silhouette and pose from the input image. " +
+    "Re-render it in Chinese paper-cut art style: traditional red color, " +
+    "intricate hollow patterns, plain white background. " +
+    "Do not change the subject or composition; only restyle it as paper-cut.",
   referenceImages: [
     new RawReferenceImage({
       referenceId: 1,
-      referenceImage: generateResponse.generatedImages[0].image,
+      referenceImage: originalImage,
     }),
   ],
 });
