@@ -423,11 +423,19 @@ const response = await client.models.generateImages({
 
 ### 编辑图片
 
-在已有图片的基础上进行修改,使用 `edit_image` 接口:
+在已有图片的基础上进行修改,使用 `edit_image` 接口。下面以 ZenMux Logo 为例,将其转换为剪纸风格。
+
+::: tip 💡 提示词建议
+
+`edit_image` 模型对提示词较敏感。如果提示词过于宽泛(例如 "Transform this logo into..."),模型可能直接根据风格描述自由创作,而忽略原图主体。建议在提示词中**明确要求保留原图的形状/构图**,只改变风格。
+
+:::
 
 ::: code-group
 
 ```Python [Python]
+import urllib.request
+
 from google import genai
 from google.genai import types
 
@@ -440,20 +448,24 @@ client = genai.Client(
     ),
 )
 
-# 先生成一张图片
-generate_response = client.models.generate_images(
-    model="openai/gpt-image-2",
-    prompt="A cat sitting on a table"
-)
+# 加载待编辑的图片(这里以 ZenMux Logo 作为示例)
+LOGO_URL = "https://cdn.marmot-cloud.com/storage/zenmux/2026/04/28/74mUf4t/Log-Light.png"
+logo_bytes = urllib.request.urlopen(LOGO_URL).read()
+original_image = types.Image(image_bytes=logo_bytes, mime_type="image/png")
 
-# 基于生成的图片进行编辑
+# 基于原图进行编辑,转换为剪纸风格
 edit_response = client.models.edit_image(
     model="openai/gpt-image-2",
-    prompt="Add a robot next to the cat",
+    prompt=(
+        "Keep the exact same subject, silhouette and pose from the input image. "
+        "Re-render it in Chinese paper-cut art style: traditional red color, "
+        "intricate hollow patterns, plain white background. "
+        "Do not change the subject or composition; only restyle it as paper-cut."
+    ),
     reference_images=[
         types.RawReferenceImage(
             reference_id=1,
-            reference_image=generate_response.generated_images[0].image
+            reference_image=original_image
         )
     ]
 )
@@ -476,20 +488,27 @@ const client = new GoogleGenAI({
   },
 });
 
-// 先生成一张图片
-const generateResponse = await client.models.generateImages({
-  model: "openai/gpt-image-2",
-  prompt: "A cat sitting on a table",
-});
+// 加载待编辑的图片(这里以 ZenMux Logo 作为示例)
+const LOGO_URL =
+  "https://cdn.marmot-cloud.com/storage/zenmux/2026/04/28/74mUf4t/Log-Light.png";
+const logoBytes = Buffer.from(await (await fetch(LOGO_URL)).arrayBuffer());
+const originalImage = {
+  imageBytes: logoBytes,
+  mimeType: "image/png",
+};
 
-// 基于生成的图片进行编辑
+// 基于原图进行编辑,转换为剪纸风格
 const editResponse = await client.models.editImage({
   model: "openai/gpt-image-2",
-  prompt: "Add a robot next to the cat",
+  prompt:
+    "Keep the exact same subject, silhouette and pose from the input image. " +
+    "Re-render it in Chinese paper-cut art style: traditional red color, " +
+    "intricate hollow patterns, plain white background. " +
+    "Do not change the subject or composition; only restyle it as paper-cut.",
   referenceImages: [
     new RawReferenceImage({
       referenceId: 1,
-      referenceImage: generateResponse.generatedImages[0].image,
+      referenceImage: originalImage,
     }),
   ],
 });
