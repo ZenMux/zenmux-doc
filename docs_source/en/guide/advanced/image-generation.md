@@ -130,8 +130,8 @@ The following table maps the [official OpenAI image generation parameters](https
 | `prompt` | `prompt` (passed directly via SDK) | string | Text description (required) | ✅ |
 | `model` | `model` (passed directly via SDK) | string | Model name | ✅ |
 | `n` | `config.number_of_images` | number | Number of images to generate (1-10) | ✅ |
-| `size` | `config.http_options.extra_body.imageSize` | string | Image size: `1024x1024`, `1536x1024` (landscape), `1024x1536` (portrait), `auto` | ✅ |
-| `quality` | `config.http_options.extra_body.quality` | string | Image quality: `low` / `medium` / `high` / `auto` | ✅ |
+| `size` | `config.http_options.extra_body.imageSize` | string | Image size (**passthrough**). Common values: `1024x1024`, `1536x1024` (landscape), `1024x1536` (portrait), `auto`. Other sizes accepted by the underlying model are also supported — refer to the OpenAI docs and the passthrough note below. | ✅ |
+| `quality` | `config.http_options.extra_body.quality` | string | Image quality (**passthrough**). Common values: `low` / `medium` / `high` / `auto`. Any value supported by the underlying model can be used — refer to the OpenAI docs. | ✅ |
 | `output_format` | `config.output_mime_type` | string | Output format: `image/png`, `image/jpeg`, `image/webp` | ✅ |
 | `output_compression` | `config.output_compression_quality` | number | Compression quality (0-100), only valid for webp/jpeg | ✅ |
 | `background` | — | string | Background transparency setting | ❌ |
@@ -150,15 +150,17 @@ The following table maps the [official OpenAI image editing parameters](https://
 | `image` | `reference_images` (with `referenceType` other than MASK) | file/base64 | Reference images, multiple supported | ✅ |
 | `mask` | `reference_images` (with `referenceType = REFERENCE_TYPE_MASK`) | file/base64 | Mask image; transparent areas are the editable region | ✅ |
 | `n` | `config.number_of_images` | number | Number of images (1-10) | ✅ |
-| `size` | `config.http_options.extra_body.imageSize` | string | Image size: `1024x1024`, `1536x1024`, `1024x1536`, `auto` | ✅ |
-| `quality` | `config.http_options.extra_body.quality` | string | Image quality: `low` / `medium` / `high` / `auto` | ✅ |
+| `size` | `config.http_options.extra_body.imageSize` | string | Image size (**passthrough**). Common values: `1024x1024`, `1536x1024`, `1024x1536`, `auto`. Other sizes accepted by the underlying model are also supported — refer to the OpenAI docs. | ✅ |
+| `quality` | `config.http_options.extra_body.quality` | string | Image quality (**passthrough**). Common values: `low` / `medium` / `high` / `auto`. Any value supported by the underlying model can be used — refer to the OpenAI docs. | ✅ |
 | `output_format` | `config.output_mime_type` | string | Output format | ✅ |
 | `output_compression` | `config.output_compression_quality` | number | Compression quality | ✅ |
 | `background` | — | — | Not supported | ❌ |
 
 ::: tip 💡 About Parameter Passing
 
-Pass OpenAI-specific parameters such as `imageSize` and `quality` through `httpOptions.extraBody` to ensure consistent behavior across the Python and TypeScript SDKs. Standard Vertex AI fields like `numberOfImages`, `outputMimeType`, and `outputCompressionQuality` can be set directly at the top level of `config`.
+`imageSize` and `quality` are **passthrough parameters** — ZenMux forwards them as-is to the underlying OpenAI-compatible image generation API without validation or transformation. The values shown in the tables above are the most common options; for the complete list of supported values and behavioral details, refer to the official OpenAI documentation for [image generation](https://developers.openai.com/api/reference/resources/images/methods/generate) and [image editing](https://developers.openai.com/api/reference/resources/images/methods/edit), and configure them based on your needs.
+
+Pass these OpenAI-specific parameters through `httpOptions.extraBody` to ensure consistent behavior across the Python and TypeScript SDKs. Standard Vertex AI fields such as `numberOfImages`, `outputMimeType`, and `outputCompressionQuality` can be set directly at the top level of `config`.
 
 :::
 
