@@ -20,7 +20,7 @@ Encountering errors? See the [API Error Codes Reference](/guide/advanced/error-c
 POST https://zenmux.ai/api/v1/responses
 ```
 
-The Create a Model Response endpoint is compatible with OpenAI’s [Create a Model Response](https://platform.openai.com/docs/api-reference/responses/create?lang=curl) endpoint. It is used to create a single model response (supports text/image/file inputs; text or structured JSON outputs; built-in tools and function calling, etc.).
+The Create a Model Response endpoint is compatible with OpenAI’s [Create a Model Response](https://developers.openai.com/api/reference/typescript/resources/responses/methods/create) endpoint. It is used to create a single model response (supports text/image/file inputs; text or structured JSON outputs; built-in tools and function calling, etc.).
 
 Below is a list of all parameters that may be supported by different models. Parameter support varies by model; for the exact parameters supported by each model, see the model’s detail page.
 

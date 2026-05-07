@@ -1,19 +1,16 @@
 ---
 name: zenmux-setup
 description: >-
-  Interactively guide users through configuring ZenMux Base URL, API endpoint,
-  API Key, and model settings for any tool or SDK. Use this skill whenever the
-  user wants to SET UP, CONFIGURE, or CONNECT a tool to ZenMux — including
-  questions like "how do I set up ZenMux in Cursor", "what's the base URL",
-  "how to configure Claude Code with ZenMux", "endpoint for Anthropic API",
-  "help me fill in the API settings". Trigger on: "configure", "setup", "set up",
-  "base url", "endpoint", "api key", "接入", "配置", "设置", "base url 填什么",
-  "怎么填", "怎么接入", "怎么配置", "API 地址", "接口地址". Also trigger when users
-  mention a tool name (Cursor, Cline, Claude Code, Cherry Studio, Open-WebUI,
-  Dify, Obsidian, Sider, Copilot, Codex, Gemini CLI, opencode, etc.) together
-  with ZenMux in a configuration context. Treat the user as a first-time user
-  and guide them step by step. Do NOT trigger for usage queries, documentation
-  lookups, or general product questions — use zenmux-usage or zenmux-context instead.
+  Guide users through configuring ZenMux Base URL, API endpoint, API Key, and
+  model settings for tools or SDKs. Use when the user wants to set up,
+  configure, or connect ZenMux in Cursor, Claude Code, Cline, Cherry Studio,
+  Open-WebUI, Dify, Obsidian, Sider, Copilot, Codex, Gemini CLI, opencode, or
+  custom SDK code. Trigger on "configure", "setup", "set up", "base url",
+  "endpoint", "api key", "how do I set up ZenMux", "help me fill in API
+  settings", "接入", "配置", "设置", "base url 填什么", "怎么填", "怎么接入",
+  "API 地址", "接口地址". Treat the user as a first-time user and guide step by
+  step. Do not use for usage queries or docs lookups; use zenmux-usage or
+  zenmux-context instead.
 ---
 
 # zenmux-setup

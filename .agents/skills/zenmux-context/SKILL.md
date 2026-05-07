@@ -1,21 +1,18 @@
 ---
 name: zenmux-context
 description: >-
-  Answers any question about ZenMux by reading the latest official documentation.
-  Use this skill whenever the user asks about ZenMux product features, API usage,
-  configuration, integration, pricing, models, providers, routing, fallback, streaming,
-  multimodal, structured output, tool calling, reasoning, prompt caching, image generation,
-  video generation, web search, long context, observability, logs, cost tracking, usage analytics,
-  insurance, subscription, pay-as-you-go, invoices, best practices for tools like Claude Code,
-  Cursor, Cline, CodeX, Gemini CLI, opencode, Cherry Studio, Obsidian, Sider, Open-WebUI, Dify,
-  Neovate, GitHub Copilot, OpenClaw, CC-Switch, Immersive Translate, Studio Chat, architecture,
-  benchmarks, FAQ, contact, privacy, terms of service, compliance, or any other ZenMux-related topic.
-  Also trigger when the user writes in Chinese about ZenMux: 文档, 使用指南, 快速开始, API 参考,
-  最佳实践, 模型路由, 供应商路由, 订阅, 按量计费, 可观测性, 帮助, 常见问题, 接入指南, 配置.
-  Trigger on phrases like "how to use ZenMux", "ZenMux docs", "ZenMux API", "ZenMux integration",
-  "ZenMux 怎么用", "ZenMux 接入", "ZenMux 配置". Even if the user doesn't say "ZenMux" explicitly
-  but asks about LLM API aggregation, model routing, provider fallback in a context where ZenMux
-  is the project being worked on, this skill should activate.
+  Answer ZenMux questions by reading the latest official docs. Use for product
+  features, APIs, integration, pricing, models/providers, routing, fallback,
+  streaming, multimodal, structured output, tool calling, reasoning, prompt
+  caching, image/video generation, web search, long context, observability,
+  logs, cost tracking, subscriptions, PAYG, invoices, FAQ, privacy, terms,
+  compliance, and tool guides for Claude Code, Cursor, Cline, Codex, Gemini
+  CLI, opencode, Cherry Studio, Obsidian, Sider, Open-WebUI, Dify, and GitHub
+  Copilot. Trigger on "ZenMux docs", "ZenMux API", "how to use ZenMux",
+  "models", "pricing", "ZenMux 怎么用", "文档", "快速开始", "API 参考",
+  "模型路由", "供应商路由", "订阅", "按量计费", "接入", "配置". Also use when
+  ZenMux is the project context and the user asks about LLM API aggregation,
+  model routing, or provider fallback.
 ---
 
 # zenmux-context

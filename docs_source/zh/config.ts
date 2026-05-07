@@ -110,7 +110,14 @@ export default defineLoacaleConfig({
               { text: "工具调用", link: "/zh/guide/advanced/tool-calls" },
               { text: "推理模型", link: "/zh/guide/advanced/reasoning" },
               { text: "提示词缓存", link: "/zh/guide/advanced/prompt-cache" },
-              { text: "图片生成", link: "/zh/guide/advanced/image-generation" },
+              {
+                text: "图片生成-Google Gemini协议",
+                link: "/zh/guide/advanced/image-generation",
+              },
+              {
+                text: "图片生成-OpenAI Image协议",
+                link: "/zh/guide/advanced/openai-image-generation",
+              },
               { text: "视频生成", link: "/zh/guide/advanced/video-generation" },
               { text: "文本嵌入", link: "/zh/guide/advanced/embeddings" },
               { text: "网络搜索", link: "/zh/guide/advanced/web-search" },
@@ -242,6 +249,22 @@ export default defineLoacaleConfig({
               {
                 text: "Create Embeddings",
                 link: "/zh/api/openai/create-embeddings",
+              },
+              {
+                text: "Create image",
+                link: "/zh/api/openai/generate-an-image",
+              },
+              {
+                text: "Create image edit",
+                link: "/zh/api/openai/create-image-edit",
+              },
+              {
+                text: "Image generation streaming events",
+                link: "/zh/api/openai/image-generation-streaming-events",
+              },
+              {
+                text: "Image edit streaming events",
+                link: "/zh/api/openai/image-edit-streaming-events",
               },
               {
                 text: "List Models",

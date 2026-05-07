@@ -109,8 +109,12 @@ export default defineLoacaleConfig({
               { text: "Reasoning Models", link: "/guide/advanced/reasoning" },
               { text: "Prompt Cache", link: "/guide/advanced/prompt-cache" },
               {
-                text: "Image Generation",
+                text: "Image Generation - Google Gemini Protocol",
                 link: "/guide/advanced/image-generation",
+              },
+              {
+                text: "Image Generation - OpenAI Images Protocol",
+                link: "/guide/advanced/openai-image-generation",
               },
               {
                 text: "Video Generation",
@@ -228,6 +232,22 @@ export default defineLoacaleConfig({
               {
                 text: "Create Embeddings",
                 link: "/api/openai/create-embeddings",
+              },
+              {
+                text: "Create image",
+                link: "/api/openai/generate-an-image",
+              },
+              {
+                text: "Create image edit",
+                link: "/api/openai/create-image-edit",
+              },
+              {
+                text: "Image generation streaming events",
+                link: "/api/openai/image-generation-streaming-events",
+              },
+              {
+                text: "Image edit streaming events",
+                link: "/api/openai/image-edit-streaming-events",
               },
               {
                 text: "List Models",

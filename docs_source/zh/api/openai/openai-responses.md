@@ -20,7 +20,7 @@ head:
 POST https://zenmux.ai/api/v1/responses
 ```
 
-Create a Model Response 接口兼容 OpenAI 的 [Create a Model Response](https://platform.openai.com/docs/api-reference/responses/create?lang=curl) 接口，用于创建一次模型响应（支持文本/图片/文件输入；文本或结构化 JSON 输出；支持内置工具与函数调用等）。
+Create a Model Response 接口兼容 OpenAI 的 [Create a Model Response](https://developers.openai.com/api/reference/typescript/resources/responses/methods/create) 接口，用于创建一次模型响应（支持文本/图片/文件输入；文本或结构化 JSON 输出；支持内置工具与函数调用等）。
 
 下面列出了所有模型可能支持的参数，不同模型的支持参数有所不同，每个模型具体支持的参数请参见各模型详情页。
 
