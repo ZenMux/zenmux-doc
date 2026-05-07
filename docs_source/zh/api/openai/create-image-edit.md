@@ -213,112 +213,6 @@ GPT image 模型的图片生成 token 用量信息。
   - `image_tokens` `number`：生成的图片输出 token 数。
   - `text_tokens` `number`：生成的文本输出 token 数。
 
-::: api-request POST /api/v1/images/edits
-
-```cURL
-curl https://zenmux.ai/api/v1/images/edits \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $ZENMUX_API_KEY" \
-  -d '{
-    "images": [
-      {
-        "image_url": "https://cdn.marmot-cloud.com/storage/zenmux/2026/05/07/cFBSepW/gold.png"
-      },
-      {
-        "image_url": "https://cdn.marmot-cloud.com/storage/zenmux/2026/05/07/kMzPjuF/silver.png"
-      },
-      {
-        "image_url": "https://cdn.marmot-cloud.com/storage/zenmux/2026/05/07/cdTgazq/diamond.png"
-      }
-    ],
-    "prompt": "将这几个参考图片做成一个漫威复仇者联盟风格的大合照",
-    "background": "transparent",
-    "model": "gpt-image-2",
-    "moderation": "auto",
-    "n": 1,
-    "output_compression": 100,
-    "output_format": "png",
-    "partial_images": 1,
-    "quality": "high",
-    "size": "1024x1024",
-    "user": "user-1234"
-  }'
-```
-
-```TypeScript
-import fs from "fs";
-import OpenAI, { toFile } from "openai";
-
-const client = new OpenAI({
-  baseURL: "https://zenmux.ai/api/v1", // [!code highlight]
-  apiKey: process.env.ZENMUX_API_KEY, // [!code highlight]
-});
-
-const imageFiles = [
-  "bath-bomb.png",
-  "body-lotion.png",
-  "incense-kit.png",
-  "soap.png",
-];
-
-const images = await Promise.all(
-  imageFiles.map(async (file) =>
-    await toFile(fs.createReadStream(file), null, {
-      type: "image/png",
-    }),
-  ),
-);
-
-const rsp = await client.images.edit({
-  model: "gpt-image-2",
-  image: images,
-  prompt: "Create a lovely gift basket with these four items in it",
-});
-
-// Save the image to a file
-const image_base64 = rsp.data[0].b64_json;
-const image_bytes = Buffer.from(image_base64, "base64");
-fs.writeFileSync("basket.png", image_bytes);
-```
-
-```Python
-import base64
-import os
-
-from openai import OpenAI
-
-client = OpenAI(
-    base_url="https://zenmux.ai/api/v1",  # [!code highlight]
-    api_key=os.environ["ZENMUX_API_KEY"],  # [!code highlight]
-)
-
-prompt = """
-Generate a photorealistic image of a gift basket on a white background
-labeled 'Relax & Unwind' with a ribbon and handwriting-like font,
-containing all the items in the reference pictures.
-"""
-
-result = client.images.edit(
-    model="gpt-image-2",
-    image=[
-        open("body-lotion.png", "rb"),
-        open("bath-bomb.png", "rb"),
-        open("incense-kit.png", "rb"),
-        open("soap.png", "rb"),
-    ],
-    prompt=prompt,
-)
-
-image_base64 = result.data[0].b64_json
-image_bytes = base64.b64decode(image_base64)
-
-# Save the image to a file
-with open("gift-basket.png", "wb") as f:
-    f.write(image_bytes)
-```
-
-:::
-
 ::: api-response
 
 ```json
@@ -359,25 +253,15 @@ with open("gift-basket.png", "wb") as f:
 
 ```cURL
 curl -s -D >(grep -i x-request-id >&2) \
-  -o >(jq -r '.data[0].b64_json' | base64 --decode > avengers-group.png) \
+  -o >(jq -r '.data[0].b64_json' | base64 --decode > gift-basket.png) \
   -X POST "https://zenmux.ai/api/v1/images/edits" \
-  -H "Content-Type: application/json" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
-  -d '{
-    "model": "gpt-image-2",
-    "images": [
-      {
-        "image_url": "https://cdn.marmot-cloud.com/storage/zenmux/2026/05/07/cFBSepW/gold.png"
-      },
-      {
-        "image_url": "https://cdn.marmot-cloud.com/storage/zenmux/2026/05/07/kMzPjuF/silver.png"
-      },
-      {
-        "image_url": "https://cdn.marmot-cloud.com/storage/zenmux/2026/05/07/cdTgazq/diamond.png"
-      }
-    ],
-    "prompt": "将这几个参考图片做成一个漫威复仇者联盟风格的大合照"
-  }'
+  -F "model=openai/gpt-image-2" \
+  -F "image[]=@body-lotion.png" \
+  -F "image[]=@bath-bomb.png" \
+  -F "image[]=@incense-kit.png" \
+  -F "image[]=@soap.png" \
+  -F 'prompt=Create a lovely gift basket with these four items in it'
 ```
 
 ```TypeScript
