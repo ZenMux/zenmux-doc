@@ -130,31 +130,29 @@ curl https://zenmux.ai/api/v1/images/generations \
 
 ```TypeScript [TypeScript]
 import { writeFile } from "fs/promises";
+import OpenAI from "openai";
 
-const response = await fetch("https://zenmux.ai/api/v1/images/edits", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${process.env.ZENMUX_API_KEY}`,
-  },
-  body: JSON.stringify({
-    model: "gpt-image-2",
-    images: [
-      {
-        image_url: "https://cdn.marmot-cloud.com/storage/zenmux/2026/05/07/cFBSepW/gold.png",
-      },
-      {
-        image_url: "https://cdn.marmot-cloud.com/storage/zenmux/2026/05/07/kMzPjuF/silver.png",
-      },
-      {
-        image_url: "https://cdn.marmot-cloud.com/storage/zenmux/2026/05/07/cdTgazq/diamond.png",
-      },
-    ],
-    prompt: "将这几个参考图片做成一个漫威复仇者联盟风格的大合照",
-  }),
+const client = new OpenAI({
+  baseURL: "https://zenmux.ai/api/v1",
+  apiKey: process.env.ZENMUX_API_KEY,
 });
 
-const result = await response.json();
+const result = await client.images.edit({
+  model: "gpt-image-2",
+  images: [
+    {
+      image_url: "https://cdn.marmot-cloud.com/storage/zenmux/2026/05/07/cFBSepW/gold.png",
+    },
+    {
+      image_url: "https://cdn.marmot-cloud.com/storage/zenmux/2026/05/07/kMzPjuF/silver.png",
+    },
+    {
+      image_url: "https://cdn.marmot-cloud.com/storage/zenmux/2026/05/07/cdTgazq/diamond.png",
+    },
+  ],
+  prompt: "将这几个参考图片做成一个漫威复仇者联盟风格的大合照",
+});
+
 const imageBase64 = result.data[0].b64_json;
 const imageBytes = Buffer.from(imageBase64, "base64");
 await writeFile("avengers-group.png", imageBytes);
@@ -162,34 +160,30 @@ await writeFile("avengers-group.png", imageBytes);
 
 ```Python [Python]
 import base64
-import os
-import requests
+from openai import OpenAI
 
-response = requests.post(
-    "https://zenmux.ai/api/v1/images/edits",
-    headers={
-        "Content-Type": "application/json",
-        "Authorization": f"Bearer {os.environ['ZENMUX_API_KEY']}",
-    },
-    json={
-        "model": "gpt-image-2",
-        "images": [
-            {
-                "image_url": "https://cdn.marmot-cloud.com/storage/zenmux/2026/05/07/cFBSepW/gold.png"
-            },
-            {
-                "image_url": "https://cdn.marmot-cloud.com/storage/zenmux/2026/05/07/kMzPjuF/silver.png"
-            },
-            {
-                "image_url": "https://cdn.marmot-cloud.com/storage/zenmux/2026/05/07/cdTgazq/diamond.png"
-            },
-        ],
-        "prompt": "将这几个参考图片做成一个漫威复仇者联盟风格的大合照",
-    },
+client = OpenAI(
+    base_url="https://zenmux.ai/api/v1",
+    api_key="<ZENMUX_API_KEY>",
 )
 
-result = response.json()
-image_base64 = result["data"][0]["b64_json"]
+result = client.images.edit(
+    model="gpt-image-2",
+    images=[
+        {
+            "image_url": "https://cdn.marmot-cloud.com/storage/zenmux/2026/05/07/cFBSepW/gold.png"
+        },
+        {
+            "image_url": "https://cdn.marmot-cloud.com/storage/zenmux/2026/05/07/kMzPjuF/silver.png"
+        },
+        {
+            "image_url": "https://cdn.marmot-cloud.com/storage/zenmux/2026/05/07/cdTgazq/diamond.png"
+        },
+    ],
+    prompt="将这几个参考图片做成一个漫威复仇者联盟风格的大合照",
+)
+
+image_base64 = result.data[0].b64_json
 image_bytes = base64.b64decode(image_base64)
 
 with open("avengers-group.png", "wb") as f:
