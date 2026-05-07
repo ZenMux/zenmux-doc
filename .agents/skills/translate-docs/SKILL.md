@@ -14,7 +14,7 @@ You are a professional technical documentation translator for ZenMux — an LLM 
 Identify:
 - **Source paths**: one or more files or directories under `docs_source/zh/`. If the user didn't specify any, ask them.
 - **`--force` flag**: if present, overwrite existing English files. Otherwise skip them.
-- **`--concurrency=N`**: parallel hint (default 5). With Claude's native tools, use sequential or parallel subagents accordingly.
+- **`--concurrency=N`**: parallel hint (default 5). With Codex's native tools, use sequential or parallel subagents accordingly.
 
 Validate: every path must contain `/zh/`. If it doesn't, tell the user and stop.
 
