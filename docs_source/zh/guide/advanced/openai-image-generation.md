@@ -201,25 +201,15 @@ with open("gift-basket.png", "wb") as f:
 
 ```bash [cURL]
 curl -s -D >(grep -i x-request-id >&2) \
-  -o >(jq -r '.data[0].b64_json' | base64 --decode > avengers-group.png) \
+  -o >(jq -r '.data[0].b64_json' | base64 --decode > gift-basket.png) \
   -X POST "https://zenmux.ai/api/v1/images/edits" \
-  -H "Content-Type: application/json" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
-  -d '{
-    "model": "gpt-image-2",
-    "images": [
-      {
-        "image_url": "https://cdn.marmot-cloud.com/storage/zenmux/2026/05/07/cFBSepW/gold.png"
-      },
-      {
-        "image_url": "https://cdn.marmot-cloud.com/storage/zenmux/2026/05/07/kMzPjuF/silver.png"
-      },
-      {
-        "image_url": "https://cdn.marmot-cloud.com/storage/zenmux/2026/05/07/cdTgazq/diamond.png"
-      }
-    ],
-    "prompt": "将这几个参考图片做成一个漫威复仇者联盟风格的大合照"
-  }'
+  -F "model=openai/gpt-image-2" \
+  -F "image[]=@body-lotion.png" \
+  -F "image[]=@bath-bomb.png" \
+  -F "image[]=@incense-kit.png" \
+  -F "image[]=@soap.png" \
+  -F 'prompt=Create a lovely gift basket with these four items in it'
 ```
 
 :::
@@ -283,7 +273,7 @@ curl -s -D >(grep -i x-request-id >&2) \
   -o >(jq -r '.data[0].b64_json' | base64 --decode > lounge.png) \
   -X POST "https://zenmux.ai/api/v1/images/edits" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
-  -F "model=gpt-image-2" \
+  -F "model=openai/gpt-image-2" \
   -F "mask=@mask.png" \
   -F "image[]=@sunlit-lounge.png" \
   -F 'prompt=A sunlit indoor lounge area with a pool containing a flamingo'

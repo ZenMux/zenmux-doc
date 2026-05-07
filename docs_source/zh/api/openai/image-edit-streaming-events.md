@@ -23,7 +23,7 @@ head:
 ```cURL
 curl -s -N -X POST "https://zenmux.ai/api/v1/images/edits" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
-  -F "model=gpt-image-1.5" \
+  -F "model=openai/gpt-image-2" \
   -F "image[]=@body-lotion.png" \
   -F "image[]=@bath-bomb.png" \
   -F "image[]=@incense-kit.png" \
