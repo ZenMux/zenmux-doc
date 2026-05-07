@@ -8,15 +8,9 @@ head:
       content: Zenmux, guide, tutorial, image, generation, API
 ---
 
-# Image Generation - Google Gemini Protocol
+# Image Generation
 
-ZenMux currently supports two image generation protocols: **Google Gemini** and **OpenAI Images**.
-
-All image generation models on ZenMux can be called through the Google Gemini protocol. OpenAI image generation models additionally support both the OpenAI Images protocol and the Google Gemini protocol.
-
-This guide focuses on the Google Gemini protocol. If you want to call OpenAI image models through the OpenAI Images protocol, see [OpenAI Images protocol image generation](/guide/advanced/openai-image-generation).
-
-ZenMux supports invoking image generation models through the Vertex AI protocol. This guide explains how to use ZenMux to generate images and save them locally.
+ZenMux supports invoking image generation models via the Vertex AI protocol. This guide explains how to use ZenMux to generate images and save them locally.
 
 ::: tip 💡 About Banana Models
 Banana is a series of image generation models from Google that can produce high-quality images from text prompts. You can use these models in ZenMux through the Vertex AI protocol.
@@ -24,10 +18,23 @@ Banana is a series of image generation models from Google that can produce high-
 
 ## Supported Models
 
-ZenMux continuously updates its image generation models. Visit the [ZenMux model catalog](https://zenmux.ai/models?sort=newest&output_modalities=image) to view all currently supported image generation models that support the Google Gemini protocol.
+The currently supported image generation models include (continuously updated):
 
-::: tip 📚 OpenAI Images Protocol Models
-If you only want to view OpenAI image models that support the OpenAI Images protocol, visit the [OpenAI image model list](https://zenmux.ai/models?author=openai&sort=newest&output_modalities=image).
+**Google Gemini Series** — Use the `generate_content` API; responses contain both text and images:
+
+- `google/gemini-3-pro-image-preview`
+- `google/gemini-3-pro-image-preview-free`
+- `google/gemini-2.5-flash-image`
+- `google/gemini-2.5-flash-image-free`
+
+**Non-Google Models** — Use the `generate_images` / `edit_image` API; support image generation and editing:
+
+- `openai/gpt-image-1.5`
+- `openai/gpt-image-2`
+- `qwen/qwen-image-2.0`
+
+::: tip 📚 More Models
+Visit the [ZenMux model catalog](https://zenmux.ai/models) to search and view all available image generation models.
 :::
 
 ## Reference Documentation
