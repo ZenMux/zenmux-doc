@@ -10,7 +10,7 @@ head:
 
 # Guide to Using OpenClaw with ZenMux
 
-[OpenClaw](https://github.com/openclaw/openclaw) is a personal AI assistant that runs on your own machine and answers you on the channels you already use (terminal TUI, web dashboard, WhatsApp, Telegram, Discord, Slack, Signal, iMessage, and more). With the published [`@zenmux/openclaw-zenmux-provider`](https://clawhub.ai/p/@zenmux/openclaw-zenmux-provider) plugin on ClawHub, a single install command gives OpenClaw access to **all 135+ ZenMux models** — GPT, Claude, Gemini, Grok, DeepSeek, Qwen, and more — with on-demand dynamic resolution and a one-time per-host catalog cache.
+[OpenClaw](https://github.com/openclaw/openclaw) is a personal AI assistant that runs on your own machine and answers you on the channels you already use (terminal TUI, web dashboard, WhatsApp, Telegram, Discord, Slack, Signal, iMessage, and more). With the published [`@zenmux/openclaw-zenmux-provider`](https://clawhub.ai/plugins/@zenmux/openclaw-zenmux-provider) plugin on ClawHub, a single install command gives OpenClaw access to **all 135+ ZenMux models** — GPT, Claude, Gemini, Grok, DeepSeek, Qwen, and more — with on-demand dynamic resolution and a one-time per-host catalog cache.
 
 ::: info Compatibility
 The plugin requires **OpenClaw `>= 2026.4.14`**. If you're on an older release, upgrade with `npm i -g openclaw@latest` before installing.

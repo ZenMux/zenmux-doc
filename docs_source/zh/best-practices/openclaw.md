@@ -10,7 +10,7 @@ head:
 
 # OpenClaw 接入 ZenMux 使用指南
 
-[OpenClaw](https://github.com/openclaw/openclaw) 是一款运行在你自己机器上的个人 AI 助手,支持你日常使用的多种渠道(终端 TUI、网页 Dashboard、WhatsApp、Telegram、Discord、Slack、Signal、iMessage 等)。借助发布在 ClawHub 上的 [`@zenmux/openclaw-zenmux-provider`](https://clawhub.ai/p/@zenmux/openclaw-zenmux-provider) 插件,**一条安装命令**即可让 OpenClaw 访问 **135+ 个 ZenMux 模型** —— GPT、Claude、Gemini、Grok、DeepSeek、Qwen 等,支持按需动态解析,并在每台主机上保留一次性的目录缓存。
+[OpenClaw](https://github.com/openclaw/openclaw) 是一款运行在你自己机器上的个人 AI 助手,支持你日常使用的多种渠道(终端 TUI、网页 Dashboard、WhatsApp、Telegram、Discord、Slack、Signal、iMessage 等)。借助发布在 ClawHub 上的 [`@zenmux/openclaw-zenmux-provider`](https://clawhub.ai/plugins/@zenmux/openclaw-zenmux-provider) 插件,**一条安装命令**即可让 OpenClaw 访问 **135+ 个 ZenMux 模型** —— GPT、Claude、Gemini、Grok、DeepSeek、Qwen 等,支持按需动态解析,并在每台主机上保留一次性的目录缓存。
 
 ::: info 兼容性说明
 该插件要求 **OpenClaw `>= 2026.4.14`**。如果你使用的是更早版本,请先运行 `npm i -g openclaw@latest` 升级再安装。
