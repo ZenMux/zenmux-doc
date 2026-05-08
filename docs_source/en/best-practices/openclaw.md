@@ -2,39 +2,33 @@
 head:
   - - meta
     - name: description
-      content: Guide to Using OpenClaw with ZenMux
+      content: Use ZenMux with OpenClaw via the published ClawHub plugin — one install command unlocks 135+ models with dynamic discovery
   - - meta
     - name: keywords
-      content: Zenmux, best practices, integration, openclaw, moltbot, OpenAI, API, messaging, gateway
+      content: Zenmux, OpenClaw, ClawHub, plugin, integration, AI gateway, GPT-5.4, Claude Opus 4.7, Grok 4.3, Gemini 3.1, model aggregation
 ---
 
 # Guide to Using OpenClaw with ZenMux
 
-OpenClaw (formerly Moltbot, originally Clawdbot) is a powerful AI messaging gateway that connects multiple messaging platforms (WhatsApp, Telegram, Discord, Slack, Signal, iMessage, and more) to AI models. By integrating with ZenMux, you can access a wide range of models including GPT-5.2, Claude-4.5, Gemini-3, DeepSeek, and more.
+[OpenClaw](https://github.com/openclaw/openclaw) is a personal AI assistant that runs on your own machine and answers you on the channels you already use (terminal TUI, web dashboard, WhatsApp, Telegram, Discord, Slack, Signal, iMessage, and more). With the published [`@zenmux/openclaw-zenmux-provider`](https://clawhub.ai/plugins/@zenmux/openclaw-zenmux-provider) plugin on ClawHub, a single install command gives OpenClaw access to **all 135+ ZenMux models** — GPT, Claude, Gemini, Grok, DeepSeek, Qwen, and more — with on-demand dynamic resolution and a one-time per-host catalog cache.
 
-::: info Compatibility Note
-ZenMux fully supports the OpenAI API protocol and can be used with OpenClaw through simple configuration.
+::: info Compatibility
+The plugin requires **OpenClaw `>= 2026.4.14`**. If you're on an older release, upgrade with `npm i -g openclaw@latest` before installing.
 
-Note that the OpenAI protocol base_url is `https://zenmux.ai/api/v1`.
+The plugin uses the canonical OpenClaw provider pattern: a small static catalog plus `resolveDynamicModel` + `prepareDynamicModel` hooks. You don't need to enumerate models manually — any `zenmux/<id>` from the live catalog works on demand.
+
+ZenMux's API is OpenAI-compatible at `https://zenmux.ai/api/v1`.
 :::
 
 ## Prerequisites
 
 - Node.js 22 or later
-- A ZenMux API Key (see [Step 0](#step-0-get-a-zenmux-api-key) below)
-
-## Integration Methods
-
-There are two ways to use ZenMux with OpenClaw:
-
-| Method | Best For | Complexity |
-| ------ | -------- | ---------- |
-| [Method 1: Use the ZenMux PR](#method-1-use-the-zenmux-pr) | Full ZenMux integration with auto-discovery | Easy |
-| [Method 2: Manual Configuration](#method-2-manual-configuration) | Stable releases, custom setups | Moderate |
+- OpenClaw `>= 2026.4.14` (`openclaw --version`)
+- A ZenMux API key — see [Step 0](#step-0-get-a-zenmux-api-key) below
 
 ## Step 0: Get a ZenMux API Key
 
-Before configuring OpenClaw, you need a ZenMux API Key. ZenMux offers two billing options:
+ZenMux offers two billing options. Either works with this plugin.
 
 ::: code-group
 
@@ -44,7 +38,7 @@ Features: fixed monthly fee, predictable cost, 5-10x price leverage
 API Key format: sk-ss-v1-xxx
 
 How to get it:
-1. Visit the subscription management page: https://zenmux.ai/platform/subscription
+1. Visit the subscription page: https://zenmux.ai/platform/subscription
 2. Choose a plan (Pro $20/month, Max $100/month, Ultra $200/month)
 3. After subscribing, create a subscription API Key on the page
 
@@ -68,84 +62,236 @@ https://docs.zenmux.ai/guide/pay-as-you-go
 
 :::
 
-## Method 1: Use the ZenMux PR
+## Quick Start (3 commands)
 
-The easiest way to use ZenMux with OpenClaw is to use the pending [ZenMux integration PR #3305](https://github.com/openclaw/openclaw/pull/3305), which provides full auto-discovery of ZenMux models.
-
-### Step 1: Clone and Checkout the PR
+If you already have OpenClaw and your API key set, this is the entire setup:
 
 ```bash
-# Clone the OpenClaw repository
-git clone https://github.com/openclaw/openclaw.git
-cd openclaw
+export ZENMUX_API_KEY=sk-ss-v1-...
 
-# Checkout PR #3305 (ZenMux integration)
-git fetch origin pull/3305/head:zenmux-integration
-git checkout zenmux-integration
-
-# Install dependencies
-pnpm install
-
-# Build the project
-pnpm build
+openclaw plugins install clawhub:@zenmux/openclaw-zenmux-provider
+openclaw onboard --zenmux-api-key "$ZENMUX_API_KEY" --auth-choice zenmux-api-key \
+  --flow manual --accept-risk --non-interactive
+openclaw gateway install && openclaw gateway start
 ```
 
-### Step 2: Run Onboarding with ZenMux
+Then `openclaw chat` to start chatting. The default model is `zenmux/openai/gpt-5.4`; switch to any other ZenMux model in chat with `/model zenmux/<id>`.
 
-Run the onboarding wizard and select ZenMux as your auth provider:
+The detailed walkthrough below explains each step and how to verify it.
+
+## Method 1: Install via ClawHub plugin (Recommended)
+
+### Step 1: Verify or upgrade OpenClaw
 
 ```bash
-pnpm openclaw onboard --auth-choice zenmux-api-key
+openclaw --version            # expect: OpenClaw 2026.4.14 or newer
 ```
 
-Follow the prompts to enter your ZenMux API Key. The wizard will automatically:
-- Configure the ZenMux provider
-- Discover available models from the ZenMux API
-- Set a default model for you
-
-### Step 3: Verify the Setup
-
-List the available models to verify the configuration:
+If older, upgrade:
 
 ```bash
-pnpm openclaw models list
+npm i -g openclaw@latest
+openclaw --version            # confirm >= 2026.4.14
 ```
 
-You should see ZenMux models listed with the `zenmux/` prefix, such as:
-- `zenmux/deepseek/deepseek-chat`
-- `zenmux/openai/gpt-5.2`
-- `zenmux/google/gemini-3-pro-preview`
-- `zenmux/anthropic/claude-sonnet-4.5`
+If `npm i -g` errors with permissions, you're on system Node — switch to a Node version manager (nvm/volta/fnm) or prefix with `sudo`.
 
-### Step 4: Test the Integration
-
-Send a test message to verify everything works:
+### Step 2: Set your ZenMux API key
 
 ```bash
-pnpm openclaw agent --local --agent main --message "Hello, respond with just 'Hi!'"
+export ZENMUX_API_KEY=sk-ss-v1-...
 ```
 
-## Method 2: Manual Configuration
+### Step 3: Install the plugin from ClawHub
 
-If you prefer to use a stable release of OpenClaw or want more control over the configuration, you can manually configure ZenMux as an explicit provider in your `openclaw.json` config file.
+```bash
+openclaw plugins install clawhub:@zenmux/openclaw-zenmux-provider
+```
+
+You'll see output similar to:
+
+```text
+ClawHub code-plugin @zenmux/openclaw-zenmux-provider@0.2.1 channel=community verification=source-linked
+ClawHub package "@zenmux/openclaw-zenmux-provider" is community; review source and verification before enabling.
+Downloading plugin @zenmux/openclaw-zenmux-provider@0.2.1 from ClawHub…
+Installing to ~/.openclaw/extensions/zenmux…
+Installed plugin: zenmux
+Restart the gateway to load plugins.
+```
+
+The "community plugin" notice is a standard advisory for any non-bundled plugin and is expected.
+
+### Step 4: Onboard with your API key (do this **before** starting the gateway)
+
+This step writes the gateway mode, the provider config, and the auth profile. The OpenClaw gateway daemon refuses to start without `gateway.mode` set, so onboard must run first.
+
+```bash
+openclaw onboard \
+  --zenmux-api-key "$ZENMUX_API_KEY" \
+  --auth-choice zenmux-api-key \
+  --flow manual \
+  --accept-risk \
+  --non-interactive
+```
+
+Expected output:
+
+```text
+Updated ~/.openclaw/openclaw.json
+Workspace OK: ~/.openclaw/workspace
+Sessions OK: ~/.openclaw/agents/main/sessions
+Gateway did not become reachable at ws://127.0.0.1:18789.
+```
+
+The `Gateway did not become reachable` line is informational — onboard ran a post-write health check; the gateway will be installed in the next step.
+
+### Step 5: Install + start the gateway service
+
+```bash
+openclaw gateway install
+openclaw gateway start
+sleep 5
+openclaw gateway status | grep -E "Runtime:|Listening|Connectivity probe|Capability"
+```
+
+Expected:
+
+```text
+Runtime: running (pid …)
+Listening: 127.0.0.1:18789
+Connectivity probe: ok
+Capability: admin-capable
+```
+
+### Step 6: Verify the configuration
+
+```bash
+node -e "
+const c = require(require('os').homedir() + '/.openclaw/openclaw.json');
+const p = require(require('os').homedir() + '/.openclaw/extensions/zenmux/package.json');
+console.log('plugin name    :', p.name);
+console.log('plugin version :', p.version);
+console.log('primary model  :', c.agents?.defaults?.model?.primary);
+console.log('allowlist      :', JSON.stringify(c.agents?.defaults?.models));
+console.log('zenmux api     :', c.models?.providers?.zenmux?.api);
+console.log('zenmux baseUrl :', c.models?.providers?.zenmux?.baseUrl);
+console.log('plugin enabled :', c.plugins?.entries?.zenmux?.enabled);
+console.log('gateway.mode   :', c.gateway?.mode);
+console.log('auth profile   :', c.auth?.profiles?.['zenmux:default']?.mode);
+"
+```
+
+Expected output:
+
+```text
+plugin name    : @zenmux/openclaw-zenmux-provider
+plugin version : 0.2.1
+primary model  : zenmux/openai/gpt-5.4
+allowlist      : {}
+zenmux api     : openai-completions
+zenmux baseUrl : https://zenmux.ai/api/v1
+plugin enabled : true
+gateway.mode   : local
+auth profile   : api_key
+```
+
+The empty `allowlist: {}` is the key signal — any `zenmux/<id>` is selectable, no manual pinning required.
+
+### Step 7: Smoke test through three vendors
+
+```bash
+# Default model — fast, no cache fetch needed
+openclaw infer model run --gateway --model zenmux/openai/gpt-5.4 \
+  --prompt "Reply with: DEFAULT_OK"
+
+# Anthropic via ZenMux — first call triggers a one-time ~1-2s catalog fetch
+openclaw infer model run --gateway --model zenmux/anthropic/claude-opus-4.7 \
+  --prompt "Reply with: FREE_PICK"
+
+# xAI via ZenMux — cache is now warm, instant
+openclaw infer model run --gateway --model zenmux/x-ai/grok-4.3 \
+  --prompt "Reply with: GROK_OK"
+```
+
+Each should print `provider: zenmux`, the model id, and a short reply. No `model not allowed` errors.
+
+### Step 8: Open chat
+
+```bash
+openclaw chat                 # local terminal UI
+# or
+openclaw dashboard            # web UI in browser
+```
+
+You're done. Day-to-day usage is below.
+
+## Using ZenMux models in chat
+
+### Switching models on the fly
+
+In both the terminal TUI (`openclaw chat`) and the web dashboard chat input, type a slash directive:
+
+```text
+/model zenmux/anthropic/claude-opus-4.7    switch to Claude Opus 4.7
+/model zenmux/x-ai/grok-4.3                switch to Grok 4.3
+/model zenmux/deepseek/deepseek-v4-pro     switch to DeepSeek v4 Pro
+/model zenmux/qwen/qwen3.6-max-preview     switch to Qwen 3.6 Max
+/model status                              show current model + endpoint
+```
+
+Any of the 135+ ZenMux models works directly — no need to pre-pin. The first call to a previously-unused model triggers a one-time ~1-2s catalog warmup; subsequent calls hit the disk cache at `~/.openclaw/cache/zenmux-models.json` and are instant.
+
+### Listing available models
+
+```bash
+# All ZenMux models from the live catalog
+curl -s https://zenmux.ai/api/v1/models | python3 -c "
+import sys, json
+for m in json.load(sys.stdin)['data']: print(m['id'])
+"
+
+# Or browse via the official model list page
+open https://zenmux.ai/models
+```
+
+### One-shot CLI inference
+
+```bash
+openclaw infer model run --gateway --model zenmux/anthropic/claude-opus-4.7 \
+  --prompt "Summarize the README in 3 bullets"
+```
+
+### Pinning favorites in the dashboard dropdown (optional)
+
+The dashboard chat-header dropdown shows only your saved aliases. To populate it with a few favorites:
+
+```bash
+openclaw models aliases add Opus  zenmux/anthropic/claude-opus-4.7
+openclaw models aliases add GPT55 zenmux/openai/gpt-5.5-pro
+openclaw models aliases add Grok  zenmux/x-ai/grok-4.3
+openclaw gateway restart
+```
+
+::: warning Trade-off
+Once `agents.defaults.models` (the underlying alias map) is non-empty, OpenClaw treats it as the agent **allowlist** — only pinned models can be selected. Models not pinned will show "model not allowed". To regain free-form switching, either bulk-pin everything or clear the map (see [Troubleshooting](#troubleshooting)).
+:::
+
+## Method 2: Manual configuration (fallback)
+
+::: warning When to use this
+Use Method 2 only if you can't reach ClawHub (offline / firewalled / corporate-restricted environment). It's strictly more verbose than Method 1 and **does not get dynamic model discovery** — you'll only have access to whatever models you explicitly list in the config.
+:::
 
 ### Step 1: Install OpenClaw
 
-Install OpenClaw globally via npm:
-
 ```bash
 npm install -g openclaw@latest
+openclaw setup --mode local --non-interactive   # writes baseline config
 ```
 
-Or run the onboarding wizard to set up OpenClaw:
+### Step 2: Edit `~/.openclaw/openclaw.json`
 
-```bash
-openclaw onboard --install-daemon
-```
-
-### Step 2: Configure ZenMux Provider
-
-Add the ZenMux provider configuration to your `~/.openclaw/openclaw.json` file:
+Add the ZenMux provider with the models you want:
 
 ```json
 {
@@ -158,39 +304,39 @@ Add the ZenMux provider configuration to your `~/.openclaw/openclaw.json` file:
         "api": "openai-completions",
         "models": [
           {
-            "id": "deepseek/deepseek-chat",
-            "name": "DeepSeek Chat via ZenMux",
+            "id": "openai/gpt-5.4",
+            "name": "GPT-5.4 via ZenMux",
+            "reasoning": false,
+            "input": ["text", "image"],
+            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "anthropic/claude-opus-4.7",
+            "name": "Claude Opus 4.7 via ZenMux",
+            "reasoning": true,
+            "input": ["text", "image"],
+            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "google/gemini-3.1-pro-preview",
+            "name": "Gemini 3.1 Pro via ZenMux",
+            "reasoning": false,
+            "input": ["text", "image"],
+            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+            "contextWindow": 1048576,
+            "maxTokens": 8192
+          },
+          {
+            "id": "deepseek/deepseek-v4-pro",
+            "name": "DeepSeek v4 Pro via ZenMux",
             "reasoning": false,
             "input": ["text"],
             "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
-            "contextWindow": 64000,
-            "maxTokens": 8192
-          },
-          {
-            "id": "openai/gpt-5.2",
-            "name": "GPT-5.2 via ZenMux",
-            "reasoning": false,
-            "input": ["text", "image"],
-            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
-            "contextWindow": 200000,
-            "maxTokens": 8192
-          },
-          {
-            "id": "google/gemini-3-pro-preview",
-            "name": "Gemini 3 Pro via ZenMux",
-            "reasoning": false,
-            "input": ["text", "image"],
-            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
-            "contextWindow": 200000,
-            "maxTokens": 8192
-          },
-          {
-            "id": "anthropic/claude-sonnet-4.5",
-            "name": "Claude Sonnet 4.5 via ZenMux",
-            "reasoning": false,
-            "input": ["text", "image"],
-            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
-            "contextWindow": 200000,
+            "contextWindow": 128000,
             "maxTokens": 8192
           }
         ]
@@ -200,184 +346,168 @@ Add the ZenMux provider configuration to your `~/.openclaw/openclaw.json` file:
   "agents": {
     "defaults": {
       "model": {
-        "primary": "zenmux/openai/gpt-5.2"
-      },
-      "models": {
-        "zenmux/deepseek/deepseek-chat": {},
-        "zenmux/openai/gpt-5.2": {},
-        "zenmux/google/gemini-3-pro-preview": {},
-        "zenmux/anthropic/claude-sonnet-4.5": {}
+        "primary": "zenmux/openai/gpt-5.4"
       }
     }
   }
 }
 ```
 
-::: warning Important
-Replace `sk-ss-v1-your-api-key-here` with your actual ZenMux API Key.
+::: warning
+Replace `sk-ss-v1-your-api-key-here` with your real ZenMux API key.
 :::
 
-### Step 3: Add More Models (Optional)
+### Step 3: Start the gateway
 
-You can add more models to the `models` array. Check the [ZenMux model list](https://zenmux.ai/models) for available models and their capabilities.
+```bash
+openclaw gateway install
+openclaw gateway restart
+```
 
-Each model definition requires:
+### Step 4: Verify
+
+```bash
+openclaw infer model providers --json | python3 -c "
+import sys, json
+ps = json.load(sys.stdin)
+print(next((p for p in ps if p.get('provider')=='zenmux'), None))
+"
+
+openclaw infer model run --gateway --model zenmux/openai/gpt-5.4 \
+  --prompt "Reply: OK"
+```
+
+### Adding more models
+
+Add entries to the `models` array. Field reference:
 
 | Field | Description |
-| ----- | ----------- |
-| `id` | The model ID as shown in ZenMux (e.g., `openai/gpt-5.2`) |
-| `name` | A display name for the model |
-| `reasoning` | Whether the model supports reasoning mode |
-| `input` | Input types: `["text"]` or `["text", "image"]` |
-| `cost` | Cost configuration (set to 0 for subscription plans) |
-| `contextWindow` | Maximum context window size in tokens |
-| `maxTokens` | Maximum output tokens |
+|---|---|
+| `id` | Model id as shown at [zenmux.ai/models](https://zenmux.ai/models) (e.g. `openai/gpt-5.4`) |
+| `name` | Display name |
+| `reasoning` | Whether the model supports reasoning |
+| `input` | `["text"]` or `["text", "image"]` |
+| `cost` | Set to all 0 for subscription plans |
+| `contextWindow` | Max context window in tokens |
+| `maxTokens` | Max output tokens |
 
-### Step 4: Verify the Configuration
+After editing, restart the gateway.
 
-List the available models:
-
-```bash
-openclaw models list
-```
-
-You should see your configured ZenMux models:
-
-```
-Model                                      Input      Ctx      Local Auth  Tags
-zenmux/deepseek/deepseek-chat              text       63k      no    yes   configured
-zenmux/openai/gpt-5.2                      text+image 195k     no    yes   default,configured
-zenmux/google/gemini-3-pro-preview         text+image 195k     no    yes   configured
-zenmux/anthropic/claude-sonnet-4.5         text+image 195k     no    yes   configured
-```
-
-### Step 5: Set the Default Model
-
-Set your preferred default model:
-
-```bash
-openclaw models set zenmux/openai/gpt-5.2
-```
-
-## Using ZenMux Models
-
-Once configured, you can use ZenMux models in various ways:
-
-### Via CLI Agent
-
-```bash
-# Run a quick agent command
-openclaw agent --local --agent main --message "Explain quantum computing in simple terms"
-```
-
-### Via Messaging Channels
-
-Configure your messaging channels (WhatsApp, Telegram, Discord, etc.) and the gateway will automatically use your configured ZenMux model:
-
-```bash
-# Start the gateway
-openclaw gateway run
-
-# Check channel status
-openclaw channels status
-```
-
-### Switching Models
-
-You can switch models at any time:
-
-```bash
-# Set a different default model
-openclaw models set zenmux/anthropic/claude-sonnet-4.5
-
-# Or specify a model inline (Method 1 only)
-openclaw agent --local --agent main --model zenmux/deepseek/deepseek-chat --message "Hello"
-```
+::: tip Why Method 1 is preferred
+Method 1's plugin uses OpenClaw's `resolveDynamicModel` + `prepareDynamicModel` hooks, which automatically resolve **any** `zenmux/<id>` against the live `/api/v1/models` endpoint and cache the metadata. Method 2 requires you to manually list every model you want to use, and you have to update the config whenever ZenMux ships new models.
+:::
 
 ## Troubleshooting
 
-### Common Issues
+::: details Gateway start blocked: existing config is missing `gateway.mode`
+**Cause**: `openclaw gateway start` ran before `openclaw onboard`. The daemon refuses to launch when it can't find `gateway.mode` in the config.
 
-::: details API Key Error or Authentication Failure
-**Issue**: You see an error indicating the API Key is invalid or unauthorized
+**Fix**: Run onboard first, then start the gateway:
 
-**Solutions**:
-
-1. **Check the API Key format**:
-   - Subscription API Keys should start with `sk-ss-v1-`
-   - Pay-as-you-go API Keys should start with `sk-ai-v1-`
-   - Make sure there are no extra spaces or newlines
-
-2. **Validate the API Key**:
-   - Subscription: visit the [Subscription management page](https://zenmux.ai/platform/subscription) to check subscription status and quotas
-   - Pay-as-you-go: visit the [Pay-as-you-go page](https://zenmux.ai/platform/pay-as-you-go) to ensure you have sufficient balance
-
-3. **Check config file syntax**:
-   - Ensure the JSON is valid (no trailing commas, proper quoting)
-   - Verify the API key is correctly placed in the `apiKey` field
+```bash
+openclaw onboard --zenmux-api-key "$ZENMUX_API_KEY" --auth-choice zenmux-api-key \
+  --flow manual --accept-risk --non-interactive
+openclaw gateway start
+```
 :::
 
-::: details Model Not Found
-**Issue**: OpenClaw reports that the model cannot be found
+::: details `Model override "zenmux/..." is not allowed for agent "main"`
+**Cause**: The agent allowlist (`agents.defaults.models`) is non-empty — usually because you're on plugin version `< 0.1.3`, or you previously pinned aliases that openclaw turned into an allowlist.
 
-**Solutions**:
+**Fix A — update the plugin** (most common):
 
-1. **For Method 1 (PR branch)**:
-   - Ensure you're on the `zenmux-integration` branch (checked out from PR #3305)
-   - Run `pnpm build` after pulling the latest changes
+```bash
+openclaw plugins update zenmux       # pulls 0.2.0+
+openclaw plugins inspect zenmux | grep Version
+```
 
-2. **For Method 2 (Manual config)**:
-   - Verify the model is defined in `models.providers.zenmux.models`
-   - Check that the model ID matches exactly (case-sensitive)
-   - Add the model to `agents.defaults.models` as well
+**Fix B — clear the allowlist** (if you're already on the latest plugin but a stale entry remains):
+
+```bash
+node -e "
+const fs=require('fs');
+const path=require('os').homedir()+'/.openclaw/openclaw.json';
+const c=JSON.parse(fs.readFileSync(path,'utf8'));
+if (c.agents?.defaults) c.agents.defaults.models = {};
+fs.writeFileSync(path, JSON.stringify(c, null, 2));
+"
+openclaw gateway restart
+```
+
+After clearing, **open a new chat session** — existing chat sessions cache the allowlist as it was at session-start.
 :::
 
-::: details Connection Failure
-**Issue**: OpenClaw cannot connect to ZenMux
+::: details `openclaw infer model providers` shows `count: 1` for zenmux
+**This is by design.** The plugin uses the canonical OpenClaw provider pattern: a small static catalog (1 model — the default) plus `resolveDynamicModel` for everything else. The `count` reflects only the static catalog. The other 134+ ZenMux models are still freely selectable via `/model zenmux/<id>` or `--model zenmux/<id>` — they just don't appear in the count until OpenClaw has resolved them at least once.
 
-**Solutions**:
-
-- Check that your network connection is working
-- Verify `baseUrl` is set to `https://zenmux.ai/api/v1`
-- Ensure your firewall is not blocking outbound HTTPS connections
-- Try running `curl https://zenmux.ai/api/v1/models` to test connectivity
+This matches how the bundled OpenRouter provider works (it reports `count: 2` despite supporting 274+ models).
 :::
 
-::: details Cached Models Showing
-**Issue**: Old models are still showing after config changes
+::: details First chat takes 2-3 seconds longer than expected
+**Cause**: One-time `prepareDynamicModel` cache warmup against `https://zenmux.ai/api/v1/models`.
 
+**Fix**: Nothing to do — subsequent calls hit the disk cache at `~/.openclaw/cache/zenmux-models.json` and are instant. The cache survives gateway restarts.
+:::
+
+::: details API key error or authentication failure
 **Solutions**:
 
-1. Kill any running gateway process:
-   ```bash
-   pkill -9 -f openclaw-gateway
-   ```
+1. **Check the API key format**:
+   - Subscription keys start with `sk-ss-v1-`
+   - Pay-as-you-go keys start with `sk-ai-v1-`
+   - No leading/trailing whitespace
 
-2. Rebuild the project (if using Method 1):
-   ```bash
-   pnpm build
-   ```
+2. **Validate the key**:
+   - Subscription: visit the [Subscription page](https://zenmux.ai/platform/subscription) to check status and quotas
+   - Pay-as-you-go: visit the [Pay-as-you-go page](https://zenmux.ai/platform/pay-as-you-go) to confirm balance
 
-3. List models again:
-   ```bash
-   openclaw models list
-   ```
+3. **Re-onboard**: `openclaw onboard --zenmux-api-key "$ZENMUX_API_KEY" --auth-choice zenmux-api-key --flow manual --accept-risk --non-interactive`
+:::
+
+::: details Connection failure / timeout
+**Solutions**:
+
+- Verify network connectivity: `curl https://zenmux.ai/api/v1/models | head`
+- Confirm `baseUrl` is `https://zenmux.ai/api/v1`
+- Check firewall / corporate proxy isn't blocking outbound HTTPS to `zenmux.ai`
+:::
+
+::: details Plugin doesn't load (`Status: missing` or wrong version)
+**Diagnose**:
+
+```bash
+openclaw plugins inspect zenmux
+# Status should be "loaded"
+# Source should be "clawhub"
+# Recorded version should be 0.2.1 (or newer)
+```
+
+**Fix**: Reinstall the plugin:
+
+```bash
+openclaw plugins uninstall zenmux
+openclaw plugins install clawhub:@zenmux/openclaw-zenmux-provider
+openclaw gateway restart
+```
 :::
 
 ## Supported Models
 
-ZenMux provides access to a wide range of models. Here are some popular options for OpenClaw:
+ZenMux provides access to 135+ models. Some popular options:
 
-| Model | ID | Best For |
-| ----- | -- | -------- |
-| GPT-5.2 | `openai/gpt-5.2` | General purpose, coding |
-| Claude Sonnet 4.5 | `anthropic/claude-sonnet-4.5` | Balanced performance |
-| Claude Opus 4.5 | `anthropic/claude-opus-4.5` | Complex reasoning |
-| Gemini 3 Pro | `google/gemini-3-pro-preview` | Multimodal tasks |
-| DeepSeek Chat | `deepseek/deepseek-chat` | Cost-effective coding |
-| Qwen3 Coder | `alibaba/qwen3-coder-plus` | Code generation |
+| Model | Model ID (use as `zenmux/<id>`) | Best For |
+|---|---|---|
+| GPT-5.4 (default) | `openai/gpt-5.4` | General purpose, balanced cost |
+| GPT-5.5 / GPT-5.5 Pro | `openai/gpt-5.5`, `openai/gpt-5.5-pro` | Flagship reasoning |
+| Claude Opus 4.7 | `anthropic/claude-opus-4.7` | Best-in-class reasoning, complex tasks |
+| Claude Sonnet 4.6 | `anthropic/claude-sonnet-4.6` | Balanced performance/cost |
+| Claude Haiku 4.5 | `anthropic/claude-haiku-4.5` | Fastest Claude tier |
+| Gemini 3.1 Pro | `google/gemini-3.1-pro-preview` | Multimodal, long-context |
+| Grok 4.3 | `x-ai/grok-4.3` | Fast multimodal, current-events |
+| DeepSeek v4 Pro | `deepseek/deepseek-v4-pro` | Cost-effective coding |
+| Qwen 3.6 Max | `qwen/qwen3.6-max-preview` | Coding, long-context |
 
-For the full list of supported models, visit the [ZenMux model list](https://zenmux.ai/models).
+For the live full list, visit [zenmux.ai/models](https://zenmux.ai/models). New models that ZenMux adds are usable the moment they ship — `/model zenmux/<new-id>` works without a plugin update.
 
 ## Contact Us
 
