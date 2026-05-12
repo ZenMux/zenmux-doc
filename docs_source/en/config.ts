@@ -170,7 +170,7 @@ export default defineLoacaleConfig({
             text: "Gemini CLI Integration",
             link: "/best-practices/gemini-cli",
           },
-          { text: "opencode Integration", link: "/best-practices/opencode" },
+          { text: "OpenCode Integration", link: "/best-practices/opencode" },
           { text: "Cline Integration", link: "/best-practices/cline" },
           {
             text: "Cherry Studio Integration",
