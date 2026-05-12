@@ -176,7 +176,7 @@ export default defineLoacaleConfig({
             link: "/zh/best-practices/gemini-cli",
           },
           {
-            text: "opencode接入ZenMux指南",
+            text: "OpenCode 接入ZenMux指南",
             link: "/zh/best-practices/opencode",
           },
           { text: "Cline接入ZenMux指南", link: "/zh/best-practices/cline" },
