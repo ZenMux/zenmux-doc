@@ -115,7 +115,7 @@ CC-Switch 还提供了 Web UI 版本，适用于无图形界面的服务器或 S
 
 获取方式：
 1. 访问按量付费页面：https://zenmux.ai/platform/pay-as-you-go
-2. 充值账户（充值自动赠送 20% 额外积分）
+2. 充值账户
 3. 在 "Pay As You Go API Keys" 区域创建 API Key
 
 详细说明请参考：按量付费指南
