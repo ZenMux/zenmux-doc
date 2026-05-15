@@ -59,7 +59,7 @@ Key format: sk-ai-v1-xxx
 
 How to get one:
 1. Visit the Pay-As-You-Go page: https://zenmux.ai/platform/pay-as-you-go
-2. Top up your account (top-ups include a 20% bonus credit)
+2. Top up your account
 3. Create an API Key in the "Pay-As-You-Go API Keys" section
 
 For details, see the Pay-As-You-Go guide:

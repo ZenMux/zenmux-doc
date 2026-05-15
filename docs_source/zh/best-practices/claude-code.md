@@ -136,7 +136,7 @@ Claude Code 默认直接连接到 Anthropic 官方服务，但通过配置环境
 
 获取方式：
 1. 访问按量付费页面：https://zenmux.ai/platform/pay-as-you-go
-2. 充值账户（充值自动赠送 20% 额外积分）
+2. 充值账户
 3. 在 "Pay As You Go API Keys" 区域创建 API Key
 
 详细说明请参考：按量付费指南
