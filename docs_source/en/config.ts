@@ -93,6 +93,10 @@ export default defineLoacaleConfig({
             text: "Advanced",
             items: [
               {
+                text: "Data Services",
+                link: "/guide/advanced/data-services",
+              },
+              {
                 text: "Provider Routing",
                 link: "/guide/advanced/provider-routing",
               },

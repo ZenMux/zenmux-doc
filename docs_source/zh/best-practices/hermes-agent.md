@@ -59,7 +59,7 @@ API Key 格式：sk-ai-v1-xxx
 
 获取方式：
 1. 访问按量付费页面：https://zenmux.ai/platform/pay-as-you-go
-2. 充值账户（充值自动赠送 20% 额外额度）
+2. 充值账户
 3. 在"按量付费 API Keys"区域创建 API Key
 
 详细说明请参阅：按量付费指南

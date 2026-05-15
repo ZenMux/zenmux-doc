@@ -136,7 +136,7 @@ For details, see: Subscription Plan Guide
 
 How to get it:
 1. Visit the pay-as-you-go page: https://zenmux.ai/platform/pay-as-you-go
-2. Top up your account (top-ups automatically include a 20% bonus credit)
+2. Top up your account
 3. Create an API Key in the "Pay As You Go API Keys" section
 
 For details, see: Pay-as-you-go Guide
