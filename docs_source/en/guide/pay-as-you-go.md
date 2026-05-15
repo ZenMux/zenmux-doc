@@ -82,12 +82,7 @@ All credits are denominated in USD ($). 1 credit equals $1 worth of API usage. D
 1. Click the **Top Up** button in the top-right corner
 2. Choose a top-up amount ($5 – $25,000; custom amounts supported)
 3. Complete payment (Stripe, Alipay, and more supported)
-4. After a successful top-up, credits are applied immediately with bonus credits added automatically
-
-::: tip 💡 Top-up benefits
-- **0% service fee**: ZenMux currently charges no service fee on top-ups
-- **Top-up bonus**: every top-up includes bonus credits; the exact percentage is shown on the page
-:::
+4. After a successful top-up, credits are applied immediately
 
 ## Create and manage API keys
 
