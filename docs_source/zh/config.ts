@@ -95,6 +95,10 @@ export default defineLoacaleConfig({
             text: "高级调用",
             items: [
               {
+                text: "数据服务",
+                link: "/zh/guide/advanced/data-services",
+              },
+              {
                 text: "供应商路由",
                 link: "/zh/guide/advanced/provider-routing",
               },
