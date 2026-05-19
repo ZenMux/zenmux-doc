@@ -32,8 +32,9 @@ ZenMux 的图片生成模型会持续更新。请前往 [ZenMux 模型列表](ht
 
 ## 参考文档
 
-本指南只列出了基本的使用方法,更多详细配置和其他高级用法请参考以下官方文档:
+本指南只列出了基本的使用方法,更多详细配置和其他高级用法请参考以下文档:
 
+- [Generate Images API 参考](/zh/api/vertexai/generate-images) — 完整的接口参数、响应结构和代码示例
 - [Vertex AI 官方文档](https://docs.cloud.google.com/vertex-ai/generative-ai/docs/model-reference/inference)
 - [Vertex AI Nano-Banana Notebook](https://github.com/GoogleCloudPlatform/generative-ai/tree/main/gemini/nano-banana)
 
