@@ -297,6 +297,14 @@ export default defineLoacaleConfig({
                 link: "/zh/api/vertexai/generate-content",
               },
               {
+                text: "Generate Images",
+                link: "/zh/api/vertexai/generate-images",
+              },
+              {
+                text: "Generate Videos",
+                link: "/zh/api/vertexai/generate-videos",
+              },
+              {
                 text: "List Models",
                 link: "/zh/api/vertexai/google-list-models",
               },

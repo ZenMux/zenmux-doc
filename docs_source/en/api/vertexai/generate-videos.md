@@ -1,0 +1,512 @@
+---
+pageClass: api-page
+title: Generate Videos (Vertex AI Protocol)
+head:
+  - - meta
+    - name: description
+      content: Zenmux documentation - generate videos via Vertex AI protocol
+  - - meta
+    - name: keywords
+      content: Zenmux, API, documentation, generate, videos, veo, vertex-ai, seedance, video generation
+---
+
+# Google Vertex AI API: Generate Videos
+
+::: tip 💡 Troubleshooting
+Encountering errors? See the [API Error Codes Reference](/guide/advanced/error-codes) for a complete list of error types and troubleshooting solutions.
+:::
+
+### Submit a generation request:
+
+```
+POST https://zenmux.ai/api/vertex-ai/v1/publishers/{provider}/models/{model}:predictLongRunning
+```
+
+### Poll task status:
+
+```
+POST https://zenmux.ai/api/vertex-ai/v1/publishers/{provider}/models/{model}:fetchPredictOperation
+```
+
+The Generate Videos endpoint produces videos via the Google Vertex AI protocol. ZenMux aggregates video generation models from Google Veo, ByteDance Seedance, Alibaba DashScope, SkyReels, and more — all accessible through the unified Vertex AI protocol.
+
+This endpoint corresponds to the `generate_videos` / `generateVideos` method in the Google Gen AI SDK. Set the Base URL to `https://zenmux.ai/api/vertex-ai` and authenticate with your ZenMux API Key.
+
+For more usage examples, see the [Video Generation Guide](/guide/advanced/video-generation).
+
+::: warning ⚠️ Asynchronous Workflow
+Video generation is an **asynchronous process** consisting of three steps:
+
+1. **Submit request** (`generate_videos`): Send the video generation request and receive an `Operation` object
+2. **Poll status** (`operations.get`): Periodically check generation status; recommended interval is **15 seconds**
+3. **Retrieve result**: When `operation.done` is `true`, get the video from `operation.response.generated_videos`
+
+Video generation typically takes **30 seconds to 3 minutes**. Please be patient and avoid setting excessively short polling intervals.
+:::
+
+## Supported Models
+
+| Model                                | Description                | Resolution   | Max Duration | Audio        |
+| ------------------------------------ | -------------------------- | ------------ | ------------ | ------------ |
+| `google/veo-3.1-generate-001`        | Google Veo 3.1             | 720p / 1080p | 8s           | ✅ Supported |
+| `volcengine/doubao-seedance-1.5-pro` | ByteDance Seedance 1.5 Pro | 720p / 1080p | 10s          | ✅ Supported |
+| `volcengine/doubao-seedance-2`       | ByteDance Seedance 2       | 720p / 1080p | 10s          | ✅ Supported |
+
+::: tip 📚 More Models
+Visit the [ZenMux Models List](https://zenmux.ai/models) to browse all available video generation models.
+:::
+
+## Path parameters
+
+### provider `string` <font color="red">Required</font>
+
+The model provider identifier. This is the portion before `/` in the model name — for example, `google` in `google/veo-3.1-generate-001`.
+
+### model `string` <font color="red">Required</font>
+
+The model name. This is the portion after `/` in the model name — for example, `veo-3.1-generate-001` in `google/veo-3.1-generate-001`.
+
+## Authentication Parameters
+
+### api_key `string` <font color="red">Required</font>
+
+Your ZenMux API key for authentication.
+
+### vertexai `boolean` <font color="red">Required</font>
+
+Must be set to `true` to enable the Vertex AI protocol.
+
+### http_options.base_url `string` <font color="red">Required</font>
+
+ZenMux Vertex AI endpoint: `https://zenmux.ai/api/vertex-ai`.
+
+### http_options.api_version `string` <font color="red">Required</font>
+
+API version, set to `v1`.
+
+## Text-to-Video Request Parameters
+
+The following describes the parameters for the `generate_videos` / `generateVideos` SDK method. The SDK automatically converts these parameters to the Vertex AI REST format before sending them to ZenMux.
+
+### prompt `string` <font color="red">Required</font>
+
+A text description of the video content. Include details such as subject, actions, environment, and lighting for best results.
+
+### model `string` <font color="red">Required</font>
+
+The model to use for video generation. Format: `{provider}/{model}`, e.g., `google/veo-3.1-generate-001`.
+
+### config `GenerateVideosConfig` <font color="gray">Optional</font>
+
+Video generation configuration object with the following fields:
+
+#### aspectRatio `string` <font color="gray">Optional</font>
+
+Video aspect ratio. Supported values may vary by provider.
+
+Possible values:
+
+- `16:9` (landscape, default)
+- `9:16` (portrait)
+- `1:1` (square)
+
+> REST field: `parameters.aspectRatio`
+
+#### resolution `string` <font color="gray">Optional</font>
+
+Video resolution. Only supported by certain models.
+
+Possible values:
+
+- `720p`
+- `1080p`
+
+> REST field: `parameters.resolution`
+
+#### durationSeconds `integer` <font color="gray">Optional</font>
+
+Video duration in seconds. Google Veo supports 5 or 8 seconds; other providers may support different ranges.
+
+Possible values:
+
+- `5`
+- `8`
+
+> REST field: `parameters.durationSeconds`
+
+#### generateAudio `boolean` <font color="gray">Optional</font>
+
+Whether to generate an audio track. When set to `true`, the model automatically generates audio that matches the video content.
+
+> REST field: `parameters.generateAudio`
+
+#### negativePrompt `string` <font color="gray">Optional</font>
+
+A negative prompt describing content you do not want to appear in the video.
+
+> REST field: `parameters.negativePrompt`
+
+#### enhancePrompt `boolean` <font color="gray">Optional</font>
+
+Whether to enable prompt enhancement. When enabled, the model automatically refines the prompt to improve video quality.
+
+> REST field: `parameters.enhancePrompt`
+
+#### personGeneration `string` <font color="gray">Optional</font>
+
+Controls human figure generation. Only supported by Google Veo models.
+
+Possible values:
+
+- `dont_allow`
+- `allow_adult`
+
+> REST field: `parameters.personGeneration`
+
+#### numberOfVideos `integer` <font color="gray">Optional</font>
+
+Number of videos to generate. Defaults to 1.
+
+SDK field name: Python `number_of_videos`, TypeScript `numberOfVideos`.
+
+> REST field: `parameters.sampleCount`
+
+#### seed `integer` <font color="gray">Optional</font>
+
+Random seed for reproducible generation results.
+
+> REST field: `parameters.seed`
+
+#### fps `integer` <font color="gray">Optional</font>
+
+Video frame rate. Only supported by certain providers.
+
+> REST field: `parameters.fps`
+
+## Image-to-Video Request Parameters
+
+In addition to text-to-video, you can provide an image as the starting frame and/or ending frame, combined with a text prompt to generate video.
+
+### image `Image` <font color="red">Required</font>
+
+The starting frame image object.
+
+- `image_bytes` `bytes` <font color="red">Required</font>: Binary image data.
+- `mime_type` `string` <font color="red">Required</font>: Image MIME type, e.g., `image/png`, `image/jpeg`.
+
+> REST field: `instances[0].image`
+
+### last_frame `Image` <font color="gray">Optional</font>
+
+The ending frame image object. When used with the starting frame, the model generates a transition animation from the first frame to the last frame. Same format as `image`.
+
+SDK field name: Python `last_frame`, TypeScript `lastFrame`.
+
+> REST field: `instances[0].lastFrame`
+
+### prompt `string` <font color="gray">Optional</font>
+
+A text prompt describing how the content in the image should move or change.
+
+### model `string` <font color="red">Required</font>
+
+Same as text-to-video.
+
+### config `GenerateVideosConfig` <font color="gray">Optional</font>
+
+Same as text-to-video configuration.
+
+## Response
+
+### Submit Request Response (Operation Object)
+
+After submitting a video generation request, an `Operation` object is returned to track the generation status.
+
+#### name `string`
+
+The Operation identifier, used for subsequent status polling.
+
+#### done `boolean`
+
+Whether generation is complete. This field may be absent or `false` while generation is in progress.
+
+### Generation Complete Response
+
+When `done` is `true`, the `response` contains the generation results.
+
+#### response.videos `array<Video>`
+
+The list of generated videos.
+
+- `gcsUri` `string`: Video download URL.
+- `bytesBase64Encoded` `string`: Base64-encoded video data (returned by some providers).
+- `mimeType` `string`: Video MIME type, typically `video/mp4`.
+
+::: tip 💡 About SDK Responses
+The SDK automatically converts the REST response into a `GenerateVideosResponse` object. Access video content via `operation.response.generated_videos[].video`.
+:::
+
+#### response.raiMediaFilteredCount `integer`
+
+Number of videos blocked by content moderation.
+
+#### response.raiMediaFilteredReasons `array<string>`
+
+List of reasons for content moderation blocks.
+
+### Generation Failed Response
+
+When generation fails, `raiMediaFilteredCount` is greater than 0 and `raiMediaFilteredReasons` contains the error details.
+
+::: api-request POST /api/vertex-ai/v1
+
+```cURL
+# Step 1: Submit video generation request
+curl -X POST "https://zenmux.ai/api/vertex-ai/v1/publishers/google/models/veo-3.1-generate-001:predictLongRunning" \
+  -H "Authorization: Bearer $ZENMUX_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "instances": [{
+      "prompt": "A golden retriever running on the beach at sunset"
+    }],
+    "parameters": {
+      "aspectRatio": "16:9",
+      "durationSeconds": 8,
+      "generateAudio": true
+    }
+  }'
+
+# Response contains operation name for polling
+# {"name": "publishers/google/models/veo-3.1-generate-001/operations/abc123"}
+
+# Step 2: Poll task status (every 15 seconds)
+curl -X POST "https://zenmux.ai/api/vertex-ai/v1/publishers/google/models/veo-3.1-generate-001:fetchPredictOperation" \
+  -H "Authorization: Bearer $ZENMUX_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"operationName": "publishers/google/models/veo-3.1-generate-001/operations/abc123"}'
+```
+
+```TypeScript
+const { GoogleGenAI } = require("@google/genai");
+
+const client = new GoogleGenAI({
+  apiKey: process.env.ZENMUX_API_KEY, // [!code highlight]
+  vertexai: true,
+  httpOptions: {
+    baseUrl: "https://zenmux.ai/api/vertex-ai", // [!code highlight]
+    apiVersion: "v1",
+  },
+});
+
+// Step 1: Submit video generation request
+let operation = await client.models.generateVideos({
+  model: "google/veo-3.1-generate-001",
+  prompt: "A golden retriever running on the beach at sunset",
+  config: {
+    aspectRatio: "16:9",
+    durationSeconds: 8,
+    generateAudio: true,
+  },
+});
+
+// Step 2: Poll until generation completes
+while (!operation.done) {
+  await new Promise((r) => setTimeout(r, 15000));
+  operation = await client.operations.get(operation);
+}
+
+// Step 3: Retrieve generated results
+for (const video of operation.response.generatedVideos) {
+  console.log("Video URL:", video.video.uri);
+}
+```
+
+```Python
+from google import genai
+from google.genai import types
+import time
+
+client = genai.Client(
+    api_key="$ZENMUX_API_KEY",  # [!code highlight]
+    vertexai=True,
+    http_options=types.HttpOptions(
+        api_version="v1",
+        base_url="https://zenmux.ai/api/vertex-ai"  # [!code highlight]
+    ),
+)
+
+# Step 1: Submit video generation request
+operation = client.models.generate_videos(
+    model="google/veo-3.1-generate-001",
+    prompt="A golden retriever running on the beach at sunset",
+    config=types.GenerateVideosConfig(
+        aspectRatio="16:9",
+        durationSeconds=8,
+        generateAudio=True,
+    ),
+)
+
+# Step 2: Poll until generation completes
+while not operation.done:
+    time.sleep(15)
+    operation = client.operations.get(operation)
+
+# Step 3: Retrieve generated results
+for video in operation.response.generated_videos:
+    print("Video:", video)
+```
+
+:::
+
+::: api-response
+
+```json
+// Response after submitting request (in progress)
+{
+  "name": "publishers/google/models/veo-3.1-generate-001/operations/abc123"
+}
+
+// Response after polling completes
+{
+  "name": "publishers/google/models/veo-3.1-generate-001/operations/abc123",
+  "done": true,
+  "response": {
+    "videos": [
+      {
+        "bytesBase64Encoded": "AAAAIGZ0eXBpc29t...",
+        "mimeType": "video/mp4"
+      }
+    ]
+  }
+}
+```
+
+:::
+
+::: api-request POST /api/vertex-ai/v1
+
+```cURL
+# Step 1: Submit image-to-video request (image passed as base64)
+curl -X POST "https://zenmux.ai/api/vertex-ai/v1/publishers/google/models/veo-3.1-generate-001:predictLongRunning" \
+  -H "Authorization: Bearer $ZENMUX_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "instances": [{
+      "prompt": "The dog stands up and runs toward the ocean waves",
+      "image": {
+        "bytesBase64Encoded": "<BASE64_IMAGE_DATA>",
+        "mimeType": "image/png"
+      }
+    }],
+    "parameters": {
+      "aspectRatio": "16:9",
+      "durationSeconds": 8
+    }
+  }'
+
+# Step 2: Poll task status
+curl -X POST "https://zenmux.ai/api/vertex-ai/v1/publishers/google/models/veo-3.1-generate-001:fetchPredictOperation" \
+  -H "Authorization: Bearer $ZENMUX_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"operationName": "publishers/google/models/veo-3.1-generate-001/operations/xyz789"}'
+```
+
+```TypeScript
+const { GoogleGenAI } = require("@google/genai");
+const fs = require("fs");
+
+const client = new GoogleGenAI({
+  apiKey: process.env.ZENMUX_API_KEY, // [!code highlight]
+  vertexai: true,
+  httpOptions: {
+    baseUrl: "https://zenmux.ai/api/vertex-ai", // [!code highlight]
+    apiVersion: "v1",
+  },
+});
+
+const imageBytes = fs.readFileSync("input_image.png");
+
+// Step 1: Submit image-to-video request
+let operation = await client.models.generateVideos({
+  model: "google/veo-3.1-generate-001",
+  image: {
+    imageBytes: imageBytes,
+    mimeType: "image/png",
+  },
+  prompt: "The dog stands up and runs toward the ocean waves",
+  config: {
+    aspectRatio: "16:9",
+    durationSeconds: 8,
+  },
+});
+
+// Step 2: Poll until generation completes
+while (!operation.done) {
+  await new Promise((r) => setTimeout(r, 15000));
+  operation = await client.operations.get(operation);
+}
+
+// Step 3: Retrieve generated results
+for (const video of operation.response.generatedVideos) {
+  console.log("Video URL:", video.video.uri);
+}
+```
+
+```Python
+from google import genai
+from google.genai import types
+import time
+
+client = genai.Client(
+    api_key="$ZENMUX_API_KEY",  # [!code highlight]
+    vertexai=True,
+    http_options=types.HttpOptions(
+        api_version="v1",
+        base_url="https://zenmux.ai/api/vertex-ai"  # [!code highlight]
+    ),
+)
+
+with open("input_image.png", "rb") as f:
+    image_bytes = f.read()
+
+# Step 1: Submit image-to-video request
+operation = client.models.generate_videos(
+    model="google/veo-3.1-generate-001",
+    image=types.Image(image_bytes=image_bytes, mime_type="image/png"),
+    prompt="The dog stands up and runs toward the ocean waves",
+    config=types.GenerateVideosConfig(
+        aspectRatio="16:9",
+        durationSeconds=8,
+    ),
+)
+
+# Step 2: Poll until generation completes
+while not operation.done:
+    time.sleep(15)
+    operation = client.operations.get(operation)
+
+# Step 3: Retrieve generated results
+for video in operation.response.generated_videos:
+    print("Video:", video)
+```
+
+:::
+
+::: api-response
+
+```json
+{
+  "name": "publishers/google/models/veo-3.1-generate-001/operations/xyz789",
+  "done": true,
+  "response": {
+    "videos": [
+      {
+        "bytesBase64Encoded": "AAAAIGZ0eXBpc29t...",
+        "mimeType": "video/mp4"
+      }
+    ]
+  }
+}
+```
+
+:::
