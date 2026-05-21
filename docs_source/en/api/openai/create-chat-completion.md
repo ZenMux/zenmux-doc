@@ -22,7 +22,7 @@ POST https://zenmux.ai/api/v1/chat/completions
 
 The Create Chat Completion endpoint is compatible with OpenAI’s [Create Chat Completion](https://platform.openai.com/docs/api-reference/chat/create) API, and is used to run inference for conversational LLMs.
 
-The parameters below list all options that *may* be supported by different models. Parameter support varies by model; for the exact parameters supported by a given model, see that model’s detail page.
+The parameters below list all options that _may_ be supported by different models. Parameter support varies by model; for the exact parameters supported by a given model, see that model’s detail page.
 
 ## Request headers
 
@@ -618,21 +618,21 @@ Set to `{ "type": "json_object" }` to enable legacy JSON mode and ensure the gen
 
 ### Unsupported fields
 
-| Field name              | Type          | Supported                                            | Description                                                                                              |
-| ----------------------- | ------------- | ---------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| audio                   | object/null   | <span style="white-space: nowrap;">❌ Not supported</span> | Audio output parameters                                                                                  |
-| modalities              | array         | ❌ Not supported                                     | Output modality types                                                                                    |
-| functions               | array         | ❌ Not supported                                     | Deprecated; this parameter is not accepted                                                               |
-| function_call           | string/object | ❌ Not supported                                     | Deprecated; this parameter is not accepted                                                               |
-| prompt_cache_key        | string        | ❌ Not supported                                     | Prompt cache key                                                                                         |
-| prompt_cache_retention  | string        | ❌ Not supported                                     | Cache retention policy                                                                                   |
-| safety_identifier       | string        | ❌ Not supported                                     | Safety identifier                                                                                        |
-| store                   | bool/null     | ❌ Not supported                                     | Store this conversation                                                                                  |
-| service_tier            | string        | ❌ Not supported                                     | Service tier                                                                                             |
-| prediction              | object        | ❌ Not supported                                     | Predicted outputs configuration                                                                          |
-| seed                    | int/null      | ❌ Not supported                                     | Random seed for sampling; deprecated                                                                     |
-| user                    | string        | ❌ Not supported                                     | Legacy user identifier; now primarily replaced by `safety_identifier` and `prompt_cache_key`.            |
-| max_tokens              | int/null      | ❌ Not supported                                     | Deprecated; replaced by `max_completion_tokens`                                                          |
+| Field name             | Type          | Supported                                                  | Description                                                                                   |
+| ---------------------- | ------------- | ---------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| audio                  | object/null   | <span style="white-space: nowrap;">❌ Not supported</span> | Audio output parameters                                                                       |
+| modalities             | array         | ❌ Not supported                                           | Output modality types                                                                         |
+| functions              | array         | ❌ Not supported                                           | Deprecated; this parameter is not accepted                                                    |
+| function_call          | string/object | ❌ Not supported                                           | Deprecated; this parameter is not accepted                                                    |
+| prompt_cache_key       | string        | ❌ Not supported                                           | Prompt cache key                                                                              |
+| prompt_cache_retention | string        | ❌ Not supported                                           | Cache retention policy                                                                        |
+| safety_identifier      | string        | ❌ Not supported                                           | Safety identifier                                                                             |
+| store                  | bool/null     | ❌ Not supported                                           | Store this conversation                                                                       |
+| service_tier           | string        | ❌ Not supported                                           | Service tier                                                                                  |
+| prediction             | object        | ❌ Not supported                                           | Predicted outputs configuration                                                               |
+| seed                   | int/null      | ❌ Not supported                                           | Random seed for sampling; deprecated                                                          |
+| user                   | string        | ❌ Not supported                                           | Legacy user identifier; now primarily replaced by `safety_identifier` and `prompt_cache_key`. |
+| max_tokens             | int/null      | ❌ Not supported                                           | Deprecated; replaced by `max_completion_tokens`                                               |
 
 ## Response
 
@@ -1249,13 +1249,13 @@ When using Anthropic models such as Claude Opus 4.5 with `reasoning` enabled, in
 
 ### Key field notes
 
-| Field                             | Description                                                                 |
-| --------------------------------- | --------------------------------------------------------------------------- |
-| `reasoning`                       | Reasoning text in the assistant message; optionally passed back             |
-| `reasoning_details`               | **Must be passed back in full**, containing the detailed reasoning array    |
-| `reasoning_details[].signature`   | **Most critical field**; the reasoning signature credential; pass unchanged |
-| `reasoning_details[].format`      | Signature format identifier, e.g. `anthropic-claude-v1`                     |
-| `reasoning_details[].type`        | Reasoning content type, e.g. `reasoning.text`                               |
+| Field                           | Description                                                                 |
+| ------------------------------- | --------------------------------------------------------------------------- |
+| `reasoning`                     | Reasoning text in the assistant message; optionally passed back             |
+| `reasoning_details`             | **Must be passed back in full**, containing the detailed reasoning array    |
+| `reasoning_details[].signature` | **Most critical field**; the reasoning signature credential; pass unchanged |
+| `reasoning_details[].format`    | Signature format identifier, e.g. `anthropic-claude-v1`                     |
+| `reasoning_details[].type`      | Reasoning content type, e.g. `reasoning.text`                               |
 
 ### Workflow
 

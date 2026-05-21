@@ -203,8 +203,8 @@ export default defineComponent({
 }
 
 .user-avatar {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   margin-left: 10px;
   object-fit: cover;
