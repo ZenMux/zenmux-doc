@@ -516,13 +516,13 @@ You can use the '/model' command to confirm which model is currently in use:
    If the output is empty, the environment variables were not loaded correctly. Re-run `source ~/.zshrc` or restart the terminal.
 
 4. **Check the API Key status**:
-   - Confirm the API key is shown as "Enabled" in the console
+   - Confirm the API key is shown as “Enabled” in the console
    - Check whether the API key has been deleted or disabled
 
 5. **Get a new API Key**:
    - [Subscription API Key guide](/guide/subscription#step-3-manage-your-subscription-and-get-an-api-key)
    - [Pay-as-you-go API Key guide](/guide/pay-as-you-go#create-and-manage-api-keys)
-     :::
+:::
 
 ::: details Authentication Failure When Switching from Another Platform to ZenMux
 **Issue**: You previously used a Claude Code official account or another platform (e.g., MiniMax, GLM, etc.). After switching to ZenMux, authentication fails or configuration conflicts occur.
@@ -540,7 +540,7 @@ This usually happens because old config files cached prior authentication info, 
 
    ```powershell [Windows PowerShell]
    # Delete Claude Code config
-   Remove-Item -Path "$env:USERPROFILE\.claude\settings.json" -Force
+   Remove-Item -Path “$env:USERPROFILE\.claude\settings.json” -Force
    ```
 
 2. **Confirm your shell environment variables are configured correctly**:
@@ -548,12 +548,12 @@ This usually happens because old config files cached prior authentication info, 
    Check whether your shell config file (`~/.zshrc` or `~/.bashrc`) contains the full ZenMux configuration. Refer to the [Step 1: Configure Shell Environment Variables](#step-1-configure-shell-environment-variables-recommended) section above, and ensure it includes these key variables:
 
    ```bash
-   export ANTHROPIC_BASE_URL="https://zenmux.ai/api/anthropic"
-   export ANTHROPIC_AUTH_TOKEN="sk-ss-v1-xxx"  # Replace with your ZenMux API Key
-   export ANTHROPIC_API_KEY=""                 # Clear to avoid conflicts
-   export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC="1"
-   export API_TIMEOUT_MS="30000000"
-   # ANTHROPIC_DEFAULT_*_MODEL is optional — unset means "use Claude Code's built-in Claude defaults".
+   export ANTHROPIC_BASE_URL=”https://zenmux.ai/api/anthropic”
+   export ANTHROPIC_AUTH_TOKEN=”sk-ss-v1-xxx”  # Replace with your ZenMux API Key
+   export ANTHROPIC_API_KEY=””                 # Clear to avoid conflicts
+   export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=”1”
+   export API_TIMEOUT_MS=”30000000”
+   # ANTHROPIC_DEFAULT_*_MODEL is optional — unset means “use Claude Code’s built-in Claude defaults”.
    # To customize Claude models, prefer aliases so features like 1M context stay enabled. See:
    # /guide/advanced/model-alias
    ```
@@ -590,15 +590,15 @@ This usually happens because old config files cached prior authentication info, 
 
    ```powershell [Windows PowerShell]
    # Check ZenMux endpoint
-   Write-Host "ANTHROPIC_BASE_URL: $env:ANTHROPIC_BASE_URL"
+   Write-Host “ANTHROPIC_BASE_URL: $env:ANTHROPIC_BASE_URL”
    # Should output: https://zenmux.ai/api/anthropic
 
    # Check whether the API Key is set
-   Write-Host "ANTHROPIC_AUTH_TOKEN: $env:ANTHROPIC_AUTH_TOKEN"
+   Write-Host “ANTHROPIC_AUTH_TOKEN: $env:ANTHROPIC_AUTH_TOKEN”
    # Should output your ZenMux API Key
 
    # Confirm the old API Key is cleared
-   Write-Host "ANTHROPIC_API_KEY: $env:ANTHROPIC_API_KEY"
+   Write-Host “ANTHROPIC_API_KEY: $env:ANTHROPIC_API_KEY”
    # Should output empty
    ```
 
@@ -620,7 +620,6 @@ This usually happens because old config files cached prior authentication info, 
    Auth token: ANTHROPIC_AUTH_TOKEN
    Anthropic base URL: https://zenmux.ai/api/anthropic
    ```
-
 :::
 
 ::: details The Model Does Not Support the Anthropic Protocol
@@ -628,10 +627,10 @@ This usually happens because old config files cached prior authentication info, 
 
 **Solution**:
 
-- Use the [ZenMux model list](https://zenmux.ai/models) and filter by "Anthropic API Compatible" to see currently supported models
+- Use the [ZenMux model list](https://zenmux.ai/models) and filter by “Anthropic API Compatible” to see currently supported models
 - Or open the model’s detail page to confirm Anthropic protocol support
 - Choose a model from the supported list above
-  :::
+:::
 
 ::: details Connection Failures
 **Issue**: Claude Code cannot connect to the ZenMux service.
@@ -641,7 +640,7 @@ This usually happens because old config files cached prior authentication info, 
 - Check that your network connection is working
 - Verify `ANTHROPIC_BASE_URL` is set to `https://zenmux.ai/api/anthropic`
 - Confirm your firewall is not blocking outbound connections
-  :::
+:::
 
 ::: details VSCode Claude Code Extension Configuration Issues
 **Issue**: In the VSCode Claude Code extension, you encounter issues such as authentication failures or models not working.

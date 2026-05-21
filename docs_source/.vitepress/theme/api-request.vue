@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import { ref, onMounted, computed, watch } from 'vue';
-import { ElMessage, ElSelect, ElOption } from 'element-plus';
-import MyIcon from './icon.vue';
-import { useData, inBrowser } from 'vitepress';
+import { ref, onMounted, computed, watch } from "vue";
+import { ElMessage, ElSelect, ElOption } from "element-plus";
+import { Copy as CopyIcon, Checked as CheckedIcon } from "./icons";
+import { useData, inBrowser } from "vitepress";
 
 const { frontmatter, page } = useData();
 
-const isApiRequest = computed(() => frontmatter.value.pageClass === 'api-page');
+const isApiRequest = computed(() => frontmatter.value.pageClass === "api-page");
 
 const requestCodes = ref<Record<string, string>>({});
 const responseCodes = ref<Record<string, string>>({});
-const currentLang = ref('');
+const currentLang = ref("");
 const langOptions = ref<string[]>([]);
-const httpMethod = ref('GET');
-const requestURL = ref('');
+const httpMethod = ref("GET");
+const requestURL = ref("");
 
 const copiedReq = ref(false);
 const copiedResp = ref(false);
@@ -21,16 +21,16 @@ const copiedPath = ref(false);
 
 function initRequestData() {
   if (!inBrowser) return;
-  const dom = document.querySelector<HTMLElement>('.api-request');
+  const dom = document.querySelector<HTMLElement>(".api-request");
   if (dom) {
     dom.dataset.info
       ?.trim()
       .toUpperCase()
-      .split(' ')
+      .split(" ")
       .forEach((part) => {
         if (
           part &&
-          ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'].includes(
+          ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD", "OPTIONS"].includes(
             part,
           )
         ) {
@@ -40,12 +40,12 @@ function initRequestData() {
         }
       });
   }
-  dom?.querySelectorAll('.vp-adaptive-theme').forEach((theme) => {
-    const pre = theme.querySelector('pre');
-    const lang = theme.querySelector('.lang')?.textContent?.trim() || '';
+  dom?.querySelectorAll(".vp-adaptive-theme").forEach((theme) => {
+    const pre = theme.querySelector("pre");
+    const lang = theme.querySelector(".lang")?.textContent?.trim() || "";
     if (!lang || !pre) return;
     const html = pre.innerHTML; // 含高亮标签
-    if (lang === 'json') {
+    if (lang === "json") {
       responseCodes.value[lang] = html;
     } else {
       requestCodes.value[lang] = html;
@@ -65,10 +65,10 @@ watch(
     // 清空旧数据
     requestCodes.value = {};
     responseCodes.value = {};
-    currentLang.value = '';
+    currentLang.value = "";
     langOptions.value = [];
-    httpMethod.value = 'GET';
-    requestURL.value = '';
+    httpMethod.value = "GET";
+    requestURL.value = "";
     copiedReq.value = false;
     copiedResp.value = false;
     copiedPath.value = false;
@@ -77,17 +77,17 @@ watch(
   },
 );
 
-const rendered = computed(() => requestCodes.value[currentLang.value] || '');
+const rendered = computed(() => requestCodes.value[currentLang.value] || "");
 const renderedPlain = computed(() => htmlToPlain(rendered.value));
-const json = computed(() => responseCodes.value['json'] || '');
+const json = computed(() => responseCodes.value["json"] || "");
 const jsonPlain = computed(() => htmlToPlain(json.value));
 
 function htmlToPlain(html: string) {
-  if (!html) return '';
-  if (!inBrowser) return html.replace(/<[^>]*>/g, ''); // SSR fallback: strip HTML tags
-  const div = document.createElement('div');
+  if (!html) return "";
+  if (!inBrowser) return html.replace(/<[^>]*>/g, ""); // SSR fallback: strip HTML tags
+  const div = document.createElement("div");
   div.innerHTML = html;
-  return div.textContent || '';
+  return div.textContent || "";
 }
 
 async function copyText(text: string) {
@@ -96,17 +96,17 @@ async function copyText(text: string) {
     if (navigator.clipboard?.writeText) {
       await navigator.clipboard.writeText(text);
     } else {
-      const ta = document.createElement('textarea');
+      const ta = document.createElement("textarea");
       ta.value = text;
-      ta.style.position = 'fixed';
-      ta.style.opacity = '0';
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
       document.body.appendChild(ta);
       ta.select();
-      document.execCommand('copy');
+      document.execCommand("copy");
       document.body.removeChild(ta);
     }
   } catch (e) {
-    console.warn('copy failed', e);
+    console.warn("copy failed", e);
   }
 }
 
@@ -114,7 +114,7 @@ async function copyRequest() {
   if (!renderedPlain.value) return;
   await copyText(renderedPlain.value);
   copiedReq.value = true;
-  ElMessage.success('Request copied');
+  ElMessage.success("Request copied");
   setTimeout(() => (copiedReq.value = false), 2000);
 }
 
@@ -122,7 +122,7 @@ async function copyResponse() {
   if (!jsonPlain.value) return;
   await copyText(jsonPlain.value);
   copiedResp.value = true;
-  ElMessage.success('Response copied');
+  ElMessage.success("Response copied");
   setTimeout(() => (copiedResp.value = false), 2000);
 }
 
@@ -130,7 +130,7 @@ async function copyPath() {
   if (!requestURL.value) return;
   await copyText(requestURL.value);
   copiedPath.value = true;
-  ElMessage.success('Path copied');
+  ElMessage.success("Path copied");
   setTimeout(() => (copiedPath.value = false), 1500);
 }
 </script>
@@ -167,11 +167,16 @@ async function copyPath() {
               :value="l"
             />
           </el-select>
-          <my-icon
-            :name="copied ? 'lucide/copy-check' : 'lucide/copy'"
-            :class="{ 'copied-icon': copiedReq }"
-            style="margin-left: 16px; cursor: pointer; font-size: 18px"
-            :title="copiedReq ? 'Copied' : 'Copy code'"
+          <CheckedIcon
+            v-if="copiedReq"
+            class="copy-action-icon copied-icon"
+            title="Copied"
+            @click="copyRequest"
+          />
+          <CopyIcon
+            v-else
+            class="copy-action-icon"
+            title="Copy code"
             @click="copyRequest"
           />
         </div>
@@ -187,10 +192,16 @@ async function copyPath() {
           <span class="reponse-code">200</span>
         </div>
         <div class="right">
-          <my-icon
-            :name="copied ? 'lucide/copy-check' : 'lucide/copy'"
-            style="margin-left: 16px; cursor: pointer; font-size: 18px"
-            :title="copiedResp ? 'Copied' : 'Copy response'"
+          <CheckedIcon
+            v-if="copiedResp"
+            class="copy-action-icon copied-icon"
+            title="Copied"
+            @click="copyResponse"
+          />
+          <CopyIcon
+            v-else
+            class="copy-action-icon"
+            title="Copy response"
             @click="copyResponse"
           />
         </div>
@@ -203,6 +214,23 @@ async function copyPath() {
 </template>
 
 <style>
+.copy-action-icon {
+  margin-left: 8px;
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: #999;
+}
+
+.copy-action-icon:hover {
+  color: #666;
+}
+
+.copy-action-icon.copied-icon {
+  color: #52c41a;
+}
+
 .api-request {
   display: none;
 }
@@ -267,14 +295,19 @@ async function copyPath() {
       background: var(--vp-c-green-3);
       color: #fff;
       border: 1px solid var(--vp-c-green-3);
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1),
+      box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.1),
         0 0 0 1px rgba(255, 255, 255, 0.05) inset;
       user-select: none;
-      transition: background 0.25s, box-shadow 0.25s, transform 0.15s;
+      transition:
+        background 0.25s,
+        box-shadow 0.25s,
+        transform 0.15s;
     }
 
     .reponse-code:hover {
-      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15),
+      box-shadow:
+        0 3px 6px rgba(0, 0, 0, 0.15),
         0 0 0 1px rgba(255, 255, 255, 0.05) inset;
     }
 
@@ -315,6 +348,13 @@ async function copyPath() {
   transition: color 0.5s;
 }
 
+.api-header .right {
+  width: 170px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
 .api-header .right .copied-icon {
   color: var(--vp-c-success);
   transition: color 0.25s;
@@ -327,7 +367,10 @@ async function copyPath() {
   cursor: pointer;
   font-size: 14px;
   position: relative;
-  transition: background-color 0.2s, color 0.2s, box-shadow 0.25s;
+  transition:
+    background-color 0.2s,
+    color 0.2s,
+    box-shadow 0.25s;
 }
 
 .api-header .left .http-path:hover {
@@ -338,9 +381,9 @@ async function copyPath() {
 }
 
 .api-header .left .http-path.copied {
-  background-color: var(--vp-c-success);
-  color: #fff;
-  box-shadow: 0 0 0 1px var(--vp-c-success) inset;
+  background-color: rgba(82, 196, 26, 0.1);
+  color: #52c41a;
+  box-shadow: 0 0 0 1px rgba(82, 196, 26, 0.3) inset;
 }
 
 .api-header .left .http-path.copied::after {

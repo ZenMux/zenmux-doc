@@ -151,10 +151,14 @@ With global edge deployment, ZenMux provides a solid infrastructure foundation f
 
 If you encounter any issues while using the platform or have suggestions and feedback, please reach out via:
 
-- Official website: <https://zenmux.ai>
-- Technical support email: [support@zenmux.ai](mailto:support@zenmux.ai)
-- Business cooperation email: [bd@zenmux.ai](mailto:bd@zenmux.ai)
-- Twitter: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
-- Discord community: <http://discord.gg/vHZZzj84Bm>
+<ContactCards>
+<ContactCard icon="mail" title="Email">
 
-For more contact methods and details, please visit our [Contact Us page](/help/contact).
+Technical support: [support@zenmux.ai](mailto:support@zenmux.ai)
+
+Business cooperation: [bd@zenmux.ai](mailto:bd@zenmux.ai)
+
+</ContactCard>
+<ContactCard icon="x" title="X / twitter" link="https://x.com/ZenMuxAI" label="@ZenMuxAI" />
+<ContactCard icon="discord" title="Discord" link="https://discord.gg/vHZZzj84Bm" label="@ZenMuxAI" />
+</ContactCards>

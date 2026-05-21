@@ -1,6 +1,8 @@
 :root {
   --vp-c-brand-1: #000;
   --vp-c-brand-2: #666;
+  --vp-icon-copy: url("data:image/svg+xml,%3Csvg width='14' height='15' viewBox='0 0 14 15' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.79102 4.00016V3.7085C3.79102 2.742 4.57452 1.9585 5.54102 1.9585H10.791C11.7575 1.9585 12.541 2.742 12.541 3.7085V8.9585C12.541 9.92499 11.7575 10.7085 10.791 10.7085H10.4993M8.16602 4.5835H2.91602C1.94952 4.5835 1.16602 5.367 1.16602 6.3335V11.5835C1.16602 12.55 1.94952 13.3335 2.91602 13.3335H8.16602C9.13251 13.3335 9.91602 12.55 9.91602 11.5835V6.3335C9.91602 5.367 9.13251 4.5835 8.16602 4.5835Z' stroke='rgba(128,128,128,1)' stroke-width='1.16667' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --vp-icon-copied: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M10 0C15.5228 0 20 4.47715 20 10C20 15.5228 15.5228 20 10 20C4.47715 20 0 15.5228 0 10C0 4.47715 4.47715 0 10 0ZM14.7559 6.70215C14.4305 6.37697 13.9025 6.37702 13.5771 6.70215L8.33301 11.9463L6.42188 10.0352C6.09655 9.7102 5.5695 9.71024 5.24414 10.0352C4.91876 10.3605 4.91888 10.8884 5.24414 11.2139L7.74414 13.7139C8.0695 14.0389 8.59652 14.0389 8.92188 13.7139L14.7559 7.87988C15.0806 7.55451 15.0808 7.02742 14.7559 6.70215Z' fill='rgba(128,128,128,1)'/%3E%3C/svg%3E");
 }
 
 .dark:root {
@@ -10,10 +12,6 @@
 
 .VPLink.active {
   font-weight: bold !important;
-}
-
-.VPImage.logo {
-  height: 36px;
 }
 
 /* 确保代码块能够根据内容自适应高度 */
@@ -34,6 +32,29 @@
 .api-container {
   max-height: calc(100vh - 100px) !important;
   overflow-y: auto !important;
+}
+.VPDoc.has-aside .content-container {
+  max-width: none !important;
+  padding: 0 188px !important;
+}
+@media (max-width: 959px) {
+  .VPDoc .content-container,
+  .VPDoc.has-aside .content-container {
+    padding: 0 !important;
+  }
+}
+/* API pages: leave room for the fixed api-container panel on the right */
+@media (min-width: 1280px) {
+  .api-page .VPDoc .container {
+    padding-right: 262px !important;
+  }
+  .api-page .VPDoc .content {
+    /* padding-right: 320px !important;
+    padding-left: 320px !important; */
+    /* max-width: 688px; */
+    padding: 0 188px !important;
+    margin: 0 auto !important;
+  }
 }
 
 .api-request-container,
@@ -62,13 +83,20 @@
   }
   html.ai-panel-open .VPDoc .aside .aside-container,
   html.ai-panel-open .VPDoc .aside .aside-curtain {
-    right: 380px;
+    right: 380px !important;
     transition: right 0.3s ease;
   }
   html.ai-panel-open.ai-panel-maximized .VPDoc .aside .aside-container,
   html.ai-panel-open.ai-panel-maximized .VPDoc .aside .aside-curtain {
-    right: 520px;
+    right: 520px !important;
   }
+  html.ai-panel-open .VPDoc.has-aside .content-container {
+    padding: 0 32px 0 188px !important;
+  }
+  html.ai-panel-open.ai-panel-maximized .VPDoc.has-aside .content-container {
+    padding: 0 16px 0 188px !important;
+  }
+
   /* Also shrink the api-container (fixed-position panel on API pages) */
   html.ai-panel-open .api-container {
     right: 400px;
@@ -97,4 +125,1229 @@
 
 .VPNavBarSearch {
   flex-grow: 0 !important;
+  padding-left: 0 !important;
+}
+
+/* ===== Layout Skeleton ===== */
+
+:root {
+  --vp-nav-height: 52px;
+  --vp-sidebar-width: 260px;
+  --vp-aside-width: 260px;
+  --vp-sidebar-bg-color: var(--vp-c-bg);
+  --zenmux-doc-tabs-height: 48px;
+  --zenmux-layout-margin: max(0px, calc((100vw - 1092px) / 2));
+}
+
+/* Header: always show bottom border */
+/* .VPNavBar {
+  border-bottom: 1px solid var(--vp-c-divider) !important;
+} */
+
+.VPNavBar.has-sidebar .title {
+  padding-left: 20px !important;
+  border-bottom: 0 !important;
+  width: 143px !important;
+}
+.VPNavBar.has-sidebar.top.wrapper .container {
+  justify-content: flex-start !important;
+}
+.VPNavBar.has-sidebar .content {
+  padding-left: 174px !important;
+  padding-right: 20px !important;
+  flex-grow: 0 !important;
+  width: 100%;
+}
+
+.divider-line {
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+
+.VPNavBarMenu {
+  margin-left: auto !important;
+  gap: 28px;
+}
+
+/* Nav menu links: remove VitePress default padding, let gap handle spacing */
+.VPNavBarMenuLink {
+  padding: 0 !important;
+}
+
+.VPNavBarMenuGroup .VPFlyout .button {
+  padding: 0 !important;
+}
+
+@media (min-width: 960px) {
+  /* Sidebar: below nav+tabs, centered, fixed width, white bg */
+  .VPSidebar {
+    top: 150px !important;
+    left: 174px !important;
+    width: var(--vp-sidebar-width, 260px) !important;
+    /* padding-top: 24px !important;
+    padding-left: 32px !important; */
+    padding: 0 !important;
+  }
+
+  .group {
+    width: var(--vp-sidebar-width, 260px) !important;
+    padding-top: 0 !important;
+  }
+
+  /* Content: below nav+tabs, centered with sidebar offset */
+  .VPContent {
+    padding-top: calc(
+      var(--vp-nav-height) + var(--zenmux-doc-tabs-height)
+    ) !important;
+  }
+  .VPContent.has-sidebar {
+    padding-left: 262px !important;
+    padding-right: 0 !important;
+  }
+
+  .VPLocalNav {
+    border-bottom: none !important;
+  }
+
+  .VPLocalNav.has-sidebar {
+    top: calc(var(--vp-nav-height) + var(--zenmux-doc-tabs-height)) !important;
+    position: fixed;
+  }
+
+  .VPLocalNav.has-sidebar .container {
+    justify-content: flex-end !important;
+  }
+  .VPLocalNavOutlineDropdown .items {
+    right: 0px !important;
+    left: auto !important;
+  }
+}
+
+/* Small laptop screens (< 1520px): narrower sidebar & aside */
+@media (min-width: 960px) and (max-width: 1519px) {
+  :root {
+    --vp-sidebar-width: 210px;
+    --vp-aside-width: 210px;
+    --vp-aside-right: 20px;
+  }
+
+  .VPNavBar.has-sidebar .title {
+    padding-left: 20px !important;
+    width: auto !important;
+  }
+
+  .VPNavBar.has-sidebar .content {
+    padding-left: calc(var(--vp-sidebar-width) + 24px) !important;
+    padding-right: 20px !important;
+  }
+
+  .VPSidebar {
+    left: 20px !important;
+    width: var(--vp-sidebar-width) !important;
+  }
+
+  .group {
+    width: var(--vp-sidebar-width) !important;
+  }
+
+  .VPContent.has-sidebar {
+    padding-left: calc(var(--vp-sidebar-width) + 12px) !important;
+  }
+
+  .VPDoc.has-aside .content-container {
+    padding: 0 !important;
+  }
+}
+
+/* TOC aside: account for doc-tabs height in fixed positioning */
+.VPDoc .aside .aside-container {
+  padding-top: calc(
+    var(--vp-nav-height) + var(--zenmux-doc-tabs-height) + 48px
+  ) !important;
+  width: var(--vp-aside-width, 260px) !important;
+  right: var(--vp-aside-right, 174px) !important;
+}
+
+/* TOC aside width */
+@media (min-width: 1280px) {
+  .VPDoc .aside {
+    max-width: var(--vp-aside-width, 260px);
+  }
+}
+
+/* ===== Navbar Redesign ===== */
+
+:root {
+  --vp-nav-logo-height: 40px;
+  --zenmux-nav-font:
+    "SF Pro", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+.VPImage.logo {
+  height: 40px;
+}
+
+/* Nav item text: color, font, weight */
+.VPNavBarMenuLink {
+  font-family: var(--zenmux-nav-font);
+  font-size: 14px;
+  font-weight: 400 !important;
+  color: #62666a !important;
+}
+
+.VPNavBarMenuLink:hover {
+  color: var(--vp-c-brand-1) !important;
+}
+
+.VPNavBarMenuLink.active {
+  color: var(--vp-c-brand-1) !important;
+  font-weight: 700 !important;
+}
+
+.VPFlyout .button .text {
+  font-family: var(--zenmux-nav-font);
+  font-size: 14px;
+  font-weight: 400 !important;
+  color: #62666a !important;
+}
+
+.VPFlyout:hover .button .text {
+  color: var(--vp-c-brand-1) !important;
+}
+
+.VPFlyout.active .button .text {
+  color: var(--vp-c-brand-1) !important;
+  font-weight: 700 !important;
+}
+
+/* Dropdown chevron arrow */
+.VPFlyout .button .text .vpi-chevron-down {
+  color: #c8c8c8;
+}
+
+/* Search button */
+@media (min-width: 768px) {
+  .DocSearch.DocSearch-Button {
+    width: 300px;
+    height: 32px;
+    border: 0.5px solid #e6e6e6 !important;
+    border-radius: 8px;
+    padding: 8px 12px;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .DocSearch.DocSearch-Button:hover {
+    border-color: var(--vp-c-brand-1) !important;
+    background-color: transparent;
+  }
+
+  .DocSearch-Button .DocSearch-Button-Placeholder {
+    font-family: var(--zenmux-nav-font);
+    font-size: 14px;
+    font-weight: 400;
+    color: #666;
+  }
+
+  .DocSearch-Button .DocSearch-Search-Icon {
+    color: #666;
+  }
+
+  .DocSearch-Button .DocSearch-Button-Key {
+    border-color: transparent;
+    color: #666;
+  }
+
+  .DocSearch-Button .DocSearch-Button-Key + .DocSearch-Button-Key {
+    border-color: transparent;
+  }
+}
+
+/* ===== Right-side icon buttons (Design: 32x32, icon 16x16, gap 8px) ===== */
+
+/* Remove all separator lines between nav sections */
+.VPNavBar .content-body .menu + .translations::before,
+.VPNavBar .content-body .menu + .appearance::before,
+.VPNavBar .content-body .menu + .social-links::before,
+.VPNavBar .content-body .translations + .appearance::before,
+.VPNavBar .content-body .appearance + .social-links::before {
+  display: none !important;
+}
+
+/* Reorder: menu → icons → Login → hamburger (matching design) */
+.VPNavBar .content-body .social-links { order: 1; }
+.VPNavBar .content-body .appearance { order: 2; }
+.VPNavBar .content-body .translations { order: 3; }
+.VPNavBar .content-body .extra { order: 4; }
+.VPNavBar .content-body .login-button { order: 5; }
+.VPNavBar .content-body .hamburger { order: 6; }
+
+/* Icon sections: 8px gap, no extra margins */
+.VPNavBar .content-body .social-links,
+.VPNavBar .content-body .appearance,
+.VPNavBar .content-body .translations {
+  margin: 0 4px !important;
+}
+
+/* GitHub social link: 32x32, icon 16x16 */
+.VPSocialLinks .VPSocialLink {
+  width: 32px;
+  height: 32px;
+  color: #858585;
+  border-radius: 8px;
+}
+.VPSocialLinks .VPSocialLink:hover {
+  color: var(--vp-c-text-1);
+}
+.VPSocialLinks .VPSocialLink [class^="vpi-social-"] {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+/* Appearance toggle: restyle from pill switch to 32x32 icon button */
+.VPSwitchAppearance.VPSwitch {
+  width: 32px !important;
+  height: 32px !important;
+  border: none !important;
+  border-radius: 8px !important;
+  background: transparent !important;
+  overflow: visible !important;
+}
+.VPSwitchAppearance.VPSwitch:hover {
+  border: none !important;
+}
+.VPSwitchAppearance .check {
+  position: static !important;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  transform: none !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+.dark .VPSwitchAppearance .check {
+  transform: none !important;
+}
+.VPSwitchAppearance .check .icon {
+  width: 16px !important;
+  height: 16px !important;
+  border-radius: 0 !important;
+  overflow: visible !important;
+}
+.VPSwitchAppearance .check .icon [class^="vpi-"] {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 16px !important;
+  height: 16px !important;
+  color: #858585 !important;
+}
+.VPSwitchAppearance:hover .check .icon [class^="vpi-"] {
+  color: var(--vp-c-text-1) !important;
+}
+
+/* Translations flyout: 32x32 icon-only button, hide chevron and text */
+.VPNavBarTranslations .VPFlyout .button {
+  padding: 0 !important;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+.VPNavBarTranslations .VPFlyout .button .text {
+  font-size: 0 !important;
+  line-height: 32px;
+}
+.VPNavBarTranslations .VPFlyout .button .text .option-icon {
+  font-size: 16px !important;
+  margin: 0 !important;
+  color: #858585;
+}
+.VPNavBarTranslations .VPFlyout:hover .button .text .option-icon {
+  color: var(--vp-c-text-1) !important;
+}
+.VPNavBarTranslations .VPFlyout .button .text .vpi-chevron-down,
+.VPNavBarTranslations .vpi-chevron-down,
+.VPNavBarTranslations .text-icon {
+  display: none !important;
+}
+
+/* ===== Nav icon overrides: use project icons ===== */
+.vpi-sun {
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M7.33329 14.6667V13.3334C7.33329 12.9652 7.63177 12.6667 7.99996 12.6667C8.36815 12.6667 8.66663 12.9652 8.66663 13.3334V14.6667C8.66663 15.0349 8.36815 15.3334 7.99996 15.3334C7.63177 15.3334 7.33329 15.0349 7.33329 14.6667ZM3.73824 11.3216C3.99859 11.0616 4.42069 11.0615 4.68095 11.3216C4.9413 11.582 4.9413 12.0046 4.68095 12.265L3.73824 13.2077C3.47789 13.4681 3.05523 13.4681 2.79488 13.2077C2.53469 12.9474 2.53481 12.5253 2.79488 12.265L3.73824 11.3216ZM11.319 11.3216C11.5792 11.0615 12.0013 11.0616 12.2617 11.3216L13.205 12.265C13.4651 12.5253 13.4652 12.9474 13.205 13.2077C12.9447 13.4681 12.522 13.4681 12.2617 13.2077L11.319 12.265C11.0586 12.0046 11.0586 11.582 11.319 11.3216ZM10.6666 8.00002C10.6666 6.52726 9.47272 5.33335 7.99996 5.33335C6.5272 5.33335 5.33329 6.52726 5.33329 8.00002C5.33329 9.47278 6.5272 10.6667 7.99996 10.6667C9.47272 10.6667 10.6666 9.47278 10.6666 8.00002ZM2.66663 7.33335C3.03482 7.33335 3.33329 7.63183 3.33329 8.00002C3.33329 8.36821 3.03482 8.66669 2.66663 8.66669H1.33329C0.965103 8.66669 0.666626 8.36821 0.666626 8.00002C0.666626 7.63183 0.965103 7.33335 1.33329 7.33335H2.66663ZM14.6666 7.33335C15.0348 7.33335 15.3333 7.63183 15.3333 8.00002C15.3333 8.36821 15.0348 8.66669 14.6666 8.66669H13.3333C12.9651 8.66669 12.6666 8.36821 12.6666 8.00002C12.6666 7.63183 12.9651 7.33335 13.3333 7.33335H14.6666ZM2.79488 2.79494C3.05523 2.53459 3.47789 2.53459 3.73824 2.79494L4.68095 3.7383C4.94107 3.99867 4.94122 4.42074 4.68095 4.68101C4.42067 4.94128 3.99861 4.94113 3.73824 4.68101L2.79488 3.7383C2.53453 3.47795 2.53453 3.05529 2.79488 2.79494ZM12.2617 2.79494C12.522 2.53459 12.9447 2.53459 13.205 2.79494C13.4654 3.05529 13.4654 3.47795 13.205 3.7383L12.2617 4.68101C12.0013 4.94113 11.5792 4.94128 11.319 4.68101C11.0587 4.42074 11.0588 3.99867 11.319 3.7383L12.2617 2.79494ZM7.33329 2.66669V1.33335C7.33329 0.965164 7.63177 0.666687 7.99996 0.666687C8.36815 0.666687 8.66663 0.965164 8.66663 1.33335V2.66669C8.66663 3.03488 8.36815 3.33335 7.99996 3.33335C7.63177 3.33335 7.33329 3.03488 7.33329 2.66669ZM12 8.00002C12 10.2092 10.2091 12 7.99996 12C5.79082 12 3.99996 10.2092 3.99996 8.00002C3.99996 5.79088 5.79082 4.00002 7.99996 4.00002C10.2091 4.00002 12 5.79088 12 8.00002Z' fill='currentColor'/%3E%3C/svg%3E") !important;
+}
+
+.vpi-moon {
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M5.88735 1.6754C6.1122 1.60033 6.36021 1.64992 6.53839 1.80626C6.71658 1.9627 6.79793 2.20243 6.75258 2.43517C6.69608 2.72528 6.66665 3.02582 6.66665 3.33361C6.6668 5.91081 8.75608 8.00027 11.3333 8.00027C12.1844 8.00027 12.9803 7.77254 13.666 7.37592C13.8714 7.25713 14.1247 7.25682 14.3307 7.37462C14.5367 7.49245 14.6648 7.71085 14.6666 7.94819C14.6668 7.9654 14.6666 7.98293 14.6666 8.00027C14.6665 11.6821 11.6818 14.6669 7.99998 14.6669C4.31817 14.6669 1.33345 11.6821 1.33331 8.00027C1.33331 5.05582 3.2418 2.55874 5.88735 1.6754ZM2.66665 8.00027C2.66678 10.9457 5.05455 13.3336 7.99998 13.3336C10.595 13.3336 12.7559 11.4797 13.2337 9.02436C12.636 9.22388 11.9971 9.33361 11.3333 9.33361C8.0349 9.33361 5.35861 6.67178 5.33396 3.37918C3.73891 4.3015 2.66665 6.02654 2.66665 8.00027Z' fill='currentColor'/%3E%3C/svg%3E") !important;
+}
+
+.vpi-languages {
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M12 1C18.0751 1 23 5.92487 23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12C1 5.92487 5.92487 1 12 1ZM3.05664 13C3.46757 16.7166 6.14039 19.7496 9.66895 20.6934C8.08961 18.3626 7.21344 15.6997 7.04004 13H3.05664ZM16.96 13C16.7865 15.6999 15.9096 18.3625 14.3301 20.6934C17.8591 19.7499 20.5324 16.7169 20.9434 13H16.96ZM9.04785 13C9.24467 15.6668 10.2267 18.2862 12 20.4824C13.7733 18.2862 14.7553 15.6668 14.9521 13H9.04785ZM14.3301 3.30566C15.9099 5.63668 16.7865 8.29986 16.96 11H20.9434C20.5324 7.28298 17.8592 4.24908 14.3301 3.30566ZM12 3.5166C10.2264 5.71298 9.24468 8.333 9.04785 11H14.9521C14.7553 8.333 13.7736 5.71298 12 3.5166ZM9.66895 3.30566C6.14027 4.24936 3.46758 7.2833 3.05664 11H7.04004C7.21346 8.30003 8.08933 5.63657 9.66895 3.30566Z' fill='currentColor'/%3E%3C/svg%3E") !important;
+}
+
+.vpi-social-github {
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M6.66732 18.3335V17.505C6.66732 16.4348 7.09248 15.4083 7.84928 14.6515V14.6515C8.05646 14.4444 7.94913 14.0899 7.66181 14.0324L6.76545 13.8531C5.14132 13.5283 3.78528 12.4166 3.14825 10.8877V10.8877C2.48646 9.29944 2.69222 7.48197 3.69232 6.08183L4.00041 5.6505C4.10474 5.50444 4.12952 5.31602 4.06649 5.14796L3.5988 3.90077C3.32531 3.17148 4.01965 2.45094 4.75857 2.69725L6.41152 3.24823C6.57858 3.30392 6.75806 3.31081 6.9289 3.2681L7.53038 3.11773C9.15227 2.71226 10.849 2.71226 12.4709 3.11773L13.0724 3.2681C13.2432 3.31081 13.4227 3.30392 13.5898 3.24823L15.2427 2.69725C15.9816 2.45094 16.676 3.17148 16.4025 3.90077L15.9348 5.14796C15.8718 5.31602 15.8966 5.50444 16.0009 5.6505L16.309 6.08183C17.3091 7.48197 17.5148 9.29944 16.8531 10.8877V10.8877C16.216 12.4166 14.86 13.5283 13.2358 13.8531L12.3395 14.0324C12.0522 14.0899 11.9448 14.4444 12.152 14.6515V14.6515C12.9088 15.4083 13.334 16.4348 13.334 17.505V18.3335' stroke='currentColor' stroke-width='1.66667' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M6.66667 16.6665V16.6665C5.64522 16.9219 4.56717 16.5782 3.88197 15.7788L3.31349 15.1156C2.79716 14.5132 2.04339 14.1665 1.25 14.1665V14.1665' stroke='currentColor' stroke-width='1.66667' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+}
+
+/* ===== Navbar responsive: collapse at 1340px ===== */
+@media (max-width: 1339px) {
+  .VPNavBarMenu {
+    display: none !important;
+  }
+  .VPNavBarAppearance {
+    display: none !important;
+  }
+  .VPNavBarTranslations {
+    display: none !important;
+  }
+  .VPNavBarSocialLinks {
+    display: none !important;
+  }
+  .VPNavBarExtra {
+    display: none !important;
+  }
+  .VPNavBarHamburger {
+    display: flex !important;
+  }
+  .VPNavScreen {
+    display: block !important;
+  }
+}
+
+/* ===== Navbar Dark Mode ===== */
+
+.dark .VPNavBarMenuLink {
+  color: #a0a4a8 !important;
+}
+
+.dark .VPNavBarMenuLink:hover,
+.dark .VPNavBarMenuLink.active {
+  color: var(--vp-c-brand-1) !important;
+}
+
+.dark .VPFlyout .button .text {
+  color: #a0a4a8 !important;
+}
+
+.dark .VPFlyout:hover .button .text,
+.dark .VPFlyout.active .button .text {
+  color: var(--vp-c-brand-1) !important;
+}
+
+.dark .VPFlyout .button .text .vpi-chevron-down {
+  color: #555;
+}
+
+.dark .DocSearch.DocSearch-Button {
+  border-color: #333 !important;
+}
+
+.dark .DocSearch-Button .DocSearch-Button-Placeholder,
+.dark .DocSearch-Button .DocSearch-Search-Icon,
+.dark .DocSearch-Button .DocSearch-Button-Key {
+  color: #999;
+}
+
+.dark .VPSocialLinks .VPSocialLink {
+  color: #aaa;
+}
+
+/* Separators already hidden via display:none above */
+
+/* ===== Sidebar Redesign ===== */
+
+.VPSidebar .group + .group {
+  border-top: none;
+  padding-top: 4px;
+}
+
+.VPSidebarItem .item .text {
+  padding: 0px !important;
+}
+
+.VPSidebarItem.level-0 > .item {
+  padding: 0 16px;
+  height: 36px;
+}
+
+.VPSidebarItem.level-0 > .item .text {
+  font-family: var(--zenmux-nav-font);
+  font-size: 14px;
+  font-weight: 700 !important;
+  line-height: 17px;
+  color: #000 !important;
+}
+
+.dark .VPSidebarItem.level-0 > .item .text {
+  color: #fff !important;
+}
+
+.VPSidebarItem.level-0 > .item .caret {
+  color: #c8c8c8;
+}
+
+.VPSidebarItem.level-1 > .item {
+  padding: 4px 16px;
+  min-height: 36px;
+  border-radius: 8px;
+  gap: 12px;
+}
+
+.VPSidebarItem.level-1 > .item .text {
+  font-family: var(--zenmux-nav-font);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  color: #666 !important;
+}
+
+.VPSidebarItem.level-1 > .item .caret {
+  color: #c8c8c8;
+}
+
+.VPSidebarItem.is-active > .item {
+  background: #f5f5f5;
+}
+
+.dark .VPSidebarItem.is-active > .item {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.VPSidebarItem.is-active > .item .text {
+  font-weight: 510 !important;
+  color: #000 !important;
+}
+
+.dark .VPSidebarItem.is-active > .item .text {
+  color: #fff !important;
+}
+
+.VPSidebarItem.level-1 > .items {
+  padding: 0 0 0 12px;
+  margin-left: 16px;
+  border-left: 0.5px solid #e6e6e6;
+}
+
+.dark .VPSidebarItem.level-1 > .items {
+  border-left: 0.5px solid #333 !important;
+}
+
+.VPSidebarItem.level-2 > .item {
+  padding: 4px 16px;
+  min-height: 32px;
+  border-radius: 8px;
+  gap: 12px;
+}
+
+.VPSidebarItem.level-2 > .item .text {
+  font-family: var(--zenmux-nav-font);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #666 !important;
+}
+
+/* .VPSidebarItem.level-2.is-active > .item .text {
+  font-weight: 510 !important;
+  color: #000 !important;
+}
+
+.dark .VPSidebarItem.level-2.is-active > .item .text {
+  color: #fff !important;
+} */
+
+.VPSidebarItem .indicator {
+  display: none !important;
+}
+
+.VPSidebarItem .item .text {
+  line-height: 28px !important;
+}
+
+/* ===== TOC Aside Redesign ===== */
+
+.VPDocAsideOutline .content {
+  border-left: 1px solid #f2f2f2;
+  padding-left: 12px;
+  font-size: 14px;
+  font-weight: 400;
+  position: relative;
+}
+
+.VPDocAsideOutline {
+  padding-bottom: 160px;
+}
+
+.dark .VPDocAsideOutline .content {
+  border-left-color: #333;
+}
+
+.VPDocAsideOutline .outline-title {
+  font-family: var(--zenmux-nav-font);
+  font-size: 14px;
+  font-weight: 400 !important;
+  line-height: 17px;
+  color: #999;
+  margin-bottom: 12px;
+}
+
+.VPDocAsideOutline .outline-marker {
+  left: -1px !important;
+  width: 2px !important;
+  height: 20px !important;
+  border-radius: 0 !important;
+  background-color: #000 !important;
+  transform: translateY(-10px);
+}
+
+.dark .VPDocAsideOutline .outline-marker {
+  background-color: #fff !important;
+}
+
+.VPDocOutlineItem.root > li {
+  padding-top: 16px;
+}
+
+.VPDocOutlineItem.root > li:first-child {
+  padding-top: 0;
+}
+
+.VPDocOutlineItem .outline-link {
+  font-family: var(--zenmux-nav-font);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #999 !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.25s;
+}
+
+.VPDocOutlineItem .outline-link:hover,
+.VPDocOutlineItem .outline-link.active {
+  color: #000 !important;
+  font-weight: 510;
+}
+
+.dark .VPDocOutlineItem .outline-link:hover,
+.dark .VPDocOutlineItem .outline-link.active {
+  color: #fff !important;
+}
+
+.VPDocOutlineItem.nested {
+  padding-left: 12px;
+  padding-right: 0;
+}
+
+.VPDocOutlineItem.nested > li {
+  padding-top: 16px;
+}
+
+/* ===== Content Area Typography ===== */
+
+.vp-doc {
+  font-family: var(--zenmux-nav-font);
+}
+
+.vp-doc h1 {
+  font-size: 32px;
+  line-height: 38px;
+  font-weight: 700;
+  color: #000;
+  letter-spacing: -0.01em;
+}
+
+.dark .vp-doc h1 {
+  color: #fff;
+}
+
+.vp-doc h2 {
+  font-size: 24px;
+  line-height: 29px;
+  font-weight: 700;
+  color: #000;
+  margin: 68px 0 8px;
+  padding-top: 0;
+  border-top: none;
+}
+
+.vp-doc .header-anchor {
+  box-sizing: border-box;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  width: 32px;
+  height: 32px;
+  left: -48px;
+  top: 0;
+  margin-left: 0;
+  border: 0.5px solid #e6e6e6;
+  border-radius: 8px;
+  opacity: 0;
+  transition:
+    opacity 0.2s,
+    border-color 0.2s;
+  font-size: 0;
+}
+
+.dark .vp-doc .header-anchor {
+  border-color: #333;
+}
+
+.vp-doc .header-anchor::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.7571 6.58529C4.01745 6.32511 4.44016 6.32504 4.70046 6.58529C4.96076 6.84559 4.96066 7.26829 4.70046 7.52865L3.28542 8.94271C2.24426 9.98408 2.24423 11.6728 3.28542 12.7142C4.32676 13.7555 6.0155 13.7554 7.05691 12.7142L8.47097 11.3001C8.73132 11.0398 9.15398 11.0398 9.41433 11.3001C9.67437 11.5605 9.67444 11.9822 9.41433 12.2425L8.00027 13.6566C6.43817 15.2187 3.90514 15.2187 2.34304 13.6566C0.781145 12.0945 0.781177 9.56239 2.34304 8.00033L3.7571 6.58529ZM9.88503 5.17123C10.1453 4.91092 10.568 4.91102 10.8284 5.17123C11.0887 5.43158 11.0887 5.85424 10.8284 6.11459L6.11453 10.8285C5.85418 11.0888 5.43152 11.0888 5.17117 10.8285C4.91109 10.5682 4.91126 10.1464 5.17117 9.88607L9.88503 5.17123ZM8.00027 2.3431C9.56233 0.781237 12.0945 0.781207 13.6565 2.3431C15.2186 3.9052 15.2186 6.43823 13.6565 8.00033L12.2425 9.41439C11.9822 9.6745 11.5604 9.67443 11.3001 9.41439C11.0397 9.15404 11.0397 8.73138 11.3001 8.47103L12.7141 7.05697C13.7553 6.01556 13.7555 4.32682 12.7141 3.28548C11.6728 2.24429 9.98402 2.24432 8.94265 3.28548L7.52859 4.70052C7.26823 4.96072 6.84553 4.96082 6.58523 4.70052C6.32498 4.44022 6.32505 4.01751 6.58523 3.75716L8.00027 2.3431Z' fill='%23000'/%3E%3C/svg%3E");
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+  background-position: center;
+  flex-shrink: 0;
+}
+
+.dark .vp-doc .header-anchor::before {
+  background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.7571 6.58529C4.01745 6.32511 4.44016 6.32504 4.70046 6.58529C4.96076 6.84559 4.96066 7.26829 4.70046 7.52865L3.28542 8.94271C2.24426 9.98408 2.24423 11.6728 3.28542 12.7142C4.32676 13.7555 6.0155 13.7554 7.05691 12.7142L8.47097 11.3001C8.73132 11.0398 9.15398 11.0398 9.41433 11.3001C9.67437 11.5605 9.67444 11.9822 9.41433 12.2425L8.00027 13.6566C6.43817 15.2187 3.90514 15.2187 2.34304 13.6566C0.781145 12.0945 0.781177 9.56239 2.34304 8.00033L3.7571 6.58529ZM9.88503 5.17123C10.1453 4.91092 10.568 4.91102 10.8284 5.17123C11.0887 5.43158 11.0887 5.85424 10.8284 6.11459L6.11453 10.8285C5.85418 11.0888 5.43152 11.0888 5.17117 10.8285C4.91109 10.5682 4.91126 10.1464 5.17117 9.88607L9.88503 5.17123ZM8.00027 2.3431C9.56233 0.781237 12.0945 0.781207 13.6565 2.3431C15.2186 3.9052 15.2186 6.43823 13.6565 8.00033L12.2425 9.41439C11.9822 9.6745 11.5604 9.67443 11.3001 9.41439C11.0397 9.15404 11.0397 8.73138 11.3001 8.47103L12.7141 7.05697C13.7553 6.01556 13.7555 4.32682 12.7141 3.28548C11.6728 2.24429 9.98402 2.24432 8.94265 3.28548L7.52859 4.70052C7.26823 4.96072 6.84553 4.96082 6.58523 4.70052C6.32498 4.44022 6.32505 4.01751 6.58523 3.75716L8.00027 2.3431Z' fill='%23fff'/%3E%3C/svg%3E");
+}
+
+.vp-doc .header-anchor:hover {
+  border-color: #ccc;
+}
+
+.dark .vp-doc .header-anchor:hover {
+  border-color: #555;
+}
+
+.vp-doc .header-anchor.copied {
+  border-color: #52c41a;
+}
+
+.vp-doc h1 .header-anchor {
+  top: 3px;
+}
+.vp-doc h2 .header-anchor {
+  top: -1.5px;
+}
+.vp-doc h3 .header-anchor {
+  top: -6.5px;
+}
+.vp-doc h4 .header-anchor {
+  top: -6.5px;
+}
+
+.vp-doc .header-anchor.copied::before {
+  background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M10 0C15.5228 0 20 4.47715 20 10C20 15.5228 15.5228 20 10 20C4.47715 20 0 15.5228 0 10C0 4.47715 4.47715 0 10 0ZM14.7559 6.70215C14.4305 6.37697 13.9025 6.37702 13.5771 6.70215L8.33301 11.9463L6.42188 10.0352C6.09655 9.7102 5.5695 9.71024 5.24414 10.0352C4.91876 10.3605 4.91888 10.8884 5.24414 11.2139L7.74414 13.7139C8.0695 14.0389 8.59652 14.0389 8.92188 13.7139L14.7559 7.87988C15.0806 7.55451 15.0808 7.02742 14.7559 6.70215Z' fill='%2352c41a'/%3E%3C/svg%3E");
+}
+
+.dark .vp-doc h2 {
+  color: #fff;
+}
+
+.vp-doc h3 {
+  font-size: 16px;
+  line-height: 19px;
+  font-weight: 700;
+  color: #000;
+  margin: 24px 0 8px;
+}
+
+.dark .vp-doc h3 {
+  color: #fff;
+}
+
+.vp-doc p {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  color: #333;
+  margin: 12px 0;
+}
+
+.dark .vp-doc p {
+  color: #ccc;
+}
+
+.vp-doc ul,
+.vp-doc ol {
+  margin: 12px 0;
+}
+
+.vp-doc li {
+  font-size: 16px;
+  line-height: 28px;
+  color: #333;
+}
+
+.dark .vp-doc li {
+  color: #ccc;
+}
+
+.vp-doc li strong {
+  font-weight: 510;
+  color: #000;
+}
+
+.dark .vp-doc li strong {
+  color: #fff;
+}
+
+.vp-doc a {
+  color: #000;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.dark .vp-doc a {
+  color: #fff;
+}
+
+.vp-doc .custom-block {
+  background: #fcfcfc;
+  border: 0.5px solid #e6e6e6;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 16px 0;
+}
+
+.dark .vp-doc .custom-block {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: #333;
+}
+
+.vp-doc .custom-block .custom-block-title {
+  font-size: 14px;
+  font-weight: 590;
+  line-height: 18px;
+  color: #000;
+}
+
+.dark .vp-doc .custom-block .custom-block-title {
+  color: #fff;
+}
+
+.vp-doc .custom-block p {
+  font-size: 14px;
+  line-height: 21px;
+  color: #666;
+  margin: 8px 0 0;
+}
+
+.vp-doc .custom-block li {
+  font-size: 14px;
+  line-height: 21px;
+  color: #666;
+}
+
+.dark .vp-doc .custom-block li {
+  color: #999;
+}
+
+.vp-doc .custom-block li strong {
+  font-weight: 510;
+  color: #000;
+}
+
+.dark .vp-doc .custom-block li strong {
+  color: #fff;
+}
+
+.vp-doc table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 16px 0;
+  display: table;
+  table-layout: fixed;
+}
+
+.vp-doc table th,
+.vp-doc table td {
+  border: none !important;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.vp-doc table tr {
+  background: transparent !important;
+  border-top: none !important;
+}
+
+.vp-doc table thead tr {
+  border-bottom: none !important;
+}
+
+.vp-doc table th:first-child {
+  width: 24%;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 17px;
+  color: #000;
+  padding: 13px 16px 13px 0;
+  border-bottom: 1px solid #e6e6e6 !important;
+  background: transparent;
+}
+
+.vp-doc table th:not(:first-child) {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 17px;
+  color: #000;
+  padding: 13px 24px;
+  border-bottom: 1px solid #e6e6e6 !important;
+  background: transparent;
+}
+
+.dark .vp-doc table th {
+  color: #fff;
+  border-bottom-color: #333 !important;
+}
+
+.vp-doc table td:first-child {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 17px;
+  color: #000;
+  padding: 13px 16px 13px 0;
+  border-bottom: 0.5px solid #e6e6e6 !important;
+  background: transparent;
+}
+
+.vp-doc table td:not(:first-child) {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  color: #333;
+  padding: 13px 24px;
+  border-bottom: 0.5px solid #e6e6e6 !important;
+  background: transparent;
+}
+
+.dark .vp-doc table td:first-child {
+  color: #fff;
+}
+
+.dark .vp-doc table td:not(:first-child) {
+  color: #ccc;
+  border-bottom-color: #333 !important;
+}
+
+.vp-doc img {
+  border: 0.5px solid #e6e6e6;
+  border-radius: 12px;
+}
+
+.dark .vp-doc img {
+  border-color: #333;
+}
+
+/* ===== Code Blocks ===== */
+
+.vp-doc div[class*="language-"] {
+  position: relative;
+  background: #fafafa;
+  border: 0.5px solid #e6e6e6;
+  border-radius: 12px;
+  margin: 16px 0;
+  overflow: hidden;
+}
+
+.dark .vp-doc div[class*="language-"] {
+  background: #1a1a1a;
+  border-color: #333;
+}
+
+/* Header bar: language label left + copy button right */
+.vp-doc div[class*="language-"]::before {
+  content: "";
+  display: block;
+  height: 40px;
+  border-bottom: 0.5px solid #e6e6e6;
+}
+
+.dark .vp-doc div[class*="language-"]::before {
+  border-bottom-color: #333;
+}
+
+/* Language label */
+.vp-doc div[class*="language-"] > span.lang {
+  position: absolute;
+  top: 0;
+  left: 20px;
+  right: auto;
+  height: 40px;
+  line-height: 40px;
+  font-family: "SF Mono", monospace;
+  font-size: 13px;
+  font-weight: 400;
+  color: #666;
+}
+
+.dark .vp-doc div[class*="language-"] > span.lang {
+  color: #999;
+}
+
+/* Copy button */
+.vp-doc div[class*="language-"] > button.copy {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  background-size: 12px;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.vp-doc div[class*="language-"]:hover > button.copy {
+  opacity: 1;
+}
+
+/* Code area */
+.vp-doc div[class*="language-"] > pre {
+  background: transparent !important;
+  margin: 0;
+  padding: 16px 20px !important;
+  border-radius: 0;
+}
+
+.vp-doc div[class*="language-"] > pre code {
+  font-family: "SF Mono", monospace;
+  font-size: 13px !important;
+  line-height: 20px;
+  padding: 0 !important;
+}
+
+/* Code group: override container within code groups */
+.vp-code-group div[class*="language-"] {
+  border: none;
+  border-radius: 0;
+  margin: 0;
+}
+
+.vp-code-group div[class*="language-"]::before {
+  display: none;
+}
+
+.vp-code-group div[class*="language-"] > span.lang {
+  display: none;
+}
+
+.vp-code-group {
+  background: #fafafa;
+  border: 0.5px solid #e6e6e6;
+  border-radius: 12px;
+  margin: 16px 0;
+  overflow: hidden;
+}
+
+.dark .vp-code-group {
+  background: #1a1a1a;
+  border-color: #333;
+}
+
+.vp-code-group .tabs {
+  border-bottom: 0.5px solid #e6e6e6;
+  background: transparent;
+}
+
+.dark .vp-code-group .tabs {
+  border-bottom-color: #333;
+}
+
+.vp-code-group .tabs label {
+  font-family: "SF Mono", monospace;
+  font-size: 13px;
+  font-weight: 400;
+  color: #666;
+}
+
+.vp-code-group .tabs label.active {
+  color: #000;
+}
+
+.dark .vp-code-group .tabs label.active {
+  color: #fff;
+}
+
+/* ===== Details / Accordion ===== */
+
+.vp-doc .custom-block.details {
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  background: transparent;
+  padding: 0;
+  margin: 16px 0;
+  overflow: hidden;
+}
+
+.dark .vp-doc .custom-block.details {
+  border-color: #333;
+}
+
+/* Group consecutive details: merge into one visual card */
+.vp-doc .custom-block.details:has(+ .custom-block.details) {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-bottom: 0;
+}
+
+.vp-doc .custom-block.details + .custom-block.details {
+  border-top: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  margin-top: 0;
+}
+
+/* Summary: the clickable header */
+.vp-doc .custom-block.details summary {
+  padding: 20px 24px;
+  font-family: var(--zenmux-nav-font);
+  font-size: 16px;
+  line-height: 19px;
+  font-weight: 510;
+  color: #000;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+}
+
+.vp-doc .custom-block.details summary::-webkit-details-marker {
+  display: none;
+}
+
+.vp-doc .custom-block.details summary::marker {
+  display: none;
+  content: "";
+}
+
+/* Custom arrow icon */
+.vp-doc .custom-block.details summary::before {
+  content: "";
+  display: inline-block;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7.387 11.389L10.597 8.714C11.045 8.34 11.045 7.652 10.597 7.279L7.387 4.604C6.779 4.097 5.856 4.53 5.856 5.321V10.671C5.856 11.463 6.779 11.895 7.387 11.389Z' fill='%23999'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: transform 0.2s ease;
+}
+
+.vp-doc .custom-block.details[open] summary::before {
+  transform: rotate(90deg);
+}
+
+.vp-doc .custom-block.details[open] summary {
+  font-weight: 700;
+}
+
+.dark .vp-doc .custom-block.details summary {
+  color: #fff;
+}
+
+/* Content area: use container padding + negative summary margin */
+.vp-doc .custom-block.details[open] {
+  padding: 0 24px 20px 44px;
+}
+
+.vp-doc .custom-block.details[open] summary {
+  margin: 0 -24px 0 -44px;
+  padding: 20px 24px;
+}
+
+/* Reset child margins inside details content */
+.vp-doc .custom-block.details > p:first-of-type {
+  margin-top: 0;
+}
+
+.vp-doc .custom-block.details > ol,
+.vp-doc .custom-block.details > ul {
+  padding-left: 20px;
+  margin: 8px 0;
+}
+
+.vp-doc .custom-block.details > div[class*="language-"] {
+  margin-left: 0;
+  margin-right: 0;
+  border-radius: 12px;
+}
+
+/* Details content typography */
+.vp-doc .custom-block.details p {
+  font-size: 14px;
+  line-height: 17px;
+  color: #666;
+  margin: 8px 0;
+}
+
+.vp-doc .custom-block.details p strong {
+  font-weight: 510;
+  color: #000;
+}
+
+.dark .vp-doc .custom-block.details p {
+  color: #999;
+}
+
+.dark .vp-doc .custom-block.details p strong {
+  color: #fff;
+}
+
+.vp-doc .custom-block.details li {
+  font-size: 14px;
+  line-height: 28px;
+  color: #666;
+}
+
+.vp-doc .custom-block.details li strong {
+  font-weight: 510;
+  color: #333;
+}
+
+.dark .vp-doc .custom-block.details li {
+  color: #999;
+}
+
+.dark .vp-doc .custom-block.details li strong {
+  color: #ccc;
+}
+
+.vp-doc .custom-block.details code:not(pre code) {
+  font-family: "SF Mono", monospace;
+  font-size: 12px;
+  line-height: 14px;
+  color: #666;
+  background: #f5f5f5;
+  border: 0.5px solid #e6e6e6;
+  border-radius: 4px;
+  padding: 2px 6px;
+}
+
+.dark .vp-doc .custom-block.details code:not(pre code) {
+  background: #2a2a2a;
+  border-color: #444;
+  color: #ccc;
+}
+
+.vp-doc .custom-block.details a {
+  color: #000;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.dark .vp-doc .custom-block.details a {
+  color: #fff;
 }

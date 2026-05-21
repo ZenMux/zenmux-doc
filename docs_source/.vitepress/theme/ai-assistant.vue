@@ -222,13 +222,21 @@ function handleGlobalKeydown(e: KeyboardEvent) {
   }
 }
 
+function handleOpenAI() {
+  if (!panelOpen.value) {
+    panelOpen.value = true;
+  }
+}
+
 onMounted(() => {
   document.addEventListener("keydown", handleGlobalKeydown);
+  document.addEventListener("open-ai-assistant", handleOpenAI);
   updateBodyClass();
 });
 
 onUnmounted(() => {
   document.removeEventListener("keydown", handleGlobalKeydown);
+  document.removeEventListener("open-ai-assistant", handleOpenAI);
   document.documentElement.classList.remove(
     "ai-panel-open",
     "ai-panel-maximized",
@@ -454,16 +462,18 @@ onUnmounted(() => {
 .ai-trigger {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+  width: 90px;
   height: 32px;
-  padding: 0 10px;
-  border: 1px solid var(--vp-c-divider);
+  padding: 8px 12px;
+  border: 0.5px solid #E6E6E6;
   border-radius: 8px;
-  background: var(--vp-c-bg);
-  color: var(--vp-c-text-2);
+  background: transparent;
+  color: #666;
   cursor: pointer;
-  font-size: 13px;
-  font-weight: 500;
+  font-family: 'SF Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
   transition: all 0.2s;
   white-space: nowrap;
   margin-left: 8px;
@@ -472,7 +482,7 @@ onUnmounted(() => {
 
 .ai-trigger:hover {
   color: var(--vp-c-text-1);
-  border-color: var(--vp-c-text-3);
+  border-color: var(--vp-c-brand-1);
 }
 
 .ai-trigger.active {
@@ -481,10 +491,20 @@ onUnmounted(() => {
   background: var(--vp-c-brand-soft);
 }
 
+:global(.dark) .ai-trigger {
+  border-color: #333;
+  color: #999;
+}
+
+:global(.dark) .ai-trigger-icon {
+  color: #999;
+}
+
 .ai-trigger-icon {
   flex-shrink: 0;
   width: 16px;
   height: 16px;
+  color: #666;
 }
 
 @media (max-width: 768px) {
@@ -492,6 +512,7 @@ onUnmounted(() => {
     display: none;
   }
   .ai-trigger {
+    width: auto;
     padding: 0 7px;
     margin-right: 4px;
   }
@@ -500,13 +521,12 @@ onUnmounted(() => {
 /* --- Sidebar panel --- */
 .ai-sidebar {
   position: fixed;
-  top: var(--vp-nav-height, 64px);
+  top: calc(var(--vp-nav-height, 64px) + var(--zenmux-doc-tabs-height, 48px));
   right: 0;
   width: 380px;
-  height: calc(100vh - var(--vp-nav-height, 64px));
+  height: calc(100vh - var(--vp-nav-height, 64px) - var(--zenmux-doc-tabs-height, 48px));
   background: var(--vp-c-bg);
   border-left: 1px solid var(--vp-c-divider);
-  border-top: 1px solid var(--vp-c-divider);
   display: flex;
   flex-direction: column;
   z-index: 30;
