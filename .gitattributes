@@ -1,0 +1,3 @@
+# Auto-generated search indexes: always keep ours on merge/rebase to avoid conflicts
+docs_source/public/chunks-index-*.json merge=ours
+docs_source/public/docs-index-*.json merge=ours
