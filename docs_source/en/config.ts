@@ -281,7 +281,6 @@ export default defineLoacaleConfig({
       "/best-practices/": [
         {
           text: "Integrations",
-          collapsed: false,
           items: [
             {
               text: "Claude Code Integration",

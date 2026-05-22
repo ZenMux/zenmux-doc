@@ -28,7 +28,6 @@ head:
 
 4. **发起你的第一个请求**：选择你熟悉的 [API 协议](#支持的-api-协议)，复制下面的代码示例，替换你的 API Key，即可运行。
 
----
 
 ## 选择使用方式
 
@@ -84,7 +83,6 @@ Builder Plan 提供固定月费、可预测的 AI 模型调用方案：
 如果你的项目已经上线或即将商业化，**必须使用 Pay As You Go 方案**。订阅制仅限个人开发和学习场景，禁止用于生产环境。
 :::
 
----
 
 ::: info 模型 Slug 获取说明
 ZenMux 平台的模型具备唯一 Slug，您可以通过[模型列表页](https://zenmux.ai/models)获取对应模型的 Slug：
@@ -93,7 +91,6 @@ ZenMux 平台的模型具备唯一 Slug，您可以通过[模型列表页](https
 ![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/dWYxJnq/model-slug-3.png)
 :::
 
----
 
 ## 支持的 API 协议
 
@@ -110,7 +107,6 @@ ZenMux 支持四种主流 API 协议，你可以使用最熟悉的 SDK 调用 Ze
 ZenMux 的核心优势之一是**协议无关性**——你可以通过任意支持的协议调用任意模型。例如，用 OpenAI SDK 调用 Claude 模型，或用 Anthropic SDK 调用 Gemini 模型。
 :::
 
----
 
 ### 协议一：OpenAI Chat Completions
 
@@ -193,7 +189,6 @@ curl https://zenmux.ai/api/v1/chat/completions \
 
 :::
 
----
 
 ### 协议二：OpenAI Responses
 
@@ -252,7 +247,6 @@ curl https://zenmux.ai/api/v1/responses \
 
 :::
 
----
 
 ### 协议三：Anthropic Messages
 
@@ -346,7 +340,6 @@ curl https://zenmux.ai/api/anthropic/v1/messages \
 
 :::
 
----
 
 ### 协议四：Google Gemini
 
@@ -413,7 +406,6 @@ main();
 
 :::
 
----
 
 ## Platform API
 
@@ -464,7 +456,6 @@ curl https://zenmux.ai/api/v1/management/generation?id=gen_01abc123def456 \
 详细参数说明请参考 [Get Generation API 文档](/zh/api/platform/get-generation)。
 :::
 
----
 
 ### 查询 PAYG 余额
 
@@ -497,7 +488,6 @@ curl https://zenmux.ai/api/v1/management/payg/balance \
 详细参数说明请参考 [Get PAYG Balance API 文档](/zh/api/platform/payg-balance)。
 :::
 
----
 
 ### 查询订阅详情
 
@@ -543,7 +533,6 @@ curl https://zenmux.ai/api/v1/management/subscription/detail \
 详细参数说明请参考 [Get Subscription Detail API 文档](/zh/api/platform/subscription-detail)。
 :::
 
----
 
 ### 查询 Flow 汇率
 
@@ -575,20 +564,19 @@ curl https://zenmux.ai/api/v1/management/flow_rate \
 详细参数说明请参考 [Get Flow Rate API 文档](/zh/api/platform/flow-rate)。
 :::
 
----
 
 ## 高级用法
 
 关于高级用法的详细信息，请参阅高级调用章节的内容。
 
-::: tip 联系我们
-如果您在使用过程中遇到任何问题，或有任何建议和反馈，欢迎通过以下方式联系我们：
+<ContactCards>
+<ContactCard icon="mail" title="邮箱">
 
-- **官方网站**：<https://zenmux.ai>
-- **技术支持邮箱**：[support@zenmux.ai](mailto:support@zenmux.ai)
-- **商务合作邮箱**：[bd@zenmux.ai](mailto:bd@zenmux.ai)
-- **Twitter**：[@ZenMuxAI](https://twitter.com/ZenMuxAI)
-- **Discord 社区**：<http://discord.gg/vHZZzj84Bm>
+技术支持: [support@zenmux.ai](mailto:support@zenmux.ai)
 
-更多联系方式和详细信息，请访问我们的[联系我们页面](/zh/help/contact)。
-:::
+商务合作: [bd@zenmux.ai](mailto:bd@zenmux.ai)
+
+</ContactCard>
+<ContactCard icon="x" title="X / Twitter" link="https://x.com/ZenMuxAI" label="@ZenMuxAI" />
+<ContactCard icon="discord" title="Discord" link="https://discord.gg/vHZZzj84Bm" label="@ZenMuxAI" />
+</ContactCards>

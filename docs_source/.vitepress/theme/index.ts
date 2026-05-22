@@ -110,7 +110,7 @@ export default {
       "layout-top": () => h(ClientOnly, null, { default: () => h(DocTabs) }),
       "doc-top": () => h(ClientOnly, null, { default: () => h(ApiContainer) }),
       "doc-before": () => h(ClientOnly, null, { default: () => [h(Breadcrumb), h(Select)] }),
-      "aside-outline-after": () => h(ClientOnly, null, { default: () => h(AsideActions) }),
+      "aside-bottom": () => h(ClientOnly, null, { default: () => h(AsideActions) }),
       "nav-bar-content-before": () => h(ClientOnly, null, { default: () => h(AiAssistant) }),
       "nav-bar-content-after": () => h(ClientOnly, null, { default: () => [h(Login), h(EndpointDrawer)] }),
     });

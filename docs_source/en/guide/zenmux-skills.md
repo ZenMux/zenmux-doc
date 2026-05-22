@@ -385,11 +385,14 @@ First, confirm you're using **Claude Code** (this Skill targets Claude Code's st
   - [Pay As You Go](https://zenmux.ai/platform/pay-as-you-go)
   - [Management API Key](https://zenmux.ai/platform/management)
 
-::: tip Contact us
-If you have questions or suggestions while using ZenMux Skills, you can:
+<ContactCards>
+<ContactCard icon="mail" title="Email">
 
-- Submit feedback directly with **`/zenmux-feedback`** (fastest)
-- Open an issue at [GitHub Issues](https://github.com/ZenMux/skills/issues)
-- Email us at [support@zenmux.ai](mailto:support@zenmux.ai)
-- Join our Discord community: <http://discord.gg/vHZZzj84Bm>
-:::
+Technical support: [support@zenmux.ai](mailto:support@zenmux.ai)
+
+Business cooperation: [bd@zenmux.ai](mailto:bd@zenmux.ai)
+
+</ContactCard>
+<ContactCard icon="x" title="X / Twitter" link="https://x.com/ZenMuxAI" label="@ZenMuxAI" />
+<ContactCard icon="discord" title="Discord" link="https://discord.gg/vHZZzj84Bm" label="@ZenMuxAI" />
+</ContactCards>

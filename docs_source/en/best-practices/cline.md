@@ -71,15 +71,14 @@ After configuration is complete, you can start using Cline. ZenMux provides rich
 
 ## Contact Us
 
-If you encounter any issues during use, or have suggestions and feedback, please contact us through the following channels:
+<ContactCards>
+<ContactCard icon="mail" title="Email">
 
-::: tip Get Help
+Technical support: [support@zenmux.ai](mailto:support@zenmux.ai)
 
-- **Official Website**: <https://zenmux.ai>
-- **Technical Support Email**: [support@zenmux.ai](mailto:support@zenmux.ai)
-- **Business Cooperation Email**: [bd@zenmux.ai](mailto:bd@zenmux.ai)
-- **Twitter**: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
-- **Discord Community**: <http://discord.gg/vHZZzj84Bm>
+Business cooperation: [bd@zenmux.ai](mailto:bd@zenmux.ai)
 
-For more contacts and details, visit our [Contact Us page](/help/contact).
-:::
+</ContactCard>
+<ContactCard icon="x" title="X / Twitter" link="https://x.com/ZenMuxAI" label="@ZenMuxAI" />
+<ContactCard icon="discord" title="Discord" link="https://discord.gg/vHZZzj84Bm" label="@ZenMuxAI" />
+</ContactCards>

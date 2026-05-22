@@ -85,7 +85,7 @@ const tabs = computed(() => {
 
 @media (max-width: 1519px) {
   .doc-tabs-content {
-    padding: 0 20px 0 calc(var(--vp-sidebar-width, 210px) + 24px);
+    padding-left: 20px;
   }
 }
 

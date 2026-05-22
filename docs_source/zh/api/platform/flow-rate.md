@@ -28,7 +28,7 @@ Flow 是 ZenMux 的统一计量单位，用于衡量 AI 推理请求的资源消
 
 ## 鉴权
 
-### Authorization Header <font color="red">必选</font>
+### Authorization Header <font color="FA6062">必选</font>
 
 ```http
 Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>

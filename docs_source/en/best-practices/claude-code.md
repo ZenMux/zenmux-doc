@@ -855,14 +855,14 @@ After editing, reload your shell (`source ~/.zshrc` or `source ~/.bashrc`) and r
 See the [ZenMux model list](https://zenmux.ai/models) for all available models and detailed information.
 :::
 
-::: tip Contact Us
-If you run into any issues or have suggestions/feedback, feel free to contact us via:
+<ContactCards>
+<ContactCard icon="mail" title="Email">
 
-- **Website**: <https://zenmux.ai>
-- **Support**: [support@zenmux.ai](mailto:support@zenmux.ai)
-- **Business**: [bd@zenmux.ai](mailto:bd@zenmux.ai)
-- **Twitter**: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
-- **Discord**: <http://discord.gg/vHZZzj84Bm>
+Technical support: [support@zenmux.ai](mailto:support@zenmux.ai)
 
-For more contact options and details, visit our [Contact Us page](/help/contact).
-:::
+Business cooperation: [bd@zenmux.ai](mailto:bd@zenmux.ai)
+
+</ContactCard>
+<ContactCard icon="x" title="X / Twitter" link="https://x.com/ZenMuxAI" label="@ZenMuxAI" />
+<ContactCard icon="discord" title="Discord" link="https://discord.gg/vHZZzj84Bm" label="@ZenMuxAI" />
+</ContactCards>

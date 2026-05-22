@@ -366,16 +366,14 @@ This prompt will not appear on subsequent launches.
 - Use a model from the supported list above
   :::
 
-::: tip Contact Us
-If you run into any issues, or have suggestions and feedback, feel free to reach out via:
+<ContactCards>
+<ContactCard icon="mail" title="Email">
 
-- **Official website**: <https://zenmux.ai>
-- **Support email**: [support@zenmux.ai](mailto:support@zenmux.ai)
-- **Business inquiries**: [bd@zenmux.ai](mailto:bd@zenmux.ai)
-- **Twitter**: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
-- **Discord community**: <http://discord.gg/vHZZzj84Bm>
+Technical support: [support@zenmux.ai](mailto:support@zenmux.ai)
 
-For more contact options and details, visit our [Contact page](/help/contact).
+Business cooperation: [bd@zenmux.ai](mailto:bd@zenmux.ai)
 
-For CC-Switch project issues, please report them via [CC-Switch GitHub Issues](https://github.com/farion1231/cc-switch/issues).
-:::
+</ContactCard>
+<ContactCard icon="x" title="X / Twitter" link="https://x.com/ZenMuxAI" label="@ZenMuxAI" />
+<ContactCard icon="discord" title="Discord" link="https://discord.gg/vHZZzj84Bm" label="@ZenMuxAI" />
+</ContactCards>

@@ -268,14 +268,14 @@ Now that you understand how Pay As You Go works, you can:
 - Visit the [Cost Analytics page](https://zenmux.ai/platform/cost) for detailed cost attribution and usage trends
 - Join the [Discord community](http://discord.gg/vHZZzj84Bm) to connect with other developers
 
-::: tip Contact us
-If you run into any issues or have suggestions/feedback, feel free to reach us via:
+<ContactCards>
+<ContactCard icon="mail" title="Email">
 
-- **Website**: <https://zenmux.ai>
-- **Support email**: [support@zenmux.ai](mailto:support@zenmux.ai)
-- **Business email**: [bd@zenmux.ai](mailto:bd@zenmux.ai)
-- **Twitter**: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
-- **Discord**: <http://discord.gg/vHZZzj84Bm>
+Technical support: [support@zenmux.ai](mailto:support@zenmux.ai)
 
-For more contact options and details, visit our [Contact page](/help/contact).
-:::
+Business cooperation: [bd@zenmux.ai](mailto:bd@zenmux.ai)
+
+</ContactCard>
+<ContactCard icon="x" title="X / Twitter" link="https://x.com/ZenMuxAI" label="@ZenMuxAI" />
+<ContactCard icon="discord" title="Discord" link="https://discord.gg/vHZZzj84Bm" label="@ZenMuxAI" />
+</ContactCards>

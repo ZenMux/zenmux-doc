@@ -3,12 +3,10 @@ import { defineLoacaleConfig } from "..";
 const docsSidebar = [
   {
     text: "关于 ZenMux",
-    collapsed: false,
     items: [{ text: "简介", link: "/zh/about/intro" }],
   },
   {
     text: "使用文档",
-    collapsed: false,
     items: [
       { text: "快速开始", link: "/zh/guide/quickstart" },
       {
@@ -76,9 +74,7 @@ const docsSidebar = [
       {
         text: "Studio",
         collapsed: true,
-        items: [
-          { text: "Studio-Chat", link: "/zh/guide/studio/studio-chat" },
-        ],
+        items: [{ text: "Studio-Chat", link: "/zh/guide/studio/studio-chat" }],
       },
       {
         text: "ZenMux Skills",
@@ -88,7 +84,6 @@ const docsSidebar = [
   },
   {
     text: "帮助中心",
-    collapsed: false,
     items: [
       { text: "隐私政策", link: "/zh/privacy" },
       { text: "服务协议", link: "/zh/terms-of-service" },
@@ -188,7 +183,6 @@ export default defineLoacaleConfig({
       "/zh/api/": [
         {
           text: "OpenAI Compatible API",
-          collapsed: false,
           items: [
             {
               text: "Create Chat Completion",
@@ -226,7 +220,6 @@ export default defineLoacaleConfig({
         },
         {
           text: "Anthropic Compatible API",
-          collapsed: false,
           items: [
             {
               text: "Create a Message",
@@ -240,7 +233,6 @@ export default defineLoacaleConfig({
         },
         {
           text: "Google Vertex AI Compatible API",
-          collapsed: false,
           items: [
             {
               text: "Generate Content",
@@ -262,7 +254,6 @@ export default defineLoacaleConfig({
         },
         {
           text: "Platform API",
-          collapsed: false,
           items: [
             {
               text: "Get Flow Rate",
@@ -298,7 +289,6 @@ export default defineLoacaleConfig({
       "/zh/best-practices/": [
         {
           text: "最佳实践",
-          collapsed: false,
           items: [
             {
               text: "ClaudeCode接入ZenMux指南",

@@ -28,7 +28,7 @@ A Flow is ZenMux's unified billing unit for measuring AI inference consumption. 
 
 ## Authentication
 
-### Authorization Header <font color="red">Required</font>
+### Authorization Header <span style="color: #FA6062; font-weight: 400">Required</span>
 
 ```http
 Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>

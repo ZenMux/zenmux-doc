@@ -24,7 +24,7 @@ Returns the current account's subscription details, including plan information, 
 
 ## Authentication
 
-### Authorization Header <font color="red">Required</font>
+### Authorization Header <span style="color: #FA6062; font-weight: 400">Required</span>
 
 ```http
 Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
@@ -69,13 +69,13 @@ The account's actual effective rate (USD per Flow). Normally equals the base rat
 
 The account's current status:
 
-| Value | Description |
-|---|---|
-| `healthy` | Normal |
+| Value       | Description                                       |
+| ----------- | ------------------------------------------------- |
+| `healthy`   | Normal                                            |
 | `monitored` | Usage anomaly detected; service remains available |
-| `abusive` | Abusive usage detected; restrictions applied |
-| `suspended` | Account suspended |
-| `banned` | Account banned |
+| `abusive`   | Abusive usage detected; restrictions applied      |
+| `suspended` | Account suspended                                 |
+| `banned`    | Account banned                                    |
 
 ### data.quota_5_hour `object`
 
@@ -101,10 +101,11 @@ Monthly subscription cycle quota (upper limits only; no real-time usage data):
 - `max_value_usd` `number` — USD value of the total monthly quota
 
 ::: info 💡 Quota behavior
+
 - `quota_5_hour` and `quota_7_day` are **rolling windows** that update in real time after each request.
 - `quota_monthly` is a fixed cap for the current billing cycle and does not include real-time usage.
 - All three windows are enforced simultaneously — hitting any one of them will rate-limit further requests.
-:::
+  :::
 
 ::: api-request GET /api/v1/management/subscription/detail
 
@@ -124,9 +125,12 @@ print(response.json())
 ```
 
 ```javascript
-const response = await fetch("https://zenmux.ai/api/v1/management/subscription/detail", {
-  headers: { Authorization: `Bearer ${ZENMUX_MANAGEMENT_API_KEY}` },
-});
+const response = await fetch(
+  "https://zenmux.ai/api/v1/management/subscription/detail",
+  {
+    headers: { Authorization: `Bearer ${ZENMUX_MANAGEMENT_API_KEY}` },
+  },
+);
 const data = await response.json();
 ```
 

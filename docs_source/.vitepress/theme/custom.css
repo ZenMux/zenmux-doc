@@ -97,19 +97,46 @@
     padding: 0 16px 0 188px !important;
   }
 
-  /* Also shrink the api-container (fixed-position panel on API pages) */
+  /* AI panel open: compact sidebar layout (match <1520px style) */
+  html.ai-panel-open .VPSidebar {
+    left: 20px !important;
+  }
+  html.ai-panel-open .VPContent.has-sidebar {
+    padding-left: 272px !important;
+  }
+  html.ai-panel-open .VPNavBar.has-sidebar .title {
+    padding-left: 20px !important;
+    width: auto !important;
+  }
+
+  html.ai-panel-open .VPDoc.has-aside .content-container {
+    padding: 0 !important;
+  }
+  html.ai-panel-open .api-page .VPDoc .content {
+    padding-left: 0 !important;
+  }
+
+  /* API container: push left of AI panel on wide screens, hide on narrow */
   html.ai-panel-open .api-container {
-    right: 400px;
-    transition: right 0.3s ease;
+    right: 400px !important;
   }
   html.ai-panel-open.ai-panel-maximized .api-container {
-    right: 540px;
+    right: 540px !important;
   }
 }
 
 @media (max-width: 1600px) {
   html.ai-panel-open .VPDoc .aside {
     display: none;
+  }
+  html.ai-panel-open .api-container {
+    display: none !important;
+  }
+  html.ai-panel-open .api-page .VPDoc .container {
+    padding-right: 0 !important;
+  }
+  html.ai-panel-open .api-page .VPDoc .content {
+    padding: 0 32px !important;
   }
 }
 
@@ -173,7 +200,11 @@
   padding: 0 !important;
 }
 
-.VPNavBarMenuGroup .VPFlyout .button {
+.VPNavBarMenuGroup.VPFlyout {
+  padding: 0 !important;
+}
+
+.VPNavBarMenuGroup.VPFlyout .button {
   padding: 0 !important;
 }
 
@@ -225,8 +256,8 @@
 /* Small laptop screens (< 1520px): narrower sidebar & aside */
 @media (min-width: 960px) and (max-width: 1519px) {
   :root {
-    --vp-sidebar-width: 210px;
-    --vp-aside-width: 210px;
+    --vp-sidebar-width: 260px;
+    --vp-aside-width: 260px;
     --vp-aside-right: 20px;
   }
 
@@ -235,18 +266,13 @@
     width: auto !important;
   }
 
-  .VPNavBar.has-sidebar .content {
-    padding-left: calc(var(--vp-sidebar-width) + 24px) !important;
-    padding-right: 20px !important;
-  }
-
   .VPSidebar {
     left: 20px !important;
     width: var(--vp-sidebar-width) !important;
   }
 
   .group {
-    width: var(--vp-sidebar-width) !important;
+    width: var(--vp-sidebar-width, 260px) !important;
   }
 
   .VPContent.has-sidebar {
@@ -255,6 +281,10 @@
 
   .VPDoc.has-aside .content-container {
     padding: 0 !important;
+  }
+
+  .api-page .VPDoc .content {
+    padding-left: 0 !important;
   }
 }
 
@@ -321,7 +351,10 @@
 }
 
 /* Dropdown chevron arrow */
-.VPFlyout .button .text .vpi-chevron-down {
+.VPNavBarMenuGroup .VPFlyout .button .text .vpi-chevron-down {
+  margin-left: 2px;
+  width: 10px;
+  height: 10px;
   color: #c8c8c8;
 }
 
@@ -377,15 +410,29 @@
 }
 
 /* Reorder: menu → icons → Login → hamburger (matching design) */
-.VPNavBar .content-body .social-links { order: 1; }
-.VPNavBar .content-body .appearance { order: 2; }
-.VPNavBar .content-body .translations { order: 3; }
-.VPNavBar .content-body .extra { order: 4; }
-.VPNavBar .content-body .login-button { order: 5; }
-.VPNavBar .content-body .hamburger { order: 6; }
+.VPNavBar .content-body .social-links {
+  order: 1;
+}
+.VPNavBar .content-body .appearance {
+  order: 2;
+}
+.VPNavBar .content-body .translations {
+  order: 3;
+}
+.VPNavBar .content-body .extra {
+  order: 4;
+}
+.VPNavBar .content-body .login-button {
+  order: 5;
+}
+.VPNavBar .content-body .hamburger {
+  order: 6;
+}
 
-/* Icon sections: 8px gap, no extra margins */
-.VPNavBar .content-body .social-links,
+/* Icon sections: 8px gap between icons, 60px gap after nav menu */
+.VPNavBar .content-body .social-links {
+  margin: 0 4px 0 60px !important;
+}
 .VPNavBar .content-body .appearance,
 .VPNavBar .content-body .translations {
   margin: 0 4px !important;
@@ -674,7 +721,7 @@
 /* ===== TOC Aside Redesign ===== */
 
 .VPDocAsideOutline .content {
-  border-left: 1px solid #f2f2f2;
+  border-left: none;
   padding-left: 12px;
   font-size: 14px;
   font-weight: 400;
@@ -682,7 +729,7 @@
 }
 
 .VPDocAsideOutline {
-  padding-bottom: 160px;
+  padding-bottom: 32px;
 }
 
 .dark .VPDocAsideOutline .content {
@@ -699,18 +746,21 @@
 }
 
 .VPDocAsideOutline .outline-marker {
-  left: -1px !important;
+  left: 12px !important;
   width: 2px !important;
   height: 20px !important;
-  border-radius: 0 !important;
   background-color: #000 !important;
   transform: translateY(-10px);
+  z-index: 100;
 }
 
 .dark .VPDocAsideOutline .outline-marker {
   background-color: #fff !important;
 }
-
+.VPDocOutlineItem.root {
+  padding-left: 14px;
+  border-left: 2px solid #f2f2f2;
+}
 .VPDocOutlineItem.root > li {
   padding-top: 16px;
 }
@@ -964,8 +1014,8 @@
   border-collapse: collapse;
   width: 100%;
   margin: 16px 0;
-  display: table;
-  table-layout: fixed;
+  display: block;
+  overflow-x: auto;
 }
 
 .vp-doc table th,

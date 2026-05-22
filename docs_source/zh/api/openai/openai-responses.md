@@ -26,17 +26,17 @@ Create a Model Response 接口兼容 OpenAI 的 [Create a Model Response](https:
 
 ## Request headers
 
-### Authorization `string` <font color="red">必填</font>
+### Authorization `string` <font color="FA6062">必填</font>
 
 Bearer Token 鉴权
 
-### Content-Type `string` <font color="red">必填</font>
+### Content-Type `string` <font color="FA6062">必填</font>
 
 请求内容类型，默认值为 `application/json`
 
 ## Request body
 
-### model `string` <font color="red">必选</font>
+### model `string` <font color="FA6062">必选</font>
 
 此次推理调用的模型 ID，格式为 &lt;供应商&gt;/&lt;模型名称&gt;，如 openai/gpt-5，可以从各模型的详情页获得。。
 
@@ -55,8 +55,8 @@ Bearer Token 鉴权
 ##### 1.Input message `object`
 
 - type `string` <font color="gray">可选</font>：固定为 `message`
-- role `string` <font color="red">必选</font>：`user` / `assistant` / `system` / `developer`
-- content `string | array` <font color="red">必选</font>：消息内容
+- role `string` <font color="FA6062">必选</font>：`user` / `assistant` / `system` / `developer`
+- content `string | array` <font color="FA6062">必选</font>：消息内容
   - 若为 `string`：纯文本
   - 若为 `array`：内容分片列表（见下方 Input content parts）
 
@@ -64,19 +64,19 @@ Bearer Token 鉴权
 
 1. Input text `object`
 
-- type `string` <font color="red">必选</font>：`input_text`
-- text `string` <font color="red">必选</font>：文本内容
+- type `string` <font color="FA6062">必选</font>：`input_text`
+- text `string` <font color="FA6062">必选</font>：文本内容
 
 2. Input image `object`
 
-- type `string`：`input_image` <font color="red">必选</font>
-- detail `string`：`high` / `low` / `auto` <font color="red">必选</font>：图像处理细节级别，影响 token 消耗和识别精度
+- type `string`：`input_image` <font color="FA6062">必选</font>
+- detail `string`：`high` / `low` / `auto` <font color="FA6062">必选</font>：图像处理细节级别，影响 token 消耗和识别精度
 - file_id `string` <font color="gray">可选</font>：已上传文件的 ID
 - image_url `string`（URL 或 data URL/base64） <font color="gray">可选</font>：图像的 URL 地址或 base64 编码
 
 3. Input file `object`
 
-- type `string`：`input_file` <font color="red">必选</font>
+- type `string`：`input_file` <font color="FA6062">必选</font>
 - file_data `string` <font color="gray">可选</font>：文件的 base64 编码数据
 - file_id `string`<font color="gray">可选</font>：已上传文件的 ID
 - file_url `string`<font color="gray">可选</font>：文件的 URL 地址
@@ -89,9 +89,9 @@ Bearer Token 鉴权
 :::details Input message（输入消息）`object`
 
 - type `string` <font color="gray">可选</font>：固定为 `message`
-- role `string` <font color="red">必选</font>：`user` / `assistant` / `system` / `developer`
+- role `string` <font color="FA6062">必选</font>：`user` / `assistant` / `system` / `developer`
 - status `string` <font color="gray">可选</font>：`in_progress` / `completed` / `incomplete` 项目的状态
-- content `string | array` <font color="red">必选</font>：消息内容
+- content `string | array` <font color="FA6062">必选</font>：消息内容
   - 若为 `string`：纯文本
   - 若为 `array`：内容分片列表，元素可为 `input_text` / `input_image` / `input_file`（同上）
 
@@ -101,55 +101,55 @@ Bearer Token 鉴权
 
 （当你把“模型上次输出的 message item”回填进 `input` 时会用到）
 
-- type `string`<font color="red">必选</font>：`message`
-- role `string`<font color="red">必选</font>：固定为 `assistant`
-- id `string`<font color="red">必选</font>：output message 的唯一 ID
-- status `string`<font color="red">必选</font>：`in_progress` / `completed` / `incomplete`
-- content `array`<font color="red">必选</font>：**Output content parts** 列表（见下）
+- type `string`<font color="FA6062">必选</font>：`message`
+- role `string`<font color="FA6062">必选</font>：固定为 `assistant`
+- id `string`<font color="FA6062">必选</font>：output message 的唯一 ID
+- status `string`<font color="FA6062">必选</font>：`in_progress` / `completed` / `incomplete`
+- content `array`<font color="FA6062">必选</font>：**Output content parts** 列表（见下）
 
 ###### Output content parts（输出内容分片）可能类型
 
-- type `string`<font color="red">必选</font>：`output_text`
-- text `string`<font color="red">必选</font>：输出文本
-- annotations `array`<font color="red">必选</font>：标注（见下）
-- logprobs `array`<font color="red">必选</font>：logprobs（见下）
+- type `string`<font color="FA6062">必选</font>：`output_text`
+- text `string`<font color="FA6062">必选</font>：输出文本
+- annotations `array`<font color="FA6062">必选</font>：标注（见下）
+- logprobs `array`<font color="FA6062">必选</font>：logprobs（见下）
 
 **annotations** 元素可能类型：
 
 - File citation `object`
-  - type `string`<font color="red">必选</font>：`file_citation`
-  - file_id `string`<font color="red">必选</font>：引用文件的 ID
-  - filename `string`<font color="red">必选</font>：引用文件的名称
-  - index `integer`<font color="red">必选</font>：在文本中的起始索引位置
+  - type `string`<font color="FA6062">必选</font>：`file_citation`
+  - file_id `string`<font color="FA6062">必选</font>：引用文件的 ID
+  - filename `string`<font color="FA6062">必选</font>：引用文件的名称
+  - index `integer`<font color="FA6062">必选</font>：在文本中的起始索引位置
 - URL citation `object`
-  - type `string`<font color="red">必选</font>：`url_citation`
-  - start_index `integer`<font color="red">必选</font>：引用在文本中的起始索引位置
-  - end_index `integer`<font color="red">必选</font>：引用在文本中的结束索引位置
-  - title `string`<font color="red">必选</font>：引用网页的标题
-  - url `string`<font color="red">必选</font>：引用网页的 URL 地址
+  - type `string`<font color="FA6062">必选</font>：`url_citation`
+  - start_index `integer`<font color="FA6062">必选</font>：引用在文本中的起始索引位置
+  - end_index `integer`<font color="FA6062">必选</font>：引用在文本中的结束索引位置
+  - title `string`<font color="FA6062">必选</font>：引用网页的标题
+  - url `string`<font color="FA6062">必选</font>：引用网页的 URL 地址
 - Container file citation `object`
-  - type `string`<font color="red">必选</font>：`container_file_citation`
-  - container_id `string`<font color="red">必选</font>：容器文件的 ID
-  - file_id `string`<font color="red">必选</font>：实际引用文件的 ID
-  - filename `string`<font color="red">必选</font>：引用文件的名称
-  - start_index `integer`<font color="red">必选</font>：引用在文本中的起始索引位置
-  - end_index `integer`<font color="red">必选</font>：引用在文本中的结束索引位置
+  - type `string`<font color="FA6062">必选</font>：`container_file_citation`
+  - container_id `string`<font color="FA6062">必选</font>：容器文件的 ID
+  - file_id `string`<font color="FA6062">必选</font>：实际引用文件的 ID
+  - filename `string`<font color="FA6062">必选</font>：引用文件的名称
+  - start_index `integer`<font color="FA6062">必选</font>：引用在文本中的起始索引位置
+  - end_index `integer`<font color="FA6062">必选</font>：引用在文本中的结束索引位置
 - File path `object`
-  - type `string`<font color="red">必选</font>：`file_path`
-  - file_id `string`<font color="red">必选</font>：文件的 ID
-  - index `integer`<font color="red">必选</font>：文件在列表中的索引位置
+  - type `string`<font color="FA6062">必选</font>：`file_path`
+  - file_id `string`<font color="FA6062">必选</font>：文件的 ID
+  - index `integer`<font color="FA6062">必选</font>：文件在列表中的索引位置
 
 **logprobs**（每个元素为一个 token 的 logprob 信息，字段层级如下）：
 
-- bytes `array`<font color="red">必选</font>：token 的字节表示
-- logprob `number`<font color="red">必选</font>：token 的对数概率值
-- token `string`<font color="red">必选</font>：token 的文本内容
-- top_logprobs `array`<font color="red">必选</font>：最可能的候选 token 列表（每个元素含 `bytes` / `logprob` / `token`）
+- bytes `array`<font color="FA6062">必选</font>：token 的字节表示
+- logprob `number`<font color="FA6062">必选</font>：token 的对数概率值
+- token `string`<font color="FA6062">必选</font>：token 的文本内容
+- top_logprobs `array`<font color="FA6062">必选</font>：最可能的候选 token 列表（每个元素含 `bytes` / `logprob` / `token`）
 
 2. Refusal `object`
 
-- type `string`<font color="red">必选</font>：`refusal`
-- refusal `string`<font color="red">必选</font>：模型拒绝回答的原因说明
+- type `string`<font color="FA6062">必选</font>：`refusal`
+- refusal `string`<font color="FA6062">必选</font>：模型拒绝回答的原因说明
 
 :::
 
@@ -157,10 +157,10 @@ Bearer Token 鉴权
 
 模型发起对 **function tool** 的调用
 
-- type `string`：`function_call` <font color="red">必选</font>
-- call_id `string` <font color="red">必选</font>：函数调用的唯一标识符
-- name `string` <font color="red">必选</font>：要调用的函数名称
-- arguments `string` <font color="red">必选</font>：JSON 格式的函数参数字符串
+- type `string`：`function_call` <font color="FA6062">必选</font>
+- call_id `string` <font color="FA6062">必选</font>：函数调用的唯一标识符
+- name `string` <font color="FA6062">必选</font>：要调用的函数名称
+- arguments `string` <font color="FA6062">必选</font>：JSON 格式的函数参数字符串
 - id `string` <font color="gray">可选</font>：调用项的唯一 ID
 - status `string` <font color="gray">可选</font>：调用状态，`in_progress` / `completed` / `incomplete`
 
@@ -170,9 +170,9 @@ Bearer Token 鉴权
 
 把你执行函数后的结果回传给模型（用于下一步推理）。
 
-- type `string`：`function_call_output` <font color="red">必选</font>
-- call_id `string`<font color="red">必选</font>：对应函数调用的唯一标识符
-- output `string | array` <font color="red">必选</font>：函数执行结果，可以是字符串或内容列表
+- type `string`：`function_call_output` <font color="FA6062">必选</font>
+- call_id `string`<font color="FA6062">必选</font>：对应函数调用的唯一标识符
+- output `string | array` <font color="FA6062">必选</font>：函数执行结果，可以是字符串或内容列表
 - id `string` <font color="gray">可选</font>：输出项的唯一 ID
 - status `string` <font color="gray">可选</font>：输出状态，`in_progress` / `completed` / `incomplete`
 
@@ -184,10 +184,10 @@ Bearer Token 鉴权
 
 模型发起对“自定义工具”的调用（你侧需要执行）。
 
-- type `string`：`custom_tool_call`<font color="red">必选</font>
-- call_id `string`<font color="red">必选</font>：自定义工具调用的唯一标识符
-- name `string`<font color="red">必选</font>：要调用的自定义工具名称
-- input `string`<font color="red">必选</font>：传递给工具的输入参数
+- type `string`：`custom_tool_call`<font color="FA6062">必选</font>
+- call_id `string`<font color="FA6062">必选</font>：自定义工具调用的唯一标识符
+- name `string`<font color="FA6062">必选</font>：要调用的自定义工具名称
+- input `string`<font color="FA6062">必选</font>：传递给工具的输入参数
 - id `string` <font color="gray">可选</font>：调用项的唯一 ID
 
 :::
@@ -196,9 +196,9 @@ Bearer Token 鉴权
 
 把自定义工具执行结果回传给模型。
 
-- type `string`：`custom_tool_call_output`<font color="red">必选</font>
-- call_id `string`<font color="red">必选</font>：对应自定义工具调用的唯一标识符
-- output `string | array`<font color="red">必选</font>：工具执行结果，可以是字符串或内容列表
+- type `string`：`custom_tool_call_output`<font color="FA6062">必选</font>
+- call_id `string`<font color="FA6062">必选</font>：对应自定义工具调用的唯一标识符
+- output `string | array`<font color="FA6062">必选</font>：工具执行结果，可以是字符串或内容列表
 - id `string`<font color="gray">可选</font>：输出项的唯一 ID
 
 > `output` 为 `array` 时，元素可为 `input_text` / `input_image` / `input_file`（同上）。
@@ -207,42 +207,42 @@ Bearer Token 鉴权
 
 :::details Web search tool call（网页搜索工具调用）`object`
 
-- type `string`<font color="red">必选</font>：`web_search_call`
-- id `string`<font color="red">必选</font>：web search tool call 的唯一 ID
-- status `string`<font color="red">必选</font>
-- action `object`<font color="red">必选</font>：描述本次 web 工具“具体做了什么动作”（search/open_page/find）
+- type `string`<font color="FA6062">必选</font>：`web_search_call`
+- id `string`<font color="FA6062">必选</font>：web search tool call 的唯一 ID
+- status `string`<font color="FA6062">必选</font>
+- action `object`<font color="FA6062">必选</font>：描述本次 web 工具“具体做了什么动作”（search/open_page/find）
 
 ###### action 可能类型
 
 1. Search action `object`
 
-- type `string`<font color="red">必选</font>：动作类型，固定为`search`
-- query `string`<font color="red">必选</font>：搜索查询（已标记为废弃）
+- type `string`<font color="FA6062">必选</font>：动作类型，固定为`search`
+- query `string`<font color="FA6062">必选</font>：搜索查询（已标记为废弃）
 - queries `array`<font color="gray">可选</font>：搜索查询列表
 - sources `array`<font color="gray">可选</font>：搜索来源列表
   - 每个 source：
-    - type `string`<font color="red">必选</font>：`url`
-    - url `string`<font color="red">必选</font>：来源 URL 地址
+    - type `string`<font color="FA6062">必选</font>：`url`
+    - url `string`<font color="FA6062">必选</font>：来源 URL 地址
 
 2. Open page action `object`
 
-- type `string`<font color="red">必选</font>：动作类型，固定为`open_page`
-- url `string`<font color="red">必选</font>：要打开的网页 URL
+- type `string`<font color="FA6062">必选</font>：动作类型，固定为`open_page`
+- url `string`<font color="FA6062">必选</font>：要打开的网页 URL
 
 3. Find action `object`
 
-- type `string`<font color="red">必选</font>：动作类型，固定为`find`
-- url `string`<font color="red">必选</font>：要搜索的页面 URL
-- pattern `string`<font color="red">必选</font>：搜索模式或关键词
+- type `string`<font color="FA6062">必选</font>：动作类型，固定为`find`
+- url `string`<font color="FA6062">必选</font>：要搜索的页面 URL
+- pattern `string`<font color="FA6062">必选</font>：搜索模式或关键词
 
 :::
 
 <!-- :::details File search tool call（文件搜索工具调用）`object`
 
-- type `string`<font color="red">必选</font>：`file_search_call`
-- id `string`<font color="red">必选</font>：文件搜索工具调用的唯一 ID
-- queries `array`<font color="red">必选</font>：搜索查询字符串列表
-- status `string`<font color="red">必选</font>：搜索状态，`in_progress` / `searching` / `incomplete` / `failed`
+- type `string`<font color="FA6062">必选</font>：`file_search_call`
+- id `string`<font color="FA6062">必选</font>：文件搜索工具调用的唯一 ID
+- queries `array`<font color="FA6062">必选</font>：搜索查询字符串列表
+- status `string`<font color="FA6062">必选</font>：搜索状态，`in_progress` / `searching` / `incomplete` / `failed`
 - results `array`<font color="gray">可选</font>：搜索结果列表
 
 ###### results 元素结构 `object`
@@ -259,9 +259,9 @@ Bearer Token 鉴权
 
 模型发起一次 Computer Use 动作（你侧需要执行），执行完再用 `computer_call_output` 回传截图等结果。
 
-- type `string`<font color="red">必选</font>：`computer_call`
-- call_id `string` <font color="red">必选</font>：计算机使用调用的唯一标识符
-- action `object` <font color="red">必选</font>：具体的计算机操作动作参数（见下方 Action types）
+- type `string`<font color="FA6062">必选</font>：`computer_call`
+- call_id `string` <font color="FA6062">必选</font>：计算机使用调用的唯一标识符
+- action `object` <font color="FA6062">必选</font>：具体的计算机操作动作参数（见下方 Action types）
 - pending_safety_checks `array` <font color="gray">可选</font>：待用户确认的安全检查列表
   - id `string` <font color="gray">可选</font>：安全检查的唯一标识符
   - code `string` <font color="gray">可选</font>：安全检查的代码标识
@@ -273,37 +273,37 @@ Bearer Token 鉴权
 
 ###### Click（单击）`object`
 
-- type `string`：`click` <font color="red">必选</font>：动作类型，固定为`click`
-- x `number` <font color="red">必选</font>：点击位置的 X 坐标（像素）
-- y `number` <font color="red">必选</font>：点击位置的 Y 坐标（像素）
+- type `string`：`click` <font color="FA6062">必选</font>：动作类型，固定为`click`
+- x `number` <font color="FA6062">必选</font>：点击位置的 X 坐标（像素）
+- y `number` <font color="FA6062">必选</font>：点击位置的 Y 坐标（像素）
 - button `string` <font color="gray">可选</font>：鼠标按键类型，`left`（左键）/ `right`（右键）/ `middle`（中键）
 
 ###### Double click（双击）`object`
 
-- type `string`：`double_click` <font color="red">必选</font>：动作类型，固定为`double_click`
-- x `integer` <font color="red">必选</font>：双击位置的 X 坐标（像素）
-- y `integer` <font color="red">必选</font>：双击位置的 Y 坐标（像素）
+- type `string`：`double_click` <font color="FA6062">必选</font>：动作类型，固定为`double_click`
+- x `integer` <font color="FA6062">必选</font>：双击位置的 X 坐标（像素）
+- y `integer` <font color="FA6062">必选</font>：双击位置的 Y 坐标（像素）
 
 ###### Move（移动鼠标）`object`
 
-- type `string`：`move` <font color="red">必选</font>：动作类型，固定为`move`
-- x `integer` <font color="red">必选</font>：目标位置的 X 坐标（像素）
-- y `integer` <font color="red">必选</font>：目标位置的 Y 坐标（像素）
+- type `string`：`move` <font color="FA6062">必选</font>：动作类型，固定为`move`
+- x `integer` <font color="FA6062">必选</font>：目标位置的 X 坐标（像素）
+- y `integer` <font color="FA6062">必选</font>：目标位置的 Y 坐标（像素）
 
 ###### Screenshot `object`
 
-- type `screenshot`：`screenshot` <font color="red">必选</font>：动作类型，固定为`screenshot`
+- type `screenshot`：`screenshot` <font color="FA6062">必选</font>：动作类型，固定为`screenshot`
 
 ###### Drag（拖拽）`object`
 
-- type `string`：`drag` <font color="red">必选</font>：动作类型，固定为`drag`
-- path `array` <font color="red">必选</font>：拖拽路径的坐标点列表
-  - x `integer` <font color="red">必选</font>：路径点的 X 坐标（像素）
-  - y `integer` <font color="red">必选</font>：路径点的 Y 坐标（像素）
+- type `string`：`drag` <font color="FA6062">必选</font>：动作类型，固定为`drag`
+- path `array` <font color="FA6062">必选</font>：拖拽路径的坐标点列表
+  - x `integer` <font color="FA6062">必选</font>：路径点的 X 坐标（像素）
+  - y `integer` <font color="FA6062">必选</font>：路径点的 Y 坐标（像素）
 
 ###### Scroll（滚动）`object`
 
-- type `string`：`scroll` <font color="red">必选</font>：动作类型，固定为`scroll`
+- type `string`：`scroll` <font color="FA6062">必选</font>：动作类型，固定为`scroll`
 - x `integer` <font color="gray">可选</font>：滚动锚点的 X 坐标（像素，部分实现提供）
 - y `integer` <font color="gray">可选</font>：滚动锚点的 Y 坐标（像素）
 - scroll_x `integer` <font color="gray">可选</font>：水平滚动距离（像素）
@@ -311,24 +311,24 @@ Bearer Token 鉴权
 
 ###### Type（输入文本）`object`
 
-- type `string`：`type` <font color="red">必选</font>：动作类型，固定为`type`
-- text `string` <font color="red">必选</font>：要输入的文本内容
+- type `string`：`type` <font color="FA6062">必选</font>：动作类型，固定为`type`
+- text `string` <font color="FA6062">必选</font>：要输入的文本内容
 
 ###### Keypress（按键/组合键）`object`
 
-- type `string`：`keypress` <font color="red">必选</font>：动作类型，固定为`keypress`
-- keys `array` <font color="red">必选</font>：要按下的按键组合，如 `["CTRL","L"]` 表示 Ctrl+L
+- type `string`：`keypress` <font color="FA6062">必选</font>：动作类型，固定为`keypress`
+- keys `array` <font color="FA6062">必选</font>：要按下的按键组合，如 `["CTRL","L"]` 表示 Ctrl+L
 
 ###### Wait（等待）`object`
 
-- type `string`：`wait` <font color="red">必选</font>：动作类型，固定为`wait`
+- type `string`：`wait` <font color="FA6062">必选</font>：动作类型，固定为`wait`
 
 :::
 
 :::details Computer tool call output（Computer Use 输出回传）`object`
 
-- type `string`<font color="red">必选</font>：`computer_call_output`
-- call_id `string`<font color="red">必选</font>：对应计算机使用调用的唯一标识符
+- type `string`<font color="FA6062">必选</font>：`computer_call_output`
+- call_id `string`<font color="FA6062">必选</font>：对应计算机使用调用的唯一标识符
 - output `object`：计算机操作的输出结果（如截图等）
   - type `string`：`computer_screenshot`：输出类型，固定为计算机截图
   - file_id `string`<font color="gray">可选</font>：截图文件的唯一标识符 ID
@@ -344,40 +344,40 @@ Bearer Token 鉴权
 
 <!-- :::details Code interpreter tool call（代码解释器调用）`object`
 
-- type `string`<font color="red">必选</font>：`code_interpreter_call`
-- id `string`<font color="red">必选</font>：代码解释器调用的唯一 ID
-- container_id `string`<font color="red">必选</font>：代码运行的容器环境 ID
-- code `string`<font color="red">必选</font>：要执行的代码内容（可能为 null）
-- outputs `array`<font color="red">必选</font>：代码执行的输出结果列表（可能为 null）
+- type `string`<font color="FA6062">必选</font>：`code_interpreter_call`
+- id `string`<font color="FA6062">必选</font>：代码解释器调用的唯一 ID
+- container_id `string`<font color="FA6062">必选</font>：代码运行的容器环境 ID
+- code `string`<font color="FA6062">必选</font>：要执行的代码内容（可能为 null）
+- outputs `array`<font color="FA6062">必选</font>：代码执行的输出结果列表（可能为 null）
   - Logs `object`
-    - type `string`<font color="red">必选</font>：`logs`
-    - logs `string`<font color="red">必选</font>：代码执行产生的日志输出
+    - type `string`<font color="FA6062">必选</font>：`logs`
+    - logs `string`<font color="FA6062">必选</font>：代码执行产生的日志输出
   - Image `object`
-    - type `string`<font color="red">必选</font>：`image`
-    - url `string`<font color="red">必选</font>：生成的图片 URL 地址
-- status `string`<font color="red">必选</font>：调用状态，`in_progress` / `completed` / `incomplete` / `interpreting` / `failed`
+    - type `string`<font color="FA6062">必选</font>：`image`
+    - url `string`<font color="FA6062">必选</font>：生成的图片 URL 地址
+- status `string`<font color="FA6062">必选</font>：调用状态，`in_progress` / `completed` / `incomplete` / `interpreting` / `failed`
 
 ::: -->
 
 <!-- :::details Image generation call（图片生成调用）`object`
 
-- type `string`<font color="red">必选</font>：`image_generation_call`
-- id `string`<font color="red">必选</font>：图片生成调用的唯一 ID
-- result `string`<font color="red">必选</font>：生成的图片数据（base64 编码格式）
-- status `string`<font color="red">必选</font>：调用状态，如`in_progress` / `completed` / `failed`
+- type `string`<font color="FA6062">必选</font>：`image_generation_call`
+- id `string`<font color="FA6062">必选</font>：图片生成调用的唯一 ID
+- result `string`<font color="FA6062">必选</font>：生成的图片数据（base64 编码格式）
+- status `string`<font color="FA6062">必选</font>：调用状态，如`in_progress` / `completed` / `failed`
 
 ::: -->
 
 :::details Local shell call（本地 shell 调用）`object`
 
-- type `string`<font color="red">必选</font>：`local_shell_call`
-- id `string`<font color="red">必选</font>：本地 shell 调用的唯一 ID
-- call_id `string`<font color="red">必选</font>：调用的关联 ID
-- status `string`<font color="red">必选</font>：调用状态，如`in_progress` / `completed` / `failed`
-- action `object`<font color="red">必选</font>：具体的 shell 执行动作
-  - type `string`<font color="red">必选</font>：`exec`
-  - command `array`<font color="red">必选</font>：要执行的命令参数列表（数组形式）
-  - env `map`<font color="red">必选</font>：命令执行的环境变量键值对
+- type `string`<font color="FA6062">必选</font>：`local_shell_call`
+- id `string`<font color="FA6062">必选</font>：本地 shell 调用的唯一 ID
+- call_id `string`<font color="FA6062">必选</font>：调用的关联 ID
+- status `string`<font color="FA6062">必选</font>：调用状态，如`in_progress` / `completed` / `failed`
+- action `object`<font color="FA6062">必选</font>：具体的 shell 执行动作
+  - type `string`<font color="FA6062">必选</font>：`exec`
+  - command `array`<font color="FA6062">必选</font>：要执行的命令参数列表（数组形式）
+  - env `map`<font color="FA6062">必选</font>：命令执行的环境变量键值对
   - timeout_ms `integer`<font color="gray">可选</font>：命令执行的超时时间（毫秒）
   - user `string`<font color="gray">可选</font>：执行命令的系统用户
   - working_directory `string`<font color="gray">可选</font>：命令执行的工作目录路径
@@ -386,21 +386,21 @@ Bearer Token 鉴权
 
 :::details Local shell call output `object`
 
-- type `string`<font color="red">必选</font>：`local_shell_call_output`
-- id `string`<font color="red">必选</font>：输出项的唯一 ID
-- output `string`<font color="red">必选</font>：命令执行结果的 JSON 字符串格式输出
+- type `string`<font color="FA6062">必选</font>：`local_shell_call_output`
+- id `string`<font color="FA6062">必选</font>：输出项的唯一 ID
+- output `string`<font color="FA6062">必选</font>：命令执行结果的 JSON 字符串格式输出
 - status `string`<font color="gray">可选</font>：输出状态，如`completed` / `failed`
 
 :::
 
 :::details Shell tool call `object`
 
-- type `string`<font color="red">必选</font>：`shell_call`
-- call_id `string`<font color="red">必选</font>：shell 调用的唯一标识符
+- type `string`<font color="FA6062">必选</font>：`shell_call`
+- call_id `string`<font color="FA6062">必选</font>：shell 调用的唯一标识符
 - id `string`<font color="gray">可选</font>：调用项的唯一 ID
 - status `string`<font color="gray">可选</font>：调用状态，`in_progress` / `completed` / `incomplete`
-- action `object`<font color="red">必选</font>：shell 命令执行配置
-  - commands `array`<font color="red">必选</font>：按顺序执行的 shell 命令列表
+- action `object`<font color="FA6062">必选</font>：shell 命令执行配置
+  - commands `array`<font color="FA6062">必选</font>：按顺序执行的 shell 命令列表
   - max_output_length `integer`<font color="gray">可选</font>：捕获输出的最大字符数限制（stdout+stderr UTF-8）
   - timeout_ms `integer`<font color="gray">可选</font>：命令执行的超时时间（毫秒）
 
@@ -408,19 +408,19 @@ Bearer Token 鉴权
 
 :::details Shell tool call output `object`
 
-- type `string`<font color="red">必选</font>：`shell_call_output`
-- call_id `string`<font color="red">必选</font>：对应 shell 调用的唯一标识符
+- type `string`<font color="FA6062">必选</font>：`shell_call_output`
+- call_id `string`<font color="FA6062">必选</font>：对应 shell 调用的唯一标识符
 - id `string`<font color="gray">可选</font>：输出项的唯一标识符
 - max_output_length `integer`<font color="gray">可选</font>：输出内容的最大字符数限制
-- output `array`<font color="red">必选</font>：命令执行的输出块列表，每个元素包含：
-  - stdout `string`<font color="red">必选</font>：标准输出内容
-  - stderr `string`<font color="red">必选</font>：标准错误输出内容
-  - outcome `object`<font color="red">必选</font>：命令执行结果状态（联合类型）
+- output `array`<font color="FA6062">必选</font>：命令执行的输出块列表，每个元素包含：
+  - stdout `string`<font color="FA6062">必选</font>：标准输出内容
+  - stderr `string`<font color="FA6062">必选</font>：标准错误输出内容
+  - outcome `object`<font color="FA6062">必选</font>：命令执行结果状态（联合类型）
     - Timeout outcome `object`
-      - type `string`<font color="red">必选</font>：`timeout`：命令执行超时
+      - type `string`<font color="FA6062">必选</font>：`timeout`：命令执行超时
     - Exit outcome `object`
-      - type `string`<font color="red">必选</font>：`exit`：命令正常退出
-      - exit_code `integer`<font color="red">必选</font>
+      - type `string`<font color="FA6062">必选</font>：`exit`：命令正常退出
+      - exit_code `integer`<font color="FA6062">必选</font>
 
 :::
 
@@ -428,72 +428,72 @@ Bearer Token 鉴权
 
 用于通过 diff patch 创建/删除/更新文件。
 
-- type `string`<font color="red">必选</font>：`apply_patch_call`
-- call_id `string`<font color="red">必选</font>：补丁应用调用的唯一标识符
+- type `string`<font color="FA6062">必选</font>：`apply_patch_call`
+- call_id `string`<font color="FA6062">必选</font>：补丁应用调用的唯一标识符
 - id `string`<font color="gray">可选</font>：调用项的唯一标识符
-- status `string`<font color="red">必选</font>：调用状态，`in_progress`（进行中）/ `completed`（已完成）
-- operation `object`<font color="red">必选</font>：具体的文件操作（联合类型，包含创建/删除/更新）
+- status `string`<font color="FA6062">必选</font>：调用状态，`in_progress`（进行中）/ `completed`（已完成）
+- operation `object`<font color="FA6062">必选</font>：具体的文件操作（联合类型，包含创建/删除/更新）
 
 ###### operation 可能类型
 
 1. Create file `object`
 
-- type `string`<font color="red">必选</font>：`create_file`
-- path `string`<font color="red">必选</font>：相对于工作区根目录的文件路径
-- diff `string`<font color="red">必选</font>：统一格式的 diff 补丁内容
+- type `string`<font color="FA6062">必选</font>：`create_file`
+- path `string`<font color="FA6062">必选</font>：相对于工作区根目录的文件路径
+- diff `string`<font color="FA6062">必选</font>：统一格式的 diff 补丁内容
 
 2. Delete file `object`
 
-- type `string`<font color="red">必选</font>：`delete_file`
-- path `string`<font color="red">必选</font>：要删除的文件路径
+- type `string`<font color="FA6062">必选</font>：`delete_file`
+- path `string`<font color="FA6062">必选</font>：要删除的文件路径
 
 3. Update file `object`
 
-- type `string`<font color="red">必选</font>：`update_file`
-- path `string`<font color="red">必选</font>：要更新的文件路径
-- diff `string`<font color="red">必选</font>：统一格式的 diff 补丁内容
+- type `string`<font color="FA6062">必选</font>：`update_file`
+- path `string`<font color="FA6062">必选</font>：要更新的文件路径
+- diff `string`<font color="FA6062">必选</font>：统一格式的 diff 补丁内容
 
 :::
 
 :::details Apply patch tool call output `object`
 
-- type `string`<font color="red">必选</font>：`apply_patch_call_output`
-- call_id `string`<font color="red">必选</font>：对应补丁应用调用的唯一标识符
+- type `string`<font color="FA6062">必选</font>：`apply_patch_call_output`
+- call_id `string`<font color="FA6062">必选</font>：对应补丁应用调用的唯一标识符
 - id `string`<font color="gray">可选</font>：输出项的唯一标识符
-- status `string`<font color="red">必选</font>：输出状态，`completed`（已完成）/ `failed`（失败）
+- status `string`<font color="FA6062">必选</font>：输出状态，`completed`（已完成）/ `failed`（失败）
 - output `string`<font color="gray">可选</font>：补丁应用的日志信息或错误描述文本
 
 :::
 
 :::details MCP list tools `object`
 
-- type `string`<font color="red">必选</font>：`mcp_list_tools`
-- id `string`<font color="red">必选</font>：MCP 工具列表调用的唯一标识符
-- server_label `string`<font color="red">必选</font>：MCP 服务器的标签名称
+- type `string`<font color="FA6062">必选</font>：`mcp_list_tools`
+- id `string`<font color="FA6062">必选</font>：MCP 工具列表调用的唯一标识符
+- server_label `string`<font color="FA6062">必选</font>：MCP 服务器的标签名称
 - error `string`<font color="gray">可选</font>：获取工具列表时的错误信息（如果有）
-- tools `array`<font color="red">必选</font>：可用工具列表，每个元素包含：
-  - name `string`<font color="red">必选</font>：工具名称
+- tools `array`<font color="FA6062">必选</font>：可用工具列表，每个元素包含：
+  - name `string`<font color="FA6062">必选</font>：工具名称
   - description `string`<font color="gray">可选</font>：工具功能描述
   - annotations `object`<font color="gray">可选</font>：工具的附加注解信息
-  - input_schema `object`<font color="red">必选</font>：工具输入参数的 JSON Schema 定义
+  - input_schema `object`<font color="FA6062">必选</font>：工具输入参数的 JSON Schema 定义
 
 :::
 
 :::details MCP approval request `object`
 
-- type `string`<font color="red">必选</font>：`mcp_approval_request`
-- id `string`<font color="red">必选</font>：审批请求的唯一标识符 ID
-- server_label `string`<font color="red">必选</font>：MCP 服务器的标签名称
-- name `string`<font color="red">必选</font>：请求运行的工具名称
-- arguments `string`<font color="red">必选</font>：工具参数的 JSON 格式字符串
+- type `string`<font color="FA6062">必选</font>：`mcp_approval_request`
+- id `string`<font color="FA6062">必选</font>：审批请求的唯一标识符 ID
+- server_label `string`<font color="FA6062">必选</font>：MCP 服务器的标签名称
+- name `string`<font color="FA6062">必选</font>：请求运行的工具名称
+- arguments `string`<font color="FA6062">必选</font>：工具参数的 JSON 格式字符串
 
 :::
 
 :::details MCP approval response `object`
 
-- type `string`<font color="red">必选</font>：`mcp_approval_response`
-- approval_request_id `string`<font color="red">必选</font>：对应的审批请求唯一标识符
-- approve `boolean`<font color="red">必选</font>：是否批准工具调用（true=批准，false=拒绝）
+- type `string`<font color="FA6062">必选</font>：`mcp_approval_response`
+- approval_request_id `string`<font color="FA6062">必选</font>：对应的审批请求唯一标识符
+- approve `boolean`<font color="FA6062">必选</font>：是否批准工具调用（true=批准，false=拒绝）
 - id `string`<font color="gray">可选</font>：响应项的唯一标识符
 - reason `string`<font color="gray">可选</font>：批准或拒绝的原因说明
 
@@ -501,11 +501,11 @@ Bearer Token 鉴权
 
 :::details MCP tool call `object`
 
-- type `string`<font color="red">必选</font>：`mcp_call`
-- id `string`<font color="red">必选</font>：MCP 工具调用的唯一标识符
-- server_label `string`<font color="red">必选</font>：MCP 服务器的标签名称
-- name `string`<font color="red">必选</font>：要调用的工具名称
-- arguments `string`<font color="red">必选</font>：工具参数的 JSON 格式字符串
+- type `string`<font color="FA6062">必选</font>：`mcp_call`
+- id `string`<font color="FA6062">必选</font>：MCP 工具调用的唯一标识符
+- server_label `string`<font color="FA6062">必选</font>：MCP 服务器的标签名称
+- name `string`<font color="FA6062">必选</font>：要调用的工具名称
+- arguments `string`<font color="FA6062">必选</font>：工具参数的 JSON 格式字符串
 - approval_request_id `string`<font color="gray">可选</font>：关联的审批请求 ID（用于后续审批响应）
 - output `string`<font color="gray">可选</font>：工具执行后的输出结果
 - error `string`<font color="gray">可选</font>：工具执行的错误信息
@@ -515,16 +515,16 @@ Bearer Token 鉴权
 
 :::details Reasoning（推理项）`object`
 
-- type `string`<font color="red">必选</font>：`reasoning`
-- id `string`<font color="red">必选</font>：推理内容的唯一标识符 ID
-- summary `array`<font color="red">必选</font>：推理摘要内容列表
+- type `string`<font color="FA6062">必选</font>：`reasoning`
+- id `string`<font color="FA6062">必选</font>：推理内容的唯一标识符 ID
+- summary `array`<font color="FA6062">必选</font>：推理摘要内容列表
   - Summary text `object`
-    - type `string`<font color="red">必选</font>：`summary_text`
-    - text `string`<font color="red">必选</font>：推理摘要的具体文本内容
+    - type `string`<font color="FA6062">必选</font>：`summary_text`
+    - text `string`<font color="FA6062">必选</font>：推理摘要的具体文本内容
 - content `array`<font color="gray">可选</font>：完整推理文本内容列表
   - Reasoning text `object`
-    - type `string`<font color="red">必选</font>：`reasoning_text`
-    - text `string`<font color="red">必选</font>：完整推理过程的具体文本内容
+    - type `string`<font color="FA6062">必选</font>：`reasoning_text`
+    - text `string`<font color="FA6062">必选</font>：完整推理过程的具体文本内容
 - encrypted_content `string`<font color="gray">可选</font>：加密的完整推理内容（需要 include 参数启用）
 - status `string`<font color="gray">可选</font>：推理状态，`in_progress`（进行中）/ `completed`（已完成）/ `incomplete`（未完成）
 
@@ -534,9 +534,9 @@ Bearer Token 鉴权
 
 由 `v1/responses/compact` 生成，用于把长对话压缩成不透明加密摘要，并可回填进后续 `input`。
 
-- type `string`<font color="red">必选</font>：`compaction`
+- type `string`<font color="FA6062">必选</font>：`compaction`
 - id `string`<font color="gray">可选</font>：compaction item ID
-- encrypted_content `string`<font color="red">必选</font>：压缩摘要（加密、不透明）
+- encrypted_content `string`<font color="FA6062">必选</font>：压缩摘要（加密、不透明）
 
 :::
 
@@ -544,7 +544,7 @@ Bearer Token 鉴权
 
 用于引用某个已有 item（内部标识）。
 
-- type `string`<font color="red">必选</font>：`item_reference`
+- type `string`<font color="FA6062">必选</font>：`item_reference`
 - id `string`<font color="gray">可选</font>
 
 ### instructions `string` <font color="gray">可选</font>
@@ -561,13 +561,13 @@ Bearer Token 鉴权
 
 - Conversation ID `string`：conversation 的唯一 ID，用于标识和复用对话历史
 - Conversation object `object`
-  - id `string`<font color="red">必选</font>：conversation 的唯一 ID，用于持久化存储和检索对话
+  - id `string`<font color="FA6062">必选</font>：conversation 的唯一 ID，用于持久化存储和检索对话
 
 ### prompt `object` <font color="gray">可选</font>
 
 引用一个 prompt 模板并传入变量。
 
-- id `string` <font color="red">必选</font>：prompt 模板 ID，用于标识要使用的模板
+- id `string` <font color="FA6062">必选</font>：prompt 模板 ID，用于标识要使用的模板
 - variables `object`<font color="gray">可选</font>：模板变量的键值对，用于动态替换模板中的占位符
 - version `string`<font color="gray">可选</font>：prompt 模板的版本号，用于指定模板的特定版本
 
@@ -613,17 +613,17 @@ Bearer Token 鉴权
 - format `object` <font color="gray">可选</font>：指定输出格式（默认 `{ "type": "text" }`）  
   可能类型：
   1. Text `object`
-     - type `string`<font color="red">必选</font>：`text`：普通文本输出格式
+     - type `string`<font color="FA6062">必选</font>：`text`：普通文本输出格式
 
   2. JSON schema `object`（Structured Outputs）
-     - type `string`<font color="red">必选</font>：`json_schema`：结构化 JSON 输出格式
-     - name `string`<font color="red">必选</font>：输出格式的名称标识符
-     - schema `object`<font color="red">必选</font>：定义输出结构的 JSON Schema
+     - type `string`<font color="FA6062">必选</font>：`json_schema`：结构化 JSON 输出格式
+     - name `string`<font color="FA6062">必选</font>：输出格式的名称标识符
+     - schema `object`<font color="FA6062">必选</font>：定义输出结构的 JSON Schema
      - description `string` <font color="gray">可选</font>：输出格式的描述说明
      - strict `boolean` <font color="gray">可选</font>（默认 `false`）：是否严格按 schema 输出，true 时强制验证
 
   3. JSON object `object`（旧 JSON mode）
-     - type `string`<font color="red">必选</font>：`json_object`：JSON 对象输出格式
+     - type `string`<font color="FA6062">必选</font>：`json_object`：JSON 对象输出格式
 
 - verbosity `string` <font color="gray">可选</font>（默认 `medium`）  
   限制模型回应的详细程度。数值越低，回应越简洁；数值越高，回应越详尽。目前支持的参数值：`low` / `medium` / `high`
@@ -657,43 +657,43 @@ Bearer Token 鉴权
 
 :::details Function tool（函数工具定义）`object`
 
-- type `string`<font color="red">必选</font>：`function`：工具类型，固定为函数工具
-- name `string`<font color="red">必选</font>：函数的唯一名称标识符
-- parameters `object`<font color="red">必选</font>：函数参数的 JSON Schema 定义，描述参数结构和验证规则
-- strict `boolean`<font color="red">必选</font>（默认 `true`）：是否严格验证参数，true 时严格按照 schema 验证
+- type `string`<font color="FA6062">必选</font>：`function`：工具类型，固定为函数工具
+- name `string`<font color="FA6062">必选</font>：函数的唯一名称标识符
+- parameters `object`<font color="FA6062">必选</font>：函数参数的 JSON Schema 定义，描述参数结构和验证规则
+- strict `boolean`<font color="FA6062">必选</font>（默认 `true`）：是否严格验证参数，true 时严格按照 schema 验证
 - description `string` <font color="gray">可选</font>：函数功能的详细描述，帮助模型理解何时使用该函数
 
 :::
 
 <!-- :::details File search （文件搜索）`object`
 
-- type `string`<font color="red">必选</font>：`file_search`
-- vector_store_ids `array[string]`<font color="red">必选</font>：要搜索的向量存储 ID 列表
+- type `string`<font color="FA6062">必选</font>：`file_search`
+- vector_store_ids `array[string]`<font color="FA6062">必选</font>：要搜索的向量存储 ID 列表
 - filters `object` <font color="gray">可选</font>：搜索结果的过滤条件
   - Comparison Filter `object`：比较过滤器
-    - key `string`<font color="red">必选</font>：要过滤的元数据字段名
-    - type `string`<font color="red">必选</font>：`eq` / `ne` / `gt` / `gte` / `lt` / `lte` / `in` / `nin`：比较操作符
-    - value `string | number | boolean | array`<font color="red">必选</font>：要比较的值
+    - key `string`<font color="FA6062">必选</font>：要过滤的元数据字段名
+    - type `string`<font color="FA6062">必选</font>：`eq` / `ne` / `gt` / `gte` / `lt` / `lte` / `in` / `nin`：比较操作符
+    - value `string | number | boolean | array`<font color="FA6062">必选</font>：要比较的值
   - Compound Filter `object`：复合过滤器
-    - filters `array[ComparisonFilter | CompoundFilter]`<font color="red">必选</font>：子过滤器列表
-    - type `string`<font color="red">必选</font>：`and` / `or`：逻辑操作符
+    - filters `array[ComparisonFilter | CompoundFilter]`<font color="FA6062">必选</font>：子过滤器列表
+    - type `string`<font color="FA6062">必选</font>：`and` / `or`：逻辑操作符
 - max_num_results `integer` <font color="gray">可选</font>（1~50）：返回结果的最大数量限制
 - ranking_options `object` <font color="gray">可选</font>：搜索结果的排序选项
   - hybrid_search `object` <font color="gray">可选</font>：混合搜索权重配置
-    - embedding_weight `number`<font color="red">必选</font>：向量嵌入的权重
-    - text_weight `number`<font color="red">必选</font>：文本匹配的权重
+    - embedding_weight `number`<font color="FA6062">必选</font>：向量嵌入的权重
+    - text_weight `number`<font color="FA6062">必选</font>：文本匹配的权重
   - ranker `string` <font color="gray">可选</font>：使用的排序算法名称
 
 ::: -->
 
 :::details Web search（网页搜索，一般可用版本）`object`
 
-- type `string` <font color="red">必选</font>：`web_search` 或 `web_search_2025_08_26`
+- type `string` <font color="FA6062">必选</font>：`web_search` 或 `web_search_2025_08_26`
 - filters `object` <font color="gray">可选</font>：搜索结果的过滤条件
   - allowed_domains `array[string]` <font color="gray">可选</font>（默认 `[]`）：允许的域名白名单（允许子域）
 - search_context_size `string` <font color="gray">可选</font>（默认 `medium`）：搜索上下文的大小级别
 - user_location `object` <font color="gray">可选</font>：用户大致位置信息，用于本地化搜索结果
-  - type `string` <font color="red">必选</font>：`approximate`：位置类型，固定为大致位置
+  - type `string` <font color="FA6062">必选</font>：`approximate`：位置类型，固定为大致位置
   - city `string` <font color="gray">可选</font>：城市名称
   - country `string` <font color="gray">可选</font>：两位 ISO（如 `US`）：国家代码
   - region `string` <font color="gray">可选</font>：地区/州代码
@@ -703,10 +703,10 @@ Bearer Token 鉴权
 
 :::details Web search preview（网页搜索预览版）`object`
 
-- type `string`<font color="red">必选</font>：`web_search_preview` 或 `web_search_preview_2025_03_11`
+- type `string`<font color="FA6062">必选</font>：`web_search_preview` 或 `web_search_preview_2025_03_11`
 - search_context_size `string` <font color="gray">可选</font>：`low` / `medium` / `high`：搜索上下文的大小级别
 - user_location `object` <font color="gray">可选</font>：用户地理位置信息
-  - type `string`<font color="red">必选</font>：`approximate`：位置类型，固定为大致位置
+  - type `string`<font color="FA6062">必选</font>：`approximate`：位置类型，固定为大致位置
   - city `string` <font color="gray">可选</font>：城市名称
   - country `string` <font color="gray">可选</font>（两位 ISO）：国家代码
   - region `string` <font color="gray">可选</font>：地区/州代码
@@ -716,20 +716,20 @@ Bearer Token 鉴权
 
 :::details Computer use preview（Computer Use 工具）`object`
 
-- type `string` <font color="red">必选</font>：`computer_use_preview`
-- display_width `integer` <font color="red">必选</font>：显示区域宽度（像素）
-- display_height `integer` <font color="red">必选</font>：显示区域高度（像素）
-- environment `string` <font color="red">必选</font>：环境类型（如 `browser` / `mac` / `windows` / `ubuntu`）
+- type `string` <font color="FA6062">必选</font>：`computer_use_preview`
+- display_width `integer` <font color="FA6062">必选</font>：显示区域宽度（像素）
+- display_height `integer` <font color="FA6062">必选</font>：显示区域高度（像素）
+- environment `string` <font color="FA6062">必选</font>：环境类型（如 `browser` / `mac` / `windows` / `ubuntu`）
 
 :::
 
 <!-- :::details Code interpreter（代码解释器）`object`
 
-- type `string`<font color="red">必选</font>：`code_interpreter`
-- container `string | object`<font color="red">必选</font>：代码执行容器配置
+- type `string`<font color="FA6062">必选</font>：`code_interpreter`
+- container `string | object`<font color="FA6062">必选</font>：代码执行容器配置
   - `string`：现有容器的 ID
   - `object`：新容器的配置对象
-    - type `string`<font color="red">必选</font>：`auto`：容器类型，固定为自动
+    - type `string`<font color="FA6062">必选</font>：`auto`：容器类型，固定为自动
     - file_ids `array` <font color="gray">可选</font>：关联的文件 ID 列表
     - memory_limit `string` <font color="gray">可选</font>：容器的内存限制
 
@@ -737,14 +737,14 @@ Bearer Token 鉴权
 
 :::details Apply patch tool（补丁应用）`object`
 
-- type `string`<font color="red">必选</font>：`apply_patch`
+- type `string`<font color="FA6062">必选</font>：`apply_patch`
 
 :::
 
 :::details MCP tool（远程 MCP 工具）`object`（若启用）
 
-- type `string` <font color="red">必选</font>：`mcp`
-- server_label `string` <font color="red">必选</font>：该 MCP server 的标签（用于 tool call 路由）
+- type `string` <font color="FA6062">必选</font>：`mcp`
+- server_label `string` <font color="FA6062">必选</font>：该 MCP server 的标签（用于 tool call 路由）
 - server_url `string` <font color="gray">可选</font>：远程 MCP server
 - authorization `string` <font color="gray">可选</font>：OAuth access token（用于 remote MCP server 或服务连接器）
 - allowed_tools `array[string] | object` <font color="gray">可选</font>：允许模型调用的工具集合或过滤器
@@ -761,7 +761,7 @@ Bearer Token 鉴权
 <!--
 :::details Image generation（图片生成）`object`
 
-- type `string` <font color="red">必选</font>：`image_generation`
+- type `string` <font color="FA6062">必选</font>：`image_generation`
 - size `string` <font color="gray">可选</font>：如 `1024x1024` / `1024x1536` / `1536x1024` / `auto`：生成图像的尺寸规格
 - quality `string` <font color="gray">可选</font>：`low` / `medium` / `high` / `auto`：生成图像的质量级别
 - background `string` <font color="gray">可选</font>：`transparent` / `opaque` / `auto`（透明背景通常配合 png/webp）：背景处理方式
@@ -776,7 +776,7 @@ Bearer Token 鉴权
 
 :::details Shell tool（通用 Shell）`object`
 
-- type `string` <font color="red">必选</font>：`shell`
+- type `string` <font color="FA6062">必选</font>：`shell`
 
 （同样一般不需要额外配置；执行参数在模型输出的 `shell_call.action` 里。）
 
@@ -784,7 +784,7 @@ Bearer Token 鉴权
 
 :::details Local shell tool（旧版本地 Shell）`object`
 
-- type `string` <font color="red">必选</font>：`local_shell`
+- type `string` <font color="FA6062">必选</font>：`local_shell`
 
 （官方提示 local shell 已偏旧，新用例更推荐 `shell`。）
 
@@ -792,16 +792,16 @@ Bearer Token 鉴权
 
 :::details Custom tool（自定义工具定义，非 function 的“自由输入/可约束格式”）`object`
 
-- type `string` <font color="red">必选</font>：`custom`
-- name `string` <font color="red">必选</font>：工具名
+- type `string` <font color="FA6062">必选</font>：`custom`
+- name `string` <font color="FA6062">必选</font>：工具名
 - description `string` <font color="gray">可选</font>：工具描述
 - format `object` <font color="gray">可选</font>：输入格式（默认是自由文本）
   - **Text format** `object`
-    - type `string` <font color="red">必选</font>：`text`
+    - type `string` <font color="FA6062">必选</font>：`text`
   - **Grammar format** `object`
-    - type `string` <font color="red">必选</font>：`grammar`
-    - syntax `string` <font color="red">必选</font>：`lark` / `regex`
-    - definition `string` <font color="red">必选</font>：语法定义
+    - type `string` <font color="FA6062">必选</font>：`grammar`
+    - syntax `string` <font color="FA6062">必选</font>：`lark` / `regex`
+    - definition `string` <font color="FA6062">必选</font>：语法定义
 
 :::
 
@@ -819,15 +819,15 @@ Bearer Token 鉴权
 
 :::details Allowed tools `object`
 
-- type `string`<font color="red">必选</font>：`allowed_tools`
-- mode `string`<font color="red">必选</font>：`auto` / `required`
-- tools `array`<font color="red">必选</font>：允许的工具集合（示例：`{ "type":"function","name":"get_weather" }` 等
+- type `string`<font color="FA6062">必选</font>：`allowed_tools`
+- mode `string`<font color="FA6062">必选</font>：`auto` / `required`
+- tools `array`<font color="FA6062">必选</font>：允许的工具集合（示例：`{ "type":"function","name":"get_weather" }` 等
 
 :::
 
 :::details Hosted tool（强制使用某个内置工具）`object`
 
-- type `string`<font color="red">必选</font>：以下之一
+- type `string`<font color="FA6062">必选</font>：以下之一
   <!-- `file_search`  -->
   / `web_search_preview` / `computer_use_preview` /
   <!-- `code_interpreter`  -->
@@ -837,35 +837,35 @@ Bearer Token 鉴权
 
 :::details Function tool（强制调用某个函数）`object`
 
-- type `string`<font color="red">必选</font>：`function`
-- name `string`<font color="red">必选</font>
+- type `string`<font color="FA6062">必选</font>：`function`
+- name `string`<font color="FA6062">必选</font>
 
 :::
 
 :::details MCP tool（强制调用某 MCP 工具）`object`
 
-- type `string`<font color="red">必选</font>：`mcp`
-- server_label `string`<font color="red">必选</font>
+- type `string`<font color="FA6062">必选</font>：`mcp`
+- server_label `string`<font color="FA6062">必选</font>
 - name `string`<font color="gray">可选</font>
 
 :::
 
 :::details Custom tool（强制调用某自定义工具）`object`
 
-- type `string`<font color="red">必选</font>：`custom`
-- name `string`<font color="red">必选</font>
+- type `string`<font color="FA6062">必选</font>：`custom`
+- name `string`<font color="FA6062">必选</font>
 
 :::
 
 :::details Specific apply patch tool choice（强制模型调用 apply_patch 工具） `object`
 
-- type `string`<font color="red">必选</font>：`apply_patch`
+- type `string`<font color="FA6062">必选</font>：`apply_patch`
 
 :::
 
 :::details Specific shell tool choice（强制模型在需要工具调用时调用 Shell 工具） `object`
 
-- type `string`<font color="red">必选</font>：`shell`
+- type `string`<font color="FA6062">必选</font>：`shell`
 
 :::
 
@@ -908,11 +908,11 @@ Bearer Token 鉴权
 用于配置本次请求在多个模型提供商（如 OpenAI、Anthropic、Google 等）之间的路由与故障转移策略。
 如果不配置，则使用项目或模型的默认路由策略。
 
-#### routing `object` <font color="red">必选</font>
+#### routing `object` <font color="FA6062">必选</font>
 
 路由策略配置，决定请求在多个提供商之间如何选择与分发。
 
-##### type `string` <font color="red">必选</font>
+##### type `string` <font color="FA6062">必选</font>
 
 路由类型，支持以下取值：
 
@@ -936,7 +936,7 @@ Bearer Token 鉴权
 
 实际行为会与 type 联合作用：例如 type = "priority" 时，primary_factor 主要影响优先级排序逻辑
 
-##### providers `array` <font color="red">必选</font>
+##### providers `array` <font color="FA6062">必选</font>
 
 可参与路由的模型提供商列表。例如：`["openai", "anthropic", "google"]`
 
@@ -960,7 +960,7 @@ Bearer Token 鉴权
 
 如果不配置，则使用项目或 SDK 的默认模型选择策略（例如默认模型、默认任务类型映射等）。
 
-#### available_models `array` <font color="red">必选</font>
+#### available_models `array` <font color="FA6062">必选</font>
 
 可参与路由或备选的**模型名称列表**。
 
@@ -974,7 +974,7 @@ Bearer Token 鉴权
 
 内部字段如下：
 
-##### task_type `string` <font color="red">必选</font>
+##### task_type `string` <font color="FA6062">必选</font>
 
 任务类型，用于表达当前请求的用途，以便于路由或自动选择参数。
 
@@ -1026,7 +1026,7 @@ Bearer Token 鉴权
 | tools(Image generation tool) | object      | ❌ 不支持                                           | 图像生成工具                                                                          |
 | tools(File search)           | object      | ❌ 不支持                                           | 文件搜索                                                                              |
 
-**<font color="red">注意：zenmux不支持tools(Code interpreter)、tools(Image generation tool)、tools(File search)三种工具调用，因此涉及到这三种工具的各种字段都不生效，本文档已过滤对应字段。</font>**
+**<font color="FA6062">注意：zenmux不支持tools(Code interpreter)、tools(Image generation tool)、tools(File search)三种工具调用，因此涉及到这三种工具的各种字段都不生效，本文档已过滤对应字段。</font>**
 
 ## Response（非流式）
 

@@ -30,7 +30,7 @@ GET https://zenmux.ai/api/v1/management/statistics/market_share
 
 ## 鉴权
 
-### Authorization Header <font color="red">必选</font>
+### Authorization Header <font color="FA6062">必选</font>
 
 ```http
 Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
@@ -50,14 +50,14 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 
 ## 参数
 
-### metric `string` <font color="red">必选</font>
+### metric `string` <font color="FA6062">必选</font>
 
 计算市场份额所使用的指标。
 
 - `tokens` — 输入 + 输出 Token 总数
 - `cost` — 按标价计算的 USD 成本
 
-### bucket_width `string` <font color="red">必选</font>
+### bucket_width `string` <font color="FA6062">必选</font>
 
 时间桶粒度。
 
@@ -173,7 +173,7 @@ const params = new URLSearchParams({
 
 const response = await fetch(
   `https://zenmux.ai/api/v1/management/statistics/market_share?${params}`,
-  { headers: { Authorization: `Bearer ${ZENMUX_MANAGEMENT_API_KEY}` } }
+  { headers: { Authorization: `Bearer ${ZENMUX_MANAGEMENT_API_KEY}` } },
 );
 const data = await response.json();
 ```

@@ -26,17 +26,17 @@ The parameters below list all options that _may_ be supported by different model
 
 ## Request headers
 
-### Authorization `string` <font color="red">Required</font>
+### Authorization `string` <span style="color: #FA6062; font-weight: 400">Required</span>
 
 Bearer Token authentication
 
-### Content-Type `string` <font color="red">Required</font>
+### Content-Type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
 
 The request content type. The default is `application/json`.
 
 ## Request
 
-### messages `array` <font color="red">Required</font>
+### messages `array` <span style="color: #FA6062; font-weight: 400">Required</span>
 
 Prompts provided to the model as a list of chat messages. Depending on model capabilities, supported message modalities may differ (e.g., text, images, audio, video). For details, refer to each model provider’s documentation.
 
@@ -45,7 +45,7 @@ Each element in `messages` represents one chat message and consists of `role` an
 ::: details Developer message `object`
 Instructions provided by the developer. The model should follow these instructions regardless of what the user says. In o1 and newer models, the `developer` message replaces the previous `system` message.
 
-- content `string or array ` <font color="red">Required</font>
+- content `string or array ` <span style="color: #FA6062; font-weight: 400">Required</span>
 
   The content of the Developer message.
   - Text content `string`
@@ -55,15 +55,15 @@ Instructions provided by the developer. The model should follow these instructio
   - Array of content parts `array`
 
     An array of content parts with defined types. For Developer messages, only the `text` type is supported.
-    - text `string` <font color="red">Required</font>
+    - text `string` <span style="color: #FA6062; font-weight: 400">Required</span>
 
       Text content.
 
-    - type `string` <font color="red">Required</font>
+    - type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
 
       The type of the content part.
 
-- role `string` <font color="red">Required</font>
+- role `string` <span style="color: #FA6062; font-weight: 400">Required</span>
 
   The role of the message author; in this case, `developer`.
 
@@ -75,7 +75,7 @@ Instructions provided by the developer. The model should follow these instructio
 ::: details System message `object`
 Instructions provided by the developer. The model should follow these instructions regardless of what the user says. In o1 and newer models, you should use `developer` messages for this purpose.
 
-- content `string or array ` <font color="red">Required</font>
+- content `string or array ` <span style="color: #FA6062; font-weight: 400">Required</span>
 
   The content of the System message.
   - Text content `string`
@@ -85,15 +85,15 @@ Instructions provided by the developer. The model should follow these instructio
   - Array of content parts `array`
 
     An array of content parts with defined types. For System messages, only the `text` type is supported.
-    - text `string` <font color="red">Required</font>
+    - text `string` <span style="color: #FA6062; font-weight: 400">Required</span>
 
       Text content.
 
-    - type `string` <font color="red">Required</font>
+    - type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
 
       The type of the content part.
 
-- role `string` <font color="red">Required</font>
+- role `string` <span style="color: #FA6062; font-weight: 400">Required</span>
 
   The role of the message author; in this case, `system`.
 
@@ -105,44 +105,55 @@ Instructions provided by the developer. The model should follow these instructio
 ::: details User message `object`  
 A message sent to the model by the end user. In most chat scenarios, this is the only role you need.
 
-- content `string or array` <font color="red">Required</font>
+- content `string or array` <span style="color: #FA6062; font-weight: 400">Required</span>
 
   The content of the User message.
-  - Text content `string` <font color="red">Required</font>
+  - Text content `string` <span style="color: #FA6062; font-weight: 400">Required</span>
 
     Plain text content (the most common usage).
 
-  - Array of content parts `array` <font color="red">Required</font>
+  - Array of content parts `array` <span style="color: #FA6062; font-weight: 400">Required</span>
 
-    An array of multimodal content parts. Depending on model capabilities, it can include content types such as text, images, audio, etc. Common types include:
-    - Text part
-      - type `string` <font color="red">Required</font>, always `text`
-      - text `string` <font color="red">Required</font>, the text content
+        An array of multimodal content parts. Depending on model capabilities, it can include content types such as text, images, audio, etc. Common types include:
+        - Text part
+          - type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
 
-    - Image part (multimodal models only)
-      - type `string` <font color="red">Required</font>, `image_url`
-      - image_url `object` <font color="red">Required</font>
-        - url `string` <font color="red">Required</font>, an image URL or a base64 Data URL
-        - detail `string` <font color="gray">Optional</font>, typical values: `low` / `high` / `auto`, used to control image parsing fidelity
+    , always `text` - text `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+    , the text content
 
-    - Audio part (audio-input models only)
-      - type `string` <font color="red">Required</font>, `input_audio`
-      - input_audio `object` <font color="red">Required</font>
-        - data `string` <font color="red">Required</font>, base64-encoded audio file content
-        - format `string` <font color="red">Required</font>, e.g. `wav`, `mp3`
+        - Image part (multimodal models only)
+          - type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
 
-    - File part (File content part; models that support file input only)  
-      Used to provide an entire file as context to the model (e.g., PDF, Office documents).
-      - type `string` <font color="red">Required</font>, always `file`
-      - file `object` <font color="red">Required</font>
-        - file_id `string` <font color="gray">Optional</font>
-          - The file ID obtained via the file upload endpoint. This is the recommended way to reference a file.
-        - file_data `string` <font color="gray">Optional</font>
-          - Base64-encoded file data, for sending file content directly in the request body
-        - filename `string` <font color="gray">Optional</font>
-          - The filename, used to hint the file type to the model or to display it in the console
+    , `image_url` - image_url `object` <span style="color: #FA6062; font-weight: 400">Required</span>
 
-- role `string` <font color="red">Required</font>
+            - url `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+
+    , an image URL or a base64 Data URL - detail `string` <font color="gray">Optional</font>, typical values: `low` / `high` / `auto`, used to control image parsing fidelity
+
+        - Audio part (audio-input models only)
+          - type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+
+    , `input_audio` - input_audio `object` <span style="color: #FA6062; font-weight: 400">Required</span>
+
+            - data `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+
+    , base64-encoded audio file content - format `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+    , e.g. `wav`, `mp3`
+
+        - File part (File content part; models that support file input only)
+          Used to provide an entire file as context to the model (e.g., PDF, Office documents).
+          - type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+
+    , always `file` - file `object` <span style="color: #FA6062; font-weight: 400">Required</span>
+
+            - file_id `string` <font color="gray">Optional</font>
+              - The file ID obtained via the file upload endpoint. This is the recommended way to reference a file.
+            - file_data `string` <font color="gray">Optional</font>
+              - Base64-encoded file data, for sending file content directly in the request body
+            - filename `string` <font color="gray">Optional</font>
+              - The filename, used to hint the file type to the model or to display it in the console
+
+- role `string` <span style="color: #FA6062; font-weight: 400">Required</span>
 
   The author role of the message; in this case, `user`.
 
@@ -165,24 +176,28 @@ A reply message sent to the user by the model during the conversation. You can i
 
     An array of content parts with defined types. It can contain one or more `text` parts, or **exactly one** `refusal` part.
     - Text content part `object` (text content part)
-      - type `string` <font color="red">Required</font>  
+      - type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+
         The type of the content part.
 
-      - text `string` <font color="red">Required</font>  
+      - text `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+
         Text content.
 
     - Refusal content part `object` (refusal content part)
-      - type `string` <font color="red">Required</font>  
+      - type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+
         The type of the content part.
 
-      - refusal `string` <font color="red">Required</font>  
+      - refusal `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+
         The refusal message generated by the model.
 
 - refusal `string or null` Optional
 
   The assistant’s refusal message content.
 
-- role `string` <font color="red">Required</font>
+- role `string` <span style="color: #FA6062; font-weight: 400">Required</span>
 
   The author role of the message; in this case, `assistant`.
 
@@ -193,56 +208,58 @@ A reply message sent to the user by the model during the conversation. You can i
 - audio `object or null` Optional
 
   Data about a **previous model audio response**, which can be referenced in subsequent turns.
-  - id `string` <font color="red">Required</font>
+  - id `string` <span style="color: #FA6062; font-weight: 400">Required</span>
 
     The unique identifier of the previous audio response.
 
 - tool_calls `array` Optional
   - Function tool call `object`
-    - id `string` <font color="red">Required</font>
+    - id `string` <span style="color: #FA6062; font-weight: 400">Required</span>
 
       The tool call ID, used to match `tool_call_id` in subsequent Tool messages.
 
-    - type `string` <font color="red">Required</font>
+    - type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
 
       The tool type. Currently only `function` is supported.
 
-    - function `object` <font color="red">Required</font>
-      - name `string` <font color="red">Required</font>
+    - function `object` <span style="color: #FA6062; font-weight: 400">Required</span>
+      - name `string` <span style="color: #FA6062; font-weight: 400">Required</span>
 
         The name of the function to call.
 
-      - arguments `string` <font color="red">Required</font>
+      - arguments `string` <span style="color: #FA6062; font-weight: 400">Required</span>
 
         Function call arguments as a JSON string (generated by the model).  
         Note: The model is not guaranteed to generate strictly valid JSON and may include parameters not defined in the function schema. Validate on the application side before invoking.
 
     - Custom tool call `object`
-      - id `string` <font color="red">Required</font>
+      - id `string` <span style="color: #FA6062; font-weight: 400">Required</span>
 
         The tool call ID, used to match `tool_call_id` in subsequent Tool messages.
 
-      - type `string` <font color="red">Required</font>
+      - type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
 
         The tool type. Always `custom`.
 
-      - custom `object` <font color="red">Required</font>
-        - name `string` <font color="red">Required</font>
+      - custom `object` <span style="color: #FA6062; font-weight: 400">Required</span>
+        - name `string` <span style="color: #FA6062; font-weight: 400">Required</span>
 
           The name of the function to call.
 
-        - input `string` <font color="red">Required</font>
+        - input `string` <span style="color: #FA6062; font-weight: 400">Required</span>
 
           The input for the custom tool call, generated by the model.
 
 - function_call `object or null` (deprecated) Optional
 
   Replaced by `tool_calls` and retained only for backward compatibility. Indicates the function name and arguments the model suggests calling.
-  - name `string` <font color="red">Required</font>  
+  - name `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+
     The name of the function to call.
 
-  - arguments `string` <font color="red">Required</font>  
-     Function call arguments as a JSON string (generated by the model). You must still validate on the application side before actually invoking.
+  - arguments `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+
+    Function call arguments as a JSON string (generated by the model). You must still validate on the application side before actually invoking.
 
 - reasoning `string` Optional
 
@@ -253,15 +270,15 @@ A reply message sent to the user by the model during the conversation. You can i
   An array with detailed reasoning information. **In multi-turn tool-calling scenarios with reasoning enabled, you must pass this field back in full—especially the `signature` field—otherwise subsequent turns will not work properly.**
 
   Each element includes:
-  - type `string` <font color="red">Required</font>
+  - type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
 
     The reasoning content type, e.g. `reasoning.text`.
 
-  - text `string` <font color="red">Required</font>
+  - text `string` <span style="color: #FA6062; font-weight: 400">Required</span>
 
     The reasoning text content.
 
-  - signature `string` <font color="red">Required</font>
+  - signature `string` <span style="color: #FA6062; font-weight: 400">Required</span>
 
     A signed credential for the reasoning content. **This is the key field for maintaining reasoning context across turns and must be passed back unchanged.** The signature is generated by the model to verify integrity and continuity.
 
@@ -278,7 +295,7 @@ A reply message sent to the user by the model during the conversation. You can i
 ::: details Tool message `object`  
 A message used to return the execution result of an external tool (function) call back to the model.
 
-- content `string or array` <font color="red">Required</font>
+- content `string or array` <span style="color: #FA6062; font-weight: 400">Required</span>
 
   The content of the tool execution result, typically text or structured data (serialized to a string).
   - Text content `string`
@@ -288,19 +305,19 @@ A message used to return the execution result of an external tool (function) cal
   - Array of content parts `array`
 
     An array of content parts with defined types. For Tool messages, only the `text` type is supported.
-    - text `string` <font color="red">Required</font>
+    - text `string` <span style="color: #FA6062; font-weight: 400">Required</span>
 
       Text content.
 
-    - type `string` <font color="red">Required</font>
+    - type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
 
       The type of the content part.
 
-- role `string` <font color="red">Required</font>
+- role `string` <span style="color: #FA6062; font-weight: 400">Required</span>
 
   The author role of the message; in this case, `tool`.
 
-- tool_call_id `string` <font color="red">Required</font>
+- tool_call_id `string` <span style="color: #FA6062; font-weight: 400">Required</span>
 
   Corresponds to an `assistant` message’s `tool_calls[i].id`, used to associate this tool result with that call.
 
@@ -309,10 +326,10 @@ A message used to return the execution result of an external tool (function) cal
   The tool name (usually matches the function name declared in `tools`).  
   :::
 
-::: info Function message `object` <font color="red">Deprecated by the official spec and not supported</font>
+::: info Function message `object` <font color="FA6062">Deprecated by the official spec and not supported</font>
 :::
 
-### model `string` <font color="red">Required</font>
+### model `string` <span style="color: #FA6062; font-weight: 400">Required</span>
 
 The model ID for this inference request, in the format `<provider>/<model_name>`, e.g. openai/gpt-5. You can find it on each model’s detail page.
 
@@ -430,11 +447,11 @@ Only effective when `stream: true`, used to configure streaming behavior, such a
 Used to configure routing and failover across multiple model providers (e.g., OpenAI, Anthropic, Google) for this request.  
 If not specified, the project’s or model’s default routing strategy is used.
 
-#### routing `object` <font color="red">Required</font>
+#### routing `object` <span style="color: #FA6062; font-weight: 400">Required</span>
 
 Routing policy configuration that determines how requests are selected and distributed among multiple providers.
 
-##### type `string` <font color="red">Required</font>
+##### type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
 
 Routing type. Supported values:
 
@@ -458,7 +475,7 @@ The primary consideration when multiple providers are available. For example:
 
 Actual behavior works in conjunction with `type`. For example, when `type = "priority"`, `primary_factor` mainly affects the priority sorting logic.
 
-##### providers `array` <font color="red">Required</font>
+##### providers `array` <span style="color: #FA6062; font-weight: 400">Required</span>
 
 The list of model providers that can participate in routing. Example: `["openai", "anthropic", "google"]`
 
@@ -482,7 +499,7 @@ Used to configure selection and routing across different models **within the sam
 
 If not specified, the project or SDK default model selection strategy is used (e.g., default model, default task-type mapping, etc.).
 
-#### available_models `array` <font color="red">Required</font>
+#### available_models `array` <span style="color: #FA6062; font-weight: 400">Required</span>
 
 A list of **model names** available for routing or as candidates.
 
@@ -496,7 +513,7 @@ Task metadata used to decide the specific model or parameters **based on task ty
 
 Fields:
 
-##### task_type `string` <font color="red">Required</font>
+##### task_type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
 
 Task type, expressing what the request is for, to support routing or automatic parameter selection.
 
@@ -534,7 +551,7 @@ Used to configure behaviors related to the reasoning process (chain-of-thought /
 
 If not specified, the system or model uses its default reasoning strategy.
 
-#### enabled `boolean` <font color="red">Required</font>
+#### enabled `boolean` <span style="color: #FA6062; font-weight: 400">Required</span>
 
 Whether to enable explicit reasoning.
 
@@ -573,7 +590,7 @@ Whether to **exclude reasoning content from the user-visible response**.
 
 Usage statistics
 
-##### include `boolean` <font color="red">Required</font>
+##### include `boolean` <span style="color: #FA6062; font-weight: 400">Required</span>
 
 Whether to include usage statistics in the response
 
@@ -587,31 +604,38 @@ Set to `{ "type": "json_object" }` to enable legacy JSON mode and ensure the gen
 
 :::details Text `object`
 
-- type `string` <font color="red">Required</font>
+- type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+
   The type of the response format being defined. Always `text`.
 
 :::
 
 :::details JSON schema `object`
 
-- json_schema `object` <font color="red">Required</font>
+- json_schema `object` <span style="color: #FA6062; font-weight: 400">Required</span>
+
   The JSON Schema that defines the response format.
-  - name `string` <font color="red">Required</font>
+  - name `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+
     The name of the response format. Must be a-z, A-Z, 0-9, or contain underscores and dashes; maximum length is 64.
+
   - schema `object` <font color="gray">Optional</font>
     The schema for the response format, described as a JSON Schema object.
   - strict `boolean` <font color="gray">Optional</font>
     Whether to strictly follow the JSON schema.
   - description `string` <font color="gray">Optional</font>
     A description of the response format’s purpose. The model uses this description to determine how to respond in that format.
-- type `string` <font color="red">Required</font>
+
+- type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+
   The type of the response format being defined. Always `json_schema`.
 
 :::
 
 :::details JSON object `object`
 
-- type `string` <font color="red">Required</font>
+- type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+
   The type of the response format being defined. Always `json_object`.
 
 :::
