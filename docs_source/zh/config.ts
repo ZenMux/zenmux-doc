@@ -138,6 +138,10 @@ export default defineLoacaleConfig({
             link: "/zh/guide/pay-as-you-go",
           },
           {
+            text: "退款说明",
+            link: "/zh/guide/refund",
+          },
+          {
             text: "下载发票",
             link: "/zh/guide/invoice",
           },
