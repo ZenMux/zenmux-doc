@@ -273,14 +273,14 @@ A: The response returns the actual model used (`response.model`). You can also v
 
 A: Yes. Model routing chooses the most suitable model, while provider routing chooses the optimal provider for the selected model. Using both together enables end-to-end intelligent optimization. For details, see the [Provider Routing documentation](/guide/advanced/provider-routing.html).
 
-::: tip Contact Us
-If you encounter any issues during use or have suggestions and feedback, please contact us via:
+<ContactCards>
+<ContactCard icon="mail" title="Email">
 
-- Official website: <https://zenmux.ai>
-- Technical support email: [support@zenmux.ai](mailto:support@zenmux.ai)
-- Business cooperation email: [bd@zenmux.ai](mailto:bd@zenmux.ai)
-- Twitter: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
-- Discord community: <http://discord.gg/vHZZzj84Bm>
+Technical support: [support@zenmux.ai](mailto:support@zenmux.ai)
 
-For more contact options and details, visit our [Contact Us page](/help/contact).
-:::
+Business cooperation: [bd@zenmux.ai](mailto:bd@zenmux.ai)
+
+</ContactCard>
+<ContactCard icon="x" title="X / Twitter" link="https://x.com/ZenMuxAI" label="@ZenMuxAI" />
+<ContactCard icon="discord" title="Discord" link="https://discord.gg/vHZZzj84Bm" label="@ZenMuxAI" />
+</ContactCards>

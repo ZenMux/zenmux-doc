@@ -421,14 +421,14 @@ A: The same model across different providers usually produces consistent outputs
 
 A: No. ZenMux’s routing decisions are made at millisecond scale, with negligible impact on overall latency. In fact, by intelligently selecting low-latency providers, it can reduce total response time.
 
-::: tip Contact Us
-If you encounter any issues during use or have suggestions and feedback, feel free to contact us:
+<ContactCards>
+<ContactCard icon="mail" title="Email">
 
-- Official website: <https://zenmux.ai>
-- Technical support email: [support@zenmux.ai](mailto:support@zenmux.ai)
-- Business cooperation email: [bd@zenmux.ai](mailto:bd@zenmux.ai)
-- Twitter: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
-- Discord community: <http://discord.gg/vHZZzj84Bm>
+Technical support: [support@zenmux.ai](mailto:support@zenmux.ai)
 
-For more contact methods and details, please visit our Contact Us page (/help/contact).
-:::
+Business cooperation: [bd@zenmux.ai](mailto:bd@zenmux.ai)
+
+</ContactCard>
+<ContactCard icon="x" title="X / Twitter" link="https://x.com/ZenMuxAI" label="@ZenMuxAI" />
+<ContactCard icon="discord" title="Discord" link="https://discord.gg/vHZZzj84Bm" label="@ZenMuxAI" />
+</ContactCards>

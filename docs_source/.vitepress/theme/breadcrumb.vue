@@ -98,6 +98,10 @@ function findInItems(items: any[], path: string, chain: string[]): boolean {
   color: var(--vp-c-text-1);
 }
 
+.breadcrumb-item:last-child {
+  color: #333;
+}
+
 .breadcrumb-sep {
   margin: 0 4px;
   color: #ccc;
@@ -105,6 +109,10 @@ function findInItems(items: any[], path: string, chain: string[]): boolean {
 
 .dark .breadcrumb {
   color: #666;
+}
+
+.dark .breadcrumb-item:last-child {
+  color: #ccc;
 }
 
 .dark .breadcrumb-item a {

@@ -199,14 +199,14 @@ Copy model slugs from the [ZenMux model list](https://zenmux.ai/models?sort=newe
 - [ZenMux Anthropic Compatible API](/api/anthropic/create-messages)
 - [ZenMux model list](https://zenmux.ai/models?sort=newest&supported_protocol=messages)
 
-::: tip Contact Us
-If you encounter any issues while using the platform, or have suggestions and feedback, feel free to contact us:
+<ContactCards>
+<ContactCard icon="mail" title="Email">
 
-- **Official website**: <https://zenmux.ai>
-- **Technical support**: [support@zenmux.ai](mailto:support@zenmux.ai)
-- **Business inquiries**: [bd@zenmux.ai](mailto:bd@zenmux.ai)
-- **Twitter**: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
-- **Discord community**: <http://discord.gg/vHZZzj84Bm>
+Technical support: [support@zenmux.ai](mailto:support@zenmux.ai)
 
-For more contact methods and details, see our [Contact Us page](/help/contact).
-:::
+Business cooperation: [bd@zenmux.ai](mailto:bd@zenmux.ai)
+
+</ContactCard>
+<ContactCard icon="x" title="X / Twitter" link="https://x.com/ZenMuxAI" label="@ZenMuxAI" />
+<ContactCard icon="discord" title="Discord" link="https://discord.gg/vHZZzj84Bm" label="@ZenMuxAI" />
+</ContactCards>

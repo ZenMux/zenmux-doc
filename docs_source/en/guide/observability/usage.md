@@ -118,14 +118,14 @@ In the "Performance" tab, you can view performance metrics for API calls to eval
   - Helps select high-throughput models to improve overall system responsiveness.
 
 ---
-::: tip Contact Us
-If you encounter any issues or have suggestions and feedback, feel free to reach out to us:
+<ContactCards>
+<ContactCard icon="mail" title="Email">
 
-- **Official Website**: <https://zenmux.ai>
-- **Technical Support Email**: [support@zenmux.ai](mailto:support@zenmux.ai)
-- **Business Inquiries**: [bd@zenmux.ai](mailto:bd@zenmux.ai)
-- **Twitter**: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
-- **Discord Community**: <http://discord.gg/vHZZzj84Bm>
+Technical support: [support@zenmux.ai](mailto:support@zenmux.ai)
 
-For more contact information and details, please visit our [Contact Us page](/help/contact).
-:::
+Business cooperation: [bd@zenmux.ai](mailto:bd@zenmux.ai)
+
+</ContactCard>
+<ContactCard icon="x" title="X / Twitter" link="https://x.com/ZenMuxAI" label="@ZenMuxAI" />
+<ContactCard icon="discord" title="Discord" link="https://discord.gg/vHZZzj84Bm" label="@ZenMuxAI" />
+</ContactCards>

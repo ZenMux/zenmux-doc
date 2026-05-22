@@ -24,17 +24,17 @@ Create Embeddings 接口兼容 OpenAI 的 [Create Embeddings](https://platform.o
 
 ## Request headers
 
-### Authorization `string` <font color="red">必填</font>
+### Authorization `string` <font color="FA6062">必填</font>
 
 Bearer Token 鉴权
 
-### Content-Type `string` <font color="red">必填</font>
+### Content-Type `string` <font color="FA6062">必填</font>
 
 请求内容类型，默认值为 `application/json`
 
 ## Request
 
-### input `string or array` <font color="red">必选</font>
+### input `string or array` <font color="FA6062">必选</font>
 
 要生成 embedding 的输入文本，可以是字符串或字符串数组。如需在单个请求中嵌入多个输入，请传递字符串数组。
 
@@ -46,13 +46,14 @@ Bearer Token 鉴权
 - `array of integer arrays` — 将被转化为 embedding 的 token 整数二维数组
 
 ::: warning 输入限制
+
 - 单个输入不能超过模型的最大输入 token 数（例如 `text-embedding-3` 系列为 8192 tokens）
 - 输入不能为空字符串
 - 数组长度不能超过 2048
 - 单次请求中所有输入的 token 总数不能超过 300,000
-:::
+  :::
 
-### model `string` <font color="red">必选</font>
+### model `string` <font color="FA6062">必选</font>
 
 要使用的模型 ID，格式为 `<供应商>/<模型名称>`。
 
@@ -180,16 +181,8 @@ curl https://zenmux.ai/api/v1/embeddings \
     {
       "object": "embedding",
       "embedding": [
-        0.0023064255,
-        -0.009327292,
-        -0.0028842222,
-        0.018182484,
-        -0.012395813,
-        0.0073498537,
-        -0.020456877,
-        0.0118837105,
-        0.015375832,
-        -0.0036487724
+        0.0023064255, -0.009327292, -0.0028842222, 0.018182484, -0.012395813,
+        0.0073498537, -0.020456877, 0.0118837105, 0.015375832, -0.0036487724
       ],
       "index": 0
     }

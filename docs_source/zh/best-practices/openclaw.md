@@ -511,15 +511,14 @@ ZenMux 提供 135+ 个模型。以下是常用选项:
 
 ## 联系我们
 
-如果您在使用过程中遇到任何问题,或有建议和反馈,请通过以下渠道联系我们:
+<ContactCards>
+<ContactCard icon="mail" title="邮箱">
 
-::: tip 获取帮助
+技术支持: [support@zenmux.ai](mailto:support@zenmux.ai)
 
-- **官方网站**:<https://zenmux.ai>
-- **技术支持邮箱**:[support@zenmux.ai](mailto:support@zenmux.ai)
-- **商务合作邮箱**:[bd@zenmux.ai](mailto:bd@zenmux.ai)
-- **Twitter**:[@ZenMuxAI](https://twitter.com/ZenMuxAI)
-- **Discord 社区**:<http://discord.gg/vHZZzj84Bm>
+商务合作: [bd@zenmux.ai](mailto:bd@zenmux.ai)
 
-更多联系方式和详情,请访问我们的[联系我们页面](/zh/help/contact)。
-:::
+</ContactCard>
+<ContactCard icon="x" title="X / Twitter" link="https://x.com/ZenMuxAI" label="@ZenMuxAI" />
+<ContactCard icon="discord" title="Discord" link="https://discord.gg/vHZZzj84Bm" label="@ZenMuxAI" />
+</ContactCards>

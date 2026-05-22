@@ -170,7 +170,7 @@ export default defineComponent({
 </script>
 <style scoped>
 .login-button {
-  margin-right: -24px;
+  margin-right: -16px;
   display: flex;
   align-items: center;
   padding: 0 12px;

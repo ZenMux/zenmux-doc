@@ -530,14 +530,14 @@ export GEMINI_MODEL="google/gemini-2.5-flash"
 
 :::
 
-::: tip Contact Us
-If you run into any issues while using the service, or if you have suggestions and feedback, feel free to reach out through:
+<ContactCards>
+<ContactCard icon="mail" title="Email">
 
-- **Official website**: <https://zenmux.ai>
-- **Support email**: [support@zenmux.ai](mailto:support@zenmux.ai)
-- **Business inquiries**: [bd@zenmux.ai](mailto:bd@zenmux.ai)
-- **Twitter**: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
-- **Discord community**: <http://discord.gg/vHZZzj84Bm>
+Technical support: [support@zenmux.ai](mailto:support@zenmux.ai)
 
-For more contact channels and details, visit our [Contact Us page](/help/contact).
-:::
+Business cooperation: [bd@zenmux.ai](mailto:bd@zenmux.ai)
+
+</ContactCard>
+<ContactCard icon="x" title="X / Twitter" link="https://x.com/ZenMuxAI" label="@ZenMuxAI" />
+<ContactCard icon="discord" title="Discord" link="https://discord.gg/vHZZzj84Bm" label="@ZenMuxAI" />
+</ContactCards>

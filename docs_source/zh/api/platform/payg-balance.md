@@ -24,7 +24,7 @@ GET https://zenmux.ai/api/v1/management/payg/balance
 
 ## 鉴权
 
-### Authorization Header <font color="red">必选</font>
+### Authorization Header <font color="FA6062">必选</font>
 
 ```http
 Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
@@ -82,9 +82,12 @@ print(response.json())
 ```
 
 ```javascript
-const response = await fetch("https://zenmux.ai/api/v1/management/payg/balance", {
-  headers: { Authorization: `Bearer ${ZENMUX_MANAGEMENT_API_KEY}` },
-});
+const response = await fetch(
+  "https://zenmux.ai/api/v1/management/payg/balance",
+  {
+    headers: { Authorization: `Bearer ${ZENMUX_MANAGEMENT_API_KEY}` },
+  },
+);
 const data = await response.json();
 ```
 
@@ -98,7 +101,7 @@ const data = await response.json();
   "data": {
     "currency": "usd",
     "total_credits": 482.74,
-    "top_up_credits": 35.00,
+    "top_up_credits": 35.0,
     "bonus_credits": 447.74
   }
 }

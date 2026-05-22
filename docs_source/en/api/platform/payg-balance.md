@@ -24,7 +24,7 @@ Returns the Pay As You Go credit balance for the current account, including the 
 
 ## Authentication
 
-### Authorization Header <font color="red">Required</font>
+### Authorization Header <span style="color: #FA6062; font-weight: 400">Required</span>
 
 ```http
 Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
@@ -82,9 +82,12 @@ print(response.json())
 ```
 
 ```javascript
-const response = await fetch("https://zenmux.ai/api/v1/management/payg/balance", {
-  headers: { Authorization: `Bearer ${ZENMUX_MANAGEMENT_API_KEY}` },
-});
+const response = await fetch(
+  "https://zenmux.ai/api/v1/management/payg/balance",
+  {
+    headers: { Authorization: `Bearer ${ZENMUX_MANAGEMENT_API_KEY}` },
+  },
+);
 const data = await response.json();
 ```
 
@@ -98,7 +101,7 @@ const data = await response.json();
   "data": {
     "currency": "usd",
     "total_credits": 482.74,
-    "top_up_credits": 35.00,
+    "top_up_credits": 35.0,
     "bonus_credits": 447.74
   }
 }

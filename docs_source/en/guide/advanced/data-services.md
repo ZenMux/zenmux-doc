@@ -117,14 +117,14 @@ A: No. AI insurance claims rely on server-side request records to evaluate claim
 
 A: No. Regardless of whether Data Services is enabled, API call billing remains the same. Data Services only controls data storage and the availability of advanced features.
 
-::: tip Contact Us
-If you encounter any issues or have suggestions and feedback, feel free to reach out through the following channels:
+<ContactCards>
+<ContactCard icon="mail" title="Email">
 
-- **Website**: <https://zenmux.ai>
-- **Support email**: [support@zenmux.ai](mailto:support@zenmux.ai)
-- **Business inquiries**: [bd@zenmux.ai](mailto:bd@zenmux.ai)
-- **Twitter**: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
-- **Discord community**: <http://discord.gg/vHZZzj84Bm>
+Technical support: [support@zenmux.ai](mailto:support@zenmux.ai)
 
-For more contact options and details, visit our [Contact Us page](/help/contact).
-:::
+Business cooperation: [bd@zenmux.ai](mailto:bd@zenmux.ai)
+
+</ContactCard>
+<ContactCard icon="x" title="X / Twitter" link="https://x.com/ZenMuxAI" label="@ZenMuxAI" />
+<ContactCard icon="discord" title="Discord" link="https://discord.gg/vHZZzj84Bm" label="@ZenMuxAI" />
+</ContactCards>

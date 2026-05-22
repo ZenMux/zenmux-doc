@@ -385,11 +385,14 @@ gh auth status   # 确认已登录
   - [按量付费管理](https://zenmux.ai/platform/pay-as-you-go)
   - [Management API Key](https://zenmux.ai/platform/management)
 
-::: tip 联系我们
-如果你在使用 ZenMux Skills 过程中有问题或建议，欢迎：
+<ContactCards>
+<ContactCard icon="mail" title="邮箱">
 
-- 直接用 **`/zenmux-feedback`** 提交反馈（最快）
-- 访问 [GitHub Issues](https://github.com/ZenMux/skills/issues)
-- 邮件：[support@zenmux.ai](mailto:support@zenmux.ai)
-- Discord 社区：<http://discord.gg/vHZZzj84Bm>
-:::
+技术支持: [support@zenmux.ai](mailto:support@zenmux.ai)
+
+商务合作: [bd@zenmux.ai](mailto:bd@zenmux.ai)
+
+</ContactCard>
+<ContactCard icon="x" title="X / Twitter" link="https://x.com/ZenMuxAI" label="@ZenMuxAI" />
+<ContactCard icon="discord" title="Discord" link="https://discord.gg/vHZZzj84Bm" label="@ZenMuxAI" />
+</ContactCards>

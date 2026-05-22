@@ -16,38 +16,40 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useData } from 'vitepress'
-import LZString from 'lz-string'
-import copyToClipboard from 'copy-to-clipboard'
-import { Copy as CopyIcon } from './icons'
-import IconBack_top from './icons/IconBack_top.vue'
-import IconWishlist01 from './icons/IconWishlist_01.vue'
+import { ref } from "vue";
+import { useData } from "vitepress";
+import LZString from "lz-string";
+import copyToClipboard from "copy-to-clipboard";
+import { Copy as CopyIcon } from "./icons";
+import IconBack_top from "./icons/IconBack_top.vue";
+import ChatFrame from "./icons/ChatFrame.vue";
 
-const AiIcon = IconWishlist01
+const AiIcon = ChatFrame;
 
-const { page } = useData()
+const { page } = useData();
 
-const copyText = ref('Copy page')
-let copyTimer: ReturnType<typeof setTimeout> | null = null
+const copyText = ref("Copy page");
+let copyTimer: ReturnType<typeof setTimeout> | null = null;
 
 function copyPage() {
-  if (copyText.value !== 'Copy page') return
-  const content = (page.value as any).content
+  if (copyText.value !== "Copy page") return;
+  const content = (page.value as any).content;
   if (content) {
-    copyToClipboard(LZString.decompressFromBase64(content))
+    copyToClipboard(LZString.decompressFromBase64(content));
   }
-  copyText.value = 'Copied!'
-  if (copyTimer) clearTimeout(copyTimer)
-  copyTimer = setTimeout(() => { copyText.value = 'Copy page' }, 2000)
+  copyText.value = "Copied!";
+  if (copyTimer) clearTimeout(copyTimer);
+  copyTimer = setTimeout(() => {
+    copyText.value = "Copy page";
+  }, 2000);
 }
 
 function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' })
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function askAI() {
-  document.dispatchEvent(new CustomEvent('open-ai-assistant'))
+  document.dispatchEvent(new CustomEvent("open-ai-assistant"));
 }
 </script>
 
@@ -56,8 +58,23 @@ function askAI() {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  position: fixed;
-  bottom: 48px;
+  position: sticky;
+  bottom: 0;
+  padding: 24px 0 32px;
+  background: var(--vp-c-bg);
+  z-index: 1;
+  padding-left: 14px;
+}
+
+.aside-actions::before {
+  content: "";
+  position: absolute;
+  top: -32px;
+  left: -16px;
+  right: -16px;
+  height: 32px;
+  background: linear-gradient(to bottom, transparent, var(--vp-c-bg));
+  pointer-events: none;
 }
 
 .aside-action-item {

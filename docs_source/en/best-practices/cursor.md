@@ -52,14 +52,14 @@ If, after completing the configuration, you are still repeatedly prompted to upg
   - **Cause**: Cursor passes tool definitions (Tool Definition) to the model in all modes (including Ask mode and Agent mode), which does not match the tool format specification expected by the **Chat Completion API** endpoint.
   - There is currently no effective workaround. Consider following Cursor’s release notes for a compatibility fix, or temporarily using other models as alternatives.
 
-::: tip Contact Us
-If you encounter any issues during use, or have suggestions and feedback, feel free to contact us via:
+<ContactCards>
+<ContactCard icon="mail" title="Email">
 
-- **Official Website**: <https://zenmux.ai>
-- **Technical Support Email**: [support@zenmux.ai](mailto:support@zenmux.ai)
-- **Business Inquiries Email**: [bd@zenmux.ai](mailto:bd@zenmux.ai)
-- **Twitter**: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
-- **Discord Community**: <http://discord.gg/vHZZzj84Bm>
+Technical support: [support@zenmux.ai](mailto:support@zenmux.ai)
 
-For more contact methods and details, please visit our [Contact Us page](/help/contact).
-:::
+Business cooperation: [bd@zenmux.ai](mailto:bd@zenmux.ai)
+
+</ContactCard>
+<ContactCard icon="x" title="X / Twitter" link="https://x.com/ZenMuxAI" label="@ZenMuxAI" />
+<ContactCard icon="discord" title="Discord" link="https://discord.gg/vHZZzj84Bm" label="@ZenMuxAI" />
+</ContactCards>

@@ -30,7 +30,7 @@ Statistics data is aggregated on a daily schedule. The most recent available dat
 
 ## Authentication
 
-### Authorization Header <font color="red">Required</font>
+### Authorization Header <span style="color: #FA6062; font-weight: 400">Required</span>
 
 ```http
 Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
@@ -50,7 +50,7 @@ Each endpoint has its own independent rate limit counter. The maximum number of 
 
 ## Parameters
 
-### metric `string` <font color="red">Required</font>
+### metric `string` <span style="color: #FA6062; font-weight: 400">Required</span>
 
 Which metric to rank by.
 
@@ -139,7 +139,7 @@ const params = new URLSearchParams({
 
 const response = await fetch(
   `https://zenmux.ai/api/v1/management/statistics/leaderboard?${params}`,
-  { headers: { Authorization: `Bearer ${ZENMUX_MANAGEMENT_API_KEY}` } }
+  { headers: { Authorization: `Bearer ${ZENMUX_MANAGEMENT_API_KEY}` } },
 );
 const data = await response.json();
 ```
@@ -194,7 +194,7 @@ const data = await response.json();
         "label": "DeepSeek R1",
         "author": "deepseek",
         "author_label": "DeepSeek",
-        "value": 5432.10
+        "value": 5432.1
       },
       {
         "rank": 6,

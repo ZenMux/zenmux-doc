@@ -28,8 +28,6 @@ Just four simple steps to start using ZenMux:
 
 4. **Make your first request**: Pick the [API protocol](#supported-api-protocols) you're most familiar with, copy the code example below, replace your API key, and run it.
 
----
-
 ## Choose a Usage Plan
 
 ZenMux offers two usage plans to fit different scenarios:
@@ -42,7 +40,6 @@ Pay As You Go uses a **prepaid balance + usage-based billing** model, purpose-bu
 
 - **No rate limits** — supports high-concurrency calls
 - **Per-token billing** — transparent and predictable costs
--
 
 Go to the **[Pay As You Go management page](https://zenmux.ai/platform/pay-as-you-go)** to top up your balance and create an API key.
 
@@ -84,16 +81,12 @@ For complete instructions, see the [Subscription Plans Guide](/guide/subscriptio
 If your project is already live or heading toward commercialization, **you must use the Pay As You Go plan**. The subscription plan is strictly for personal development and learning — production use is prohibited.
 :::
 
----
-
 ::: info How to Obtain Model Slugs
 Each model on the ZenMux platform has a unique slug. You can find model slugs on the [Models page](https://zenmux.ai/models):
 ![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/AQG0SIr/model-slug.png)
 Or on a [model's detail page](https://zenmux.ai/google/gemini-3.1-pro-preview):
 ![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/dWYxJnq/model-slug-3.png)
 :::
-
----
 
 ## Supported API Protocols
 
@@ -109,8 +102,6 @@ ZenMux supports four major API protocols, letting you use your preferred SDK to 
 ::: tip 💡 Cross-Protocol Calling
 One of ZenMux's core strengths is **protocol agnosticism** — you can call any model through any supported protocol. For example, use the OpenAI SDK to call Claude models, or the Anthropic SDK to call Gemini models.
 :::
-
----
 
 ### Protocol 1: OpenAI Chat Completions
 
@@ -193,8 +184,6 @@ curl https://zenmux.ai/api/v1/chat/completions \
 
 :::
 
----
-
 ### Protocol 2: OpenAI Responses
 
 ::: info Compatibility
@@ -251,8 +240,6 @@ curl https://zenmux.ai/api/v1/responses \
 ```
 
 :::
-
----
 
 ### Protocol 3: Anthropic Messages
 
@@ -346,8 +333,6 @@ curl https://zenmux.ai/api/anthropic/v1/messages \
 
 :::
 
----
-
 ### Protocol 4: Google Gemini
 
 ::: info Compatibility
@@ -413,8 +398,6 @@ main();
 
 :::
 
----
-
 ## Platform API
 
 ZenMux provides a set of Platform Management APIs that let you programmatically query account usage, balance, subscription status, and more — making it easy to integrate with your monitoring and management systems.
@@ -464,8 +447,6 @@ Billing information (such as `usage` and `ratingResponses`) becomes available **
 For detailed parameter descriptions, see the [Get Generation API docs](/api/platform/get-generation).
 :::
 
----
-
 ### Query PAYG Balance
 
 Retrieve the current Pay As You Go balance for your account.
@@ -496,8 +477,6 @@ Example response:
 ::: info 📚 Full Documentation
 For detailed parameter descriptions, see the [Get PAYG Balance API docs](/api/platform/payg-balance).
 :::
-
----
 
 ### Query Subscription Details
 
@@ -543,8 +522,6 @@ Example response (partial):
 For detailed parameter descriptions, see the [Get Subscription Detail API docs](/api/platform/subscription-detail).
 :::
 
----
-
 ### Query Flow Rate
 
 Retrieve the current Flow rate information for your account.
@@ -575,20 +552,18 @@ Example response:
 For detailed parameter descriptions, see the [Get Flow Rate API docs](/api/platform/flow-rate).
 :::
 
----
-
 ## Advanced Usage
 
 For more details on advanced usage, refer to the Advanced Usage section.
 
-::: tip Contact Us
-If you encounter any issues or have suggestions and feedback, feel free to reach out:
+<ContactCards>
+<ContactCard icon="mail" title="Email">
 
-- **Official Website**: <https://zenmux.ai>
-- **Technical Support**: [support@zenmux.ai](mailto:support@zenmux.ai)
-- **Business Inquiries**: [bd@zenmux.ai](mailto:bd@zenmux.ai)
-- **Twitter**: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
-- **Discord Community**: <http://discord.gg/vHZZzj84Bm>
+Technical support: [support@zenmux.ai](mailto:support@zenmux.ai)
 
-For more contact options and details, visit our [Contact Us page](/help/contact).
-:::
+Business cooperation: [bd@zenmux.ai](mailto:bd@zenmux.ai)
+
+</ContactCard>
+<ContactCard icon="x" title="X / Twitter" link="https://x.com/ZenMuxAI" label="@ZenMuxAI" />
+<ContactCard icon="discord" title="Discord" link="https://discord.gg/vHZZzj84Bm" label="@ZenMuxAI" />
+</ContactCards>

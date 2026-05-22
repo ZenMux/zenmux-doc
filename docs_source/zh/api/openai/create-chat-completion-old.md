@@ -22,13 +22,13 @@ Create Chat Completion 接口兼容 OpenAI 的 [Create Chat Completion](https://
 
 ## Request body
 
-### messages `array` <font color="red">必选</font>
+### messages `array` <font color="FA6062">必选</font>
 
 以对话的消息列表形式输入给大模型的提示词。根据模型的能力不同，支持的消息类型也会有所不同，比如 文本、图片、音频、视频。具体支持的参数，请查看各模型生产商的文档。
 
 messages 里的每个元素表示一条对话消息，每条消息由 role 和 content 组成，详情参见 OpenAI 定义：[messages](https://platform.openai.com/docs/api-reference/chat/create#chat_create-messages)。
 
-### model `string` <font color="red">必选</font>
+### model `string` <font color="FA6062">必选</font>
 
 此次推理调用的模型 ID，格式为 &lt;供应商&gt;/&lt;模型名称&gt;，如 openai/gpt-5，可以从各模型的详情页获得。
 

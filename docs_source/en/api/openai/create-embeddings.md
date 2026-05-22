@@ -24,17 +24,17 @@ The Create Embeddings endpoint is compatible with OpenAI's [Create Embeddings](h
 
 ## Request headers
 
-### Authorization `string` <font color="red">Required</font>
+### Authorization `string` <span style="color: #FA6062; font-weight: 400">Required</span>
 
 Bearer Token authentication
 
-### Content-Type `string` <font color="red">Required</font>
+### Content-Type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
 
 Request content type, defaults to `application/json`
 
 ## Request
 
-### input `string or array` <font color="red">Required</font>
+### input `string or array` <span style="color: #FA6062; font-weight: 400">Required</span>
 
 The input text to generate embeddings for. Can be a string or an array of strings. To embed multiple inputs in a single request, pass an array of strings.
 
@@ -46,13 +46,14 @@ Supported input types:
 - `array of integer arrays` — A 2D array of token integers to be embedded
 
 ::: warning Input Limitations
+
 - A single input cannot exceed the model's maximum input token limit (e.g., 8192 tokens for the `text-embedding-3` series)
 - Input cannot be an empty string
 - Array length cannot exceed 2048
 - Total token count across all inputs in a single request cannot exceed 300,000
-:::
+  :::
 
-### model `string` <font color="red">Required</font>
+### model `string` <span style="color: #FA6062; font-weight: 400">Required</span>
 
 The model ID to use, in the format `<provider>/<model-name>`.
 
@@ -180,16 +181,8 @@ curl https://zenmux.ai/api/v1/embeddings \
     {
       "object": "embedding",
       "embedding": [
-        0.0023064255,
-        -0.009327292,
-        -0.0028842222,
-        0.018182484,
-        -0.012395813,
-        0.0073498537,
-        -0.020456877,
-        0.0118837105,
-        0.015375832,
-        -0.0036487724
+        0.0023064255, -0.009327292, -0.0028842222, 0.018182484, -0.012395813,
+        0.0073498537, -0.020456877, 0.0118837105, 0.015375832, -0.0036487724
       ],
       "index": 0
     }

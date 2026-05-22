@@ -34,9 +34,10 @@ Get generation 接口用于查询生成信息，如用量和费用等。
 本接口仅支持 **Pay As You Go（按量付费）** 的 API Key 查询计费信息。使用订阅制 API Key（以 `sk-ss-v1-` 开头）调用本接口将无法获取计费相关字段（如 `usage`、`ratingResponses` 等）。
 
 如需获取计费信息，请使用 Pay As You Go API Key。详见：
+
 - [Pay As You Go 使用指南](../../guide/pay-as-you-go.md)
 - [订阅制使用指南](../../guide/subscription.md)
-:::
+  :::
 
 ## 计量与计费信息说明
 
@@ -59,7 +60,7 @@ Get generation 接口用于查询生成信息，如用量和费用等。
 
 ## Request params
 
-### Authorization Header <font color="red">必选</font>
+### Authorization Header <font color="FA6062">必选</font>
 
 **请求头参数：**
 
@@ -74,11 +75,12 @@ Authorization: Bearer <ZENMUX_API_KEY>
   - **订阅制 API Key**（以 `sk-ss-v1-` 开头）：仅支持查询计量信息，不支持计费信息
 
 ::: tip 💡 获取 API Key
+
 - Pay As You Go API Key：登录 [ZenMux 控制台](https://zenmux.ai/platform/pay-as-you-go) 创建
 - 订阅制 API Key：登录 [订阅管理页面](https://zenmux.ai/platform/subscription) 创建
-:::
+  :::
 
-### generate_id `string` <font color="red">必选</font>
+### generate_id `string` <font color="FA6062">必选</font>
 
 **查询参数：**
 

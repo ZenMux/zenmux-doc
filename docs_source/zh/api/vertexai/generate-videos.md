@@ -58,29 +58,29 @@ Generate Videos 接口通过 Google Vertex AI 协议生成视频。ZenMux 聚合
 
 ## Path parameters
 
-### provider `string` <font color="red">必填</font>
+### provider `string` <font color="FA6062">必填</font>
 
 模型供应商标识。对应模型名称中 `/` 前的部分，例如 `google/veo-3.1-generate-001` 中的 `google`。
 
-### model `string` <font color="red">必填</font>
+### model `string` <font color="FA6062">必填</font>
 
 模型名称。对应模型名称中 `/` 后的部分，例如 `google/veo-3.1-generate-001` 中的 `veo-3.1-generate-001`。
 
 ## 鉴权参数
 
-### api_key `string` <font color="red">必填</font>
+### api_key `string` <font color="FA6062">必填</font>
 
 ZenMux API 密钥，用于身份鉴权。
 
-### vertexai `boolean` <font color="red">必填</font>
+### vertexai `boolean` <font color="FA6062">必填</font>
 
 必须设置为 `true` 以启用 Vertex AI 协议。
 
-### http_options.base_url `string` <font color="red">必填</font>
+### http_options.base_url `string` <font color="FA6062">必填</font>
 
 ZenMux Vertex AI 端点：`https://zenmux.ai/api/vertex-ai`。
 
-### http_options.api_version `string` <font color="red">必填</font>
+### http_options.api_version `string` <font color="FA6062">必填</font>
 
 API 版本，设置为 `v1`。
 
@@ -88,11 +88,11 @@ API 版本，设置为 `v1`。
 
 以下为 `generate_videos` / `generateVideos` SDK 方法的参数说明。SDK 会自动将这些参数转换为 Vertex AI REST 格式发送给 ZenMux。
 
-### prompt `string` <font color="red">必选</font>
+### prompt `string` <font color="FA6062">必选</font>
 
 视频内容的文本描述。建议包含主体、动作、环境和光线等要素，使用清晰具体的描述。
 
-### model `string` <font color="red">必选</font>
+### model `string` <font color="FA6062">必选</font>
 
 用于视频生成的模型。格式为 `{provider}/{model}`，例如 `google/veo-3.1-generate-001`。
 
@@ -187,12 +187,12 @@ SDK 字段名：Python `number_of_videos`，TypeScript `numberOfVideos`。
 
 除文生视频外，还支持传入图片作为起始帧/结束帧，结合文本提示词生成视频。
 
-### image `Image` <font color="red">必选</font>
+### image `Image` <font color="FA6062">必选</font>
 
 起始帧图片对象。
 
-- `image_bytes` `bytes` <font color="red">必选</font>：图片的二进制数据。
-- `mime_type` `string` <font color="red">必选</font>：图片 MIME 类型，如 `image/png`、`image/jpeg`。
+- `image_bytes` `bytes` <font color="FA6062">必选</font>：图片的二进制数据。
+- `mime_type` `string` <font color="FA6062">必选</font>：图片 MIME 类型，如 `image/png`、`image/jpeg`。
 
 > REST 对应字段：`instances[0].image`
 
@@ -208,7 +208,7 @@ SDK 字段名：Python `last_frame`，TypeScript `lastFrame`。
 
 描述图片中的内容应如何运动或变化的文本提示词。
 
-### model `string` <font color="red">必选</font>
+### model `string` <font color="FA6062">必选</font>
 
 同文生视频。
 

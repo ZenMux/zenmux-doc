@@ -30,7 +30,7 @@ Statistics data is aggregated on a daily schedule. The most recent available dat
 
 ## Authentication
 
-### Authorization Header <font color="red">Required</font>
+### Authorization Header <span style="color: #FA6062; font-weight: 400">Required</span>
 
 ```http
 Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
@@ -50,14 +50,14 @@ Each endpoint has its own independent rate limit counter. The maximum number of 
 
 ## Parameters
 
-### metric `string` <font color="red">Required</font>
+### metric `string` <span style="color: #FA6062; font-weight: 400">Required</span>
 
 Which metric to retrieve.
 
 - `tokens` — total input + output token count
 - `cost` — list-price cost in USD
 
-### bucket_width `string` <font color="red">Required</font>
+### bucket_width `string` <span style="color: #FA6062; font-weight: 400">Required</span>
 
 Time bucket size.
 
@@ -160,7 +160,7 @@ const params = new URLSearchParams({
 
 const response = await fetch(
   `https://zenmux.ai/api/v1/management/statistics/timeseries?${params}`,
-  { headers: { Authorization: `Bearer ${ZENMUX_MANAGEMENT_API_KEY}` } }
+  { headers: { Authorization: `Bearer ${ZENMUX_MANAGEMENT_API_KEY}` } },
 );
 const data = await response.json();
 ```

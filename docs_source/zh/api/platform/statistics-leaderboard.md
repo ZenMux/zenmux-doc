@@ -30,7 +30,7 @@ GET https://zenmux.ai/api/v1/management/statistics/leaderboard
 
 ## 鉴权
 
-### Authorization Header <font color="red">必选</font>
+### Authorization Header <font color="FA6062">必选</font>
 
 ```http
 Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
@@ -50,7 +50,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 
 ## 参数
 
-### metric `string` <font color="red">必选</font>
+### metric `string` <font color="FA6062">必选</font>
 
 排名依据的指标类型。
 
@@ -139,7 +139,7 @@ const params = new URLSearchParams({
 
 const response = await fetch(
   `https://zenmux.ai/api/v1/management/statistics/leaderboard?${params}`,
-  { headers: { Authorization: `Bearer ${ZENMUX_MANAGEMENT_API_KEY}` } }
+  { headers: { Authorization: `Bearer ${ZENMUX_MANAGEMENT_API_KEY}` } },
 );
 const data = await response.json();
 ```
@@ -194,7 +194,7 @@ const data = await response.json();
         "label": "DeepSeek R1",
         "author": "deepseek",
         "author_label": "DeepSeek",
-        "value": 5432.10
+        "value": 5432.1
       },
       {
         "rank": 6,

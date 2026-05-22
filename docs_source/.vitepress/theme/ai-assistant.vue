@@ -252,8 +252,8 @@ onUnmounted(() => {
     title="Ask AI (⌘J)"
     @click="togglePanel"
   >
-    <span class="ai-trigger-text">Ask AI</span>
     <ChatFrame class="ai-trigger-icon" />
+    <span class="ai-trigger-text">Ask AI</span>
   </button>
 
   <!-- Right sidebar panel -->
@@ -439,7 +439,7 @@ onUnmounted(() => {
               title="Stop"
               @click="handleStop"
             >
-              <IconStop width="14" height="14" />
+              <IconStop width="32" height="32" />
             </button>
             <button
               v-else
@@ -448,7 +448,7 @@ onUnmounted(() => {
               title="Send"
               @click="handleSend"
             >
-              <IconSendV5 width="14" height="14" />
+              <IconSendV5 width="32" height="32" />
             </button>
           </div>
         </div>
@@ -466,18 +466,23 @@ onUnmounted(() => {
   width: 90px;
   height: 32px;
   padding: 8px 12px;
-  border: 0.5px solid #E6E6E6;
+  border: 1px solid #e6e6e6;
   border-radius: 8px;
   background: transparent;
   color: #666;
   cursor: pointer;
-  font-family: 'SF Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family:
+    "SF Pro",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
   font-size: 14px;
   font-weight: 400;
   transition: all 0.2s;
   white-space: nowrap;
   margin-left: 8px;
-  margin-right: 32px;
+  margin-right: auto !important;
 }
 
 .ai-trigger:hover {
@@ -524,7 +529,9 @@ onUnmounted(() => {
   top: calc(var(--vp-nav-height, 64px) + var(--zenmux-doc-tabs-height, 48px));
   right: 0;
   width: 380px;
-  height: calc(100vh - var(--vp-nav-height, 64px) - var(--zenmux-doc-tabs-height, 48px));
+  height: calc(
+    100vh - var(--vp-nav-height, 64px) - var(--zenmux-doc-tabs-height, 48px)
+  );
   background: var(--vp-c-bg);
   border-left: 1px solid var(--vp-c-divider);
   display: flex;
