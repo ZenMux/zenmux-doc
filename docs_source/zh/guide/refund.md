@@ -204,6 +204,18 @@ ZenMux 的两种付费方式均支持退款,但需在规定时间内申请:
 
 退款金额会从你的充值钱包余额中扣除。如果当前余额不足以覆盖退款操作,系统将拒绝退款。请确保钱包中有足够的充值余额。
 
-::: tip 💡 需要帮助？
-如果你对退款计算有疑问或需要人工协助,请发送邮件至 [support@zenmux.ai](mailto:support@zenmux.ai)。
-:::
+## 需要帮助？
+
+如果你对退款计算有疑问或需要人工协助,欢迎通过以下方式联系我们:
+
+<ContactCards>
+<ContactCard icon="mail" title="邮箱">
+
+技术支持: [support@zenmux.ai](mailto:support@zenmux.ai)
+
+商务合作: [bd@zenmux.ai](mailto:bd@zenmux.ai)
+
+</ContactCard>
+<ContactCard icon="x" title="X / Twitter" link="https://x.com/ZenMuxAI" label="@ZenMuxAI" />
+<ContactCard icon="discord" title="Discord" link="https://discord.gg/vHZZzj84Bm" label="@ZenMuxAI" />
+</ContactCards>

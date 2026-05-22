@@ -59,8 +59,8 @@ const iconComponent = computed(() => iconMap[props.icon] || null)
 }
 
 .dark .contact-card {
-  background: rgba(255, 255, 255, 0.04);
-  border-color: #333;
+  background: var(--zm-bg-secondary);
+  border-color: var(--zm-border-primary);
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 

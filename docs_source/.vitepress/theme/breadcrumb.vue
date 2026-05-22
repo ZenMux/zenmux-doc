@@ -108,18 +108,18 @@ function findInItems(items: any[], path: string, chain: string[]): boolean {
 }
 
 .dark .breadcrumb {
-  color: #666;
+  color: var(--zm-text-tertiary);
 }
 
 .dark .breadcrumb-item:last-child {
-  color: #ccc;
+  color: var(--zm-text-secondary);
 }
 
 .dark .breadcrumb-item a {
-  color: #666;
+  color: var(--zm-text-tertiary);
 }
 
 .dark .breadcrumb-sep {
-  color: #444;
+  color: var(--zm-border-primary);
 }
 </style>

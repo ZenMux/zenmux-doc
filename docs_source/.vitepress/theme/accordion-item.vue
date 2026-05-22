@@ -32,7 +32,7 @@ const open = ref(props.defaultOpen ?? false)
 }
 
 .dark .accordion-item {
-  border-bottom-color: #333;
+  border-bottom-color: var(--zm-border-primary);
 }
 
 .accordion-header {
@@ -52,7 +52,7 @@ const open = ref(props.defaultOpen ?? false)
 }
 
 .dark .accordion-header:hover {
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--zm-bg-secondary);
 }
 
 .accordion-arrow {
@@ -129,9 +129,17 @@ const open = ref(props.defaultOpen ?? false)
 }
 
 .dark .accordion-body :deep(code) {
-  background: #2a2a2a;
-  border-color: #444;
-  color: #ccc;
+  background: var(--zm-bg-tertiary);
+  border-color: var(--zm-border-primary);
+  color: var(--zm-text-secondary);
+}
+
+.dark .accordion-body :deep(p) {
+  color: var(--zm-text-tertiary);
+}
+
+.dark .accordion-body :deep(li) {
+  color: var(--zm-text-tertiary);
 }
 
 .accordion-body :deep(a) {
