@@ -115,6 +115,10 @@ function findInItems(items: any[], path: string, chain: string[]): boolean {
   color: var(--zm-text-secondary);
 }
 
+.dark .breadcrumb-item:last-child {
+  color: #ccc;
+}
+
 .dark .breadcrumb-item a {
   color: var(--zm-text-tertiary);
 }
