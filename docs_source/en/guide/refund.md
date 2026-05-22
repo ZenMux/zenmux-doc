@@ -204,6 +204,18 @@ If the refunded top-up order is linked to a referral reward, the referrer will n
 
 The refund amount is deducted from your top-up wallet balance. If your current balance is insufficient to cover the refund, the system will reject the request. Please ensure your wallet has enough top-up balance.
 
-::: tip 💡 Need help?
-If you have questions about the refund calculation or need manual assistance, email [support@zenmux.ai](mailto:support@zenmux.ai).
-:::
+## Need Help?
+
+If you have questions about the refund calculation or need manual assistance, feel free to reach out:
+
+<ContactCards>
+<ContactCard icon="mail" title="Email">
+
+Technical Support: [support@zenmux.ai](mailto:support@zenmux.ai)
+
+Business Inquiries: [bd@zenmux.ai](mailto:bd@zenmux.ai)
+
+</ContactCard>
+<ContactCard icon="x" title="X / Twitter" link="https://x.com/ZenMuxAI" label="@ZenMuxAI" />
+<ContactCard icon="discord" title="Discord" link="https://discord.gg/vHZZzj84Bm" label="@ZenMuxAI" />
+</ContactCards>

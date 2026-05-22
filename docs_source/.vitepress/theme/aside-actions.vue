@@ -98,7 +98,7 @@ function askAI() {
 }
 
 .dark .aside-action-item {
-  color: #999;
+  color: var(--zm-text-tertiary);
 }
 
 .dark .aside-action-item:hover {

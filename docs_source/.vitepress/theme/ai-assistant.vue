@@ -497,12 +497,12 @@ onUnmounted(() => {
 }
 
 :global(.dark) .ai-trigger {
-  border-color: #333;
-  color: #999;
+  border-color: var(--zm-border-primary);
+  color: var(--zm-text-tertiary);
 }
 
 :global(.dark) .ai-trigger-icon {
-  color: #999;
+  color: var(--zm-text-tertiary);
 }
 
 .ai-trigger-icon {

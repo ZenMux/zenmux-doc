@@ -287,58 +287,79 @@ export default defineLoacaleConfig({
           text: "Integrations",
           items: [
             {
-              text: "Claude Code Integration",
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/HTMS2Uv/Property-1Calude.svg" />Claude Code Integration',
               link: "/best-practices/claude-code",
             },
             {
-              text: "Claude Desktop Integration",
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/HTMS2Uv/Property-1Calude.svg" />Claude Desktop Integration',
               link: "/best-practices/claude-desktop",
             },
-            { text: "CodeX Integration", link: "/best-practices/codex" },
             {
-              text: "Gemini CLI Integration",
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/3e4UfxM/Property-1Codex.svg" />CodeX Integration',
+              link: "/best-practices/codex",
+            },
+            {
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/LksmNgb/Property-1Gemini.svg" />Gemini CLI Integration',
               link: "/best-practices/gemini-cli",
             },
-            { text: "OpenCode Integration", link: "/best-practices/opencode" },
-            { text: "Cline Integration", link: "/best-practices/cline" },
             {
-              text: "Cherry Studio Integration",
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/aJSfGT3/Property-1opencode.svg" />OpenCode Integration',
+              link: "/best-practices/opencode",
+            },
+            {
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/ev9eqnc/Property-1cline.svg" />Cline Integration',
+              link: "/best-practices/cline",
+            },
+            {
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/aA2YGDk/Property-1cherrystudio.svg" />Cherry Studio Integration',
               link: "/best-practices/cherry-studio",
             },
-            { text: "Obsidian Integration", link: "/best-practices/obsidian" },
-            { text: "Sider Integration", link: "/best-practices/sider" },
             {
-              text: "Open-WebUI Integration",
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/e8rAwRd/Property-1obsidian.svg" />Obsidian Integration',
+              link: "/best-practices/obsidian",
+            },
+            {
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/J4cCdCL/Property-1Sider.svg" />Sider Integration',
+              link: "/best-practices/sider",
+            },
+            {
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/BaUQozX/Property-1openwebui.svg" />Open-WebUI Integration',
               link: "/best-practices/open-webui",
             },
-            { text: "Dify Integration", link: "/best-practices/dify" },
             {
-              text: "Neovate Integration",
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/YziH1Wm/Property-1dify.svg" />Dify Integration',
+              link: "/best-practices/dify",
+            },
+            {
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/hVDPe9M/Property-1Neovate.svg" />Neovate Integration',
               link: "/best-practices/neovate-code",
             },
             {
-              text: "Github Copilot Integration",
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/Tbnm5fx/Property-1githubcopilot.svg" />Github Copilot Integration',
               link: "/best-practices/github-copilot",
             },
-            { text: "OpenClaw Integration", link: "/best-practices/openclaw" },
             {
-              text: "Deploying OpenClaw on Alibaba Cloud with ZenMux Integration",
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/i0H2J7w/Property-1openclaw.svg" />OpenClaw Integration',
+              link: "/best-practices/openclaw",
+            },
+            {
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/i0H2J7w/Property-1openclaw.svg" />Deploying OpenClaw on Alibaba Cloud with ZenMux Integration',
               link: "/best-practices/openclaw-alibaba",
             },
             {
-              text: "CC-Switch Integration",
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/zBEE8Dm/Property-1CC-Switch.svg" />CC-Switch Integration',
               link: "/best-practices/cc-switch",
             },
             {
-              text: "Cursor Integration",
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/cT6lvK5/Property-1Cursor.svg" />Cursor Integration',
               link: "/best-practices/cursor",
             },
             {
-              text: "RikkaHub Integration",
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/mFIxohk/Property-1RikkaHub.svg" />RikkaHub Integration',
               link: "/best-practices/rikkahub",
             },
             {
-              text: "Hermes Agent Integration",
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/jT0X0zI/Property-1Hermes.svg" />Hermes Agent Integration',
               link: "/best-practices/hermes-agent",
             },
           ],

@@ -73,8 +73,8 @@ export default defineComponent({
 }
 
 :global(.dark) .copy-page-btn {
-  color: #ccc;
-  border-color: #444;
+  color: var(--zm-text-secondary);
+  border-color: var(--zm-border-primary);
 }
 
 :global(.dark) .copy-page-btn:hover {

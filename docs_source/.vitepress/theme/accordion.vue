@@ -13,6 +13,6 @@
 }
 
 .dark .accordion {
-  border-color: #333;
+  border-color: var(--zm-border-primary);
 }
 </style>
