@@ -60,6 +60,10 @@ const docsSidebar = [
         link: "/guide/pay-as-you-go",
       },
       {
+        text: "Refunds",
+        link: "/guide/refund",
+      },
+      {
         text: "Download Invoices",
         link: "/guide/invoice",
       },
