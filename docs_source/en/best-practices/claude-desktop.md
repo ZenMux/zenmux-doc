@@ -111,7 +111,18 @@ Claude Desktop does not require you to manually write shell environment variable
 
 ### Step 5: Configure the model list
 
-Go to **Identity & Models**, or the model-related configuration section, and add the model slugs you want to use in Claude Desktop.
+Go to **Identity & Models**, or the model-related configuration section, and configure the models you want to use in Claude Desktop.
+
+Claude Desktop treats the Gateway Base URL and the model list as separate configuration concerns:
+
+- **Gateway Base URL** decides where inference requests are sent, such as `https://zenmux.ai/api/anthropic`
+- **Model List / Model Discovery** decides which models appear in the model picker
+
+#### Option A: Configure Model List manually
+
+This is the most stable option if you want explicit control over which models appear in Claude Desktop.
+
+Add model slugs to Model List. The model slug is sent to ZenMux as the actual `model` value in requests.
 
 Examples:
 
@@ -124,6 +135,48 @@ google/gemini-3.1-pro-preview
 
 ::: warning Use exact model slugs
 Use model slugs from the [ZenMux model list](https://zenmux.ai/models?sort=newest&supported_protocol=messages) that support the Anthropic Messages protocol. If a model name is misspelled, Claude Desktop may fail to start a session or return a model-not-found error at runtime.
+:::
+
+#### Option B: Use Model Discovery
+
+If **Model Discovery** is enabled, Claude Desktop attempts to fetch the model list from the Gateway model-list endpoint. For the ZenMux Anthropic-compatible endpoint, this is:
+
+```text
+https://zenmux.ai/api/anthropic/v1/models
+```
+
+This option requires less manual setup and is useful for quick tests. However, in some Claude Desktop versions, discovered models may be filtered, alias-resolved, or reordered by the client. If the model picker shows fewer models than the ZenMux `/v1/models` response, use a manual Model List instead.
+
+#### Option C: Bulk configure inferenceModels in JSON
+
+If you need to import many models at once, click **View as JSON** in the configuration UI and write `inferenceModels` directly.
+
+Example:
+
+```json
+{
+  "modelDiscoveryEnabled": false,
+  "inferenceModels": [
+    {
+      "name": "anthropic/claude-sonnet-4.6",
+      "labelOverride": "Claude Sonnet 4.6"
+    },
+    {
+      "name": "qwen/qwen3.7-max",
+      "labelOverride": "Qwen: Qwen3.7-Max"
+    }
+  ]
+}
+```
+
+Notes:
+
+- `name` is the model slug actually sent to ZenMux
+- `labelOverride` only changes the display name in Claude Desktop
+- When `modelDiscoveryEnabled` is disabled, `inferenceModels` is used as the fixed model list
+
+::: tip Community tools
+If you need to generate `inferenceModels` from the ZenMux `/v1/models` endpoint, you can refer to community projects such as [Lovmux](https://github.com/lovstudio/lovmux) or other configuration management tools.
 :::
 
 ### Step 6: Enable 1M Context only when supported
