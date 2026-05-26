@@ -1,4 +1,3 @@
-
 <a href="https://youmind.com/en-US/nano-banana-pro-prompts">
   <img src="https://marketing-assets.youmind.com/campaigns/nano-banana-pro-prompts-og-hq.png" alt="Nano Banana Pro Prompts" width="100%" />
 </a>
@@ -7,7 +6,8 @@
   <img src="https://marketing-assets.youmind.com/campaigns/gpt-image-2/og-hq.png" alt="GPT Image 2 Prompts" width="100%" />
 </a>
 
-> 💡 🎨 Check out our GPT Image 2 Prompts Collection — the next-generation image model, updated daily 👉 [awesome-gpt-image-2](https://github.com/YouMind-OpenLab/awesome-gpt-image-2)
+> 🎨 Check out our GPT Image 2 Prompts Collection — the next-generation image model, updated daily 👉 [awesome-gpt-image-2](https://github.com/YouMind-OpenLab/awesome-gpt-image-2)
+
 # 🚀 Awesome Nano Banana Pro Prompts
 
 [![Awesome](https://awesome.re/badge.svg)](https://github.com/sindresorhus/awesome)
@@ -22,7 +22,7 @@
 
 ---
 
-[![English](https://img.shields.io/badge/English-Current-brightgreen)](README.md) [![简体中文](https://img.shields.io/badge/%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-Click%20to%20View-lightgrey)](README_zh.md) [![繁體中文](https://img.shields.io/badge/%E7%B9%81%E9%AB%94%E4%B8%AD%E6%96%87-Click%20to%20View-lightgrey)](README_zh-TW.md) [![日本語](https://img.shields.io/badge/%E6%97%A5%E6%9C%AC%E8%AA%9E-Click%20to%20View-lightgrey)](README_ja-JP.md) [![한국어](https://img.shields.io/badge/%ED%95%9C%EA%B5%AD%EC%96%B4-Click%20to%20View-lightgrey)](README_ko-KR.md) [![ไทย](https://img.shields.io/badge/%E0%B9%84%E0%B8%97%E0%B8%A2-Click%20to%20View-lightgrey)](README_th-TH.md) [![Tiếng Việt](https://img.shields.io/badge/Ti%E1%BA%BFng%20Vi%E1%BB%87t-Click%20to%20View-lightgrey)](README_vi-VN.md) [![हिन्दी](https://img.shields.io/badge/%E0%A4%B9%E0%A4%BF%E0%A4%A8%E0%A5%8D%E0%A4%A6%E0%A5%80-Click%20to%20View-lightgrey)](README_hi-IN.md) [![Español](https://img.shields.io/badge/Espa%C3%B1ol-Click%20to%20View-lightgrey)](README_es-ES.md) [![Español (Latinoamérica)](https://img.shields.io/badge/Espa%C3%B1ol%20(Latinoam%C3%A9rica)-Click%20to%20View-lightgrey)](README_es-419.md) [![Deutsch](https://img.shields.io/badge/Deutsch-Click%20to%20View-lightgrey)](README_de-DE.md) [![Français](https://img.shields.io/badge/Fran%C3%A7ais-Click%20to%20View-lightgrey)](README_fr-FR.md) [![Italiano](https://img.shields.io/badge/Italiano-Click%20to%20View-lightgrey)](README_it-IT.md) [![Português (Brasil)](https://img.shields.io/badge/Portugu%C3%AAs%20(Brasil)-Click%20to%20View-lightgrey)](README_pt-BR.md) [![Português](https://img.shields.io/badge/Portugu%C3%AAs-Click%20to%20View-lightgrey)](README_pt-PT.md) [![Türkçe](https://img.shields.io/badge/T%C3%BCrk%C3%A7e-Click%20to%20View-lightgrey)](README_tr-TR.md)
+[![English](https://img.shields.io/badge/English-Current-brightgreen)](README.md) [![简体中文](https://img.shields.io/badge/%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-Click%20to%20View-lightgrey)](README_zh.md) [![繁體中文](https://img.shields.io/badge/%E7%B9%81%E9%AB%94%E4%B8%AD%E6%96%87-Click%20to%20View-lightgrey)](README_zh-TW.md) [![日本語](https://img.shields.io/badge/%E6%97%A5%E6%9C%AC%E8%AA%9E-Click%20to%20View-lightgrey)](README_ja-JP.md) [![한국어](https://img.shields.io/badge/%ED%95%9C%EA%B5%AD%EC%96%B4-Click%20to%20View-lightgrey)](README_ko-KR.md) [![ไทย](https://img.shields.io/badge/%E0%B9%84%E0%B8%97%E0%B8%A2-Click%20to%20View-lightgrey)](README_th-TH.md) [![Tiếng Việt](https://img.shields.io/badge/Ti%E1%BA%BFng%20Vi%E1%BB%87t-Click%20to%20View-lightgrey)](README_vi-VN.md) [![हिन्दी](https://img.shields.io/badge/%E0%A4%B9%E0%A4%BF%E0%A4%A8%E0%A5%8D%E0%A4%A6%E0%A5%80-Click%20to%20View-lightgrey)](README_hi-IN.md) [![Español](https://img.shields.io/badge/Espa%C3%B1ol-Click%20to%20View-lightgrey)](README_es-ES.md) [![Español (Latinoamérica)](<https://img.shields.io/badge/Espa%C3%B1ol%20(Latinoam%C3%A9rica)-Click%20to%20View-lightgrey>)](README_es-419.md) [![Deutsch](https://img.shields.io/badge/Deutsch-Click%20to%20View-lightgrey)](README_de-DE.md) [![Français](https://img.shields.io/badge/Fran%C3%A7ais-Click%20to%20View-lightgrey)](README_fr-FR.md) [![Italiano](https://img.shields.io/badge/Italiano-Click%20to%20View-lightgrey)](README_it-IT.md) [![Português (Brasil)](<https://img.shields.io/badge/Portugu%C3%AAs%20(Brasil)-Click%20to%20View-lightgrey>)](README_pt-BR.md) [![Português](https://img.shields.io/badge/Portugu%C3%AAs-Click%20to%20View-lightgrey)](README_pt-PT.md) [![Türkçe](https://img.shields.io/badge/T%C3%BCrk%C3%A7e-Click%20to%20View-lightgrey)](README_tr-TR.md)
 
 ---
 
@@ -38,14 +38,13 @@
 
 Why use our gallery?
 
-| Feature | GitHub README | youmind.com Gallery |
-|---------|--------------|---------------------|
-| 🎨 Visual Layout | Linear list | Beautiful Masonry Grid |
-| 🔍 Search | Ctrl+F only | Full-text search with filters |
-| 🤖 AI One-Click Generation | - | AI one-click generation |
-| 📱 Mobile | Basic | Fully responsive |
-| 🏷️ Categories | - | Category browsing |
-
+| Feature                    | GitHub README | youmind.com Gallery           |
+| -------------------------- | ------------- | ----------------------------- |
+| 🎨 Visual Layout           | Linear list   | Beautiful Masonry Grid        |
+| 🔍 Search                  | Ctrl+F only   | Full-text search with filters |
+| 🤖 AI One-Click Generation | -             | AI one-click generation       |
+| 📱 Mobile                  | Basic         | Fully responsive              |
+| 🏷️ Categories              | -             | Category browsing             |
 
 ### 🏷️ Browse by Category
 
@@ -102,7 +101,7 @@ Why use our gallery?
 - [🤔 What is Nano Banana Pro?](#-what-is-nano-banana-pro)
 - [📊 Statistics](#-statistics)
 - [🔥 Featured Prompts](#-featured-prompts)
-- [📋 All Prompts](#-all-prompts)
+- [ All Prompts](#-all-prompts)
 - [🤝 How to Contribute](#-how-to-contribute)
 - [📄 License](#-license)
 - [🙏 Acknowledgements](#-acknowledgements)
@@ -128,6 +127,7 @@ Why use our gallery?
 Some prompts support **dynamic arguments** using [Raycast Snippets](https://raycast.com/help/snippets) syntax. Look for the 🚀 Raycast Friendly badge!
 
 **Example:**
+
 ```
 A quote card with "{argument name="quote" default="Stay hungry, stay foolish"}"
 by {argument name="author" default="Steve Jobs"}
@@ -141,11 +141,11 @@ When used in Raycast, you can dynamically replace the arguments for quick iterat
 
 <div align="center">
 
-| Metric | Count |
-|--------|-------|
-| 📝 Total Prompts | **13056** |
-| ⭐ Featured | **9** |
-| 🔄 Last Updated | **Thursday, May 7, 2026 at 5:04:48 AM UTC** |
+| Metric           | Count                                       |
+| ---------------- | ------------------------------------------- |
+| 📝 Total Prompts | **13056**                                   |
+| ⭐ Featured      | **9**                                       |
+| 🔄 Last Updated  | **Thursday, May 7, 2026 at 5:04:48 AM UTC** |
 
 </div>
 
@@ -249,7 +249,7 @@ M3 — How to Use: 4 usage methods + icons
 M4 — Key Metrics: 5 EXACT data points
 Format: [icon] [Label] [Bold Value] [Unit]
 FOOD: Calories: [X] kcal/100g, Carbs: [X]g (fiber [X]g, sugar [X]g), Protein: [X]g, [Key Vitamin]: [X]mg ([X]% DV), [Key Mineral]: [X]mg ([X]% DV)
-MEDICINE:Active: [name], Strength: [X] mg, Onset: [X] min, Duration: [X] hrs, Half-life: [X] hrs 
+MEDICINE:Active: [name], Strength: [X] mg, Onset: [X] min, Duration: [X] hrs, Half-life: [X] hrs
 TECH:Chip: [model], Battery: [X] hrs, Weight: [X]g,[Key spec]: [value], Connectivity: [protocols]
 M5 — Who It's For: 4 recommended groups with green checkmark icons | 3 caution groups with amber warning icons
 M6 — Important Notes: 4 precautions + warning icons
@@ -650,7 +650,7 @@ Aspect ratio is 3:4 vertical poster. Include vertical Japanese calligraphy descr
 
 ---
 
-## 📋 All Prompts
+## All Prompts
 
 > 📝 Sorted by publish date (newest first)
 
@@ -2166,7 +2166,7 @@ Ana de armas
     "quality": {
       "resolution": "8k",
       "style": "Ultra photorealistic",
-   
+
     }
   }
 }
@@ -4608,10 +4608,10 @@ milling_subject: [variable_location]
 
 toolpath_instructions:
 1. roughing_pass: carve the master block into an impossible, continuous mobius-strip geometry.
-2. finishing_pass: micro-carve the surface to perfectly replicate the urban layout of [variable_location]. 
-3. ai_detailing: the router must intricately carve the buildings, monuments, houses and other elements of the [variable_location[, seamlessly bending them along the twisted wooden loop. 
+2. finishing_pass: micro-carve the surface to perfectly replicate the urban layout of [variable_location].
+3. ai_detailing: the router must intricately carve the buildings, monuments, houses and other elements of the [variable_location[, seamlessly bending them along the twisted wooden loop.
 
-surface_finish: 
+surface_finish:
 do not paint. leave the laser-burn marks in the deep crevices. leave the wood dust in the tiny carved streets. insert microscopic silver metal pins to represent cars on the looping avenues.
 
 render_output:
@@ -4921,7 +4921,7 @@ Creative surreal photography featuring a sporty person (based on the uploaded su
 
 The subject is leaning against a giant oversized version of the exact shoe from the uploaded shoe image, scaled dramatically larger than the subject. The shoe must accurately preserve all original details, including colors, textures, branding, and materials.
 
-Shot using forced perspective, making the shoe in the foreground appear massive and dominant. 
+Shot using forced perspective, making the shoe in the foreground appear massive and dominant.
 
 In the background, a white fence, river, and modern city skyline are visible under a bright blue sky with light clouds.
 
@@ -5094,13 +5094,13 @@ A professional advertising campaign prompt featuring a South Asian woman in a lu
 #### 📝 Prompt
 
 ```
-A beautiful young South Asian woman with long, wavy dark brown hair, fair skin, and a radiant smile, wearing a stylish white pleated blouse with ruffled collar and sleeves, sitting at a modern glass table. She is holding a glass of red wine in her right hand, looking confidently to the side. 
+A beautiful young South Asian woman with long, wavy dark brown hair, fair skin, and a radiant smile, wearing a stylish white pleated blouse with ruffled collar and sleeves, sitting at a modern glass table. She is holding a glass of red wine in her right hand, looking confidently to the side.
 
-In the foreground on the table is a {argument name="product name" default="Nestlé Fruita Vitals Gold Range "Red Grapes" juice"} bottle with golden cap and grape imagery. 
+In the foreground on the table is a {argument name="product name" default="Nestlé Fruita Vitals Gold Range "Red Grapes" juice"} bottle with golden cap and grape imagery.
 
-Background features a bright, luxurious modern interior with a large geometric glass dome ceiling and natural daylight streaming in. 
+Background features a bright, luxurious modern interior with a large geometric glass dome ceiling and natural daylight streaming in.
 
-Top left corner has the Nestlé Fruita Vitals Gold Range logo. Large bold maroon text in the upper right says "{argument name="slogan" default="A SIP MEANS THE WORLD!"}". 
+Top left corner has the Nestlé Fruita Vitals Gold Range logo. Large bold maroon text in the upper right says "{argument name="slogan" default="A SIP MEANS THE WORLD!"}".
 
 Professional commercial photography style, vibrant colors, sharp details, bright and airy atmosphere, advertising campaign aesthetic.
 ```
@@ -5815,7 +5815,7 @@ A detailed prompt for generating a vibrant, ultra-realistic skincare product adv
 #### 📝 Prompt
 
 ```
-A vibrant premium skincare product advertisement featuring a glossy pink pump bottle placed at the center inside a round pastel pink bowl filled with rich white foam bubbles. Surrounding the bottle are fresh juicy watermelon slices arranged symmetrically, with visible texture and seeds. The background is a clean split-color pastel gradient soft pink on one side and mint green on the other creating a fresh summer aesthetic. 
+A vibrant premium skincare product advertisement featuring a glossy pink pump bottle placed at the center inside a round pastel pink bowl filled with rich white foam bubbles. Surrounding the bottle are fresh juicy watermelon slices arranged symmetrically, with visible texture and seeds. The background is a clean split-color pastel gradient soft pink on one side and mint green on the other creating a fresh summer aesthetic.
 
 Transparent floating soap bubbles fill the air, reflecting light with subtle rainbow highlights. Soft studio lighting with high-key brightness, smooth shadows, and glossy reflections on the bottle surface. Ultra-realistic textures, detailed foam, fresh fruit moisture, commercial advertising style, cinematic composition, sharp focus, 8k resolution, depth of field, clean minimal setup, vibrant color grading.
 ```

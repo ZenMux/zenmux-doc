@@ -32,29 +32,29 @@ ZenMux's supported image generation models are continuously updated. Visit the [
 
 ## Path parameters
 
-### provider `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+### provider `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 The model provider identifier. This is the portion before `/` in the model name — for example, `openai` in `openai/gpt-image-2`.
 
-### model `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+### model `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 The model name. This is the portion after `/` in the model name — for example, `gpt-image-2` in `openai/gpt-image-2`.
 
 ## Authentication Parameters
 
-### api_key `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+### api_key `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 Your ZenMux API key for authentication.
 
-### vertexai `boolean` <span style="color: #FA6062; font-weight: 400">Required</span>
+### vertexai `boolean` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 Must be set to `true` to enable the Vertex AI protocol.
 
-### http_options.base_url `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+### http_options.base_url `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 ZenMux Vertex AI endpoint: `https://zenmux.ai/api/vertex-ai`.
 
-### http_options.api_version `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+### http_options.api_version `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 API version. Set to `v1`.
 
@@ -62,11 +62,11 @@ API version. Set to `v1`.
 
 The following describes the parameters for the `generate_images` / `generateImages` SDK method. The SDK automatically converts these parameters into the Vertex AI REST format (`instances` + `parameters`) before sending them to ZenMux.
 
-### prompt `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+### prompt `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 A text description of the image you want to generate. Use clear, specific descriptions for best results.
 
-### model `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+### model `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 The model to use for image generation, in `{provider}/{model}` format — for example, `openai/gpt-image-2`.
 
@@ -254,23 +254,23 @@ SDK field name: Python `http_options=types.HttpOptions(extra_body={"sampleImageS
 
 The following describes the parameters for the `edit_image` / `editImage` SDK method, used to modify an existing image.
 
-### prompt `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+### prompt `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 A text description of the desired edit. It is recommended to explicitly instruct the model to preserve the original image's shape and composition, and only change the style or specific areas.
 
-### model `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+### model `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 The model to use for image editing, in `{provider}/{model}` format — for example, `openai/gpt-image-2`.
 
-### reference_images `array` <span style="color: #FA6062; font-weight: 400">Required</span>
+### reference_images `array` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 A list of reference images, including the source image and an optional mask. Different providers have different limits on the number of reference images: Kling supports up to 1, Flux supports up to 8.
 
 ::: details RawReferenceImage (Source Image)
 
-- `reference_id` `integer` <span style="color: #FA6062; font-weight: 400">Required</span>
+- `reference_id` `integer` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : An identifier for the reference image.
-- `reference_image` `Image` <span style="color: #FA6062; font-weight: 400">Required</span>
+- `reference_image` `Image` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : The image object.
   - `image_bytes` `bytes`: The binary image data.
   - `mime_type` `string`: The image MIME type, such as `image/png` or `image/jpeg`.
@@ -279,13 +279,13 @@ A list of reference images, including the source image and an optional mask. Dif
 
 ::: details MaskReferenceImage (Mask, Optional)
 
-- `reference_id` `integer` <span style="color: #FA6062; font-weight: 400">Required</span>
+- `reference_id` `integer` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : An identifier for the mask.
-- `reference_image` `Image` <span style="color: #FA6062; font-weight: 400">Required</span>
+- `reference_image` `Image` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : The mask image object. Transparent regions indicate the areas to be edited.
   - `image_bytes` `bytes`: The binary mask data.
   - `mime_type` `string`: The image MIME type.
-- `config` `MaskReferenceConfig` <span style="color: #FA6062; font-weight: 400">Required</span>
+- `config` `MaskReferenceConfig` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : Mask configuration.
   - `mask_mode` `string`: The mask mode. Set to `MASK_MODE_USER_PROVIDED`.
 

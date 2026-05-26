@@ -22,13 +22,13 @@ Below are all parameters that models may support. Different models support diffe
 
 ## Request body
 
-### messages `array` <span style="color: #FA6062; font-weight: 400">Required</span>
+### messages `array` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 Prompts input to the large model in the form of a conversation message list. Depending on the model's capabilities, supported message types may vary, including text, images, audio, and video. For specific supported parameters, please check each model provider's documentation.
 
 Each element in messages represents a conversation message, consisting of role and content. For details, refer to OpenAI's definition: [messages](https://platform.openai.com/docs/api-reference/chat/create#chat_create-messages).
 
-### model `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+### model `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 The model ID for this inference call, formatted as &lt;provider&gt;/&lt;model_name&gt;, such as openai/gpt-5. This can be obtained from each model's detail page.
 

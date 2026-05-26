@@ -58,29 +58,29 @@ Generate Videos 接口通过 Google Vertex AI 协议生成视频。ZenMux 聚合
 
 ## Path parameters
 
-### provider `string` <font color="FA6062">必填</font>
+### provider `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 模型供应商标识。对应模型名称中 `/` 前的部分，例如 `google/veo-3.1-generate-001` 中的 `google`。
 
-### model `string` <font color="FA6062">必填</font>
+### model `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 模型名称。对应模型名称中 `/` 后的部分，例如 `google/veo-3.1-generate-001` 中的 `veo-3.1-generate-001`。
 
 ## 鉴权参数
 
-### api_key `string` <font color="FA6062">必填</font>
+### api_key `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 ZenMux API 密钥，用于身份鉴权。
 
-### vertexai `boolean` <font color="FA6062">必填</font>
+### vertexai `boolean` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 必须设置为 `true` 以启用 Vertex AI 协议。
 
-### http_options.base_url `string` <font color="FA6062">必填</font>
+### http_options.base_url `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 ZenMux Vertex AI 端点：`https://zenmux.ai/api/vertex-ai`。
 
-### http_options.api_version `string` <font color="FA6062">必填</font>
+### http_options.api_version `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 API 版本，设置为 `v1`。
 

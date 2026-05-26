@@ -30,17 +30,17 @@ ZenMux continuously updates the OpenAI image generation models it supports. Visi
 
 ## Request headers
 
-### Authorization `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+### Authorization `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 Bearer Token authentication, formatted as `Bearer $ZENMUX_API_KEY`.
 
-### Content-Type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+### Content-Type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 The request content type. Defaults to `application/json`.
 
 ## Request body
 
-### prompt `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+### prompt `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 Text description of the image to generate. GPT image models support a maximum length of 32,000 characters.
 

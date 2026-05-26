@@ -24,7 +24,7 @@ Returns the current account's subscription details, including plan information, 
 
 ## Authentication
 
-### Authorization Header <span style="color: #FA6062; font-weight: 400">Required</span>
+### Authorization Header <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 ```http
 Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>

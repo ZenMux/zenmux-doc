@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, computed, watch } from "vue";
-import { ElMessage } from "element-plus";
+import { ElMessage, ElSelect, ElOption } from "element-plus";
 import { Copy as CopyIcon, Checked as CheckedIcon } from "./icons";
 import { useData, inBrowser } from "vitepress";
 
@@ -16,6 +16,13 @@ const langOptions = ref<string[]>([]);
 const responseTitle = ref("Response");
 
 const copied = ref(false);
+const langSelectRef = ref();
+
+function onLangWrapperClick(e: MouseEvent) {
+  if (!(e.target as HTMLElement).closest(".el-select")) {
+    langSelectRef.value?.$el?.querySelector(".el-select__wrapper")?.click();
+  }
+}
 
 function initResponseData() {
   if (!inBrowser) return;
@@ -102,19 +109,38 @@ async function copyResponse() {
           <span class="response-title" v-text="responseTitle"></span>
         </div>
         <div class="right">
-          <el-select
-            v-model="currentLang"
-            placeholder="Lang"
-            size="small"
-            style="width: 120px"
-          >
-            <el-option
-              v-for="l in langOptions"
-              :key="l"
-              :label="l"
-              :value="l"
-            />
-          </el-select>
+          <div class="lang-select-wrapper" v-if="langOptions.length > 1" @click="onLangWrapperClick">
+            <el-select
+              ref="langSelectRef"
+              v-model="currentLang"
+              placeholder="Lang"
+              size="small"
+              popper-class="api-lang-dropdown"
+            >
+              <el-option
+                v-for="l in langOptions"
+                :key="l"
+                :label="l"
+                :value="l"
+              />
+            </el-select>
+            <svg
+              class="chevron-updown"
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M5.33 6L8 3.33 10.67 6M5.33 10L8 12.67 10.67 10"
+                stroke="#999"
+                stroke-width="1.33"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
           <CheckedIcon
             v-if="copied"
             class="copy-action-icon copied-icon"
@@ -137,23 +163,7 @@ async function copyResponse() {
 </template>
 
 <style>
-.copy-action-icon {
-  margin-left: 8px;
-  cursor: pointer;
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
-  color: #999;
-}
-
-.copy-action-icon:hover {
-  color: #666;
-}
-
-.copy-action-icon.copied-icon {
-  color: #52c41a;
-}
-
+/* ===== Hide markdown-rendered version ===== */
 .api-response {
   display: none;
 }
@@ -162,133 +172,188 @@ async function copyResponse() {
   width: 100%;
 }
 
-.api-response-container {
+/* ===== Response Container ===== */
+.api-response-float-container .api-response-container {
   margin: 20px 0;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 8px;
-  background-color: var(--vp-c-bg);
-
-  pre {
-    max-height: none;
-  }
+  background: #f5f5f5;
+  border: 0.5px solid #e6e6e6;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
-.api-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-  font-family: monospace;
-  font-size: 14px;
-  padding: 8px;
-  border-bottom: 1px solid var(--vp-c-divider);
-
-  .left {
-    display: flex;
-    align-items: center;
-
-    .response-title {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 48px;
-      height: 24px;
-      padding: 0 10px;
-      font-size: 12px;
-      font-weight: 600;
-      line-height: 1;
-      letter-spacing: 0.5px;
-      border-radius: 999px;
-      background: var(--vp-c-brand-3);
-      color: #fff;
-      border: 1px solid var(--vp-c-brand-3);
-      box-shadow:
-        0 2px 4px rgba(0, 0, 0, 0.1),
-        0 0 0 1px rgba(255, 255, 255, 0.05) inset;
-      user-select: none;
-      transition:
-        background 0.25s,
-        box-shadow 0.25s,
-        transform 0.15s;
-    }
-
-    .response-title:hover {
-      box-shadow:
-        0 3px 6px rgba(0, 0, 0, 0.15),
-        0 0 0 1px rgba(255, 255, 255, 0.05) inset;
-    }
-
-    .response-title:active {
-      transform: translateY(1px);
-    }
-  }
-
-  .right {
-    .el-select {
-      width: 200px;
-    }
-  }
+.dark .api-response-float-container .api-response-container {
+  background: var(--zm-bg-primary);
+  border-color: var(--zm-border-primary);
 }
 
-.api-content {
-  min-height: 100px;
+.api-response-float-container .api-response-container pre {
   max-height: none;
   height: auto;
+}
+
+/* ===== Response Title Badge ===== */
+.api-response-float-container .response-title {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 6px;
+  background: #fff;
+  border: 0.5px solid #e6e6e6;
   border-radius: 4px;
-  background-color: var(--vp-c-bg-2);
+  font-family: "SF Mono", monospace;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14px;
+  color: #666;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.dark .api-response-float-container .response-title {
+  background: var(--zm-bg-tertiary);
+  border-color: var(--zm-border-primary);
+  color: var(--zm-text-secondary);
+}
+
+/* ===== Lang Select Wrapper ===== */
+.api-response-float-container .lang-select-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  height: 24px;
+  padding: 0 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.2s;
+}
+
+.api-response-float-container .lang-select-wrapper:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.dark .api-response-float-container .lang-select-wrapper:hover {
+  background: var(--zm-bg-hover);
+}
+
+.api-response-float-container .lang-select-wrapper .el-select {
+  position: static;
+}
+
+.api-response-float-container .lang-select-wrapper .chevron-updown {
+  flex-shrink: 0;
+  pointer-events: none;
+}
+
+/* ===== El-Select Overrides ===== */
+.api-response-float-container .el-select {
+  --el-select-width: auto;
+  --el-select-input-focus-border-color: transparent;
+  width: auto !important;
+  display: inline-flex !important;
+}
+
+.api-response-float-container .el-select .el-select__wrapper {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  min-height: 24px !important;
+  padding: 0 !important;
+  gap: 0 !important;
+  cursor: pointer;
+}
+
+.api-response-float-container .el-select .el-select__wrapper:hover,
+.api-response-float-container .el-select .el-select__wrapper.is-hovering,
+.api-response-float-container .el-select .el-select__wrapper.is-focused {
+  box-shadow: none !important;
+}
+
+.api-response-float-container .el-select .el-select__selection {
+  gap: 0 !important;
+  min-width: 0;
+}
+
+.api-response-float-container .el-select .el-select__placeholder {
+  position: relative !important;
+  z-index: auto !important;
+  transform: none !important;
+  top: auto !important;
+  font-family: "SF Pro", -apple-system, sans-serif;
+  font-size: 13px !important;
+  line-height: 24px !important;
+  color: #666 !important;
+}
+
+.api-response-float-container .el-select .el-select__placeholder.is-transparent {
+  color: #999 !important;
+}
+
+.dark .api-response-float-container .el-select .el-select__placeholder {
+  color: var(--zm-text-tertiary) !important;
+}
+
+.api-response-float-container .el-select .el-select__suffix {
+  display: none !important;
+}
+
+.api-response-float-container .el-select .el-select__input-wrapper {
+  display: none !important;
+}
+
+/* ===== Code Area ===== */
+.api-response-float-container .api-content {
+  min-height: auto;
+  max-height: none;
+  height: auto;
+  background: transparent;
   overflow: visible;
   width: 100%;
+  border-radius: 0;
 }
 
-.api-content:hover {
-  overflow: auto;
-}
-
-.api-content::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-.api-content::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.api-content::-webkit-scrollbar-thumb {
-  background: var(--vp-c-divider);
-  border-radius: 4px;
-}
-
-.api-content::-webkit-scrollbar-thumb:hover {
-  background: var(--vp-c-divider-dark);
-}
-
-.api-content::-webkit-scrollbar-corner {
-  background: transparent;
-}
-
-.api-content pre {
+.api-response-float-container .api-content pre {
   margin: 0;
+  padding: 16px 20px;
+  counter-reset: line-number;
 }
 
-.api-content pre code {
+.api-response-float-container .api-content pre code {
   display: block;
-  padding: 0 24px;
+  padding: 0 !important;
   width: fit-content;
   min-width: 100%;
-  line-height: var(--vp-code-line-height);
-  font-size: var(--vp-code-font-size);
-  color: var(--vp-code-block-color);
-  transition: color 0.5s;
+  font-family: "SF Mono", monospace;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  color: #000;
 }
 
-.api-header .right .copied-icon {
-  color: var(--vp-c-success);
-  transition: color 0.25s;
+.dark .api-response-float-container .api-content pre code {
+  color: var(--zm-text-primary);
 }
 
-@media (max-width: 1280px) {
-  .VPDoc {
-    padding-right: 20px;
-  }
+/* Line numbers via CSS counters */
+.api-response-float-container .api-content pre .line {
+  display: block;
+  font-size: 13px;
+  line-height: 24px;
+}
+
+.api-response-float-container .api-content pre .line::before {
+  counter-increment: line-number;
+  content: counter(line-number);
+  display: inline-block;
+  width: 2ch;
+  margin-right: 12px;
+  text-align: right;
+  color: #ccc;
+  font-family: "SF Mono", monospace;
+  font-size: 13px;
+  line-height: 24px;
+  user-select: none;
+}
+
+.dark .api-response-float-container .api-content pre .line::before {
+  color: rgba(255, 255, 255, 0.2);
 }
 </style>

@@ -328,9 +328,8 @@ export default defineConfig({
 
   themeConfig: {
     logo: {
-      light:
-        "https://cdn.marmot-cloud.com/storage/zenmux/2025/10/20/bl9Q1WT/text-logo-dark.svg",
-      dark: "https://cdn.marmot-cloud.com/storage/zenmux/2025/10/20/KNgZ27t/text-logo-light.svg",
+      light: "/logo-text-dark.svg",
+      dark: "/logo-text-light.svg",
       alt: "ZenMux Logo",
     },
     siteTitle: false,

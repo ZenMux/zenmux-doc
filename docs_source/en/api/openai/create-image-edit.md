@@ -35,17 +35,17 @@ Note that JSON requests use the `images` array, not the `image` field used by mu
 
 ## Request headers
 
-### Authorization `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+### Authorization `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 Bearer Token authentication, formatted as `Bearer $ZENMUX_API_KEY`.
 
-### Content-Type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+### Content-Type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 The request content type. Use `application/json` when referencing image URLs or file IDs; use `multipart/form-data` when uploading local files.
 
 ## Request body
 
-### images `array` <span style="color: #FA6062; font-weight: 400">Required</span>
+### images `array` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 References to the input images to edit. GPT image models support up to 16 images.
 
@@ -57,7 +57,7 @@ The uploaded image File API ID to use as input.
 
 A fully qualified URL or a base64-encoded data URL.
 
-### prompt `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+### prompt `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 Text description of the desired image edit result.
 

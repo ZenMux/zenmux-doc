@@ -12,12 +12,11 @@ head:
 
 Welcome to **[ZenMux](https://docs.zenmux.ai/about/intro.html)**! This guide walks you through everything from signing up to making your first API request, step by step.
 
-::: tip 💡 Get Started in 4 Steps
+::: tip Get Started in 4 Steps
 Just four simple steps to start using ZenMux:
 :::
 
 1. **Sign in to ZenMux**: Visit the **[ZenMux login page](https://zenmux.ai/login)** and sign in using any of the following:
-
    - Email
    - GitHub account
    - Google account
@@ -69,13 +68,13 @@ For complete instructions, see the [Subscription Plans Guide](/guide/subscriptio
 
 ### Plan Comparison
 
-| Dimension | Pay As You Go | Builder Plan (Subscription) |
-|-----------|--------------|---------------------------|
-| **Best for** | Production, commercial products | Personal development, learning |
-| **Billing** | Usage-based, per-token | Fixed monthly fee |
-| **Rate Limit** | Unlimited | 10–15 RPM |
-| **Concurrency** | Unlimited | Weekly Limit applies |
-| **Restrictions** | None | Not allowed for production use |
+| Dimension        | Pay As You Go                   | Builder Plan (Subscription)    |
+| ---------------- | ------------------------------- | ------------------------------ |
+| **Best for**     | Production, commercial products | Personal development, learning |
+| **Billing**      | Usage-based, per-token          | Fixed monthly fee              |
+| **Rate Limit**   | Unlimited                       | 10–15 RPM                      |
+| **Concurrency**  | Unlimited                       | Weekly Limit applies           |
+| **Restrictions** | None                            | Not allowed for production use |
 
 ::: warning ⚠️ Important
 If your project is already live or heading toward commercialization, **you must use the Pay As You Go plan**. The subscription plan is strictly for personal development and learning — production use is prohibited.
@@ -92,14 +91,14 @@ Or on a [model's detail page](https://zenmux.ai/google/gemini-3.1-pro-preview):
 
 ZenMux supports four major API protocols, letting you use your preferred SDK to call any model on the platform:
 
-| Protocol | Base URL | Compatible SDK | Description |
-|----------|----------|---------------|-------------|
-| **OpenAI Chat Completions** | `https://zenmux.ai/api/v1` | OpenAI SDK | The most widely used Chat API |
-| **OpenAI Responses** | `https://zenmux.ai/api/v1` | OpenAI SDK | OpenAI's next-gen Responses API |
-| **Anthropic Messages** | `https://zenmux.ai/api/anthropic` | Anthropic SDK | Native protocol for the Claude family |
-| **Google Gemini** | `https://zenmux.ai/api/vertex-ai` | Google GenAI SDK | Native protocol for the Gemini family |
+| Protocol                    | Base URL                          | Compatible SDK   | Description                           |
+| --------------------------- | --------------------------------- | ---------------- | ------------------------------------- |
+| **OpenAI Chat Completions** | `https://zenmux.ai/api/v1`        | OpenAI SDK       | The most widely used Chat API         |
+| **OpenAI Responses**        | `https://zenmux.ai/api/v1`        | OpenAI SDK       | OpenAI's next-gen Responses API       |
+| **Anthropic Messages**      | `https://zenmux.ai/api/anthropic` | Anthropic SDK    | Native protocol for the Claude family |
+| **Google Gemini**           | `https://zenmux.ai/api/vertex-ai` | Google GenAI SDK | Native protocol for the Gemini family |
 
-::: tip 💡 Cross-Protocol Calling
+::: tip Cross-Protocol Calling
 One of ZenMux's core strengths is **protocol agnosticism** — you can call any model through any supported protocol. For example, use the OpenAI SDK to call Claude models, or the Anthropic SDK to call Gemini models.
 :::
 
@@ -439,7 +438,7 @@ Example response (partial):
 }
 ```
 
-::: tip 💡 Billing Data Delay
+::: tip Billing Data Delay
 Billing information (such as `usage` and `ratingResponses`) becomes available **3–5 minutes** after the request completes. Token usage metrics are returned synchronously with the request.
 :::
 
@@ -468,7 +467,7 @@ Example response:
   "data": {
     "currency": "usd",
     "total_credits": 482.74,
-    "top_up_credits": 35.00,
+    "top_up_credits": 35.0,
     "bonus_credits": 447.74
   }
 }

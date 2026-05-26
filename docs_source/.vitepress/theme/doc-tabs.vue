@@ -105,6 +105,7 @@ const tabs = computed(() => {
 
 .doc-tab-item.active {
   color: var(--vp-c-text-1);
-  font-weight: 600;
+  font-weight: 700;
+  border-bottom: 2px solid var(--vp-c-text-1);
 }
 </style>

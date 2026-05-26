@@ -21,10 +21,11 @@ The status line script is bundled at `scripts/zenmux-statusline.sh` relative to 
 
 ```
 Line 1: [model-slug] 📁 dir | 🌿 branch | █████░░░░░ 58% ctx | 💾 r72.0k w5.0k
-Line 2: ⚡ Ultra | 🔑 Sub sk-ss-...6e6 | 5h █░░░░ 19% · 7d █░░░░ 24% | 💳 Bal $492.74
+Line 2: ⚡ Ultra |  Sub sk-ss-...6e6 | 5h █░░░░ 19% · 7d █░░░░ 24% | 💳 Bal $492.74
 ```
 
 If `ZENMUX_MANAGEMENT_KEY` is not set, Line 2 shows a setup hint instead:
+
 ```
 Line 2: ⚙ Set ZENMUX_MANAGEMENT_KEY to display account data → zenmux.ai/platform/management
 ```
@@ -54,9 +55,11 @@ echo "${ZENMUX_MANAGEMENT_KEY:+set}"
 
   > The status line needs `ZENMUX_MANAGEMENT_KEY` to fetch account data.
   > Create one at https://zenmux.ai/platform/management, then add to your shell profile:
+  >
   > ```
   > export ZENMUX_MANAGEMENT_KEY="sk-mg-v1-..."
   > ```
+  >
   > Without the key, the status line will still show session info (model, git, context remaining) and display a setup hint on Line 2.
 
   The user can proceed without the key — the script degrades gracefully and shows a hint on how to configure it.
@@ -126,10 +129,12 @@ Tell the user:
 > Status line installed. It will appear at the bottom of Claude Code on your next interaction.
 >
 > **What it shows:**
+>
 > - **Line 1**: Model slug, directory, git branch, context used bar, last-call prompt cache read/write
 > - **Line 2**: ZenMux plan tier, API key type + masked key, 5-hour and 7-day quota usage with color-coded bars, PAYG wallet balance
 >
 > **Colors**:
+>
 > - Context used: Green (<70%), yellow (70–89%), red (90%+)
 > - Quota usage: Green (<70%), yellow (70–89%), red (90%+)
 >

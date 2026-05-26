@@ -60,7 +60,7 @@ We’re improving and upgrading our billing architecture to enable synchronous b
 
 ## Request params
 
-### Authorization Header <span style="color: #FA6062; font-weight: 400">Required</span>
+### Authorization Header <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 **Header parameters:**
 
@@ -80,7 +80,7 @@ Authorization: Bearer <ZENMUX_API_KEY>
 - Subscription API key: create one in the [Subscription Management](https://zenmux.ai/platform/subscription)
   :::
 
-### generate_id `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+### generate_id `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 **Query parameters:**
 
