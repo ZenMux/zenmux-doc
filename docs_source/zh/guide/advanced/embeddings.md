@@ -300,4 +300,4 @@ print(f"检测到 {len(anomalies)} 个异常数据点")
 
 ## 接口参考
 
-如需了解 Create Embeddings 接口的完整参数说明，请参阅 [Create Embeddings API 参考](/zh/api/openai/create-embeddings)。
+如需了解 Create an Embedding 接口的完整参数说明，请参阅 [Create an Embedding API 参考](/zh/api/openai/create-embeddings)。

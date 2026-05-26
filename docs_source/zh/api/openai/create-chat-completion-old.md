@@ -4,19 +4,19 @@ title: 接口
 head:
   - - meta
     - name: description
-      content: Create Chat Completion
+      content: Create a Chat Completion
   - - meta
     - name: keywords
       content: Zenmux, API, documentation, create, chat, completion, OpenAI, Claude
 ---
 
-# Create Chat Completion
+# Create a Chat Completion
 
 ```
 POST https://zenmux.ai/api/v1/chat/completions
 ```
 
-Create Chat Completion 接口兼容 OpenAI 的 [Create Chat Completion](https://platform.openai.com/docs/api-reference/chat/create) 接口，用于对话型大语言模型推理调用。
+Create a Chat Completion 接口兼容 OpenAI 的 [Create a Chat Completion](https://platform.openai.com/docs/api-reference/chat/create) 接口，用于对话型大语言模型推理调用。
 
 下面列出了所有模型可能支持的参数，不同模型的支持参数有所不同，每个模型具体支持的参数请参见各模型详情页。
 

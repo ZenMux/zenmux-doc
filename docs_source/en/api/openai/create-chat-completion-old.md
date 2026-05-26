@@ -4,19 +4,19 @@ title: API Reference
 head:
   - - meta
     - name: description
-      content: Create Chat Completion
+      content: Create a Chat Completion
   - - meta
     - name: keywords
       content: Zenmux, API, documentation, create, chat, completion, OpenAI, Claude
 ---
 
-# Create Chat Completion
+# Create a Chat Completion
 
 ```
 POST https://zenmux.ai/api/v1/chat/completions
 ```
 
-The Create Chat Completion interface is compatible with OpenAI's [Create Chat Completion](https://platform.openai.com/docs/api-reference/chat/create) interface, designed for conversational large language model inference calls.
+The Create a Chat Completion interface is compatible with OpenAI's [Create a Chat Completion](https://platform.openai.com/docs/api-reference/chat/create) interface, designed for conversational large language model inference calls.
 
 Below are all parameters that models may support. Different models support different parameters. Please refer to each model's detail page for specific supported parameters.
 

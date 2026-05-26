@@ -4,13 +4,13 @@ title: 接口
 head:
   - - meta
     - name: description
-      content: Create Embeddings
+      content: Create an Embedding
   - - meta
     - name: keywords
       content: Zenmux, API, documentation, create, embeddings, OpenAI, vector, text-embedding
 ---
 
-# Create Embeddings
+# Create an Embedding
 
 ::: tip 错误排查
 调用过程中遇到错误？请参阅 [API 错误码参考](/zh/guide/advanced/error-codes) 获取完整的错误类型说明与排查方案。
@@ -20,7 +20,7 @@ head:
 POST https://zenmux.ai/api/v1/embeddings
 ```
 
-Create Embeddings 接口兼容 OpenAI 的 [Create Embeddings](https://platform.openai.com/docs/api-reference/embeddings/create) 接口，用于将输入文本转换为向量表示（embedding）。
+Create an Embedding 接口兼容 OpenAI 的 [Create an Embedding](https://platform.openai.com/docs/api-reference/embeddings/create) 接口，用于将输入文本转换为向量表示（embedding）。
 
 ## Request headers
 
