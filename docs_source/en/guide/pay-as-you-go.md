@@ -22,12 +22,12 @@ Pay As You Go is a usage-based billing plan built specifically for production. I
 
 ### Key features
 
-| Feature | Description |
-|------|------|
-| **No Rate Limit** | No per-minute request limit; supports high-concurrency workloads |
-| **Production-grade stability** | SLA coverage plus an AI insurance compensation mechanism |
-| **Precise billing** | Token-level billing for transparent and controllable costs |
-| **Enterprise services** | Full request logs, cost analytics, and billing statistics |
+| Feature                        | Description                                                      |
+| ------------------------------ | ---------------------------------------------------------------- |
+| **No Rate Limit**              | No per-minute request limit; supports high-concurrency workloads |
+| **Production-grade stability** | SLA coverage plus an AI insurance compensation mechanism         |
+| **Precise billing**            | Token-level billing for transparent and controllable costs       |
+| **Enterprise services**        | Full request logs, cost analytics, and billing statistics        |
 
 ## Why choose Pay As You Go?
 
@@ -42,14 +42,14 @@ Pay As You Go is especially suitable for:
 
 ### Differences vs. subscriptions
 
-| Dimension | Pay As You Go | Builder Plan (Subscription) |
-|---------|--------------------------|----------------------|
-| **Best for** | Production, commercial products | Personal development, learning & experimentation |
-| **Rate Limit** | ✅ Unlimited | ⚠️ 10–15 RPM |
-| **Concurrency** | ✅ Unlimited | ⚠️ Weekly Limit applies |
-| **Stability** | ✅ Production-grade | Standard |
-| **Cost model** | Precise usage-based billing | Fixed monthly fee |
-| **Usage restrictions** | No special restrictions | ❌ Not allowed for production use |
+| Dimension              | Pay As You Go                   | Builder Plan (Subscription)                      |
+| ---------------------- | ------------------------------- | ------------------------------------------------ |
+| **Best for**           | Production, commercial products | Personal development, learning & experimentation |
+| **Rate Limit**         | ✅ Unlimited                    | ⚠️ 10–15 RPM                                     |
+| **Concurrency**        | ✅ Unlimited                    | ⚠️ Weekly Limit applies                          |
+| **Stability**          | ✅ Production-grade             | Standard                                         |
+| **Cost model**         | Precise usage-based billing     | Fixed monthly fee                                |
+| **Usage restrictions** | No special restrictions         | ❌ Not allowed for production use                |
 
 ::: warning ⚠️ Important
 If your project is already live or about to be commercialized, you **must use Pay As You Go**. The subscription plan (Builder Plan) is only for personal development and learning scenarios (Vibe Coding and Media Create scenarios) and must not be used in production. Violations may impact your account.
@@ -61,7 +61,7 @@ If your project is already live or about to be commercialized, you **must use Pa
 
 Go to the **[ZenMux Console](https://zenmux.ai/platform/pay-as-you-go)** and navigate to **Manage > Pay As You Go**.
 
-![Pay As You Go page](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/rsGoojf/pay-as-you-go.png)
+![Pay As You Go page](https://cdn.marmot-cloud.com/storage/zenmux/2026/05/26/KMUWdun/20260526160627.jpg)
 
 ### Step 2: Check your balance
 
@@ -92,17 +92,18 @@ Pay As You Go API keys are completely separate from subscription keys and are de
 
 ### API key settings
 
-| Setting | Description |
-|------|------|
-| **Name** | API key name — use a clear, descriptive name for easy identification |
-| **Tags** | Tags for organizing and categorizing keys (e.g., `production`, `frontend`) |
-| **Key Status** | Enable/Disable toggle. Disabling stops all requests using this key |
+| Setting        | Description                                                                |
+| -------------- | -------------------------------------------------------------------------- |
+| **Name**       | API key name — use a clear, descriptive name for easy identification       |
+| **Tags**       | Tags for organizing and categorizing keys (e.g., `production`, `frontend`) |
+| **Key Status** | Enable/Disable toggle. Disabling stops all requests using this key         |
 
 ::: tip 💡 API key best practices
+
 - Create separate API keys for different projects/environments to simplify cost attribution and management
 - Regularly review **Last Used** and **Used** to identify inactive or high-spend keys
 - If you suspect a key has been leaked, immediately disable or delete it
-:::
+  :::
 
 ### Limits configuration
 
@@ -110,13 +111,13 @@ Turn on the **Enable Limits** toggle to set independent rate and spending limits
 
 ![Edit Key](https://cdn.marmot-cloud.com/storage/zenmux/2026/04/22/dWTyjcQ/20260422172958.jpg)
 
-| Setting | Description |
-|------|------|
-| **Credit Limit** | Maximum credit allowance for this key. Requests are rejected once the limit is reached — useful for controlling per-project or per-customer budgets |
-| **Credit Threshold (%)** | Credit threshold percentage. Triggers an email alert when usage reaches this ratio of the Credit Limit, for early warning |
-| **RPM Limit** | Requests per minute limit — prevents traffic spikes or abuse |
-| **TPM Limit** | Tokens per minute limit — controls token consumption rate for large model calls |
-| **Supported Models** | Restrict which models this key can access. Defaults to All models (no restriction); can be set to allow only specific models |
+| Setting                  | Description                                                                                                                                         |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Credit Limit**         | Maximum credit allowance for this key. Requests are rejected once the limit is reached — useful for controlling per-project or per-customer budgets |
+| **Credit Threshold (%)** | Credit threshold percentage. Triggers an email alert when usage reaches this ratio of the Credit Limit, for early warning                           |
+| **RPM Limit**            | Requests per minute limit — prevents traffic spikes or abuse                                                                                        |
+| **TPM Limit**            | Tokens per minute limit — controls token consumption rate for large model calls                                                                     |
+| **Supported Models**     | Restrict which models this key can access. Defaults to All models (no restriction); can be set to allow only specific models                        |
 
 ::: warning ⚠️ Caution
 Disabling an API key immediately stops all requests using that key. Use caution in production environments. Changes may take up to 3 minutes to apply.
@@ -154,7 +155,7 @@ import OpenAI from "openai";
 
 const openai = new OpenAI({
   baseURL: "https://zenmux.ai/api/v1",
-  apiKey: "<YOUR PAY_AS_YOU_GO_API_KEY>",  // [!code highlight]
+  apiKey: "<YOUR PAY_AS_YOU_GO_API_KEY>", // [!code highlight]
 });
 
 async function main() {
@@ -215,25 +216,25 @@ You can set up a low balance alert so that the system sends you an email when yo
 
 In **Transaction History**, you can review all top-ups, usage, and compensation records:
 
-| Column | Description |
-|------|------|
-| **Date** | Transaction date and time |
-| **Amount** | Transaction amount |
-| **Type / Method** | Transaction type |
+| Column                    | Description                             |
+| ------------------------- | --------------------------------------- |
+| **Date**                  | Transaction date and time               |
+| **Amount**                | Transaction amount                      |
+| **Type / Method**         | Transaction type                        |
 | **Description / Invoice** | Transaction description or invoice link |
 
 Common transaction types include:
 
-| Type | Description |
-|------|------|
-| **Stripe** | Top-up via Stripe |
-| **Antom** | Top-up via Antom |
-| **Discount** | Bonus credits from top-ups |
-| **Gift** | Credits granted by the platform |
-| **Referral** | Rewards from referring friends |
-| **Insurance** | AI insurance compensation |
-| **Refund** | Refunds |
-| **Expire** | Expired credits |
+| Type          | Description                     |
+| ------------- | ------------------------------- |
+| **Stripe**    | Top-up via Stripe               |
+| **Antom**     | Top-up via Antom                |
+| **Discount**  | Bonus credits from top-ups      |
+| **Gift**      | Credits granted by the platform |
+| **Referral**  | Rewards from referring friends  |
+| **Insurance** | AI insurance compensation       |
+| **Refund**    | Refunds                         |
+| **Expire**    | Expired credits                 |
 
 Click **View Invoice** to download the corresponding top-up invoice for reimbursements and billing audits.
 

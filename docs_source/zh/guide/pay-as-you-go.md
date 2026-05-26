@@ -61,7 +61,7 @@ Pay As You Go 方案特别适合以下场景：
 
 访问 **[ZenMux 控制台](https://zenmux.ai/platform/pay-as-you-go)**，导航到 **Manage > Pay As You Go** 页面。
 
-![Pay As You Go 页面](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/rsGoojf/pay-as-you-go.png)
+![Pay As You Go 页面](https://cdn.marmot-cloud.com/storage/zenmux/2026/05/26/KMUWdun/20260526160627.jpg)
 
 ### 第二步：查看账户余额
 

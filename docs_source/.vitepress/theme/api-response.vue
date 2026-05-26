@@ -109,7 +109,11 @@ async function copyResponse() {
           <span class="response-title" v-text="responseTitle"></span>
         </div>
         <div class="right">
-          <div class="lang-select-wrapper" v-if="langOptions.length > 1" @click="onLangWrapperClick">
+          <div
+            class="lang-select-wrapper"
+            v-if="langOptions.length > 1"
+            @click="onLangWrapperClick"
+          >
             <el-select
               ref="langSelectRef"
               v-model="currentLang"
@@ -278,13 +282,18 @@ async function copyResponse() {
   z-index: auto !important;
   transform: none !important;
   top: auto !important;
-  font-family: "SF Pro", -apple-system, sans-serif;
+  font-family:
+    "SF Pro",
+    -apple-system,
+    sans-serif;
   font-size: 13px !important;
   line-height: 24px !important;
   color: #666 !important;
 }
 
-.api-response-float-container .el-select .el-select__placeholder.is-transparent {
+.api-response-float-container
+  .el-select
+  .el-select__placeholder.is-transparent {
   color: #999 !important;
 }
 

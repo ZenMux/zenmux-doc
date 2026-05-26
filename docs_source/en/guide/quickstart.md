@@ -42,7 +42,7 @@ Pay As You Go uses a **prepaid balance + usage-based billing** model, purpose-bu
 
 Go to the **[Pay As You Go management page](https://zenmux.ai/platform/pay-as-you-go)** to top up your balance and create an API key.
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/rsGoojf/pay-as-you-go.png" alt="Pay As You Go management page" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/26/KMUWdun/20260526160627.jpg" alt="Pay As You Go management page" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 
 ::: info 📚 Detailed Guide
 For complete instructions, see the [Pay As You Go Guide](/guide/pay-as-you-go).
@@ -60,7 +60,7 @@ Builder Plan provides a fixed monthly fee with predictable AI model access:
 
 Go to the **[Pricing page](https://zenmux.ai/pricing/subscription)** to view plan details and subscribe.
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/28/iszJOqe/ss-1.png" alt="Subscription plan comparison" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/26/MIUpX6E/20260526161442.jpg" alt="Subscription plan comparison" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 
 ::: info 📚 Detailed Guide
 For complete instructions, see the [Subscription Plans Guide](/guide/subscription).
@@ -82,9 +82,9 @@ If your project is already live or heading toward commercialization, **you must 
 
 ::: info How to Obtain Model Slugs
 Each model on the ZenMux platform has a unique slug. You can find model slugs on the [Models page](https://zenmux.ai/models):
-![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/AQG0SIr/model-slug.png)
+![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2026/05/26/es9d7he/20260526161559.jpg)
 Or on a [model's detail page](https://zenmux.ai/google/gemini-3.1-pro-preview):
-![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/dWYxJnq/model-slug-3.png)
+![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2026/05/26/0kWfGkK/20260526161657.jpg)
 :::
 
 ## Supported API Protocols

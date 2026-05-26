@@ -26,17 +26,17 @@ Create Chat Completion 接口兼容 OpenAI 的 [Create Chat Completion](https://
 
 ## Request headers
 
-### Authorization `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+### Authorization `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 Bearer Token 鉴权
 
-### Content-Type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+### Content-Type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 请求内容类型，默认值为 `application/json`
 
 ## Request
 
-### messages `array` <font color="FA6062">必选</font>
+### messages `array` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 以对话的消息列表形式输入给大模型的提示词。根据模型的能力不同，支持的消息类型也会有所不同，比如 文本、图片、音频、视频。具体支持的参数，请查看各模型生产商的文档。
 
@@ -45,7 +45,7 @@ messages 里的每个元素表示一条对话消息，每条消息由 role 和 c
 ::: details Developer message `object`
 开发者提供的指令，无论用户发送什么消息，模型都应遵循。在 o1 及更新模型中，developer 消息取代了之前的 system 消息。
 
-- content `string or array ` <font color="FA6062">必选</font>
+- content `string or array ` <span style="color: #FA6062; font-weight: 400">\*</span>
 
   Developer message 的内容。
   - Text content `string`
@@ -55,27 +55,27 @@ messages 里的每个元素表示一条对话消息，每条消息由 role 和 c
   - Array of content parts `array`
 
     具有定义类型的内容部分数组。对于 Developer message，只支持类型 `text`。
-    - text `string` <font color="FA6062">必选</font>
+    - text `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
       文本内容。
 
-    - type `string` <font color="FA6062">必选</font>
+    - type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
       内容部分的类型。
 
-- role `string` <font color="FA6062">必选</font>
+- role `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
   消息作者的角色，在此情况下为 developer。
 
-- name `string` <font color="gray">可选</font>
+- name `string` <span style="color: #666; font-weight: 400">可选</span>
 
-  参与者<font color="gray">可选</font>名称。为模型提供区分相同角色参与者的信息。
+  参与者<span style="color: #666; font-weight: 400">可选</span>名称。为模型提供区分相同角色参与者的信息。
   :::
 
 ::: details System message `object`
 开发者提供的指令，无论用户发送什么消息，模型都应遵循。在 o1 及更新模型中，应使用 developer 消息来实现此目的。
 
-- content `string or array ` <font color="FA6062">必选</font>
+- content `string or array ` <span style="color: #FA6062; font-weight: 400">\*</span>
 
   System message 的内容。
   - Text content `string`
@@ -85,70 +85,70 @@ messages 里的每个元素表示一条对话消息，每条消息由 role 和 c
   - Array of content parts `array`
 
     具有定义类型的内容部分数组。对于 System message，只支持类型 `text`。
-    - text `string` <font color="FA6062">必选</font>
+    - text `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
       文本内容。
 
-    - type `string` <font color="FA6062">必选</font>
+    - type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
       内容部分的类型。
 
-- role `string` <font color="FA6062">必选</font>
+- role `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
   消息作者的角色，在此情况下为 system
 
-- name `string` <font color="gray">可选</font>
+- name `string` <span style="color: #666; font-weight: 400">可选</span>
 
-  参与者<font color="gray">可选</font>名称。为模型提供区分相同角色参与者的信息。
+  参与者<span style="color: #666; font-weight: 400">可选</span>名称。为模型提供区分相同角色参与者的信息。
   :::
 
 ::: details User message `object`  
 终端用户发送给模型的消息，大多数对话场景中你只需要使用此角色。
 
-- content `string or array` <font color="FA6062">必选</font>
+- content `string or array` <span style="color: #FA6062; font-weight: 400">\*</span>
 
   User message 的内容。
-  - Text content `string` <font color="FA6062">必选</font>
+  - Text content `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
     纯文本内容，最常见的用法。
 
-  - Array of content parts `array` <font color="FA6062">必选</font>
+  - Array of content parts `array` <span style="color: #FA6062; font-weight: 400">\*</span>
 
     多模态内容片段数组。根据模型能力，可以包含文本、图片、音频等类型的内容。常见类型包括：
     - 文本片段
-      - type `string` <font color="FA6062">必选</font>，固定为 `text`
-      - text `string` <font color="FA6062">必选</font>，文本内容
+      - type `string` <span style="color: #FA6062; font-weight: 400">\*</span>，固定为 `text`
+      - text `string` <span style="color: #FA6062; font-weight: 400">\*</span>，文本内容
 
     - 图片片段（仅多模态模型支持）
-      - type `string` <font color="FA6062">必选</font>，为 `image_url`
-      - image_url `object` <font color="FA6062">必选</font>
-        - url `string` <font color="FA6062">必选</font>，图片 URL 或 base64 Data URL
-        - detail `string` <font color="gray">可选</font>，典型取值：`low` / `high` / `auto`，用于控制图像解析精度
+      - type `string` <span style="color: #FA6062; font-weight: 400">\*</span>，为 `image_url`
+      - image_url `object` <span style="color: #FA6062; font-weight: 400">\*</span>
+        - url `string` <span style="color: #FA6062; font-weight: 400">\*</span>，图片 URL 或 base64 Data URL
+        - detail `string` <span style="color: #666; font-weight: 400">可选</span>，典型取值：`low` / `high` / `auto`，用于控制图像解析精度
 
     - 音频片段（仅音频输入模型支持）
-      - type `string` <font color="FA6062">必选</font>，为 `input_audio`
-      - input_audio `object` <font color="FA6062">必选</font>
-        - data `string` <font color="FA6062">必选</font>，音频文件 base64 内容
-        - format `string` <font color="FA6062">必选</font>，如 `wav`、`mp3`
+      - type `string` <span style="color: #FA6062; font-weight: 400">\*</span>，为 `input_audio`
+      - input_audio `object` <span style="color: #FA6062; font-weight: 400">\*</span>
+        - data `string` <span style="color: #FA6062; font-weight: 400">\*</span>，音频文件 base64 内容
+        - format `string` <span style="color: #FA6062; font-weight: 400">\*</span>，如 `wav`、`mp3`
 
     - 文件片段（File content part，仅支持文件输入的模型）  
       用于将整份文件作为上下文输入给模型（例如 PDF、Office 文档等）。
-      - type `string` <font color="FA6062">必选</font>，固定为 `file`
-      - file `object` <font color="FA6062">必选</font>
-        - file_id `string` <font color="gray">可选</font>
+      - type `string` <span style="color: #FA6062; font-weight: 400">\*</span>，固定为 `file`
+      - file `object` <span style="color: #FA6062; font-weight: 400">\*</span>
+        - file_id `string` <span style="color: #666; font-weight: 400">可选</span>
           - 通过文件上传接口获取的文件 ID，推荐优先使用此方式引用文件
-        - file_data `string` <font color="gray">可选</font>
+        - file_data `string` <span style="color: #666; font-weight: 400">可选</span>
           - base64 编码的文件数据，用于直接在请求体中传文件内容
-        - filename `string` <font color="gray">可选</font>
+        - filename `string` <span style="color: #666; font-weight: 400">可选</span>
           - 文件名，用于提示模型文件类型或在控制台中展示
 
-- role `string` <font color="FA6062">必选</font>
+- role `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
   消息作者角色，在此情况下为 `user`。
 
-- name `string` <font color="gray">可选</font>
+- name `string` <span style="color: #666; font-weight: 400">可选</span>
 
-  参与者<font color="gray">可选</font>名称。为模型提供区分相同角色参与者的信息。  
+  参与者<span style="color: #666; font-weight: 400">可选</span>名称。为模型提供区分相同角色参与者的信息。  
   :::
 
 ::: details Assistant message `object`  
@@ -165,24 +165,24 @@ messages 里的每个元素表示一条对话消息，每条消息由 role 和 c
 
     具有定义类型的内容部分数组。可以包含一个或多个类型为 `text` 的内容部分，或者**恰好一个**类型为 `refusal` 的内容部分。
     - Text content part `object`（文本内容片段）
-      - type `string` <font color="FA6062">必选</font>  
+      - type `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
         内容片段的类型。
 
-      - text `string` <font color="FA6062">必选</font>  
+      - text `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
         文本内容。
 
     - Refusal content part `object`（拒答内容片段）
-      - type `string` <font color="FA6062">必选</font>  
+      - type `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
         内容片段的类型。
 
-      - refusal `string` <font color="FA6062">必选</font>  
+      - refusal `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
         模型生成的拒答信息。
 
 - refusal `string or null` 可选
 
   助手的拒答消息内容。
 
-- role `string` <font color="FA6062">必选</font>
+- role `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
   消息作者角色，在此情况下为 `assistant`。
 
@@ -193,55 +193,55 @@ messages 里的每个元素表示一条对话消息，每条消息由 role 和 c
 - audio `object or null` 可选
 
   关于**之前某次模型音频回复**的数据，可在后续对话中引用该音频回复。
-  - id `string` <font color="FA6062">必选</font>
+  - id `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
     之前音频回复的唯一标识符。
 
 - tool_calls `array` 可选
   - 函数工具调用 `object`
-    - id `string` <font color="FA6062">必选</font>
+    - id `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
       工具调用 ID，用于与后续的 Tool message 中的 `tool_call_id` 对应。
 
-    - type `string` <font color="FA6062">必选</font>
+    - type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
       工具类型，目前仅支持 `function`。
 
-    - function `object` <font color="FA6062">必选</font>
-      - name `string` <font color="FA6062">必选</font>
+    - function `object` <span style="color: #FA6062; font-weight: 400">\*</span>
+      - name `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
         要调用的函数名。
 
-      - arguments `string` <font color="FA6062">必选</font>
+      - arguments `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
         以 JSON 字符串形式表示的函数调用参数（由模型生成）。  
         注意：模型不保证一定生成完全合法的 JSON，可能会出现未在函数 Schema 中定义的参数，调用前应在业务侧进行校验。
 
     - 自定义工具调用 `object`
-      - id `string` <font color="FA6062">必选</font>
+      - id `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
         工具调用 ID，用于与后续的 Tool message 中的 `tool_call_id` 对应。
 
-      - type `string` <font color="FA6062">必选</font>
+      - type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
         工具类型，始终为 `custom`。
 
-      - custom `object` <font color="FA6062">必选</font>
-        - name `string` <font color="FA6062">必选</font>
+      - custom `object` <span style="color: #FA6062; font-weight: 400">\*</span>
+        - name `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
           要调用的函数名。
 
-        - input `string` <font color="FA6062">必选</font>
+        - input `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
           由模型生成的自定义工具调用的输入。
 
 - function_call `object or null`（已废弃） 可选
 
   已被 `tool_calls` 替代，仅为兼容旧版格式保留。表示模型建议调用的函数名称和参数。
-  - name `string` <font color="FA6062">必选</font>  
+  - name `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
     要调用的函数名。
 
-  - arguments `string` <font color="FA6062">必选</font>  
+  - arguments `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
      以 JSON 字符串形式表示的函数调用参数（由模型生成），同样需要在业务侧校验后再实际
 
 - reasoning `string` 可选
@@ -253,23 +253,23 @@ messages 里的每个元素表示一条对话消息，每条消息由 role 和 c
   推理过程的详细信息数组。**在开启 reasoning 的多轮工具调用场景中，必须将此字段完整传回，特别是其中包含的 `signature` 字段，否则后续对话将无法正常进行。**
 
   每个元素包含以下字段：
-  - type `string` <font color="FA6062">必选</font>
+  - type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
     推理内容类型，如 `reasoning.text`。
 
-  - text `string` <font color="FA6062">必选</font>
+  - text `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
     推理过程的文本内容。
 
-  - signature `string` <font color="FA6062">必选</font>
+  - signature `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
     推理过程的签名凭证。**这是多轮对话中保持推理上下文的关键字段，必须原样传回。** 该签名由模型生成，用于验证推理内容的完整性和连续性。
 
-  - format `string` <font color="gray">可选</font>
+  - format `string` <span style="color: #666; font-weight: 400">可选</span>
 
     签名格式标识，如 `anthropic-claude-v1`。
 
-  - index `number` <font color="gray">可选</font>
+  - index `number` <span style="color: #666; font-weight: 400">可选</span>
 
     推理片段的索引位置。
 
@@ -278,7 +278,7 @@ messages 里的每个元素表示一条对话消息，每条消息由 role 和 c
 ::: details Tool message `object`  
 用于把外部工具（函数）调用的执行结果传回给模型的消息。
 
-- content `string or array` <font color="FA6062">必选</font>
+- content `string or array` <span style="color: #FA6062; font-weight: 400">\*</span>
 
   工具执行结果的内容，一般为文本或结构化数据（序列化为字符串）。
   - Text content `string`
@@ -288,23 +288,23 @@ messages 里的每个元素表示一条对话消息，每条消息由 role 和 c
   - Array of content parts `array`
 
     具有定义类型的内容部分数组。对于 Tool message，只支持类型 `text`。
-    - text `string` <font color="FA6062">必选</font>
+    - text `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
       文本内容。
 
-    - type `string` <font color="FA6062">必选</font>
+    - type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
       内容部分的类型。
 
-- role `string` <font color="FA6062">必选</font>
+- role `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
   消息作者角色，在此情况下为 `tool`。
 
-- tool_call_id `string` <font color="FA6062">必选</font>
+- tool_call_id `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
   对应 assistant 消息中某个 `tool_calls[i].id`，用于将本次工具结果与那次调用对应起来。
 
-- name `string` <font color="gray">可选</font>
+- name `string` <span style="color: #666; font-weight: 400">可选</span>
 
   工具名称（通常与声明在 `tools` 中的 function 名称一致）。  
   :::
@@ -312,53 +312,53 @@ messages 里的每个元素表示一条对话消息，每条消息由 role 和 c
 ::: info Function message `object` <font color="FA6062">官方已弃用不支持</font>
 :::
 
-### model `string` <font color="FA6062">必选</font>
+### model `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 此次推理调用的模型 ID，格式为 &lt;供应商&gt;/&lt;模型名称&gt;，如 openai/gpt-5，可以从各模型的详情页获得。
 
-### max_completion_tokens `integer or null` <font color="gray">可选</font>
+### max_completion_tokens `integer or null` <span style="color: #666; font-weight: 400">可选</span>
 
 限制模型生成内容的长度，包括思考过程。如果不传，会采用模型的默认限制。各模型的最大生成内容长度可以详情页获得。
 
-### temperature `number` <font color="gray">可选</font>
+### temperature `number` <span style="color: #666; font-weight: 400">可选</span>
 
 - 默认：`1`
 - zenmux 没有限制范围，建议在 `[0, 2]` 范围内取值。
 
 采样温度，控制随机性：值越高越随机，值越低越稳定。一般与 `top_p` 二选一调节。
 
-### top_p `number` <font color="gray">可选</font>
+### top_p `number` <span style="color: #666; font-weight: 400">可选</span>
 
 - 默认：`1`
 
 Nucleus sampling（核采样）参数：只从累积概率质量前 `top_p` 的 token 中采样，如 `top_p = 0.1` 表示只考虑概率质量前 10% 的 token。
 
-### n `integer or null` <font color="gray">可选</font>
+### n `integer or null` <span style="color: #666; font-weight: 400">可选</span>
 
 返回候选回答数量，目前仅支持 n=1
 
-### frequency_penalty `number or null` <font color="gray">可选</font>
+### frequency_penalty `number or null` <span style="color: #666; font-weight: 400">可选</span>
 
 - 默认值：`0`
 - 取值范围：`-2.0` ~ `2.0`
 
 对已出现频率较高的 token 施加惩罚。值越大，模型越不愿重复相同内容，可用于减少机械复读。
 
-### presence_penalty `number or null` <font color="gray">可选</font>
+### presence_penalty `number or null` <span style="color: #666; font-weight: 400">可选</span>
 
 - 默认：`0`
 - 取值范围：`-2.0` ~ `2.0`
 
 对**是否已出现过**的 token 施加惩罚。值越大，模型越倾向于引入新话题、减少重复讨论相同内容。
 
-### stop `string | array | null` <font color="gray">可选</font>
+### stop `string | array | null` <span style="color: #666; font-weight: 400">可选</span>
 
 - 默认：`null`
 - 最多可提供 4 个 stop 序列
 
 当生成内容命中任一 stop 序列时，模型会停止继续生成，返回结果中不包含该 stop 序列。最新部分推理模型（如 `o3`、`o4-mini`）不支持该参数。
 
-### logit_bias `object` <font color="gray">可选</font>
+### logit_bias `object` <span style="color: #666; font-weight: 400">可选</span>
 
 - 默认：`null`
 
@@ -368,21 +368,21 @@ Nucleus sampling（核采样）参数：只从累积概率质量前 `top_p` 的 
 - 负值：降低该 token 被选中的概率
 - 极值（如 ±100）：接近于强制禁止或强制选用该 token
 
-### logprobs `boolean or null` <font color="gray">可选</font>
+### logprobs `boolean or null` <span style="color: #666; font-weight: 400">可选</span>
 
 - 默认：`false`
 
 是否在返回结果中包含输出 token 的对数概率信息。
 
-### top_logprobs `integer` <font color="gray">可选</font>
+### top_logprobs `integer` <span style="color: #666; font-weight: 400">可选</span>
 
 指定每个位置返回的**最高概率 token 个数**（0~20），每个 token 带对应的 logprob。
 
-### tools `array` <font color="gray">可选</font>
+### tools `array` <span style="color: #666; font-weight: 400">可选</span>
 
 用于声明本次对话中模型可以调用的工具列表。每个元素可以是自定义工具或 function 工具（JSON Schema 定义的函数）。
 
-### tool_choice `string or object` <font color="gray">可选</font>
+### tool_choice `string or object` <span style="color: #666; font-weight: 400">可选</span>
 
 控制模型对工具的使用策略：([platform.openai.com](https://platform.openai.com/docs/api-reference/chat))
 
@@ -391,50 +391,50 @@ Nucleus sampling（核采样）参数：只从累积概率质量前 `top_p` 的 
 - `"required"`：本轮必须调用至少一个工具
 - 指定单个工具：`{"type": "function", "function": {"name": "my_function"}}`
 
-### parallel_tool_calls `boolean` <font color="gray">可选</font>
+### parallel_tool_calls `boolean` <span style="color: #666; font-weight: 400">可选</span>
 
 - 默认：`true`
 
 是否允许模型在一次回复中**并行**调用多个工具（函数）。
 
-### reasoning_effort `string` <font color="gray">可选</font>（推理模型）
+### reasoning_effort `string` <span style="color: #666; font-weight: 400">可选</span>（推理模型）
 
 控制**推理模型**在思考上的投入程度：`none`、`minimal`、`low`、`medium`、`high`、`xhigh` 等。不同模型的默认值与支持范围有所不同。
 
-### verbosity `string` <font color="gray">可选</font>
+### verbosity `string` <span style="color: #666; font-weight: 400">可选</span>
 
 - 默认：`"medium"`
 
 约束模型输出的详略程度：`low`（简洁）、`medium`（适中）、`high`（更详细）。
 
-### web_search_options `object` <font color="gray">可选</font>
+### web_search_options `object` <span style="color: #666; font-weight: 400">可选</span>
 
 配置**网页搜索工具**的行为，用于让模型在生成回答前主动检索互联网最新信息。
 
-### metadata `object` <font color="gray">可选</font>
+### metadata `object` <span style="color: #666; font-weight: 400">可选</span>
 
 允许附带最多 16 个键值对，作为结构化业务元信息保存，便于在日志、检索或管理界面中查询。
 
-### stream `boolean or null` <font color="gray">可选</font>
+### stream `boolean or null` <span style="color: #666; font-weight: 400">可选</span>
 
 - 默认：`false`
 
 是否启用**流式输出**（Server-Sent Events）。为 `true` 时，结果以事件流形式分片返回。
 
-### stream_options `object` <font color="gray">可选</font>
+### stream_options `object` <span style="color: #666; font-weight: 400">可选</span>
 
 仅当 `stream: true` 时有效，用于配置流式行为，例如是否在流结束时附带 usage 信息等。
 
-### provider `object` <font color="gray">可选</font>
+### provider `object` <span style="color: #666; font-weight: 400">可选</span>
 
 用于配置本次请求在多个模型提供商（如 OpenAI、Anthropic、Google 等）之间的路由与故障转移策略。
 如果不配置，则使用项目或模型的默认路由策略。
 
-#### routing `object` <font color="FA6062">必选</font>
+#### routing `object` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 路由策略配置，决定请求在多个提供商之间如何选择与分发。
 
-##### type `string` <font color="FA6062">必选</font>
+##### type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 路由类型，支持以下取值：
 
@@ -445,7 +445,7 @@ Nucleus sampling（核采样）参数：只从累积概率质量前 `top_p` 的 
 - `least_latency`
   最低延迟优先：根据历史/实时统计选择当前响应最快的提供商。
 
-##### primary_factor `string` <font color="gray">可选</font>
+##### primary_factor `string` <span style="color: #666; font-weight: 400">可选</span>
 
 当存在多个可用提供商时的主要考量因素。例如：
 
@@ -458,11 +458,11 @@ Nucleus sampling（核采样）参数：只从累积概率质量前 `top_p` 的 
 
 实际行为会与 type 联合作用：例如 type = "priority" 时，primary_factor 主要影响优先级排序逻辑
 
-##### providers `array` <font color="FA6062">必选</font>
+##### providers `array` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 可参与路由的模型提供商列表。例如：`["openai", "anthropic", "google"]`
 
-#### fallback `string` <font color="gray">可选</font>
+#### fallback `string` <span style="color: #666; font-weight: 400">可选</span>
 
 故障转移（Failover）策略。当当前选中的提供商出现错误（如超时、额度不足、服务不可用）时，如何进行自动切换：
 
@@ -476,27 +476,27 @@ Nucleus sampling（核采样）参数：只从累积概率质量前 `top_p` 的 
 若失败，则转而使用指定的备用提供商
 若主 + 备用都失败，则返回错误
 
-### model_routing_config `object` <font color="gray">可选</font>
+### model_routing_config `object` <span style="color: #666; font-weight: 400">可选</span>
 
 用于配置当前请求在**同一提供商内部不同模型之间**的选择与路由策略（如在 `gpt-4o`、`gpt-4-turbo`、`claude-3-5-sonnet` 之间如何选用）。
 
 如果不配置，则使用项目或 SDK 的默认模型选择策略（例如默认模型、默认任务类型映射等）。
 
-#### available_models `array` <font color="FA6062">必选</font>
+#### available_models `array` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 可参与路由或备选的**模型名称列表**。
 
-#### preference `string` <font color="gray">可选</font>
+#### preference `string` <span style="color: #666; font-weight: 400">可选</span>
 
 首选模型名称。
 
-#### task_info `object` <font color="gray">可选</font>
+#### task_info `object` <span style="color: #666; font-weight: 400">可选</span>
 
 任务元信息，用于**根据任务类型和复杂度**决定具体模型或参数。
 
 内部字段如下：
 
-##### task_type `string` <font color="FA6062">必选</font>
+##### task_type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 任务类型，用于表达当前请求的用途，以便于路由或自动选择参数。
 
@@ -508,7 +508,7 @@ Nucleus sampling（核采样）参数：只从累积概率质量前 `top_p` 的 
   - 可据此为不同任务类型设置不同的默认模型或限额策略
   - 也可与 `complexity` 联动，决定是否启用更强模型
 
-##### complexity `string` <font color="gray">可选</font>
+##### complexity `string` <span style="color: #666; font-weight: 400">可选</span>
 
 任务复杂度，用于刻画请求的难度或重要程度。
 
@@ -520,28 +520,28 @@ Nucleus sampling（核采样）参数：只从累积概率质量前 `top_p` 的 
   - 可以根据复杂度选择不同档位的模型（如低复杂度选便宜模型，高复杂度选能力更强的模型）
   - 也可用于控制超时时间、重试策略等
 
-##### additional_properties `object` <font color="gray">可选</font>
+##### additional_properties `object` <span style="color: #666; font-weight: 400">可选</span>
 
 任务相关的扩展字段，键值对形式，自由扩展。
 
-#### additional_properties `object` <font color="gray">可选</font>
+#### additional_properties `object` <span style="color: #666; font-weight: 400">可选</span>
 
 模型路由配置本身的扩展字段，用于在标准结构之外，附加额外的控制信息。
 
-### reasoning `object` <font color="gray">可选</font>
+### reasoning `object` <span style="color: #666; font-weight: 400">可选</span>
 
 用于配置推理过程（chain-of-thought / reasoning trace）相关行为，包括是否启用、推理深度与长度控制，以及是否对外暴露推理内容。
 
 如果不配置，则由系统或模型使用默认的推理策略。
 
-#### enabled `boolean` <font color="FA6062">必选</font>
+#### enabled `boolean` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 是否启用显式推理过程。
 
 - `true`：模型在内部使用并（在允许的情况下）输出更详细的推理步骤
 - `false`：模型仅给出结论性回答，不显式展开推理（或尽量少展开）
 
-#### effort `string` <font color="gray">可选</font>
+#### effort `string` <span style="color: #666; font-weight: 400">可选</span>
 
 推理投入程度，用于控制模型在**思考深度 / 推理精细程度**与**成本 / 时延**之间的平衡。
 
@@ -553,11 +553,11 @@ Nucleus sampling（核采样）参数：只从累积概率质量前 `top_p` 的 
   - 对时延敏感的在线服务：倾向 `"low"` 或 `"medium"`
   - 对正确性要求极高的任务：倾向 `"high"`
 
-#### max_tokens `number` <font color="gray">可选</font>
+#### max_tokens `number` <span style="color: #666; font-weight: 400">可选</span>
 
 推理过程（而非最终回答）的**最大 token 数上限**。
 
-#### exclude `boolean` <font color="gray">可选</font>
+#### exclude `boolean` <span style="color: #666; font-weight: 400">可选</span>
 
 是否**从对用户返回的内容中排除推理过程**。
 
@@ -569,15 +569,15 @@ Nucleus sampling（核采样）参数：只从累积概率质量前 `top_p` 的 
   - 满足安全与合规需求（不暴露 chain-of-thought）
   - 在开发 / 调试阶段通过设置为 `false` 观察模型思考过程，便于迭代提示词与策略配置
 
-#### usage `object` <font color="gray">可选</font>
+#### usage `object` <span style="color: #666; font-weight: 400">可选</span>
 
 使用统计信息
 
-##### include `boolean` <font color="FA6062">必选</font>
+##### include `boolean` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 是否在响应中包含使用统计信息
 
-### response_format `object` <font color="gray">可选</font>
+### response_format `object` <span style="color: #666; font-weight: 400">可选</span>
 
 一个指定模型必须输出格式的对象。
 
@@ -587,31 +587,31 @@ Nucleus sampling（核采样）参数：只从累积概率质量前 `top_p` 的 
 
 :::details Text `object`
 
-- type `string` <font color="FA6062">必选</font>
+- type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
   正在定义的响应格式的类型。始终为 text
 
 :::
 
 :::details JSON schema `object`
 
-- json_schema `object` <font color="FA6062">必选</font>
+- json_schema `object` <span style="color: #FA6062; font-weight: 400">\*</span>
   定义响应格式的 JSON schema。
-  - name `string` <font color="FA6062">必选</font>
+  - name `string` <span style="color: #FA6062; font-weight: 400">\*</span>
     响应格式的名称。必须是 a-z、A-Z、0-9，或包含下划线和破折号，最大长度为 64。
-  - schema `object` <font color="gray">可选</font>
+  - schema `object` <span style="color: #666; font-weight: 400">可选</span>
     响应格式的模式，描述为一个 JSON Schema 对象。
-  - strict `boolean` <font color="gray">可选</font>
+  - strict `boolean` <span style="color: #666; font-weight: 400">可选</span>
     是否严格遵循 JSON schema。
-  - description `string` <font color="gray">可选</font>
+  - description `string` <span style="color: #666; font-weight: 400">可选</span>
     对响应格式用途的描述，模型根据该描述来确定如何以该格式进行响应。
-- type `string` <font color="FA6062">必选</font>
+- type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
   正在定义的响应格式的类型。始终为 json_schema
 
 :::
 
 :::details JSON object `object`
 
-- type `string` <font color="FA6062">必选</font>
+- type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
   正在定义的响应格式的类型。始终为 json_object
 
 :::

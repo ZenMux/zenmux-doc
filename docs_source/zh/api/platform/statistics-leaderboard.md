@@ -30,7 +30,7 @@ GET https://zenmux.ai/api/v1/management/statistics/leaderboard
 
 ## 鉴权
 
-### Authorization Header <font color="FA6062">必选</font>
+### Authorization Header <span style="color: #FA6062; font-weight: 400">\*</span>
 
 ```http
 Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
@@ -50,7 +50,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 
 ## 参数
 
-### metric `string` <font color="FA6062">必选</font>
+### metric `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 排名依据的指标类型。
 

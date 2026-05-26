@@ -33,7 +33,7 @@ Model routing solves these problems with automated decisions, intelligently matc
 On the [Models page](https://zenmux.ai/models) you can view all supported models and their basic information. Use the filters on the left, the search box at the top, and sorting options to quickly locate the model you need. Model cards also provide quick access to supported input/output modalities, input/output pricing, Context, Max Tokens, and other key details.
 :::
 
-![Model List](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/b5FlrNU/model-list.png)
+![Model List](https://cdn.marmot-cloud.com/storage/zenmux/2026/05/26/tyhl5B8/20260526163120.png)
 
 Click any model card to open its details page and view model-specific information across different providers, including performance comparisons, price comparisons, and parameter differences. For details, see the [Provider Routing documentation](/guide/advanced/provider-routing.html#如何查看供应商信息).
 
@@ -55,9 +55,9 @@ Model routing is easy to use—simply set the `model` parameter to `zenmux/auto`
 
 ::: info How to get model slugs
 Models on the ZenMux platform have unique slugs. You can get a model’s slug from the [Models list page](https://zenmux.ai/models):
-![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/AQG0SIr/model-slug.png)
+![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2026/05/26/es9d7he/20260526161559.jpg)
 Or from the [model detail page for a specific model](https://zenmux.ai/anthropic/claude-sonnet-4.5):
-![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/dWYxJnq/model-slug-3.png)
+![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2026/05/26/0kWfGkK/20260526161657.jpg)
 :::
 
 ::: code-group

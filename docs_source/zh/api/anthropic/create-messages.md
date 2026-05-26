@@ -26,7 +26,7 @@ ZenMux 支持 Anthropic API, 使用方式见 API 调用示例。
 
 ## Request headers
 
-### x-api-key `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+### x-api-key `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 Anthropic API Key，用于鉴权。
 
@@ -36,7 +36,7 @@ Anthropic API Key，用于鉴权。
 x-api-key: sk-ant-xxxx
 ```
 
-### anthropic-version `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+### anthropic-version `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 Anthropic API 版本号（不是模型版本）。
 
@@ -46,7 +46,7 @@ Anthropic API 版本号（不是模型版本）。
 anthropic-version: 2023-06-01
 ```
 
-### content-type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+### content-type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 请求体格式，当前仅支持 JSON：
 
@@ -54,7 +54,7 @@ anthropic-version: 2023-06-01
 content-type: application/json
 ```
 
-### anthropic-beta `string` <font color="gray">可选</font>
+### anthropic-beta `string` <span style="color: #666; font-weight: 400">可选</span>
 
 启用一个或多个 Beta 功能时使用，目前不支持"code-execution-2025-08-25", 即无法使用 code_execution 工具
 
@@ -66,7 +66,7 @@ content-type: application/json
 
 请求体为 JSON，对应参数如下
 
-### max_tokens `number` <font color="FA6062">必选</font>
+### max_tokens `number` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 生成内容的 **最大 token 数**，包括普通回答和（若启用）extended thinking 的思考内容。
 
@@ -74,7 +74,7 @@ content-type: application/json
 - 每个模型支持的 `max_tokens` 上限不同，详见各模型文档。
 - 取值：`>= 1`
 
-### messages `array<Message>` <font color="FA6062">必选</font>
+### messages `array<Message>` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 对话历史与本轮用户输入。
 
@@ -92,9 +92,9 @@ Message = {
 }
 ```
 
-#### role: `"user" | "assistant"`<font color="FA6062">必选</font>
+#### role: `"user" | "assistant"`<span style="color: #FA6062; font-weight: 400">\*</span>
 
-#### content `string | ContentBlock[]`<font color="FA6062">必选</font>
+#### content `string | ContentBlock[]`<span style="color: #FA6062; font-weight: 400">\*</span>
 
 - 直接写字符串，相当于只有一个 `type: "text"` 的文本块：
   - `{"role":"user","content":"Hello, Claude"}` 等价于  
@@ -114,11 +114,11 @@ Message = {
 }
 ```
 
-- text `string` <font color="FA6062">必选</font>  
+- text `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
   文本内容。
-- type `string` <font color="FA6062">必选</font>  
+- type `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
   固定为 `"text"`。
-- cache_control `CacheControlEphemeral` <font color="gray">可选</font>  
+- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400">可选</span>  
    在该块上创建 **Prompt Cache 断点**（用于 Anthropic 的上下文缓存计费 / 复用）：
 
   ```ts
@@ -130,7 +130,7 @@ Message = {
 
   - ttl：缓存生存时间，`"5m"` / `"1h"`，默认 5 分钟。
 
-- citations `TextCitationParam[]` <font color="gray">可选</font>  
+- citations `TextCitationParam[]` <span style="color: #666; font-weight: 400">可选</span>  
   用于**标注文本引用来源**（典型场景：把 PDF / 文本文档 / 内容文档作为 document 块输入后，标注「这一段回答来自哪一页 / 哪一段 / 哪个搜索结果」）。  
   `TextCitationParam` 是以下几种之一（取决于被引用内容的类型）：
   - **char_location：按字符区间引用纯文本或内容文档**
@@ -147,24 +147,24 @@ Message = {
     ```
 
     字段说明：
-    - `type` `string` <font color="FA6062">必选</font>  
+    - `type` `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
       固定为 `"char_location"`，表示该引用是通过**字符位置区间**来定位的。
 
-    - `cited_text` `string` <font color="FA6062">必选</font>  
+    - `cited_text` `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
       被引用的原文文本片段（人读用的展示内容）。  
       一般是 `start_char_index` ~ `end_char_index` 之间的文本截取。
 
-    - `document_index` `number` <font color="FA6062">必选</font>  
+    - `document_index` `number` <span style="color: #FA6062; font-weight: 400">\*</span>  
       当前请求中被引用文档的索引，**从 0 开始计数**。  
       如果你在本次请求里传了多个 `document` 块（或其它可被引用文档），这里用于指明是第几个。
 
-    - `document_title` `string` <font color="FA6062">必选</font>  
+    - `document_title` `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
       文档标题或名称，通常来自文件名或你在上游提供的标题，用于在 UI 中展示「来自：xxx 文档」。
 
-    - `start_char_index` `number` <font color="FA6062">必选</font>  
+    - `start_char_index` `number` <span style="color: #FA6062; font-weight: 400">\*</span>  
       在该文档的**完整文本**中，被引用片段的起始字符索引，**0 基，包含该位置**。
 
-    - `end_char_index` `number` <font color="FA6062">必选</font>  
+    - `end_char_index` `number` <span style="color: #FA6062; font-weight: 400">\*</span>  
       在该文档完整文本中的结束字符索引，**0 基，通常为开区间端点**，即引用区间为 `[start_char_index, end_char_index)`。
 
   - **page_location：按页号引用 PDF**
@@ -181,23 +181,23 @@ Message = {
     ```
 
     字段说明：
-    - `type` `string` <font color="FA6062">必选</font>  
+    - `type` `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
       固定为 `"page_location"`，表示引用位置以**页号区间**来描述。
 
-    - `cited_text` `string` <font color="FA6062">必选</font>  
+    - `cited_text` `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
       被引用的 PDF 文本片段（已由系统从 PDF 中解析出来的可读文本）。
 
-    - `document_index` `number` <font color="FA6062">必选</font>  
+    - `document_index` `number` <span style="color: #FA6062; font-weight: 400">\*</span>  
       被引用的 PDF 文档在当前请求中的索引，**0 基**。
 
-    - `document_title` `string` <font color="FA6062">必选</font>  
+    - `document_title` `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
       PDF 文档标题或文件名，用于展示。
 
-    - `start_page_number` `number` <font color="FA6062">必选</font>  
+    - `start_page_number` `number` <span style="color: #FA6062; font-weight: 400">\*</span>  
       引用内容所在的**起始页号**，**1 基，包含该页**。  
       例如 `5` 表示「从第 5 页开始」。
 
-    - `end_page_number` `number` <font color="FA6062">必选</font>  
+    - `end_page_number` `number` <span style="color: #FA6062; font-weight: 400">\*</span>  
       引用内容所在的**结束页号**，通常视为半开区间的右端点：
       - 若 `start_page_number = 5` 且 `end_page_number = 6`，可理解为「引用范围为第 5 页」。
       - 若两者相差大于 1，则表示「跨多页引用」。
@@ -218,23 +218,23 @@ Message = {
     用于引用以「多内容块形式」提供的文档（例如一个 `document` 的 `source.type = "content"`，内部包含多个 `text`/`image` 等块）。
 
     字段说明：
-    - `type` `string` <font color="FA6062">必选</font>  
+    - `type` `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
       固定为 `"content_block_location"`。
 
-    - `cited_text` `string` <font color="FA6062">必选</font>  
+    - `cited_text` `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
       被引用的原文文本片段（来自对应内容块的文本）。
 
-    - `document_index` `number` <font color="FA6062">必选</font>  
+    - `document_index` `number` <span style="color: #FA6062; font-weight: 400">\*</span>  
       当前请求中被引用文档的索引，**0 基**。
 
-    - `document_title` `string` <font color="FA6062">必选</font>  
+    - `document_title` `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
       文档标题或名称。
 
-    - `start_block_index` `number` <font color="FA6062">必选</font>  
+    - `start_block_index` `number` <span style="color: #FA6062; font-weight: 400">\*</span>  
       在该文档内部 `content` 数组中的**起始块索引**，0 基。  
       表示「从第几个内容块开始被引用」。
 
-    - `end_block_index` `number` <font color="FA6062">必选</font>  
+    - `end_block_index` `number` <span style="color: #FA6062; font-weight: 400">\*</span>  
       在 `content` 数组中的**结束块索引**。  
       实际使用中通常可理解为区间的另一端：
       - 若 `start_block_index === end_block_index`，通常表示仅引用该索引对应的一个内容块。
@@ -255,19 +255,19 @@ Message = {
     当启用了 Anthropic 的 Web Search 工具（server tool），Claude 从某个网页引用内容时使用。
 
     字段说明：
-    - `type` `string` <font color="FA6062">必选</font>  
+    - `type` `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
       固定为 `"web_search_result_location"`，表示本引用来自 Web 搜索结果。
 
-    - `cited_text` `string` <font color="FA6062">必选</font>  
+    - `cited_text` `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
       被引用网页内容的文本片段（通常截断为一小段方便展示），不计入 token 消耗。
 
-    - `url` `string` <font color="FA6062">必选</font>  
+    - `url` `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
       被引用网页的 URL，前端可直接渲染为可点击链接。
 
-    - `title` `string` <font color="FA6062">必选</font>  
+    - `title` `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
       被引用网页的标题（例如 HTML `<title>`），用于 UI 展示「来源：xxx」。
 
-    - `encrypted_index` `string` <font color="FA6062">必选</font>  
+    - `encrypted_index` `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
       针对该搜索结果的**加密索引标识**，只能原样传回给 Anthropic，用于后续多轮对话中继续引用或检查同一结果。  
       一般不需向终端用户展示，但在你实现多轮对话 / 调试时需要完整保留。
 
@@ -288,30 +288,30 @@ Message = {
     当你通过 `type: "search_result"` 的内容块向 Claude 提供**自有搜索 / RAG 结果**并开启 citations 时，Claude 在回答中引用这些结果会使用该类型。
 
     字段说明：
-    - `type` `string` <font color="FA6062">必选</font>  
+    - `type` `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
       固定为 `"search_result_location"`，表示该引用来自你提供的 SearchResultBlock。
 
-    - `cited_text` `string` <font color="FA6062">必选</font>  
+    - `cited_text` `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
       被引用的精确文本片段，来源于某个 `search_result` 内容块中的文本。
 
-    - `source` `string | null` <font color="FA6062">必选</font>  
+    - `source` `string | null` <span style="color: #FA6062; font-weight: 400">\*</span>  
       搜索结果来源标识：
       - 通常是一个 URL（例如知识库文档地址）；
       - 也可以是你自定义的字符串 ID；
       - 若你在原始 `search_result` 中未提供，则可能为 `null`。
 
-    - `title` `string | null` <font color="FA6062">必选</font>  
+    - `title` `string | null` <span style="color: #FA6062; font-weight: 400">\*</span>  
       搜索结果标题，对应输入的 `search_result.title`；  
       若没有标题可用，则为 `null`。
 
-    - `search_result_index` `number` <font color="FA6062">必选</font>  
+    - `search_result_index` `number` <span style="color: #FA6062; font-weight: 400">\*</span>  
       在当前 `message.content` 中，**第几个 `type: "search_result"` 块**被引用，0 基索引。  
       无论这些搜索结果是你主动放在 user 消息里，还是通过某个工具返回，都会按出现顺序进行编号。
 
-    - `start_block_index` `number` <font color="FA6062">必选</font>  
+    - `start_block_index` `number` <span style="color: #FA6062; font-weight: 400">\*</span>  
       在该 `search_result` 的 `content` 数组中，被引用内容所在的**起始块索引**，0 基。
 
-    - `end_block_index` `number` <font color="FA6062">必选</font>  
+    - `end_block_index` `number` <span style="color: #FA6062; font-weight: 400">\*</span>  
       在该 `content` 数组中的**结束块索引**。
       - 若等于 `start_block_index`，通常表示引用的是该索引对应的单个内容块；
       - 否则表示跨多个内容块的引用范围。
@@ -328,9 +328,9 @@ Message = {
 }
 ```
 
-- type `string` <font color="FA6062">必选</font>  
+- type `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
   固定为 `"image"`。
-- source `Base64ImageSource | URLImageSource` <font color="FA6062">必选</font> ：
+- source `Base64ImageSource | URLImageSource` <span style="color: #FA6062; font-weight: 400">\*</span> ：
   - Base64ImageSource
     ```ts
     {
@@ -346,7 +346,7 @@ Message = {
       url: string
     }
     ```
-- cache_control `CacheControlEphemeral` <font color="gray">可选</font>：同上，可为图片建立缓存断点。
+- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400">可选</span>：同上，可为图片建立缓存断点。
 
 :::
 
@@ -363,9 +363,9 @@ Message = {
 }
 ```
 
-- type `string` <font color="FA6062">必选</font>  
+- type `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
   固定为 `"document"`。
-- source `Base64PDFSource | PlainTextSource | ContentBlockSource | URLPDFSource` <font color="FA6062">必选</font> ：
+- source `Base64PDFSource | PlainTextSource | ContentBlockSource | URLPDFSource` <span style="color: #FA6062; font-weight: 400">\*</span> ：
   - Base64PDFSource：base64 PDF
 
   ```ts
@@ -399,10 +399,10 @@ Message = {
     }
     ```
 
-- cache_control `CacheControlEphemeral` <font color="gray">可选</font>：同上，可为文档建立缓存断点。
-- citations `TextCitationParam[]` <font color="gray">可选</font>：同上，用于**标注文本引用来源**（典型场景：把 PDF / 文本文档 / 内容文档作为 document 块输入后，标注「这一段回答来自哪一页 / 哪一段 / 哪个搜索结果」）。
-- context `string` <font color="gray">可选</font>：文档上下文。
-- title `string` <font color="gray">可选</font>：文档标题。
+- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400">可选</span>：同上，可为文档建立缓存断点。
+- citations `TextCitationParam[]` <span style="color: #666; font-weight: 400">可选</span>：同上，用于**标注文本引用来源**（典型场景：把 PDF / 文本文档 / 内容文档作为 document 块输入后，标注「这一段回答来自哪一页 / 哪一段 / 哪个搜索结果」）。
+- context `string` <span style="color: #666; font-weight: 400">可选</span>：文档上下文。
+- title `string` <span style="color: #666; font-weight: 400">可选</span>：文档标题。
 
 :::
 
@@ -418,12 +418,12 @@ Message = {
 }
 ```
 
-- type `string` <font color="FA6062">必选</font>  
+- type `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
   固定为 `"tool_result"`。
-- tool_use_id `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>，绑定哪次工具调用。
-- is_error `boolean` <font color="gray">可选</font>。
-- content：可为简单字符串，或多模态块数组（文本 / 图片 / 文档 / 搜索结果）<font color="gray">可选</font>。
-- cache_control `CacheControlEphemeral` <font color="gray">可选</font>：同上。
+- tool_use_id `string` <span style="color: #FA6062; font-weight: 400">\*</span>，绑定哪次工具调用。
+- is_error `boolean` <span style="color: #666; font-weight: 400">可选</span>。
+- content：可为简单字符串，或多模态块数组（文本 / 图片 / 文档 / 搜索结果）<span style="color: #666; font-weight: 400">可选</span>。
+- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400">可选</span>：同上。
 
 :::
 
@@ -441,18 +441,18 @@ Message = {
 
 字段说明：
 
-- type `string` <font color="FA6062">必选</font>  
+- type `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
   固定为 `"tool_use"`。
 
-- id `string` <font color="FA6062">必选</font>  
+- id `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
   本次工具调用的唯一标识，用来和后续的 `tool_result` 对应。
 
-- name `string` <font color="FA6062">必选</font>  
+- name `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
   要调用的工具名称，**必须与请求中 `tools` 数组里声明的某个 `tool.name` 完全一致**。
 
-- input `object` (Record<string, unknown>) <font color="FA6062">必选</font>
+- input `object` (Record<string, unknown>) <span style="color: #FA6062; font-weight: 400">\*</span>
 
-- cache_control `CacheControlEphemeral` <font color="gray">可选</font>：同上，
+- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400">可选</span>：同上，
   为该工具调用块设置缓存行为（Prompt Cache 断点）
 
 :::
@@ -473,18 +473,18 @@ Message = {
 
 字段说明：
 
-- type `string` <font color="FA6062">必选</font>  
+- type `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
   固定为 `"server_tool_use"`，表示这是一次服务器端工具调用请求。
 
-- id `string` <font color="FA6062">必选</font>  
+- id `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
   本次服务器端工具调用的唯一标识 ID，形如 `"srvtoolu_..."`。  
   后续对应的结果块（例如 `web_search_tool_result`）会通过 `tool_use_id` 指向这个 ID。
 
-- name `string` <font color="FA6062">必选</font>  
+- name `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
   要调用的服务器端工具名称，例如：
   - `"web_search"`：Web 搜索工具
 
-- input `object` <font color="gray">可选</font>  
+- input `object` <span style="color: #666; font-weight: 400">可选</span>  
   传给该服务器端工具的参数对象，结构由具体工具定义。
 
 :::
@@ -504,15 +504,15 @@ Message = {
 
 字段说明：
 
-- type `string` <font color="FA6062">必选</font>  
+- type `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
   固定为 `"web_search_tool_result"`，表示这是 Web Search 工具的一次结果。
 
-- tool_use_id `string` <font color="FA6062">必选</font>  
+- tool_use_id `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
   指向前面对应的 `server_tool_use.id`，用于把「搜索请求」和「搜索结果」对应起来。
 
-- cache_control `CacheControlEphemeral` <font color="gray">可选</font>：同上。
+- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400">可选</span>：同上。
 
-- content `array | object` <font color="FA6062">必选</font>  
+- content `array | object` <span style="color: #FA6062; font-weight: 400">\*</span>  
   Web Search 的执行结果内容：
   - 成功时：为 **`web_search_result` 对象数组**；
   - 失败时：为一个 `web_search_tool_result_error` 对象（见后文错误结构）。
@@ -523,20 +523,20 @@ Message = {
 
 字段说明：
 
-- type `string` <font color="FA6062">必选</font>  
+- type `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
   固定为 `"web_search_result"`。
 
-- url `string` <font color="FA6062">必选</font>  
+- url `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
   该搜索结果网页的 URL，通常会与 `citations` 里的 `url` 一致。
 
-- title `string` <font color="FA6062">必选</font>  
+- title `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
   网页标题，用于前端展示引用来源。
 
-- encrypted_content `string` <font color="FA6062">必选</font>  
+- encrypted_content `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
   对页面正文内容进行加密后的字符串。  
   在**多轮对话**中，如果希望 Claude 继续准确引用这条结果，需要原样把此字段随对话一起传回（例如通过后续的 `web_search_result_location` 引用）。该字段本身对你是**不透明、不可解析**的。
 
-- page_age `string` <font color="gray">可选</font>  
+- page_age `string` <span style="color: #666; font-weight: 400">可选</span>  
   表示站点最后更新或抓取的大致时间，如 `"April 30, 2025"`，主要用于用户展示「数据时效性」。
 
 ###### 错误结果结构：`web_search_tool_result_error`
@@ -556,10 +556,10 @@ Message = {
 
 错误对象字段：
 
-- type `string` <font color="FA6062">必选</font>  
+- type `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
   固定为 `"web_search_tool_result_error"`。
 
-- error_code `string` <font color="FA6062">必选</font>  
+- error_code `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
   错误类型编码，常见值包括：
   - `"too_many_requests"`：搜索工具触发速率限制；
   - `"invalid_input"`：搜索参数非法（如域名过滤不合法等）；
@@ -583,13 +583,13 @@ Message = {
 
 字段说明：
 
-- type `string` <font color="FA6062">必选</font>  
+- type `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
   固定为 `"thinking"`，表示这是一个 Extended Thinking 推理块。
 
-- thinking `string` <font color="FA6062">必选</font>  
+- thinking `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
   Claude 生成的**可读推理内容**，通常是多行分步骤分析。
 
-- signature `string` <font color="FA6062">必选</font>  
+- signature `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
   对完整 thinking 内容做的加密签名字符串，用于在后续多轮对话中验证这些推理块**确实由 Claude 生成且未被篡改**。
   - 这是一个**不透明字段**，你不需要也不应该解析其内容；
   - 当你把带 thinking 的上一轮 `assistant` 消息传回给 API 时，应该**原样带上完整的 `thinking` + `signature`**。
@@ -622,28 +622,28 @@ Message = {
 
 字段说明：
 
-- type `string` <font color="FA6062">必选</font>  
+- type `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
   固定为 `"search_result"`，表示这是一个搜索/检索结果内容块。
 
-- source `string` <font color="gray">可选</font>  
+- source `string` <span style="color: #666; font-weight: 400">可选</span>  
   搜索结果的来源标识：
   - 通常是一个 URL（例如知识库文档地址、内部文档查看链接）；
   - 也可以是你自定义的字符串 ID（如文档主键 ID）；
   - 若不方便提供，则可以省略或设为 `null`。  
     Claude 在生成 `search_result_location` citations 时，会把这个字段原样带回，便于你在前端展示「来自：xxx」。
 
-- title `string` <font color="gray">可选</font>  
+- title `string` <span style="color: #666; font-weight: 400">可选</span>  
   搜索结果的标题：
   - 如「API 参考：身份验证」「员工手册 · 请假规则」；
   - 若没有合适标题可用，可以为 `null`。  
     在 citations 中会直接用作引用标题，方便 UI 呈现。
 
-- content `array` <font color="FA6062">必选</font>  
+- content `array` <span style="color: #FA6062; font-weight: 400">\*</span>  
   搜索结果的**实际内容片段列表**，由一个或多个内容块组成，一般是文本块为主，也可以包含图片 / 文档等：
 
-- cache_control `CacheControlEphemeral` <font color="gray">可选</font>：同上。
+- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400">可选</span>：同上。
 
-- citations `object` <font color="gray">可选</font>
+- citations `object` <span style="color: #666; font-weight: 400">可选</span>
 
   是否开启基于该搜索结果的自动引用标注，一般写法如下：
 
@@ -653,7 +653,7 @@ Message = {
   }
   ```
 
-  - enabled `boolean` <font color="FA6062">必选</font>
+  - enabled `boolean` <span style="color: #FA6062; font-weight: 400">\*</span>
     - `true`：允许 Claude 在回答中为此 `search_result` 生成 `search_result_location` 类型的 citations；
     - `false`：不对该块内容生成 citations（但模型仍可阅读和使用）。
 
@@ -674,20 +674,20 @@ Message = {
 
 字段说明：
 
-- type `string` <font color="FA6062">必选</font>  
+- type `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
   固定为 `"redacted_thinking"`，表示这是一个**脱敏后的思考块**。
   - 与 `type: "thinking"` 的区别在于：
     - `thinking`：返回的是可读的自然语言推理文本 + 签名；
     - `redacted_thinking`：返回的是**无法直接解读的加密数据**，不包含可读推理内容。
 
-- data `string` <font color="FA6062">必选</font>  
+- data `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
   加密/脱敏后的思考数据字符串，通常是一长串看不出含义的 Base64/密文片段。
   - 你不需要也不能解析这段数据；
   - 关键点是：如果你希望在后续轮次中延续这段思考上下文，应当在新的请求中把整个 `redacted_thinking` 块原样当作过往 `assistant` 的一部分传回去。
 
 :::
 
-### model `string` <font color="FA6062">必选</font>
+### model `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 本次调用使用的模型 ID。
 
@@ -696,7 +696,7 @@ Message = {
 
 > 注意：这与 Anthropic API 风格的 `<model>` 字符串不同。
 
-<!-- ### metadata `object` <font color="gray">可选</font>
+<!-- ### metadata `object` <span style="color: #666; font-weight: 400">可选</span>
 
 请求的业务元信息。
 
@@ -712,14 +712,14 @@ metadata?: {
   外部用户的**匿名标识**（uuid / hash / 内部 ID），Anthropic 可能用来做滥用检测。
   不要放真实姓名、邮箱、电话等个人敏感信息。最长 256 字符。 -->
 
-<!-- ### service_tier `"auto" | "standard_only"` <font color="gray">可选</font><font color="FA6062">不支持</font>
+<!-- ### service_tier `"auto" | "standard_only"` <span style="color: #666; font-weight: 400">可选</span><font color="FA6062">不支持</font>
 
 控制服务等级与容量路由。
 
 - `"auto"`（默认）：由系统在可用容量中自动选择，必要时可使用优先容量。
 - `"standard_only"`：只使用标准容量，不占用优先通道。 -->
 
-### output_config `object` <font color="gray">可选</font>
+### output_config `object` <span style="color: #666; font-weight: 400">可选</span>
 
 模型输出的配置选项，例如输出格式。
 
@@ -727,7 +727,7 @@ metadata?: {
   - schema `Record<string, unknown>` 该格式的 JSON 模式
   - type `string` 固定为`"json_schema"`
 
-### stop_sequences `string[]` <font color="gray">可选</font>
+### stop_sequences `string[]` <span style="color: #666; font-weight: 400">可选</span>
 
 自定义**停止序列**。
 
@@ -742,14 +742,14 @@ metadata?: {
 - 约定 `"END"` 作为回答结束标记；
 - 与「多段输出」协议搭配使用。
 
-### stream `boolean` <font color="gray">可选</font>
+### stream `boolean` <span style="color: #666; font-weight: 400">可选</span>
 
 是否以 SSE（Server-Sent Events）形式**流式返回**。
 
 - `false`（默认）：一次性返回完整 `message` 对象。
 - `true`：以多条事件流形式增量输出（见后文“流式响应”）。
 
-### system `string | TextBlockParam[]` <font color="gray">可选</font>
+### system `string | TextBlockParam[]` <span style="color: #666; font-weight: 400">可选</span>
 
 为本次对话设置**全局指令与角色**的 System Prompt。相当于给 Claude 的「总规则」，会在所有 `messages` 之前生效。
 
@@ -779,7 +779,7 @@ metadata?: {
 
 > 注意：Messages API **没有 `role: "system"` 的 message**，所有系统级指令统一通过顶层 `system` 字段传入。
 
-### temperature `number` <font color="gray">可选</font>
+### temperature `number` <span style="color: #666; font-weight: 400">可选</span>
 
 采样温度，控制输出随机性。
 
@@ -789,7 +789,7 @@ metadata?: {
   - 越接近 1：更发散、更有创造性；适合头脑风暴、创意写作。
 - 即便是 `0.0` 也不绝对完全确定。
 
-### thinking `object` <font color="gray">可选</font>
+### thinking `object` <span style="color: #666; font-weight: 400">可选</span>
 
 Extended Thinking（显式推理过程）配置。
 
@@ -807,7 +807,7 @@ thinking?:
   - 回包中会出现 `type: "thinking"` 的内容块。
 - `type: "disabled"`：关闭 extended thinking（默认行为）。
 
-### tool_choice `object` <font color="gray">可选</font>
+### tool_choice `object` <span style="color: #666; font-weight: 400">可选</span>
 
 控制 Claude 如何使用你在 `tools` 中声明的工具。
 
@@ -836,7 +836,7 @@ tool_choice?:
 - `"none"`
   - 禁止使用工具，仅生成纯文字/多模态回答。
 
-### tools `array<ToolUnion>` <font color="gray">可选</font>
+### tools `array<ToolUnion>` <span style="color: #666; font-weight: 400">可选</span>
 
 声明本次请求中 Claude 可以使用的**工具列表**。
 
@@ -913,7 +913,7 @@ Messages API 文档列出了若干内置工具类型，典型包括：
 
 > 各内置工具的详细语义、调用模式与计费细节，建议查看 Anthropic 对应的[「Server tools」](https://platform.claude.com/docs/en/api/messages/create)单独文档。
 
-### top_k `number` <font color="gray">可选</font>
+### top_k `number` <span style="color: #666; font-weight: 400">可选</span>
 
 采样时仅从概率最高的前 K 个 token 中选择。
 
@@ -921,7 +921,7 @@ Messages API 文档列出了若干内置工具类型，典型包括：
 - 推荐仅在高级调参场景使用，一般只需要 `temperature` 即可；
 - `>= 0`。
 
-### top_p `number` <font color="gray">可选</font>
+### top_p `number` <span style="color: #666; font-weight: 400">可选</span>
 
 Nucleus Sampling（核采样）参数。
 
