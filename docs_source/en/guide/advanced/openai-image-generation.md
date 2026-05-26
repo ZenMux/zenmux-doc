@@ -12,7 +12,7 @@ head:
 
 ZenMux supports calling OpenAI image generation models through the OpenAI Images protocol. You can keep using the OpenAI SDK; just point the Base URL to ZenMux and authenticate with your ZenMux API Key.
 
-::: tip 💡 Supported Models
+::: info Supported Models
 ZenMux continuously updates the OpenAI image generation models it supports. Visit the [ZenMux model catalog](https://zenmux.ai/models?author=openai&sort=newest&output_modalities=image) to check the currently available models.
 :::
 

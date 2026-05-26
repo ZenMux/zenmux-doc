@@ -186,78 +186,83 @@ export default defineLoacaleConfig({
       "/zh/terms-of-service": docsSidebar,
       "/zh/api/": [
         {
-          text: "OpenAI Compatible API",
+          text: "模型端点",
           items: [
             {
-              text: "Create Chat Completion",
-              link: "/zh/api/openai/create-chat-completion",
+              text: "OpenAI 兼容",
+              items: [
+                {
+                  text: "Create Chat Completion",
+                  link: "/zh/api/openai/create-chat-completion",
+                },
+                {
+                  text: "Create a Model Response",
+                  link: "/zh/api/openai/openai-responses",
+                },
+                {
+                  text: "Create Embeddings",
+                  link: "/zh/api/openai/create-embeddings",
+                },
+                {
+                  text: "Create image",
+                  link: "/zh/api/openai/generate-an-image",
+                },
+                {
+                  text: "Create image edit",
+                  link: "/zh/api/openai/create-image-edit",
+                },
+                {
+                  text: "Image generation streaming events",
+                  link: "/zh/api/openai/image-generation-streaming-events",
+                },
+                {
+                  text: "Image edit streaming events",
+                  link: "/zh/api/openai/image-edit-streaming-events",
+                },
+                {
+                  text: "List Models",
+                  link: "/zh/api/openai/openai-list-models",
+                },
+              ],
             },
             {
-              text: "Create a Model Response",
-              link: "/zh/api/openai/openai-responses",
+              text: "Anthropic 兼容",
+              items: [
+                {
+                  text: "Create a Message",
+                  link: "/zh/api/anthropic/create-messages",
+                },
+                {
+                  text: "List Models",
+                  link: "/zh/api/anthropic/anthropic-list-models",
+                },
+              ],
             },
             {
-              text: "Create Embeddings",
-              link: "/zh/api/openai/create-embeddings",
-            },
-            {
-              text: "Create image",
-              link: "/zh/api/openai/generate-an-image",
-            },
-            {
-              text: "Create image edit",
-              link: "/zh/api/openai/create-image-edit",
-            },
-            {
-              text: "Image generation streaming events",
-              link: "/zh/api/openai/image-generation-streaming-events",
-            },
-            {
-              text: "Image edit streaming events",
-              link: "/zh/api/openai/image-edit-streaming-events",
-            },
-            {
-              text: "List Models",
-              link: "/zh/api/openai/openai-list-models",
+              text: "Google Vertex AI 兼容",
+              items: [
+                {
+                  text: "Generate Content",
+                  link: "/zh/api/vertexai/generate-content",
+                },
+                {
+                  text: "Generate Images",
+                  link: "/zh/api/vertexai/generate-images",
+                },
+                {
+                  text: "Generate Videos",
+                  link: "/zh/api/vertexai/generate-videos",
+                },
+                {
+                  text: "List Models",
+                  link: "/zh/api/vertexai/google-list-models",
+                },
+              ],
             },
           ],
         },
         {
-          text: "Anthropic Compatible API",
-          items: [
-            {
-              text: "Create a Message",
-              link: "/zh/api/anthropic/create-messages",
-            },
-            {
-              text: "List Models",
-              link: "/zh/api/anthropic/anthropic-list-models",
-            },
-          ],
-        },
-        {
-          text: "Google Vertex AI Compatible API",
-          items: [
-            {
-              text: "Generate Content",
-              link: "/zh/api/vertexai/generate-content",
-            },
-            {
-              text: "Generate Images",
-              link: "/zh/api/vertexai/generate-images",
-            },
-            {
-              text: "Generate Videos",
-              link: "/zh/api/vertexai/generate-videos",
-            },
-            {
-              text: "List Models",
-              link: "/zh/api/vertexai/google-list-models",
-            },
-          ],
-        },
-        {
-          text: "Platform API",
+          text: "平台 API",
           items: [
             {
               text: "Get Flow Rate",

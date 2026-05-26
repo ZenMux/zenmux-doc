@@ -12,7 +12,7 @@ head:
 
 # Get Statistics Market Share
 
-::: tip 💡 错误排查
+::: info 错误排查
 调用过程中遇到错误？请参阅 [API 错误码参考](/zh/guide/advanced/error-codes) 获取完整的错误类型说明与排查方案。
 :::
 
@@ -24,7 +24,7 @@ GET https://zenmux.ai/api/v1/management/statistics/market_share
 
 可用于构建 100% 堆叠面积图、追踪供应商占比变化，或分析平台内的竞争格局。
 
-::: info ℹ️ 数据时效性
+::: info 数据时效性
 统计数据按天聚合。最新可用数据为**昨日（T-1）**，当天的用量将在次日聚合后可见。
 :::
 
@@ -40,7 +40,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 - **格式**：`Bearer <API_KEY>`
 - **说明**：Management API Key，在 [ZenMux 控制台](https://zenmux.ai/platform/management) 创建
 
-::: warning ⚠️ 仅支持 Management API Key
+::: warning 仅支持 Management API Key
 本接口仅接受 Management API Key 鉴权，不支持普通 API Key。
 :::
 
@@ -123,7 +123,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
   - `label` `string` — 供应商展示名称（如 "Anthropic"）
   - `value` `number` — 该桶内的 Token 绝对数或 USD 绝对成本（非百分比）
 
-::: tip 💡 计算百分比
+::: info 计算百分比
 接口返回绝对值。要计算市场份额百分比，将每个供应商的值除以该桶的总值：
 
 ```python

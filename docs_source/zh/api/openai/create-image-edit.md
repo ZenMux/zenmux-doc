@@ -12,7 +12,7 @@ head:
 
 # Create image edit
 
-::: tip 💡 错误排查
+::: info 错误排查
 调用过程中遇到错误？请参阅 [API 错误码参考](/zh/guide/advanced/error-codes) 获取完整的错误类型说明与排查方案。
 :::
 
@@ -49,11 +49,11 @@ Bearer Token 鉴权，格式为 `Bearer $ZENMUX_API_KEY`。
 
 要编辑的输入图片引用。对于 GPT image 模型，最多可以提供 16 张图片。
 
-#### file_id `string` <span style="color: #666; font-weight: 400">可选</span>
+#### file_id `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 要作为输入使用的已上传图片 File API ID。
 
-#### image_url `string` <span style="color: #666; font-weight: 400">可选</span>
+#### image_url `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 完整限定 URL 或 base64 编码 data URL。
 
@@ -61,7 +61,7 @@ Bearer Token 鉴权，格式为 `Bearer $ZENMUX_API_KEY`。
 
 期望图片编辑结果的文本描述。
 
-### background `string` <span style="color: #666; font-weight: 400">可选</span>
+### background `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 生成图片输出的背景行为。
 
@@ -71,7 +71,7 @@ Bearer Token 鉴权，格式为 `Bearer $ZENMUX_API_KEY`。
 - `opaque`
 - `auto`
 
-### input_fidelity `string` <span style="color: #666; font-weight: 400">可选</span>
+### input_fidelity `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 控制对原始输入图片的保真度。
 
@@ -80,23 +80,23 @@ Bearer Token 鉴权，格式为 `Bearer $ZENMUX_API_KEY`。
 - `high`
 - `low`
 
-### mask `object` <span style="color: #666; font-weight: 400">可选</span>
+### mask `object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 通过 URL 或已上传文件 ID 引用一张输入图片作为蒙版。必须且只能提供 `image_url` 或 `file_id` 其中之一。
 
-#### file_id `string` <span style="color: #666; font-weight: 400">可选</span>
+#### file_id `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 要作为蒙版使用的已上传图片 File API ID。
 
-#### image_url `string` <span style="color: #666; font-weight: 400">可选</span>
+#### image_url `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 完整限定 URL 或 base64 编码 data URL。
 
-### model `string` <span style="color: #666; font-weight: 400">可选</span>
+### model `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 用于图片编辑的模型。请前往 [ZenMux 模型目录](https://zenmux.ai/models?author=openai&sort=newest&output_modalities=image) 查询当前可用模型。
 
-### moderation `string` <span style="color: #666; font-weight: 400">可选</span>
+### moderation `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 GPT image 模型的审核级别。
 
@@ -105,15 +105,15 @@ GPT image 模型的审核级别。
 - `low`
 - `auto`
 
-### n `number` <span style="color: #666; font-weight: 400">可选</span>
+### n `number` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 要生成的编辑后图片数量。
 
-### output_compression `number` <span style="color: #666; font-weight: 400">可选</span>
+### output_compression `number` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 `jpeg` 或 `webp` 输出的压缩级别。
 
-### output_format `string` <span style="color: #666; font-weight: 400">可选</span>
+### output_format `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 输出图片格式。GPT image 模型支持该参数。
 
@@ -123,13 +123,13 @@ GPT image 模型的审核级别。
 - `jpeg`
 - `webp`
 
-### partial_images `number` <span style="color: #666; font-weight: 400">可选</span>
+### partial_images `number` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 要生成的部分图片数量。该参数用于返回部分图片的流式响应。取值必须介于 0 到 3 之间。当设置为 0 时，响应会在一个流式事件中返回单张图片。
 
 如果完整图片生成得更快，最终图片可能会在请求的部分图片数量全部生成前就被发送。
 
-### quality `string` <span style="color: #666; font-weight: 400">可选</span>
+### quality `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 GPT image 模型的输出质量。
 
@@ -140,7 +140,7 @@ GPT image 模型的输出质量。
 - `high`
 - `auto`
 
-### size `string` <span style="color: #666; font-weight: 400">可选</span>
+### size `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 请求的输出图片尺寸。
 
@@ -151,11 +151,11 @@ GPT image 模型的输出质量。
 - `1536x1024`
 - `1024x1536`
 
-### stream `boolean` <span style="color: #666; font-weight: 400">可选</span>
+### stream `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 以事件流形式返回部分图片结果。
 
-### user `string` <span style="color: #666; font-weight: 400">可选</span>
+### user `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 代表终端用户的唯一标识符，可用于监控和检测滥用行为。
 
@@ -167,39 +167,39 @@ GPT image 模型的输出质量。
 
 图片创建时的 Unix 时间戳（秒）。
 
-### background `string` <span style="color: #666; font-weight: 400">可选</span>
+### background `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 图片生成时使用的背景参数。可能为 `transparent` 或 `opaque`。
 
-### data `array` <span style="color: #666; font-weight: 400">可选</span>
+### data `array` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 生成图片列表。
 
-#### b64_json `string` <span style="color: #666; font-weight: 400">可选</span>
+#### b64_json `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 生成图片的 base64 编码 JSON。ZenMux 当前支持的 GPT image 模型默认返回该字段。
 
-#### revised_prompt `string` <span style="color: #666; font-weight: 400">可选</span>
+#### revised_prompt `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 在部分模型中返回，表示实际用于生成图片的重写提示词。
 
-#### url `string` <span style="color: #666; font-weight: 400">可选</span>
+#### url `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 使用返回 URL 的模型时可能返回生成图片 URL。ZenMux 当前支持的 GPT image 模型通常返回 `b64_json`。
 
-### output_format `string` <span style="color: #666; font-weight: 400">可选</span>
+### output_format `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 图片生成输出格式。可能为 `png`、`webp` 或 `jpeg`。
 
-### quality `string` <span style="color: #666; font-weight: 400">可选</span>
+### quality `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 生成图片质量。可能为 `low`、`medium` 或 `high`。
 
-### size `string` <span style="color: #666; font-weight: 400">可选</span>
+### size `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 生成图片尺寸。可能为 `1024x1024`、`1024x1536` 或 `1536x1024`。
 
-### usage `object` <span style="color: #666; font-weight: 400">可选</span>
+### usage `object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 GPT image 模型的图片生成 token 用量信息。
 
@@ -209,7 +209,7 @@ GPT image 模型的图片生成 token 用量信息。
   - `text_tokens` `number`：输入提示词中的文本 token 数。
 - `output_tokens` `number`：模型生成的输出 token 数。
 - `total_tokens` `number`：本次图片生成使用的总 token 数。
-- `output_tokens_details` `object` <span style="color: #666; font-weight: 400">可选</span>：输出 token 详情。
+- `output_tokens_details` `object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：输出 token 详情。
   - `image_tokens` `number`：生成的图片输出 token 数。
   - `text_tokens` `number`：生成的文本输出 token 数。
 

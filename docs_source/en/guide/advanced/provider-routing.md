@@ -148,7 +148,7 @@ print(response.choices[0].message.content)
 | Fast switching     | Switch providers by changing only the model name         |
 | Clear visibility   | Instantly see which provider is being used               |
 
-::: tip 💡 Best Practices
+::: info Best Practices
 For most scenarios, we recommend using the model name suffix syntax to specify providers—it’s the simplest and most direct approach. If you need more complex routing (e.g., multi-provider fallback, dynamic priorities), use the advanced routing configuration below.
 :::
 
@@ -304,7 +304,7 @@ When you specify a providers list, ZenMux behaves as follows:
 - Single provider: If only one provider is specified, ZenMux will call only that provider
 - Error handling: If the specified provider returns an error, return that error directly
 
-::: warning ⚠️ Cautions
+::: warning Cautions
 When using custom routing strategies, ensure that the specified providers actually support the selected model; otherwise, calls may fail.
 :::
 

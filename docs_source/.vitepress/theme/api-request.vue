@@ -159,7 +159,11 @@ async function copyPath() {
           ></span>
         </div>
         <div class="right">
-          <div class="lang-select-wrapper" v-if="langOptions.length > 1" @click="onLangWrapperClick">
+          <div
+            class="lang-select-wrapper"
+            v-if="langOptions.length > 1"
+            @click="onLangWrapperClick"
+          >
             <el-select
               ref="langSelectRef"
               v-model="currentLang"
@@ -250,7 +254,7 @@ async function copyPath() {
 /* ===== Request / Response Container ===== */
 .api-float-container .api-request-container {
   margin: 20px 0;
-  background: #f5f5f5;
+  background: #fafafa;
   border: 0.5px solid #e6e6e6;
   border-radius: 12px;
   overflow: hidden;
@@ -526,6 +530,14 @@ async function copyPath() {
 .api-lang-dropdown .el-select-dropdown {
   border: none !important;
   box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.api-lang-dropdown .el-select-dropdown__wrap {
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .api-lang-dropdown .el-select-dropdown__list {

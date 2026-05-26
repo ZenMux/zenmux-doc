@@ -12,7 +12,7 @@ head:
 
 # Google Vertex AI API: Generate Videos
 
-::: tip 💡 错误排查
+::: info 错误排查
 调用过程中遇到错误？请参阅 [API 错误码参考](/zh/guide/advanced/error-codes) 获取完整的错误类型说明与排查方案。
 :::
 
@@ -34,7 +34,7 @@ Generate Videos 接口通过 Google Vertex AI 协议生成视频。ZenMux 聚合
 
 更多使用示例请参考 [视频生成使用指南](/zh/guide/advanced/video-generation)。
 
-::: warning ⚠️ 异步调用
+::: warning 异步调用
 视频生成是一个**异步过程**，分为三个步骤：
 
 1. **提交请求**（`generate_videos`）：发送视频生成请求，返回一个 `Operation` 对象
@@ -52,7 +52,7 @@ Generate Videos 接口通过 Google Vertex AI 协议生成视频。ZenMux 聚合
 | `volcengine/doubao-seedance-1.5-pro` | 字节跳动 Seedance 1.5 Pro | 720p / 1080p | 10s      | ✅ 支持 |
 | `volcengine/doubao-seedance-2`       | 字节跳动 Seedance 2       | 720p / 1080p | 10s      | ✅ 支持 |
 
-::: tip 📚 更多模型
+::: info 更多模型
 访问 [ZenMux 模型列表](https://zenmux.ai/models) 搜索查看所有可用的视频生成模型。
 :::
 
@@ -96,11 +96,11 @@ API 版本，设置为 `v1`。
 
 用于视频生成的模型。格式为 `{provider}/{model}`，例如 `google/veo-3.1-generate-001`。
 
-### config `GenerateVideosConfig` <span style="color: #666; font-weight: 400">可选</span>
+### config `GenerateVideosConfig` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 视频生成配置对象，包含以下字段：
 
-#### aspectRatio `string` <span style="color: #666; font-weight: 400">可选</span>
+#### aspectRatio `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 视频宽高比。不同供应商支持的值可能不同。
 
@@ -112,7 +112,7 @@ API 版本，设置为 `v1`。
 
 > REST 对应字段：`parameters.aspectRatio`
 
-#### resolution `string` <span style="color: #666; font-weight: 400">可选</span>
+#### resolution `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 视频分辨率。仅部分模型支持。
 
@@ -123,7 +123,7 @@ API 版本，设置为 `v1`。
 
 > REST 对应字段：`parameters.resolution`
 
-#### durationSeconds `integer` <span style="color: #666; font-weight: 400">可选</span>
+#### durationSeconds `integer` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 视频时长（秒）。Google Veo 支持 5 或 8 秒，其他供应商支持范围可能不同。
 
@@ -134,25 +134,25 @@ API 版本，设置为 `v1`。
 
 > REST 对应字段：`parameters.durationSeconds`
 
-#### generateAudio `boolean` <span style="color: #666; font-weight: 400">可选</span>
+#### generateAudio `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 是否生成音频轨道。设置为 `true` 时，模型会根据视频内容自动生成配套音频。
 
 > REST 对应字段：`parameters.generateAudio`
 
-#### negativePrompt `string` <span style="color: #666; font-weight: 400">可选</span>
+#### negativePrompt `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 负面提示词，描述不希望出现在视频中的内容。
 
 > REST 对应字段：`parameters.negativePrompt`
 
-#### enhancePrompt `boolean` <span style="color: #666; font-weight: 400">可选</span>
+#### enhancePrompt `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 是否启用提示词增强。开启后模型会自动优化提示词以提升视频质量。
 
 > REST 对应字段：`parameters.enhancePrompt`
 
-#### personGeneration `string` <span style="color: #666; font-weight: 400">可选</span>
+#### personGeneration `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 人物生成控制。仅 Google Veo 模型支持。
 
@@ -163,7 +163,7 @@ API 版本，设置为 `v1`。
 
 > REST 对应字段：`parameters.personGeneration`
 
-#### numberOfVideos `integer` <span style="color: #666; font-weight: 400">可选</span>
+#### numberOfVideos `integer` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 要生成的视频数量。默认为 1。
 
@@ -171,13 +171,13 @@ SDK 字段名：Python `number_of_videos`，TypeScript `numberOfVideos`。
 
 > REST 对应字段：`parameters.sampleCount`
 
-#### seed `integer` <span style="color: #666; font-weight: 400">可选</span>
+#### seed `integer` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 随机种子，用于复现生成结果。
 
 > REST 对应字段：`parameters.seed`
 
-#### fps `integer` <span style="color: #666; font-weight: 400">可选</span>
+#### fps `integer` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 视频帧率。仅部分供应商支持。
 
@@ -196,7 +196,7 @@ SDK 字段名：Python `number_of_videos`，TypeScript `numberOfVideos`。
 
 > REST 对应字段：`instances[0].image`
 
-### last_frame `Image` <span style="color: #666; font-weight: 400">可选</span>
+### last_frame `Image` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 结束帧图片对象。与起始帧配合使用，模型会生成从起始帧到结束帧的过渡动画。格式同 `image`。
 
@@ -204,7 +204,7 @@ SDK 字段名：Python `last_frame`，TypeScript `lastFrame`。
 
 > REST 对应字段：`instances[0].lastFrame`
 
-### prompt `string` <span style="color: #666; font-weight: 400">可选</span>
+### prompt `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 描述图片中的内容应如何运动或变化的文本提示词。
 
@@ -212,7 +212,7 @@ SDK 字段名：Python `last_frame`，TypeScript `lastFrame`。
 
 同文生视频。
 
-### config `GenerateVideosConfig` <span style="color: #666; font-weight: 400">可选</span>
+### config `GenerateVideosConfig` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 同文生视频配置。
 
@@ -242,7 +242,7 @@ Operation 标识符，用于后续轮询状态。
 - `bytesBase64Encoded` `string`：视频的 base64 编码数据（部分供应商返回）。
 - `mimeType` `string`：视频 MIME 类型，通常为 `video/mp4`。
 
-::: tip 💡 关于 SDK 响应
+::: info 关于 SDK 响应
 SDK 会自动将 REST 响应转换为 `GenerateVideosResponse` 对象，通过 `operation.response.generated_videos[].video` 访问视频内容。
 :::
 

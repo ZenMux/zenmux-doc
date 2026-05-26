@@ -12,7 +12,7 @@ head:
 
 # Get PAYG Balance
 
-::: tip 💡 Troubleshooting
+::: info Troubleshooting
 Encountering errors? See the [API Error Codes Reference](/guide/advanced/error-codes) for a complete list of error types and troubleshooting steps.
 :::
 
@@ -34,7 +34,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 - **Format**: `Bearer <API_KEY>`
 - **Description**: A Management API Key created in the [ZenMux Console](https://zenmux.ai/platform/management)
 
-::: warning ⚠️ Management API Key required
+::: warning Management API Key required
 This endpoint only accepts Management API Keys. Standard API Keys are not supported.
 :::
 
@@ -60,7 +60,7 @@ Credits obtained through direct top-ups (USD).
 
 Credits obtained through bonuses, gifts, or promotions (USD).
 
-::: info 💡 Balance breakdown
+::: info Balance breakdown
 `total_credits` = `top_up_credits` + `bonus_credits` (minor floating-point differences may apply).
 :::
 

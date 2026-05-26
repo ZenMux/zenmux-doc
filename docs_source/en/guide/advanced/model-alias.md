@@ -38,7 +38,7 @@ Commonly used aliases for the official Claude family:
 | `claude-sonnet-4-6`| `anthropic/claude-sonnet-4.6`    |
 | `claude-haiku-4-5` | `anthropic/claude-haiku-4.5`     |
 
-::: tip 💡 Rule of Thumb
+::: info Rule of Thumb
 
 - **Using a native Claude model inside Claude Code** (or another Claude-native Coding Agent): **no need to set a model name at all** — Claude Code's defaults already use aliases that match ZenMux.
 - **Using a non-native model inside the same tool** (e.g., `gpt-5.3-codex` inside Claude Code): you still have to set the full ZenMux model id manually, since there is no alias that the tool recognizes out of the box.

@@ -12,7 +12,7 @@ head:
 
 # Create a Model Response
 
-::: tip 💡 错误排查
+::: info 错误排查
 调用过程中遇到错误？请参阅 [API 错误码参考](/zh/guide/advanced/error-codes) 获取完整的错误类型说明与排查方案。
 :::
 
@@ -40,7 +40,7 @@ Bearer Token 鉴权
 
 此次推理调用的模型 ID，格式为 &lt;供应商&gt;/&lt;模型名称&gt;，如 openai/gpt-5，可以从各模型的详情页获得。。
 
-### input `string | array` <span style="color: #666; font-weight: 400">可选</span>
+### input `string | array` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 输入给模型的内容。
 
@@ -54,7 +54,7 @@ Bearer Token 鉴权
 
 ##### 1.Input message `object`
 
-- type `string` <span style="color: #666; font-weight: 400">可选</span>：固定为 `message`
+- type `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：固定为 `message`
 - role `string` <span style="color: #FA6062; font-weight: 400">\*</span>：`user` / `assistant` / `system` / `developer`
 - content `string | array` <span style="color: #FA6062; font-weight: 400">\*</span>：消息内容
   - 若为 `string`：纯文本
@@ -71,16 +71,16 @@ Bearer Token 鉴权
 
 - type `string`：`input_image` <span style="color: #FA6062; font-weight: 400">\*</span>
 - detail `string`：`high` / `low` / `auto` <span style="color: #FA6062; font-weight: 400">\*</span>：图像处理细节级别，影响 token 消耗和识别精度
-- file_id `string` <span style="color: #666; font-weight: 400">可选</span>：已上传文件的 ID
-- image_url `string`（URL 或 data URL/base64） <span style="color: #666; font-weight: 400">可选</span>：图像的 URL 地址或 base64 编码
+- file_id `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：已上传文件的 ID
+- image_url `string`（URL 或 data URL/base64） <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：图像的 URL 地址或 base64 编码
 
 3. Input file `object`
 
 - type `string`：`input_file` <span style="color: #FA6062; font-weight: 400">\*</span>
-- file_data `string` <span style="color: #666; font-weight: 400">可选</span>：文件的 base64 编码数据
-- file_id `string`<span style="color: #666; font-weight: 400">可选</span>：已上传文件的 ID
-- file_url `string`<span style="color: #666; font-weight: 400">可选</span>：文件的 URL 地址
-- filename `string`<span style="color: #666; font-weight: 400">可选</span>：文件名
+- file_data `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：文件的 base64 编码数据
+- file_id `string`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：已上传文件的 ID
+- file_url `string`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：文件的 URL 地址
+- filename `string`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：文件名
 
 :::
 
@@ -88,9 +88,9 @@ Bearer Token 鉴权
 
 :::details Input message（输入消息）`object`
 
-- type `string` <span style="color: #666; font-weight: 400">可选</span>：固定为 `message`
+- type `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：固定为 `message`
 - role `string` <span style="color: #FA6062; font-weight: 400">\*</span>：`user` / `assistant` / `system` / `developer`
-- status `string` <span style="color: #666; font-weight: 400">可选</span>：`in_progress` / `completed` / `incomplete` 项目的状态
+- status `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：`in_progress` / `completed` / `incomplete` 项目的状态
 - content `string | array` <span style="color: #FA6062; font-weight: 400">\*</span>：消息内容
   - 若为 `string`：纯文本
   - 若为 `array`：内容分片列表，元素可为 `input_text` / `input_image` / `input_file`（同上）
@@ -161,8 +161,8 @@ Bearer Token 鉴权
 - call_id `string` <span style="color: #FA6062; font-weight: 400">\*</span>：函数调用的唯一标识符
 - name `string` <span style="color: #FA6062; font-weight: 400">\*</span>：要调用的函数名称
 - arguments `string` <span style="color: #FA6062; font-weight: 400">\*</span>：JSON 格式的函数参数字符串
-- id `string` <span style="color: #666; font-weight: 400">可选</span>：调用项的唯一 ID
-- status `string` <span style="color: #666; font-weight: 400">可选</span>：调用状态，`in_progress` / `completed` / `incomplete`
+- id `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：调用项的唯一 ID
+- status `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：调用状态，`in_progress` / `completed` / `incomplete`
 
 :::
 
@@ -173,8 +173,8 @@ Bearer Token 鉴权
 - type `string`：`function_call_output` <span style="color: #FA6062; font-weight: 400">\*</span>
 - call_id `string`<span style="color: #FA6062; font-weight: 400">\*</span>：对应函数调用的唯一标识符
 - output `string | array` <span style="color: #FA6062; font-weight: 400">\*</span>：函数执行结果，可以是字符串或内容列表
-- id `string` <span style="color: #666; font-weight: 400">可选</span>：输出项的唯一 ID
-- status `string` <span style="color: #666; font-weight: 400">可选</span>：输出状态，`in_progress` / `completed` / `incomplete`
+- id `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：输出项的唯一 ID
+- status `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：输出状态，`in_progress` / `completed` / `incomplete`
 
 > `output` 为 `array` 时，元素可为 `input_text` / `input_image` / `input_file`（同上）。
 
@@ -188,7 +188,7 @@ Bearer Token 鉴权
 - call_id `string`<span style="color: #FA6062; font-weight: 400">\*</span>：自定义工具调用的唯一标识符
 - name `string`<span style="color: #FA6062; font-weight: 400">\*</span>：要调用的自定义工具名称
 - input `string`<span style="color: #FA6062; font-weight: 400">\*</span>：传递给工具的输入参数
-- id `string` <span style="color: #666; font-weight: 400">可选</span>：调用项的唯一 ID
+- id `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：调用项的唯一 ID
 
 :::
 
@@ -199,7 +199,7 @@ Bearer Token 鉴权
 - type `string`：`custom_tool_call_output`<span style="color: #FA6062; font-weight: 400">\*</span>
 - call_id `string`<span style="color: #FA6062; font-weight: 400">\*</span>：对应自定义工具调用的唯一标识符
 - output `string | array`<span style="color: #FA6062; font-weight: 400">\*</span>：工具执行结果，可以是字符串或内容列表
-- id `string`<span style="color: #666; font-weight: 400">可选</span>：输出项的唯一 ID
+- id `string`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：输出项的唯一 ID
 
 > `output` 为 `array` 时，元素可为 `input_text` / `input_image` / `input_file`（同上）。
 
@@ -218,8 +218,8 @@ Bearer Token 鉴权
 
 - type `string`<span style="color: #FA6062; font-weight: 400">\*</span>：动作类型，固定为`search`
 - query `string`<span style="color: #FA6062; font-weight: 400">\*</span>：搜索查询（已标记为废弃）
-- queries `array`<span style="color: #666; font-weight: 400">可选</span>：搜索查询列表
-- sources `array`<span style="color: #666; font-weight: 400">可选</span>：搜索来源列表
+- queries `array`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：搜索查询列表
+- sources `array`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：搜索来源列表
   - 每个 source：
     - type `string`<span style="color: #FA6062; font-weight: 400">\*</span>：`url`
     - url `string`<span style="color: #FA6062; font-weight: 400">\*</span>：来源 URL 地址
@@ -243,15 +243,15 @@ Bearer Token 鉴权
 - id `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>：文件搜索工具调用的唯一 ID
 - queries `array`<span style="color: #FA6062; font-weight: 400">&#42;</span>：搜索查询字符串列表
 - status `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>：搜索状态，`in_progress` / `searching` / `incomplete` / `failed`
-- results `array`<span style="color: #666; font-weight: 400">可选</span>：搜索结果列表
+- results `array`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：搜索结果列表
 
 ###### results 元素结构 `object`
 
-- attributes `map`<span style="color: #666; font-weight: 400">可选</span>：文件的元数据键值对（最多 16 对）
-- file_id `string`<span style="color: #666; font-weight: 400">可选</span>：搜索到的文件 ID
-- filename `string`<span style="color: #666; font-weight: 400">可选</span>：搜索到的文件名
-- score `number`<span style="color: #666; font-weight: 400">可选</span>：相关性评分，范围 0~1，1 表示完全匹配
-- text `string`<span style="color: #666; font-weight: 400">可选</span>：从文件中检索到的相关文本片段
+- attributes `map`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：文件的元数据键值对（最多 16 对）
+- file_id `string`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：搜索到的文件 ID
+- filename `string`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：搜索到的文件名
+- score `number`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：相关性评分，范围 0~1，1 表示完全匹配
+- text `string`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：从文件中检索到的相关文本片段
 
 ::: -->
 
@@ -262,12 +262,12 @@ Bearer Token 鉴权
 - type `string`<span style="color: #FA6062; font-weight: 400">\*</span>：`computer_call`
 - call_id `string` <span style="color: #FA6062; font-weight: 400">\*</span>：计算机使用调用的唯一标识符
 - action `object` <span style="color: #FA6062; font-weight: 400">\*</span>：具体的计算机操作动作参数（见下方 Action types）
-- pending_safety_checks `array` <span style="color: #666; font-weight: 400">可选</span>：待用户确认的安全检查列表
-  - id `string` <span style="color: #666; font-weight: 400">可选</span>：安全检查的唯一标识符
-  - code `string` <span style="color: #666; font-weight: 400">可选</span>：安全检查的代码标识
-  - message `string` <span style="color: #666; font-weight: 400">可选</span>：安全检查的提示消息内容
-- id `string` <span style="color: #666; font-weight: 400">可选</span>：调用项的唯一标识符
-- status `string` <span style="color: #666; font-weight: 400">可选</span>：调用状态，`in_progress`（进行中）/ `completed`（已完成）/ `incomplete`（未完成）
+- pending_safety_checks `array` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：待用户确认的安全检查列表
+  - id `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：安全检查的唯一标识符
+  - code `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：安全检查的代码标识
+  - message `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：安全检查的提示消息内容
+- id `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：调用项的唯一标识符
+- status `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：调用状态，`in_progress`（进行中）/ `completed`（已完成）/ `incomplete`（未完成）
 
 ###### Action types（`action` 动作参数）可能类型一览
 
@@ -276,7 +276,7 @@ Bearer Token 鉴权
 - type `string`：`click` <span style="color: #FA6062; font-weight: 400">\*</span>：动作类型，固定为`click`
 - x `number` <span style="color: #FA6062; font-weight: 400">\*</span>：点击位置的 X 坐标（像素）
 - y `number` <span style="color: #FA6062; font-weight: 400">\*</span>：点击位置的 Y 坐标（像素）
-- button `string` <span style="color: #666; font-weight: 400">可选</span>：鼠标按键类型，`left`（左键）/ `right`（右键）/ `middle`（中键）
+- button `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：鼠标按键类型，`left`（左键）/ `right`（右键）/ `middle`（中键）
 
 ###### Double click（双击）`object`
 
@@ -304,10 +304,10 @@ Bearer Token 鉴权
 ###### Scroll（滚动）`object`
 
 - type `string`：`scroll` <span style="color: #FA6062; font-weight: 400">\*</span>：动作类型，固定为`scroll`
-- x `integer` <span style="color: #666; font-weight: 400">可选</span>：滚动锚点的 X 坐标（像素，部分实现提供）
-- y `integer` <span style="color: #666; font-weight: 400">可选</span>：滚动锚点的 Y 坐标（像素）
-- scroll_x `integer` <span style="color: #666; font-weight: 400">可选</span>：水平滚动距离（像素）
-- scroll_y `integer` <span style="color: #666; font-weight: 400">可选</span>：垂直滚动距离（像素）
+- x `integer` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：滚动锚点的 X 坐标（像素，部分实现提供）
+- y `integer` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：滚动锚点的 Y 坐标（像素）
+- scroll_x `integer` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：水平滚动距离（像素）
+- scroll_y `integer` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：垂直滚动距离（像素）
 
 ###### Type（输入文本）`object`
 
@@ -331,14 +331,14 @@ Bearer Token 鉴权
 - call_id `string`<span style="color: #FA6062; font-weight: 400">\*</span>：对应计算机使用调用的唯一标识符
 - output `object`：计算机操作的输出结果（如截图等）
   - type `string`：`computer_screenshot`：输出类型，固定为计算机截图
-  - file_id `string`<span style="color: #666; font-weight: 400">可选</span>：截图文件的唯一标识符 ID
-  - image_url `string`<span style="color: #666; font-weight: 400">可选</span>：截图的 URL 访问地址
-- acknowledged_safety_checks `array`<span style="color: #666; font-weight: 400">可选</span>：已确认的安全检查列表
-  - id `string`<span style="color: #666; font-weight: 400">可选</span>：已确认安全检查的唯一标识符
-  - code `string`<span style="color: #666; font-weight: 400">可选</span>：已确认安全检查的代码标识
-  - message `string`<span style="color: #666; font-weight: 400">可选</span>：已确认安全检查的提示消息
-- id `string`<span style="color: #666; font-weight: 400">可选</span>：输出项的唯一标识符
-- status `string`<span style="color: #666; font-weight: 400">可选</span>：输出状态，如`completed`（已完成）/ `failed`（失败）
+  - file_id `string`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：截图文件的唯一标识符 ID
+  - image_url `string`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：截图的 URL 访问地址
+- acknowledged_safety_checks `array`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：已确认的安全检查列表
+  - id `string`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：已确认安全检查的唯一标识符
+  - code `string`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：已确认安全检查的代码标识
+  - message `string`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：已确认安全检查的提示消息
+- id `string`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：输出项的唯一标识符
+- status `string`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：输出状态，如`completed`（已完成）/ `failed`（失败）
 
 :::
 
@@ -378,9 +378,9 @@ Bearer Token 鉴权
   - type `string`<span style="color: #FA6062; font-weight: 400">\*</span>：`exec`
   - command `array`<span style="color: #FA6062; font-weight: 400">\*</span>：要执行的命令参数列表（数组形式）
   - env `map`<span style="color: #FA6062; font-weight: 400">\*</span>：命令执行的环境变量键值对
-  - timeout_ms `integer`<span style="color: #666; font-weight: 400">可选</span>：命令执行的超时时间（毫秒）
-  - user `string`<span style="color: #666; font-weight: 400">可选</span>：执行命令的系统用户
-  - working_directory `string`<span style="color: #666; font-weight: 400">可选</span>：命令执行的工作目录路径
+  - timeout_ms `integer`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：命令执行的超时时间（毫秒）
+  - user `string`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：执行命令的系统用户
+  - working_directory `string`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：命令执行的工作目录路径
 
 :::
 
@@ -389,7 +389,7 @@ Bearer Token 鉴权
 - type `string`<span style="color: #FA6062; font-weight: 400">\*</span>：`local_shell_call_output`
 - id `string`<span style="color: #FA6062; font-weight: 400">\*</span>：输出项的唯一 ID
 - output `string`<span style="color: #FA6062; font-weight: 400">\*</span>：命令执行结果的 JSON 字符串格式输出
-- status `string`<span style="color: #666; font-weight: 400">可选</span>：输出状态，如`completed` / `failed`
+- status `string`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：输出状态，如`completed` / `failed`
 
 :::
 
@@ -397,12 +397,12 @@ Bearer Token 鉴权
 
 - type `string`<span style="color: #FA6062; font-weight: 400">\*</span>：`shell_call`
 - call_id `string`<span style="color: #FA6062; font-weight: 400">\*</span>：shell 调用的唯一标识符
-- id `string`<span style="color: #666; font-weight: 400">可选</span>：调用项的唯一 ID
-- status `string`<span style="color: #666; font-weight: 400">可选</span>：调用状态，`in_progress` / `completed` / `incomplete`
+- id `string`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：调用项的唯一 ID
+- status `string`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：调用状态，`in_progress` / `completed` / `incomplete`
 - action `object`<span style="color: #FA6062; font-weight: 400">\*</span>：shell 命令执行配置
   - commands `array`<span style="color: #FA6062; font-weight: 400">\*</span>：按顺序执行的 shell 命令列表
-  - max_output_length `integer`<span style="color: #666; font-weight: 400">可选</span>：捕获输出的最大字符数限制（stdout+stderr UTF-8）
-  - timeout_ms `integer`<span style="color: #666; font-weight: 400">可选</span>：命令执行的超时时间（毫秒）
+  - max_output_length `integer`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：捕获输出的最大字符数限制（stdout+stderr UTF-8）
+  - timeout_ms `integer`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：命令执行的超时时间（毫秒）
 
 :::
 
@@ -410,8 +410,8 @@ Bearer Token 鉴权
 
 - type `string`<span style="color: #FA6062; font-weight: 400">\*</span>：`shell_call_output`
 - call_id `string`<span style="color: #FA6062; font-weight: 400">\*</span>：对应 shell 调用的唯一标识符
-- id `string`<span style="color: #666; font-weight: 400">可选</span>：输出项的唯一标识符
-- max_output_length `integer`<span style="color: #666; font-weight: 400">可选</span>：输出内容的最大字符数限制
+- id `string`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：输出项的唯一标识符
+- max_output_length `integer`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：输出内容的最大字符数限制
 - output `array`<span style="color: #FA6062; font-weight: 400">\*</span>：命令执行的输出块列表，每个元素包含：
   - stdout `string`<span style="color: #FA6062; font-weight: 400">\*</span>：标准输出内容
   - stderr `string`<span style="color: #FA6062; font-weight: 400">\*</span>：标准错误输出内容
@@ -430,7 +430,7 @@ Bearer Token 鉴权
 
 - type `string`<span style="color: #FA6062; font-weight: 400">\*</span>：`apply_patch_call`
 - call_id `string`<span style="color: #FA6062; font-weight: 400">\*</span>：补丁应用调用的唯一标识符
-- id `string`<span style="color: #666; font-weight: 400">可选</span>：调用项的唯一标识符
+- id `string`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：调用项的唯一标识符
 - status `string`<span style="color: #FA6062; font-weight: 400">\*</span>：调用状态，`in_progress`（进行中）/ `completed`（已完成）
 - operation `object`<span style="color: #FA6062; font-weight: 400">\*</span>：具体的文件操作（联合类型，包含创建/删除/更新）
 
@@ -459,9 +459,9 @@ Bearer Token 鉴权
 
 - type `string`<span style="color: #FA6062; font-weight: 400">\*</span>：`apply_patch_call_output`
 - call_id `string`<span style="color: #FA6062; font-weight: 400">\*</span>：对应补丁应用调用的唯一标识符
-- id `string`<span style="color: #666; font-weight: 400">可选</span>：输出项的唯一标识符
+- id `string`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：输出项的唯一标识符
 - status `string`<span style="color: #FA6062; font-weight: 400">\*</span>：输出状态，`completed`（已完成）/ `failed`（失败）
-- output `string`<span style="color: #666; font-weight: 400">可选</span>：补丁应用的日志信息或错误描述文本
+- output `string`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：补丁应用的日志信息或错误描述文本
 
 :::
 
@@ -470,11 +470,11 @@ Bearer Token 鉴权
 - type `string`<span style="color: #FA6062; font-weight: 400">\*</span>：`mcp_list_tools`
 - id `string`<span style="color: #FA6062; font-weight: 400">\*</span>：MCP 工具列表调用的唯一标识符
 - server_label `string`<span style="color: #FA6062; font-weight: 400">\*</span>：MCP 服务器的标签名称
-- error `string`<span style="color: #666; font-weight: 400">可选</span>：获取工具列表时的错误信息（如果有）
+- error `string`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：获取工具列表时的错误信息（如果有）
 - tools `array`<span style="color: #FA6062; font-weight: 400">\*</span>：可用工具列表，每个元素包含：
   - name `string`<span style="color: #FA6062; font-weight: 400">\*</span>：工具名称
-  - description `string`<span style="color: #666; font-weight: 400">可选</span>：工具功能描述
-  - annotations `object`<span style="color: #666; font-weight: 400">可选</span>：工具的附加注解信息
+  - description `string`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：工具功能描述
+  - annotations `object`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：工具的附加注解信息
   - input_schema `object`<span style="color: #FA6062; font-weight: 400">\*</span>：工具输入参数的 JSON Schema 定义
 
 :::
@@ -494,8 +494,8 @@ Bearer Token 鉴权
 - type `string`<span style="color: #FA6062; font-weight: 400">\*</span>：`mcp_approval_response`
 - approval_request_id `string`<span style="color: #FA6062; font-weight: 400">\*</span>：对应的审批请求唯一标识符
 - approve `boolean`<span style="color: #FA6062; font-weight: 400">\*</span>：是否批准工具调用（true=批准，false=拒绝）
-- id `string`<span style="color: #666; font-weight: 400">可选</span>：响应项的唯一标识符
-- reason `string`<span style="color: #666; font-weight: 400">可选</span>：批准或拒绝的原因说明
+- id `string`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：响应项的唯一标识符
+- reason `string`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：批准或拒绝的原因说明
 
 :::
 
@@ -506,10 +506,10 @@ Bearer Token 鉴权
 - server_label `string`<span style="color: #FA6062; font-weight: 400">\*</span>：MCP 服务器的标签名称
 - name `string`<span style="color: #FA6062; font-weight: 400">\*</span>：要调用的工具名称
 - arguments `string`<span style="color: #FA6062; font-weight: 400">\*</span>：工具参数的 JSON 格式字符串
-- approval_request_id `string`<span style="color: #666; font-weight: 400">可选</span>：关联的审批请求 ID（用于后续审批响应）
-- output `string`<span style="color: #666; font-weight: 400">可选</span>：工具执行后的输出结果
-- error `string`<span style="color: #666; font-weight: 400">可选</span>：工具执行的错误信息
-- status `string`<span style="color: #666; font-weight: 400">可选</span>：调用状态，`in_progress`（进行中）/ `completed`（已完成）/ `incomplete`（不完整）/ `calling`（调用中）/ `failed`（失败）
+- approval_request_id `string`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：关联的审批请求 ID（用于后续审批响应）
+- output `string`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：工具执行后的输出结果
+- error `string`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：工具执行的错误信息
+- status `string`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：调用状态，`in_progress`（进行中）/ `completed`（已完成）/ `incomplete`（不完整）/ `calling`（调用中）/ `failed`（失败）
 
 :::
 
@@ -521,12 +521,12 @@ Bearer Token 鉴权
   - Summary text `object`
     - type `string`<span style="color: #FA6062; font-weight: 400">\*</span>：`summary_text`
     - text `string`<span style="color: #FA6062; font-weight: 400">\*</span>：推理摘要的具体文本内容
-- content `array`<span style="color: #666; font-weight: 400">可选</span>：完整推理文本内容列表
+- content `array`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：完整推理文本内容列表
   - Reasoning text `object`
     - type `string`<span style="color: #FA6062; font-weight: 400">\*</span>：`reasoning_text`
     - text `string`<span style="color: #FA6062; font-weight: 400">\*</span>：完整推理过程的具体文本内容
-- encrypted_content `string`<span style="color: #666; font-weight: 400">可选</span>：加密的完整推理内容（需要 include 参数启用）
-- status `string`<span style="color: #666; font-weight: 400">可选</span>：推理状态，`in_progress`（进行中）/ `completed`（已完成）/ `incomplete`（未完成）
+- encrypted_content `string`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：加密的完整推理内容（需要 include 参数启用）
+- status `string`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：推理状态，`in_progress`（进行中）/ `completed`（已完成）/ `incomplete`（未完成）
 
 :::
 
@@ -535,7 +535,7 @@ Bearer Token 鉴权
 由 `v1/responses/compact` 生成，用于把长对话压缩成不透明加密摘要，并可回填进后续 `input`。
 
 - type `string`<span style="color: #FA6062; font-weight: 400">\*</span>：`compaction`
-- id `string`<span style="color: #666; font-weight: 400">可选</span>：compaction item ID
+- id `string`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：compaction item ID
 - encrypted_content `string`<span style="color: #FA6062; font-weight: 400">\*</span>：压缩摘要（加密、不透明）
 
 :::
@@ -545,17 +545,17 @@ Bearer Token 鉴权
 用于引用某个已有 item（内部标识）。
 
 - type `string`<span style="color: #FA6062; font-weight: 400">\*</span>：`item_reference`
-- id `string`<span style="color: #666; font-weight: 400">可选</span>
+- id `string`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
-### instructions `string` <span style="color: #666; font-weight: 400">可选</span>
+### instructions `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 插入到上下文中的 system/developer 指令；与 `previous_response_id` 同用时，不会继承上一轮的 instructions，便于替换系统提示词。
 
-### previous_response_id `string` <span style="color: #666; font-weight: 400">可选</span>
+### previous_response_id `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 上一轮 Response 的 ID，用于多轮对话续接；**不能与 `conversation` 同时使用**。
 
-### conversation `string | object` <span style="color: #666; font-weight: 400">可选</span>（默认 `null`）
+### conversation `string | object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>（默认 `null`）
 
 将本次响应关联到某个 conversation；conversation 的 items 会被前置到本次输入上下文中，并在本次完成后自动追加本次 input/output 到该 conversation。
 
@@ -563,15 +563,15 @@ Bearer Token 鉴权
 - Conversation object `object`
   - id `string`<span style="color: #FA6062; font-weight: 400">\*</span>：conversation 的唯一 ID，用于持久化存储和检索对话
 
-### prompt `object` <span style="color: #666; font-weight: 400">可选</span>
+### prompt `object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 引用一个 prompt 模板并传入变量。
 
 - id `string` <span style="color: #FA6062; font-weight: 400">\*</span>：prompt 模板 ID，用于标识要使用的模板
-- variables `object`<span style="color: #666; font-weight: 400">可选</span>：模板变量的键值对，用于动态替换模板中的占位符
-- version `string`<span style="color: #666; font-weight: 400">可选</span>：prompt 模板的版本号，用于指定模板的特定版本
+- variables `object`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：模板变量的键值对，用于动态替换模板中的占位符
+- version `string`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：prompt 模板的版本号，用于指定模板的特定版本
 
-### include `array` <span style="color: #666; font-weight: 400">可选</span>
+### include `array` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 指定在响应中额外包含的输出数据。支持的值包括（字符串枚举）：
 
@@ -583,34 +583,34 @@ Bearer Token 鉴权
 - `message.output_text.logprobs`：包含输出文本中每个 token 的对数概率
 - `reasoning.encrypted_content`：包含加密的推理内容
 
-### max_output_tokens `integer` <span style="color: #666; font-weight: 400">可选</span>
+### max_output_tokens `integer` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 限制本次响应可生成的 token 上限（包含可见输出 token 与 reasoning tokens）。
 
-### max_tool_calls `integer` <span style="color: #666; font-weight: 400">可选</span>
+### max_tool_calls `integer` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 限制本次响应内可处理的**内置工具**调用总次数（跨工具累计）。
 
-### parallel_tool_calls `boolean` <span style="color: #666; font-weight: 400">可选</span>（默认 `true`）
+### parallel_tool_calls `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>（默认 `true`）
 
 是否允许并行工具调用。
 
-### reasoning `object` <span style="color: #666; font-weight: 400">可选</span>（仅推理模型）
+### reasoning `object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>（仅推理模型）
 
 推理模型配置项。
 
-- effort `string` <span style="color: #666; font-weight: 400">可选</span>（默认 `medium`）  
+- effort `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>（默认 `medium`）  
   控制推理过程的强度级别，影响推理深度和计算时间。支持：`none` / `minimal` / `low` / `medium` / `high` / `xhigh`
-- summary `string` <span style="color: #666; font-weight: 400">可选</span>  
+- summary `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>  
   推理摘要级别：`auto` / `concise` / `detailed`
 - generate_summary `string`（Deprecated）  
   已废弃：建议用 `summary` 替代
 
-### text `object` <span style="color: #666; font-weight: 400">可选</span>
+### text `object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 文本输出相关配置（包括结构化输出格式）。
 
-- format `object` <span style="color: #666; font-weight: 400">可选</span>：指定输出格式（默认 `{ "type": "text" }`）  
+- format `object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：指定输出格式（默认 `{ "type": "text" }`）  
   可能类型：
   1. Text `object`
      - type `string`<span style="color: #FA6062; font-weight: 400">\*</span>：`text`：普通文本输出格式
@@ -619,35 +619,35 @@ Bearer Token 鉴权
      - type `string`<span style="color: #FA6062; font-weight: 400">\*</span>：`json_schema`：结构化 JSON 输出格式
      - name `string`<span style="color: #FA6062; font-weight: 400">\*</span>：输出格式的名称标识符
      - schema `object`<span style="color: #FA6062; font-weight: 400">\*</span>：定义输出结构的 JSON Schema
-     - description `string` <span style="color: #666; font-weight: 400">可选</span>：输出格式的描述说明
-     - strict `boolean` <span style="color: #666; font-weight: 400">可选</span>（默认 `false`）：是否严格按 schema 输出，true 时强制验证
+     - description `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：输出格式的描述说明
+     - strict `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>（默认 `false`）：是否严格按 schema 输出，true 时强制验证
 
   3. JSON object `object`（旧 JSON mode）
      - type `string`<span style="color: #FA6062; font-weight: 400">\*</span>：`json_object`：JSON 对象输出格式
 
-- verbosity `string` <span style="color: #666; font-weight: 400">可选</span>（默认 `medium`）  
+- verbosity `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>（默认 `medium`）  
   限制模型回应的详细程度。数值越低，回应越简洁；数值越高，回应越详尽。目前支持的参数值：`low` / `medium` / `high`
 
-### temperature `number` <span style="color: #666; font-weight: 400">可选</span>（默认 `1`）
+### temperature `number` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>（默认 `1`）
 
 采样温度，范围通常为 0~2；建议与 `top_p` 二选一调节。
 
-### top_p `number` <span style="color: #666; font-weight: 400">可选</span>（默认 `1`）
+### top_p `number` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>（默认 `1`）
 
 核采样参数。
 
-### top_logprobs `integer` <span style="color: #666; font-weight: 400">可选</span>
+### top_logprobs `integer` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 0~20，指定每个位置返回最可能 token 的个数。
 
-### truncation `string` <span style="color: #666; font-weight: 400">可选</span>（默认 `disabled`）
+### truncation `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>（默认 `disabled`）
 
 上下文截断策略，用于处理超出模型上下文窗口的情况：
 
 - `auto`：当内容超过上下文窗口时，自动从对话开头丢弃最早的 items 以腾出空间
 - `disabled`：禁用自动截断，超过上下文窗口时请求将失败（返回 400 错误）
 
-### tools `array` <span style="color: #666; font-weight: 400">可选</span>
+### tools `array` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 声明本次请求允许模型调用的工具列表，模型可以根据需要选择调用这些工具来增强其能力。
 
@@ -661,7 +661,7 @@ Bearer Token 鉴权
 - name `string`<span style="color: #FA6062; font-weight: 400">\*</span>：函数的唯一名称标识符
 - parameters `object`<span style="color: #FA6062; font-weight: 400">\*</span>：函数参数的 JSON Schema 定义，描述参数结构和验证规则
 - strict `boolean`<span style="color: #FA6062; font-weight: 400">\*</span>（默认 `true`）：是否严格验证参数，true 时严格按照 schema 验证
-- description `string` <span style="color: #666; font-weight: 400">可选</span>：函数功能的详细描述，帮助模型理解何时使用该函数
+- description `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：函数功能的详细描述，帮助模型理解何时使用该函数
 
 :::
 
@@ -669,7 +669,7 @@ Bearer Token 鉴权
 
 - type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>：`file_search`
 - vector_store_ids `array[string]`<span style="color: #FA6062; font-weight: 400">&#42;</span>：要搜索的向量存储 ID 列表
-- filters `object` <span style="color: #666; font-weight: 400">可选</span>：搜索结果的过滤条件
+- filters `object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：搜索结果的过滤条件
   - Comparison Filter `object`：比较过滤器
     - key `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>：要过滤的元数据字段名
     - type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>：`eq` / `ne` / `gt` / `gte` / `lt` / `lte` / `in` / `nin`：比较操作符
@@ -677,40 +677,40 @@ Bearer Token 鉴权
   - Compound Filter `object`：复合过滤器
     - filters `array[ComparisonFilter | CompoundFilter]`<span style="color: #FA6062; font-weight: 400">&#42;</span>：子过滤器列表
     - type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>：`and` / `or`：逻辑操作符
-- max_num_results `integer` <span style="color: #666; font-weight: 400">可选</span>（1~50）：返回结果的最大数量限制
-- ranking_options `object` <span style="color: #666; font-weight: 400">可选</span>：搜索结果的排序选项
-  - hybrid_search `object` <span style="color: #666; font-weight: 400">可选</span>：混合搜索权重配置
+- max_num_results `integer` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>（1~50）：返回结果的最大数量限制
+- ranking_options `object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：搜索结果的排序选项
+  - hybrid_search `object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：混合搜索权重配置
     - embedding_weight `number`<span style="color: #FA6062; font-weight: 400">&#42;</span>：向量嵌入的权重
     - text_weight `number`<span style="color: #FA6062; font-weight: 400">&#42;</span>：文本匹配的权重
-  - ranker `string` <span style="color: #666; font-weight: 400">可选</span>：使用的排序算法名称
+  - ranker `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：使用的排序算法名称
 
 ::: -->
 
 :::details Web search（网页搜索，一般可用版本）`object`
 
 - type `string` <span style="color: #FA6062; font-weight: 400">\*</span>：`web_search` 或 `web_search_2025_08_26`
-- filters `object` <span style="color: #666; font-weight: 400">可选</span>：搜索结果的过滤条件
-  - allowed_domains `array[string]` <span style="color: #666; font-weight: 400">可选</span>（默认 `[]`）：允许的域名白名单（允许子域）
-- search_context_size `string` <span style="color: #666; font-weight: 400">可选</span>（默认 `medium`）：搜索上下文的大小级别
-- user_location `object` <span style="color: #666; font-weight: 400">可选</span>：用户大致位置信息，用于本地化搜索结果
+- filters `object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：搜索结果的过滤条件
+  - allowed_domains `array[string]` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>（默认 `[]`）：允许的域名白名单（允许子域）
+- search_context_size `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>（默认 `medium`）：搜索上下文的大小级别
+- user_location `object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：用户大致位置信息，用于本地化搜索结果
   - type `string` <span style="color: #FA6062; font-weight: 400">\*</span>：`approximate`：位置类型，固定为大致位置
-  - city `string` <span style="color: #666; font-weight: 400">可选</span>：城市名称
-  - country `string` <span style="color: #666; font-weight: 400">可选</span>：两位 ISO（如 `US`）：国家代码
-  - region `string` <span style="color: #666; font-weight: 400">可选</span>：地区/州代码
-  - timezone `string` <span style="color: #666; font-weight: 400">可选</span>：IANA TZ（如 `America/Los_Angeles`）：时区标识符
+  - city `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：城市名称
+  - country `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：两位 ISO（如 `US`）：国家代码
+  - region `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：地区/州代码
+  - timezone `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：IANA TZ（如 `America/Los_Angeles`）：时区标识符
 
 :::
 
 :::details Web search preview（网页搜索预览版）`object`
 
 - type `string`<span style="color: #FA6062; font-weight: 400">\*</span>：`web_search_preview` 或 `web_search_preview_2025_03_11`
-- search_context_size `string` <span style="color: #666; font-weight: 400">可选</span>：`low` / `medium` / `high`：搜索上下文的大小级别
-- user_location `object` <span style="color: #666; font-weight: 400">可选</span>：用户地理位置信息
+- search_context_size `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：`low` / `medium` / `high`：搜索上下文的大小级别
+- user_location `object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：用户地理位置信息
   - type `string`<span style="color: #FA6062; font-weight: 400">\*</span>：`approximate`：位置类型，固定为大致位置
-  - city `string` <span style="color: #666; font-weight: 400">可选</span>：城市名称
-  - country `string` <span style="color: #666; font-weight: 400">可选</span>（两位 ISO）：国家代码
-  - region `string` <span style="color: #666; font-weight: 400">可选</span>：地区/州代码
-  - timezone `string` <span style="color: #666; font-weight: 400">可选</span>（IANA TZ）：时区标识符
+  - city `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：城市名称
+  - country `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>（两位 ISO）：国家代码
+  - region `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：地区/州代码
+  - timezone `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>（IANA TZ）：时区标识符
 
 :::
 
@@ -730,8 +730,8 @@ Bearer Token 鉴权
   - `string`：现有容器的 ID
   - `object`：新容器的配置对象
     - type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>：`auto`：容器类型，固定为自动
-    - file_ids `array` <span style="color: #666; font-weight: 400">可选</span>：关联的文件 ID 列表
-    - memory_limit `string` <span style="color: #666; font-weight: 400">可选</span>：容器的内存限制
+    - file_ids `array` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：关联的文件 ID 列表
+    - memory_limit `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：容器的内存限制
 
 ::: -->
 
@@ -745,14 +745,14 @@ Bearer Token 鉴权
 
 - type `string` <span style="color: #FA6062; font-weight: 400">\*</span>：`mcp`
 - server_label `string` <span style="color: #FA6062; font-weight: 400">\*</span>：该 MCP server 的标签（用于 tool call 路由）
-- server_url `string` <span style="color: #666; font-weight: 400">可选</span>：远程 MCP server
-- authorization `string` <span style="color: #666; font-weight: 400">可选</span>：OAuth access token（用于 remote MCP server 或服务连接器）
-- allowed_tools `array[string] | object` <span style="color: #666; font-weight: 400">可选</span>：允许模型调用的工具集合或过滤器
+- server_url `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：远程 MCP server
+- authorization `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：OAuth access token（用于 remote MCP server 或服务连接器）
+- allowed_tools `array[string] | object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：允许模型调用的工具集合或过滤器
   - **MCP allowed tools** `array[string]`
   - **MCP tool filter** `object`
-    - read_only `boolean` <span style="color: #666; font-weight: 400">可选</span>：按工具是否只读筛选
-    - tool_names `array[string]` <span style="color: #666; font-weight: 400">可选</span>：按工具名白名单筛选
-- require_approval `string | object` <span style="color: #666; font-weight: 400">可选</span>：哪些工具需要审批（示例里为 `never`；也支持更细粒度
+    - read_only `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：按工具是否只读筛选
+    - tool_names `array[string]` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：按工具名白名单筛选
+- require_approval `string | object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：哪些工具需要审批（示例里为 `never`；也支持更细粒度
   - `string`：`always` / `never`
   - `object`：approval filter（结构见文档片段）
 
@@ -762,15 +762,15 @@ Bearer Token 鉴权
 :::details Image generation（图片生成）`object`
 
 - type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>：`image_generation`
-- size `string` <span style="color: #666; font-weight: 400">可选</span>：如 `1024x1024` / `1024x1536` / `1536x1024` / `auto`：生成图像的尺寸规格
-- quality `string` <span style="color: #666; font-weight: 400">可选</span>：`low` / `medium` / `high` / `auto`：生成图像的质量级别
-- background `string` <span style="color: #666; font-weight: 400">可选</span>：`transparent` / `opaque` / `auto`（透明背景通常配合 png/webp）：背景处理方式
-- output_format `string` <span style="color: #666; font-weight: 400">可选</span>：输出格式（如 `png` / `jpeg` / `webp`，以图像文档为准）：输出图像的文件格式
-- output_compression `integer` <span style="color: #666; font-weight: 400">可选</span>：JPEG/WebP 压缩（0~100）：压缩质量
-- partial_images `integer` <span style="color: #666; font-weight: 400">可选</span>：流式 partial images 张数（文档示例为 1~3）：流式生成时的部分图像数量
-- action `string` <span style="color: #666; font-weight: 400">可选</span>：`auto` / `generate` / `edit`（某些模型/场景支持）：图像操作类型
-- input_image_mask `object` <span style="color: #666; font-weight: 400">可选</span>：用于编辑/局部重绘的 mask（示例：用 `file_id`）：遮罩配置
-  - file_id `string` <span style="color: #666; font-weight: 400">可选</span>：遮罩图像的文件 ID
+- size `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：如 `1024x1024` / `1024x1536` / `1536x1024` / `auto`：生成图像的尺寸规格
+- quality `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：`low` / `medium` / `high` / `auto`：生成图像的质量级别
+- background `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：`transparent` / `opaque` / `auto`（透明背景通常配合 png/webp）：背景处理方式
+- output_format `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：输出格式（如 `png` / `jpeg` / `webp`，以图像文档为准）：输出图像的文件格式
+- output_compression `integer` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：JPEG/WebP 压缩（0~100）：压缩质量
+- partial_images `integer` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：流式 partial images 张数（文档示例为 1~3）：流式生成时的部分图像数量
+- action `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：`auto` / `generate` / `edit`（某些模型/场景支持）：图像操作类型
+- input_image_mask `object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：用于编辑/局部重绘的 mask（示例：用 `file_id`）：遮罩配置
+  - file_id `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：遮罩图像的文件 ID
 
 ::: -->
 
@@ -794,8 +794,8 @@ Bearer Token 鉴权
 
 - type `string` <span style="color: #FA6062; font-weight: 400">\*</span>：`custom`
 - name `string` <span style="color: #FA6062; font-weight: 400">\*</span>：工具名
-- description `string` <span style="color: #666; font-weight: 400">可选</span>：工具描述
-- format `object` <span style="color: #666; font-weight: 400">可选</span>：输入格式（默认是自由文本）
+- description `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：工具描述
+- format `object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：输入格式（默认是自由文本）
   - **Text format** `object`
     - type `string` <span style="color: #FA6062; font-weight: 400">\*</span>：`text`
   - **Grammar format** `object`
@@ -805,7 +805,7 @@ Bearer Token 鉴权
 
 :::
 
-### tool_choice `string | object` <span style="color: #666; font-weight: 400">可选</span>
+### tool_choice `string | object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 控制模型如何选择/是否必须调用工具。
 
@@ -846,7 +846,7 @@ Bearer Token 鉴权
 
 - type `string`<span style="color: #FA6062; font-weight: 400">\*</span>：`mcp`
 - server_label `string`<span style="color: #FA6062; font-weight: 400">\*</span>
-- name `string`<span style="color: #666; font-weight: 400">可选</span>
+- name `string`<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 :::
 
@@ -869,41 +869,41 @@ Bearer Token 鉴权
 
 :::
 
-<!-- ### background `boolean` <span style="color: #666; font-weight: 400">可选</span>（默认 `false`）
+<!-- ### background `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>（默认 `false`）
 
 是否后台运行本次响应。 -->
 
-### store `boolean` <span style="color: #666; font-weight: 400">可选</span>（默认 `true`）
+### store `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>（默认 `true`）
 
 是否存储本次 Response 以便后续检索。
 
-### stream `boolean` <span style="color: #666; font-weight: 400">可选</span>（默认 `false`）
+### stream `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>（默认 `false`）
 
 是否启用 SSE 流式输出。
 
-### stream_options `object` <span style="color: #666; font-weight: 400">可选</span>（默认 `null`）
+### stream_options `object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>（默认 `null`）
 
 流式响应选项。仅当 `stream: true` 时使用。
 
-- include_usage `boolean` <span style="color: #666; font-weight: 400">可选</span>：是否在流式输出中包含 usage 信息
+- include_usage `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：是否在流式输出中包含 usage 信息
 
-<!-- ### metadata `object(map)` <span style="color: #666; font-weight: 400">可选</span>
+<!-- ### metadata `object(map)` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 最多 16 个键值对元数据（key ≤ 64 字符；value ≤ 512 字符）。 -->
 
-### prompt_cache_key `string` <span style="color: #666; font-weight: 400">可选</span>
+### prompt_cache_key `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 用于提升缓存命中率的 key（用于替代旧的 `user` 字段）。
 
-### prompt_cache_retention `string` <span style="color: #666; font-weight: 400">可选</span>
+### prompt_cache_retention `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 提示词缓存保留策略（例如 `24h`）。
 
-### safety_identifier `string` <span style="color: #666; font-weight: 400">可选</span>
+### safety_identifier `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 用于风控/滥用检测的稳定用户标识（建议哈希化）。
 
-### provider `object` <span style="color: #666; font-weight: 400">可选</span>
+### provider `object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 用于配置本次请求在多个模型提供商（如 OpenAI、Anthropic、Google 等）之间的路由与故障转移策略。
 如果不配置，则使用项目或模型的默认路由策略。
@@ -923,7 +923,7 @@ Bearer Token 鉴权
 - `least_latency`
   最低延迟优先：根据历史/实时统计选择当前响应最快的提供商。
 
-##### primary_factor `string` <span style="color: #666; font-weight: 400">可选</span>
+##### primary_factor `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 当存在多个可用提供商时的主要考量因素。例如：
 
@@ -940,7 +940,7 @@ Bearer Token 鉴权
 
 可参与路由的模型提供商列表。例如：`["openai", "anthropic", "google"]`
 
-#### fallback `string` <span style="color: #666; font-weight: 400">可选</span>
+#### fallback `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 故障转移（Failover）策略。当当前选中的提供商出现错误（如超时、额度不足、服务不可用）时，如何进行自动切换：
 
@@ -954,7 +954,7 @@ Bearer Token 鉴权
 若失败，则转而使用指定的备用提供商
 若主 + 备用都失败，则返回错误
 
-### model_routing_config `object` <span style="color: #666; font-weight: 400">可选</span>
+### model_routing_config `object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 用于配置当前请求在**同一提供商内部不同模型之间**的选择与路由策略（如在 `gpt-4o`、`gpt-4-turbo`、`claude-3-5-sonnet` 之间如何选用）。
 
@@ -964,11 +964,11 @@ Bearer Token 鉴权
 
 可参与路由或备选的**模型名称列表**。
 
-#### preference `string` <span style="color: #666; font-weight: 400">可选</span>
+#### preference `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 首选模型名称。
 
-#### task_info `object` <span style="color: #666; font-weight: 400">可选</span>
+#### task_info `object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 任务元信息，用于**根据任务类型和复杂度**决定具体模型或参数。
 
@@ -986,7 +986,7 @@ Bearer Token 鉴权
   - 可据此为不同任务类型设置不同的默认模型或限额策略
   - 也可与 `complexity` 联动，决定是否启用更强模型
 
-##### complexity `string` <span style="color: #666; font-weight: 400">可选</span>
+##### complexity `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 任务复杂度，用于刻画请求的难度或重要程度。
 
@@ -998,19 +998,19 @@ Bearer Token 鉴权
   - 可以根据复杂度选择不同档位的模型（如低复杂度选便宜模型，高复杂度选能力更强的模型）
   - 也可用于控制超时时间、重试策略等
 
-##### additional_properties `object` <span style="color: #666; font-weight: 400">可选</span>
+##### additional_properties `object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 任务相关的扩展字段，键值对形式，自由扩展。
 
-#### additional_properties `object` <span style="color: #666; font-weight: 400">可选</span>
+#### additional_properties `object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 模型路由配置本身的扩展字段，用于在标准结构之外，附加额外的控制信息。
 
-<!-- ### service_tier `string` <span style="color: #666; font-weight: 400">可选</span>（默认 `auto`）
+<!-- ### service_tier `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>（默认 `auto`）
 
 请求服务层级（如 `auto` / `default` / `flex` / `priority` 等）。 -->
 
-<!-- ### user `string`（Deprecated）<span style="color: #666; font-weight: 400">可选</span>
+<!-- ### user `string`（Deprecated）<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 已废弃，建议使用 `safety_identifier` 与 `prompt_cache_key`。 -->
 

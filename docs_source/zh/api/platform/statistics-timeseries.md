@@ -12,7 +12,7 @@ head:
 
 # Get Statistics Timeseries
 
-::: tip 💡 错误排查
+::: info 错误排查
 调用过程中遇到错误？请参阅 [API 错误码参考](/zh/guide/advanced/error-codes) 获取完整的错误类型说明与排查方案。
 :::
 
@@ -24,7 +24,7 @@ GET https://zenmux.ai/api/v1/management/statistics/timeseries
 
 可用于构建堆叠柱状图、追踪消费趋势，或将历史数据导出为 CSV。
 
-::: info ℹ️ 数据时效性
+::: info 数据时效性
 统计数据按天聚合。最新可用数据为**昨日（T-1）**，当天的用量将在次日聚合后可见。
 :::
 
@@ -40,7 +40,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 - **格式**：`Bearer <API_KEY>`
 - **说明**：Management API Key，在 [ZenMux 控制台](https://zenmux.ai/platform/management) 创建
 
-::: warning ⚠️ 仅支持 Management API Key
+::: warning 仅支持 Management API Key
 本接口仅接受 Management API Key 鉴权，不支持普通 API Key。
 :::
 
@@ -207,6 +207,6 @@ const data = await response.json();
 
 :::
 
-::: tip 💡 ISO 周对齐
+::: info ISO 周对齐
 上例中，响应的 `starting_at` 为 `2026-02-23`（周一），而非请求的 `2026-03-01`，这是因为 `bucket_width=1w` 会自动对齐到 ISO 周边界。
 :::

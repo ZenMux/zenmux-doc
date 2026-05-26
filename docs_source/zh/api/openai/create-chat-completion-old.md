@@ -32,79 +32,79 @@ messages 里的每个元素表示一条对话消息，每条消息由 role 和 c
 
 此次推理调用的模型 ID，格式为 &lt;供应商&gt;/&lt;模型名称&gt;，如 openai/gpt-5，可以从各模型的详情页获得。
 
-### stream `boolean` <span style="color: #666; font-weight: 400">可选</span> `默认 false`
+### stream `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span> `默认 false`
 
 指定是否流式响应。只有当显式指定 `stream: true` 时，才会以 Server-Sent Event 协议进行流式响应。否则一次性返回所有生成内容。
 
-### max_completion_tokens `integer` <span style="color: #666; font-weight: 400">可选</span>
+### max_completion_tokens `integer` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 限制模型生成内容的长度，包括思考过程。如果不传，会采用模型的默认限制。各模型的最大生成内容长度可以详情页获得。
 
-### temperature `float` <span style="color: #666; font-weight: 400">可选</span> `默认 1`
+### temperature `float` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span> `默认 1`
 
 决定样本的 temerature，通常取值范围是 0 到 2，但模型不同，取值范围也会有所不同，比如 Claude 系列的模型取值范围是 0 到 1。值越大，生成内容的随机性就越高。
 
 一般不建议和 top_p 一起使用。
 
-### top_p `float` <span style="color: #666; font-weight: 400">可选</span> `默认 1`
+### top_p `float` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span> `默认 1`
 
 截取样本的比例，取值越大，截取样本的数量就越多，生成内容的随机性就越高。
 
 一般不建议和 temperature 一起使用。
 
-### frequency_penalty `float` <span style="color: #666; font-weight: 400">可选</span> `默认 0`
+### frequency_penalty `float` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span> `默认 0`
 
 取值范围 -2.0 至 2.0，是文本生成模型中用于控制重复词汇使用的参数，通过降低高频词汇的生成概率来提升文本多样性。值越大，重复性就越低。
 
-### presence_penalty `float` <span style="color: #666; font-weight: 400">可选</span> `默认 0`
+### presence_penalty `float` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span> `默认 0`
 
 用于减少词汇重复的参数，通过惩罚已出现词汇的生成概率，降低其被再次选中的可能性，从而提升文本多样性。
 
-### seed `integer` <span style="color: #666; font-weight: 400">可选</span>
+### seed `integer` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 用于控制大模型尽可能根据相同 seed 生成相同的内容。如果不传，每次都会随机使用不同的 seed。
 
-### logit_bias `map` <span style="color: #666; font-weight: 400">可选</span> `默认 null`
+### logit_bias `map` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span> `默认 null`
 
 可以用来调整模型对特定类别的偏好程度，通过增加或减少对某些类别的偏置，可以影响模型的输出结果。
 
 使用方法参见 OpenAI 官方说明：[logit_bias](https://platform.openai.com/docs/api-reference/chat/create#chat_create-logit_bias)。
 
-### logprobs `boolean` <span style="color: #666; font-weight: 400">可选</span> `默认 false`
+### logprobs `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span> `默认 false`
 
 生成过程中返回的每个 token 的概率分布信息，主要用于分析模型生成过程的置信度及调试模型。
 
-### top_logprobs `integer` <span style="color: #666; font-weight: 400">可选</span>
+### top_logprobs `integer` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 一个介于 0 和 20 之间的整数，指定要在每个标记位置返回的最可能标记的数量，每个标记都有一个关联的对数概率。如果使用了此参数，logprobs 必须为 true。
 
-### response_format `object` <span style="color: #666; font-weight: 400">可选</span>
+### response_format `object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 用于控制模型输出结构化内容，如果不传默认不使用结构化输出。关于结构化输出详细使用方法参见[结构化输出](../advanced/structured-output.md)。
 
-### stop `string/array` <span style="color: #666; font-weight: 400">可选</span> `默认 null`
+### stop `string/array` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span> `默认 null`
 
 仅部分模型支持，用于指定终止符，可以是字符串，也可以是字符串数组（指定多个）。模型的返回结果中不会包含终止符。
 
-### tools `array` <span style="color: #666; font-weight: 400">可选</span>
+### tools `array` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 大模型可以选择的工具列表，如果不传则不使用工具调用，当前仅支持 function 类型的工具。关于工具调用详细使用方法参见 [工具调用](../advanced/tool-calls.md)
 
-### tool_choice `string/object` <span style="color: #666; font-weight: 400">可选</span>
+### tool_choice `string/object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 用于控制模型如何选择使用工具，与 tools 参数搭配使用。'none' 表示告诉模型不要使用任何工具，'auto' 表示模型可以自由决定是否使用工具及使用哪几个工具，'required' 表示模型必须选择使用工具。同时也可以传 object 告诉模型必须选择使用指定的模型。
 
 如果 tools 为空，默认为 none，如果 tools 不为空，默认为 auto。
 
-### parallel_tool_calls `boolean` <span style="color: #666; font-weight: 400">可选</span> `默认 true`
+### parallel_tool_calls `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span> `默认 true`
 
 控制模型是否可以一次选择多个模型。
 
-### stream_options `object` <span style="color: #666; font-weight: 400">可选</span>
+### stream_options `object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 用于控制流式响应的返回内容，仅当 stream: true 时可用。
 
-### reasoning `object` <span style="color: #666; font-weight: 400">可选</span>
+### reasoning `object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 用于控制 reasoning 输出，支持同时指定 effort 与 max_tokens，根据模型不同，生效的字段也不同。详情参见 [推理模型](../guide/advanced/reasoning.md)。
 

@@ -12,7 +12,7 @@ head:
 
 Anthropic’s Claude model family supports expanding the context window from the default 200K tokens to **1,000,000 tokens (1M)**—5× the default capacity. With ZenMux, you can enable this capability effortlessly to handle large-scale document analysis, code review, long-running conversations, and more.
 
-::: tip 💡 Key Benefits
+::: info Key Benefits
 
 - **Massive context**: Process roughly 750,000 English words or thousands of pages in a single request
 - **Deep analysis**: Ideal for large codebase reviews, long-form literature analysis, full conversation history, and more
@@ -200,7 +200,7 @@ When the number of tokens in a request exceeds 200K, long-context pricing will a
 | **Input tokens** | 1x (standard rate) | 2x (double rate)         |
 | **Output tokens** | 1x (standard rate) | 1.5x (1.5× standard rate) |
 
-::: tip 💰 Billing Notes
+::: info Billing Notes
 
 - Only the portion that **actually exceeds 200K** is billed at the higher multiplier; the portion within 200K is still billed at the standard rate
 - The output-token multiplier (1.5x) is lower than the input-token multiplier (2x), keeping the overall cost increase manageable
@@ -211,7 +211,7 @@ When the number of tokens in a request exceeds 200K, long-context pricing will a
 
 ### Recommended Use Cases
 
-::: tip 💡 Scenarios where 1M context is recommended
+::: info Scenarios where 1M context is recommended
 
 - **Large-scale code review**: Load an entire repository at once for analysis and refactoring suggestions
 - **Long-document analysis**: Process full legal contracts, academic papers, technical specifications, and more
@@ -222,7 +222,7 @@ When the number of tokens in a request exceeds 200K, long-context pricing will a
 
 ### Optimization Tips
 
-::: tip 💡 Improve long-context request quality
+::: info Improve long-context request quality
 
 1. **Put critical information first**: Place the most important content at the beginning of the prompt—models pay the most attention to the start
 2. **Combine with prompt caching**: For long documents reused repeatedly, cache static content via `cache_control` to save up to 90% of input costs

@@ -12,7 +12,7 @@ head:
 
 # Get Subscription Detail
 
-::: tip 💡 错误排查
+::: info 错误排查
 调用过程中遇到错误？请参阅 [API 错误码参考](/zh/guide/advanced/error-codes) 获取完整的错误类型说明与排查方案。
 :::
 
@@ -34,7 +34,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 - **格式**：`Bearer <API_KEY>`
 - **说明**：Management API Key，在 [ZenMux 控制台](https://zenmux.ai/platform/management) 创建
 
-::: warning ⚠️ 仅支持 Management API Key
+::: warning 仅支持 Management API Key
 本接口仅接受 Management API Key 鉴权，不支持普通 API Key。
 :::
 
@@ -100,7 +100,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 - `max_flows` `number` — 当月最大可用 Flow 数
 - `max_value_usd` `number` — 当月总额度对应的美元价值
 
-::: info 💡 配额说明
+::: info 配额说明
 
 - `quota_5_hour` 和 `quota_7_day` 均为**滚动窗口**，每次请求后实时更新
 - `quota_monthly` 为固定的订阅周期上限，不含实时用量数据

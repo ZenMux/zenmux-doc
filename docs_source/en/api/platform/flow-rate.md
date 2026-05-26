@@ -12,7 +12,7 @@ head:
 
 # Get Flow Rate
 
-::: tip 💡 Troubleshooting
+::: info Troubleshooting
 Encountering errors? See the [API Error Codes Reference](/guide/advanced/error-codes) for a complete list of error types and troubleshooting steps.
 :::
 
@@ -22,7 +22,7 @@ GET https://zenmux.ai/api/v1/management/flow_rate
 
 Returns the Flow exchange rate for the current account, including the platform base rate and the account's effective rate.
 
-::: tip 💡 What is a Flow?
+::: info What is a Flow?
 A Flow is ZenMux's unified billing unit for measuring AI inference consumption. 1 Flow ≈ the cost of one standard request to a reference model. See [Pricing](https://zenmux.ai/pricing/subscription) for details.
 :::
 
@@ -38,7 +38,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 - **Format**: `Bearer <API_KEY>`
 - **Description**: A Management API Key created in the [ZenMux Console](https://zenmux.ai/platform/management)
 
-::: warning ⚠️ Management API Key required
+::: warning Management API Key required
 This endpoint only accepts Management API Keys. Standard API Keys are not supported.
 :::
 

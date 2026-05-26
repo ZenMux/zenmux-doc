@@ -487,13 +487,13 @@ onUnmounted(() => {
 
 .ai-trigger:hover {
   color: var(--vp-c-text-1);
-  border-color: var(--vp-c-brand-1);
+  border-color: #ccc;
 }
 
 .ai-trigger.active {
-  color: var(--vp-c-brand-1);
-  border-color: var(--vp-c-brand-1);
-  background: var(--vp-c-brand-soft);
+  color: #666;
+  border-color: #e6e6e6;
+  background: transparent;
 }
 
 :global(.dark) .ai-trigger {

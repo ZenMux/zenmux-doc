@@ -12,7 +12,7 @@ head:
 
 # Get Statistics Leaderboard
 
-::: tip 💡 Troubleshooting
+::: info Troubleshooting
 Encountering errors? See the [API Error Codes Reference](/guide/advanced/error-codes) for a complete list of error types and troubleshooting steps.
 :::
 
@@ -24,7 +24,7 @@ Rank models by total token consumption or cost over a date range. Returns the to
 
 Use this endpoint to see which models dominate platform traffic, compare spending across providers, or build leaderboard visualizations.
 
-::: info ℹ️ Data freshness
+::: info Data freshness
 Statistics data is aggregated on a daily schedule. The most recent available data is from **yesterday (T-1)**. Today's usage will appear in tomorrow's aggregation.
 :::
 
@@ -40,7 +40,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 - **Format**: `Bearer <API_KEY>`
 - **Description**: A Management API Key created in the [ZenMux Console](https://zenmux.ai/platform/management)
 
-::: warning ⚠️ Management API Key required
+::: warning Management API Key required
 This endpoint only accepts Management API Keys. Standard API Keys are not supported.
 :::
 
@@ -211,6 +211,6 @@ const data = await response.json();
 
 :::
 
-::: tip 💡 All-time leaderboard
+::: info All-time leaderboard
 Omit `starting_at` to default to `2025-09-29` (platform launch date), giving you the all-time leaderboard.
 :::

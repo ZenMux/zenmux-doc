@@ -62,7 +62,7 @@ const tabs = computed(() => {
   right: 0;
   height: var(--zenmux-doc-tabs-height, 48px);
   background-color: var(--vp-c-bg);
-  border-bottom: 1px solid var(--vp-c-divider);
+  border-bottom: 0.5px solid var(--vp-c-divider);
   z-index: 25;
   display: none;
   align-items: center;

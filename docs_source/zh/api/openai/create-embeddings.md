@@ -62,20 +62,20 @@ Bearer Token 鉴权
 - `openai/text-embedding-3-large` — 高精度 embedding 模型，输出维度 3072
 - `openai/text-embedding-3-small` — 高效 embedding 模型，输出维度 1536
 
-### encoding_format `string` <span style="color: #666; font-weight: 400">可选</span>
+### encoding_format `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 返回 embedding 的编码格式。
 
 - `float` — 以浮点数数组形式返回（默认）
 - `base64` — 以 Base64 编码字符串形式返回
 
-### dimensions `integer` <span style="color: #666; font-weight: 400">可选</span>
+### dimensions `integer` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 输出 embedding 的维度数。仅 `text-embedding-3` 及更新模型支持。
 
 通过指定较小的维度，可以在不显著损失语义表达能力的前提下缩短 embedding 向量，从而降低存储和检索成本。
 
-### user `string` <span style="color: #666; font-weight: 400">可选</span>
+### user `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 代表终端用户的唯一标识符，可帮助监控和检测滥用行为。
 

@@ -12,7 +12,7 @@ head:
 
 # Image generation streaming events
 
-::: tip 💡 Troubleshooting
+::: info Troubleshooting
 Running into an error while calling the API? See the [API error code reference](/guide/advanced/error-codes) for a complete list of error types and troubleshooting steps.
 :::
 

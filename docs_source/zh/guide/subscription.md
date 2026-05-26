@@ -18,7 +18,7 @@ ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的
 
 ### 💱 Flow/USD 实时汇率
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/04/20/6DiXe7y/20260420141907.jpg" alt="Flow/USD 实时汇率" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/04/20/6DiXe7y/20260420141907.jpg" alt="Flow/USD 实时汇率" >
 
 ::: tip 以上为截图示例
 Flow/USD 汇率和相关数据均为**动态计算**，页面截图仅供参考。请以 [Pricing 页面](https://zenmux.ai/pricing/subscription) 实时显示的数据为准。
@@ -38,7 +38,7 @@ Flow/USD 汇率当前锚定在 **1 Flow ≈ $0.03283**（约 30 Flows = $1）。
 
 ### 📊 套餐对比 — 月度最大 Flows 及等价 USD 价值
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/04/20/ySQMzyd/20260420140640.jpg" alt="套餐对比 - 月度最大 Flows 及等价 USD 价值" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/04/20/ySQMzyd/20260420140640.jpg" alt="套餐对比 - 月度最大 Flows 及等价 USD 价值" >
 
 ::: tip 以上为截图示例
 套餐对比数据均为**动态计算**，页面截图仅供参考。请以 [Pricing 页面](https://zenmux.ai/pricing/subscription) 实时显示的数据为准。
@@ -92,7 +92,7 @@ Flow/USD 汇率当前锚定在 **1 Flow ≈ $0.03283**（约 30 Flows = $1）。
 
 ## 套餐对比
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/04/22/BsZgRQH/20260422225424.jpg" alt="subscription-free" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/04/22/BsZgRQH/20260422225424.jpg" alt="subscription-free" >
 
 ### Free - 免费体验
 
@@ -369,7 +369,7 @@ Flow/USD 汇率当前锚定在 **1 Flow ≈ $0.03283**（约 30 Flows = $1）。
 
 ## 使用限制说明
 
-::: warning ⚠️ 重要提示
+::: warning 重要提示
 订阅制套餐专为**个人开发、学习探索、Vibe Coding** 等非生产场景设计,请遵守以下使用规范:
 :::
 
@@ -410,7 +410,7 @@ Flow/USD 汇率当前锚定在 **1 Flow ≈ $0.03283**（约 30 Flows = $1）。
 
 访问 [ZenMux Pricing 页面](https://zenmux.ai/pricing/subscription) 查看所有订阅套餐的详细信息和价格。
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/7shxqbP/dingyuezhi-jiage2-dapingbanben.png" alt="subscription-free" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/7shxqbP/dingyuezhi-jiage2-dapingbanben.png" alt="subscription-free" >
 
 ### 第 2 步:选择并订阅套餐
 
@@ -422,7 +422,7 @@ Flow/USD 汇率当前锚定在 **1 Flow ≈ $0.03283**（约 30 Flows = $1）。
 
 订阅成功后,可访问 [订阅管理页面](https://zenmux.ai/platform/subscription) :
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/4I6M3by/dingyuezhi-gerenguanliyemian2.png" alt="subscription-free" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/4I6M3by/dingyuezhi-gerenguanliyemian2.png" alt="subscription-free" >
 
 - 📊 **查看使用情况**
   - 当前 5 小时窗口的用量和剩余时间
@@ -458,7 +458,7 @@ Flow/USD 汇率当前锚定在 **1 Flow ≈ $0.03283**（约 30 Flows = $1）。
 
 在订阅管理页面找到 **Extra Usage** 部分,点击右侧的开关按钮启用此功能。
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/02/03/8Ed42do/extra-1.png" alt="Enable Extra Usage" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/02/03/8Ed42do/extra-1.png" alt="Enable Extra Usage" >
 
 **步骤 2: 选择 Pay As You Go API Key**
 
@@ -467,7 +467,7 @@ Flow/USD 汇率当前锚定在 **1 Flow ≈ $0.03283**（约 30 Flows = $1）。
 - 从下拉列表中选择一个现有的 Pay As You Go API Key
 - 或点击 **"Create new key"** 创建一个新的按量付费 API Key
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/02/03/iJZufsS/extra-2.png" alt="Select API Key" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/02/03/iJZufsS/extra-2.png" alt="Select API Key" >
 
 选择完成后点击 **"Select"** 按钮确认。
 
@@ -481,7 +481,7 @@ Flow/USD 汇率当前锚定在 **1 Flow ≈ $0.03283**（约 30 Flows = $1）。
 - 当前已使用金额
 - 操作选项(可重新选择其他 Key)
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/02/03/7ivqY3m/extra-3.png" alt="Extra Usage Enabled" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/02/03/7ivqY3m/extra-3.png" alt="Extra Usage Enabled" >
 
 #### 工作原理
 
@@ -497,7 +497,7 @@ Flow/USD 汇率当前锚定在 **1 Flow ≈ $0.03283**（约 30 Flows = $1）。
 - 如需更换备用 Key,点击 **"Reselect"** 按钮重新选择即可
   :::
 
-::: warning ⚠️ 计费提醒
+::: warning 计费提醒
 启用 Extra Usage 后,当订阅配额用尽时会自动从你的 Pay As You Go 余额中扣费。请注意监控账户余额,避免产生意外费用。
 :::
 
@@ -537,7 +537,7 @@ Flow/USD 汇率当前锚定在 **1 Flow ≈ $0.03283**（约 30 Flows = $1）。
 - [Dify 接入指南](/zh/best-practices/dify) - LLM 应用开发平台
 - [Open WebUI 接入指南](/zh/best-practices/open-webui) - 自托管 AI 对话界面
 
-::: info 📚 更多集成方式
+::: info 更多集成方式
 更多应用集成指南正在持续更新中。如需帮助,请访问 [Discord 社区](http://discord.gg/vHZZzj84Bm) 或联系技术支持。
 :::
 
@@ -547,7 +547,7 @@ Flow/USD 汇率当前锚定在 **1 Flow ≈ $0.03283**（约 30 Flows = $1）。
 
 ### 切换计费方式
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/02/03/l48igiH/studio-chat-mode.png" alt="Studio Chat 计费模式切换" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/02/03/l48igiH/studio-chat-mode.png" alt="Studio Chat 计费模式切换" >
 
 在 Studio Chat 页面,你可以在每个对话中灵活选择使用订阅制配额还是 Pay As You Go 余额:
 
@@ -565,7 +565,7 @@ Flow/USD 汇率当前锚定在 **1 Flow ≈ $0.03283**（约 30 Flows = $1）。
 两种模式可以随时切换,互不影响,让你在不同场景下都能选择最合适的计费方式。
 :::
 
-::: warning ⚠️ 配额共享
+::: warning 配额共享
 Studio Chat 和 API 调用使用相同的订阅配额池。在 Studio Chat 中的对话会消耗订阅 Flows,请合理分配使用。
 :::
 

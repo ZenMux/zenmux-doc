@@ -12,7 +12,7 @@ head:
 
 # Get PAYG Balance
 
-::: tip 💡 错误排查
+::: info 错误排查
 调用过程中遇到错误？请参阅 [API 错误码参考](/zh/guide/advanced/error-codes) 获取完整的错误类型说明与排查方案。
 :::
 
@@ -34,7 +34,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 - **格式**：`Bearer <API_KEY>`
 - **说明**：Management API Key，在 [ZenMux 控制台](https://zenmux.ai/platform/management) 创建
 
-::: warning ⚠️ 仅支持 Management API Key
+::: warning 仅支持 Management API Key
 本接口仅接受 Management API Key 鉴权，不支持普通 API Key。
 :::
 
@@ -60,7 +60,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 
 通过奖励、赠送等方式获得的余额（美元）。
 
-::: info 💡 余额来源
+::: info 余额来源
 `total_credits` = `top_up_credits` + `bonus_credits`（可能因浮点精度存在极小误差）。
 :::
 

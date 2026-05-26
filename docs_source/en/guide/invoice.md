@@ -50,7 +50,7 @@ When you make a **Pay As You Go top-up** or **subscription plan payment**, you c
 3. After completing the form, click **"Save billing info"** to save your invoice information
 4. Continue with the payment process
 
-::: warning ⚠️ Important Note
+::: warning Important Note
 Invoice information must be filled in before payment. If you don't provide invoice information during payment, it may not be possible to issue an invoice retroactively, or you may need to contact customer support.
 :::
 
@@ -83,7 +83,7 @@ If you made a **Pay As You Go top-up**, you can download the invoice from your t
 
 <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/21/nZQY0YJ/ruhehuoqufapiao-xiazaifapiaostripejiemian.png" alt="download" style="width:400px; border-radius:8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 
-::: info 💡 Invoice Generation Time
+::: info Invoice Generation Time
 After a successful top-up, the invoice is generated immediately. Click the **View Invoice** link to download it right away.
 :::
 
