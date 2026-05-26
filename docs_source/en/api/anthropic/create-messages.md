@@ -26,7 +26,7 @@ ZenMux supports the Anthropic API. See the API call examples for how to use it.
 
 ## Request headers
 
-### x-api-key `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+### x-api-key `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 Anthropic API Key, used for authentication.
 
@@ -36,7 +36,7 @@ Example:
 x-api-key: sk-ant-xxxx
 ```
 
-### anthropic-version `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+### anthropic-version `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 Anthropic API version (not the model version).
 
@@ -46,7 +46,7 @@ Currently, only `"2023-06-01"` is supported.
 anthropic-version: 2023-06-01
 ```
 
-### content-type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+### content-type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 Request body format. Currently, only JSON is supported:
 
@@ -54,7 +54,7 @@ Request body format. Currently, only JSON is supported:
 content-type: application/json
 ```
 
-### anthropic-beta `string` <font color="gray">Optional</font>
+### anthropic-beta `string` <span style="color: #666; font-weight: 400">Optional</span>
 
 Used to enable one or more Beta features. `"code-execution-2025-08-25"` is not supported at the moment, meaning the `code_execution` tool cannot be used.
 
@@ -66,7 +66,7 @@ Used to enable one or more Beta features. `"code-execution-2025-08-25"` is not s
 
 The request body is JSON. Parameters are as follows.
 
-### max_tokens `number` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+### max_tokens `number` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 The **maximum number of tokens** to generate, including both the normal response and (if enabled) the thinking content from extended thinking.
 
@@ -74,7 +74,7 @@ The **maximum number of tokens** to generate, including both the normal response
 - The maximum supported `max_tokens` varies by model. See each model’s documentation for details.
 - Value: `>= 1`
 
-### messages `array<Message>` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+### messages `array<Message>` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 Conversation history and the current user input.
 
@@ -92,9 +92,9 @@ Message = {
 }
 ```
 
-#### role: `"user" | "assistant"`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+#### role: `"user" | "assistant"`<span style="color: #FA6062; font-weight: 400">\*</span>
 
-#### content `string | ContentBlock[]`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+#### content `string | ContentBlock[]`<span style="color: #FA6062; font-weight: 400">\*</span>
 
 - If you provide a string directly, it is equivalent to a single text block with `type: "text"`:
   - `{"role":"user","content":"Hello, Claude"}` is equivalent to  
@@ -114,15 +114,15 @@ Message = {
 }
 ```
 
-- text `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+- text `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
   Text content.
 
-- type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+- type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
   Must be `"text"`.
 
-- cache_control `CacheControlEphemeral` <font color="gray">Optional</font>  
+- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400">Optional</span>  
    Creates a **Prompt Cache breakpoint** on this block (for Anthropic context-caching billing / reuse):
 
   ```ts
@@ -134,7 +134,7 @@ Message = {
 
   - ttl: cache TTL, `"5m"` / `"1h"`, default is 5 minutes.
 
-- citations `TextCitationParam[]` <font color="gray">Optional</font>  
+- citations `TextCitationParam[]` <span style="color: #666; font-weight: 400">Optional</span>  
   Used to **attribute the source of quoted text** (typical scenario: when you pass a PDF / text document / content document as a `document` block input and want to mark “which page / which section / which search result this part of the answer comes from”).  
   `TextCitationParam` is one of the following (depending on the cited content type):
   - **char_location: cite plain text or content documents by character range**
@@ -151,29 +151,29 @@ Message = {
     ```
 
     Field details:
-    - `type` `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+    - `type` `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
       Must be `"char_location"`, meaning the citation is located by a **character index range**.
 
-    - `cited_text` `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+    - `cited_text` `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
       The cited original text snippet (for human display).  
       Typically extracted from the text between `start_char_index` and `end_char_index`.
 
-    - `document_index` `number` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+    - `document_index` `number` <span style="color: #FA6062; font-weight: 400">\*</span>
 
       The index of the cited document in the current request, **0-based**.  
       If you provide multiple `document` blocks (or other citeable documents) in this request, this indicates which one.
 
-    - `document_title` `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+    - `document_title` `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
       The document’s title/name, usually derived from the filename or a title you provided upstream, used for UI display such as “From: xxx”.
 
-    - `start_char_index` `number` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+    - `start_char_index` `number` <span style="color: #FA6062; font-weight: 400">\*</span>
 
       The starting character index (0-based, inclusive) of the cited snippet in the document’s **full text**.
 
-    - `end_char_index` `number` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+    - `end_char_index` `number` <span style="color: #FA6062; font-weight: 400">\*</span>
 
       The ending character index (0-based, typically the right endpoint of a half-open interval), so the cited range is `[start_char_index, end_char_index)`.
 
@@ -191,28 +191,28 @@ Message = {
     ```
 
     Field details:
-    - `type` `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+    - `type` `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
       Must be `"page_location"`, meaning the location is described by a **page number range**.
 
-    - `cited_text` `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+    - `cited_text` `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
       The cited PDF text snippet (readable text parsed from the PDF by the system).
 
-    - `document_index` `number` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+    - `document_index` `number` <span style="color: #FA6062; font-weight: 400">\*</span>
 
       The index of the cited PDF in the current request, **0-based**.
 
-    - `document_title` `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+    - `document_title` `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
       The PDF title or filename, for display.
 
-    - `start_page_number` `number` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+    - `start_page_number` `number` <span style="color: #FA6062; font-weight: 400">\*</span>
 
       The **starting page number** of the cited content, **1-based**, inclusive.  
       For example, `5` means “starting from page 5”.
 
-    - `end_page_number` `number` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+    - `end_page_number` `number` <span style="color: #FA6062; font-weight: 400">\*</span>
 
       The **ending page number**, usually treated as the right endpoint of a half-open interval:
       - If `start_page_number = 5` and `end_page_number = 6`, it can be interpreted as “page 5”.
@@ -234,28 +234,28 @@ Message = {
     Used to cite documents provided as “multiple content blocks” (e.g., a `document` with `source.type = "content"` that contains multiple `text`/`image` blocks).
 
     Field details:
-    - `type` `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+    - `type` `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
       Must be `"content_block_location"`.
 
-    - `cited_text` `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+    - `cited_text` `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
       The cited original text snippet (from the corresponding content block).
 
-    - `document_index` `number` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+    - `document_index` `number` <span style="color: #FA6062; font-weight: 400">\*</span>
 
       The index of the cited document in the current request, **0-based**.
 
-    - `document_title` `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+    - `document_title` `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
       The document’s title/name.
 
-    - `start_block_index` `number` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+    - `start_block_index` `number` <span style="color: #FA6062; font-weight: 400">\*</span>
 
       The starting block index (0-based) within the document’s internal `content` array.  
       Indicates “starting from which content block”.
 
-    - `end_block_index` `number` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+    - `end_block_index` `number` <span style="color: #FA6062; font-weight: 400">\*</span>
 
       The ending block index within the `content` array.  
       In practice, this is usually interpreted as the other endpoint of the range:
@@ -277,23 +277,23 @@ Message = {
     Used when Anthropic’s Web Search tool (server tool) is enabled and Claude cites content from a webpage.
 
     Field details:
-    - `type` `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+    - `type` `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
       Must be `"web_search_result_location"`, meaning this citation comes from Web search results.
 
-    - `cited_text` `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+    - `cited_text` `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
       A snippet of cited webpage text (usually truncated for display) and does not count toward token usage.
 
-    - `url` `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+    - `url` `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
       The cited webpage URL, which the frontend can render as a clickable link.
 
-    - `title` `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+    - `title` `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
       The cited webpage title (e.g., HTML `<title>`), for UI display such as “Source: xxx”.
 
-    - `encrypted_index` `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+    - `encrypted_index` `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
       An **encrypted index identifier** for this search result. It must be returned to Anthropic verbatim for follow-up turns to continue citing or inspecting the same result.  
       You typically don’t need to show it to end users, but you must preserve it for multi-turn conversations / debugging.
@@ -315,36 +315,36 @@ Message = {
     When you provide your own **search / RAG results** to Claude via a `type: "search_result"` content block and enable citations, Claude will use this type when citing those results in its answer.
 
     Field details:
-    - `type` `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+    - `type` `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
       Must be `"search_result_location"`, meaning the citation comes from a SearchResultBlock you provided.
 
-    - `cited_text` `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+    - `cited_text` `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
       The exact cited text snippet, sourced from the text in a `search_result` content block.
 
-    - `source` `string | null` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+    - `source` `string | null` <span style="color: #FA6062; font-weight: 400">\*</span>
 
       The source identifier of the search result:
       - Usually a URL (e.g., a knowledge base document link);
       - Or a custom string ID you define;
       - May be `null` if you did not provide it in the original `search_result`.
 
-    - `title` `string | null` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+    - `title` `string | null` <span style="color: #FA6062; font-weight: 400">\*</span>
 
       The search result title, corresponding to `search_result.title`;  
       If no title is available, it is `null`.
 
-    - `search_result_index` `number` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+    - `search_result_index` `number` <span style="color: #FA6062; font-weight: 400">\*</span>
 
       The 0-based index of the **`type: "search_result"` block** being cited within the current `message.content`.  
       Whether you place these results in a user message or they are returned by a tool, they are numbered by appearance order.
 
-    - `start_block_index` `number` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+    - `start_block_index` `number` <span style="color: #FA6062; font-weight: 400">\*</span>
 
       The 0-based starting block index of the cited content within that `search_result`’s `content` array.
 
-    - `end_block_index` `number` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+    - `end_block_index` `number` <span style="color: #FA6062; font-weight: 400">\*</span>
 
       The ending block index within that `content` array.
       - If it equals `start_block_index`, it typically means a single content block is cited.
@@ -362,11 +362,11 @@ Message = {
 }
 ```
 
-- type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+- type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
   Must be `"image"`.
 
-- source `Base64ImageSource | URLImageSource` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+- source `Base64ImageSource | URLImageSource` <span style="color: #FA6062; font-weight: 400">\*</span>
   :
   - Base64ImageSource
     ```ts
@@ -383,7 +383,7 @@ Message = {
       url: string
     }
     ```
-- cache_control `CacheControlEphemeral` <font color="gray">Optional</font>: same as above; you can create a cache breakpoint for images.
+- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400">Optional</span>: same as above; you can create a cache breakpoint for images.
 
 :::
 
@@ -400,11 +400,11 @@ Message = {
 }
 ```
 
-- type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+- type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
   Must be `"document"`.
 
-- source `Base64PDFSource | PlainTextSource | ContentBlockSource | URLPDFSource` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+- source `Base64PDFSource | PlainTextSource | ContentBlockSource | URLPDFSource` <span style="color: #FA6062; font-weight: 400">\*</span>
   :
   - Base64PDFSource: base64 PDF
 
@@ -439,10 +439,10 @@ Message = {
     }
     ```
 
-- cache_control `CacheControlEphemeral` <font color="gray">Optional</font>: same as above; you can create a cache breakpoint for documents.
-- citations `TextCitationParam[]` <font color="gray">Optional</font>: same as above; used to **attribute the source of quoted text** (typical scenario: provide PDFs / text documents / content documents as `document` blocks and mark “which page / which paragraph / which search result this part of the answer comes from”).
-- context `string` <font color="gray">Optional</font>: document context.
-- title `string` <font color="gray">Optional</font>: document title.
+- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400">Optional</span>: same as above; you can create a cache breakpoint for documents.
+- citations `TextCitationParam[]` <span style="color: #666; font-weight: 400">Optional</span>: same as above; used to **attribute the source of quoted text** (typical scenario: provide PDFs / text documents / content documents as `document` blocks and mark “which page / which paragraph / which search result this part of the answer comes from”).
+- context `string` <span style="color: #666; font-weight: 400">Optional</span>: document context.
+- title `string` <span style="color: #666; font-weight: 400">Optional</span>: document title.
 
 :::
 
@@ -458,15 +458,15 @@ Message = {
 }
 ```
 
-- type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+- type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
   Must be `"tool_result"`.
 
-- tool_use_id `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+- tool_use_id `string` <span style="color: #FA6062; font-weight: 400">\*</span>
   , binds to the specific tool invocation.
-- is_error `boolean` <font color="gray">Optional</font>.
-- content: either a simple string or an array of multimodal blocks (text / images / documents / search results) <font color="gray">Optional</font>.
-- cache_control `CacheControlEphemeral` <font color="gray">Optional</font>: same as above.
+- is_error `boolean` <span style="color: #666; font-weight: 400">Optional</span>.
+- content: either a simple string or an array of multimodal blocks (text / images / documents / search results) <span style="color: #666; font-weight: 400">Optional</span>.
+- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400">Optional</span>: same as above.
 
 :::
 
@@ -484,21 +484,21 @@ Message = {
 
 Field details:
 
-- type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+- type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
   Must be `"tool_use"`.
 
-- id `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+- id `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
   The unique identifier for this tool invocation, used to match the subsequent `tool_result`.
 
-- name `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+- name `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
   The tool name to call. It **must exactly match** a `tool.name` declared in the request’s `tools` array.
 
-- input `object` (Record<string, unknown>) <span style="color: #FA6062; font-weight: 400">&#42;</span>
+- input `object` (Record<string, unknown>) <span style="color: #FA6062; font-weight: 400">\*</span>
 
-- cache_control `CacheControlEphemeral` <font color="gray">Optional</font>: same as above,
+- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400">Optional</span>: same as above,
   sets caching behavior (Prompt Cache breakpoint) for this tool invocation block.
 
 :::
@@ -519,21 +519,21 @@ Indicates that Claude decides to call a **server-side tool** (hosted by Anthropi
 
 Field details:
 
-- type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+- type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
   Must be `"server_tool_use"`, indicating this is a server-side tool call request.
 
-- id `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+- id `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
   The unique ID for this server tool invocation, like `"srvtoolu_..."`.  
   Subsequent result blocks (e.g., `web_search_tool_result`) will reference this ID via `tool_use_id`.
 
-- name `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+- name `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
   The server tool name to call, for example:
   - `"web_search"`: Web Search tool
 
-- input `object` <font color="gray">Optional</font>  
+- input `object` <span style="color: #666; font-weight: 400">Optional</span>  
   Parameters passed to the server tool. The structure is defined by the specific tool.
 
 :::
@@ -553,17 +553,17 @@ When using the Web Search tool, Claude will return one or more `web_search_tool_
 
 Field details:
 
-- type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+- type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
   Must be `"web_search_tool_result"`, indicating a Web Search tool result.
 
-- tool_use_id `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+- tool_use_id `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
   References the corresponding prior `server_tool_use.id`, used to associate the “search request” and the “search results”.
 
-- cache_control `CacheControlEphemeral` <font color="gray">Optional</font>: same as above.
+- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400">Optional</span>: same as above.
 
-- content `array | object` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+- content `array | object` <span style="color: #FA6062; font-weight: 400">\*</span>
 
   The execution result of Web Search:
   - On success: an array of **`web_search_result` objects**;
@@ -575,24 +575,24 @@ When `content` is an array, each element is a `web_search_result` object:
 
 Field details:
 
-- type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+- type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
   Must be `"web_search_result"`.
 
-- url `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+- url `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
   The URL of the result page, typically consistent with the `url` in `citations`.
 
-- title `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+- title `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
   The page title, used for frontend display of the citation source.
 
-- encrypted_content `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+- encrypted_content `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
   An encrypted string of the page’s main content.  
   In **multi-turn conversations**, if you want Claude to continue citing this result accurately, you need to return this field verbatim as part of the conversation (e.g., via a later `web_search_result_location` citation). This field is **opaque and not parseable** to you.
 
-- page_age `string` <font color="gray">Optional</font>  
+- page_age `string` <span style="color: #666; font-weight: 400">Optional</span>  
   An approximate last-update or crawl time, such as `"April 30, 2025"`, mainly for user display of “data freshness”.
 
 ###### Error result structure: `web_search_tool_result_error`
@@ -612,11 +612,11 @@ If the Web Search tool itself errors (e.g., exceeds max uses, invalid request, e
 
 Error object fields:
 
-- type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+- type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
   Must be `"web_search_tool_result_error"`.
 
-- error_code `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+- error_code `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
   Error type code. Common values include:
   - `"too_many_requests"`: the search tool hit a rate limit;
@@ -641,15 +641,15 @@ Error object fields:
 
 Field details:
 
-- type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+- type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
   Must be `"thinking"`, indicating an Extended Thinking reasoning block.
 
-- thinking `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+- thinking `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
   Claude’s **human-readable reasoning content**, typically a multi-line step-by-step analysis.
 
-- signature `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+- signature `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
   An encrypted signature of the full thinking content, used in subsequent turns to verify that these reasoning blocks **were generated by Claude and have not been tampered with**.
   - This is an **opaque field**; you do not need to and should not parse it.
@@ -683,30 +683,30 @@ Typical scenario: you retrieve from a vector DB / document store on the backend,
 
 Field details:
 
-- type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+- type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
   Must be `"search_result"`, indicating a search/retrieval result content block.
 
-- source `string` <font color="gray">Optional</font>  
+- source `string` <span style="color: #666; font-weight: 400">Optional</span>  
   A source identifier for the search result:
   - Usually a URL (e.g., knowledge base doc link, internal doc viewer link);
   - Or a custom string ID (e.g., document primary key);
   - If inconvenient to provide, you can omit it or set it to `null`.  
     When Claude generates `search_result_location` citations, it will return this field verbatim so you can display “From: xxx” in the UI.
 
-- title `string` <font color="gray">Optional</font>  
+- title `string` <span style="color: #666; font-weight: 400">Optional</span>  
   The title of the search result:
   - Such as “API Reference: Authentication” or “Employee Handbook · Leave Policy”;
   - If no suitable title is available, it can be `null`.  
     In citations, it is used directly as the citation title for UI rendering.
 
-- content `array` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+- content `array` <span style="color: #FA6062; font-weight: 400">\*</span>
 
   The **actual content snippets** of the search result, consisting of one or more content blocks, typically text-heavy but can include images / documents, etc.
 
-- cache_control `CacheControlEphemeral` <font color="gray">Optional</font>: same as above.
+- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400">Optional</span>: same as above.
 
-- citations `object` <font color="gray">Optional</font>
+- citations `object` <span style="color: #666; font-weight: 400">Optional</span>
 
   Whether to enable automatic citation attribution based on this search result. Typical usage:
 
@@ -716,7 +716,7 @@ Field details:
   }
   ```
 
-  - enabled `boolean` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+  - enabled `boolean` <span style="color: #FA6062; font-weight: 400">\*</span>
     - `true`: allow Claude to generate `search_result_location` citations for this `search_result` in the response;
     - `false`: do not generate citations for this block (the model can still read and use it).
 
@@ -737,14 +737,14 @@ You will typically only see it in model outputs and return it **verbatim** in su
 
 Field details:
 
-- type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+- type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
   Must be `"redacted_thinking"`, indicating a **redacted thinking block**.
   - Compared with `type: "thinking"`:
     - `thinking`: returns readable natural-language reasoning text + signature;
     - `redacted_thinking`: returns **unreadable encrypted data** and does not include readable reasoning content.
 
-- data `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+- data `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
   The encrypted/redacted thinking data string, usually a long Base64/ciphertext-like blob.
   - You cannot and do not need to parse this data.
@@ -752,7 +752,7 @@ Field details:
 
 :::
 
-### model `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+### model `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 The model ID used for this call.
 
@@ -761,7 +761,7 @@ The model ID used for this call.
 
 > Note: This differs from the Anthropic API-style `<model>` string.
 
-<!-- ### metadata `object` <font color="gray">Optional</font>
+<!-- ### metadata `object` <span style="color: #666; font-weight: 400">Optional</span>
 
 Business metadata for the request.
 
@@ -777,14 +777,14 @@ metadata?: {
   An **anonymous identifier** for the external user (uuid / hash / internal ID), which Anthropic may use for abuse detection.
   Do not include real names, email addresses, phone numbers, or other sensitive personal information. Max 256 characters. -->
 
-<!-- ### service_tier `"auto" | "standard_only"` <font color="gray">Optional</font><font color="FA6062">Not supported</font>
+<!-- ### service_tier `"auto" | "standard_only"` <span style="color: #666; font-weight: 400">Optional</span><font color="FA6062">Not supported</font>
 
 Controls service tier and capacity routing.
 
 - `"auto"` (default): automatically chosen from available capacity; may use priority capacity when needed.
 - `"standard_only"`: use standard capacity only and do not use priority lanes. -->
 
-### output_config `object` <font color="gray">Optional</font>
+### output_config `object` <span style="color: #666; font-weight: 400">Optional</span>
 
 Configuration options for model output, such as output format.
 
@@ -792,7 +792,7 @@ Configuration options for model output, such as output format.
   - schema `Record<string, unknown>` the JSON schema for the format
   - type `string` must be `"json_schema"`
 
-### stop_sequences `string[]` <font color="gray">Optional</font>
+### stop_sequences `string[]` <span style="color: #666; font-weight: 400">Optional</span>
 
 Custom **stop sequences**.
 
@@ -807,14 +807,14 @@ Common usage:
 - Use `"END"` as an end-of-answer marker;
 - Combine with “multi-part output” protocols.
 
-### stream `boolean` <font color="gray">Optional</font>
+### stream `boolean` <span style="color: #666; font-weight: 400">Optional</span>
 
 Whether to return results **as a stream** via SSE (Server-Sent Events).
 
 - `false` (default): return a complete `message` object in one response.
 - `true`: incrementally stream output via multiple events (see “Streaming Response” below).
 
-### system `string | TextBlockParam[]` <font color="gray">Optional</font>
+### system `string | TextBlockParam[]` <span style="color: #666; font-weight: 400">Optional</span>
 
 A System Prompt that sets **global instructions and roles** for the conversation. This is equivalent to Claude’s “overall rules” and takes effect before all `messages`.
 
@@ -844,7 +844,7 @@ A System Prompt that sets **global instructions and roles** for the conversation
 
 > Note: The Messages API **does not have a `role: "system"` message**. All system-level instructions are passed via the top-level `system` field.
 
-### temperature `number` <font color="gray">Optional</font>
+### temperature `number` <span style="color: #666; font-weight: 400">Optional</span>
 
 Sampling temperature, controlling output randomness.
 
@@ -854,7 +854,7 @@ Sampling temperature, controlling output randomness.
   - Closer to 1: more diverse and creative; suitable for brainstorming and creative writing.
 - Even `0.0` is not absolutely deterministic.
 
-### thinking `object` <font color="gray">Optional</font>
+### thinking `object` <span style="color: #666; font-weight: 400">Optional</span>
 
 Extended Thinking (explicit reasoning process) configuration.
 
@@ -872,7 +872,7 @@ thinking?:
   - The response will include content blocks with `type: "thinking"`.
 - `type: "disabled"`: disables extended thinking (default behavior).
 
-### tool_choice `object` <font color="gray">Optional</font>
+### tool_choice `object` <span style="color: #666; font-weight: 400">Optional</span>
 
 Controls how Claude uses tools declared in `tools`.
 
@@ -901,7 +901,7 @@ tool_choice?:
 - `"none"`
   - Disables tool usage; generate text/multimodal output only.
 
-### tools `array<ToolUnion>` <font color="gray">Optional</font>
+### tools `array<ToolUnion>` <span style="color: #666; font-weight: 400">Optional</span>
 
 Declares the list of **tools** Claude can use in this request.
 
@@ -978,7 +978,7 @@ The Messages API docs list several built-in tool types, typical examples include
 
 > For detailed semantics, invocation patterns, and billing details of each built-in tool, refer to Anthropic’s separate [“Server tools”](https://platform.claude.com/docs/en/api/messages/create) documentation.
 
-### top_k `number` <font color="gray">Optional</font>
+### top_k `number` <span style="color: #666; font-weight: 400">Optional</span>
 
 During sampling, choose only from the top K tokens with the highest probabilities.
 
@@ -986,7 +986,7 @@ During sampling, choose only from the top K tokens with the highest probabilitie
 - Recommended only for advanced tuning; in most cases, `temperature` alone is sufficient;
 - `>= 0`.
 
-### top_p `number` <font color="gray">Optional</font>
+### top_p `number` <span style="color: #666; font-weight: 400">Optional</span>
 
 Nucleus sampling parameter.
 

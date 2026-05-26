@@ -87,9 +87,9 @@ model_slug:provider_slug
 
 ::: info 模型 Slug 获取说明
 ZenMux 平台的模型具备唯一 Slug，您可以通过[模型列表页](https://zenmux.ai/models)获取对应模型的 Slug:
-![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/AQG0SIr/model-slug.png)
+![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2026/05/26/es9d7he/20260526161559.jpg)
 或者[某个模型的模型详情页](https://zenmux.ai/anthropic/claude-sonnet-4.5)获取对应模型的 Slug:
-![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/dWYxJnq/model-slug-3.png)
+![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2026/05/26/0kWfGkK/20260526161657.jpg)
 :::
 
 ::: info 供应商 Slug 获取说明

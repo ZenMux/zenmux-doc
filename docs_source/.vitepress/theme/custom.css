@@ -791,7 +791,7 @@
 .VPSidebarItem.level-1 > .items {
   padding: 0 0 0 12px;
   margin-left: 16px;
-  border-left: 0.5px solid #e6e6e6;
+  border-left: 0.5px solid #e6e6e6 !important;
 }
 
 .dark .VPSidebarItem.level-1 > .items {
@@ -912,7 +912,7 @@
 }
 .VPDocOutlineItem.root {
   padding-left: 14px;
-  border-left: 2px solid #f2f2f2;
+  border-left: 0.5px solid #e6e6e6;
 }
 .VPDocOutlineItem.root > li {
   padding-top: 16px;
@@ -1511,10 +1511,10 @@
   margin-right: 32px;
   height: 44px;
   box-sizing: border-box;
-  font-family:
+  /* font-family:
     "SF Pro",
     -apple-system,
-    sans-serif;
+    sans-serif; */
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;

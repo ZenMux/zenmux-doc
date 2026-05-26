@@ -58,29 +58,29 @@ Generate Videos 接口通过 Google Vertex AI 协议生成视频。ZenMux 聚合
 
 ## Path parameters
 
-### provider `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+### provider `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 模型供应商标识。对应模型名称中 `/` 前的部分，例如 `google/veo-3.1-generate-001` 中的 `google`。
 
-### model `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+### model `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 模型名称。对应模型名称中 `/` 后的部分，例如 `google/veo-3.1-generate-001` 中的 `veo-3.1-generate-001`。
 
 ## 鉴权参数
 
-### api_key `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+### api_key `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 ZenMux API 密钥，用于身份鉴权。
 
-### vertexai `boolean` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+### vertexai `boolean` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 必须设置为 `true` 以启用 Vertex AI 协议。
 
-### http_options.base_url `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+### http_options.base_url `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 ZenMux Vertex AI 端点：`https://zenmux.ai/api/vertex-ai`。
 
-### http_options.api_version `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+### http_options.api_version `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 API 版本，设置为 `v1`。
 
@@ -88,19 +88,19 @@ API 版本，设置为 `v1`。
 
 以下为 `generate_videos` / `generateVideos` SDK 方法的参数说明。SDK 会自动将这些参数转换为 Vertex AI REST 格式发送给 ZenMux。
 
-### prompt `string` <font color="FA6062">必选</font>
+### prompt `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 视频内容的文本描述。建议包含主体、动作、环境和光线等要素，使用清晰具体的描述。
 
-### model `string` <font color="FA6062">必选</font>
+### model `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 用于视频生成的模型。格式为 `{provider}/{model}`，例如 `google/veo-3.1-generate-001`。
 
-### config `GenerateVideosConfig` <font color="gray">可选</font>
+### config `GenerateVideosConfig` <span style="color: #666; font-weight: 400">可选</span>
 
 视频生成配置对象，包含以下字段：
 
-#### aspectRatio `string` <font color="gray">可选</font>
+#### aspectRatio `string` <span style="color: #666; font-weight: 400">可选</span>
 
 视频宽高比。不同供应商支持的值可能不同。
 
@@ -112,7 +112,7 @@ API 版本，设置为 `v1`。
 
 > REST 对应字段：`parameters.aspectRatio`
 
-#### resolution `string` <font color="gray">可选</font>
+#### resolution `string` <span style="color: #666; font-weight: 400">可选</span>
 
 视频分辨率。仅部分模型支持。
 
@@ -123,7 +123,7 @@ API 版本，设置为 `v1`。
 
 > REST 对应字段：`parameters.resolution`
 
-#### durationSeconds `integer` <font color="gray">可选</font>
+#### durationSeconds `integer` <span style="color: #666; font-weight: 400">可选</span>
 
 视频时长（秒）。Google Veo 支持 5 或 8 秒，其他供应商支持范围可能不同。
 
@@ -134,25 +134,25 @@ API 版本，设置为 `v1`。
 
 > REST 对应字段：`parameters.durationSeconds`
 
-#### generateAudio `boolean` <font color="gray">可选</font>
+#### generateAudio `boolean` <span style="color: #666; font-weight: 400">可选</span>
 
 是否生成音频轨道。设置为 `true` 时，模型会根据视频内容自动生成配套音频。
 
 > REST 对应字段：`parameters.generateAudio`
 
-#### negativePrompt `string` <font color="gray">可选</font>
+#### negativePrompt `string` <span style="color: #666; font-weight: 400">可选</span>
 
 负面提示词，描述不希望出现在视频中的内容。
 
 > REST 对应字段：`parameters.negativePrompt`
 
-#### enhancePrompt `boolean` <font color="gray">可选</font>
+#### enhancePrompt `boolean` <span style="color: #666; font-weight: 400">可选</span>
 
 是否启用提示词增强。开启后模型会自动优化提示词以提升视频质量。
 
 > REST 对应字段：`parameters.enhancePrompt`
 
-#### personGeneration `string` <font color="gray">可选</font>
+#### personGeneration `string` <span style="color: #666; font-weight: 400">可选</span>
 
 人物生成控制。仅 Google Veo 模型支持。
 
@@ -163,7 +163,7 @@ API 版本，设置为 `v1`。
 
 > REST 对应字段：`parameters.personGeneration`
 
-#### numberOfVideos `integer` <font color="gray">可选</font>
+#### numberOfVideos `integer` <span style="color: #666; font-weight: 400">可选</span>
 
 要生成的视频数量。默认为 1。
 
@@ -171,13 +171,13 @@ SDK 字段名：Python `number_of_videos`，TypeScript `numberOfVideos`。
 
 > REST 对应字段：`parameters.sampleCount`
 
-#### seed `integer` <font color="gray">可选</font>
+#### seed `integer` <span style="color: #666; font-weight: 400">可选</span>
 
 随机种子，用于复现生成结果。
 
 > REST 对应字段：`parameters.seed`
 
-#### fps `integer` <font color="gray">可选</font>
+#### fps `integer` <span style="color: #666; font-weight: 400">可选</span>
 
 视频帧率。仅部分供应商支持。
 
@@ -187,16 +187,16 @@ SDK 字段名：Python `number_of_videos`，TypeScript `numberOfVideos`。
 
 除文生视频外，还支持传入图片作为起始帧/结束帧，结合文本提示词生成视频。
 
-### image `Image` <font color="FA6062">必选</font>
+### image `Image` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 起始帧图片对象。
 
-- `image_bytes` `bytes` <font color="FA6062">必选</font>：图片的二进制数据。
-- `mime_type` `string` <font color="FA6062">必选</font>：图片 MIME 类型，如 `image/png`、`image/jpeg`。
+- `image_bytes` `bytes` <span style="color: #FA6062; font-weight: 400">\*</span>：图片的二进制数据。
+- `mime_type` `string` <span style="color: #FA6062; font-weight: 400">\*</span>：图片 MIME 类型，如 `image/png`、`image/jpeg`。
 
 > REST 对应字段：`instances[0].image`
 
-### last_frame `Image` <font color="gray">可选</font>
+### last_frame `Image` <span style="color: #666; font-weight: 400">可选</span>
 
 结束帧图片对象。与起始帧配合使用，模型会生成从起始帧到结束帧的过渡动画。格式同 `image`。
 
@@ -204,15 +204,15 @@ SDK 字段名：Python `last_frame`，TypeScript `lastFrame`。
 
 > REST 对应字段：`instances[0].lastFrame`
 
-### prompt `string` <font color="gray">可选</font>
+### prompt `string` <span style="color: #666; font-weight: 400">可选</span>
 
 描述图片中的内容应如何运动或变化的文本提示词。
 
-### model `string` <font color="FA6062">必选</font>
+### model `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 同文生视频。
 
-### config `GenerateVideosConfig` <font color="gray">可选</font>
+### config `GenerateVideosConfig` <span style="color: #666; font-weight: 400">可选</span>
 
 同文生视频配置。
 

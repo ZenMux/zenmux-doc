@@ -24,7 +24,7 @@ GET https://zenmux.ai/api/v1/management/subscription/detail
 
 ## 鉴权
 
-### Authorization Header <font color="FA6062">必选</font>
+### Authorization Header <span style="color: #FA6062; font-weight: 400">\*</span>
 
 ```http
 Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>

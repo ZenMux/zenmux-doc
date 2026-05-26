@@ -30,7 +30,7 @@ GET https://zenmux.ai/api/v1/management/statistics/timeseries
 
 ## 鉴权
 
-### Authorization Header <font color="FA6062">必选</font>
+### Authorization Header <span style="color: #FA6062; font-weight: 400">\*</span>
 
 ```http
 Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
@@ -50,14 +50,14 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 
 ## 参数
 
-### metric `string` <font color="FA6062">必选</font>
+### metric `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 要获取的指标类型。
 
 - `tokens` — 输入 + 输出 Token 总数
 - `cost` — 按标价计算的 USD 成本
 
-### bucket_width `string` <font color="FA6062">必选</font>
+### bucket_width `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 时间桶粒度。
 

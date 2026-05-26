@@ -60,7 +60,7 @@ Get generation 接口用于查询生成信息，如用量和费用等。
 
 ## Request params
 
-### Authorization Header <font color="FA6062">必选</font>
+### Authorization Header <span style="color: #FA6062; font-weight: 400">\*</span>
 
 **请求头参数：**
 
@@ -80,7 +80,7 @@ Authorization: Bearer <ZENMUX_API_KEY>
 - 订阅制 API Key：登录 [订阅管理页面](https://zenmux.ai/platform/subscription) 创建
   :::
 
-### generate_id `string` <font color="FA6062">必选</font>
+### generate_id `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 **查询参数：**
 

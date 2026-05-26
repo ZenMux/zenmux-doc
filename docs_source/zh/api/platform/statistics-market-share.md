@@ -30,7 +30,7 @@ GET https://zenmux.ai/api/v1/management/statistics/market_share
 
 ## 鉴权
 
-### Authorization Header <font color="FA6062">必选</font>
+### Authorization Header <span style="color: #FA6062; font-weight: 400">\*</span>
 
 ```http
 Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
@@ -50,14 +50,14 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 
 ## 参数
 
-### metric `string` <font color="FA6062">必选</font>
+### metric `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 计算市场份额所使用的指标。
 
 - `tokens` — 输入 + 输出 Token 总数
 - `cost` — 按标价计算的 USD 成本
 
-### bucket_width `string` <font color="FA6062">必选</font>
+### bucket_width `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 时间桶粒度。
 

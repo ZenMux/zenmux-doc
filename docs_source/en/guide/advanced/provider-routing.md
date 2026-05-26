@@ -87,9 +87,9 @@ model_slug:provider_slug
 
 ::: info Model Slug Lookup
 Each model on ZenMux has a unique slug. You can find the slug on the Model List page (https://zenmux.ai/models):
-![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/AQG0SIr/model-slug.png)
+![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2026/05/26/es9d7he/20260526161559.jpg)
 Or on a specific model’s detail page (https://zenmux.ai/anthropic/claude-sonnet-4.5):
-![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/dWYxJnq/model-slug-3.png)
+![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2026/05/26/0kWfGkK/20260526161657.jpg)
 :::
 
 ::: info Provider Slug Lookup

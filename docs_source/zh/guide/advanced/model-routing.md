@@ -33,7 +33,7 @@ head:
 在官网的 [Models 页面](https://zenmux.ai/models) 可查看所有支持的模型及其基本信息。您可以通过左侧的筛选条件、顶部的搜索框、排序选项等快速定位所需模型。也可以通过模型卡片快速获取到模型的输入、输出支持模态；input/output 价格；Context 和 Max Tokens 等关键信息。
 :::
 
-![Model List](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/b5FlrNU/model-list.png)
+![Model List](https://cdn.marmot-cloud.com/storage/zenmux/2026/05/26/tyhl5B8/20260526163120.png)
 
 点击任意模型卡片可进入该模型的详情页，查看该模型在不同供应商的详细信息，包括性能对比、价格对比、参数对比等。详情请参考[供应商路由文档](/zh/guide/advanced/provider-routing.html#如何查看供应商信息)。
 
@@ -55,9 +55,9 @@ head:
 
 ::: info 模型 Slug 获取说明
 ZenMux 平台的模型具备唯一 Slug，您可以通过[模型列表页](https://zenmux.ai/models)获取对应模型的 Slug:
-![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/AQG0SIr/model-slug.png)
+![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2026/05/26/es9d7he/20260526161559.jpg)
 或者[某个模型的模型详情页](https://zenmux.ai/anthropic/claude-sonnet-4.5)获取对应模型的 Slug:
-![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/dWYxJnq/model-slug-3.png)
+![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2026/05/26/0kWfGkK/20260526161657.jpg)
 :::
 
 ::: code-group
