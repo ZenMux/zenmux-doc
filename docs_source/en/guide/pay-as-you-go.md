@@ -12,7 +12,7 @@ head:
 
 Welcome to the **ZenMux Pay As You Go** plan! This guide will help you understand the key benefits of Pay As You Go, and how to top up, manage your balance, and create production-grade API keys.
 
-::: tip 💡 Best for production
+::: info Best for production
 Pay As You Go is a usage-based billing plan built specifically for production. It offers **no rate limits**, **no concurrency limits**, **production-grade stability**, and **transparent, precise billing**.
 :::
 
@@ -51,7 +51,7 @@ Pay As You Go is especially suitable for:
 | **Cost model**         | Precise usage-based billing     | Fixed monthly fee                                |
 | **Usage restrictions** | No special restrictions         | ❌ Not allowed for production use                |
 
-::: warning ⚠️ Important
+::: warning Important
 If your project is already live or about to be commercialized, you **must use Pay As You Go**. The subscription plan (Builder Plan) is only for personal development and learning scenarios (Vibe Coding and Media Create scenarios) and must not be used in production. Violations may impact your account.
 :::
 
@@ -71,7 +71,7 @@ At the top of the page, you’ll see three balance types:
 - **Top-Up Credits**: credits obtained from top-ups
 - **Bonus & Compensation Credits**: credits from top-up bonuses, referral rewards, insurance compensation, etc.
 
-::: info 💡 Balance notes
+::: info Balance notes
 All credits are denominated in USD ($). 1 credit equals $1 worth of API usage. During consumption, bonus credits are used first, then top-up credits.
 :::
 
@@ -98,7 +98,7 @@ Pay As You Go API keys are completely separate from subscription keys and are de
 | **Tags**       | Tags for organizing and categorizing keys (e.g., `production`, `frontend`) |
 | **Key Status** | Enable/Disable toggle. Disabling stops all requests using this key         |
 
-::: tip 💡 API key best practices
+::: info API key best practices
 
 - Create separate API keys for different projects/environments to simplify cost attribution and management
 - Regularly review **Last Used** and **Used** to identify inactive or high-spend keys
@@ -119,7 +119,7 @@ Turn on the **Enable Limits** toggle to set independent rate and spending limits
 | **TPM Limit**            | Tokens per minute limit — controls token consumption rate for large model calls                                                                     |
 | **Supported Models**     | Restrict which models this key can access. Defaults to All models (no restriction); can be set to allow only specific models                        |
 
-::: warning ⚠️ Caution
+::: warning Caution
 Disabling an API key immediately stops all requests using that key. Use caution in production environments. Changes may take up to 3 minutes to apply.
 :::
 
@@ -177,7 +177,7 @@ main();
 
 :::
 
-::: info 📚 More usage
+::: info More usage
 For complete API usage examples, see the [Quickstart Guide](/guide/quickstart).
 :::
 

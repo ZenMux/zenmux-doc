@@ -18,7 +18,7 @@ A **Flow** is ZenMux’s composite billing unit that combines token consumption 
 
 ### 💱 Real-Time Flow/USD Exchange Rate
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/04/20/6DiXe7y/20260420141907.jpg" alt="Real-time Flow/USD exchange rate" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/04/20/6DiXe7y/20260420141907.jpg" alt="Real-time Flow/USD exchange rate" >
 
 ::: tip Screenshot example
 The Flow/USD exchange rate and related data are **dynamically calculated**. The screenshot is for reference only. Please refer to the real-time data shown on the [Pricing page](https://zenmux.ai/pricing/subscription).
@@ -38,7 +38,7 @@ For accounts found violating the Builder Plan Terms of Service (e.g., automated 
 
 ### 📊 Plan Comparison — Monthly Max Flows and USD Equivalent Value
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/04/20/ySQMzyd/20260420140640.jpg" alt="Plan comparison - monthly max Flows and USD equivalent value" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/04/20/ySQMzyd/20260420140640.jpg" alt="Plan comparison - monthly max Flows and USD equivalent value" >
 
 ::: tip Screenshot example
 Plan comparison data is **dynamically calculated**. The screenshot is for reference only. Please refer to the real-time data shown on the [Pricing page](https://zenmux.ai/pricing/subscription).
@@ -92,7 +92,7 @@ Plan comparison data is **dynamically calculated**. The screenshot is for refere
 
 ## Plan Comparison
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/04/22/BsZgRQH/20260422225424.jpg" alt="subscription-free" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/04/22/BsZgRQH/20260422225424.jpg" alt="subscription-free" >
 
 ### Free - Free Trial
 
@@ -369,7 +369,7 @@ Ultra-flagship video generation models:
 
 ## Usage Limits
 
-::: warning ⚠️ Important
+::: warning Important
 Subscription plans are designed for **personal development, learning/exploration, and vibe coding** in non-production scenarios. Please follow the usage guidelines below:
 :::
 
@@ -410,7 +410,7 @@ If your project is about to go live or is already commercialized, switch to the 
 
 Visit the [ZenMux Pricing page](https://zenmux.ai/pricing/subscription) to see detailed information and pricing for all subscription plans.
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/7shxqbP/dingyuezhi-jiage2-dapingbanben.png" alt="subscription-free" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/7shxqbP/dingyuezhi-jiage2-dapingbanben.png" alt="subscription-free" >
 
 ### Step 2: Choose and subscribe
 
@@ -422,7 +422,7 @@ Visit the [ZenMux Pricing page](https://zenmux.ai/pricing/subscription) to see d
 
 After subscribing successfully, visit the [Subscription Management page](https://zenmux.ai/platform/subscription):
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/4I6M3by/dingyuezhi-gerenguanliyemian2.png" alt="subscription-free" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/4I6M3by/dingyuezhi-gerenguanliyemian2.png" alt="subscription-free" >
 
 - 📊 **View usage**
   - Usage and remaining time in the current 5-hour window
@@ -458,7 +458,7 @@ Go to the [Subscription Management page](https://zenmux.ai/platform/subscription
 
 In Subscription Management, find the **Extra Usage** section and toggle the switch on the right to enable it.
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/02/03/8Ed42do/extra-1.png" alt="Enable Extra Usage" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/02/03/8Ed42do/extra-1.png" alt="Enable Extra Usage" >
 
 **Step 2: Select a Pay As You Go API Key**
 
@@ -467,7 +467,7 @@ After toggling, a **"Select a Key"** dialog will pop up. You can:
 - Choose an existing Pay As You Go API Key from the dropdown
 - Or click **"Create new key"** to create a new pay-as-you-go API Key
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/02/03/iJZufsS/extra-2.png" alt="Select API Key" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/02/03/iJZufsS/extra-2.png" alt="Select API Key" >
 
 After selecting, click **"Select"** to confirm.
 
@@ -481,7 +481,7 @@ Once enabled, the page will display details of the Pay As You Go API Key you sel
 - Current amount spent
 - Action options (reselect another key)
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/02/03/7ivqY3m/extra-3.png" alt="Extra Usage Enabled" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/02/03/7ivqY3m/extra-3.png" alt="Extra Usage Enabled" >
 
 #### How It Works
 
@@ -497,7 +497,7 @@ Once enabled, the page will display details of the Pay As You Go API Key you sel
 - To change the backup key, click **"Reselect"** and choose again
   :::
 
-::: warning ⚠️ Billing reminder
+::: warning Billing reminder
 After enabling Extra Usage, when your subscription quota runs out, charges will be automatically deducted from your Pay As You Go balance. Monitor your balance to avoid unexpected costs.
 :::
 
@@ -537,7 +537,7 @@ Subscription API Keys can be seamlessly integrated into various AI coding tools 
 - [Dify Integration Guide](/best-practices/dify) - LLM app development platform
 - [Open WebUI Integration Guide](/best-practices/open-webui) - Self-hosted AI chat UI
 
-::: info 📚 More integrations
+::: info More integrations
 More integration guides are continuously being added. If you need help, visit the [Discord community](http://discord.gg/vHZZzj84Bm) or contact technical support.
 :::
 
@@ -547,7 +547,7 @@ In addition to using your subscription quota via API Key in developer tools, you
 
 ### Switching billing modes
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/02/03/l48igiH/studio-chat-mode.png" alt="Studio Chat billing mode switch" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/02/03/l48igiH/studio-chat-mode.png" alt="Studio Chat billing mode switch" >
 
 On the Studio Chat page, you can choose whether each conversation uses subscription quota or your Pay As You Go balance:
 
@@ -565,7 +565,7 @@ You can use different billing modes for different conversations. For example:
 You can switch between the two modes anytime without affecting each other, so you can always pick the best billing method for each scenario.
 :::
 
-::: warning ⚠️ Shared quota pool
+::: warning Shared quota pool
 Studio Chat and API calls share the same subscription quota pool. Conversations in Studio Chat consume subscription Flows, so allocate your usage accordingly.
 :::
 

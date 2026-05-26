@@ -42,9 +42,9 @@ Pay As You Go uses a **prepaid balance + usage-based billing** model, purpose-bu
 
 Go to the **[Pay As You Go management page](https://zenmux.ai/platform/pay-as-you-go)** to top up your balance and create an API key.
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/26/KMUWdun/20260526160627.jpg" alt="Pay As You Go management page" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/26/KMUWdun/20260526160627.jpg" alt="Pay As You Go management page" >
 
-::: info 📚 Detailed Guide
+::: info Detailed Guide
 For complete instructions, see the [Pay As You Go Guide](/guide/pay-as-you-go).
 :::
 
@@ -60,9 +60,9 @@ Builder Plan provides a fixed monthly fee with predictable AI model access:
 
 Go to the **[Pricing page](https://zenmux.ai/pricing/subscription)** to view plan details and subscribe.
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/26/MIUpX6E/20260526161442.jpg" alt="Subscription plan comparison" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/26/MIUpX6E/20260526161442.jpg" alt="Subscription plan comparison" >
 
-::: info 📚 Detailed Guide
+::: info Detailed Guide
 For complete instructions, see the [Subscription Plans Guide](/guide/subscription).
 :::
 
@@ -76,7 +76,7 @@ For complete instructions, see the [Subscription Plans Guide](/guide/subscriptio
 | **Concurrency**  | Unlimited                       | Weekly Limit applies           |
 | **Restrictions** | None                            | Not allowed for production use |
 
-::: warning ⚠️ Important
+::: warning Important
 If your project is already live or heading toward commercialization, **you must use the Pay As You Go plan**. The subscription plan is strictly for personal development and learning — production use is prohibited.
 :::
 
@@ -401,7 +401,7 @@ main();
 
 ZenMux provides a set of Platform Management APIs that let you programmatically query account usage, balance, subscription status, and more — making it easy to integrate with your monitoring and management systems.
 
-::: warning ⚠️ Management API Key
+::: warning Management API Key
 Platform APIs require a **Management API Key** for authentication (some endpoints also accept a regular API key). Go to **[ZenMux Console > Management](https://zenmux.ai/platform/management)** to create a Management API Key.
 :::
 
@@ -442,7 +442,7 @@ Example response (partial):
 Billing information (such as `usage` and `ratingResponses`) becomes available **3–5 minutes** after the request completes. Token usage metrics are returned synchronously with the request.
 :::
 
-::: info 📚 Full Documentation
+::: info Full Documentation
 For detailed parameter descriptions, see the [Get Generation API docs](/api/platform/get-generation).
 :::
 
@@ -473,7 +473,7 @@ Example response:
 }
 ```
 
-::: info 📚 Full Documentation
+::: info Full Documentation
 For detailed parameter descriptions, see the [Get PAYG Balance API docs](/api/platform/payg-balance).
 :::
 
@@ -517,7 +517,7 @@ Example response (partial):
 }
 ```
 
-::: info 📚 Full Documentation
+::: info Full Documentation
 For detailed parameter descriptions, see the [Get Subscription Detail API docs](/api/platform/subscription-detail).
 :::
 
@@ -547,7 +547,7 @@ Example response:
 }
 ```
 
-::: info 📚 Full Documentation
+::: info Full Documentation
 For detailed parameter descriptions, see the [Get Flow Rate API docs](/api/platform/flow-rate).
 :::
 

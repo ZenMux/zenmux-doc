@@ -179,7 +179,7 @@ async function copyResponse() {
 /* ===== Response Container ===== */
 .api-response-float-container .api-response-container {
   margin: 20px 0;
-  background: #f5f5f5;
+  background: #fafafa;
   border: 0.5px solid #e6e6e6;
   border-radius: 12px;
   overflow: hidden;

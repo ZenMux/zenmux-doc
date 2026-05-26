@@ -12,7 +12,7 @@ head:
 
 # Create a Message
 
-::: tip 💡 错误排查
+::: info 错误排查
 调用过程中遇到错误？请参阅 [API 错误码参考](/zh/guide/advanced/error-codes) 获取完整的错误类型说明与排查方案。
 :::
 
@@ -54,7 +54,7 @@ anthropic-version: 2023-06-01
 content-type: application/json
 ```
 
-### anthropic-beta `string` <span style="color: #666; font-weight: 400">可选</span>
+### anthropic-beta `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 启用一个或多个 Beta 功能时使用，目前不支持"code-execution-2025-08-25", 即无法使用 code_execution 工具
 
@@ -118,7 +118,7 @@ Message = {
   文本内容。
 - type `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
   固定为 `"text"`。
-- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400">可选</span>  
+- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>  
    在该块上创建 **Prompt Cache 断点**（用于 Anthropic 的上下文缓存计费 / 复用）：
 
   ```ts
@@ -130,7 +130,7 @@ Message = {
 
   - ttl：缓存生存时间，`"5m"` / `"1h"`，默认 5 分钟。
 
-- citations `TextCitationParam[]` <span style="color: #666; font-weight: 400">可选</span>  
+- citations `TextCitationParam[]` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>  
   用于**标注文本引用来源**（典型场景：把 PDF / 文本文档 / 内容文档作为 document 块输入后，标注「这一段回答来自哪一页 / 哪一段 / 哪个搜索结果」）。  
   `TextCitationParam` 是以下几种之一（取决于被引用内容的类型）：
   - **char_location：按字符区间引用纯文本或内容文档**
@@ -346,7 +346,7 @@ Message = {
       url: string
     }
     ```
-- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400">可选</span>：同上，可为图片建立缓存断点。
+- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：同上，可为图片建立缓存断点。
 
 :::
 
@@ -399,10 +399,10 @@ Message = {
     }
     ```
 
-- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400">可选</span>：同上，可为文档建立缓存断点。
-- citations `TextCitationParam[]` <span style="color: #666; font-weight: 400">可选</span>：同上，用于**标注文本引用来源**（典型场景：把 PDF / 文本文档 / 内容文档作为 document 块输入后，标注「这一段回答来自哪一页 / 哪一段 / 哪个搜索结果」）。
-- context `string` <span style="color: #666; font-weight: 400">可选</span>：文档上下文。
-- title `string` <span style="color: #666; font-weight: 400">可选</span>：文档标题。
+- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：同上，可为文档建立缓存断点。
+- citations `TextCitationParam[]` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：同上，用于**标注文本引用来源**（典型场景：把 PDF / 文本文档 / 内容文档作为 document 块输入后，标注「这一段回答来自哪一页 / 哪一段 / 哪个搜索结果」）。
+- context `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：文档上下文。
+- title `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：文档标题。
 
 :::
 
@@ -421,9 +421,9 @@ Message = {
 - type `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
   固定为 `"tool_result"`。
 - tool_use_id `string` <span style="color: #FA6062; font-weight: 400">\*</span>，绑定哪次工具调用。
-- is_error `boolean` <span style="color: #666; font-weight: 400">可选</span>。
-- content：可为简单字符串，或多模态块数组（文本 / 图片 / 文档 / 搜索结果）<span style="color: #666; font-weight: 400">可选</span>。
-- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400">可选</span>：同上。
+- is_error `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>。
+- content：可为简单字符串，或多模态块数组（文本 / 图片 / 文档 / 搜索结果）<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>。
+- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：同上。
 
 :::
 
@@ -452,7 +452,7 @@ Message = {
 
 - input `object` (Record<string, unknown>) <span style="color: #FA6062; font-weight: 400">\*</span>
 
-- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400">可选</span>：同上，
+- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：同上，
   为该工具调用块设置缓存行为（Prompt Cache 断点）
 
 :::
@@ -484,7 +484,7 @@ Message = {
   要调用的服务器端工具名称，例如：
   - `"web_search"`：Web 搜索工具
 
-- input `object` <span style="color: #666; font-weight: 400">可选</span>  
+- input `object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>  
   传给该服务器端工具的参数对象，结构由具体工具定义。
 
 :::
@@ -510,7 +510,7 @@ Message = {
 - tool_use_id `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
   指向前面对应的 `server_tool_use.id`，用于把「搜索请求」和「搜索结果」对应起来。
 
-- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400">可选</span>：同上。
+- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：同上。
 
 - content `array | object` <span style="color: #FA6062; font-weight: 400">\*</span>  
   Web Search 的执行结果内容：
@@ -536,7 +536,7 @@ Message = {
   对页面正文内容进行加密后的字符串。  
   在**多轮对话**中，如果希望 Claude 继续准确引用这条结果，需要原样把此字段随对话一起传回（例如通过后续的 `web_search_result_location` 引用）。该字段本身对你是**不透明、不可解析**的。
 
-- page_age `string` <span style="color: #666; font-weight: 400">可选</span>  
+- page_age `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>  
   表示站点最后更新或抓取的大致时间，如 `"April 30, 2025"`，主要用于用户展示「数据时效性」。
 
 ###### 错误结果结构：`web_search_tool_result_error`
@@ -625,14 +625,14 @@ Message = {
 - type `string` <span style="color: #FA6062; font-weight: 400">\*</span>  
   固定为 `"search_result"`，表示这是一个搜索/检索结果内容块。
 
-- source `string` <span style="color: #666; font-weight: 400">可选</span>  
+- source `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>  
   搜索结果的来源标识：
   - 通常是一个 URL（例如知识库文档地址、内部文档查看链接）；
   - 也可以是你自定义的字符串 ID（如文档主键 ID）；
   - 若不方便提供，则可以省略或设为 `null`。  
     Claude 在生成 `search_result_location` citations 时，会把这个字段原样带回，便于你在前端展示「来自：xxx」。
 
-- title `string` <span style="color: #666; font-weight: 400">可选</span>  
+- title `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>  
   搜索结果的标题：
   - 如「API 参考：身份验证」「员工手册 · 请假规则」；
   - 若没有合适标题可用，可以为 `null`。  
@@ -641,9 +641,9 @@ Message = {
 - content `array` <span style="color: #FA6062; font-weight: 400">\*</span>  
   搜索结果的**实际内容片段列表**，由一个或多个内容块组成，一般是文本块为主，也可以包含图片 / 文档等：
 
-- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400">可选</span>：同上。
+- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>：同上。
 
-- citations `object` <span style="color: #666; font-weight: 400">可选</span>
+- citations `object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
   是否开启基于该搜索结果的自动引用标注，一般写法如下：
 
@@ -696,7 +696,7 @@ Message = {
 
 > 注意：这与 Anthropic API 风格的 `<model>` 字符串不同。
 
-<!-- ### metadata `object` <span style="color: #666; font-weight: 400">可选</span>
+<!-- ### metadata `object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 请求的业务元信息。
 
@@ -712,14 +712,14 @@ metadata?: {
   外部用户的**匿名标识**（uuid / hash / 内部 ID），Anthropic 可能用来做滥用检测。
   不要放真实姓名、邮箱、电话等个人敏感信息。最长 256 字符。 -->
 
-<!-- ### service_tier `"auto" | "standard_only"` <span style="color: #666; font-weight: 400">可选</span><font color="FA6062">不支持</font>
+<!-- ### service_tier `"auto" | "standard_only"` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span><font color="FA6062">不支持</font>
 
 控制服务等级与容量路由。
 
 - `"auto"`（默认）：由系统在可用容量中自动选择，必要时可使用优先容量。
 - `"standard_only"`：只使用标准容量，不占用优先通道。 -->
 
-### output_config `object` <span style="color: #666; font-weight: 400">可选</span>
+### output_config `object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 模型输出的配置选项，例如输出格式。
 
@@ -727,7 +727,7 @@ metadata?: {
   - schema `Record<string, unknown>` 该格式的 JSON 模式
   - type `string` 固定为`"json_schema"`
 
-### stop_sequences `string[]` <span style="color: #666; font-weight: 400">可选</span>
+### stop_sequences `string[]` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 自定义**停止序列**。
 
@@ -742,14 +742,14 @@ metadata?: {
 - 约定 `"END"` 作为回答结束标记；
 - 与「多段输出」协议搭配使用。
 
-### stream `boolean` <span style="color: #666; font-weight: 400">可选</span>
+### stream `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 是否以 SSE（Server-Sent Events）形式**流式返回**。
 
 - `false`（默认）：一次性返回完整 `message` 对象。
 - `true`：以多条事件流形式增量输出（见后文“流式响应”）。
 
-### system `string | TextBlockParam[]` <span style="color: #666; font-weight: 400">可选</span>
+### system `string | TextBlockParam[]` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 为本次对话设置**全局指令与角色**的 System Prompt。相当于给 Claude 的「总规则」，会在所有 `messages` 之前生效。
 
@@ -779,7 +779,7 @@ metadata?: {
 
 > 注意：Messages API **没有 `role: "system"` 的 message**，所有系统级指令统一通过顶层 `system` 字段传入。
 
-### temperature `number` <span style="color: #666; font-weight: 400">可选</span>
+### temperature `number` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 采样温度，控制输出随机性。
 
@@ -789,7 +789,7 @@ metadata?: {
   - 越接近 1：更发散、更有创造性；适合头脑风暴、创意写作。
 - 即便是 `0.0` 也不绝对完全确定。
 
-### thinking `object` <span style="color: #666; font-weight: 400">可选</span>
+### thinking `object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 Extended Thinking（显式推理过程）配置。
 
@@ -807,7 +807,7 @@ thinking?:
   - 回包中会出现 `type: "thinking"` 的内容块。
 - `type: "disabled"`：关闭 extended thinking（默认行为）。
 
-### tool_choice `object` <span style="color: #666; font-weight: 400">可选</span>
+### tool_choice `object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 控制 Claude 如何使用你在 `tools` 中声明的工具。
 
@@ -836,7 +836,7 @@ tool_choice?:
 - `"none"`
   - 禁止使用工具，仅生成纯文字/多模态回答。
 
-### tools `array<ToolUnion>` <span style="color: #666; font-weight: 400">可选</span>
+### tools `array<ToolUnion>` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 声明本次请求中 Claude 可以使用的**工具列表**。
 
@@ -913,7 +913,7 @@ Messages API 文档列出了若干内置工具类型，典型包括：
 
 > 各内置工具的详细语义、调用模式与计费细节，建议查看 Anthropic 对应的[「Server tools」](https://platform.claude.com/docs/en/api/messages/create)单独文档。
 
-### top_k `number` <span style="color: #666; font-weight: 400">可选</span>
+### top_k `number` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 采样时仅从概率最高的前 K 个 token 中选择。
 
@@ -921,7 +921,7 @@ Messages API 文档列出了若干内置工具类型，典型包括：
 - 推荐仅在高级调参场景使用，一般只需要 `temperature` 即可；
 - `>= 0`。
 
-### top_p `number` <span style="color: #666; font-weight: 400">可选</span>
+### top_p `number` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 Nucleus Sampling（核采样）参数。
 

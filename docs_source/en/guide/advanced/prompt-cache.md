@@ -12,7 +12,7 @@ head:
 
 Prompt Caching is a powerful performance optimization feature that allows you to reuse specific prefix content in your requests. This approach can significantly reduce processing time and call costs, particularly suitable for scenarios containing large amounts of static content.
 
-::: tip 💡 Core Advantages
+::: info Core Advantages
 
 - **Cost Reduction**: When cache hits occur, cached content typically costs only 10% of the original input cost
 - **Speed Enhancement**: Reduces processing time for repeated content, accelerating response speed
@@ -45,7 +45,7 @@ The following model series provide implicit automatic prompt caching functionali
 | **ZhipuAI** | GLM series | [Prompt Caching](https://bigmodel.cn/pricing) |
 | **InclusionAI** | Ling, Ring series | - |
 
-::: tip 💰 View Specific Pricing
+::: info View Specific Pricing
 For each model's cache read pricing (Cache Read), visit the corresponding model detail page, for example:
 
 [GPT-5 Model Detail Page](https://zenmux.ai/openai/gpt-5)
@@ -55,7 +55,7 @@ For each model's cache read pricing (Cache Read), visit the corresponding model 
 Typically, cache read fees are about **10%-25%** of the original input cost, saving up to 90% of input costs.
 :::
 
-::: tip 💡 Optimization Recommendations
+::: info Optimization Recommendations
 To maximize cache hit rate, follow these best practices:
 
 1. **Static-to-Dynamic Ordering**: Place stable, reusable content (such as system instructions, few-shot examples, document context) at the beginning of the messages array
@@ -721,7 +721,7 @@ The following operations will invalidate part or all of the cache:
 
 ### Maximizing Cache Hit Rate
 
-::: tip Optimization Recommendations
+::: info Optimization Recommendations
 
 - **Maintain Prefix Consistency**: Place static content at the beginning of prompts, variable content at the end
 - **Use Breakpoints Wisely**: Set different cache breakpoints based on content update frequency

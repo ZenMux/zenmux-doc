@@ -21,7 +21,7 @@ ZenMux 的两种付费方式均支持退款,但需在规定时间内申请:
 | **订阅制**（Pro / Max / Ultra） | 订阅后 **24 小时内**,且等效 API 使用价值未超过订阅付款金额                    |
 | **按量付费**（Pay-As-You-Go）   | 单笔充值订单支付后 **24 小时内**,退还该订单未使用的已付费额度（不含赠送额度） |
 
-::: warning ⚠️ 退款时限
+::: warning 退款时限
 退款申请必须在**订阅或充值成功后 24 小时内**提交,逾期将无法发起退款。退款弹窗会显示剩余可退款时间（如 "退款窗口剩余 Xh Ym"）,请及时确认是否符合你的需求。
 :::
 
@@ -56,7 +56,7 @@ ZenMux 的两种付费方式均支持退款,但需在规定时间内申请:
 
 即：**退款金额 =（已付总额 - 实际用量 - 已退款）×（1 - 5%）**
 
-::: warning ⚠️ 无法退款的情况
+::: warning 无法退款的情况
 如果你的等效 API 使用价值已**超过订阅付款金额**,则该订阅无法退款。
 :::
 
@@ -71,13 +71,13 @@ ZenMux 的两种付费方式均支持退款,但需在规定时间内申请:
 | **- 已退金额**   | 该订单之前已退款的金额（如有）   |
 | **= 退款金额**   | 已扣除 5% 手续费后实际退回的金额 |
 
-::: tip 💡 赠送额度与邀请奖励说明
+::: info 赠送额度与邀请奖励说明
 
 - 通过充值赠送（Discount）、平台赠送（Gift）、推荐奖励（Referral）等方式获得的免费额度**不可退款**,申请退款后这些额度将被收回。
 - 若该笔订单关联了邀请奖励,退款后邀请人将**无法获得 $5 奖励**。
   :::
 
-::: warning ⚠️ 在途请求说明
+::: warning 在途请求说明
 从付款到发起退款期间的在途 API 请求可能仍会结算,最终退款金额可能与退款预览中展示的金额不一致,以最终结算金额为准。
 :::
 
@@ -87,7 +87,7 @@ ZenMux 的两种付费方式均支持退款,但需在规定时间内申请:
 
 **第 1 步：发起退款**
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/03/20/fsjS4Sr/20260320154313.jpg" alt="发起退款" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/03/20/fsjS4Sr/20260320154313.jpg" alt="发起退款" >
 
 访问 [订阅管理页面](https://zenmux.ai/platform/subscription),在账单历史（Billing History）区域点击 **"退款"** 按钮。
 
@@ -95,7 +95,7 @@ ZenMux 的两种付费方式均支持退款,但需在规定时间内申请:
 
 **第 2 步：确认退款详情**
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/03/20/7AmamOi/20260320153822.jpg" alt="确认退款详情" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/03/20/7AmamOi/20260320153822.jpg" alt="确认退款详情" >
 
 系统将显示退款预览,包括当前计划、已付总额、实际用量、已退款金额、可退差额、手续费（含费率百分比）和最终退款金额。确认无误后点击 **"提交退款"**,需再次确认后方可提交。
 
@@ -116,7 +116,7 @@ ZenMux 的两种付费方式均支持退款,但需在规定时间内申请:
 
 **第 1 步：发起退款**
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/22/EDazFTu/20260522115739.jpg" alt="发起退款" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/22/EDazFTu/20260522115739.jpg" alt="发起退款" >
 
 访问 [额度管理页面](https://zenmux.ai/platform/pay-as-you-go),在交易记录（Transactions）列表中,找到需要退款的 **Stripe** 或 **Antom** 类型充值订单,点击该行的 **"退款"** 按钮。
 
@@ -124,7 +124,7 @@ ZenMux 的两种付费方式均支持退款,但需在规定时间内申请:
 
 **第 2 步：确认退款详情**
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/22/sTVTHos/20260522115812.jpg" alt="发起退款" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/22/sTVTHos/20260522115812.jpg" alt="发起退款" >
 
 系统将显示该笔订单的退款预览,包括订单金额、支付时间、支付后消耗、已退金额、最终退款金额和退款窗口剩余时间。确认无误后点击 **"提交退款"**,需二次确认后方可提交。
 

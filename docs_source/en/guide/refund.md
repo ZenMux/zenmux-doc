@@ -16,12 +16,12 @@ If you're unsatisfied with your subscription or Pay-As-You-Go purchase, you can 
 
 Both payment methods on ZenMux support refunds, subject to the following conditions:
 
-| Payment Method                       | Refund Conditions                                                                                            |
-| ------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
-| **Subscription** (Pro / Max / Ultra) | Within **24 hours** of subscribing, and API usage value has not exceeded the subscription amount              |
+| Payment Method                       | Refund Conditions                                                                                                        |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| **Subscription** (Pro / Max / Ultra) | Within **24 hours** of subscribing, and API usage value has not exceeded the subscription amount                         |
 | **Pay-As-You-Go**                    | Within **24 hours** of each top-up order; refund applies to unused paid credits from that order (excludes bonus credits) |
 
-::: warning ⚠️ Refund Time Limit
+::: warning Refund Time Limit
 Refund requests must be submitted **within 24 hours** of a successful subscription or purchase. Requests after this window cannot be processed. The refund dialog displays the remaining refund window (e.g., "Refund window remaining Xh Ym") — please confirm that the plan or credits meet your needs promptly.
 :::
 
@@ -29,15 +29,15 @@ Refund requests must be submitted **within 24 hours** of a successful subscripti
 
 The following situations are not eligible for a refund:
 
-| Case                                   | Description                                                        |
-| -------------------------------------- | ------------------------------------------------------------------ |
-| **Refund window expired**              | More than 24 hours since subscription or purchase                  |
-| **Fully refunded**                     | The order has already been fully refunded                          |
-| **Refund in progress**                 | A refund is already being processed — wait for it to complete      |
-| **Usage exceeds refundable amount**    | API usage since payment has consumed all refundable credits        |
-| **Insufficient balance** (Pay-As-You-Go) | Top-up wallet balance is insufficient to process the refund     |
-| **Order not completed**                | The order has not been successfully paid                           |
-| **Gift subscription**                  | Subscriptions received as a Gift are non-refundable                |
+| Case                                     | Description                                                   |
+| ---------------------------------------- | ------------------------------------------------------------- |
+| **Refund window expired**                | More than 24 hours since subscription or purchase             |
+| **Fully refunded**                       | The order has already been fully refunded                     |
+| **Refund in progress**                   | A refund is already being processed — wait for it to complete |
+| **Usage exceeds refundable amount**      | API usage since payment has consumed all refundable credits   |
+| **Insufficient balance** (Pay-As-You-Go) | Top-up wallet balance is insufficient to process the refund   |
+| **Order not completed**                  | The order has not been successfully paid                      |
+| **Gift subscription**                    | Subscriptions received as a Gift are non-refundable           |
 
 ## Refund Calculation
 
@@ -45,18 +45,18 @@ The following situations are not eligible for a refund:
 
 Refund amounts are calculated as follows:
 
-| Item                     | Description                                                    |
-| ------------------------ | -------------------------------------------------------------- |
-| **Total paid**           | Full amount paid in the current billing cycle                  |
-| **- Actual usage**       | Equivalent value of API calls consumed during the subscription |
-| **- Already refunded**   | Amount previously refunded (if any)                            |
-| **= Refundable balance** | Remaining refundable amount after deducting usage and refunds  |
-| **- Platform fee (5%)**  | Platform refund processing fee                                 |
-| **= Final refund amount**| Amount actually returned to your payment method                |
+| Item                      | Description                                                    |
+| ------------------------- | -------------------------------------------------------------- |
+| **Total paid**            | Full amount paid in the current billing cycle                  |
+| **- Actual usage**        | Equivalent value of API calls consumed during the subscription |
+| **- Already refunded**    | Amount previously refunded (if any)                            |
+| **= Refundable balance**  | Remaining refundable amount after deducting usage and refunds  |
+| **- Platform fee (5%)**   | Platform refund processing fee                                 |
+| **= Final refund amount** | Amount actually returned to your payment method                |
 
 Formula: **Refund Amount = (Total Paid - Actual Usage - Already Refunded) × (1 - 5%)**
 
-::: warning ⚠️ Non-refundable Cases
+::: warning Non-refundable Cases
 If the equivalent API usage value has **exceeded your subscription payment amount**, the subscription is not eligible for a refund.
 :::
 
@@ -64,20 +64,20 @@ If the equivalent API usage value has **exceeded your subscription payment amoun
 
 Pay-As-You-Go refunds are processed on a **per top-up order** basis, with each order calculated independently:
 
-| Item                        | Description                                                     |
-| --------------------------- | --------------------------------------------------------------- |
-| **Order amount**            | Payment amount of the top-up order                              |
-| **- Usage since payment**   | Credits consumed after paying for this order                    |
-| **- Already refunded**      | Amount previously refunded for this order (if any)              |
-| **= Refund amount**         | Amount actually returned after deducting the 5% platform fee    |
+| Item                      | Description                                                  |
+| ------------------------- | ------------------------------------------------------------ |
+| **Order amount**          | Payment amount of the top-up order                           |
+| **- Usage since payment** | Credits consumed after paying for this order                 |
+| **- Already refunded**    | Amount previously refunded for this order (if any)           |
+| **= Refund amount**       | Amount actually returned after deducting the 5% platform fee |
 
-::: tip 💡 About Bonus Credits and Referral Rewards
+::: info About Bonus Credits and Referral Rewards
 
 - Credits obtained through top-up bonuses (Discount), platform gifts (Gift), or referral rewards (Referral) are **non-refundable** and will be forfeited upon refund approval.
 - If the refunded order is linked to a referral reward, the referrer will **not receive the $5 reward** for that order.
-:::
+  :::
 
-::: warning ⚠️ In-Flight Requests
+::: warning In-Flight Requests
 API requests in transit between payment and refund initiation may still be billed. The final refund amount may differ from the amount shown in the refund preview — the actual settled amount prevails.
 :::
 
@@ -87,7 +87,7 @@ API requests in transit between payment and refund initiation may still be bille
 
 **Step 1: Initiate a refund**
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/03/20/fsjS4Sr/20260320154313.jpg" alt="Initiate refund" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/03/20/fsjS4Sr/20260320154313.jpg" alt="Initiate refund" >
 
 Go to the [Subscription Management page](https://zenmux.ai/platform/subscription) and click the **"Refund"** button in the Billing History section.
 
@@ -95,7 +95,7 @@ Go to the [Subscription Management page](https://zenmux.ai/platform/subscription
 
 **Step 2: Confirm refund details**
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/03/20/7AmamOi/20260320153822.jpg" alt="Confirm refund details" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/03/20/7AmamOi/20260320153822.jpg" alt="Confirm refund details" >
 
 The system will display a refund preview including the current plan, total paid, actual usage, already refunded amount, refundable balance, platform fee (with percentage), and the final refund amount. After confirming, click **"Submit Refund"** — a second confirmation is required before submission.
 
@@ -103,12 +103,12 @@ The system will display a refund preview including the current plan, total paid,
 
 After submitting, you can check the processing status in the refund dialog:
 
-| Status                   | Description                                                                 |
-| ------------------------ | --------------------------------------------------------------------------- |
-| 🔵 Refunding             | Refund is being processed and will be returned within **1-3 business days** |
-| 🟢 Refunded              | Refund is complete and funds have been returned to your payment method      |
-| 🔴 Failed                | Refund could not be processed — please contact support                      |
-| ⚪ Canceled              | Refund request has been canceled                                            |
+| Status       | Description                                                                 |
+| ------------ | --------------------------------------------------------------------------- |
+| 🔵 Refunding | Refund is being processed and will be returned within **1-3 business days** |
+| 🟢 Refunded  | Refund is complete and funds have been returned to your payment method      |
+| 🔴 Failed    | Refund could not be processed — please contact support                      |
+| ⚪ Canceled  | Refund request has been canceled                                            |
 
 The refund status is also shown as a tag in the amount column of the Billing History.
 
@@ -116,7 +116,7 @@ The refund status is also shown as a tag in the amount column of the Billing His
 
 **Step 1: Initiate a refund**
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/22/EDazFTu/20260522115739.jpg" alt="Initiate refund" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/22/EDazFTu/20260522115739.jpg" alt="Initiate refund" >
 
 Go to the [Credits Management page](https://zenmux.ai/platform/pay-as-you-go) and find the **Stripe** or **Antom** top-up order you want to refund in the Transactions list. Click the **"Refund"** button on that row.
 
@@ -124,7 +124,7 @@ Go to the [Credits Management page](https://zenmux.ai/platform/pay-as-you-go) an
 
 **Step 2: Confirm refund details**
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/22/sTVTHos/20260522115812.jpg" alt="Confirm refund details" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/22/sTVTHos/20260522115812.jpg" alt="Confirm refund details" >
 
 The system will display a refund preview for the selected order, including the order amount, payment time, usage since payment, already refunded amount, final refund amount, and remaining refund window. After confirming, click **"Submit Refund"** — a second confirmation is required before submission.
 
@@ -152,18 +152,18 @@ Actual refund arrival times vary by payment institution and may take an addition
 
 Refunds are returned to the original payment channel:
 
-| Payment Channel                     | Applicable To              |
-| ----------------------------------- | -------------------------- |
-| **Stripe** (credit/debit card)      | Subscription + Pay-As-You-Go |
-| **Antom** (Alipay, etc.)            | Pay-As-You-Go              |
+| Payment Channel                | Applicable To                |
+| ------------------------------ | ---------------------------- |
+| **Stripe** (credit/debit card) | Subscription + Pay-As-You-Go |
+| **Antom** (Alipay, etc.)       | Pay-As-You-Go                |
 
 ## After Refund
 
 Please note the following changes after a successful refund:
 
-| Payment Method    | Impact After Refund                                                                                                                                                    |
-| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Subscription**  | Subscription is **immediately downgraded to the Free plan**                                                                                                            |
+| Payment Method    | Impact After Refund                                                                                                                                                                        |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Subscription**  | Subscription is **immediately downgraded to the Free plan**                                                                                                                                |
 | **Pay-As-You-Go** | Refund amount is deducted from the top-up wallet balance; associated bonus credits are **forfeited**; if the order is linked to a referral reward, the referrer's $5 reward is **revoked** |
 
 - Refunded funds will be returned to the original payment method within **1-3 business days**

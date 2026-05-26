@@ -62,20 +62,20 @@ Currently supported embedding models:
 - `openai/text-embedding-3-large` — High-accuracy embedding model with 3072 output dimensions
 - `openai/text-embedding-3-small` — Efficient embedding model with 1536 output dimensions
 
-### encoding_format `string` <span style="color: #666; font-weight: 400"> Optional </span>
+### encoding_format `string` <span style="color: #666; font-weight: 400; font-size: 14px"> Optional </span>
 
 The encoding format for the returned embeddings.
 
 - `float` — Returns as an array of floating-point numbers (default)
 - `base64` — Returns as a Base64-encoded string
 
-### dimensions `integer` <span style="color: #666; font-weight: 400"> Optional </span>
+### dimensions `integer` <span style="color: #666; font-weight: 400; font-size: 14px"> Optional </span>
 
 The number of dimensions for the output embeddings. Only supported by `text-embedding-3` and newer models.
 
 By specifying fewer dimensions, you can shorten the embedding vector without significantly losing semantic expressiveness, thereby reducing storage and retrieval costs.
 
-### user `string` <span style="color: #666; font-weight: 400"> Optional </span>
+### user `string` <span style="color: #666; font-weight: 400; font-size: 14px"> Optional </span>
 
 A unique identifier representing the end user, which can help monitor and detect abuse.
 

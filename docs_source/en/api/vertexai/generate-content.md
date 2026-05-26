@@ -12,7 +12,7 @@ head:
 
 # Google Vertex AI API: Generate Content
 
-::: tip 💡 Troubleshooting
+::: info Troubleshooting
 Encountering errors? See the [API Error Codes Reference](/guide/advanced/error-codes) for a complete list of error types and troubleshooting steps.
 :::
 
@@ -58,7 +58,7 @@ The request body is JSON.
 
 Current conversation content (single turn / multi-turn history + the current input).
 
-#### role `string` <span style="color: #666; font-weight: 400">Optional</span>
+#### role `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 The content producer (defaults to user).
 
@@ -71,14 +71,14 @@ At least 1 Part.
 
 ::: details part
 
-- text `string`<span style="color: #666; font-weight: 400">Optional</span>
+- text `string`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   Text prompt or code snippet.
 
-- inlineData `Blob`<span style="color: #666; font-weight: 400">Optional</span>
+- inlineData `Blob`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   Inline data as raw bytes.
-  - mimeType `string` <span style="color: #666; font-weight: 400">Optional</span>
+  - mimeType `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
         The media type of the file specified in the data or fileUri field. Acceptable values include:
 
@@ -100,80 +100,80 @@ At least 1 Part.
     - video/flv
     - video/x-ms-wmv
 
-  - data `bytes` <span style="color: #666; font-weight: 400">Optional</span>
+  - data `bytes` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
     Inline data as raw bytes.
 
-- fileData `FileData`<span style="color: #666; font-weight: 400">Optional</span>
+- fileData `FileData`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   Data stored in a file.
-  - mimeType `string` <span style="color: #666; font-weight: 400">Optional</span>
-  - fileUri `string` <span style="color: #666; font-weight: 400">Optional</span>
+  - mimeType `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
+  - fileUri `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
     The URI or URL of the file to include in the prompt.
 
-- functionCall `FunctionCall`<span style="color: #666; font-weight: 400">Optional</span>
+- functionCall `FunctionCall`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   Contains a string representing the FunctionDeclaration.name field, plus a structured JSON object with all parameters of the function call predicted by the model.
-  - name `string` <span style="color: #666; font-weight: 400">Optional</span>
+  - name `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
     The name of the function to call.
 
-  - args `Record<string,any>` <span style="color: #666; font-weight: 400">Optional</span>
+  - args `Record<string,any>` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
     Function parameters and values represented as a JSON object.
 
-- functionResponse `FunctionResponse`<span style="color: #666; font-weight: 400">Optional</span>
+- functionResponse `FunctionResponse`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   The output of a FunctionCall. Contains a string representing the FunctionDeclaration.name field and a structured JSON object containing any output of the function call. It is used as context for the model.
-  - name `string` <span style="color: #666; font-weight: 400">Optional</span>
+  - name `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
     The name of the function to call.
 
-  - response `Record<string,any>` <span style="color: #666; font-weight: 400">Optional</span>
+  - response `Record<string,any>` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
     Function response represented as a JSON object.
 
-- videoMetadata `VideoMetadata` <span style="color: #666; font-weight: 400">Optional</span>
+- videoMetadata `VideoMetadata` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   For video inputs: the start and end offsets (duration format), and the frame rate.
-  - startOffset `number` <span style="color: #666; font-weight: 400">Optional</span>
+  - startOffset `number` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
     Video start offset (duration format).
 
-  - endOffset `number` <span style="color: #666; font-weight: 400">Optional</span>
+  - endOffset `number` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
     Video end offset (duration format).
 
-  - fps `number` <span style="color: #666; font-weight: 400">Optional</span>
+  - fps `number` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
     Video frame rate.
 
-- mediaResolution `enum`<span style="color: #666; font-weight: 400">Optional</span>
+- mediaResolution `enum`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   Controls how input media is processed. If specified, this configuration overrides the mediaResolution setting in generationConfig. LOW reduces the number of tokens per image/video, which may cause loss of detail, but allows longer videos to be included in the context. Supported values: `HIGH`, `MEDIUM`, `LOW`.
 
 :::
 
-### cachedContent `string` <span style="color: #666; font-weight: 400">Optional</span>
+### cachedContent `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Cached content resource name (used as context):
 
 - `projects/{project}/locations/{location}/cachedContents/{cachedContent}`
 
-### tools `array<Tool>` <span style="color: #666; font-weight: 400">Optional</span>
+### tools `array<Tool>` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 List of tools (e.g., function calling, retrieval, search, code execution, etc.).
 
-### toolConfig `ToolConfig` <span style="color: #666; font-weight: 400">Optional</span>
+### toolConfig `ToolConfig` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Tool configuration (shared across all tools in this request).
 
-<!-- ### labels `Record<string,string>` <span style="color: #666; font-weight: 400">Optional</span>
+<!-- ### labels `Record<string,string>` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 User-defined labels (for billing and reporting, etc.). -->
 
-### safetySettings `array<SafetySetting>` <span style="color: #666; font-weight: 400">Optional</span>
+### safetySettings `array<SafetySetting>` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Per-request safety settings (applies to candidates).
 
@@ -198,7 +198,7 @@ Threshold for blocking responses that fall into the specified safety category ba
 - `BLOCK_LOW_AND_ABOVE`: Block low-threshold and above content (i.e., block more).
 - `HARM_BLOCK_THRESHOLD_UNSPECIFIED`: Unspecified harm block threshold.
 
-#### method `string` <span style="color: #666; font-weight: 400">Optional</span>
+#### method `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Specifies whether the threshold applies to probability scores or severity scores. If not specified, the threshold applies to probability scores.
 
@@ -206,47 +206,47 @@ Specifies whether the threshold applies to probability scores or severity scores
 - `SEVERITY`: Harm block method uses both probability and severity scores.
 - `PROBABILITY`: Harm block method uses probability scores.
 
-### generationConfig `GenerationConfig` <span style="color: #666; font-weight: 400">Optional</span>
+### generationConfig `GenerationConfig` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Generation parameters (controls sampling, length, stop conditions, structured output, logprobs, audio timestamps, thinking, media processing quality, etc.).
 
-#### temperature `number` <span style="color: #666; font-weight: 400">Optional</span>
+#### temperature `number` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Controls randomness/diversity in the output. Lower values are more deterministic and “test-like”; higher values are more creative/diverse. `0` tends to always pick the highest-probability token, so it is closer to deterministic (but small variations can still occur). If replies are too templated/too short, try increasing it; if you see anomalies such as “runaway generation,” try raising it to at least `0.1`. Ranges/defaults vary by model (for example, some Gemini Flash models commonly use `0.0~2.0` with a default of `1.0`).
 
-#### topP `number` <span style="color: #666; font-weight: 400">Optional</span>
+#### topP `number` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Nucleus sampling threshold: the model samples only from the smallest set of tokens whose cumulative probability reaches `topP`. Lower values are more conservative/less random; higher values are more diverse. Range `0.0~1.0` (model defaults may vary). In general, it is recommended to primarily tune **either temperature or topP**, not both significantly.
 
-#### topK `integer` <span style="color: #666; font-weight: 400">Optional</span>
+#### topK `integer` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Top-K sampling threshold: the model samples only from the `topK` tokens with the highest probability. For example, `topK=40` means each step selects the next token only from the top 40 candidates. Smaller values are more conservative; larger values are more diverse. Model defaults may vary.
 
-#### candidateCount `integer` <span style="color: #666; font-weight: 400">Optional</span>
+#### candidateCount `integer` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Number of returned candidates (response variations). **Output tokens for all candidates are billed** (inputs are typically billed once). Multi-candidate is usually a preview capability and typically only supported by `generateContent` (not `streamGenerateContent`), and different models constrain the range/max (e.g., some support `1~8`).
 
-#### maxOutputTokens `integer` <span style="color: #666; font-weight: 400">Optional</span>
+#### maxOutputTokens `integer` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Maximum number of output tokens to limit response length; tokens can be roughly understood as ~4 characters in English. Smaller values produce shorter output; larger values allow longer output.
 
-#### stopSequences `array<string>` <span style="color: #666; font-weight: 400">Optional</span>
+#### stopSequences `array<string>` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Stop sequence list: generation stops immediately when any stop sequence is encountered in the output, and is truncated at the first occurrence; **case-sensitive**. The list can contain up to **5** elements.
 
-#### presencePenalty `number` <span style="color: #666; font-weight: 400">Optional</span>
+#### presencePenalty `number` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Presence penalty: penalizes tokens that have already appeared in the “generated text,” increasing the probability of generating new/different content. Range `-2.0 ~ <2.0`.
 
-#### frequencyPenalty `number` <span style="color: #666; font-weight: 400">Optional</span>
+#### frequencyPenalty `number` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Frequency penalty: penalizes tokens that are repeated, reducing the probability of repetitive output. Range `-2.0 ~ <2.0`.
 
-#### seed `integer` <span style="color: #666; font-weight: 400">Optional</span>
+#### seed `integer` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Random seed: with a fixed seed, the model will “try” to return the same result for repeated requests, but **does not guarantee full determinism**; changes in model version or parameters (e.g., temperature) may also cause differences. If omitted, a random seed is used by default.
 
-#### responseMimeType `string` <span style="color: #666; font-weight: 400">Optional</span>
+#### responseMimeType `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Specifies the MIME type of candidate outputs. Common supported values:
 
@@ -256,7 +256,7 @@ Specifies the MIME type of candidate outputs. Common supported values:
 
 Note: If you want to constrain structured output using `responseSchema`, you must set `responseMimeType` to a value **other than** `text/plain` (e.g., `application/json`).
 
-#### responseSchema `Schema` <span style="color: #666; font-weight: 400">Optional</span>
+#### responseSchema `Schema` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Schema for structured output: constrains candidate text to conform to this schema (for “controlled generation output / JSON Schema” scenarios). When using this field, you must set `responseMimeType` to a supported non-`text/plain` type (e.g., `application/json`).
 
@@ -272,71 +272,71 @@ Schema for structured output: constrains candidate text to conform to this schem
   - `ARRAY`: Array type; supports `items`, `minItems`, `maxItems`, etc.
   - `OBJECT`: Object type; supports `properties`, `required`, `propertyOrdering`, `nullable`, etc.
 
-- `format` `string` <span style="color: #666; font-weight: 400">Optional</span>
+- `format` `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   Additional format info. For `NUMBER`: `float`, `double`; for `INTEGER`: `int32`, `int64`; for `STRING`: `email`, `byte`, `date`, `date-time`, `password`, etc.
 
-- `description` `string` <span style="color: #666; font-weight: 400">Optional</span>
+- `description` `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   Text description of the property/field to help the model understand what to generate.
 
-- `enum` `array<string>` <span style="color: #666; font-weight: 400">Optional</span>
+- `enum` `array<string>` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   List of allowed enum values; the model can only choose one. Typically used with `type: STRING`.
 
-- `items` `Schema` <span style="color: #666; font-weight: 400">Optional</span>
+- `items` `Schema` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   When `type` is `ARRAY`, specifies the schema for array elements.
 
-- `properties` `map<string, Schema>` <span style="color: #666; font-weight: 400">Optional</span>
+- `properties` `map<string, Schema>` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   When `type` is `OBJECT`, defines each property and its schema.
 
-- `required` `array<string>` <span style="color: #666; font-weight: 400">Optional</span>
+- `required` `array<string>` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   List of required properties in the object.
 
-- `propertyOrdering` `array<string>` <span style="color: #666; font-weight: 400">Optional</span>
+- `propertyOrdering` `array<string>` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   Specifies the output order of object properties.
 
-- `nullable` `boolean` <span style="color: #666; font-weight: 400">Optional</span>
+- `nullable` `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   Whether `null` is allowed.
 
-- `minimum` `number` <span style="color: #666; font-weight: 400">Optional</span>
+- `minimum` `number` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   When `type` is `INTEGER` or `NUMBER`, the minimum allowed value.
 
-- `maximum` `number` <span style="color: #666; font-weight: 400">Optional</span>
+- `maximum` `number` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   When `type` is `INTEGER` or `NUMBER`, the maximum allowed value.
 
-- `minItems` `integer` <span style="color: #666; font-weight: 400">Optional</span>
+- `minItems` `integer` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   When `type` is `ARRAY`, the minimum number of elements.
 
-- `maxItems` `integer` <span style="color: #666; font-weight: 400">Optional</span>
+- `maxItems` `integer` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   When `type` is `ARRAY`, the maximum number of elements.
 
-- `minLength` `integer` <span style="color: #666; font-weight: 400">Optional</span>
+- `minLength` `integer` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   When `type` is `STRING`, the minimum string length.
 
-- `maxLength` `integer` <span style="color: #666; font-weight: 400">Optional</span>
+- `maxLength` `integer` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   When `type` is `STRING`, the maximum string length.
 
-- `pattern` `string` <span style="color: #666; font-weight: 400">Optional</span>
+- `pattern` `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   When `type` is `STRING`, a regex constraint. Example: `"^[\\w\\s,.-]+$"`.
 
-- `title` `string` <span style="color: #666; font-weight: 400">Optional</span>
+- `title` `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   Title for the schema.
 
-- `anyOf` `array<Schema>` <span style="color: #666; font-weight: 400">Optional</span>
+- `anyOf` `array<Schema>` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   Union/conditional types: the value must satisfy at least one schema in `anyOf`. `oneOf` is also interpreted with the semantics of `anyOf`.
 
@@ -344,19 +344,19 @@ Schema for structured output: constrains candidate text to conform to this schem
 
 :::
 
-#### responseJsonSchema `object` <span style="color: #666; font-weight: 400">Optional</span>
+#### responseJsonSchema `object` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 A JSON Schema alternative to `responseSchema`. When this field is set, you must omit `responseSchema`, and set `responseMimeType` to `application/json`. Accepts standard JSON Schema syntax directly.
 
-#### responseLogprobs `boolean` <span style="color: #666; font-weight: 400">Optional</span>
+#### responseLogprobs `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Whether to return log probabilities for output tokens. When set to `true`, the response includes per-token log probability details in `logprobsResult`. **You must enable this parameter before using the `logprobs` field.**
 
-#### logprobs `integer` <span style="color: #666; font-weight: 400">Optional</span>
+#### logprobs `integer` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Returns log probabilities for the **top candidate tokens** at each generation step. Range `1~20`. **Requires `responseLogprobs=true` to use this field**, and the token selected by the model is not necessarily the top candidate token.
 
-#### responseModalities `array<enum>` <span style="color: #666; font-weight: 400">Optional</span>
+#### responseModalities `array<enum>` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Specifies which modalities to return in the response. Only some Gemini models support multimodal output. If not set, defaults to text only. Supported values:
 
@@ -364,15 +364,15 @@ Specifies which modalities to return in the response. Only some Gemini models su
 - `IMAGE`: Image output; when used, must also include `TEXT`, i.e., `["TEXT", "IMAGE"]`. Only supported by some models (e.g., `gemini-2.5-flash-image`, `gemini-3-pro-image-preview`).
 - `AUDIO`: Audio output; mainly for Live API (real-time streaming) scenarios.
 
-#### audioTimestamp `boolean` <span style="color: #666; font-weight: 400">Optional</span>
+#### audioTimestamp `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Audio timestamp understanding: timestamp understanding for **audio-only files** (preview). Only supported by some models (e.g., some Gemini Flash models).
 
-#### thinkingConfig `ThinkingConfig` <span style="color: #666; font-weight: 400">Optional</span>
+#### thinkingConfig `ThinkingConfig` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 “Thinking” (internal reasoning) configuration for Gemini 2.5 and later. Setting this field on models that do not support thinking will return an error.
 
-- `thinkingBudget` `integer` <span style="color: #666; font-weight: 400">Optional</span>
+- `thinkingBudget` `integer` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   Token budget for thinking (applies to **Gemini 2.5**). Model-specific ranges:
   - Gemini 2.5 Pro: `128` ~ `32768` (thinking cannot be disabled)
@@ -383,7 +383,7 @@ Audio timestamp understanding: timestamp understanding for **audio-only files** 
 
   > **Note**: Cannot be used together with `thinkingLevel`. `thinkingBudget` applies only to Gemini 2.5.
 
-- `thinkingLevel` `enum (ThinkingLevel)` <span style="color: #666; font-weight: 400">Optional</span>
+- `thinkingLevel` `enum (ThinkingLevel)` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   Controls internal reasoning intensity (recommended for **Gemini 3**). Supported values:
   - `THINKING_LEVEL_UNSPECIFIED`: Unspecified; use the model’s default dynamic behavior.
@@ -394,11 +394,11 @@ Audio timestamp understanding: timestamp understanding for **audio-only files** 
 
   > **Note**: Cannot be used together with `thinkingBudget`. `thinkingLevel` applies only to Gemini 3.
 
-- `includeThoughts` `boolean` <span style="color: #666; font-weight: 400">Optional</span>
+- `includeThoughts` `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   Whether to return a summary of the thinking process in the response. When set to `true`, a thought summary is returned when available. This is best-effort: even if enabled, thoughts are not guaranteed to be returned.
 
-#### mediaResolution `enum (MediaResolution)` <span style="color: #666; font-weight: 400">Optional</span>
+#### mediaResolution `enum (MediaResolution)` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Controls the token resolution when processing input media (images/videos/PDFs), balancing response quality and token usage. Higher resolution lets the model perceive more detail but consumes more tokens. Supported values:
 
@@ -410,32 +410,32 @@ Controls the token resolution when processing input media (images/videos/PDFs), 
 
 > Gemini 3 reference image token counts: `ULTRA_HIGH` ≈ 2240, `HIGH` ≈ 1120, `MEDIUM` ≈ 560.
 
-#### speechConfig `SpeechConfig` <span style="color: #666; font-weight: 400">Optional</span>
+#### speechConfig `SpeechConfig` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Speech generation configuration; used when `responseModalities` includes `AUDIO`.
 
-- `voiceConfig` `VoiceConfig` <span style="color: #666; font-weight: 400">Optional</span>
+- `voiceConfig` `VoiceConfig` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   Single-voice configuration (mutually exclusive with `multiSpeakerVoiceConfig`).
-  - `prebuiltVoiceConfig` `PrebuiltVoiceConfig` <span style="color: #666; font-weight: 400">Optional</span>
+  - `prebuiltVoiceConfig` `PrebuiltVoiceConfig` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
     Prebuilt voice configuration.
-    - `voiceName` `string` <span style="color: #666; font-weight: 400">Optional</span>
+    - `voiceName` `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
       Prebuilt voice name (e.g., `Kore`, `Puck`, `Charon`, etc.).
 
-  - `replicatedVoiceConfig` `ReplicatedVoiceConfig` <span style="color: #666; font-weight: 400">Optional</span>
+  - `replicatedVoiceConfig` `ReplicatedVoiceConfig` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
     Replicated voice configuration (clone a voice from an audio sample).
-    - `mimeType` `string` <span style="color: #666; font-weight: 400">Optional</span>
+    - `mimeType` `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
       MIME type of the voice sample. Currently only `audio/wav` is supported (16-bit signed little-endian, 24kHz sample rate).
 
-    - `voiceSample` `string(bytes)` <span style="color: #666; font-weight: 400">Optional</span>
+    - `voiceSample` `string(bytes)` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
       Custom voice sample (base64-encoded).
 
-- `multiSpeakerVoiceConfig` `MultiSpeakerVoiceConfig` <span style="color: #666; font-weight: 400">Optional</span>
+- `multiSpeakerVoiceConfig` `MultiSpeakerVoiceConfig` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   Multi-speaker voice configuration (mutually exclusive with `voiceConfig`); for multi-role TTS scenarios.
   - `speakerVoiceConfigs` `array<SpeakerVoiceConfig>`
@@ -444,55 +444,55 @@ Speech generation configuration; used when `responseModalities` includes `AUDIO`
     - `speaker` `string`: Speaker name.
     - `voiceConfig` `VoiceConfig`: Voice configuration used by this speaker (same structure as above).
 
-- `languageCode` `string` <span style="color: #666; font-weight: 400">Optional</span>
+- `languageCode` `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   Language code for speech output (e.g., `en-US`).
 
-#### routingConfig `RoutingConfig` <span style="color: #666; font-weight: 400">Optional</span>
+#### routingConfig `RoutingConfig` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Routing configuration (Vertex AI): routes requests to a specific model. `autoMode` and `manualMode` are mutually exclusive.
 
 > **Note**: This field is deprecated. Google recommends using `modelConfig` instead.
 
-- `autoMode` `AutoRoutingMode` <span style="color: #666; font-weight: 400">Optional</span>
+- `autoMode` `AutoRoutingMode` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   Auto routing: routing is determined by a pretrained routing model plus user preferences.
-  - `modelRoutingPreference` `enum (ModelRoutingPreference)` <span style="color: #666; font-weight: 400">Optional</span>
+  - `modelRoutingPreference` `enum (ModelRoutingPreference)` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
     Routing preference. Supported values include `BALANCED`, etc.
 
-- `manualMode` `ManualRoutingMode` <span style="color: #666; font-weight: 400">Optional</span>
+- `manualMode` `ManualRoutingMode` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   Manual routing: explicitly specify the target model.
-  - `modelName` `string` <span style="color: #666; font-weight: 400">Optional</span>
+  - `modelName` `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
     Target model name (e.g., `gemini-1.5-pro-001`).
 
-#### imageConfig `ImageConfig` <span style="color: #666; font-weight: 400">Optional</span>
+#### imageConfig `ImageConfig` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Image generation configuration; used when `responseModalities` includes `IMAGE`.
 
-- `aspectRatio` `string` <span style="color: #666; font-weight: 400">Optional</span>
+- `aspectRatio` `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   Aspect ratio of generated images. Supported values: `1:1`, `2:3`, `3:2`, `3:4`, `4:3`, `9:16`, `16:9`, `21:9`; some models also support `4:5`, `5:4`.
 
-- `imageSize` `string` <span style="color: #666; font-weight: 400">Optional</span>
+- `imageSize` `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   Size of generated images. Supported values: `1K`, `2K`, `4K`. Default is `1K`.
 
-- `outputCompressionQuality` `number` <span style="color: #666; font-weight: 400">Optional</span>
+- `outputCompressionQuality` `number` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   Output compression quality for generated images (applies only to `image/jpeg`).
 
-- `outputMimeType` `string` <span style="color: #666; font-weight: 400">Optional</span>
+- `outputMimeType` `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   MIME type of generated images.
 
-#### enableAffectiveDialog `boolean` <span style="color: #666; font-weight: 400">Optional</span>
+#### enableAffectiveDialog `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Whether to enable affective dialogue: when enabled, the model detects the user’s emotion and adjusts the response style accordingly.
 
-### systemInstruction `Content` <span style="color: #666; font-weight: 400">Optional</span>
+### systemInstruction `Content` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 System instruction (guides the model’s overall behavior; recommended to use only text in `parts`, with each part as a separate paragraph).
 

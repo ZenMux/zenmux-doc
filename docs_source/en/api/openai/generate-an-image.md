@@ -12,7 +12,7 @@ head:
 
 # Create image
 
-::: tip 💡 Troubleshooting
+::: info Troubleshooting
 Running into an error while calling the API? See the [API error code reference](/guide/advanced/error-codes) for a complete list of error types and troubleshooting steps.
 :::
 
@@ -44,7 +44,7 @@ The request content type. Defaults to `application/json`.
 
 Text description of the image to generate. GPT image models support a maximum length of 32,000 characters.
 
-### background `string` <span style="color: #666; font-weight: 400">Optional</span>
+### background `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Sets the background transparency of the generated image. This parameter is only supported by GPT image models. Must be one of `transparent`, `opaque`, or `auto`; defaults to `auto`. With `auto`, the model automatically determines the most suitable background for the image.
 
@@ -56,11 +56,11 @@ Possible values:
 - `opaque`
 - `auto`
 
-### model `string` <span style="color: #666; font-weight: 400">Optional</span>
+### model `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 The model to use for image generation. Visit the [ZenMux model catalog](https://zenmux.ai/models?author=openai&sort=newest&output_modalities=image) to check the currently available models.
 
-### moderation `string` <span style="color: #666; font-weight: 400">Optional</span>
+### moderation `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Controls the content moderation level for GPT image model generation. Must be one of `low` or `auto` (default).
 
@@ -69,15 +69,15 @@ Possible values:
 - `low`
 - `auto`
 
-### n `number` <span style="color: #666; font-weight: 400">Optional</span>
+### n `number` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 The number of images to generate. Must be between 1 and 10.
 
-### output_compression `number` <span style="color: #666; font-weight: 400">Optional</span>
+### output_compression `number` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 The compression level for generated images (0-100%). This parameter is only supported by GPT image models with `webp` or `jpeg` output formats, and defaults to 100.
 
-### output_format `string` <span style="color: #666; font-weight: 400">Optional</span>
+### output_format `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 The format used to return generated images. This parameter is only supported by GPT image models. Must be one of `png`, `jpeg`, or `webp`.
 
@@ -87,13 +87,13 @@ Possible values:
 - `jpeg`
 - `webp`
 
-### partial_images `number` <span style="color: #666; font-weight: 400">Optional</span>
+### partial_images `number` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 The number of partial images to generate. This parameter is used for streaming responses that return partial images. The value must be between 0 and 3. When set to 0, the response returns a single image in one streaming event.
 
 If the complete image is generated faster, the final image may be sent before all requested partial images have been produced.
 
-### quality `string` <span style="color: #666; font-weight: 400">Optional</span>
+### quality `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 The quality of the generated image. ZenMux currently supports GPT image model quality parameters for OpenAI image generation models.
 
@@ -107,7 +107,7 @@ Possible values:
 - `high`
 - `auto`
 
-### response_format `string` <span style="color: #666; font-weight: 400">Optional</span>
+### response_format `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 The return format for the generated image. This parameter does not apply to the GPT image models currently supported by ZenMux; GPT image models always return base64-encoded images.
 
@@ -116,7 +116,7 @@ Possible values:
 - `url`
 - `b64_json`
 
-### size `string` <span style="color: #666; font-weight: 400">Optional</span>
+### size `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 The size of the generated image. For `gpt-image-2` and `gpt-image-2-2026-04-21`, arbitrary `WIDTHxHEIGHT` strings are supported, such as `1536x864`. Both width and height must be divisible by 16, and the requested aspect ratio must be between 1:3 and 3:1. Resolutions above `2560x1440` are experimental, with a maximum supported resolution of `3840x2160`. Requested sizes must also satisfy the model's current pixel and side-length limits.
 
@@ -129,11 +129,11 @@ Common possible values:
 - `1536x1024`
 - `1024x1536`
 
-### stream `boolean` <span style="color: #666; font-weight: 400">Optional</span>
+### stream `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Generate the image in streaming mode. Defaults to `false`. This parameter is only supported by GPT image models.
 
-### style `string` <span style="color: #666; font-weight: 400">Optional</span>
+### style `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 The style of the generated image. This parameter does not apply to the OpenAI image generation models currently supported by ZenMux.
 
@@ -142,7 +142,7 @@ Possible values:
 - `vivid`
 - `natural`
 
-### user `string` <span style="color: #666; font-weight: 400">Optional</span>
+### user `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 A unique identifier representing your end user, which can help with monitoring and abuse detection.
 
@@ -154,39 +154,39 @@ Returns the response object from the image generation endpoint.
 
 The Unix timestamp (in seconds) when the image was created.
 
-### background `string` <span style="color: #666; font-weight: 400">Optional</span>
+### background `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 The background parameter used during image generation. May be `transparent` or `opaque`.
 
-### data `array` <span style="color: #666; font-weight: 400">Optional</span>
+### data `array` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 The list of generated images.
 
-#### b64_json `string` <span style="color: #666; font-weight: 400">Optional</span>
+#### b64_json `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 The base64-encoded JSON for the generated image. GPT image models currently supported by ZenMux return this field by default.
 
-#### revised_prompt `string` <span style="color: #666; font-weight: 400">Optional</span>
+#### revised_prompt `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Returned by some models. Represents the rewritten prompt actually used to generate the image.
 
-#### url `string` <span style="color: #666; font-weight: 400">Optional</span>
+#### url `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 May contain a generated image URL for models that return URLs. GPT image models currently supported by ZenMux usually return `b64_json`.
 
-### output_format `string` <span style="color: #666; font-weight: 400">Optional</span>
+### output_format `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 The output format of the generated image. May be `png`, `webp`, or `jpeg`.
 
-### quality `string` <span style="color: #666; font-weight: 400">Optional</span>
+### quality `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 The generated image quality. May be `low`, `medium`, or `high`.
 
-### size `string` <span style="color: #666; font-weight: 400">Optional</span>
+### size `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 The generated image size. May be `1024x1024`, `1024x1536`, or `1536x1024`.
 
-### usage `object` <span style="color: #666; font-weight: 400">Optional</span>
+### usage `object` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Token usage information for GPT image model image generation.
 
@@ -196,7 +196,7 @@ Token usage information for GPT image model image generation.
   - `text_tokens` `number`: The number of text tokens in the input prompt.
 - `output_tokens` `number`: The number of output tokens generated by the model.
 - `total_tokens` `number`: The total number of tokens used for this image generation.
-- `output_tokens_details` `object` <span style="color: #666; font-weight: 400">Optional</span>: Output token details.
+- `output_tokens_details` `object` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: Output token details.
   - `image_tokens` `number`: The number of generated image output tokens.
   - `text_tokens` `number`: The number of generated text output tokens.
 

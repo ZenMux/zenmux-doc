@@ -12,7 +12,7 @@ head:
 
 # Get Statistics Timeseries
 
-::: tip 💡 Troubleshooting
+::: info Troubleshooting
 Encountering errors? See the [API Error Codes Reference](/guide/advanced/error-codes) for a complete list of error types and troubleshooting steps.
 :::
 
@@ -24,7 +24,7 @@ Retrieve token consumption or cost over time, broken down by model. Returns plat
 
 Use this endpoint to build stacked bar charts of model usage, track spending trends, or export historical data to CSV.
 
-::: info ℹ️ Data freshness
+::: info Data freshness
 Statistics data is aggregated on a daily schedule. The most recent available data is from **yesterday (T-1)**. Today's usage will appear in tomorrow's aggregation.
 :::
 
@@ -40,7 +40,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 - **Format**: `Bearer <API_KEY>`
 - **Description**: A Management API Key created in the [ZenMux Console](https://zenmux.ai/platform/management)
 
-::: warning ⚠️ Management API Key required
+::: warning Management API Key required
 This endpoint only accepts Management API Keys. Standard API Keys are not supported.
 :::
 
@@ -207,6 +207,6 @@ const data = await response.json();
 
 :::
 
-::: tip 💡 ISO week snapping
+::: info ISO week snapping
 In the example above, `starting_at` in the response is `2026-02-23` (Monday), not `2026-03-01` as requested, because `bucket_width=1w` snaps to ISO week boundaries.
 :::

@@ -12,7 +12,7 @@ head:
 
 Whether you need technical support, business inquiries, or want to share feedback and suggestions, the ZenMux team welcomes you to reach out.
 
-::: tip 💡 Get the Latest Contact Information
+::: info Get the Latest Contact Information
 Visit our official support page for team contact details and all social media accounts:
 
 **🔗 [https://zenmux.ai/supports](https://zenmux.ai/supports)**
@@ -82,7 +82,7 @@ We’ve built an active developer community—join us to connect and share:
 - **📕 Xiaohongshu**: @ZenMuxAI
   Visit the [support page](https://zenmux.ai/supports) to scan the QR code and follow -->
 
-::: tip 💡 Community First
+::: info Community First
 For general technical discussions and experience sharing, we recommend joining Discord community first. There, you can get help from team members and benefit from other developers’ experiences.
 :::
 

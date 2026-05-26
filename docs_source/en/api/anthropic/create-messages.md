@@ -12,7 +12,7 @@ head:
 
 # Create a Message
 
-::: tip 💡 Troubleshooting
+::: info Troubleshooting
 Encountering errors? See the [API Error Codes Reference](/guide/advanced/error-codes) for a complete list of error types and troubleshooting steps.
 :::
 
@@ -54,7 +54,7 @@ Request body format. Currently, only JSON is supported:
 content-type: application/json
 ```
 
-### anthropic-beta `string` <span style="color: #666; font-weight: 400">Optional</span>
+### anthropic-beta `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Used to enable one or more Beta features. `"code-execution-2025-08-25"` is not supported at the moment, meaning the `code_execution` tool cannot be used.
 
@@ -122,7 +122,7 @@ Message = {
 
   Must be `"text"`.
 
-- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400">Optional</span>  
+- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>  
    Creates a **Prompt Cache breakpoint** on this block (for Anthropic context-caching billing / reuse):
 
   ```ts
@@ -134,7 +134,7 @@ Message = {
 
   - ttl: cache TTL, `"5m"` / `"1h"`, default is 5 minutes.
 
-- citations `TextCitationParam[]` <span style="color: #666; font-weight: 400">Optional</span>  
+- citations `TextCitationParam[]` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>  
   Used to **attribute the source of quoted text** (typical scenario: when you pass a PDF / text document / content document as a `document` block input and want to mark “which page / which section / which search result this part of the answer comes from”).  
   `TextCitationParam` is one of the following (depending on the cited content type):
   - **char_location: cite plain text or content documents by character range**
@@ -383,7 +383,7 @@ Message = {
       url: string
     }
     ```
-- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400">Optional</span>: same as above; you can create a cache breakpoint for images.
+- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: same as above; you can create a cache breakpoint for images.
 
 :::
 
@@ -439,10 +439,10 @@ Message = {
     }
     ```
 
-- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400">Optional</span>: same as above; you can create a cache breakpoint for documents.
-- citations `TextCitationParam[]` <span style="color: #666; font-weight: 400">Optional</span>: same as above; used to **attribute the source of quoted text** (typical scenario: provide PDFs / text documents / content documents as `document` blocks and mark “which page / which paragraph / which search result this part of the answer comes from”).
-- context `string` <span style="color: #666; font-weight: 400">Optional</span>: document context.
-- title `string` <span style="color: #666; font-weight: 400">Optional</span>: document title.
+- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: same as above; you can create a cache breakpoint for documents.
+- citations `TextCitationParam[]` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: same as above; used to **attribute the source of quoted text** (typical scenario: provide PDFs / text documents / content documents as `document` blocks and mark “which page / which paragraph / which search result this part of the answer comes from”).
+- context `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: document context.
+- title `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: document title.
 
 :::
 
@@ -464,9 +464,9 @@ Message = {
 
 - tool_use_id `string` <span style="color: #FA6062; font-weight: 400">\*</span>
   , binds to the specific tool invocation.
-- is_error `boolean` <span style="color: #666; font-weight: 400">Optional</span>.
-- content: either a simple string or an array of multimodal blocks (text / images / documents / search results) <span style="color: #666; font-weight: 400">Optional</span>.
-- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400">Optional</span>: same as above.
+- is_error `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>.
+- content: either a simple string or an array of multimodal blocks (text / images / documents / search results) <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>.
+- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: same as above.
 
 :::
 
@@ -498,7 +498,7 @@ Field details:
 
 - input `object` (Record<string, unknown>) <span style="color: #FA6062; font-weight: 400">\*</span>
 
-- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400">Optional</span>: same as above,
+- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: same as above,
   sets caching behavior (Prompt Cache breakpoint) for this tool invocation block.
 
 :::
@@ -533,7 +533,7 @@ Field details:
   The server tool name to call, for example:
   - `"web_search"`: Web Search tool
 
-- input `object` <span style="color: #666; font-weight: 400">Optional</span>  
+- input `object` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>  
   Parameters passed to the server tool. The structure is defined by the specific tool.
 
 :::
@@ -561,7 +561,7 @@ Field details:
 
   References the corresponding prior `server_tool_use.id`, used to associate the “search request” and the “search results”.
 
-- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400">Optional</span>: same as above.
+- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: same as above.
 
 - content `array | object` <span style="color: #FA6062; font-weight: 400">\*</span>
 
@@ -592,7 +592,7 @@ Field details:
   An encrypted string of the page’s main content.  
   In **multi-turn conversations**, if you want Claude to continue citing this result accurately, you need to return this field verbatim as part of the conversation (e.g., via a later `web_search_result_location` citation). This field is **opaque and not parseable** to you.
 
-- page_age `string` <span style="color: #666; font-weight: 400">Optional</span>  
+- page_age `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>  
   An approximate last-update or crawl time, such as `"April 30, 2025"`, mainly for user display of “data freshness”.
 
 ###### Error result structure: `web_search_tool_result_error`
@@ -687,14 +687,14 @@ Field details:
 
   Must be `"search_result"`, indicating a search/retrieval result content block.
 
-- source `string` <span style="color: #666; font-weight: 400">Optional</span>  
+- source `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>  
   A source identifier for the search result:
   - Usually a URL (e.g., knowledge base doc link, internal doc viewer link);
   - Or a custom string ID (e.g., document primary key);
   - If inconvenient to provide, you can omit it or set it to `null`.  
     When Claude generates `search_result_location` citations, it will return this field verbatim so you can display “From: xxx” in the UI.
 
-- title `string` <span style="color: #666; font-weight: 400">Optional</span>  
+- title `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>  
   The title of the search result:
   - Such as “API Reference: Authentication” or “Employee Handbook · Leave Policy”;
   - If no suitable title is available, it can be `null`.  
@@ -704,9 +704,9 @@ Field details:
 
   The **actual content snippets** of the search result, consisting of one or more content blocks, typically text-heavy but can include images / documents, etc.
 
-- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400">Optional</span>: same as above.
+- cache_control `CacheControlEphemeral` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: same as above.
 
-- citations `object` <span style="color: #666; font-weight: 400">Optional</span>
+- citations `object` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   Whether to enable automatic citation attribution based on this search result. Typical usage:
 
@@ -761,7 +761,7 @@ The model ID used for this call.
 
 > Note: This differs from the Anthropic API-style `<model>` string.
 
-<!-- ### metadata `object` <span style="color: #666; font-weight: 400">Optional</span>
+<!-- ### metadata `object` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Business metadata for the request.
 
@@ -777,14 +777,14 @@ metadata?: {
   An **anonymous identifier** for the external user (uuid / hash / internal ID), which Anthropic may use for abuse detection.
   Do not include real names, email addresses, phone numbers, or other sensitive personal information. Max 256 characters. -->
 
-<!-- ### service_tier `"auto" | "standard_only"` <span style="color: #666; font-weight: 400">Optional</span><font color="FA6062">Not supported</font>
+<!-- ### service_tier `"auto" | "standard_only"` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span><font color="FA6062">Not supported</font>
 
 Controls service tier and capacity routing.
 
 - `"auto"` (default): automatically chosen from available capacity; may use priority capacity when needed.
 - `"standard_only"`: use standard capacity only and do not use priority lanes. -->
 
-### output_config `object` <span style="color: #666; font-weight: 400">Optional</span>
+### output_config `object` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Configuration options for model output, such as output format.
 
@@ -792,7 +792,7 @@ Configuration options for model output, such as output format.
   - schema `Record<string, unknown>` the JSON schema for the format
   - type `string` must be `"json_schema"`
 
-### stop_sequences `string[]` <span style="color: #666; font-weight: 400">Optional</span>
+### stop_sequences `string[]` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Custom **stop sequences**.
 
@@ -807,14 +807,14 @@ Common usage:
 - Use `"END"` as an end-of-answer marker;
 - Combine with “multi-part output” protocols.
 
-### stream `boolean` <span style="color: #666; font-weight: 400">Optional</span>
+### stream `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Whether to return results **as a stream** via SSE (Server-Sent Events).
 
 - `false` (default): return a complete `message` object in one response.
 - `true`: incrementally stream output via multiple events (see “Streaming Response” below).
 
-### system `string | TextBlockParam[]` <span style="color: #666; font-weight: 400">Optional</span>
+### system `string | TextBlockParam[]` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 A System Prompt that sets **global instructions and roles** for the conversation. This is equivalent to Claude’s “overall rules” and takes effect before all `messages`.
 
@@ -844,7 +844,7 @@ A System Prompt that sets **global instructions and roles** for the conversation
 
 > Note: The Messages API **does not have a `role: "system"` message**. All system-level instructions are passed via the top-level `system` field.
 
-### temperature `number` <span style="color: #666; font-weight: 400">Optional</span>
+### temperature `number` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Sampling temperature, controlling output randomness.
 
@@ -854,7 +854,7 @@ Sampling temperature, controlling output randomness.
   - Closer to 1: more diverse and creative; suitable for brainstorming and creative writing.
 - Even `0.0` is not absolutely deterministic.
 
-### thinking `object` <span style="color: #666; font-weight: 400">Optional</span>
+### thinking `object` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Extended Thinking (explicit reasoning process) configuration.
 
@@ -872,7 +872,7 @@ thinking?:
   - The response will include content blocks with `type: "thinking"`.
 - `type: "disabled"`: disables extended thinking (default behavior).
 
-### tool_choice `object` <span style="color: #666; font-weight: 400">Optional</span>
+### tool_choice `object` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Controls how Claude uses tools declared in `tools`.
 
@@ -901,7 +901,7 @@ tool_choice?:
 - `"none"`
   - Disables tool usage; generate text/multimodal output only.
 
-### tools `array<ToolUnion>` <span style="color: #666; font-weight: 400">Optional</span>
+### tools `array<ToolUnion>` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Declares the list of **tools** Claude can use in this request.
 
@@ -978,7 +978,7 @@ The Messages API docs list several built-in tool types, typical examples include
 
 > For detailed semantics, invocation patterns, and billing details of each built-in tool, refer to Anthropic’s separate [“Server tools”](https://platform.claude.com/docs/en/api/messages/create) documentation.
 
-### top_k `number` <span style="color: #666; font-weight: 400">Optional</span>
+### top_k `number` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 During sampling, choose only from the top K tokens with the highest probabilities.
 
@@ -986,7 +986,7 @@ During sampling, choose only from the top K tokens with the highest probabilitie
 - Recommended only for advanced tuning; in most cases, `temperature` alone is sufficient;
 - `>= 0`.
 
-### top_p `number` <span style="color: #666; font-weight: 400">Optional</span>
+### top_p `number` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Nucleus sampling parameter.
 

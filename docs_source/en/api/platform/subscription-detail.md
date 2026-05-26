@@ -12,7 +12,7 @@ head:
 
 # Get Subscription Detail
 
-::: tip 💡 Troubleshooting
+::: info Troubleshooting
 Encountering errors? See the [API Error Codes Reference](/guide/advanced/error-codes) for a complete list of error types and troubleshooting steps.
 :::
 
@@ -34,7 +34,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 - **Format**: `Bearer <API_KEY>`
 - **Description**: A Management API Key created in the [ZenMux Console](https://zenmux.ai/platform/management)
 
-::: warning ⚠️ Management API Key required
+::: warning Management API Key required
 This endpoint only accepts Management API Keys. Standard API Keys are not supported.
 :::
 
@@ -100,7 +100,7 @@ Monthly subscription cycle quota (upper limits only; no real-time usage data):
 - `max_flows` `number` — Maximum Flows available in the current billing cycle
 - `max_value_usd` `number` — USD value of the total monthly quota
 
-::: info 💡 Quota behavior
+::: info Quota behavior
 
 - `quota_5_hour` and `quota_7_day` are **rolling windows** that update in real time after each request.
 - `quota_monthly` is a fixed cap for the current billing cycle and does not include real-time usage.

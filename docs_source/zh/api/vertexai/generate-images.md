@@ -12,7 +12,7 @@ head:
 
 # Google Vertex AI API: Generate Images
 
-::: tip 💡 错误排查
+::: info 错误排查
 调用过程中遇到错误？请参阅 [API 错误码参考](/zh/guide/advanced/error-codes) 获取完整的错误类型说明与排查方案。
 :::
 
@@ -70,11 +70,11 @@ API 版本，设置为 `v1`。
 
 用于图片生成的模型。格式为 `{provider}/{model}`，例如 `openai/gpt-image-2`。
 
-### config `GenerateImagesConfig` <span style="color: #666; font-weight: 400">可选</span>
+### config `GenerateImagesConfig` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 图片生成配置对象，包含以下字段：
 
-#### number_of_images `integer` <span style="color: #666; font-weight: 400">可选</span>
+#### number_of_images `integer` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 要生成的图片数量，默认为 1。不同供应商的上限不同：Google Imagen 最多 4 张，OpenAI 最多 10 张，火山引擎最多 15 张，Flux/GLM/混元仅支持 1 张。
 
@@ -82,7 +82,7 @@ SDK 字段名：Python `number_of_images`，TypeScript `numberOfImages`。
 
 > REST 对应字段：`parameters.sampleCount`
 
-#### negative_prompt `string` <span style="color: #666; font-weight: 400">可选</span>
+#### negative_prompt `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 负面提示词，描述不希望出现在图片中的内容。支持的供应商：Google Imagen、可灵（Kling）、通义万象（Qwen）。
 
@@ -90,7 +90,7 @@ SDK 字段名：Python `negative_prompt`，TypeScript `negativePrompt`。
 
 > REST 对应字段：`parameters.negativePrompt`
 
-#### aspect_ratio `string` <span style="color: #666; font-weight: 400">可选</span>
+#### aspect_ratio `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 图片宽高比。不同供应商支持的值有所不同，常见值包括：
 
@@ -104,11 +104,11 @@ SDK 字段名：Python `aspect_ratio`，TypeScript `aspectRatio`。
 
 > REST 对应字段：`parameters.aspectRatio`
 
-::: tip 💡 尺寸控制
+::: info 尺寸控制
 `aspect_ratio` 控制宽高比，`sampleImageSize` 控制分辨率档位，两者配合使用可精确控制输出尺寸。对于 OpenAI 模型，请改用 `imageSize` 透传参数直接指定尺寸。
 :::
 
-#### output_mime_type `string` <span style="color: #666; font-weight: 400">可选</span>
+#### output_mime_type `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 输出图片格式。默认为 `image/png`。
 
@@ -121,7 +121,7 @@ SDK 字段名：Python `output_mime_type`，TypeScript `outputMimeType`。
 
 > REST 对应字段：`parameters.outputOptions.mimeType`
 
-#### output_compression_quality `integer` <span style="color: #666; font-weight: 400">可选</span>
+#### output_compression_quality `integer` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 输出图片的压缩质量，取值范围 0-100。仅在 `output_mime_type` 为 `image/jpeg` 时有效，默认值为 100。
 
@@ -129,7 +129,7 @@ SDK 字段名：Python `output_compression_quality`，TypeScript `outputCompress
 
 > REST 对应字段：`parameters.outputOptions.compressionQuality`
 
-#### seed `integer` <span style="color: #666; font-weight: 400">可选</span>
+#### seed `integer` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 随机种子，用于复现生成结果。支持的供应商：Google Imagen、Flux、通义万象、火山引擎。
 
@@ -137,7 +137,7 @@ SDK 字段名：Python `seed`，TypeScript `seed`。
 
 > REST 对应字段：`parameters.seed`
 
-#### enhance_prompt `boolean` <span style="color: #666; font-weight: 400">可选</span>
+#### enhance_prompt `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 是否启用提示词增强/优化。开启后模型会自动扩展和改进提示词以提升生成质量。支持的供应商：Flux、混元、通义万象。
 
@@ -145,7 +145,7 @@ SDK 字段名：Python `enhance_prompt`，TypeScript `enhancePrompt`。
 
 > REST 对应字段：`parameters.enhancePrompt`
 
-#### person_generation `string` <span style="color: #666; font-weight: 400">可选</span>
+#### person_generation `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 人物生成控制。仅 Google Imagen 模型支持。
 
@@ -158,7 +158,7 @@ SDK 字段名：Python `person_generation`，TypeScript `personGeneration`。
 
 > REST 对应字段：`parameters.personGeneration`
 
-#### safety_filter_level `string` <span style="color: #666; font-weight: 400">可选</span>
+#### safety_filter_level `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 安全过滤级别。仅 Google Imagen 模型支持。
 
@@ -166,7 +166,7 @@ SDK 字段名：Python `safety_filter_level`，TypeScript `safetyFilterLevel`。
 
 > REST 对应字段：`parameters.safetySetting`
 
-#### include_rai_reason `boolean` <span style="color: #666; font-weight: 400">可选</span>
+#### include_rai_reason `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 是否在响应中包含内容审核原因。仅 Google Imagen 模型支持。
 
@@ -174,7 +174,7 @@ SDK 字段名：Python `include_rai_reason`，TypeScript `includeRaiReason`。
 
 > REST 对应字段：`parameters.includeRaiReason`
 
-#### add_watermark `boolean` <span style="color: #666; font-weight: 400">可选</span>
+#### add_watermark `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 是否添加水印。支持的供应商：Google Imagen、火山引擎、GLM、混元、通义万象、百度。
 
@@ -182,7 +182,7 @@ SDK 字段名：Python `add_watermark`，TypeScript `addWatermark`。
 
 > REST 对应字段：`parameters.addWatermark`
 
-#### guidance_scale `number` <span style="color: #666; font-weight: 400">可选</span>
+#### guidance_scale `number` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 引导强度，控制模型对提示词的遵循程度。仅 Flux 模型支持。
 
@@ -194,7 +194,7 @@ SDK 字段名：Python `guidance_scale`，TypeScript `guidanceScale`。
 
 以下参数通过 `http_options.extra_body` 透传，仅适用于 OpenAI 类模型（如 `openai/gpt-image-2`）。
 
-#### http_options.extra_body.imageSize `string` <span style="color: #666; font-weight: 400">可选</span>
+#### http_options.extra_body.imageSize `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 图片尺寸（透传参数）。ZenMux 将该参数原样转发到底层 OpenAI API。
 
@@ -217,7 +217,7 @@ SDK 字段名：Python `guidance_scale`，TypeScript `guidanceScale`。
 
 SDK 字段名：Python `http_options=types.HttpOptions(extra_body={"imageSize": "..."})`，TypeScript `httpOptions: { extraBody: { imageSize: "..." } }`。
 
-#### http_options.extra_body.quality `string` <span style="color: #666; font-weight: 400">可选</span>
+#### http_options.extra_body.quality `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 图片质量（透传参数）。ZenMux 将该参数原样转发到底层 OpenAI API。
 
@@ -232,7 +232,7 @@ SDK 字段名：Python `http_options=types.HttpOptions(extra_body={"quality": ".
 
 ### 非 OpenAI 模型分辨率控制
 
-#### http_options.extra_body.sampleImageSize `string` <span style="color: #666; font-weight: 400">可选</span>
+#### http_options.extra_body.sampleImageSize `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 分辨率档位（透传参数）。适用于火山引擎、百度等供应商。
 
@@ -246,7 +246,7 @@ SDK 字段名：Python `http_options=types.HttpOptions(extra_body={"quality": ".
 
 SDK 字段名：Python `http_options=types.HttpOptions(extra_body={"sampleImageSize": "..."})`，TypeScript `httpOptions: { extraBody: { sampleImageSize: "..." } }`。
 
-::: tip 💡 关于透传参数
+::: info 关于透传参数
 `imageSize`、`quality`、`sampleImageSize` 属于透传参数——ZenMux 会根据目标供应商的需要转换或原样转发。标准 Vertex AI 字段（如 `numberOfImages`、`outputMimeType`、`aspectRatio`）直接放在 `config` 顶层即可。
 :::
 
@@ -286,7 +286,7 @@ SDK 字段名：Python `http_options=types.HttpOptions(extra_body={"sampleImageS
 
 :::
 
-### config `EditImageConfig` <span style="color: #666; font-weight: 400">可选</span>
+### config `EditImageConfig` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 图片编辑配置对象，支持与 Generate Images 相同的 config 字段。
 

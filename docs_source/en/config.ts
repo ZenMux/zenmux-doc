@@ -187,73 +187,78 @@ export default defineLoacaleConfig({
       "/terms-of-service": docsSidebar,
       "/api/": [
         {
-          text: "OpenAI Compatible API",
+          text: "Model Endpoints",
           items: [
             {
-              text: "Create Chat Completion",
-              link: "/api/openai/create-chat-completion",
+              text: "OpenAI Compatible",
+              items: [
+                {
+                  text: "Create Chat Completion",
+                  link: "/api/openai/create-chat-completion",
+                },
+                {
+                  text: "Create a Model Response",
+                  link: "/api/openai/openai-responses",
+                },
+                {
+                  text: "Create Embeddings",
+                  link: "/api/openai/create-embeddings",
+                },
+                {
+                  text: "Create image",
+                  link: "/api/openai/generate-an-image",
+                },
+                {
+                  text: "Create image edit",
+                  link: "/api/openai/create-image-edit",
+                },
+                {
+                  text: "Image generation streaming events",
+                  link: "/api/openai/image-generation-streaming-events",
+                },
+                {
+                  text: "Image edit streaming events",
+                  link: "/api/openai/image-edit-streaming-events",
+                },
+                {
+                  text: "List Models",
+                  link: "/api/openai/openai-list-models",
+                },
+              ],
             },
             {
-              text: "Create a Model Response",
-              link: "/api/openai/openai-responses",
+              text: "Anthropic Compatible",
+              items: [
+                {
+                  text: "Create a Message",
+                  link: "/api/anthropic/create-messages",
+                },
+                {
+                  text: "List Models",
+                  link: "/api/anthropic/anthropic-list-models",
+                },
+              ],
             },
             {
-              text: "Create Embeddings",
-              link: "/api/openai/create-embeddings",
-            },
-            {
-              text: "Create image",
-              link: "/api/openai/generate-an-image",
-            },
-            {
-              text: "Create image edit",
-              link: "/api/openai/create-image-edit",
-            },
-            {
-              text: "Image generation streaming events",
-              link: "/api/openai/image-generation-streaming-events",
-            },
-            {
-              text: "Image edit streaming events",
-              link: "/api/openai/image-edit-streaming-events",
-            },
-            {
-              text: "List Models",
-              link: "/api/openai/openai-list-models",
-            },
-          ],
-        },
-        {
-          text: "Anthropic Compatible API",
-          items: [
-            {
-              text: "Create a Message",
-              link: "/api/anthropic/create-messages",
-            },
-            {
-              text: "List Models",
-              link: "/api/anthropic/anthropic-list-models",
-            },
-          ],
-        },
-        {
-          text: "Google Vertex AI Compatible API",
-          items: [
-            {
-              text: "Generate Content",
-              link: "/api/vertexai/generate-content",
-            },
-            {
-              text: "Generate Images",
-              link: "/api/vertexai/generate-images",
-            },
-            {
-              text: "Generate Videos",
-              link: "/api/vertexai/generate-videos",
-            },
-            {
-              text: "List Models",
-              link: "/api/vertexai/google-list-models",
+              text: "Google Vertex AI Compatible",
+              items: [
+                {
+                  text: "Generate Content",
+                  link: "/api/vertexai/generate-content",
+                },
+                {
+                  text: "Generate Images",
+                  link: "/api/vertexai/generate-images",
+                },
+                {
+                  text: "Generate Videos",
+                  link: "/api/vertexai/generate-videos",
+                },
+                {
+                  text: "List Models",
+                  link: "/api/vertexai/google-list-models",
+                },
+              ],
             },
           ],
         },
