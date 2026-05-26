@@ -144,6 +144,38 @@ export default {
       }
     }
 
+    const tooltip = document.createElement('div');
+    tooltip.className = 'sidebar-tooltip';
+    document.body.appendChild(tooltip);
+    let tooltipTimer: ReturnType<typeof setTimeout> | null = null;
+
+    const showTooltip = (el: HTMLElement) => {
+      if (el.scrollWidth <= el.clientWidth) return;
+      tooltip.textContent = el.textContent || '';
+      const rect = el.getBoundingClientRect();
+      tooltip.style.left = rect.left + 'px';
+      tooltip.style.top = (rect.bottom + 6) + 'px';
+      tooltip.classList.add('visible');
+    };
+
+    const hideTooltip = () => {
+      tooltip.classList.remove('visible');
+    };
+
+    document.addEventListener('mouseover', (e) => {
+      const text = (e.target as HTMLElement).closest?.('.VPSidebarItem .item .text') as HTMLElement | null;
+      if (!text) return;
+      if (tooltipTimer) clearTimeout(tooltipTimer);
+      tooltipTimer = setTimeout(() => showTooltip(text), 300);
+    });
+
+    document.addEventListener('mouseout', (e) => {
+      const text = (e.target as HTMLElement).closest?.('.VPSidebarItem .item .text');
+      if (!text) return;
+      if (tooltipTimer) { clearTimeout(tooltipTimer); tooltipTimer = null; }
+      hideTooltip();
+    });
+
     const updateLogoLink = () => {
       const logoLink = document.querySelector(
         ".VPNavBarTitle a"

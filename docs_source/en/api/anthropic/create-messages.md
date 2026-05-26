@@ -26,7 +26,7 @@ ZenMux supports the Anthropic API. See the API call examples for how to use it.
 
 ## Request headers
 
-### x-api-key `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+### x-api-key `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 Anthropic API Key, used for authentication.
 
@@ -36,7 +36,7 @@ Example:
 x-api-key: sk-ant-xxxx
 ```
 
-### anthropic-version `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+### anthropic-version `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 Anthropic API version (not the model version).
 
@@ -46,7 +46,7 @@ Currently, only `"2023-06-01"` is supported.
 anthropic-version: 2023-06-01
 ```
 
-### content-type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+### content-type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 Request body format. Currently, only JSON is supported:
 
@@ -66,7 +66,7 @@ Used to enable one or more Beta features. `"code-execution-2025-08-25"` is not s
 
 The request body is JSON. Parameters are as follows.
 
-### max_tokens `number` <span style="color: #FA6062; font-weight: 400">Required</span>
+### max_tokens `number` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 The **maximum number of tokens** to generate, including both the normal response and (if enabled) the thinking content from extended thinking.
 
@@ -74,7 +74,7 @@ The **maximum number of tokens** to generate, including both the normal response
 - The maximum supported `max_tokens` varies by model. See each model’s documentation for details.
 - Value: `>= 1`
 
-### messages `array<Message>` <span style="color: #FA6062; font-weight: 400">Required</span>
+### messages `array<Message>` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 Conversation history and the current user input.
 
@@ -92,9 +92,9 @@ Message = {
 }
 ```
 
-#### role: `"user" | "assistant"`<span style="color: #FA6062; font-weight: 400">Required</span>
+#### role: `"user" | "assistant"`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 
-#### content `string | ContentBlock[]`<span style="color: #FA6062; font-weight: 400">Required</span>
+#### content `string | ContentBlock[]`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 - If you provide a string directly, it is equivalent to a single text block with `type: "text"`:
   - `{"role":"user","content":"Hello, Claude"}` is equivalent to  
@@ -114,11 +114,11 @@ Message = {
 }
 ```
 
-- text `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- text `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
   Text content.
 
-- type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
   Must be `"text"`.
 
@@ -151,29 +151,29 @@ Message = {
     ```
 
     Field details:
-    - `type` `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+    - `type` `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
       Must be `"char_location"`, meaning the citation is located by a **character index range**.
 
-    - `cited_text` `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+    - `cited_text` `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
       The cited original text snippet (for human display).  
       Typically extracted from the text between `start_char_index` and `end_char_index`.
 
-    - `document_index` `number` <span style="color: #FA6062; font-weight: 400">Required</span>
+    - `document_index` `number` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
       The index of the cited document in the current request, **0-based**.  
       If you provide multiple `document` blocks (or other citeable documents) in this request, this indicates which one.
 
-    - `document_title` `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+    - `document_title` `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
       The document’s title/name, usually derived from the filename or a title you provided upstream, used for UI display such as “From: xxx”.
 
-    - `start_char_index` `number` <span style="color: #FA6062; font-weight: 400">Required</span>
+    - `start_char_index` `number` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
       The starting character index (0-based, inclusive) of the cited snippet in the document’s **full text**.
 
-    - `end_char_index` `number` <span style="color: #FA6062; font-weight: 400">Required</span>
+    - `end_char_index` `number` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
       The ending character index (0-based, typically the right endpoint of a half-open interval), so the cited range is `[start_char_index, end_char_index)`.
 
@@ -191,28 +191,28 @@ Message = {
     ```
 
     Field details:
-    - `type` `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+    - `type` `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
       Must be `"page_location"`, meaning the location is described by a **page number range**.
 
-    - `cited_text` `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+    - `cited_text` `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
       The cited PDF text snippet (readable text parsed from the PDF by the system).
 
-    - `document_index` `number` <span style="color: #FA6062; font-weight: 400">Required</span>
+    - `document_index` `number` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
       The index of the cited PDF in the current request, **0-based**.
 
-    - `document_title` `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+    - `document_title` `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
       The PDF title or filename, for display.
 
-    - `start_page_number` `number` <span style="color: #FA6062; font-weight: 400">Required</span>
+    - `start_page_number` `number` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
       The **starting page number** of the cited content, **1-based**, inclusive.  
       For example, `5` means “starting from page 5”.
 
-    - `end_page_number` `number` <span style="color: #FA6062; font-weight: 400">Required</span>
+    - `end_page_number` `number` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
       The **ending page number**, usually treated as the right endpoint of a half-open interval:
       - If `start_page_number = 5` and `end_page_number = 6`, it can be interpreted as “page 5”.
@@ -234,28 +234,28 @@ Message = {
     Used to cite documents provided as “multiple content blocks” (e.g., a `document` with `source.type = "content"` that contains multiple `text`/`image` blocks).
 
     Field details:
-    - `type` `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+    - `type` `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
       Must be `"content_block_location"`.
 
-    - `cited_text` `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+    - `cited_text` `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
       The cited original text snippet (from the corresponding content block).
 
-    - `document_index` `number` <span style="color: #FA6062; font-weight: 400">Required</span>
+    - `document_index` `number` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
       The index of the cited document in the current request, **0-based**.
 
-    - `document_title` `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+    - `document_title` `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
       The document’s title/name.
 
-    - `start_block_index` `number` <span style="color: #FA6062; font-weight: 400">Required</span>
+    - `start_block_index` `number` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
       The starting block index (0-based) within the document’s internal `content` array.  
       Indicates “starting from which content block”.
 
-    - `end_block_index` `number` <span style="color: #FA6062; font-weight: 400">Required</span>
+    - `end_block_index` `number` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
       The ending block index within the `content` array.  
       In practice, this is usually interpreted as the other endpoint of the range:
@@ -277,23 +277,23 @@ Message = {
     Used when Anthropic’s Web Search tool (server tool) is enabled and Claude cites content from a webpage.
 
     Field details:
-    - `type` `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+    - `type` `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
       Must be `"web_search_result_location"`, meaning this citation comes from Web search results.
 
-    - `cited_text` `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+    - `cited_text` `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
       A snippet of cited webpage text (usually truncated for display) and does not count toward token usage.
 
-    - `url` `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+    - `url` `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
       The cited webpage URL, which the frontend can render as a clickable link.
 
-    - `title` `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+    - `title` `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
       The cited webpage title (e.g., HTML `<title>`), for UI display such as “Source: xxx”.
 
-    - `encrypted_index` `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+    - `encrypted_index` `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
       An **encrypted index identifier** for this search result. It must be returned to Anthropic verbatim for follow-up turns to continue citing or inspecting the same result.  
       You typically don’t need to show it to end users, but you must preserve it for multi-turn conversations / debugging.
@@ -315,36 +315,36 @@ Message = {
     When you provide your own **search / RAG results** to Claude via a `type: "search_result"` content block and enable citations, Claude will use this type when citing those results in its answer.
 
     Field details:
-    - `type` `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+    - `type` `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
       Must be `"search_result_location"`, meaning the citation comes from a SearchResultBlock you provided.
 
-    - `cited_text` `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+    - `cited_text` `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
       The exact cited text snippet, sourced from the text in a `search_result` content block.
 
-    - `source` `string | null` <span style="color: #FA6062; font-weight: 400">Required</span>
+    - `source` `string | null` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
       The source identifier of the search result:
       - Usually a URL (e.g., a knowledge base document link);
       - Or a custom string ID you define;
       - May be `null` if you did not provide it in the original `search_result`.
 
-    - `title` `string | null` <span style="color: #FA6062; font-weight: 400">Required</span>
+    - `title` `string | null` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
       The search result title, corresponding to `search_result.title`;  
       If no title is available, it is `null`.
 
-    - `search_result_index` `number` <span style="color: #FA6062; font-weight: 400">Required</span>
+    - `search_result_index` `number` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
       The 0-based index of the **`type: "search_result"` block** being cited within the current `message.content`.  
       Whether you place these results in a user message or they are returned by a tool, they are numbered by appearance order.
 
-    - `start_block_index` `number` <span style="color: #FA6062; font-weight: 400">Required</span>
+    - `start_block_index` `number` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
       The 0-based starting block index of the cited content within that `search_result`’s `content` array.
 
-    - `end_block_index` `number` <span style="color: #FA6062; font-weight: 400">Required</span>
+    - `end_block_index` `number` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
       The ending block index within that `content` array.
       - If it equals `start_block_index`, it typically means a single content block is cited.
@@ -362,11 +362,11 @@ Message = {
 }
 ```
 
-- type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
   Must be `"image"`.
 
-- source `Base64ImageSource | URLImageSource` <span style="color: #FA6062; font-weight: 400">Required</span>
+- source `Base64ImageSource | URLImageSource` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   :
   - Base64ImageSource
     ```ts
@@ -400,11 +400,11 @@ Message = {
 }
 ```
 
-- type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
   Must be `"document"`.
 
-- source `Base64PDFSource | PlainTextSource | ContentBlockSource | URLPDFSource` <span style="color: #FA6062; font-weight: 400">Required</span>
+- source `Base64PDFSource | PlainTextSource | ContentBlockSource | URLPDFSource` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   :
   - Base64PDFSource: base64 PDF
 
@@ -458,11 +458,11 @@ Message = {
 }
 ```
 
-- type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
   Must be `"tool_result"`.
 
-- tool_use_id `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- tool_use_id `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   , binds to the specific tool invocation.
 - is_error `boolean` <font color="gray">Optional</font>.
 - content: either a simple string or an array of multimodal blocks (text / images / documents / search results) <font color="gray">Optional</font>.
@@ -484,19 +484,19 @@ Message = {
 
 Field details:
 
-- type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
   Must be `"tool_use"`.
 
-- id `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- id `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
   The unique identifier for this tool invocation, used to match the subsequent `tool_result`.
 
-- name `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- name `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
   The tool name to call. It **must exactly match** a `tool.name` declared in the request’s `tools` array.
 
-- input `object` (Record<string, unknown>) <span style="color: #FA6062; font-weight: 400">Required</span>
+- input `object` (Record<string, unknown>) <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 - cache_control `CacheControlEphemeral` <font color="gray">Optional</font>: same as above,
   sets caching behavior (Prompt Cache breakpoint) for this tool invocation block.
@@ -519,16 +519,16 @@ Indicates that Claude decides to call a **server-side tool** (hosted by Anthropi
 
 Field details:
 
-- type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
   Must be `"server_tool_use"`, indicating this is a server-side tool call request.
 
-- id `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- id `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
   The unique ID for this server tool invocation, like `"srvtoolu_..."`.  
   Subsequent result blocks (e.g., `web_search_tool_result`) will reference this ID via `tool_use_id`.
 
-- name `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- name `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
   The server tool name to call, for example:
   - `"web_search"`: Web Search tool
@@ -553,17 +553,17 @@ When using the Web Search tool, Claude will return one or more `web_search_tool_
 
 Field details:
 
-- type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
   Must be `"web_search_tool_result"`, indicating a Web Search tool result.
 
-- tool_use_id `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- tool_use_id `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
   References the corresponding prior `server_tool_use.id`, used to associate the “search request” and the “search results”.
 
 - cache_control `CacheControlEphemeral` <font color="gray">Optional</font>: same as above.
 
-- content `array | object` <span style="color: #FA6062; font-weight: 400">Required</span>
+- content `array | object` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
   The execution result of Web Search:
   - On success: an array of **`web_search_result` objects**;
@@ -575,19 +575,19 @@ When `content` is an array, each element is a `web_search_result` object:
 
 Field details:
 
-- type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
   Must be `"web_search_result"`.
 
-- url `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- url `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
   The URL of the result page, typically consistent with the `url` in `citations`.
 
-- title `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- title `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
   The page title, used for frontend display of the citation source.
 
-- encrypted_content `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- encrypted_content `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
   An encrypted string of the page’s main content.  
   In **multi-turn conversations**, if you want Claude to continue citing this result accurately, you need to return this field verbatim as part of the conversation (e.g., via a later `web_search_result_location` citation). This field is **opaque and not parseable** to you.
@@ -612,11 +612,11 @@ If the Web Search tool itself errors (e.g., exceeds max uses, invalid request, e
 
 Error object fields:
 
-- type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
   Must be `"web_search_tool_result_error"`.
 
-- error_code `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- error_code `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
   Error type code. Common values include:
   - `"too_many_requests"`: the search tool hit a rate limit;
@@ -641,15 +641,15 @@ Error object fields:
 
 Field details:
 
-- type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
   Must be `"thinking"`, indicating an Extended Thinking reasoning block.
 
-- thinking `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- thinking `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
   Claude’s **human-readable reasoning content**, typically a multi-line step-by-step analysis.
 
-- signature `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- signature `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
   An encrypted signature of the full thinking content, used in subsequent turns to verify that these reasoning blocks **were generated by Claude and have not been tampered with**.
   - This is an **opaque field**; you do not need to and should not parse it.
@@ -683,7 +683,7 @@ Typical scenario: you retrieve from a vector DB / document store on the backend,
 
 Field details:
 
-- type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
   Must be `"search_result"`, indicating a search/retrieval result content block.
 
@@ -700,7 +700,7 @@ Field details:
   - If no suitable title is available, it can be `null`.  
     In citations, it is used directly as the citation title for UI rendering.
 
-- content `array` <span style="color: #FA6062; font-weight: 400">Required</span>
+- content `array` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
   The **actual content snippets** of the search result, consisting of one or more content blocks, typically text-heavy but can include images / documents, etc.
 
@@ -716,7 +716,7 @@ Field details:
   }
   ```
 
-  - enabled `boolean` <span style="color: #FA6062; font-weight: 400">Required</span>
+  - enabled `boolean` <span style="color: #FA6062; font-weight: 400">&#42;</span>
     - `true`: allow Claude to generate `search_result_location` citations for this `search_result` in the response;
     - `false`: do not generate citations for this block (the model can still read and use it).
 
@@ -737,14 +737,14 @@ You will typically only see it in model outputs and return it **verbatim** in su
 
 Field details:
 
-- type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
   Must be `"redacted_thinking"`, indicating a **redacted thinking block**.
   - Compared with `type: "thinking"`:
     - `thinking`: returns readable natural-language reasoning text + signature;
     - `redacted_thinking`: returns **unreadable encrypted data** and does not include readable reasoning content.
 
-- data `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- data `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
   The encrypted/redacted thinking data string, usually a long Base64/ciphertext-like blob.
   - You cannot and do not need to parse this data.
@@ -752,7 +752,7 @@ Field details:
 
 :::
 
-### model `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+### model `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 The model ID used for this call.
 

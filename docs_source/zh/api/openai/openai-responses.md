@@ -26,11 +26,11 @@ Create a Model Response 接口兼容 OpenAI 的 [Create a Model Response](https:
 
 ## Request headers
 
-### Authorization `string` <font color="FA6062">必填</font>
+### Authorization `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 Bearer Token 鉴权
 
-### Content-Type `string` <font color="FA6062">必填</font>
+### Content-Type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 请求内容类型，默认值为 `application/json`
 

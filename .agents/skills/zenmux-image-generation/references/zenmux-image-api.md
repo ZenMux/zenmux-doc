@@ -12,7 +12,7 @@ head:
 
 ZenMux supports invoking image generation models via the Vertex AI protocol. This guide explains how to use ZenMux to generate images and save them locally.
 
-::: tip 💡 About Banana Models
+::: tip About Banana Models
 Banana is a series of image generation models from Google that can produce high-quality images from text prompts. You can use these models in ZenMux through the Vertex AI protocol.
 :::
 
@@ -125,38 +125,38 @@ ZenMux internally translates Vertex AI protocol parameters into the OpenAI image
 
 The following table maps the [official OpenAI image generation parameters](https://developers.openai.com/api/reference/resources/images/methods/generate) to the ZenMux Vertex AI protocol:
 
-| OpenAI Parameter | Vertex AI Equivalent | Type | Description | Supported |
-|---|---|---|---|---|
-| `prompt` | `prompt` (passed directly via SDK) | string | Text description (required) | ✅ |
-| `model` | `model` (passed directly via SDK) | string | Model name | ✅ |
-| `n` | `config.number_of_images` | number | Number of images to generate (1-10) | ✅ |
-| `size` | `config.http_options.extra_body.imageSize` | string | Image size (**passthrough**). Common values: `1024x1024`, `1536x1024` (landscape), `1024x1536` (portrait), `auto`. Other sizes accepted by the underlying model are also supported — refer to the OpenAI docs and the passthrough note below. | ✅ |
-| `quality` | `config.http_options.extra_body.quality` | string | Image quality (**passthrough**). Common values: `low` / `medium` / `high` / `auto`. Any value supported by the underlying model can be used — refer to the OpenAI docs. | ✅ |
-| `output_format` | `config.output_mime_type` | string | Output format: `image/png`, `image/jpeg`, `image/webp` | ✅ |
-| `output_compression` | `config.output_compression_quality` | number | Compression quality (0-100), only valid for webp/jpeg | ✅ |
-| `background` | — | string | Background transparency setting | ❌ |
-| `moderation` | — | string | Content moderation level | ❌ |
-| `style` | — | string | DALL-E 3 style parameter | ❌ |
-| `response_format` | — | string | Not applicable (always returns base64) | ❌ |
+| OpenAI Parameter     | Vertex AI Equivalent                       | Type   | Description                                                                                                                                                                                                                                   | Supported |
+| -------------------- | ------------------------------------------ | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| `prompt`             | `prompt` (passed directly via SDK)         | string | Text description (required)                                                                                                                                                                                                                   | ✅        |
+| `model`              | `model` (passed directly via SDK)          | string | Model name                                                                                                                                                                                                                                    | ✅        |
+| `n`                  | `config.number_of_images`                  | number | Number of images to generate (1-10)                                                                                                                                                                                                           | ✅        |
+| `size`               | `config.http_options.extra_body.imageSize` | string | Image size (**passthrough**). Common values: `1024x1024`, `1536x1024` (landscape), `1024x1536` (portrait), `auto`. Other sizes accepted by the underlying model are also supported — refer to the OpenAI docs and the passthrough note below. | ✅        |
+| `quality`            | `config.http_options.extra_body.quality`   | string | Image quality (**passthrough**). Common values: `low` / `medium` / `high` / `auto`. Any value supported by the underlying model can be used — refer to the OpenAI docs.                                                                       | ✅        |
+| `output_format`      | `config.output_mime_type`                  | string | Output format: `image/png`, `image/jpeg`, `image/webp`                                                                                                                                                                                        | ✅        |
+| `output_compression` | `config.output_compression_quality`        | number | Compression quality (0-100), only valid for webp/jpeg                                                                                                                                                                                         | ✅        |
+| `background`         | —                                          | string | Background transparency setting                                                                                                                                                                                                               | ❌        |
+| `moderation`         | —                                          | string | Content moderation level                                                                                                                                                                                                                      | ❌        |
+| `style`              | —                                          | string | DALL-E 3 style parameter                                                                                                                                                                                                                      | ❌        |
+| `response_format`    | —                                          | string | Not applicable (always returns base64)                                                                                                                                                                                                        | ❌        |
 
 #### edit_image Parameters
 
 The following table maps the [official OpenAI image editing parameters](https://developers.openai.com/api/reference/resources/images/methods/edit) to the ZenMux Vertex AI protocol:
 
-| OpenAI Parameter | Vertex AI Equivalent | Type | Description | Supported |
-|---|---|---|---|---|
-| `prompt` | `prompt` (passed directly via SDK) | string | Edit description (required) | ✅ |
-| `model` | `model` (passed directly via SDK) | string | Model name | ✅ |
-| `image` | `reference_images` (with `referenceType` other than MASK) | file/base64 | Reference images, multiple supported | ✅ |
-| `mask` | `reference_images` (with `referenceType = REFERENCE_TYPE_MASK`) | file/base64 | Mask image; transparent areas are the editable region | ✅ |
-| `n` | `config.number_of_images` | number | Number of images (1-10) | ✅ |
-| `size` | `config.http_options.extra_body.imageSize` | string | Image size (**passthrough**). Common values: `1024x1024`, `1536x1024`, `1024x1536`, `auto`. Other sizes accepted by the underlying model are also supported — refer to the OpenAI docs. | ✅ |
-| `quality` | `config.http_options.extra_body.quality` | string | Image quality (**passthrough**). Common values: `low` / `medium` / `high` / `auto`. Any value supported by the underlying model can be used — refer to the OpenAI docs. | ✅ |
-| `output_format` | `config.output_mime_type` | string | Output format | ✅ |
-| `output_compression` | `config.output_compression_quality` | number | Compression quality | ✅ |
-| `background` | — | — | Not supported | ❌ |
+| OpenAI Parameter     | Vertex AI Equivalent                                            | Type        | Description                                                                                                                                                                             | Supported |
+| -------------------- | --------------------------------------------------------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| `prompt`             | `prompt` (passed directly via SDK)                              | string      | Edit description (required)                                                                                                                                                             | ✅        |
+| `model`              | `model` (passed directly via SDK)                               | string      | Model name                                                                                                                                                                              | ✅        |
+| `image`              | `reference_images` (with `referenceType` other than MASK)       | file/base64 | Reference images, multiple supported                                                                                                                                                    | ✅        |
+| `mask`               | `reference_images` (with `referenceType = REFERENCE_TYPE_MASK`) | file/base64 | Mask image; transparent areas are the editable region                                                                                                                                   | ✅        |
+| `n`                  | `config.number_of_images`                                       | number      | Number of images (1-10)                                                                                                                                                                 | ✅        |
+| `size`               | `config.http_options.extra_body.imageSize`                      | string      | Image size (**passthrough**). Common values: `1024x1024`, `1536x1024`, `1024x1536`, `auto`. Other sizes accepted by the underlying model are also supported — refer to the OpenAI docs. | ✅        |
+| `quality`            | `config.http_options.extra_body.quality`                        | string      | Image quality (**passthrough**). Common values: `low` / `medium` / `high` / `auto`. Any value supported by the underlying model can be used — refer to the OpenAI docs.                 | ✅        |
+| `output_format`      | `config.output_mime_type`                                       | string      | Output format                                                                                                                                                                           | ✅        |
+| `output_compression` | `config.output_compression_quality`                             | number      | Compression quality                                                                                                                                                                     | ✅        |
+| `background`         | —                                                               | —           | Not supported                                                                                                                                                                           | ❌        |
 
-::: tip 💡 About Parameter Passing
+::: tip About Parameter Passing
 
 `imageSize` and `quality` are **passthrough parameters** — ZenMux forwards them as-is to the underlying OpenAI-compatible image generation API without validation or transformation. The values shown in the tables above are the most common options; for the complete list of supported values and behavioral details, refer to the official OpenAI documentation for [image generation](https://developers.openai.com/api/reference/resources/images/methods/generate) and [image editing](https://developers.openai.com/api/reference/resources/images/methods/edit), and configure them based on your needs.
 
@@ -270,11 +270,11 @@ const response = await client.models.generateImages({
   model: "openai/gpt-image-2",
   prompt: "A futuristic cityscape at sunset, ultra detailed",
   config: {
-    numberOfImages: 1,                  // Generate 1 image
+    numberOfImages: 1, // Generate 1 image
     httpOptions: {
       extraBody: {
-        imageSize: "1536x1024",         // Landscape high resolution
-        quality: "high",                // High quality
+        imageSize: "1536x1024", // Landscape high resolution
+        quality: "high", // High quality
       },
     },
   },
@@ -346,8 +346,8 @@ const response = await client.models.generateImages({
     numberOfImages: 1,
     httpOptions: {
       extraBody: {
-        imageSize: "3840x2160",      // 4K UHD resolution
-        quality: "high",             // High quality
+        imageSize: "3840x2160", // 4K UHD resolution
+        quality: "high", // High quality
       },
     },
   },
@@ -360,11 +360,12 @@ for (const img of response.generatedImages) {
 
 :::
 
-::: tip 💡 Size Options
+::: tip Size Options
 
 **Preset sizes:** `1024x1024` (square), `1536x1024` (landscape), `1024x1536` (portrait), `auto`
 
 **Custom sizes** (only `openai/gpt-image-2`): any custom size is supported, subject to the following constraints:
+
 - Width and height must each be a **multiple of 16**
 - Maximum side length is **3840px**
 - Aspect ratio must not exceed **3:1**
@@ -372,12 +373,12 @@ for (const img of response.generatedImages) {
 
 Common custom sizes for reference:
 
-| Size | Resolution | Use Case |
-|---|---|---|
-| `1920x1080` | 1080p | Blog covers, web banners |
-| `1080x1920` | 1080p portrait | Phone wallpapers, social media stories |
-| `2560x1440` | 2K QHD | Desktop wallpapers |
-| `3840x2160` | 4K UHD | High-resolution posters, large displays |
+| Size        | Resolution     | Use Case                                |
+| ----------- | -------------- | --------------------------------------- |
+| `1920x1080` | 1080p          | Blog covers, web banners                |
+| `1080x1920` | 1080p portrait | Phone wallpapers, social media stories  |
+| `2560x1440` | 2K QHD         | Desktop wallpapers                      |
+| `3840x2160` | 4K UHD         | High-resolution posters, large displays |
 
 Different sizes affect generation time and token cost — larger sizes are more expensive. Sizes above 2560x1440 are experimental and may produce inconsistent results.
 :::
@@ -408,26 +409,27 @@ const response = await client.models.generateImages({
   model: "openai/gpt-image-2",
   prompt: "A minimalist logo design",
   config: {
-    numberOfImages: 2,                    // Generate 2 images
-    outputMimeType: "image/webp",         // WebP format, smaller file size
-    outputCompressionQuality: 80,         // 80% compression quality
+    numberOfImages: 2, // Generate 2 images
+    outputMimeType: "image/webp", // WebP format, smaller file size
+    outputCompressionQuality: 80, // 80% compression quality
   },
 });
 ```
 
 :::
 
-::: tip 💡 Output Formats
+::: tip Output Formats
+
 - `image/png`: lossless format, ideal when high fidelity is needed (default)
 - `image/webp`: smaller file size, ideal for web display
 - `image/jpeg`: general-purpose lossy format; pair with `output_compression_quality` to control quality
-:::
+  :::
 
 ### Editing Images
 
 To modify an existing image, use the `edit_image` API. The example below uses the ZenMux logo and transforms it into Chinese paper-cut style.
 
-::: tip 💡 Prompt Tips
+::: tip Prompt Tips
 
 The `edit_image` model is sensitive to the prompt. If the prompt is too vague (for example, `"Transform this logo into..."`), the model may freely generate from the style description and ignore the input image entirely. We recommend **explicitly instructing the model to preserve the subject/composition of the original image** and only change the style.
 
@@ -581,7 +583,11 @@ for i, img in enumerate(edit_response.generated_images):
 ```
 
 ```ts [TypeScript]
-const { GoogleGenAI, RawReferenceImage, MaskReferenceImage } = require("@google/genai");
+const {
+  GoogleGenAI,
+  RawReferenceImage,
+  MaskReferenceImage,
+} = require("@google/genai");
 
 const client = new GoogleGenAI({
   apiKey: "$ZENMUX_API_KEY",
@@ -639,7 +645,7 @@ console.log(editResponse);
 
 :::
 
-::: tip 💡 API Differences
+::: tip API Differences
 
 - **Google Gemini models** use the `generate_content` API with `response_modalities: ["TEXT", "IMAGE"]`; responses contain both text and images.
 - **Non-Google models** use the `generate_images` / `edit_image` APIs, which return image objects directly and support image editing.

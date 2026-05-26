@@ -58,29 +58,29 @@ Visit the [ZenMux Models List](https://zenmux.ai/models) to browse all available
 
 ## Path parameters
 
-### provider `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+### provider `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 The model provider identifier. This is the portion before `/` in the model name — for example, `google` in `google/veo-3.1-generate-001`.
 
-### model `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+### model `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 The model name. This is the portion after `/` in the model name — for example, `veo-3.1-generate-001` in `google/veo-3.1-generate-001`.
 
 ## Authentication Parameters
 
-### api_key `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+### api_key `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 Your ZenMux API key for authentication.
 
-### vertexai `boolean` <span style="color: #FA6062; font-weight: 400">Required</span>
+### vertexai `boolean` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 Must be set to `true` to enable the Vertex AI protocol.
 
-### http_options.base_url `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+### http_options.base_url `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 ZenMux Vertex AI endpoint: `https://zenmux.ai/api/vertex-ai`.
 
-### http_options.api_version `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+### http_options.api_version `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 API version, set to `v1`.
 
@@ -88,11 +88,11 @@ API version, set to `v1`.
 
 The following describes the parameters for the `generate_videos` / `generateVideos` SDK method. The SDK automatically converts these parameters to the Vertex AI REST format before sending them to ZenMux.
 
-### prompt `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+### prompt `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 A text description of the video content. Include details such as subject, actions, environment, and lighting for best results.
 
-### model `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+### model `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 The model to use for video generation. Format: `{provider}/{model}`, e.g., `google/veo-3.1-generate-001`.
 
@@ -187,13 +187,13 @@ Video frame rate. Only supported by certain providers.
 
 In addition to text-to-video, you can provide an image as the starting frame and/or ending frame, combined with a text prompt to generate video.
 
-### image `Image` <span style="color: #FA6062; font-weight: 400">Required</span>
+### image `Image` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 The starting frame image object.
 
-- `image_bytes` `bytes` <span style="color: #FA6062; font-weight: 400">Required</span>
+- `image_bytes` `bytes` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : Binary image data.
-- `mime_type` `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- `mime_type` `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : Image MIME type, e.g., `image/png`, `image/jpeg`.
 
 > REST field: `instances[0].image`
@@ -210,7 +210,7 @@ SDK field name: Python `last_frame`, TypeScript `lastFrame`.
 
 A text prompt describing how the content in the image should move or change.
 
-### model `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+### model `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 Same as text-to-video.
 

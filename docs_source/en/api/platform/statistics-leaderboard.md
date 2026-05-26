@@ -30,7 +30,7 @@ Statistics data is aggregated on a daily schedule. The most recent available dat
 
 ## Authentication
 
-### Authorization Header <span style="color: #FA6062; font-weight: 400">Required</span>
+### Authorization Header <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 ```http
 Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
@@ -50,7 +50,7 @@ Each endpoint has its own independent rate limit counter. The maximum number of 
 
 ## Parameters
 
-### metric `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+### metric `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 Which metric to rank by.
 

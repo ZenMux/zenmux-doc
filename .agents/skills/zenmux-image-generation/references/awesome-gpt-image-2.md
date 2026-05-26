@@ -1,9 +1,9 @@
-
 <a href="https://youmind.com/gpt-image-2-prompts">
   <img src="https://marketing-assets.youmind.com/campaigns/gpt-image-2/og-hq.png" alt="GPT Image 2 Prompts" width="100%" />
 </a>
 
-> 💡 🎬 Take it further with **Seedance 2** — pair GPT Image 2 stills with Seedance for jaw-dropping AI videos, 2000+ prompts to explore 👉 [awesome-seedance-2-prompts](https://github.com/YouMind-OpenLab/awesome-seedance-2-prompts)
+> 🎬 Take it further with **Seedance 2** — pair GPT Image 2 stills with Seedance for jaw-dropping AI videos, 2000+ prompts to explore 👉 [awesome-seedance-2-prompts](https://github.com/YouMind-OpenLab/awesome-seedance-2-prompts)
+
 # 🚀 Awesome GPT Image 2 Prompts
 
 [![Awesome](https://awesome.re/badge.svg)](https://github.com/sindresorhus/awesome)
@@ -18,7 +18,7 @@
 
 ---
 
-[![English](https://img.shields.io/badge/English-Current-brightgreen)](README.md) [![简体中文](https://img.shields.io/badge/%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-Click%20to%20View-lightgrey)](README_zh.md) [![繁體中文](https://img.shields.io/badge/%E7%B9%81%E9%AB%94%E4%B8%AD%E6%96%87-Click%20to%20View-lightgrey)](README_zh-TW.md) [![日本語](https://img.shields.io/badge/%E6%97%A5%E6%9C%AC%E8%AA%9E-Click%20to%20View-lightgrey)](README_ja-JP.md) [![한국어](https://img.shields.io/badge/%ED%95%9C%EA%B5%AD%EC%96%B4-Click%20to%20View-lightgrey)](README_ko-KR.md) [![ไทย](https://img.shields.io/badge/%E0%B9%84%E0%B8%97%E0%B8%A2-Click%20to%20View-lightgrey)](README_th-TH.md) [![Tiếng Việt](https://img.shields.io/badge/Ti%E1%BA%BFng%20Vi%E1%BB%87t-Click%20to%20View-lightgrey)](README_vi-VN.md) [![हिन्दी](https://img.shields.io/badge/%E0%A4%B9%E0%A4%BF%E0%A4%A8%E0%A5%8D%E0%A4%A6%E0%A5%80-Click%20to%20View-lightgrey)](README_hi-IN.md) [![Español](https://img.shields.io/badge/Espa%C3%B1ol-Click%20to%20View-lightgrey)](README_es-ES.md) [![Español (Latinoamérica)](https://img.shields.io/badge/Espa%C3%B1ol%20(Latinoam%C3%A9rica)-Click%20to%20View-lightgrey)](README_es-419.md) [![Deutsch](https://img.shields.io/badge/Deutsch-Click%20to%20View-lightgrey)](README_de-DE.md) [![Français](https://img.shields.io/badge/Fran%C3%A7ais-Click%20to%20View-lightgrey)](README_fr-FR.md) [![Italiano](https://img.shields.io/badge/Italiano-Click%20to%20View-lightgrey)](README_it-IT.md) [![Português (Brasil)](https://img.shields.io/badge/Portugu%C3%AAs%20(Brasil)-Click%20to%20View-lightgrey)](README_pt-BR.md) [![Português](https://img.shields.io/badge/Portugu%C3%AAs-Click%20to%20View-lightgrey)](README_pt-PT.md) [![Türkçe](https://img.shields.io/badge/T%C3%BCrk%C3%A7e-Click%20to%20View-lightgrey)](README_tr-TR.md)
+[![English](https://img.shields.io/badge/English-Current-brightgreen)](README.md) [![简体中文](https://img.shields.io/badge/%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-Click%20to%20View-lightgrey)](README_zh.md) [![繁體中文](https://img.shields.io/badge/%E7%B9%81%E9%AB%94%E4%B8%AD%E6%96%87-Click%20to%20View-lightgrey)](README_zh-TW.md) [![日本語](https://img.shields.io/badge/%E6%97%A5%E6%9C%AC%E8%AA%9E-Click%20to%20View-lightgrey)](README_ja-JP.md) [![한국어](https://img.shields.io/badge/%ED%95%9C%EA%B5%AD%EC%96%B4-Click%20to%20View-lightgrey)](README_ko-KR.md) [![ไทย](https://img.shields.io/badge/%E0%B9%84%E0%B8%97%E0%B8%A2-Click%20to%20View-lightgrey)](README_th-TH.md) [![Tiếng Việt](https://img.shields.io/badge/Ti%E1%BA%BFng%20Vi%E1%BB%87t-Click%20to%20View-lightgrey)](README_vi-VN.md) [![हिन्दी](https://img.shields.io/badge/%E0%A4%B9%E0%A4%BF%E0%A4%A8%E0%A5%8D%E0%A4%A6%E0%A5%80-Click%20to%20View-lightgrey)](README_hi-IN.md) [![Español](https://img.shields.io/badge/Espa%C3%B1ol-Click%20to%20View-lightgrey)](README_es-ES.md) [![Español (Latinoamérica)](<https://img.shields.io/badge/Espa%C3%B1ol%20(Latinoam%C3%A9rica)-Click%20to%20View-lightgrey>)](README_es-419.md) [![Deutsch](https://img.shields.io/badge/Deutsch-Click%20to%20View-lightgrey)](README_de-DE.md) [![Français](https://img.shields.io/badge/Fran%C3%A7ais-Click%20to%20View-lightgrey)](README_fr-FR.md) [![Italiano](https://img.shields.io/badge/Italiano-Click%20to%20View-lightgrey)](README_it-IT.md) [![Português (Brasil)](<https://img.shields.io/badge/Portugu%C3%AAs%20(Brasil)-Click%20to%20View-lightgrey>)](README_pt-BR.md) [![Português](https://img.shields.io/badge/Portugu%C3%AAs-Click%20to%20View-lightgrey)](README_pt-PT.md) [![Türkçe](https://img.shields.io/badge/T%C3%BCrk%C3%A7e-Click%20to%20View-lightgrey)](README_tr-TR.md)
 
 ---
 
@@ -34,14 +34,13 @@
 
 Why use our gallery?
 
-| Feature | GitHub README | youmind.com Gallery |
-|---------|--------------|---------------------|
-| 🎨 Visual Layout | Linear list | Beautiful Masonry Grid |
-| 🔍 Search | Ctrl+F only | Full-text search with filters |
-| 🤖 AI One-Click Generation | - | AI one-click generation |
-| 📱 Mobile | Basic | Fully responsive |
-| 🏷️ Categories | - | Category browsing |
-
+| Feature                    | GitHub README | youmind.com Gallery           |
+| -------------------------- | ------------- | ----------------------------- |
+| 🎨 Visual Layout           | Linear list   | Beautiful Masonry Grid        |
+| 🔍 Search                  | Ctrl+F only   | Full-text search with filters |
+| 🤖 AI One-Click Generation | -             | AI one-click generation       |
+| 📱 Mobile                  | Basic         | Fully responsive              |
+| 🏷️ Categories              | -             | Category browsing             |
 
 ### 🏷️ Browse by Category
 
@@ -98,7 +97,7 @@ Why use our gallery?
 - [🤔 What is GPT Image 2?](#-what-is-gpt-image-2)
 - [📊 Statistics](#-statistics)
 - [🔥 Featured Prompts](#-featured-prompts)
-- [📋 All Prompts](#-all-prompts)
+- [ All Prompts](#-all-prompts)
 - [🤝 How to Contribute](#-how-to-contribute)
 - [📄 License](#-license)
 - [🙏 Acknowledgements](#-acknowledgements)
@@ -124,6 +123,7 @@ Why use our gallery?
 Some prompts support **dynamic arguments** using [Raycast Snippets](https://raycast.com/help/snippets) syntax. Look for the 🚀 Raycast Friendly badge!
 
 **Example:**
+
 ```
 A quote card with "{argument name="quote" default="Stay hungry, stay foolish"}"
 by {argument name="author" default="Steve Jobs"}
@@ -137,11 +137,11 @@ When used in Raycast, you can dynamically replace the arguments for quick iterat
 
 <div align="center">
 
-| Metric | Count |
-|--------|-------|
-| 📝 Total Prompts | **4430** |
-| ⭐ Featured | **6** |
-| 🔄 Last Updated | **Thursday, May 7, 2026 at 1:52:43 AM UTC** |
+| Metric           | Count                                       |
+| ---------------- | ------------------------------------------- |
+| 📝 Total Prompts | **4430**                                    |
+| ⭐ Featured      | **6**                                       |
+| 🔄 Last Updated  | **Thursday, May 7, 2026 at 1:52:43 AM UTC** |
 
 </div>
 
@@ -521,7 +521,7 @@ Transforms a flat evolutionary timeline into a realistic 3D stone staircase info
 
 ---
 
-## 📋 All Prompts
+## All Prompts
 
 > 📝 Sorted by publish date (newest first)
 
@@ -1086,7 +1086,7 @@ Create a warm, candid, photorealistic vertical 35mm-style indoor snapshot of a c
 
 #### 📌 Details
 
-- **Author:** [いきいき行田人_AI & TSF用](https://x.com/iki2Gyodajin_AI)
+- **Author:** [いきいき行田人\_AI & TSF用](https://x.com/iki2Gyodajin_AI)
 - **Source:** [Twitter Post](https://x.com/iki2Gyodajin_AI/status/2051278728366559369#reversed-0)
 - **Published:** May 4, 2026
 - **Languages:** en
@@ -1382,7 +1382,7 @@ Create a clean square anime-style profile icon portrait of a fashionable young m
 
 #### 📌 Details
 
-- **Author:** [日向_AI](https://x.com/himukai_an)
+- **Author:** [日向\_AI](https://x.com/himukai_an)
 - **Source:** [Twitter Post](https://x.com/himukai_an/status/2051225734757449898#reversed-0)
 - **Published:** May 4, 2026
 - **Languages:** en
@@ -1971,7 +1971,7 @@ A highly detailed prompt that transforms a brand logo into a personified manga-s
 #### 📝 Prompt
 
 ```
-Using the uploaded logo, create a highly detailed manga-style infographic poster: 
+Using the uploaded logo, create a highly detailed manga-style infographic poster:
 
 Title: "What This Brand Feels Like"
 Goal: Transform the brand into a "living individual" and visually demonstrate how it acts, speaks, and interacts with the world.
@@ -3916,9 +3916,9 @@ A photorealistic fashion photography prompt for a magazine cover featuring Emily
 #### 📝 Prompt
 
 ```
-A high-fashion Vogue magazine cover photograph, August 2025 issue, Vogue Hong Kong. 
+A high-fashion Vogue magazine cover photograph, August 2025 issue, Vogue Hong Kong.
 
-{argument name="subject" default="Emily Blunt as a glamorous elegant woman"} with shoulder-length straight platinum blonde hair, wearing dramatic makeup, standing in a modern minimalist interior with metallic reflective walls and a reddish-brown carpet floor. 
+{argument name="subject" default="Emily Blunt as a glamorous elegant woman"} with shoulder-length straight platinum blonde hair, wearing dramatic makeup, standing in a modern minimalist interior with metallic reflective walls and a reddish-brown carpet floor.
 
 She is wearing a luxurious {argument name="outfit" default="avant-garde white textured cape/poncho made of thick chunky yarn"}, black long leather opera gloves, black tights, and black heeled boots. She is holding a brown leather leash in one hand and a small black handbag in the other.
 

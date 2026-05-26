@@ -24,7 +24,7 @@ Returns the Pay As You Go credit balance for the current account, including the 
 
 ## Authentication
 
-### Authorization Header <span style="color: #FA6062; font-weight: 400">Required</span>
+### Authorization Header <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 ```http
 Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>

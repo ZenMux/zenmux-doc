@@ -26,7 +26,7 @@ ZenMux 支持 Anthropic API, 使用方式见 API 调用示例。
 
 ## Request headers
 
-### x-api-key `string` <font color="FA6062">必填</font>
+### x-api-key `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 Anthropic API Key，用于鉴权。
 
@@ -36,7 +36,7 @@ Anthropic API Key，用于鉴权。
 x-api-key: sk-ant-xxxx
 ```
 
-### anthropic-version `string` <font color="FA6062">必填</font>
+### anthropic-version `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 Anthropic API 版本号（不是模型版本）。
 
@@ -46,7 +46,7 @@ Anthropic API 版本号（不是模型版本）。
 anthropic-version: 2023-06-01
 ```
 
-### content-type `string` <font color="FA6062">必填</font>
+### content-type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 请求体格式，当前仅支持 JSON：
 
@@ -420,7 +420,7 @@ Message = {
 
 - type `string` <font color="FA6062">必选</font>  
   固定为 `"tool_result"`。
-- tool_use_id `string` <font color="FA6062">必填</font>，绑定哪次工具调用。
+- tool_use_id `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>，绑定哪次工具调用。
 - is_error `boolean` <font color="gray">可选</font>。
 - content：可为简单字符串，或多模态块数组（文本 / 图片 / 文档 / 搜索结果）<font color="gray">可选</font>。
 - cache_control `CacheControlEphemeral` <font color="gray">可选</font>：同上。

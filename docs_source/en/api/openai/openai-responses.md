@@ -26,17 +26,17 @@ Below is a list of all parameters that may be supported by different models. Par
 
 ## Request headers
 
-### Authorization `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+### Authorization `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 Bearer token authentication.
 
-### Content-Type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+### Content-Type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 Request content type. Default is `application/json`.
 
 ## Request body
 
-### model `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+### model `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 The model ID for this inference call, in the format `<provider>/<model_name>`, e.g., openai/gpt-5. You can find it on each model’s detail page.
 
@@ -55,9 +55,9 @@ Each element in the array is an **Item** (a context item). It can include messag
 ##### 1. Input message `object`
 
 - type `string` <font color="gray">Optional</font>: fixed to `message`
-- role `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- role `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `user` / `assistant` / `system` / `developer`
-- content `string | array` <span style="color: #FA6062; font-weight: 400">Required</span>
+- content `string | array` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : message content
   - If `string`: plain text
   - If `array`: a list of content parts (see Input content parts below)
@@ -66,23 +66,23 @@ Each element in the array is an **Item** (a context item). It can include messag
 
 1. Input text `object`
 
-- type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `input_text`
-- text `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- text `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : text content
 
 2. Input image `object`
 
-- type `string`: `input_image` <span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`: `input_image` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
-- detail `string`: `high` / `low` / `auto` <span style="color: #FA6062; font-weight: 400">Required</span>
+- detail `string`: `high` / `low` / `auto` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : image processing detail level; affects token usage and recognition accuracy
 - file_id `string` <font color="gray">Optional</font>: ID of an uploaded file
 - image_url `string` (URL or data URL/base64) <font color="gray">Optional</font>: image URL or base64-encoded data
 
 3. Input file `object`
 
-- type `string`: `input_file` <span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`: `input_file` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 - file_data `string` <font color="gray">Optional</font>: base64-encoded file data
 - file_id `string`<font color="gray">Optional</font>: ID of an uploaded file
@@ -96,10 +96,10 @@ Each element in the array is an **Item** (a context item). It can include messag
 :::details Input message `object`
 
 - type `string` <font color="gray">Optional</font>: fixed to `message`
-- role `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- role `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `user` / `assistant` / `system` / `developer`
 - status `string` <font color="gray">Optional</font>: `in_progress` / `completed` / `incomplete` item status
-- content `string | array` <span style="color: #FA6062; font-weight: 400">Required</span>
+- content `string | array` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : message content
   - If `string`: plain text
   - If `array`: a list of content parts; each element can be `input_text` / `input_image` / `input_file` (same as above)
@@ -110,87 +110,87 @@ Each element in the array is an **Item** (a context item). It can include messag
 
 (Used when you “feed back the model’s previous output message item” into `input`.)
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `message`
-- role `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- role `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : fixed to `assistant`
-- id `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- id `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : unique ID of the output message
-- status `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- status `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `in_progress` / `completed` / `incomplete`
-- content `array`<span style="color: #FA6062; font-weight: 400">Required</span>
+- content `array`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : list of **Output content parts** (see below)
 
 ###### Output content parts (possible output content part types)
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `output_text`
-- text `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- text `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : output text
-- annotations `array`<span style="color: #FA6062; font-weight: 400">Required</span>
+- annotations `array`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : annotations (see below)
-- logprobs `array`<span style="color: #FA6062; font-weight: 400">Required</span>
+- logprobs `array`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : logprobs (see below)
 
 **annotations** element types:
 
 - File citation `object`
-  - type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+  - type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
     : `file_citation`
-  - file_id `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+  - file_id `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
     : cited file ID
-  - filename `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+  - filename `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
     : cited file name
-  - index `integer`<span style="color: #FA6062; font-weight: 400">Required</span>
+  - index `integer`<span style="color: #FA6062; font-weight: 400">&#42;</span>
     : starting index position in the text
 - URL citation `object`
-  - type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+  - type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
     : `url_citation`
-  - start_index `integer`<span style="color: #FA6062; font-weight: 400">Required</span>
+  - start_index `integer`<span style="color: #FA6062; font-weight: 400">&#42;</span>
     : starting index position of the citation in the text
-  - end_index `integer`<span style="color: #FA6062; font-weight: 400">Required</span>
+  - end_index `integer`<span style="color: #FA6062; font-weight: 400">&#42;</span>
     : ending index position of the citation in the text
-  - title `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+  - title `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
     : cited page title
-  - url `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+  - url `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
     : cited page URL
 - Container file citation `object`
-  - type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+  - type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
     : `container_file_citation`
-  - container_id `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+  - container_id `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
     : container file ID
-  - file_id `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+  - file_id `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
     : actual cited file ID
-  - filename `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+  - filename `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
     : cited file name
-  - start_index `integer`<span style="color: #FA6062; font-weight: 400">Required</span>
+  - start_index `integer`<span style="color: #FA6062; font-weight: 400">&#42;</span>
     : starting index position of the citation in the text
-  - end_index `integer`<span style="color: #FA6062; font-weight: 400">Required</span>
+  - end_index `integer`<span style="color: #FA6062; font-weight: 400">&#42;</span>
     : ending index position of the citation in the text
 - File path `object`
-  - type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+  - type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
     : `file_path`
-  - file_id `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+  - file_id `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
     : file ID
-  - index `integer`<span style="color: #FA6062; font-weight: 400">Required</span>
+  - index `integer`<span style="color: #FA6062; font-weight: 400">&#42;</span>
     : index position in the list
 
 **logprobs** (each element is logprob info for one token; field hierarchy below):
 
-- bytes `array`<span style="color: #FA6062; font-weight: 400">Required</span>
+- bytes `array`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : byte representation of the token
-- logprob `number`<span style="color: #FA6062; font-weight: 400">Required</span>
+- logprob `number`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : token log probability
-- token `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- token `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : token text
-- top_logprobs `array`<span style="color: #FA6062; font-weight: 400">Required</span>
+- top_logprobs `array`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : most likely candidate tokens (each element includes `bytes` / `logprob` / `token`)
 
 2. Refusal `object`
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `refusal`
-- refusal `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- refusal `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : explanation for why the model refused to answer
 
 :::
@@ -199,13 +199,13 @@ Each element in the array is an **Item** (a context item). It can include messag
 
 The model initiates a call to a **function tool**.
 
-- type `string`: `function_call` <span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`: `function_call` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
-- call_id `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- call_id `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : unique identifier for the function call
-- name `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- name `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : name of the function to call
-- arguments `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- arguments `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : function arguments as a JSON string
 - id `string` <font color="gray">Optional</font>: unique item ID
 - status `string` <font color="gray">Optional</font>: call status, `in_progress` / `completed` / `incomplete`
@@ -216,11 +216,11 @@ The model initiates a call to a **function tool**.
 
 Send the result of executing the function back to the model (for the next step of reasoning).
 
-- type `string`: `function_call_output` <span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`: `function_call_output` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
-- call_id `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- call_id `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : corresponding function call identifier
-- output `string | array` <span style="color: #FA6062; font-weight: 400">Required</span>
+- output `string | array` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : function execution result, either a string or a list of content parts
 - id `string` <font color="gray">Optional</font>: unique output item ID
 - status `string` <font color="gray">Optional</font>: output status, `in_progress` / `completed` / `incomplete`
@@ -233,13 +233,13 @@ Send the result of executing the function back to the model (for the next step o
 
 The model initiates a call to a “custom tool” (you must execute it on your side).
 
-- type `string`: `custom_tool_call`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`: `custom_tool_call`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 
-- call_id `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- call_id `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : unique identifier for the custom tool call
-- name `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- name `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : name of the custom tool to call
-- input `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- input `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : input passed to the tool
 - id `string` <font color="gray">Optional</font>: unique item ID
 
@@ -249,11 +249,11 @@ The model initiates a call to a “custom tool” (you must execute it on your s
 
 Send the execution result of the custom tool back to the model.
 
-- type `string`: `custom_tool_call_output`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`: `custom_tool_call_output`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 
-- call_id `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- call_id `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : corresponding custom tool call identifier
-- output `string | array`<span style="color: #FA6062; font-weight: 400">Required</span>
+- output `string | array`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : tool result, either a string or a list of content parts
 - id `string`<font color="gray">Optional</font>: unique output item ID
 
@@ -263,56 +263,56 @@ Send the execution result of the custom tool back to the model.
 
 :::details Web search tool call `object`
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `web_search_call`
-- id `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- id `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : unique ID for the web search tool call
-- status `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- status `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 
-- action `object`<span style="color: #FA6062; font-weight: 400">Required</span>
+- action `object`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : describes what the web tool did in this call (search/open_page/find)
 
 ###### Possible action types
 
 1. Search action `object`
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : action type, fixed to `search`
-- query `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- query `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : search query (deprecated)
 - queries `array`<font color="gray">Optional</font>: list of search queries
 - sources `array`<font color="gray">Optional</font>: list of sources
-  - each source: - type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
-    : `url` - url `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+  - each source: - type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+    : `url` - url `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
     : source URL
 
 2. Open page action `object`
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : action type, fixed to `open_page`
-- url `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- url `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : page URL to open
 
 3. Find action `object`
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : action type, fixed to `find`
-- url `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- url `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : page URL to search
-- pattern `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- pattern `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : search pattern or keyword
 
 :::
 
 <!-- :::details File search tool call (file search tool call) `object`
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 : `file_search_call`
-- id `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- id `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 : unique ID for the file search tool call
-- queries `array`<span style="color: #FA6062; font-weight: 400">Required</span>
+- queries `array`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 : list of query strings
-- status `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- status `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 : search status, `in_progress` / `searching` / `incomplete` / `failed`
 - results `array`<font color="gray">Optional</font>: list of results
 
@@ -330,11 +330,11 @@ Send the execution result of the custom tool back to the model.
 
 The model initiates a Computer Use action (you must execute it on your side). After execution, send results such as screenshots back via `computer_call_output`.
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `computer_call`
-- call_id `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- call_id `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : unique identifier for the computer use call
-- action `object` <span style="color: #FA6062; font-weight: 400">Required</span>
+- action `object` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : parameters for the specific computer action (see Action types below)
 - pending_safety_checks `array` <font color="gray">Optional</font>: list of safety checks pending user confirmation
   - id `string` <font color="gray">Optional</font>: unique safety check identifier
@@ -347,51 +347,51 @@ The model initiates a Computer Use action (you must execute it on your side). Af
 
 ###### Click `object`
 
-- type `string`: `click` <span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`: `click` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : action type, fixed to `click`
-- x `number` <span style="color: #FA6062; font-weight: 400">Required</span>
+- x `number` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : click X coordinate (pixels)
-- y `number` <span style="color: #FA6062; font-weight: 400">Required</span>
+- y `number` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : click Y coordinate (pixels)
 - button `string` <font color="gray">Optional</font>: mouse button, `left` / `right` / `middle`
 
 ###### Double click `object`
 
-- type `string`: `double_click` <span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`: `double_click` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : action type, fixed to `double_click`
-- x `integer` <span style="color: #FA6062; font-weight: 400">Required</span>
+- x `integer` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : double-click X coordinate (pixels)
-- y `integer` <span style="color: #FA6062; font-weight: 400">Required</span>
+- y `integer` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : double-click Y coordinate (pixels)
 
 ###### Move `object`
 
-- type `string`: `move` <span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`: `move` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : action type, fixed to `move`
-- x `integer` <span style="color: #FA6062; font-weight: 400">Required</span>
+- x `integer` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : target X coordinate (pixels)
-- y `integer` <span style="color: #FA6062; font-weight: 400">Required</span>
+- y `integer` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : target Y coordinate (pixels)
 
 ###### Screenshot `object`
 
-- type `screenshot`：`screenshot` <span style="color: #FA6062; font-weight: 400">Required</span>
+- type `screenshot`：`screenshot` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : action type, fixed to `screenshot`
 
 ###### Drag `object`
 
-- type `string`: `drag` <span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`: `drag` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : action type, fixed to `drag`
-- path `array` <span style="color: #FA6062; font-weight: 400">Required</span>
+- path `array` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : list of coordinates for the drag path
-  - x `integer` <span style="color: #FA6062; font-weight: 400">Required</span>
+  - x `integer` <span style="color: #FA6062; font-weight: 400">&#42;</span>
     : X coordinate (pixels)
-  - y `integer` <span style="color: #FA6062; font-weight: 400">Required</span>
+  - y `integer` <span style="color: #FA6062; font-weight: 400">&#42;</span>
     : Y coordinate (pixels)
 
 ###### Scroll `object`
 
-- type `string`: `scroll` <span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`: `scroll` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : action type, fixed to `scroll`
 - x `integer` <font color="gray">Optional</font>: scroll anchor X (pixels; provided by some implementations)
 - y `integer` <font color="gray">Optional</font>: scroll anchor Y (pixels)
@@ -400,30 +400,30 @@ The model initiates a Computer Use action (you must execute it on your side). Af
 
 ###### Type `object`
 
-- type `string`: `type` <span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`: `type` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : action type, fixed to `type`
-- text `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- text `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : text to type
 
 ###### Keypress `object`
 
-- type `string`: `keypress` <span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`: `keypress` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : action type, fixed to `keypress`
-- keys `array` <span style="color: #FA6062; font-weight: 400">Required</span>
+- keys `array` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : key combo to press, e.g. `["CTRL","L"]` means Ctrl+L
 
 ###### Wait `object`
 
-- type `string`: `wait` <span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`: `wait` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : action type, fixed to `wait`
 
 :::
 
 :::details Computer tool call output (Computer Use output) `object`
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `computer_call_output`
-- call_id `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- call_id `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : corresponding computer use call identifier
 - output `object`: output of the computer action (e.g., screenshots)
   - type `string`: `computer_screenshot`: output type, fixed to computer screenshot
@@ -440,61 +440,61 @@ The model initiates a Computer Use action (you must execute it on your side). Af
 
 <!-- :::details Code interpreter tool call (code interpreter call) `object`
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 : `code_interpreter_call`
-- id `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- id `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 : unique ID for the code interpreter call
-- container_id `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- container_id `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 : container environment ID
-- code `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- code `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 : code to execute (may be null)
-- outputs `array`<span style="color: #FA6062; font-weight: 400">Required</span>
+- outputs `array`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 : execution outputs (may be null)
   - Logs `object`
-    - type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+    - type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 : `logs`
-    - logs `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+    - logs `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 : log output
   - Image `object`
-    - type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+    - type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 : `image`
-    - url `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+    - url `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 : generated image URL
-- status `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- status `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 : status, `in_progress` / `completed` / `incomplete` / `interpreting` / `failed`
 
 ::: -->
 
 <!-- :::details Image generation call (image generation call) `object`
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 : `image_generation_call`
-- id `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- id `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 : unique ID for the image generation call
-- result `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- result `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 : generated image data (base64)
-- status `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- status `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 : status, e.g. `in_progress` / `completed` / `failed`
 
 ::: -->
 
 :::details Local shell call (local shell call) `object`
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `local_shell_call`
-- id `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- id `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : unique ID for the local shell call
-- call_id `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- call_id `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : associated call ID
-- status `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- status `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : call status, e.g. `in_progress` / `completed` / `failed`
-- action `object`<span style="color: #FA6062; font-weight: 400">Required</span>
+- action `object`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : specific shell execution action
-  - type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+  - type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
     : `exec`
-  - command `array`<span style="color: #FA6062; font-weight: 400">Required</span>
+  - command `array`<span style="color: #FA6062; font-weight: 400">&#42;</span>
     : command arguments (array form)
-  - env `map`<span style="color: #FA6062; font-weight: 400">Required</span>
+  - env `map`<span style="color: #FA6062; font-weight: 400">&#42;</span>
     : environment variables for execution
   - timeout_ms `integer`<font color="gray">Optional</font>: timeout (ms)
   - user `string`<font color="gray">Optional</font>: system user to run the command as
@@ -504,11 +504,11 @@ The model initiates a Computer Use action (you must execute it on your side). Af
 
 :::details Local shell call output `object`
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `local_shell_call_output`
-- id `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- id `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : unique ID for the output item
-- output `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- output `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : command result output as a JSON string
 - status `string`<font color="gray">Optional</font>: output status, e.g. `completed` / `failed`
 
@@ -516,15 +516,15 @@ The model initiates a Computer Use action (you must execute it on your side). Af
 
 :::details Shell tool call `object`
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `shell_call`
-- call_id `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- call_id `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : unique identifier for the shell call
 - id `string`<font color="gray">Optional</font>: unique item ID
 - status `string`<font color="gray">Optional</font>: call status, `in_progress` / `completed` / `incomplete`
-- action `object`<span style="color: #FA6062; font-weight: 400">Required</span>
+- action `object`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : shell command execution config
-  - commands `array`<span style="color: #FA6062; font-weight: 400">Required</span>
+  - commands `array`<span style="color: #FA6062; font-weight: 400">&#42;</span>
     : list of shell commands to execute in order
   - max_output_length `integer`<font color="gray">Optional</font>: maximum captured output length (stdout+stderr UTF-8)
   - timeout_ms `integer`<font color="gray">Optional</font>: timeout (ms)
@@ -533,22 +533,22 @@ The model initiates a Computer Use action (you must execute it on your side). Af
 
 :::details Shell tool call output `object`
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `shell_call_output`
-- call_id `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- call_id `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : corresponding shell call identifier
 - id `string`<font color="gray">Optional</font>: unique output item identifier
 - max_output_length `integer`<font color="gray">Optional</font>: maximum output length limit
-- output `array`<span style="color: #FA6062; font-weight: 400">Required</span>
+- output `array`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : list of output chunks; each element includes:
-  - stdout `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+  - stdout `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
     : stdout content
-  - stderr `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+  - stderr `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
     : stderr content
-  - outcome `object`<span style="color: #FA6062; font-weight: 400">Required</span>
-    : execution outcome (union type) - Timeout outcome `object` - type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
-    : `timeout`: command timed out - Exit outcome `object` - type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
-    : `exit`: command exited normally - exit_code `integer`<span style="color: #FA6062; font-weight: 400">Required</span>
+  - outcome `object`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+    : execution outcome (union type) - Timeout outcome `object` - type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+    : `timeout`: command timed out - Exit outcome `object` - type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+    : `exit`: command exited normally - exit_code `integer`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 :::
 
@@ -556,53 +556,53 @@ The model initiates a Computer Use action (you must execute it on your side). Af
 
 Used to create/delete/update files via a diff patch.
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `apply_patch_call`
-- call_id `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- call_id `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : unique identifier for the apply patch call
 - id `string`<font color="gray">Optional</font>: unique item identifier
-- status `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- status `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : call status, `in_progress` / `completed`
-- operation `object`<span style="color: #FA6062; font-weight: 400">Required</span>
+- operation `object`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : specific file operation (union type: create/delete/update)
 
 ###### Possible operation types
 
 1. Create file `object`
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `create_file`
-- path `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- path `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : file path relative to the workspace root
-- diff `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- diff `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : unified diff patch content
 
 2. Delete file `object`
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `delete_file`
-- path `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- path `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : file path to delete
 
 3. Update file `object`
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `update_file`
-- path `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- path `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : file path to update
-- diff `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- diff `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : unified diff patch content
 
 :::
 
 :::details Apply patch tool call output `object`
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `apply_patch_call_output`
-- call_id `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- call_id `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : corresponding apply patch call identifier
 - id `string`<font color="gray">Optional</font>: unique output item identifier
-- status `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- status `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : output status, `completed` / `failed`
 - output `string`<font color="gray">Optional</font>: apply-patch logs or error description
 
@@ -610,46 +610,46 @@ Used to create/delete/update files via a diff patch.
 
 :::details MCP list tools `object`
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `mcp_list_tools`
-- id `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- id `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : unique ID for the MCP list-tools call
-- server_label `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- server_label `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : MCP server label
 - error `string`<font color="gray">Optional</font>: error message when fetching tools (if any)
-- tools `array`<span style="color: #FA6062; font-weight: 400">Required</span>
+- tools `array`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : available tools; each element includes:
-  - name `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+  - name `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
     : tool name
   - description `string`<font color="gray">Optional</font>: tool description
   - annotations `object`<font color="gray">Optional</font>: additional tool annotations
-  - input_schema `object`<span style="color: #FA6062; font-weight: 400">Required</span>
+  - input_schema `object`<span style="color: #FA6062; font-weight: 400">&#42;</span>
     : tool input JSON Schema
 
 :::
 
 :::details MCP approval request `object`
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `mcp_approval_request`
-- id `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- id `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : unique ID for the approval request
-- server_label `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- server_label `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : MCP server label
-- name `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- name `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : requested tool name to run
-- arguments `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- arguments `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : tool arguments as a JSON string
 
 :::
 
 :::details MCP approval response `object`
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `mcp_approval_response`
-- approval_request_id `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- approval_request_id `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : corresponding approval request ID
-- approve `boolean`<span style="color: #FA6062; font-weight: 400">Required</span>
+- approve `boolean`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : whether to approve the tool call (true=approve, false=reject)
 - id `string`<font color="gray">Optional</font>: unique response item ID
 - reason `string`<font color="gray">Optional</font>: reason for approval or rejection
@@ -658,15 +658,15 @@ Used to create/delete/update files via a diff patch.
 
 :::details MCP tool call `object`
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `mcp_call`
-- id `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- id `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : unique ID for the MCP tool call
-- server_label `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- server_label `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : MCP server label
-- name `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- name `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : tool name to call
-- arguments `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- arguments `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : tool arguments as a JSON string
 - approval_request_id `string`<font color="gray">Optional</font>: associated approval request ID (for subsequent approval response)
 - output `string`<font color="gray">Optional</font>: tool output after execution
@@ -677,18 +677,18 @@ Used to create/delete/update files via a diff patch.
 
 :::details Reasoning `object`
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `reasoning`
-- id `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- id `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : unique ID for the reasoning content
-- summary `array`<span style="color: #FA6062; font-weight: 400">Required</span>
+- summary `array`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : reasoning summary parts
-  - Summary text `object` - type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
-    : `summary_text` - text `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+  - Summary text `object` - type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+    : `summary_text` - text `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
     : summary text
 - content `array`<font color="gray">Optional</font>: full reasoning text parts
-  - Reasoning text `object` - type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
-    : `reasoning_text` - text `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+  - Reasoning text `object` - type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+    : `reasoning_text` - text `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
     : full reasoning text
 - encrypted_content `string`<font color="gray">Optional</font>: encrypted full reasoning content (requires enabling via `include`)
 - status `string`<font color="gray">Optional</font>: reasoning status, `in_progress` / `completed` / `incomplete`
@@ -699,10 +699,10 @@ Used to create/delete/update files via a diff patch.
 
 Generated by `v1/responses/compact`. Used to compress long conversations into an opaque encrypted summary and can be fed back into later `input`.
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `compaction`
 - id `string`<font color="gray">Optional</font>: compaction item ID
-- encrypted_content `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- encrypted_content `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : compressed summary (encrypted, opaque)
 
 :::
@@ -711,7 +711,7 @@ Generated by `v1/responses/compact`. Used to compress long conversations into an
 
 Used to reference an existing item (internal identifier).
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `item_reference`
 - id `string`<font color="gray">Optional</font>
 
@@ -729,14 +729,14 @@ Associates this response with a conversation. The conversation’s items will be
 
 - Conversation ID `string`: unique conversation ID used to identify and reuse conversation history
 - Conversation object `object`
-  - id `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+  - id `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
     : unique conversation ID for persistence and retrieval
 
 ### prompt `object` <font color="gray">Optional</font>
 
 Reference a prompt template and pass variables.
 
-- id `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- id `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : prompt template ID
 - variables `object`<font color="gray">Optional</font>: template variable key-value pairs for placeholder substitution
 - version `string`<font color="gray">Optional</font>: prompt template version
@@ -782,15 +782,15 @@ Text output configuration (including structured output formats).
 
 - format `object` <font color="gray">Optional</font>: output format (default `{ "type": "text" }`)  
    Possible types:
-  1. Text `object` - type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+  1. Text `object` - type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
      : `text`: plain text output
 
-  2. JSON schema `object` (Structured Outputs) - type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
-     : `json_schema`: structured JSON output - name `string`<span style="color: #FA6062; font-weight: 400">Required</span>
-     : output format name identifier - schema `object`<span style="color: #FA6062; font-weight: 400">Required</span>
+  2. JSON schema `object` (Structured Outputs) - type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+     : `json_schema`: structured JSON output - name `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+     : output format name identifier - schema `object`<span style="color: #FA6062; font-weight: 400">&#42;</span>
      : JSON Schema defining the output structure - description `string` <font color="gray">Optional</font>: description of the output format - strict `boolean` <font color="gray">Optional</font> (default `false`): whether to strictly enforce the schema; when true, validation is enforced
 
-  3. JSON object `object` (legacy JSON mode) - type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+  3. JSON object `object` (legacy JSON mode) - type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
      : `json_object`: JSON object output
 
 - verbosity `string` <font color="gray">Optional</font> (default `medium`)  
@@ -825,13 +825,13 @@ Below are the supported tool type definitions. Each tool type has specific confi
 
 :::details Function tool (function tool definition) `object`
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `function`: tool type, fixed to function tool
-- name `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- name `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : unique function name identifier
-- parameters `object`<span style="color: #FA6062; font-weight: 400">Required</span>
+- parameters `object`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : JSON Schema defining function parameters (structure + validation rules)
-- strict `boolean`<span style="color: #FA6062; font-weight: 400">Required</span>
+- strict `boolean`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   (default `true`): whether to strictly validate parameters against the schema
 - description `string` <font color="gray">Optional</font>: detailed function description to help the model decide when to use it
 
@@ -839,29 +839,29 @@ Below are the supported tool type definitions. Each tool type has specific confi
 
 <!-- :::details File search (file search) `object`
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 : `file_search`
-- vector_store_ids `array[string]`<span style="color: #FA6062; font-weight: 400">Required</span>
+- vector_store_ids `array[string]`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 : vector store IDs to search
 - filters `object` <font color="gray">Optional</font>: result filters
   - Comparison Filter `object`
-    - key `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+    - key `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 : metadata key to filter on
-    - type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+    - type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 : `eq` / `ne` / `gt` / `gte` / `lt` / `lte` / `in` / `nin`
-    - value `string | number | boolean | array`<span style="color: #FA6062; font-weight: 400">Required</span>
+    - value `string | number | boolean | array`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 : value to compare
   - Compound Filter `object`
-    - filters `array[ComparisonFilter | CompoundFilter]`<span style="color: #FA6062; font-weight: 400">Required</span>
+    - filters `array[ComparisonFilter | CompoundFilter]`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 : sub-filters
-    - type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+    - type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 : `and` / `or`
 - max_num_results `integer` <font color="gray">Optional</font> (1~50): max results
 - ranking_options `object` <font color="gray">Optional</font>: ranking options
   - hybrid_search `object` <font color="gray">Optional</font>: hybrid weights
-    - embedding_weight `number`<span style="color: #FA6062; font-weight: 400">Required</span>
+    - embedding_weight `number`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 
-    - text_weight `number`<span style="color: #FA6062; font-weight: 400">Required</span>
+    - text_weight `number`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 
   - ranker `string` <font color="gray">Optional</font>: ranker name
 
@@ -869,13 +869,13 @@ Below are the supported tool type definitions. Each tool type has specific confi
 
 :::details Web search (generally available) `object`
 
-- type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `web_search` or `web_search_2025_08_26`
 - filters `object` <font color="gray">Optional</font>: result filters
   - allowed_domains `array[string]` <font color="gray">Optional</font> (default `[]`): allowed domain allowlist (subdomains allowed)
 - search_context_size `string` <font color="gray">Optional</font> (default `medium`): search context size level
 - user_location `object` <font color="gray">Optional</font>: approximate user location for localized results
-  - type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+  - type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
     : `approximate`
   - city `string` <font color="gray">Optional</font>
   - country `string` <font color="gray">Optional</font>: 2-letter ISO (e.g. `US`)
@@ -886,11 +886,11 @@ Below are the supported tool type definitions. Each tool type has specific confi
 
 :::details Web search preview `object`
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `web_search_preview` or `web_search_preview_2025_03_11`
 - search_context_size `string` <font color="gray">Optional</font>: `low` / `medium` / `high`
 - user_location `object` <font color="gray">Optional</font>: user location
-  - type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+  - type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
     : `approximate`
   - city `string` <font color="gray">Optional</font>
   - country `string` <font color="gray">Optional</font> (2-letter ISO)
@@ -901,26 +901,26 @@ Below are the supported tool type definitions. Each tool type has specific confi
 
 :::details Computer use preview (Computer Use tool) `object`
 
-- type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `computer_use_preview`
-- display_width `integer` <span style="color: #FA6062; font-weight: 400">Required</span>
+- display_width `integer` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : display width (pixels)
-- display_height `integer` <span style="color: #FA6062; font-weight: 400">Required</span>
+- display_height `integer` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : display height (pixels)
-- environment `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- environment `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : environment type (e.g. `browser` / `mac` / `windows` / `ubuntu`)
 
 :::
 
 <!-- :::details Code interpreter (code interpreter) `object`
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 : `code_interpreter`
-- container `string | object`<span style="color: #FA6062; font-weight: 400">Required</span>
+- container `string | object`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 : container config
   - `string`: existing container ID
   - `object`: new container config
-    - type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+    - type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 : `auto`
     - file_ids `array` <font color="gray">Optional</font>
     - memory_limit `string` <font color="gray">Optional</font>
@@ -929,16 +929,16 @@ Below are the supported tool type definitions. Each tool type has specific confi
 
 :::details Apply patch tool (apply patch) `object`
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `apply_patch`
 
 :::
 
 :::details MCP tool (remote MCP tool) `object` (if enabled)
 
-- type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `mcp`
-- server_label `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- server_label `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : MCP server label (for tool-call routing)
 - server_url `string` <font color="gray">Optional</font>: remote MCP server
 - authorization `string` <font color="gray">Optional</font>: OAuth access token (for remote MCP server or service connector)
@@ -956,7 +956,7 @@ Below are the supported tool type definitions. Each tool type has specific confi
 <!--
 :::details Image generation (image generation) `object`
 
-- type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 : `image_generation`
 - size `string` <font color="gray">Optional</font>: e.g. `1024x1024` / `1024x1536` / `1536x1024` / `auto`
 - quality `string` <font color="gray">Optional</font>: `low` / `medium` / `high` / `auto`
@@ -972,7 +972,7 @@ Below are the supported tool type definitions. Each tool type has specific confi
 
 :::details Shell tool (generic Shell) `object`
 
-- type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `shell`
 
 (Usually no extra configuration is needed; execution parameters are in the model output’s `shell_call.action`.)
@@ -981,7 +981,7 @@ Below are the supported tool type definitions. Each tool type has specific confi
 
 :::details Local shell tool (legacy local Shell) `object`
 
-- type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `local_shell`
 
 (The official guidance notes that local shell is legacy; for new use cases, `shell` is recommended.)
@@ -990,17 +990,17 @@ Below are the supported tool type definitions. Each tool type has specific confi
 
 :::details Custom tool (custom tool definition; non-function “free input / optionally constrained format”) `object`
 
-- type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `custom`
-- name `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+- name `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
   : tool name
 - description `string` <font color="gray">Optional</font>: tool description
 - format `object` <font color="gray">Optional</font>: input format (defaults to free text)
-  - **Text format** `object` - type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+  - **Text format** `object` - type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
     : `text`
-  - **Grammar format** `object` - type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
-    : `grammar` - syntax `string` <span style="color: #FA6062; font-weight: 400">Required</span>
-    : `lark` / `regex` - definition `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+  - **Grammar format** `object` - type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+    : `grammar` - syntax `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+    : `lark` / `regex` - definition `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
     : grammar definition
 
 :::
@@ -1019,18 +1019,18 @@ Controls how the model selects tools and whether it must call tools.
 
 :::details Allowed tools `object`
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `allowed_tools`
-- mode `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- mode `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `auto` / `required`
-- tools `array`<span style="color: #FA6062; font-weight: 400">Required</span>
+- tools `array`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : allowed tool set (e.g. `{ "type":"function","name":"get_weather" }`, etc.)
 
 :::
 
 :::details Hosted tool (force a built-in tool) `object`
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : one of:
     <!-- `file_search`  -->
   / `web_search_preview` / `computer_use_preview` /
@@ -1041,17 +1041,17 @@ Controls how the model selects tools and whether it must call tools.
 
 :::details Function tool (force a specific function) `object`
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `function`
-- name `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- name `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 :::
 
 :::details MCP tool (force a specific MCP tool) `object`
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `mcp`
-- server_label `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- server_label `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 - name `string`<font color="gray">Optional</font>
 
@@ -1059,22 +1059,22 @@ Controls how the model selects tools and whether it must call tools.
 
 :::details Custom tool (force a specific custom tool) `object`
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `custom`
-- name `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- name `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 :::
 
 :::details Specific apply patch tool choice (force the model to call apply_patch) `object`
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `apply_patch`
 
 :::
 
 :::details Specific shell tool choice (force the model to call Shell when a tool call is needed) `object`
 
-- type `string`<span style="color: #FA6062; font-weight: 400">Required</span>
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
   : `shell`
 
 :::
@@ -1118,11 +1118,11 @@ A stable user identifier for safety/abuse detection (recommended to hash).
 Used to configure routing and failover strategies across multiple model providers (e.g., OpenAI, Anthropic, Google) for this request.
 If not configured, the project or model’s default routing strategy is used.
 
-#### routing `object` <span style="color: #FA6062; font-weight: 400">Required</span>
+#### routing `object` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 Routing strategy configuration that determines how requests are selected and distributed across multiple providers.
 
-##### type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+##### type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 Routing type. Supported values:
 
@@ -1146,7 +1146,7 @@ Primary factor when multiple providers are available. For example:
 
 Actual behavior combines with `type`. For example, when `type = "priority"`, `primary_factor` mainly affects how priorities are ordered.
 
-##### providers `array` <span style="color: #FA6062; font-weight: 400">Required</span>
+##### providers `array` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 List of model providers that can participate in routing. Example: `["openai", "anthropic", "google"]`
 
@@ -1170,7 +1170,7 @@ Used to configure selection and routing among different models **within the same
 
 If not configured, the project or SDK’s default model selection strategy is used (e.g., default model, default task-type mapping).
 
-#### available_models `array` <span style="color: #FA6062; font-weight: 400">Required</span>
+#### available_models `array` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 List of **model names** that can be used for routing or fallback.
 
@@ -1184,7 +1184,7 @@ Task metadata used to determine the model or parameters **based on task type and
 
 Internal fields:
 
-##### task_type `string` <span style="color: #FA6062; font-weight: 400">Required</span>
+##### task_type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 Task type describing the purpose of the request for routing or automatic parameter selection.
 
