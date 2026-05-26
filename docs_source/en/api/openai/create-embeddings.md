@@ -4,13 +4,13 @@ title: API
 head:
   - - meta
     - name: description
-      content: Create Embeddings
+      content: Create an Embedding
   - - meta
     - name: keywords
       content: Zenmux, API, documentation, create, embeddings, OpenAI, vector, text-embedding
 ---
 
-# Create Embeddings
+# Create an Embedding
 
 ::: tip Troubleshooting
 Encountering errors during API calls? See the [API Error Codes Reference](/guide/advanced/error-codes) for a complete list of error types and troubleshooting solutions.
@@ -20,7 +20,7 @@ Encountering errors during API calls? See the [API Error Codes Reference](/guide
 POST https://zenmux.ai/api/v1/embeddings
 ```
 
-The Create Embeddings endpoint is compatible with OpenAI's [Create Embeddings](https://platform.openai.com/docs/api-reference/embeddings/create) API, used to convert input text into vector representations (embeddings).
+The Create an Embedding endpoint is compatible with OpenAI's [Create an Embedding](https://platform.openai.com/docs/api-reference/embeddings/create) API, used to convert input text into vector representations (embeddings).
 
 ## Request headers
 

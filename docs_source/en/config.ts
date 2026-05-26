@@ -193,7 +193,7 @@ export default defineLoacaleConfig({
               text: "OpenAI Compatible",
               items: [
                 {
-                  text: "Create Chat Completion",
+                  text: "Create a Chat Completion",
                   link: "/api/openai/create-chat-completion",
                 },
                 {
@@ -201,7 +201,7 @@ export default defineLoacaleConfig({
                   link: "/api/openai/openai-responses",
                 },
                 {
-                  text: "Create Embeddings",
+                  text: "Create an Embedding",
                   link: "/api/openai/create-embeddings",
                 },
                 {

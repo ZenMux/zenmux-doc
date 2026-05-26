@@ -4,13 +4,13 @@ title: API
 head:
   - - meta
     - name: description
-      content: Create Chat Completion
+      content: Create a Chat Completion
   - - meta
     - name: keywords
       content: Zenmux, API, documentation, create, chat, completion, new, OpenAI, Anthropic
 ---
 
-# Create Chat Completion
+# Create a Chat Completion
 
 ::: info Troubleshooting
 Encountering errors? See the [API Error Codes Reference](/guide/advanced/error-codes) for a complete list of error types and troubleshooting steps.
@@ -20,7 +20,7 @@ Encountering errors? See the [API Error Codes Reference](/guide/advanced/error-c
 POST https://zenmux.ai/api/v1/chat/completions
 ```
 
-The Create Chat Completion endpoint is compatible with OpenAI’s [Create Chat Completion](https://platform.openai.com/docs/api-reference/chat/create) API, and is used to run inference for conversational LLMs.
+The Create a Chat Completion endpoint is compatible with OpenAI’s [Create a Chat Completion](https://platform.openai.com/docs/api-reference/chat/create) API, and is used to run inference for conversational LLMs.
 
 The parameters below list all options that _may_ be supported by different models. Parameter support varies by model; for the exact parameters supported by a given model, see that model’s detail page.
 

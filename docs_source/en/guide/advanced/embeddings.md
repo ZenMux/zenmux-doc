@@ -304,4 +304,4 @@ print(f"Detected {len(anomalies)} anomalous data points")
 
 ## API Reference
 
-For the complete parameter reference of the Create Embeddings endpoint, see [Create Embeddings API Reference](/api/openai/create-embeddings).
+For the complete parameter reference of the Create an Embedding endpoint, see [Create an Embedding API Reference](/api/openai/create-embeddings).
