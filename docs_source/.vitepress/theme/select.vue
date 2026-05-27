@@ -72,19 +72,21 @@ export default defineComponent({
   color: #000;
 }
 
-:global(.dark) .copy-page-btn {
-  color: var(--zm-text-secondary);
-  border-color: var(--zm-border-primary);
-}
-
-:global(.dark) .copy-page-btn:hover {
-  color: #fff;
-  border-color: #666;
-}
-
 .copy-page-btn .btn-icon {
   flex-shrink: 0;
   width: 14px;
   height: 14px;
+}
+</style>
+
+<style>
+.dark .copy-page-btn {
+  color: var(--zm-text-tertiary) !important;
+  border-color: var(--zm-border-primary) !important;
+}
+
+.dark .copy-page-btn:hover {
+  color: var(--zm-text-secondary) !important;
+  border-color: var(--zm-text-tertiary) !important;
 }
 </style>

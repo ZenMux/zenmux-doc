@@ -150,13 +150,6 @@ async function copyPath() {
           <span class="http-method" :class="httpMethod.toLowerCase()">{{
             httpMethod.charAt(0) + httpMethod.slice(1).toLowerCase()
           }}</span>
-          <span
-            class="http-path"
-            :class="{ copied: copiedPath }"
-            v-text="requestURL"
-            @click="copyPath"
-            title="Click to copy path"
-          ></span>
         </div>
         <div class="right">
           <div
@@ -188,7 +181,7 @@ async function copyPath() {
             >
               <path
                 d="M5.33 6L8 3.33 10.67 6M5.33 10L8 12.67 10.67 10"
-                stroke="#999"
+                stroke="currentColor"
                 stroke-width="1.33"
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -473,6 +466,10 @@ async function copyPath() {
   color: var(--zm-text-tertiary) !important;
 }
 
+.dark .api-header .el-select .el-select__placeholder.is-transparent {
+  color: var(--zm-text-tertiary) !important;
+}
+
 .api-header .el-select .el-select__suffix {
   display: none !important;
 }
@@ -509,6 +506,11 @@ async function copyPath() {
 .lang-select-wrapper .chevron-updown {
   flex-shrink: 0;
   pointer-events: none;
+  color: #999;
+}
+
+.dark .lang-select-wrapper .chevron-updown {
+  color: var(--zm-text-tertiary);
 }
 
 /* Dropdown popup */
@@ -642,6 +644,15 @@ async function copyPath() {
 /* ===== Layout on API pages ===== */
 .api-page .VPDoc .content {
   margin-right: min(400px, calc(100vw - 912px));
+}
+
+@media (min-width: 1520px) {
+  .api-page .VPDoc .content {
+    margin-right: min(554px, calc(100vw - 758px));
+  }
+  html.ai-panel-open .api-page .VPDoc .content {
+    margin-right: min(400px, calc(100vw - 912px));
+  }
 }
 
 @media (max-width: 1280px) {

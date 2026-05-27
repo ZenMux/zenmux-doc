@@ -138,7 +138,7 @@ async function copyResponse() {
             >
               <path
                 d="M5.33 6L8 3.33 10.67 6M5.33 10L8 12.67 10.67 10"
-                stroke="#999"
+                stroke="currentColor"
                 stroke-width="1.33"
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -247,6 +247,11 @@ async function copyResponse() {
 .api-response-float-container .lang-select-wrapper .chevron-updown {
   flex-shrink: 0;
   pointer-events: none;
+  color: #999;
+}
+
+.dark .api-response-float-container .lang-select-wrapper .chevron-updown {
+  color: var(--zm-text-tertiary);
 }
 
 /* ===== El-Select Overrides ===== */
@@ -298,6 +303,13 @@ async function copyResponse() {
 }
 
 .dark .api-response-float-container .el-select .el-select__placeholder {
+  color: var(--zm-text-tertiary) !important;
+}
+
+.dark
+  .api-response-float-container
+  .el-select
+  .el-select__placeholder.is-transparent {
   color: var(--zm-text-tertiary) !important;
 }
 

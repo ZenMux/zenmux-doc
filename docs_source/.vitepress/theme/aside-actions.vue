@@ -97,11 +97,11 @@ function askAI() {
   color: #000;
 }
 
-.dark .aside-action-item {
+:global(.dark) .aside-action-item {
   color: var(--zm-text-tertiary);
 }
 
-.dark .aside-action-item:hover {
+:global(.dark) .aside-action-item:hover {
   color: #fff;
 }
 

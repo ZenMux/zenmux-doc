@@ -496,14 +496,6 @@ onUnmounted(() => {
   background: transparent;
 }
 
-:global(.dark) .ai-trigger {
-  border-color: var(--zm-border-primary);
-  color: var(--zm-text-tertiary);
-}
-
-:global(.dark) .ai-trigger-icon {
-  color: var(--zm-text-tertiary);
-}
 
 .ai-trigger-icon {
   flex-shrink: 0;
@@ -1027,5 +1019,26 @@ onUnmounted(() => {
 
 .ai-sidebar-leave-to {
   transform: translateX(100%);
+}
+</style>
+
+<style>
+.dark .ai-trigger {
+  border-color: var(--zm-border-primary) !important;
+  color: var(--zm-text-tertiary) !important;
+}
+
+.dark .ai-trigger:hover {
+  color: var(--zm-text-secondary) !important;
+  border-color: var(--zm-text-tertiary) !important;
+}
+
+.dark .ai-trigger.active {
+  color: var(--zm-text-tertiary) !important;
+  border-color: var(--zm-border-primary) !important;
+}
+
+.dark .ai-trigger-icon {
+  color: var(--zm-text-tertiary) !important;
 }
 </style>
