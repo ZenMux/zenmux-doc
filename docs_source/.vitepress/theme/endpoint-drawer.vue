@@ -37,7 +37,7 @@ const providersData: Provider[] = [
     },
     endpoints: [
       {
-        title: "Create Chat Completion",
+        title: "Create a Chat Completion",
         path: "/chat/completions",
         iconType: "chat",
         docUrl: "/docs/api/openai/create-chat-completion.html",
@@ -49,7 +49,7 @@ const providersData: Provider[] = [
         docUrl: "/docs/api/openai/openai-responses.html",
       },
       {
-        title: "Embeddings",
+        title: "Create an Embedding",
         path: "/embeddings",
         iconType: "embeddings",
         docUrl: "/docs/api/openai/create-embeddings.html",
