@@ -17,5 +17,9 @@ docs
 
 !docs_source/public/docs/
 
+# Auto-generated search index files (built by docs-index-plugin)
+docs_source/public/chunks-index-*.json
+docs_source/public/docs-index-*.json
+
 # Icon loading script (run `pnpm run load-icons` to regenerate icons)
 scripts/load-icons.ts
