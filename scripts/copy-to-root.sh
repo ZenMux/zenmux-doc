@@ -27,6 +27,14 @@ for file in *.html; do
   fi
 done
 
+# 复制根目录的静态资源文件（SVG、JSON、CSS 等）到 docs/docs/
+for file in *.svg *.json *.css; do
+  if [ -f "$file" ]; then
+    echo "Copying $file to docs/..."
+    cp "$file" "docs/$file"
+  fi
+done
+
 # 复制其他必要文件
 if [ -f "robots.txt" ]; then
   cp "robots.txt" "docs/robots.txt"
