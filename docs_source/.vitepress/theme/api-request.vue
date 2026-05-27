@@ -146,11 +146,7 @@ async function copyPath() {
   <div v-if="isApiRequest" class="api-float-container">
     <div class="api-request-container">
       <div class="api-header">
-        <div class="left">
-          <span class="http-method" :class="httpMethod.toLowerCase()">{{
-            httpMethod.charAt(0) + httpMethod.slice(1).toLowerCase()
-          }}</span>
-        </div>
+        <div class="left"></div>
         <div class="right">
           <div
             class="lang-select-wrapper"
