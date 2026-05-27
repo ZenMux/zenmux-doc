@@ -222,13 +222,21 @@ function handleGlobalKeydown(e: KeyboardEvent) {
   }
 }
 
+function handleOpenAI() {
+  if (!panelOpen.value) {
+    panelOpen.value = true;
+  }
+}
+
 onMounted(() => {
   document.addEventListener("keydown", handleGlobalKeydown);
+  document.addEventListener("open-ai-assistant", handleOpenAI);
   updateBodyClass();
 });
 
 onUnmounted(() => {
   document.removeEventListener("keydown", handleGlobalKeydown);
+  document.removeEventListener("open-ai-assistant", handleOpenAI);
   document.documentElement.classList.remove(
     "ai-panel-open",
     "ai-panel-maximized",
@@ -244,8 +252,8 @@ onUnmounted(() => {
     title="Ask AI (⌘J)"
     @click="togglePanel"
   >
-    <span class="ai-trigger-text">Ask AI</span>
     <ChatFrame class="ai-trigger-icon" />
+    <span class="ai-trigger-text">Ask AI</span>
   </button>
 
   <!-- Right sidebar panel -->
@@ -431,7 +439,7 @@ onUnmounted(() => {
               title="Stop"
               @click="handleStop"
             >
-              <IconStop width="14" height="14" />
+              <IconStop width="32" height="32" />
             </button>
             <button
               v-else
@@ -440,7 +448,7 @@ onUnmounted(() => {
               title="Send"
               @click="handleSend"
             >
-              <IconSendV5 width="14" height="14" />
+              <IconSendV5 width="32" height="32" />
             </button>
           </div>
         </div>
@@ -454,37 +462,46 @@ onUnmounted(() => {
 .ai-trigger {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+  width: 90px;
   height: 32px;
-  padding: 0 10px;
-  border: 1px solid var(--vp-c-divider);
+  padding: 8px 12px;
+  border: 1px solid #e6e6e6;
   border-radius: 8px;
-  background: var(--vp-c-bg);
-  color: var(--vp-c-text-2);
+  background: transparent;
+  color: #666;
   cursor: pointer;
-  font-size: 13px;
-  font-weight: 500;
+  font-family:
+    "SF Pro",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-size: 14px;
+  font-weight: 400;
   transition: all 0.2s;
   white-space: nowrap;
   margin-left: 8px;
-  margin-right: 32px;
+  margin-right: auto !important;
 }
 
 .ai-trigger:hover {
   color: var(--vp-c-text-1);
-  border-color: var(--vp-c-text-3);
+  border-color: #ccc;
 }
 
 .ai-trigger.active {
-  color: var(--vp-c-brand-1);
-  border-color: var(--vp-c-brand-1);
-  background: var(--vp-c-brand-soft);
+  color: #666;
+  border-color: #e6e6e6;
+  background: transparent;
 }
+
 
 .ai-trigger-icon {
   flex-shrink: 0;
   width: 16px;
   height: 16px;
+  color: #666;
 }
 
 @media (max-width: 768px) {
@@ -492,6 +509,7 @@ onUnmounted(() => {
     display: none;
   }
   .ai-trigger {
+    width: auto;
     padding: 0 7px;
     margin-right: 4px;
   }
@@ -500,13 +518,14 @@ onUnmounted(() => {
 /* --- Sidebar panel --- */
 .ai-sidebar {
   position: fixed;
-  top: var(--vp-nav-height, 64px);
+  top: calc(var(--vp-nav-height, 64px) + var(--zenmux-doc-tabs-height, 48px));
   right: 0;
   width: 380px;
-  height: calc(100vh - var(--vp-nav-height, 64px));
+  height: calc(
+    100vh - var(--vp-nav-height, 64px) - var(--zenmux-doc-tabs-height, 48px)
+  );
   background: var(--vp-c-bg);
   border-left: 1px solid var(--vp-c-divider);
-  border-top: 1px solid var(--vp-c-divider);
   display: flex;
   flex-direction: column;
   z-index: 30;
@@ -1000,5 +1019,26 @@ onUnmounted(() => {
 
 .ai-sidebar-leave-to {
   transform: translateX(100%);
+}
+</style>
+
+<style>
+.dark .ai-trigger {
+  border-color: var(--zm-border-primary) !important;
+  color: var(--zm-text-tertiary) !important;
+}
+
+.dark .ai-trigger:hover {
+  color: var(--zm-text-secondary) !important;
+  border-color: var(--zm-text-tertiary) !important;
+}
+
+.dark .ai-trigger.active {
+  color: var(--zm-text-tertiary) !important;
+  border-color: var(--zm-border-primary) !important;
+}
+
+.dark .ai-trigger-icon {
+  color: var(--zm-text-tertiary) !important;
 }
 </style>

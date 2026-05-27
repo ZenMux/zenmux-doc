@@ -12,7 +12,7 @@ head:
 
 # Get Statistics Market Share
 
-::: tip 💡 Troubleshooting
+::: info Troubleshooting
 Encountering errors? See the [API Error Codes Reference](/guide/advanced/error-codes) for a complete list of error types and troubleshooting steps.
 :::
 
@@ -24,13 +24,13 @@ Track provider market share over time. Returns absolute values per provider per 
 
 Use this endpoint to visualize how provider dominance shifts over time, build 100% stacked charts, or monitor competitive dynamics across the platform.
 
-::: info ℹ️ Data freshness
+::: info Data freshness
 Statistics data is aggregated on a daily schedule. The most recent available data is from **yesterday (T-1)**. Today's usage will appear in tomorrow's aggregation.
 :::
 
 ## Authentication
 
-### Authorization Header <font color="red">Required</font>
+### Authorization Header <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 ```http
 Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
@@ -40,7 +40,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 - **Format**: `Bearer <API_KEY>`
 - **Description**: A Management API Key created in the [ZenMux Console](https://zenmux.ai/platform/management)
 
-::: warning ⚠️ Management API Key required
+::: warning Management API Key required
 This endpoint only accepts Management API Keys. Standard API Keys are not supported.
 :::
 
@@ -50,14 +50,14 @@ Each endpoint has its own independent rate limit counter. The maximum number of 
 
 ## Parameters
 
-### metric `string` <font color="red">Required</font>
+### metric `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 Which metric to compute market share for.
 
 - `tokens` — total input + output token count
 - `cost` — list-price cost in USD
 
-### bucket_width `string` <font color="red">Required</font>
+### bucket_width `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 Time bucket size.
 
@@ -123,7 +123,7 @@ Array of time buckets. Each bucket contains:
   - `label` `string` — Provider display name (e.g., "Anthropic")
   - `value` `number` — Absolute token count or USD cost for this bucket (not a percentage)
 
-::: tip 💡 Computing percentages
+::: info Computing percentages
 The API returns absolute values. To compute market share percentages, divide each provider's value by the bucket total:
 
 ```python
@@ -173,7 +173,7 @@ const params = new URLSearchParams({
 
 const response = await fetch(
   `https://zenmux.ai/api/v1/management/statistics/market_share?${params}`,
-  { headers: { Authorization: `Bearer ${ZENMUX_MANAGEMENT_API_KEY}` } }
+  { headers: { Authorization: `Bearer ${ZENMUX_MANAGEMENT_API_KEY}` } },
 );
 const data = await response.json();
 ```

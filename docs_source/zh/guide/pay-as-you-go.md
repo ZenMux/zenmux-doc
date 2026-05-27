@@ -12,7 +12,7 @@ head:
 
 欢迎使用 **ZenMux Pay As You Go（按量付费）** 方案！本指南将帮助你了解按量付费的核心优势，以及如何充值、管理余额和创建生产级 API Key。
 
-::: tip 💡 生产环境的最佳选择
+::: info 生产环境的最佳选择
 Pay As You Go 是专为生产环境打造的按量计费方案，提供**无 Rate Limit 限制**、**无并发限制**、**生产级稳定性保障**和**精准透明计费**。
 :::
 
@@ -51,7 +51,7 @@ Pay As You Go 方案特别适合以下场景：
 | **成本结构**   | 按实际消耗精准计费        | 固定月费               |
 | **使用限制**   | 无特殊限制                | ❌ 禁止生产环境使用    |
 
-::: warning ⚠️ 重要提示
+::: warning 重要提示
 如果你的项目已经上线或即将商业化，**必须使用 Pay As You Go 方案**。订阅制（Builder Plan）仅限个人开发和学习场景(Vibe Coding场景和Media Create场景)，禁止用于生产环境，违规使用将导致账号受影响。
 :::
 
@@ -61,7 +61,7 @@ Pay As You Go 方案特别适合以下场景：
 
 访问 **[ZenMux 控制台](https://zenmux.ai/platform/pay-as-you-go)**，导航到 **Manage > Pay As You Go** 页面。
 
-![Pay As You Go 页面](https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/rsGoojf/pay-as-you-go.png)
+![Pay As You Go 页面](https://cdn.marmot-cloud.com/storage/zenmux/2026/05/26/KMUWdun/20260526160627.jpg)
 
 ### 第二步：查看账户余额
 
@@ -71,7 +71,7 @@ Pay As You Go 方案特别适合以下场景：
 - **Top-Up Credits（充值额度）**：你充值获得的额度
 - **Bonus & Compensation Credits（奖励与补偿额度）**：充值赠送、推荐奖励、保险赔偿等获得的额度
 
-::: info 💡 余额说明
+::: info 余额说明
 所有额度以美元计价（$），1 额度 = 1 美元等值的 API 调用量。消耗时优先使用奖励额度，然后使用充值额度。
 :::
 
@@ -98,7 +98,7 @@ Pay As You Go 的 API Key 与订阅制完全独立，专为生产环境设计。
 | **Tags**       | 标签，用于分类和管理 Key（例如：`production`、`frontend`） |
 | **Key Status** | 启用/禁用开关。禁用后该 Key 的所有请求将被拒绝             |
 
-::: tip 💡 API Key 使用提示
+::: info API Key 使用提示
 
 - 为不同的项目或环境创建独立的 API Key，方便成本归因和管理
 - 定期检查 **Last Used** 和 **Used** 列，识别不活跃或高消耗的 Key
@@ -119,7 +119,7 @@ Pay As You Go 的 API Key 与订阅制完全独立，专为生产环境设计。
 | **TPM Limit**            | 每分钟 Token 数限制，用于控制大模型调用的 Token 消耗速率                       |
 | **Supported Models**     | 限制该 Key 可调用的模型范围。默认为 All models（无限制），可选择仅允许特定模型 |
 
-::: warning ⚠️ 注意
+::: warning 注意
 禁用 API Key 会立即停止所有使用该 Key 的请求，生产环境请谨慎操作。状态变更可能需要最多 3 分钟生效。
 :::
 
@@ -177,7 +177,7 @@ main();
 
 :::
 
-::: info 📚 更多使用方式
+::: info 更多使用方式
 完整的 API 调用方式请参考 [快速开始指南](/zh/guide/quickstart)。
 :::
 
@@ -269,14 +269,14 @@ main();
 - 访问 [成本分析页面](https://zenmux.ai/platform/cost)，查看详细的成本归因和使用趋势
 - 加入 [Discord 社区](http://discord.gg/vHZZzj84Bm)，与其他开发者交流
 
-::: tip 联系我们
-如果您在使用过程中遇到任何问题，或有任何建议和反馈，欢迎通过以下方式联系我们：
+<ContactCards>
+<ContactCard icon="mail" title="邮箱">
 
-- **官方网站**：<https://zenmux.ai>
-- **技术支持邮箱**：[support@zenmux.ai](mailto:support@zenmux.ai)
-- **商务合作邮箱**：[bd@zenmux.ai](mailto:bd@zenmux.ai)
-- **Twitter**：[@ZenMuxAI](https://twitter.com/ZenMuxAI)
-- **Discord 社区**：<http://discord.gg/vHZZzj84Bm>
+技术支持: [support@zenmux.ai](mailto:support@zenmux.ai)
 
-更多联系方式和详细信息，请访问我们的[联系我们页面](/zh/help/contact)。
-:::
+商务合作: [bd@zenmux.ai](mailto:bd@zenmux.ai)
+
+</ContactCard>
+<ContactCard icon="x" title="X / Twitter" link="https://x.com/ZenMuxAI" label="@ZenMuxAI" />
+<ContactCard icon="discord" title="Discord" link="https://discord.gg/vHZZzj84Bm" label="@ZenMuxAI" />
+</ContactCards>

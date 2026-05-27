@@ -12,7 +12,7 @@ head:
 
 ZenMux 支持通过 OpenAI Image 协议调用 OpenAI 系列图片生成模型。你可以继续使用 OpenAI SDK，只需要把 Base URL 指向 ZenMux，并使用 ZenMux API Key。
 
-::: tip 💡 支持模型
+::: info 支持模型
 ZenMux 支持的 OpenAI 图片生成模型会持续更新。请前往 [ZenMux 模型目录](https://zenmux.ai/models?author=openai&sort=newest&output_modalities=image) 查询当前可用模型。
 :::
 

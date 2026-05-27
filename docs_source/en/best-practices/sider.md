@@ -116,15 +116,14 @@ View all available models via the [ZenMux Model List](https://zenmux.ai/models)
 
 ## Contact Us
 
-If you encounter any issues during use, or have any suggestions or feedback, feel free to contact us through the following channels:
+<ContactCards>
+<ContactCard icon="mail" title="Email">
 
-::: tip Get Help
+Technical support: [support@zenmux.ai](mailto:support@zenmux.ai)
 
-- Official Website: <https://zenmux.ai>
-- Technical Support Email: [support@zenmux.ai](mailto:support@zenmux.ai)
-- Business Inquiries Email: [bd@zenmux.ai](mailto:bd@zenmux.ai)
-- Twitter: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
-- Discord Community: <http://discord.gg/vHZZzj84Bm>
+Business cooperation: [bd@zenmux.ai](mailto:bd@zenmux.ai)
 
-For more contact options and details, please visit our [Contact Us page](/help/contact).
-:::
+</ContactCard>
+<ContactCard icon="x" title="X / Twitter" link="https://x.com/ZenMuxAI" label="@ZenMuxAI" />
+<ContactCard icon="discord" title="Discord" link="https://discord.gg/vHZZzj84Bm" label="@ZenMuxAI" />
+</ContactCards>

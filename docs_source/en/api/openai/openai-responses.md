@@ -12,7 +12,7 @@ head:
 
 # Create a Model Response
 
-::: tip 💡 Troubleshooting
+::: info Troubleshooting
 Encountering errors? See the [API Error Codes Reference](/guide/advanced/error-codes) for a complete list of error types and troubleshooting steps.
 :::
 
@@ -26,21 +26,21 @@ Below is a list of all parameters that may be supported by different models. Par
 
 ## Request headers
 
-### Authorization `string` <font color="red">Required</font>
+### Authorization `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 Bearer token authentication.
 
-### Content-Type `string` <font color="red">Required</font>
+### Content-Type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 Request content type. Default is `application/json`.
 
 ## Request body
 
-### model `string` <font color="red">Required</font>
+### model `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 The model ID for this inference call, in the format `<provider>/<model_name>`, e.g., openai/gpt-5. You can find it on each model’s detail page.
 
-### input `string | array` <font color="gray">Optional</font>
+### input `string | array` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 The content passed to the model.
 
@@ -54,9 +54,11 @@ Each element in the array is an **Item** (a context item). It can include messag
 
 ##### 1. Input message `object`
 
-- type `string` <font color="gray">Optional</font>: fixed to `message`
-- role `string` <font color="red">Required</font>: `user` / `assistant` / `system` / `developer`
-- content `string | array` <font color="red">Required</font>: message content
+- type `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: fixed to `message`
+- role `string` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : `user` / `assistant` / `system` / `developer`
+- content `string | array` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : message content
   - If `string`: plain text
   - If `array`: a list of content parts (see Input content parts below)
 
@@ -64,23 +66,28 @@ Each element in the array is an **Item** (a context item). It can include messag
 
 1. Input text `object`
 
-- type `string` <font color="red">Required</font>: `input_text`
-- text `string` <font color="red">Required</font>: text content
+- type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : `input_text`
+- text `string` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : text content
 
 2. Input image `object`
 
-- type `string`: `input_image` <font color="red">Required</font>
-- detail `string`: `high` / `low` / `auto` <font color="red">Required</font>: image processing detail level; affects token usage and recognition accuracy
-- file_id `string` <font color="gray">Optional</font>: ID of an uploaded file
-- image_url `string` (URL or data URL/base64) <font color="gray">Optional</font>: image URL or base64-encoded data
+- type `string`: `input_image` <span style="color: #FA6062; font-weight: 400">\*</span>
+
+- detail `string`: `high` / `low` / `auto` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : image processing detail level; affects token usage and recognition accuracy
+- file_id `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: ID of an uploaded file
+- image_url `string` (URL or data URL/base64) <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: image URL or base64-encoded data
 
 3. Input file `object`
 
-- type `string`: `input_file` <font color="red">Required</font>
-- file_data `string` <font color="gray">Optional</font>: base64-encoded file data
-- file_id `string`<font color="gray">Optional</font>: ID of an uploaded file
-- file_url `string`<font color="gray">Optional</font>: file URL
-- filename `string`<font color="gray">Optional</font>: file name
+- type `string`: `input_file` <span style="color: #FA6062; font-weight: 400">\*</span>
+
+- file_data `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: base64-encoded file data
+- file_id `string`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: ID of an uploaded file
+- file_url `string`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: file URL
+- filename `string`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: file name
 
 :::
 
@@ -88,10 +95,12 @@ Each element in the array is an **Item** (a context item). It can include messag
 
 :::details Input message `object`
 
-- type `string` <font color="gray">Optional</font>: fixed to `message`
-- role `string` <font color="red">Required</font>: `user` / `assistant` / `system` / `developer`
-- status `string` <font color="gray">Optional</font>: `in_progress` / `completed` / `incomplete` item status
-- content `string | array` <font color="red">Required</font>: message content
+- type `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: fixed to `message`
+- role `string` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : `user` / `assistant` / `system` / `developer`
+- status `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: `in_progress` / `completed` / `incomplete` item status
+- content `string | array` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : message content
   - If `string`: plain text
   - If `array`: a list of content parts; each element can be `input_text` / `input_image` / `input_file` (same as above)
 
@@ -101,55 +110,88 @@ Each element in the array is an **Item** (a context item). It can include messag
 
 (Used when you “feed back the model’s previous output message item” into `input`.)
 
-- type `string`<font color="red">Required</font>: `message`
-- role `string`<font color="red">Required</font>: fixed to `assistant`
-- id `string`<font color="red">Required</font>: unique ID of the output message
-- status `string`<font color="red">Required</font>: `in_progress` / `completed` / `incomplete`
-- content `array`<font color="red">Required</font>: list of **Output content parts** (see below)
+- type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : `message`
+- role `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : fixed to `assistant`
+- id `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : unique ID of the output message
+- status `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : `in_progress` / `completed` / `incomplete`
+- content `array`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : list of **Output content parts** (see below)
 
 ###### Output content parts (possible output content part types)
 
-- type `string`<font color="red">Required</font>: `output_text`
-- text `string`<font color="red">Required</font>: output text
-- annotations `array`<font color="red">Required</font>: annotations (see below)
-- logprobs `array`<font color="red">Required</font>: logprobs (see below)
+- type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : `output_text`
+- text `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : output text
+- annotations `array`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : annotations (see below)
+- logprobs `array`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : logprobs (see below)
 
 **annotations** element types:
 
 - File citation `object`
-  - type `string`<font color="red">Required</font>: `file_citation`
-  - file_id `string`<font color="red">Required</font>: cited file ID
-  - filename `string`<font color="red">Required</font>: cited file name
-  - index `integer`<font color="red">Required</font>: starting index position in the text
+  - type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+    : `file_citation`
+  - file_id `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+    : cited file ID
+  - filename `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+    : cited file name
+  - index `integer`<span style="color: #FA6062; font-weight: 400">\*</span>
+    : starting index position in the text
 - URL citation `object`
-  - type `string`<font color="red">Required</font>: `url_citation`
-  - start_index `integer`<font color="red">Required</font>: starting index position of the citation in the text
-  - end_index `integer`<font color="red">Required</font>: ending index position of the citation in the text
-  - title `string`<font color="red">Required</font>: cited page title
-  - url `string`<font color="red">Required</font>: cited page URL
+  - type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+    : `url_citation`
+  - start_index `integer`<span style="color: #FA6062; font-weight: 400">\*</span>
+    : starting index position of the citation in the text
+  - end_index `integer`<span style="color: #FA6062; font-weight: 400">\*</span>
+    : ending index position of the citation in the text
+  - title `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+    : cited page title
+  - url `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+    : cited page URL
 - Container file citation `object`
-  - type `string`<font color="red">Required</font>: `container_file_citation`
-  - container_id `string`<font color="red">Required</font>: container file ID
-  - file_id `string`<font color="red">Required</font>: actual cited file ID
-  - filename `string`<font color="red">Required</font>: cited file name
-  - start_index `integer`<font color="red">Required</font>: starting index position of the citation in the text
-  - end_index `integer`<font color="red">Required</font>: ending index position of the citation in the text
+  - type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+    : `container_file_citation`
+  - container_id `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+    : container file ID
+  - file_id `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+    : actual cited file ID
+  - filename `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+    : cited file name
+  - start_index `integer`<span style="color: #FA6062; font-weight: 400">\*</span>
+    : starting index position of the citation in the text
+  - end_index `integer`<span style="color: #FA6062; font-weight: 400">\*</span>
+    : ending index position of the citation in the text
 - File path `object`
-  - type `string`<font color="red">Required</font>: `file_path`
-  - file_id `string`<font color="red">Required</font>: file ID
-  - index `integer`<font color="red">Required</font>: index position in the list
+  - type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+    : `file_path`
+  - file_id `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+    : file ID
+  - index `integer`<span style="color: #FA6062; font-weight: 400">\*</span>
+    : index position in the list
 
 **logprobs** (each element is logprob info for one token; field hierarchy below):
 
-- bytes `array`<font color="red">Required</font>: byte representation of the token
-- logprob `number`<font color="red">Required</font>: token log probability
-- token `string`<font color="red">Required</font>: token text
-- top_logprobs `array`<font color="red">Required</font>: most likely candidate tokens (each element includes `bytes` / `logprob` / `token`)
+- bytes `array`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : byte representation of the token
+- logprob `number`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : token log probability
+- token `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : token text
+- top_logprobs `array`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : most likely candidate tokens (each element includes `bytes` / `logprob` / `token`)
 
 2. Refusal `object`
 
-- type `string`<font color="red">Required</font>: `refusal`
-- refusal `string`<font color="red">Required</font>: explanation for why the model refused to answer
+- type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : `refusal`
+- refusal `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : explanation for why the model refused to answer
 
 :::
 
@@ -157,12 +199,16 @@ Each element in the array is an **Item** (a context item). It can include messag
 
 The model initiates a call to a **function tool**.
 
-- type `string`: `function_call` <font color="red">Required</font>
-- call_id `string` <font color="red">Required</font>: unique identifier for the function call
-- name `string` <font color="red">Required</font>: name of the function to call
-- arguments `string` <font color="red">Required</font>: function arguments as a JSON string
-- id `string` <font color="gray">Optional</font>: unique item ID
-- status `string` <font color="gray">Optional</font>: call status, `in_progress` / `completed` / `incomplete`
+- type `string`: `function_call` <span style="color: #FA6062; font-weight: 400">\*</span>
+
+- call_id `string` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : unique identifier for the function call
+- name `string` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : name of the function to call
+- arguments `string` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : function arguments as a JSON string
+- id `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: unique item ID
+- status `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: call status, `in_progress` / `completed` / `incomplete`
 
 :::
 
@@ -170,11 +216,14 @@ The model initiates a call to a **function tool**.
 
 Send the result of executing the function back to the model (for the next step of reasoning).
 
-- type `string`: `function_call_output` <font color="red">Required</font>
-- call_id `string`<font color="red">Required</font>: corresponding function call identifier
-- output `string | array` <font color="red">Required</font>: function execution result, either a string or a list of content parts
-- id `string` <font color="gray">Optional</font>: unique output item ID
-- status `string` <font color="gray">Optional</font>: output status, `in_progress` / `completed` / `incomplete`
+- type `string`: `function_call_output` <span style="color: #FA6062; font-weight: 400">\*</span>
+
+- call_id `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : corresponding function call identifier
+- output `string | array` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : function execution result, either a string or a list of content parts
+- id `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: unique output item ID
+- status `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: output status, `in_progress` / `completed` / `incomplete`
 
 > When `output` is an `array`, elements can be `input_text` / `input_image` / `input_file` (same as above).
 
@@ -184,11 +233,15 @@ Send the result of executing the function back to the model (for the next step o
 
 The model initiates a call to a “custom tool” (you must execute it on your side).
 
-- type `string`: `custom_tool_call`<font color="red">Required</font>
-- call_id `string`<font color="red">Required</font>: unique identifier for the custom tool call
-- name `string`<font color="red">Required</font>: name of the custom tool to call
-- input `string`<font color="red">Required</font>: input passed to the tool
-- id `string` <font color="gray">Optional</font>: unique item ID
+- type `string`: `custom_tool_call`<span style="color: #FA6062; font-weight: 400">\*</span>
+
+- call_id `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : unique identifier for the custom tool call
+- name `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : name of the custom tool to call
+- input `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : input passed to the tool
+- id `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: unique item ID
 
 :::
 
@@ -196,10 +249,13 @@ The model initiates a call to a “custom tool” (you must execute it on your s
 
 Send the execution result of the custom tool back to the model.
 
-- type `string`: `custom_tool_call_output`<font color="red">Required</font>
-- call_id `string`<font color="red">Required</font>: corresponding custom tool call identifier
-- output `string | array`<font color="red">Required</font>: tool result, either a string or a list of content parts
-- id `string`<font color="gray">Optional</font>: unique output item ID
+- type `string`: `custom_tool_call_output`<span style="color: #FA6062; font-weight: 400">\*</span>
+
+- call_id `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : corresponding custom tool call identifier
+- output `string | array`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : tool result, either a string or a list of content parts
+- id `string`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: unique output item ID
 
 > When `output` is an `array`, elements can be `input_text` / `input_image` / `input_file` (same as above).
 
@@ -207,51 +263,66 @@ Send the execution result of the custom tool back to the model.
 
 :::details Web search tool call `object`
 
-- type `string`<font color="red">Required</font>: `web_search_call`
-- id `string`<font color="red">Required</font>: unique ID for the web search tool call
-- status `string`<font color="red">Required</font>
-- action `object`<font color="red">Required</font>: describes what the web tool did in this call (search/open_page/find)
+- type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : `web_search_call`
+- id `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : unique ID for the web search tool call
+- status `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+
+- action `object`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : describes what the web tool did in this call (search/open_page/find)
 
 ###### Possible action types
 
 1. Search action `object`
 
-- type `string`<font color="red">Required</font>: action type, fixed to `search`
-- query `string`<font color="red">Required</font>: search query (deprecated)
-- queries `array`<font color="gray">Optional</font>: list of search queries
-- sources `array`<font color="gray">Optional</font>: list of sources
-  - each source:
-    - type `string`<font color="red">Required</font>: `url`
-    - url `string`<font color="red">Required</font>: source URL
+- type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : action type, fixed to `search`
+- query `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : search query (deprecated)
+- queries `array`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: list of search queries
+- sources `array`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: list of sources
+  - each source: - type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+    : `url` - url `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+    : source URL
 
 2. Open page action `object`
 
-- type `string`<font color="red">Required</font>: action type, fixed to `open_page`
-- url `string`<font color="red">Required</font>: page URL to open
+- type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : action type, fixed to `open_page`
+- url `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : page URL to open
 
 3. Find action `object`
 
-- type `string`<font color="red">Required</font>: action type, fixed to `find`
-- url `string`<font color="red">Required</font>: page URL to search
-- pattern `string`<font color="red">Required</font>: search pattern or keyword
+- type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : action type, fixed to `find`
+- url `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : page URL to search
+- pattern `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : search pattern or keyword
 
 :::
 
 <!-- :::details File search tool call (file search tool call) `object`
 
-- type `string`<font color="red">Required</font>: `file_search_call`
-- id `string`<font color="red">Required</font>: unique ID for the file search tool call
-- queries `array`<font color="red">Required</font>: list of query strings
-- status `string`<font color="red">Required</font>: search status, `in_progress` / `searching` / `incomplete` / `failed`
-- results `array`<font color="gray">Optional</font>: list of results
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+: `file_search_call`
+- id `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+: unique ID for the file search tool call
+- queries `array`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+: list of query strings
+- status `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+: search status, `in_progress` / `searching` / `incomplete` / `failed`
+- results `array`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: list of results
 
 ###### results element schema `object`
 
-- attributes `map`<font color="gray">Optional</font>: file metadata key-value pairs (up to 16 pairs)
-- file_id `string`<font color="gray">Optional</font>: matched file ID
-- filename `string`<font color="gray">Optional</font>: matched file name
-- score `number`<font color="gray">Optional</font>: relevance score, 0~1 (1 = exact match)
-- text `string`<font color="gray">Optional</font>: relevant text snippet retrieved from the file
+- attributes `map`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: file metadata key-value pairs (up to 16 pairs)
+- file_id `string`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: matched file ID
+- filename `string`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: matched file name
+- score `number`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: relevance score, 0~1 (1 = exact match)
+- text `string`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: relevant text snippet retrieved from the file
 
 ::: -->
 
@@ -259,168 +330,225 @@ Send the execution result of the custom tool back to the model.
 
 The model initiates a Computer Use action (you must execute it on your side). After execution, send results such as screenshots back via `computer_call_output`.
 
-- type `string`<font color="red">Required</font>: `computer_call`
-- call_id `string` <font color="red">Required</font>: unique identifier for the computer use call
-- action `object` <font color="red">Required</font>: parameters for the specific computer action (see Action types below)
-- pending_safety_checks `array` <font color="gray">Optional</font>: list of safety checks pending user confirmation
-  - id `string` <font color="gray">Optional</font>: unique safety check identifier
-  - code `string` <font color="gray">Optional</font>: safety check code
-  - message `string` <font color="gray">Optional</font>: safety check message
-- id `string` <font color="gray">Optional</font>: unique item identifier
-- status `string` <font color="gray">Optional</font>: call status, `in_progress` (in progress) / `completed` (completed) / `incomplete` (incomplete)
+- type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : `computer_call`
+- call_id `string` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : unique identifier for the computer use call
+- action `object` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : parameters for the specific computer action (see Action types below)
+- pending_safety_checks `array` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: list of safety checks pending user confirmation
+  - id `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: unique safety check identifier
+  - code `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: safety check code
+  - message `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: safety check message
+- id `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: unique item identifier
+- status `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: call status, `in_progress` (in progress) / `completed` (completed) / `incomplete` (incomplete)
 
 ###### Action types (possible `action` variants)
 
 ###### Click `object`
 
-- type `string`: `click` <font color="red">Required</font>: action type, fixed to `click`
-- x `number` <font color="red">Required</font>: click X coordinate (pixels)
-- y `number` <font color="red">Required</font>: click Y coordinate (pixels)
-- button `string` <font color="gray">Optional</font>: mouse button, `left` / `right` / `middle`
+- type `string`: `click` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : action type, fixed to `click`
+- x `number` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : click X coordinate (pixels)
+- y `number` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : click Y coordinate (pixels)
+- button `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: mouse button, `left` / `right` / `middle`
 
 ###### Double click `object`
 
-- type `string`: `double_click` <font color="red">Required</font>: action type, fixed to `double_click`
-- x `integer` <font color="red">Required</font>: double-click X coordinate (pixels)
-- y `integer` <font color="red">Required</font>: double-click Y coordinate (pixels)
+- type `string`: `double_click` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : action type, fixed to `double_click`
+- x `integer` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : double-click X coordinate (pixels)
+- y `integer` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : double-click Y coordinate (pixels)
 
 ###### Move `object`
 
-- type `string`: `move` <font color="red">Required</font>: action type, fixed to `move`
-- x `integer` <font color="red">Required</font>: target X coordinate (pixels)
-- y `integer` <font color="red">Required</font>: target Y coordinate (pixels)
+- type `string`: `move` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : action type, fixed to `move`
+- x `integer` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : target X coordinate (pixels)
+- y `integer` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : target Y coordinate (pixels)
 
 ###### Screenshot `object`
 
-- type `screenshot`：`screenshot` <font color="red">Required</font>: action type, fixed to `screenshot`
+- type `screenshot`：`screenshot` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : action type, fixed to `screenshot`
 
 ###### Drag `object`
 
-- type `string`: `drag` <font color="red">Required</font>: action type, fixed to `drag`
-- path `array` <font color="red">Required</font>: list of coordinates for the drag path
-  - x `integer` <font color="red">Required</font>: X coordinate (pixels)
-  - y `integer` <font color="red">Required</font>: Y coordinate (pixels)
+- type `string`: `drag` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : action type, fixed to `drag`
+- path `array` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : list of coordinates for the drag path
+  - x `integer` <span style="color: #FA6062; font-weight: 400">\*</span>
+    : X coordinate (pixels)
+  - y `integer` <span style="color: #FA6062; font-weight: 400">\*</span>
+    : Y coordinate (pixels)
 
 ###### Scroll `object`
 
-- type `string`: `scroll` <font color="red">Required</font>: action type, fixed to `scroll`
-- x `integer` <font color="gray">Optional</font>: scroll anchor X (pixels; provided by some implementations)
-- y `integer` <font color="gray">Optional</font>: scroll anchor Y (pixels)
-- scroll_x `integer` <font color="gray">Optional</font>: horizontal scroll distance (pixels)
-- scroll_y `integer` <font color="gray">Optional</font>: vertical scroll distance (pixels)
+- type `string`: `scroll` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : action type, fixed to `scroll`
+- x `integer` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: scroll anchor X (pixels; provided by some implementations)
+- y `integer` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: scroll anchor Y (pixels)
+- scroll_x `integer` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: horizontal scroll distance (pixels)
+- scroll_y `integer` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: vertical scroll distance (pixels)
 
 ###### Type `object`
 
-- type `string`: `type` <font color="red">Required</font>: action type, fixed to `type`
-- text `string` <font color="red">Required</font>: text to type
+- type `string`: `type` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : action type, fixed to `type`
+- text `string` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : text to type
 
 ###### Keypress `object`
 
-- type `string`: `keypress` <font color="red">Required</font>: action type, fixed to `keypress`
-- keys `array` <font color="red">Required</font>: key combo to press, e.g. `["CTRL","L"]` means Ctrl+L
+- type `string`: `keypress` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : action type, fixed to `keypress`
+- keys `array` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : key combo to press, e.g. `["CTRL","L"]` means Ctrl+L
 
 ###### Wait `object`
 
-- type `string`: `wait` <font color="red">Required</font>: action type, fixed to `wait`
+- type `string`: `wait` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : action type, fixed to `wait`
 
 :::
 
 :::details Computer tool call output (Computer Use output) `object`
 
-- type `string`<font color="red">Required</font>: `computer_call_output`
-- call_id `string`<font color="red">Required</font>: corresponding computer use call identifier
+- type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : `computer_call_output`
+- call_id `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : corresponding computer use call identifier
 - output `object`: output of the computer action (e.g., screenshots)
   - type `string`: `computer_screenshot`: output type, fixed to computer screenshot
-  - file_id `string`<font color="gray">Optional</font>: screenshot file ID
-  - image_url `string`<font color="gray">Optional</font>: screenshot URL
-- acknowledged_safety_checks `array`<font color="gray">Optional</font>: list of acknowledged safety checks
-  - id `string`<font color="gray">Optional</font>: acknowledged safety check identifier
-  - code `string`<font color="gray">Optional</font>: acknowledged safety check code
-  - message `string`<font color="gray">Optional</font>: acknowledged safety check message
-- id `string`<font color="gray">Optional</font>: unique output item identifier
-- status `string`<font color="gray">Optional</font>: output status, e.g. `completed` / `failed`
+  - file_id `string`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: screenshot file ID
+  - image_url `string`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: screenshot URL
+- acknowledged_safety_checks `array`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: list of acknowledged safety checks
+  - id `string`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: acknowledged safety check identifier
+  - code `string`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: acknowledged safety check code
+  - message `string`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: acknowledged safety check message
+- id `string`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: unique output item identifier
+- status `string`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: output status, e.g. `completed` / `failed`
 
 :::
 
 <!-- :::details Code interpreter tool call (code interpreter call) `object`
 
-- type `string`<font color="red">Required</font>: `code_interpreter_call`
-- id `string`<font color="red">Required</font>: unique ID for the code interpreter call
-- container_id `string`<font color="red">Required</font>: container environment ID
-- code `string`<font color="red">Required</font>: code to execute (may be null)
-- outputs `array`<font color="red">Required</font>: execution outputs (may be null)
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+: `code_interpreter_call`
+- id `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+: unique ID for the code interpreter call
+- container_id `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+: container environment ID
+- code `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+: code to execute (may be null)
+- outputs `array`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+: execution outputs (may be null)
   - Logs `object`
-    - type `string`<font color="red">Required</font>: `logs`
-    - logs `string`<font color="red">Required</font>: log output
+    - type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+: `logs`
+    - logs `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+: log output
   - Image `object`
-    - type `string`<font color="red">Required</font>: `image`
-    - url `string`<font color="red">Required</font>: generated image URL
-- status `string`<font color="red">Required</font>: status, `in_progress` / `completed` / `incomplete` / `interpreting` / `failed`
+    - type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+: `image`
+    - url `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+: generated image URL
+- status `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+: status, `in_progress` / `completed` / `incomplete` / `interpreting` / `failed`
 
 ::: -->
 
 <!-- :::details Image generation call (image generation call) `object`
 
-- type `string`<font color="red">Required</font>: `image_generation_call`
-- id `string`<font color="red">Required</font>: unique ID for the image generation call
-- result `string`<font color="red">Required</font>: generated image data (base64)
-- status `string`<font color="red">Required</font>: status, e.g. `in_progress` / `completed` / `failed`
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+: `image_generation_call`
+- id `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+: unique ID for the image generation call
+- result `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+: generated image data (base64)
+- status `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+: status, e.g. `in_progress` / `completed` / `failed`
 
 ::: -->
 
 :::details Local shell call (local shell call) `object`
 
-- type `string`<font color="red">Required</font>: `local_shell_call`
-- id `string`<font color="red">Required</font>: unique ID for the local shell call
-- call_id `string`<font color="red">Required</font>: associated call ID
-- status `string`<font color="red">Required</font>: call status, e.g. `in_progress` / `completed` / `failed`
-- action `object`<font color="red">Required</font>: specific shell execution action
-  - type `string`<font color="red">Required</font>: `exec`
-  - command `array`<font color="red">Required</font>: command arguments (array form)
-  - env `map`<font color="red">Required</font>: environment variables for execution
-  - timeout_ms `integer`<font color="gray">Optional</font>: timeout (ms)
-  - user `string`<font color="gray">Optional</font>: system user to run the command as
-  - working_directory `string`<font color="gray">Optional</font>: working directory path
+- type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : `local_shell_call`
+- id `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : unique ID for the local shell call
+- call_id `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : associated call ID
+- status `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : call status, e.g. `in_progress` / `completed` / `failed`
+- action `object`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : specific shell execution action
+  - type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+    : `exec`
+  - command `array`<span style="color: #FA6062; font-weight: 400">\*</span>
+    : command arguments (array form)
+  - env `map`<span style="color: #FA6062; font-weight: 400">\*</span>
+    : environment variables for execution
+  - timeout_ms `integer`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: timeout (ms)
+  - user `string`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: system user to run the command as
+  - working_directory `string`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: working directory path
 
 :::
 
 :::details Local shell call output `object`
 
-- type `string`<font color="red">Required</font>: `local_shell_call_output`
-- id `string`<font color="red">Required</font>: unique ID for the output item
-- output `string`<font color="red">Required</font>: command result output as a JSON string
-- status `string`<font color="gray">Optional</font>: output status, e.g. `completed` / `failed`
+- type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : `local_shell_call_output`
+- id `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : unique ID for the output item
+- output `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : command result output as a JSON string
+- status `string`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: output status, e.g. `completed` / `failed`
 
 :::
 
 :::details Shell tool call `object`
 
-- type `string`<font color="red">Required</font>: `shell_call`
-- call_id `string`<font color="red">Required</font>: unique identifier for the shell call
-- id `string`<font color="gray">Optional</font>: unique item ID
-- status `string`<font color="gray">Optional</font>: call status, `in_progress` / `completed` / `incomplete`
-- action `object`<font color="red">Required</font>: shell command execution config
-  - commands `array`<font color="red">Required</font>: list of shell commands to execute in order
-  - max_output_length `integer`<font color="gray">Optional</font>: maximum captured output length (stdout+stderr UTF-8)
-  - timeout_ms `integer`<font color="gray">Optional</font>: timeout (ms)
+- type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : `shell_call`
+- call_id `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : unique identifier for the shell call
+- id `string`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: unique item ID
+- status `string`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: call status, `in_progress` / `completed` / `incomplete`
+- action `object`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : shell command execution config
+  - commands `array`<span style="color: #FA6062; font-weight: 400">\*</span>
+    : list of shell commands to execute in order
+  - max_output_length `integer`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: maximum captured output length (stdout+stderr UTF-8)
+  - timeout_ms `integer`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: timeout (ms)
 
 :::
 
 :::details Shell tool call output `object`
 
-- type `string`<font color="red">Required</font>: `shell_call_output`
-- call_id `string`<font color="red">Required</font>: corresponding shell call identifier
-- id `string`<font color="gray">Optional</font>: unique output item identifier
-- max_output_length `integer`<font color="gray">Optional</font>: maximum output length limit
-- output `array`<font color="red">Required</font>: list of output chunks; each element includes:
-  - stdout `string`<font color="red">Required</font>: stdout content
-  - stderr `string`<font color="red">Required</font>: stderr content
-  - outcome `object`<font color="red">Required</font>: execution outcome (union type)
-    - Timeout outcome `object`
-      - type `string`<font color="red">Required</font>: `timeout`: command timed out
-    - Exit outcome `object`
-      - type `string`<font color="red">Required</font>: `exit`: command exited normally
-      - exit_code `integer`<font color="red">Required</font>
+- type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : `shell_call_output`
+- call_id `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : corresponding shell call identifier
+- id `string`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: unique output item identifier
+- max_output_length `integer`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: maximum output length limit
+- output `array`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : list of output chunks; each element includes:
+  - stdout `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+    : stdout content
+  - stderr `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+    : stderr content
+  - outcome `object`<span style="color: #FA6062; font-weight: 400">\*</span>
+    : execution outcome (union type) - Timeout outcome `object` - type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+    : `timeout`: command timed out - Exit outcome `object` - type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+    : `exit`: command exited normally - exit_code `integer`<span style="color: #FA6062; font-weight: 400">\*</span>
 
 :::
 
@@ -428,105 +556,142 @@ The model initiates a Computer Use action (you must execute it on your side). Af
 
 Used to create/delete/update files via a diff patch.
 
-- type `string`<font color="red">Required</font>: `apply_patch_call`
-- call_id `string`<font color="red">Required</font>: unique identifier for the apply patch call
-- id `string`<font color="gray">Optional</font>: unique item identifier
-- status `string`<font color="red">Required</font>: call status, `in_progress` / `completed`
-- operation `object`<font color="red">Required</font>: specific file operation (union type: create/delete/update)
+- type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : `apply_patch_call`
+- call_id `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : unique identifier for the apply patch call
+- id `string`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: unique item identifier
+- status `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : call status, `in_progress` / `completed`
+- operation `object`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : specific file operation (union type: create/delete/update)
 
 ###### Possible operation types
 
 1. Create file `object`
 
-- type `string`<font color="red">Required</font>: `create_file`
-- path `string`<font color="red">Required</font>: file path relative to the workspace root
-- diff `string`<font color="red">Required</font>: unified diff patch content
+- type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : `create_file`
+- path `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : file path relative to the workspace root
+- diff `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : unified diff patch content
 
 2. Delete file `object`
 
-- type `string`<font color="red">Required</font>: `delete_file`
-- path `string`<font color="red">Required</font>: file path to delete
+- type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : `delete_file`
+- path `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : file path to delete
 
 3. Update file `object`
 
-- type `string`<font color="red">Required</font>: `update_file`
-- path `string`<font color="red">Required</font>: file path to update
-- diff `string`<font color="red">Required</font>: unified diff patch content
+- type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : `update_file`
+- path `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : file path to update
+- diff `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : unified diff patch content
 
 :::
 
 :::details Apply patch tool call output `object`
 
-- type `string`<font color="red">Required</font>: `apply_patch_call_output`
-- call_id `string`<font color="red">Required</font>: corresponding apply patch call identifier
-- id `string`<font color="gray">Optional</font>: unique output item identifier
-- status `string`<font color="red">Required</font>: output status, `completed` / `failed`
-- output `string`<font color="gray">Optional</font>: apply-patch logs or error description
+- type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : `apply_patch_call_output`
+- call_id `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : corresponding apply patch call identifier
+- id `string`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: unique output item identifier
+- status `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : output status, `completed` / `failed`
+- output `string`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: apply-patch logs or error description
 
 :::
 
 :::details MCP list tools `object`
 
-- type `string`<font color="red">Required</font>: `mcp_list_tools`
-- id `string`<font color="red">Required</font>: unique ID for the MCP list-tools call
-- server_label `string`<font color="red">Required</font>: MCP server label
-- error `string`<font color="gray">Optional</font>: error message when fetching tools (if any)
-- tools `array`<font color="red">Required</font>: available tools; each element includes:
-  - name `string`<font color="red">Required</font>: tool name
-  - description `string`<font color="gray">Optional</font>: tool description
-  - annotations `object`<font color="gray">Optional</font>: additional tool annotations
-  - input_schema `object`<font color="red">Required</font>: tool input JSON Schema
+- type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : `mcp_list_tools`
+- id `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : unique ID for the MCP list-tools call
+- server_label `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : MCP server label
+- error `string`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: error message when fetching tools (if any)
+- tools `array`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : available tools; each element includes:
+  - name `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+    : tool name
+  - description `string`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: tool description
+  - annotations `object`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: additional tool annotations
+  - input_schema `object`<span style="color: #FA6062; font-weight: 400">\*</span>
+    : tool input JSON Schema
 
 :::
 
 :::details MCP approval request `object`
 
-- type `string`<font color="red">Required</font>: `mcp_approval_request`
-- id `string`<font color="red">Required</font>: unique ID for the approval request
-- server_label `string`<font color="red">Required</font>: MCP server label
-- name `string`<font color="red">Required</font>: requested tool name to run
-- arguments `string`<font color="red">Required</font>: tool arguments as a JSON string
+- type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : `mcp_approval_request`
+- id `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : unique ID for the approval request
+- server_label `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : MCP server label
+- name `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : requested tool name to run
+- arguments `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : tool arguments as a JSON string
 
 :::
 
 :::details MCP approval response `object`
 
-- type `string`<font color="red">Required</font>: `mcp_approval_response`
-- approval_request_id `string`<font color="red">Required</font>: corresponding approval request ID
-- approve `boolean`<font color="red">Required</font>: whether to approve the tool call (true=approve, false=reject)
-- id `string`<font color="gray">Optional</font>: unique response item ID
-- reason `string`<font color="gray">Optional</font>: reason for approval or rejection
+- type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : `mcp_approval_response`
+- approval_request_id `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : corresponding approval request ID
+- approve `boolean`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : whether to approve the tool call (true=approve, false=reject)
+- id `string`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: unique response item ID
+- reason `string`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: reason for approval or rejection
 
 :::
 
 :::details MCP tool call `object`
 
-- type `string`<font color="red">Required</font>: `mcp_call`
-- id `string`<font color="red">Required</font>: unique ID for the MCP tool call
-- server_label `string`<font color="red">Required</font>: MCP server label
-- name `string`<font color="red">Required</font>: tool name to call
-- arguments `string`<font color="red">Required</font>: tool arguments as a JSON string
-- approval_request_id `string`<font color="gray">Optional</font>: associated approval request ID (for subsequent approval response)
-- output `string`<font color="gray">Optional</font>: tool output after execution
-- error `string`<font color="gray">Optional</font>: tool execution error message
-- status `string`<font color="gray">Optional</font>: call status, `in_progress` / `completed` / `incomplete` / `calling` / `failed`
+- type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : `mcp_call`
+- id `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : unique ID for the MCP tool call
+- server_label `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : MCP server label
+- name `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : tool name to call
+- arguments `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : tool arguments as a JSON string
+- approval_request_id `string`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: associated approval request ID (for subsequent approval response)
+- output `string`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: tool output after execution
+- error `string`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: tool execution error message
+- status `string`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: call status, `in_progress` / `completed` / `incomplete` / `calling` / `failed`
 
 :::
 
 :::details Reasoning `object`
 
-- type `string`<font color="red">Required</font>: `reasoning`
-- id `string`<font color="red">Required</font>: unique ID for the reasoning content
-- summary `array`<font color="red">Required</font>: reasoning summary parts
-  - Summary text `object`
-    - type `string`<font color="red">Required</font>: `summary_text`
-    - text `string`<font color="red">Required</font>: summary text
-- content `array`<font color="gray">Optional</font>: full reasoning text parts
-  - Reasoning text `object`
-    - type `string`<font color="red">Required</font>: `reasoning_text`
-    - text `string`<font color="red">Required</font>: full reasoning text
-- encrypted_content `string`<font color="gray">Optional</font>: encrypted full reasoning content (requires enabling via `include`)
-- status `string`<font color="gray">Optional</font>: reasoning status, `in_progress` / `completed` / `incomplete`
+- type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : `reasoning`
+- id `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : unique ID for the reasoning content
+- summary `array`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : reasoning summary parts
+  - Summary text `object` - type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+    : `summary_text` - text `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+    : summary text
+- content `array`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: full reasoning text parts
+  - Reasoning text `object` - type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+    : `reasoning_text` - text `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+    : full reasoning text
+- encrypted_content `string`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: encrypted full reasoning content (requires enabling via `include`)
+- status `string`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: reasoning status, `in_progress` / `completed` / `incomplete`
 
 :::
 
@@ -534,9 +699,11 @@ Used to create/delete/update files via a diff patch.
 
 Generated by `v1/responses/compact`. Used to compress long conversations into an opaque encrypted summary and can be fed back into later `input`.
 
-- type `string`<font color="red">Required</font>: `compaction`
-- id `string`<font color="gray">Optional</font>: compaction item ID
-- encrypted_content `string`<font color="red">Required</font>: compressed summary (encrypted, opaque)
+- type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : `compaction`
+- id `string`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: compaction item ID
+- encrypted_content `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : compressed summary (encrypted, opaque)
 
 :::
 
@@ -544,34 +711,37 @@ Generated by `v1/responses/compact`. Used to compress long conversations into an
 
 Used to reference an existing item (internal identifier).
 
-- type `string`<font color="red">Required</font>: `item_reference`
-- id `string`<font color="gray">Optional</font>
+- type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : `item_reference`
+- id `string`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
-### instructions `string` <font color="gray">Optional</font>
+### instructions `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 System/developer instructions inserted into the context. When used with `previous_response_id`, it will not inherit the previous round’s instructions, making it easier to replace the system prompt.
 
-### previous_response_id `string` <font color="gray">Optional</font>
+### previous_response_id `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 ID of the previous Response for continuing multi-turn conversations; **cannot be used together with `conversation`**.
 
-### conversation `string | object` <font color="gray">Optional</font> (default `null`)
+### conversation `string | object` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span> (default `null`)
 
 Associates this response with a conversation. The conversation’s items will be prepended to this request’s input context, and after completion this request’s input/output will be automatically appended to the conversation.
 
 - Conversation ID `string`: unique conversation ID used to identify and reuse conversation history
 - Conversation object `object`
-  - id `string`<font color="red">Required</font>: unique conversation ID for persistence and retrieval
+  - id `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+    : unique conversation ID for persistence and retrieval
 
-### prompt `object` <font color="gray">Optional</font>
+### prompt `object` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Reference a prompt template and pass variables.
 
-- id `string` <font color="red">Required</font>: prompt template ID
-- variables `object`<font color="gray">Optional</font>: template variable key-value pairs for placeholder substitution
-- version `string`<font color="gray">Optional</font>: prompt template version
+- id `string` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : prompt template ID
+- variables `object`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: template variable key-value pairs for placeholder substitution
+- version `string`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: prompt template version
 
-### include `array` <font color="gray">Optional</font>
+### include `array` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Specifies additional output data to include in the response. Supported values include (string enum):
 
@@ -583,71 +753,69 @@ Specifies additional output data to include in the response. Supported values in
 - `message.output_text.logprobs`: include per-token log probabilities for output text
 - `reasoning.encrypted_content`: include encrypted reasoning content
 
-### max_output_tokens `integer` <font color="gray">Optional</font>
+### max_output_tokens `integer` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Caps the maximum tokens the response can generate (includes visible output tokens and reasoning tokens).
 
-### max_tool_calls `integer` <font color="gray">Optional</font>
+### max_tool_calls `integer` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Caps the total number of **built-in tool** calls that can be processed within this response (accumulated across tools).
 
-### parallel_tool_calls `boolean` <font color="gray">Optional</font> (default `true`)
+### parallel_tool_calls `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span> (default `true`)
 
 Whether to allow parallel tool calls.
 
-### reasoning `object` <font color="gray">Optional</font> (reasoning models only)
+### reasoning `object` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span> (reasoning models only)
 
 Reasoning model configuration.
 
-- effort `string` <font color="gray">Optional</font> (default `medium`)  
+- effort `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span> (default `medium`)  
   Controls reasoning intensity, affecting reasoning depth and compute time. Supported: `none` / `minimal` / `low` / `medium` / `high` / `xhigh`
-- summary `string` <font color="gray">Optional</font>  
+- summary `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>  
   Reasoning summary level: `auto` / `concise` / `detailed`
 - generate_summary `string` (Deprecated)  
   Deprecated: use `summary` instead
 
-### text `object` <font color="gray">Optional</font>
+### text `object` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Text output configuration (including structured output formats).
 
-- format `object` <font color="gray">Optional</font>: output format (default `{ "type": "text" }`)  
-  Possible types:
-  1. Text `object`
-     - type `string`<font color="red">Required</font>: `text`: plain text output
+- format `object` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: output format (default `{ "type": "text" }`)  
+   Possible types:
+  1. Text `object` - type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+     : `text`: plain text output
 
-  2. JSON schema `object` (Structured Outputs)
-     - type `string`<font color="red">Required</font>: `json_schema`: structured JSON output
-     - name `string`<font color="red">Required</font>: output format name identifier
-     - schema `object`<font color="red">Required</font>: JSON Schema defining the output structure
-     - description `string` <font color="gray">Optional</font>: description of the output format
-     - strict `boolean` <font color="gray">Optional</font> (default `false`): whether to strictly enforce the schema; when true, validation is enforced
+  2. JSON schema `object` (Structured Outputs) - type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+     : `json_schema`: structured JSON output - name `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+     : output format name identifier - schema `object`<span style="color: #FA6062; font-weight: 400">\*</span>
+     : JSON Schema defining the output structure - description `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: description of the output format - strict `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span> (default `false`): whether to strictly enforce the schema; when true, validation is enforced
 
-  3. JSON object `object` (legacy JSON mode)
-     - type `string`<font color="red">Required</font>: `json_object`: JSON object output
+  3. JSON object `object` (legacy JSON mode) - type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+     : `json_object`: JSON object output
 
-- verbosity `string` <font color="gray">Optional</font> (default `medium`)  
+- verbosity `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span> (default `medium`)  
   Constrains response verbosity. Lower values produce more concise responses; higher values produce more detailed responses. Supported values: `low` / `medium` / `high`
 
-### temperature `number` <font color="gray">Optional</font> (default `1`)
+### temperature `number` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span> (default `1`)
 
 Sampling temperature, typically 0–2. Prefer tuning either this or `top_p`, not both.
 
-### top_p `number` <font color="gray">Optional</font> (default `1`)
+### top_p `number` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span> (default `1`)
 
 Nucleus sampling parameter.
 
-### top_logprobs `integer` <font color="gray">Optional</font>
+### top_logprobs `integer` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 0–20. Number of most likely tokens to return at each position.
 
-### truncation `string` <font color="gray">Optional</font> (default `disabled`)
+### truncation `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span> (default `disabled`)
 
 Context truncation strategy for handling prompts that exceed the model’s context window:
 
 - `auto`: when content exceeds the context window, automatically drop the earliest items from the start of the conversation to make room
 - `disabled`: disables auto-truncation; requests that exceed the context window will fail (400)
 
-### tools `array` <font color="gray">Optional</font>
+### tools `array` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Declares the list of tools the model is allowed to call in this request. The model may choose to call these tools as needed to enhance its capabilities.
 
@@ -657,102 +825,129 @@ Below are the supported tool type definitions. Each tool type has specific confi
 
 :::details Function tool (function tool definition) `object`
 
-- type `string`<font color="red">Required</font>: `function`: tool type, fixed to function tool
-- name `string`<font color="red">Required</font>: unique function name identifier
-- parameters `object`<font color="red">Required</font>: JSON Schema defining function parameters (structure + validation rules)
-- strict `boolean`<font color="red">Required</font> (default `true`): whether to strictly validate parameters against the schema
-- description `string` <font color="gray">Optional</font>: detailed function description to help the model decide when to use it
+- type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : `function`: tool type, fixed to function tool
+- name `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : unique function name identifier
+- parameters `object`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : JSON Schema defining function parameters (structure + validation rules)
+- strict `boolean`<span style="color: #FA6062; font-weight: 400">\*</span>
+  (default `true`): whether to strictly validate parameters against the schema
+- description `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: detailed function description to help the model decide when to use it
 
 :::
 
 <!-- :::details File search (file search) `object`
 
-- type `string`<font color="red">Required</font>: `file_search`
-- vector_store_ids `array[string]`<font color="red">Required</font>: vector store IDs to search
-- filters `object` <font color="gray">Optional</font>: result filters
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+: `file_search`
+- vector_store_ids `array[string]`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+: vector store IDs to search
+- filters `object` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: result filters
   - Comparison Filter `object`
-    - key `string`<font color="red">Required</font>: metadata key to filter on
-    - type `string`<font color="red">Required</font>: `eq` / `ne` / `gt` / `gte` / `lt` / `lte` / `in` / `nin`
-    - value `string | number | boolean | array`<font color="red">Required</font>: value to compare
+    - key `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+: metadata key to filter on
+    - type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+: `eq` / `ne` / `gt` / `gte` / `lt` / `lte` / `in` / `nin`
+    - value `string | number | boolean | array`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+: value to compare
   - Compound Filter `object`
-    - filters `array[ComparisonFilter | CompoundFilter]`<font color="red">Required</font>: sub-filters
-    - type `string`<font color="red">Required</font>: `and` / `or`
-- max_num_results `integer` <font color="gray">Optional</font> (1~50): max results
-- ranking_options `object` <font color="gray">Optional</font>: ranking options
-  - hybrid_search `object` <font color="gray">Optional</font>: hybrid weights
-    - embedding_weight `number`<font color="red">Required</font>
-    - text_weight `number`<font color="red">Required</font>
-  - ranker `string` <font color="gray">Optional</font>: ranker name
+    - filters `array[ComparisonFilter | CompoundFilter]`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+: sub-filters
+    - type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+: `and` / `or`
+- max_num_results `integer` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span> (1~50): max results
+- ranking_options `object` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: ranking options
+  - hybrid_search `object` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: hybrid weights
+    - embedding_weight `number`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+
+    - text_weight `number`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+
+  - ranker `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: ranker name
 
 ::: -->
 
 :::details Web search (generally available) `object`
 
-- type `string` <font color="red">Required</font>: `web_search` or `web_search_2025_08_26`
-- filters `object` <font color="gray">Optional</font>: result filters
-  - allowed_domains `array[string]` <font color="gray">Optional</font> (default `[]`): allowed domain allowlist (subdomains allowed)
-- search_context_size `string` <font color="gray">Optional</font> (default `medium`): search context size level
-- user_location `object` <font color="gray">Optional</font>: approximate user location for localized results
-  - type `string` <font color="red">Required</font>: `approximate`
-  - city `string` <font color="gray">Optional</font>
-  - country `string` <font color="gray">Optional</font>: 2-letter ISO (e.g. `US`)
-  - region `string` <font color="gray">Optional</font>
-  - timezone `string` <font color="gray">Optional</font>: IANA TZ (e.g. `America/Los_Angeles`)
+- type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : `web_search` or `web_search_2025_08_26`
+- filters `object` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: result filters
+  - allowed_domains `array[string]` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span> (default `[]`): allowed domain allowlist (subdomains allowed)
+- search_context_size `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span> (default `medium`): search context size level
+- user_location `object` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: approximate user location for localized results
+  - type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
+    : `approximate`
+  - city `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
+  - country `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: 2-letter ISO (e.g. `US`)
+  - region `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
+  - timezone `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: IANA TZ (e.g. `America/Los_Angeles`)
 
 :::
 
 :::details Web search preview `object`
 
-- type `string`<font color="red">Required</font>: `web_search_preview` or `web_search_preview_2025_03_11`
-- search_context_size `string` <font color="gray">Optional</font>: `low` / `medium` / `high`
-- user_location `object` <font color="gray">Optional</font>: user location
-  - type `string`<font color="red">Required</font>: `approximate`
-  - city `string` <font color="gray">Optional</font>
-  - country `string` <font color="gray">Optional</font> (2-letter ISO)
-  - region `string` <font color="gray">Optional</font>
-  - timezone `string` <font color="gray">Optional</font> (IANA TZ)
+- type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : `web_search_preview` or `web_search_preview_2025_03_11`
+- search_context_size `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: `low` / `medium` / `high`
+- user_location `object` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: user location
+  - type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+    : `approximate`
+  - city `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
+  - country `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span> (2-letter ISO)
+  - region `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
+  - timezone `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span> (IANA TZ)
 
 :::
 
 :::details Computer use preview (Computer Use tool) `object`
 
-- type `string` <font color="red">Required</font>: `computer_use_preview`
-- display_width `integer` <font color="red">Required</font>: display width (pixels)
-- display_height `integer` <font color="red">Required</font>: display height (pixels)
-- environment `string` <font color="red">Required</font>: environment type (e.g. `browser` / `mac` / `windows` / `ubuntu`)
+- type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : `computer_use_preview`
+- display_width `integer` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : display width (pixels)
+- display_height `integer` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : display height (pixels)
+- environment `string` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : environment type (e.g. `browser` / `mac` / `windows` / `ubuntu`)
 
 :::
 
 <!-- :::details Code interpreter (code interpreter) `object`
 
-- type `string`<font color="red">Required</font>: `code_interpreter`
-- container `string | object`<font color="red">Required</font>: container config
+- type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+: `code_interpreter`
+- container `string | object`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+: container config
   - `string`: existing container ID
   - `object`: new container config
-    - type `string`<font color="red">Required</font>: `auto`
-    - file_ids `array` <font color="gray">Optional</font>
-    - memory_limit `string` <font color="gray">Optional</font>
+    - type `string`<span style="color: #FA6062; font-weight: 400">&#42;</span>
+: `auto`
+    - file_ids `array` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
+    - memory_limit `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 ::: -->
 
 :::details Apply patch tool (apply patch) `object`
 
-- type `string`<font color="red">Required</font>: `apply_patch`
+- type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : `apply_patch`
 
 :::
 
 :::details MCP tool (remote MCP tool) `object` (if enabled)
 
-- type `string` <font color="red">Required</font>: `mcp`
-- server_label `string` <font color="red">Required</font>: MCP server label (for tool-call routing)
-- server_url `string` <font color="gray">Optional</font>: remote MCP server
-- authorization `string` <font color="gray">Optional</font>: OAuth access token (for remote MCP server or service connector)
-- allowed_tools `array[string] | object` <font color="gray">Optional</font>: allowed tools list or filter
+- type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : `mcp`
+- server_label `string` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : MCP server label (for tool-call routing)
+- server_url `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: remote MCP server
+- authorization `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: OAuth access token (for remote MCP server or service connector)
+- allowed_tools `array[string] | object` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: allowed tools list or filter
   - **MCP allowed tools** `array[string]`
   - **MCP tool filter** `object`
-    - read_only `boolean` <font color="gray">Optional</font>: filter by read-only tools
-    - tool_names `array[string]` <font color="gray">Optional</font>: tool name allowlist
-- require_approval `string | object` <font color="gray">Optional</font>: which tools require approval (example uses `never`; supports finer granularity)
+    - read_only `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: filter by read-only tools
+    - tool_names `array[string]` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: tool name allowlist
+- require_approval `string | object` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: which tools require approval (example uses `never`; supports finer granularity)
   - `string`: `always` / `never`
   - `object`: approval filter (schema in docs)
 
@@ -761,22 +956,24 @@ Below are the supported tool type definitions. Each tool type has specific confi
 <!--
 :::details Image generation (image generation) `object`
 
-- type `string` <font color="red">Required</font>: `image_generation`
-- size `string` <font color="gray">Optional</font>: e.g. `1024x1024` / `1024x1536` / `1536x1024` / `auto`
-- quality `string` <font color="gray">Optional</font>: `low` / `medium` / `high` / `auto`
-- background `string` <font color="gray">Optional</font>: `transparent` / `opaque` / `auto`
-- output_format `string` <font color="gray">Optional</font>: e.g. `png` / `jpeg` / `webp`
-- output_compression `integer` <font color="gray">Optional</font>: JPEG/WebP compression (0~100)
-- partial_images `integer` <font color="gray">Optional</font>: number of streamed partial images
-- action `string` <font color="gray">Optional</font>: `auto` / `generate` / `edit`
-- input_image_mask `object` <font color="gray">Optional</font>: mask for edits/inpainting
-  - file_id `string` <font color="gray">Optional</font>
+- type `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
+: `image_generation`
+- size `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: e.g. `1024x1024` / `1024x1536` / `1536x1024` / `auto`
+- quality `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: `low` / `medium` / `high` / `auto`
+- background `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: `transparent` / `opaque` / `auto`
+- output_format `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: e.g. `png` / `jpeg` / `webp`
+- output_compression `integer` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: JPEG/WebP compression (0~100)
+- partial_images `integer` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: number of streamed partial images
+- action `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: `auto` / `generate` / `edit`
+- input_image_mask `object` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: mask for edits/inpainting
+  - file_id `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 ::: -->
 
 :::details Shell tool (generic Shell) `object`
 
-- type `string` <font color="red">Required</font>: `shell`
+- type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : `shell`
 
 (Usually no extra configuration is needed; execution parameters are in the model output’s `shell_call.action`.)
 
@@ -784,7 +981,8 @@ Below are the supported tool type definitions. Each tool type has specific confi
 
 :::details Local shell tool (legacy local Shell) `object`
 
-- type `string` <font color="red">Required</font>: `local_shell`
+- type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : `local_shell`
 
 (The official guidance notes that local shell is legacy; for new use cases, `shell` is recommended.)
 
@@ -792,20 +990,22 @@ Below are the supported tool type definitions. Each tool type has specific confi
 
 :::details Custom tool (custom tool definition; non-function “free input / optionally constrained format”) `object`
 
-- type `string` <font color="red">Required</font>: `custom`
-- name `string` <font color="red">Required</font>: tool name
-- description `string` <font color="gray">Optional</font>: tool description
-- format `object` <font color="gray">Optional</font>: input format (defaults to free text)
-  - **Text format** `object`
-    - type `string` <font color="red">Required</font>: `text`
-  - **Grammar format** `object`
-    - type `string` <font color="red">Required</font>: `grammar`
-    - syntax `string` <font color="red">Required</font>: `lark` / `regex`
-    - definition `string` <font color="red">Required</font>: grammar definition
+- type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : `custom`
+- name `string` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : tool name
+- description `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: tool description
+- format `object` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: input format (defaults to free text)
+  - **Text format** `object` - type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
+    : `text`
+  - **Grammar format** `object` - type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
+    : `grammar` - syntax `string` <span style="color: #FA6062; font-weight: 400">\*</span>
+    : `lark` / `regex` - definition `string` <span style="color: #FA6062; font-weight: 400">\*</span>
+    : grammar definition
 
 :::
 
-### tool_choice `string | object` <font color="gray">Optional</font>
+### tool_choice `string | object` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Controls how the model selects tools and whether it must call tools.
 
@@ -819,100 +1019,110 @@ Controls how the model selects tools and whether it must call tools.
 
 :::details Allowed tools `object`
 
-- type `string`<font color="red">Required</font>: `allowed_tools`
-- mode `string`<font color="red">Required</font>: `auto` / `required`
-- tools `array`<font color="red">Required</font>: allowed tool set (e.g. `{ "type":"function","name":"get_weather" }`, etc.)
+- type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : `allowed_tools`
+- mode `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : `auto` / `required`
+- tools `array`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : allowed tool set (e.g. `{ "type":"function","name":"get_weather" }`, etc.)
 
 :::
 
 :::details Hosted tool (force a built-in tool) `object`
 
-- type `string`<font color="red">Required</font>: one of:
-  <!-- `file_search`  -->
+- type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : one of:
+    <!-- `file_search`  -->
   / `web_search_preview` / `computer_use_preview` /
-  <!-- `code_interpreter`  -->
-  <!-- / `image_generation` -->
+    <!-- `code_interpreter`  -->
+    <!-- / `image_generation` -->
 
 :::
 
 :::details Function tool (force a specific function) `object`
 
-- type `string`<font color="red">Required</font>: `function`
-- name `string`<font color="red">Required</font>
+- type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : `function`
+- name `string`<span style="color: #FA6062; font-weight: 400">\*</span>
 
 :::
 
 :::details MCP tool (force a specific MCP tool) `object`
 
-- type `string`<font color="red">Required</font>: `mcp`
-- server_label `string`<font color="red">Required</font>
-- name `string`<font color="gray">Optional</font>
+- type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : `mcp`
+- server_label `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+
+- name `string`<span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 :::
 
 :::details Custom tool (force a specific custom tool) `object`
 
-- type `string`<font color="red">Required</font>: `custom`
-- name `string`<font color="red">Required</font>
+- type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : `custom`
+- name `string`<span style="color: #FA6062; font-weight: 400">\*</span>
 
 :::
 
 :::details Specific apply patch tool choice (force the model to call apply_patch) `object`
 
-- type `string`<font color="red">Required</font>: `apply_patch`
+- type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : `apply_patch`
 
 :::
 
 :::details Specific shell tool choice (force the model to call Shell when a tool call is needed) `object`
 
-- type `string`<font color="red">Required</font>: `shell`
+- type `string`<span style="color: #FA6062; font-weight: 400">\*</span>
+  : `shell`
 
 :::
 
-<!-- ### background `boolean` <font color="gray">Optional</font> (default `false`)
+<!-- ### background `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span> (default `false`)
 
 Whether to run this response in the background. -->
 
-### store `boolean` <font color="gray">Optional</font> (default `true`)
+### store `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span> (default `true`)
 
 Whether to store this Response for later retrieval.
 
-### stream `boolean` <font color="gray">Optional</font> (default `false`)
+### stream `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span> (default `false`)
 
 Whether to enable SSE streaming output.
 
-### stream_options `object` <font color="gray">Optional</font> (default `null`)
+### stream_options `object` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span> (default `null`)
 
 Streaming response options. Used only when `stream: true`.
 
-- include_usage `boolean` <font color="gray">Optional</font>: whether to include usage info in the stream
+- include_usage `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>: whether to include usage info in the stream
 
-<!-- ### metadata `object(map)` <font color="gray">Optional</font>
+<!-- ### metadata `object(map)` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Up to 16 key-value metadata pairs (key ≤ 64 chars; value ≤ 512 chars). -->
 
-### prompt_cache_key `string` <font color="gray">Optional</font>
+### prompt_cache_key `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 A key to improve cache hit rate (replaces the legacy `user` field).
 
-### prompt_cache_retention `string` <font color="gray">Optional</font>
+### prompt_cache_retention `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Prompt cache retention policy (e.g. `24h`).
 
-### safety_identifier `string` <font color="gray">Optional</font>
+### safety_identifier `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 A stable user identifier for safety/abuse detection (recommended to hash).
 
-### provider `object` <font color="gray">Optional</font>
+### provider `object` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Used to configure routing and failover strategies across multiple model providers (e.g., OpenAI, Anthropic, Google) for this request.
 If not configured, the project or model’s default routing strategy is used.
 
-#### routing `object` <font color="red">Required</font>
+#### routing `object` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 Routing strategy configuration that determines how requests are selected and distributed across multiple providers.
 
-##### type `string` <font color="red">Required</font>
+##### type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 Routing type. Supported values:
 
@@ -923,7 +1133,7 @@ Routing type. Supported values:
 - `least_latency`
   Lowest-latency first: choose the provider with the fastest response based on historical/real-time stats.
 
-##### primary_factor `string` <font color="gray">Optional</font>
+##### primary_factor `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Primary factor when multiple providers are available. For example:
 
@@ -936,11 +1146,11 @@ Primary factor when multiple providers are available. For example:
 
 Actual behavior combines with `type`. For example, when `type = "priority"`, `primary_factor` mainly affects how priorities are ordered.
 
-##### providers `array` <font color="red">Required</font>
+##### providers `array` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 List of model providers that can participate in routing. Example: `["openai", "anthropic", "google"]`
 
-#### fallback `string` <font color="gray">Optional</font>
+#### fallback `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Failover strategy. When the currently selected provider fails (e.g., timeout, insufficient quota, service unavailable), how to switch automatically:
 
@@ -954,27 +1164,27 @@ Use the provider selected by primary routing first
 If it fails, switch to the specified fallback provider  
 If both primary and fallback fail, return an error
 
-### model_routing_config `object` <font color="gray">Optional</font>
+### model_routing_config `object` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Used to configure selection and routing among different models **within the same provider** for the current request (e.g., choosing between `gpt-4o`, `gpt-4-turbo`, `claude-3-5-sonnet`).
 
 If not configured, the project or SDK’s default model selection strategy is used (e.g., default model, default task-type mapping).
 
-#### available_models `array` <font color="red">Required</font>
+#### available_models `array` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 List of **model names** that can be used for routing or fallback.
 
-#### preference `string` <font color="gray">Optional</font>
+#### preference `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Preferred model name.
 
-#### task_info `object` <font color="gray">Optional</font>
+#### task_info `object` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Task metadata used to determine the model or parameters **based on task type and complexity**.
 
 Internal fields:
 
-##### task_type `string` <font color="red">Required</font>
+##### task_type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 Task type describing the purpose of the request for routing or automatic parameter selection.
 
@@ -986,7 +1196,7 @@ Task type describing the purpose of the request for routing or automatic paramet
   - Can set different default models or quota strategies per task type
   - Can be combined with `complexity` to decide whether to use a stronger model
 
-##### complexity `string` <font color="gray">Optional</font>
+##### complexity `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Task complexity indicating the difficulty or importance of the request.
 
@@ -998,19 +1208,19 @@ Task complexity indicating the difficulty or importance of the request.
   - Select different tiers of models by complexity (e.g., cheaper models for low complexity; stronger models for high complexity)
   - Can also be used to control timeouts, retry strategies, etc.
 
-##### additional_properties `object` <font color="gray">Optional</font>
+##### additional_properties `object` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Additional task-related fields as an extensible key-value map.
 
-#### additional_properties `object` <font color="gray">Optional</font>
+#### additional_properties `object` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Additional fields for the model routing config itself, used to attach extra control info beyond the standard structure.
 
-<!-- ### service_tier `string` <font color="gray">Optional</font> (default `auto`)
+<!-- ### service_tier `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span> (default `auto`)
 
 Request service tier (e.g. `auto` / `default` / `flex` / `priority`). -->
 
-<!-- ### user `string` (Deprecated) <font color="gray">Optional</font>
+<!-- ### user `string` (Deprecated) <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Deprecated. Use `safety_identifier` and `prompt_cache_key`. -->
 
@@ -1026,7 +1236,7 @@ Deprecated. Use `safety_identifier` and `prompt_cache_key`. -->
 | tools(Image generation tool) | object      | ❌ Not supported                                           | Image generation tool                                                                                |
 | tools(File search)           | object      | ❌ Not supported                                           | File search                                                                                          |
 
-**<font color="red">Note: zenmux does not support three tool types: tools(Code interpreter), tools(Image generation tool), and tools(File search). Therefore, any fields related to these three tool types will not take effect. This document has already filtered out those fields.</font>**
+**<font color="FA6062">Note: zenmux does not support three tool types: tools(Code interpreter), tools(Image generation tool), and tools(File search). Therefore, any fields related to these three tool types will not take effect. This document has already filtered out those fields.</font>**
 
 ## Response (non-streaming)
 

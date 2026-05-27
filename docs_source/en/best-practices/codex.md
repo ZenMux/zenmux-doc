@@ -329,14 +329,14 @@ wire_api = "responses"
 
 :::
 
-::: tip Contact Us
-If you run into any issues during use, or if you have suggestions or feedback, feel free to contact us via:
+<ContactCards>
+<ContactCard icon="mail" title="Email">
 
-- **Official website**: <https://zenmux.ai>
-- **Technical support email**: [support@zenmux.ai](mailto:support@zenmux.ai)
-- **Business inquiries**: [bd@zenmux.ai](mailto:bd@zenmux.ai)
-- **Twitter**: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
-- **Discord community**: <http://discord.gg/vHZZzj84Bm>
+Technical support: [support@zenmux.ai](mailto:support@zenmux.ai)
 
-For more contact methods and details, please visit our [Contact page](/en/help/contact).
-:::
+Business cooperation: [bd@zenmux.ai](mailto:bd@zenmux.ai)
+
+</ContactCard>
+<ContactCard icon="x" title="X / Twitter" link="https://x.com/ZenMuxAI" label="@ZenMuxAI" />
+<ContactCard icon="discord" title="Discord" link="https://discord.gg/vHZZzj84Bm" label="@ZenMuxAI" />
+</ContactCards>

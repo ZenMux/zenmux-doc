@@ -12,12 +12,11 @@ head:
 
 Welcome to **[ZenMux](https://docs.zenmux.ai/about/intro.html)**! This guide walks you through everything from signing up to making your first API request, step by step.
 
-::: tip 💡 Get Started in 4 Steps
+::: tip Get Started in 4 Steps
 Just four simple steps to start using ZenMux:
 :::
 
 1. **Sign in to ZenMux**: Visit the **[ZenMux login page](https://zenmux.ai/login)** and sign in using any of the following:
-
    - Email
    - GitHub account
    - Google account
@@ -27,8 +26,6 @@ Just four simple steps to start using ZenMux:
 3. **Get an API key**: After signing in, create an API key from the corresponding management page.
 
 4. **Make your first request**: Pick the [API protocol](#supported-api-protocols) you're most familiar with, copy the code example below, replace your API key, and run it.
-
----
 
 ## Choose a Usage Plan
 
@@ -42,13 +39,12 @@ Pay As You Go uses a **prepaid balance + usage-based billing** model, purpose-bu
 
 - **No rate limits** — supports high-concurrency calls
 - **Per-token billing** — transparent and predictable costs
--
 
 Go to the **[Pay As You Go management page](https://zenmux.ai/platform/pay-as-you-go)** to top up your balance and create an API key.
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/19/rsGoojf/pay-as-you-go.png" alt="Pay As You Go management page" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/26/KMUWdun/20260526160627.jpg" alt="Pay As You Go management page" >
 
-::: info 📚 Detailed Guide
+::: info Detailed Guide
 For complete instructions, see the [Pay As You Go Guide](/guide/pay-as-you-go).
 :::
 
@@ -64,53 +60,47 @@ Builder Plan provides a fixed monthly fee with predictable AI model access:
 
 Go to the **[Pricing page](https://zenmux.ai/pricing/subscription)** to view plan details and subscribe.
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/28/iszJOqe/ss-1.png" alt="Subscription plan comparison" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/26/MIUpX6E/20260526161442.jpg" alt="Subscription plan comparison" >
 
-::: info 📚 Detailed Guide
+::: info Detailed Guide
 For complete instructions, see the [Subscription Plans Guide](/guide/subscription).
 :::
 
 ### Plan Comparison
 
-| Dimension | Pay As You Go | Builder Plan (Subscription) |
-|-----------|--------------|---------------------------|
-| **Best for** | Production, commercial products | Personal development, learning |
-| **Billing** | Usage-based, per-token | Fixed monthly fee |
-| **Rate Limit** | Unlimited | 10–15 RPM |
-| **Concurrency** | Unlimited | Weekly Limit applies |
-| **Restrictions** | None | Not allowed for production use |
+| Dimension        | Pay As You Go                   | Builder Plan (Subscription)    |
+| ---------------- | ------------------------------- | ------------------------------ |
+| **Best for**     | Production, commercial products | Personal development, learning |
+| **Billing**      | Usage-based, per-token          | Fixed monthly fee              |
+| **Rate Limit**   | Unlimited                       | 10–15 RPM                      |
+| **Concurrency**  | Unlimited                       | Weekly Limit applies           |
+| **Restrictions** | None                            | Not allowed for production use |
 
-::: warning ⚠️ Important
+::: warning Important
 If your project is already live or heading toward commercialization, **you must use the Pay As You Go plan**. The subscription plan is strictly for personal development and learning — production use is prohibited.
 :::
 
----
-
 ::: info How to Obtain Model Slugs
 Each model on the ZenMux platform has a unique slug. You can find model slugs on the [Models page](https://zenmux.ai/models):
-![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/AQG0SIr/model-slug.png)
+![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2026/05/26/es9d7he/20260526161559.jpg)
 Or on a [model's detail page](https://zenmux.ai/google/gemini-3.1-pro-preview):
-![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/dWYxJnq/model-slug-3.png)
+![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2026/05/26/0kWfGkK/20260526161657.jpg)
 :::
-
----
 
 ## Supported API Protocols
 
 ZenMux supports four major API protocols, letting you use your preferred SDK to call any model on the platform:
 
-| Protocol | Base URL | Compatible SDK | Description |
-|----------|----------|---------------|-------------|
-| **OpenAI Chat Completions** | `https://zenmux.ai/api/v1` | OpenAI SDK | The most widely used Chat API |
-| **OpenAI Responses** | `https://zenmux.ai/api/v1` | OpenAI SDK | OpenAI's next-gen Responses API |
-| **Anthropic Messages** | `https://zenmux.ai/api/anthropic` | Anthropic SDK | Native protocol for the Claude family |
-| **Google Gemini** | `https://zenmux.ai/api/vertex-ai` | Google GenAI SDK | Native protocol for the Gemini family |
+| Protocol                    | Base URL                          | Compatible SDK   | Description                           |
+| --------------------------- | --------------------------------- | ---------------- | ------------------------------------- |
+| **OpenAI Chat Completions** | `https://zenmux.ai/api/v1`        | OpenAI SDK       | The most widely used Chat API         |
+| **OpenAI Responses**        | `https://zenmux.ai/api/v1`        | OpenAI SDK       | OpenAI's next-gen Responses API       |
+| **Anthropic Messages**      | `https://zenmux.ai/api/anthropic` | Anthropic SDK    | Native protocol for the Claude family |
+| **Google Gemini**           | `https://zenmux.ai/api/vertex-ai` | Google GenAI SDK | Native protocol for the Gemini family |
 
-::: tip 💡 Cross-Protocol Calling
+::: tip Cross-Protocol Calling
 One of ZenMux's core strengths is **protocol agnosticism** — you can call any model through any supported protocol. For example, use the OpenAI SDK to call Claude models, or the Anthropic SDK to call Gemini models.
 :::
-
----
 
 ### Protocol 1: OpenAI Chat Completions
 
@@ -193,8 +183,6 @@ curl https://zenmux.ai/api/v1/chat/completions \
 
 :::
 
----
-
 ### Protocol 2: OpenAI Responses
 
 ::: info Compatibility
@@ -251,8 +239,6 @@ curl https://zenmux.ai/api/v1/responses \
 ```
 
 :::
-
----
 
 ### Protocol 3: Anthropic Messages
 
@@ -346,8 +332,6 @@ curl https://zenmux.ai/api/anthropic/v1/messages \
 
 :::
 
----
-
 ### Protocol 4: Google Gemini
 
 ::: info Compatibility
@@ -413,13 +397,11 @@ main();
 
 :::
 
----
-
 ## Platform API
 
 ZenMux provides a set of Platform Management APIs that let you programmatically query account usage, balance, subscription status, and more — making it easy to integrate with your monitoring and management systems.
 
-::: warning ⚠️ Management API Key
+::: warning Management API Key
 Platform APIs require a **Management API Key** for authentication (some endpoints also accept a regular API key). Go to **[ZenMux Console > Management](https://zenmux.ai/platform/management)** to create a Management API Key.
 :::
 
@@ -456,15 +438,13 @@ Example response (partial):
 }
 ```
 
-::: tip 💡 Billing Data Delay
+::: tip Billing Data Delay
 Billing information (such as `usage` and `ratingResponses`) becomes available **3–5 minutes** after the request completes. Token usage metrics are returned synchronously with the request.
 :::
 
-::: info 📚 Full Documentation
+::: info Full Documentation
 For detailed parameter descriptions, see the [Get Generation API docs](/api/platform/get-generation).
 :::
-
----
 
 ### Query PAYG Balance
 
@@ -487,17 +467,15 @@ Example response:
   "data": {
     "currency": "usd",
     "total_credits": 482.74,
-    "top_up_credits": 35.00,
+    "top_up_credits": 35.0,
     "bonus_credits": 447.74
   }
 }
 ```
 
-::: info 📚 Full Documentation
+::: info Full Documentation
 For detailed parameter descriptions, see the [Get PAYG Balance API docs](/api/platform/payg-balance).
 :::
-
----
 
 ### Query Subscription Details
 
@@ -539,11 +517,9 @@ Example response (partial):
 }
 ```
 
-::: info 📚 Full Documentation
+::: info Full Documentation
 For detailed parameter descriptions, see the [Get Subscription Detail API docs](/api/platform/subscription-detail).
 :::
-
----
 
 ### Query Flow Rate
 
@@ -571,24 +547,22 @@ Example response:
 }
 ```
 
-::: info 📚 Full Documentation
+::: info Full Documentation
 For detailed parameter descriptions, see the [Get Flow Rate API docs](/api/platform/flow-rate).
 :::
-
----
 
 ## Advanced Usage
 
 For more details on advanced usage, refer to the Advanced Usage section.
 
-::: tip Contact Us
-If you encounter any issues or have suggestions and feedback, feel free to reach out:
+<ContactCards>
+<ContactCard icon="mail" title="Email">
 
-- **Official Website**: <https://zenmux.ai>
-- **Technical Support**: [support@zenmux.ai](mailto:support@zenmux.ai)
-- **Business Inquiries**: [bd@zenmux.ai](mailto:bd@zenmux.ai)
-- **Twitter**: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
-- **Discord Community**: <http://discord.gg/vHZZzj84Bm>
+Technical support: [support@zenmux.ai](mailto:support@zenmux.ai)
 
-For more contact options and details, visit our [Contact Us page](/help/contact).
-:::
+Business cooperation: [bd@zenmux.ai](mailto:bd@zenmux.ai)
+
+</ContactCard>
+<ContactCard icon="x" title="X / Twitter" link="https://x.com/ZenMuxAI" label="@ZenMuxAI" />
+<ContactCard icon="discord" title="Discord" link="https://discord.gg/vHZZzj84Bm" label="@ZenMuxAI" />
+</ContactCards>

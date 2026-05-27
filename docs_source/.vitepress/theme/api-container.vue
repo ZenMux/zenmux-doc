@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { h } from 'vue';
-import ApiRequest from './api-request.vue';
-import ApiResponse from './api-response.vue';
+import { h } from "vue";
+import ApiRequest from "./api-request.vue";
+import ApiResponse from "./api-response.vue";
 </script>
 
 <template>
@@ -14,15 +14,21 @@ import ApiResponse from './api-response.vue';
 <style>
 .api-container {
   position: fixed;
-  top: 80px;
+  top: 128px;
   right: 20px;
-  width: 480px;
+  width: 414px;
   max-width: min(500px, calc(100vw - 912px));
   max-height: calc(100vh - 100px);
   z-index: 22;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+}
+
+@media (min-width: 1520px) {
+  .api-container {
+    right: 174px;
+  }
 }
 
 @media (max-width: 1280px) {

@@ -256,14 +256,14 @@ In addition to the console UI, you can also use the raw Meta information returne
 
 :::
 
-::: tip Contact us
-If you run into any issues while using ZenMux, or if you have suggestions or feedback, feel free to reach out via:
+<ContactCards>
+<ContactCard icon="mail" title="Email">
 
-- **Website**: <https://zenmux.ai>
-- **Support email**: [support@zenmux.ai](mailto:support@zenmux.ai)
-- **Business inquiries**: [bd@zenmux.ai](mailto:bd@zenmux.ai)
-- **Twitter**: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
-- **Discord community**: <http://discord.gg/vHZZzj84Bm>
+Technical support: [support@zenmux.ai](mailto:support@zenmux.ai)
 
-For more contact options and details, visit our [Contact Us page](/help/contact).
-:::
+Business cooperation: [bd@zenmux.ai](mailto:bd@zenmux.ai)
+
+</ContactCard>
+<ContactCard icon="x" title="X / Twitter" link="https://x.com/ZenMuxAI" label="@ZenMuxAI" />
+<ContactCard icon="discord" title="Discord" link="https://discord.gg/vHZZzj84Bm" label="@ZenMuxAI" />
+</ContactCards>

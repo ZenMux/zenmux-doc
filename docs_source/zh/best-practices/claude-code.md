@@ -79,7 +79,7 @@ winget install Anthropic.ClaudeCode
 
 :::
 
-::: tip 💡 安装说明
+::: info 安装说明
 
 - **原生安装（推荐）**：macOS/Linux/WSL 和 Windows 的脚本安装方式会自动更新，保持您始终使用最新版本
 - **包管理器安装**：Homebrew 和 WinGet 方式需要手动运行更新命令来获取新版本
@@ -145,7 +145,7 @@ Claude Code 默认直接连接到 Anthropic 官方服务，但通过配置环境
 
 :::
 
-::: warning 💡 重要提示：选择正确的 API Key 类型
+::: warning 重要提示：选择正确的 API Key 类型
 
 - **个人开发/学习场景** → 使用 **订阅制 API Key**（`sk-ss-v1-xxx`），成本更低、更划算
 - **生产环境/商业化项目** → 使用 **按量付费 API Key**（`sk-ai-v1-xxx`），稳定性更高、无限制
@@ -242,7 +242,7 @@ Write-Host "ANTHROPIC_AUTH_TOKEN: $env:ANTHROPIC_AUTH_TOKEN"
 
 :::
 
-::: warning 🔑 重要：替换 API Key
+::: warning 重要：替换 API Key
 
 请确保将配置中的 `sk-ss-v1-xxx` 或 `sk-ai-v1-xxx` 替换为您的真实 ZenMux API Key：
 
@@ -259,7 +259,7 @@ Write-Host "ANTHROPIC_AUTH_TOKEN: $env:ANTHROPIC_AUTH_TOKEN"
 - 详细指南：[按量付费文档](/zh/guide/pay-as-you-go)
   :::
 
-::: tip 📋 环境变量说明
+::: info 环境变量说明
 
 | 变量名                                     | 必填 | 作用         | 说明                                                                 |
 | ------------------------------------------ | ---- | ------------ | -------------------------------------------------------------------- |
@@ -334,7 +334,7 @@ export ANTHROPIC_DEFAULT_SONNET_MODEL="claude-sonnet-4-6"  # 平衡档
 export ANTHROPIC_DEFAULT_OPUS_MODEL="claude-opus-4-7"      # 强力档
 ```
 
-::: tip 💡 为什么要用别名？
+::: info 为什么要用别名？
 
 Claude Code 通过硬编码字符串校验模型名称，以启用 **1M 上下文窗口**、**effort 推理强度调节** 等特性。当校验器看到 `claude-sonnet-4-6` 时，相应功能会被激活；而看到 `anthropic/claude-sonnet-4.6` 时校验失败，功能会静默失效。
 
@@ -431,7 +431,7 @@ export ANTHROPIC_DEFAULT_OPUS_MODEL="google/gemini-3-pro-preview"
 }
 ```
 
-::: warning 🔑 重要配置说明
+::: warning 重要配置说明
 
 1. **替换 API Key**：将 `sk-ss-v1-xxx` 替换为您的真实 ZenMux API Key
    - 订阅制 API Key（`sk-ss-v1-xxx`）：适合个人开发
@@ -456,7 +456,7 @@ export ANTHROPIC_DEFAULT_OPUS_MODEL="google/gemini-3-pro-preview"
 2. 在聊天界面中输入您的问题或任务
 3. Claude 会自动读取项目文件并提供帮助
 
-::: tip 💡 使用提示
+::: info 使用提示
 
 - **信任工作区**：首次使用时，Claude Code 会要求您信任当前工作区，点击 **Trust This Folder** 允许其访问项目文件
 - **切换模型**：在对话过程中输入 `/model`，可以查看当前使用的模型或切换到其他模型
@@ -856,14 +856,14 @@ export ANTHROPIC_DEFAULT_OPUS_MODEL="claude-opus-4-6"      # [!code highlight]
 查看 [ZenMux 模型列表](https://zenmux.ai/models) 了解所有可用模型及其详细信息
 :::
 
-::: tip 联系我们
-如果您在使用过程中遇到任何问题，或有任何建议和反馈，欢迎通过以下方式联系我们：
+<ContactCards>
+<ContactCard icon="mail" title="邮箱">
 
-- **官方网站**：<https://zenmux.ai>
-- **技术支持邮箱**：[support@zenmux.ai](mailto:support@zenmux.ai)
-- **商务合作邮箱**：[bd@zenmux.ai](mailto:bd@zenmux.ai)
-- **Twitter**：[@ZenMuxAI](https://twitter.com/ZenMuxAI)
-- **Discord 社区**：<http://discord.gg/vHZZzj84Bm>
+技术支持: [support@zenmux.ai](mailto:support@zenmux.ai)
 
-更多联系方式和详细信息，请访问我们的[联系我们页面](/zh/help/contact)。
-:::
+商务合作: [bd@zenmux.ai](mailto:bd@zenmux.ai)
+
+</ContactCard>
+<ContactCard icon="x" title="X / Twitter" link="https://x.com/ZenMuxAI" label="@ZenMuxAI" />
+<ContactCard icon="discord" title="Discord" link="https://discord.gg/vHZZzj84Bm" label="@ZenMuxAI" />
+</ContactCards>

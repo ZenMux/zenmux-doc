@@ -108,7 +108,7 @@ scripts/format-images.js          # Image formatting automation
 
 ### VitePress Syntax Usage
 
-- Use tip boxes: `::: tip 💡 Title` for important notes
+- Use tip boxes: `::: tip  Title` for important notes
 - Use code groups: `::: code-group` for multi-language examples
 - Use highlights: `# [!code highlight]` for emphasizing important code lines
 - Use details: `::: details Title` for collapsible content

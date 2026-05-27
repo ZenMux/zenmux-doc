@@ -12,17 +12,20 @@ Thanks for your interest in contributing to ZenMux documentation! This guide wil
 ### Getting Started
 
 1. Fork and clone the repository:
+
 ```bash
 git clone https://github.com/your-username/zenmux-doc.git
 cd zenmux-doc
 ```
 
 2. Install dependencies:
+
 ```bash
 pnpm install
 ```
 
 3. Start the development server:
+
 ```bash
 pnpm run dev
 ```
@@ -60,25 +63,26 @@ ZenMux documentation follows a **Chinese-first** workflow:
 ### Adding New Documentation
 
 1. **Create Chinese documentation**:
+
 ```bash
 # Create your doc in docs_source/zh/
 docs_source/zh/guide/my-new-feature.md
 ```
 
 2. **Update sidebar configuration**:
+
 ```typescript
 // docs_source/zh/config.ts
 sidebar: [
   {
-    text: 'Guide',
-    items: [
-      { text: 'My New Feature', link: '/zh/guide/my-new-feature' }
-    ]
-  }
-]
+    text: "Guide",
+    items: [{ text: "My New Feature", link: "/zh/guide/my-new-feature" }],
+  },
+];
 ```
 
 3. **Translate to English**:
+
 ```bash
 # Single file
 pnpm run translate docs_source/zh/guide/my-new-feature.md
@@ -94,16 +98,15 @@ pnpm run translate docs_source/zh/ --concurrency=10
 ```
 
 4. **Update English sidebar**:
+
 ```typescript
 // docs_source/en/config.ts
 sidebar: [
   {
-    text: 'Guide',
-    items: [
-      { text: 'My New Feature', link: '/guide/my-new-feature' }
-    ]
-  }
-]
+    text: "Guide",
+    items: [{ text: "My New Feature", link: "/guide/my-new-feature" }],
+  },
+];
 ```
 
 ## Translation Guidelines
@@ -151,7 +154,7 @@ pnpm run optimize draft.md docs_source/zh/guide/quickstart.md --force
 ### Tip Boxes
 
 ```markdown
-::: tip 💡 Important
+::: tip Important
 This is an important note
 :::
 
@@ -166,9 +169,10 @@ This is a danger notice
 
 ### Code Groups
 
-```markdown
+````markdown
 ::: code-group
-```js [JavaScript]
+
+````js [JavaScript]
 console.log('Hello')
 \```
 
@@ -176,17 +180,19 @@ console.log('Hello')
 print('Hello')
 \```
 :::
-```
+````
+````
 
 ### Code Highlighting
 
-```markdown
-```js
+````markdown
+````js
 const important = true; // [!code highlight]
 const removed = false;  // [!code --]
 const added = true;     // [!code ++]
 \```
-```
+````
+````
 
 ### Collapsible Content
 
@@ -207,6 +213,7 @@ pnpm run format-images
 ```
 
 This automatically:
+
 - Sets appropriate sizes for different image types
 - Adds responsive design, rounded corners, and shadows
 - Enables lazy loading
@@ -220,16 +227,19 @@ This automatically:
 ## Testing Your Changes
 
 1. **Development mode**:
+
 ```bash
 pnpm run dev
 ```
 
 2. **Production build**:
+
 ```bash
 pnpm run build
 ```
 
 3. **Preview build**:
+
 ```bash
 pnpm run preview
 ```
@@ -237,17 +247,20 @@ pnpm run preview
 ## Submitting Changes
 
 1. Create a new branch:
+
 ```bash
 git checkout -b docs/improve-quickstart-guide
 ```
 
 2. Make your changes and commit:
+
 ```bash
 git add .
 git commit -m "docs: improve quickstart guide"
 ```
 
 3. Push to your fork:
+
 ```bash
 git push origin docs/improve-quickstart-guide
 ```

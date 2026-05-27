@@ -84,7 +84,7 @@ sudo dpkg -i cc-switch_*.deb
 
 :::
 
-::: tip 💡 Web UI (Headless/SSH Environments)
+::: info Web UI (Headless/SSH Environments)
 CC-Switch also provides a Web UI version for servers without a GUI or for SSH remote environments. Download the Linux x64 tar.gz package from the Releases page, extract it, and run it. The default port is 17666.
 :::
 
@@ -124,7 +124,7 @@ For details, see: Pay-as-you-go Guide
 
 :::
 
-::: warning 💡 Important: Choose the Correct API Key Type
+::: warning Important: Choose the Correct API Key Type
 
 - **Personal development/learning** → use a **Subscription API Key** (`sk-ss-v1-xxx`) for lower, better value cost
 - **Production/commercial projects** → use a **Pay-as-you-go API Key** (`sk-ai-v1-xxx`) for higher stability and no limits
@@ -140,7 +140,7 @@ Subscription keys are not allowed for production use. Violations may result in a
 
 After launching CC-Switch, select the coding tool you want to configure in the top navigation bar (e.g., **Claude Code**) to open the provider management page.
 
-::: tip 💡 First Launch
+::: info First Launch
 On first launch, CC-Switch automatically imports your existing local Claude Code / Codex / Gemini CLI / OpenCode configuration as the default provider—no manual migration required.
 :::
 
@@ -166,7 +166,7 @@ Configure **Model Mapping** to map Claude Code’s three speed tiers to models o
 | **Sonnet (Balanced)** | `anthropic/claude-sonnet-4.5` | Recommended for daily development; best value |
 | **Opus (Powerful)**   | `anthropic/claude-opus-4.5`   | Complex architecture, large refactors         |
 
-::: tip 💡 Flexible Model Selection
+::: info Flexible Model Selection
 With ZenMux, you can map not only to Claude models, but also to models from other providers. For example:
 
 - Haiku tier → `volcengine/doubao-seed-code` (Doubao coding model)
@@ -266,7 +266,7 @@ Copy and paste the configuration above into Gemini CLI’s config file, then sav
 ![cc-switch](https://cdn.marmot-cloud.com/storage/zenmux/2026/02/09/48cGZ8v/20260209164702.jpg)
 Copy and paste the configuration above into OpenCode’s config file, then save to complete setup.
 
-::: warning 🔑 Important: Replace the API Key
+::: warning Important: Replace the API Key
 Make sure to replace `<ZENMUX_API_KEY>` in the configuration with your real ZenMux API key:
 
 **Subscription API Key (Recommended for personal development)**
@@ -366,16 +366,14 @@ This prompt will not appear on subsequent launches.
 - Use a model from the supported list above
   :::
 
-::: tip Contact Us
-If you run into any issues, or have suggestions and feedback, feel free to reach out via:
+<ContactCards>
+<ContactCard icon="mail" title="Email">
 
-- **Official website**: <https://zenmux.ai>
-- **Support email**: [support@zenmux.ai](mailto:support@zenmux.ai)
-- **Business inquiries**: [bd@zenmux.ai](mailto:bd@zenmux.ai)
-- **Twitter**: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
-- **Discord community**: <http://discord.gg/vHZZzj84Bm>
+Technical support: [support@zenmux.ai](mailto:support@zenmux.ai)
 
-For more contact options and details, visit our [Contact page](/help/contact).
+Business cooperation: [bd@zenmux.ai](mailto:bd@zenmux.ai)
 
-For CC-Switch project issues, please report them via [CC-Switch GitHub Issues](https://github.com/farion1231/cc-switch/issues).
-:::
+</ContactCard>
+<ContactCard icon="x" title="X / Twitter" link="https://x.com/ZenMuxAI" label="@ZenMuxAI" />
+<ContactCard icon="discord" title="Discord" link="https://discord.gg/vHZZzj84Bm" label="@ZenMuxAI" />
+</ContactCards>

@@ -12,7 +12,7 @@ head:
 
 # Google Vertex AI API: Generate Images
 
-::: tip 💡 Troubleshooting
+::: info Troubleshooting
 Running into errors? See the [API Error Code Reference](/guide/advanced/error-codes) for a complete list of error types and troubleshooting steps.
 :::
 
@@ -32,29 +32,29 @@ ZenMux's supported image generation models are continuously updated. Visit the [
 
 ## Path parameters
 
-### provider `string` <font color="red">Required</font>
+### provider `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 The model provider identifier. This is the portion before `/` in the model name — for example, `openai` in `openai/gpt-image-2`.
 
-### model `string` <font color="red">Required</font>
+### model `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 The model name. This is the portion after `/` in the model name — for example, `gpt-image-2` in `openai/gpt-image-2`.
 
 ## Authentication Parameters
 
-### api_key `string` <font color="red">Required</font>
+### api_key `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 Your ZenMux API key for authentication.
 
-### vertexai `boolean` <font color="red">Required</font>
+### vertexai `boolean` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 Must be set to `true` to enable the Vertex AI protocol.
 
-### http_options.base_url `string` <font color="red">Required</font>
+### http_options.base_url `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 ZenMux Vertex AI endpoint: `https://zenmux.ai/api/vertex-ai`.
 
-### http_options.api_version `string` <font color="red">Required</font>
+### http_options.api_version `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 API version. Set to `v1`.
 
@@ -62,19 +62,19 @@ API version. Set to `v1`.
 
 The following describes the parameters for the `generate_images` / `generateImages` SDK method. The SDK automatically converts these parameters into the Vertex AI REST format (`instances` + `parameters`) before sending them to ZenMux.
 
-### prompt `string` <font color="red">Required</font>
+### prompt `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 A text description of the image you want to generate. Use clear, specific descriptions for best results.
 
-### model `string` <font color="red">Required</font>
+### model `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 The model to use for image generation, in `{provider}/{model}` format — for example, `openai/gpt-image-2`.
 
-### config `GenerateImagesConfig` <font color="gray">Optional</font>
+### config `GenerateImagesConfig` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Image generation configuration object containing the following fields:
 
-#### number_of_images `integer` <font color="gray">Optional</font>
+#### number_of_images `integer` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 The number of images to generate. Defaults to 1. Maximum limits vary by provider: Google Imagen supports up to 4, OpenAI up to 10, Volcengine up to 15, and Flux/GLM/Hunyuan support only 1.
 
@@ -82,7 +82,7 @@ SDK field name: Python `number_of_images`, TypeScript `numberOfImages`.
 
 > REST equivalent: `parameters.sampleCount`
 
-#### negative_prompt `string` <font color="gray">Optional</font>
+#### negative_prompt `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 A negative prompt describing content you do not want to appear in the image. Supported providers: Google Imagen, Kling, Tongyi Wanxiang (Qwen).
 
@@ -90,7 +90,7 @@ SDK field name: Python `negative_prompt`, TypeScript `negativePrompt`.
 
 > REST equivalent: `parameters.negativePrompt`
 
-#### aspect_ratio `string` <font color="gray">Optional</font>
+#### aspect_ratio `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 The image aspect ratio. Supported values vary by provider. Common values include:
 
@@ -104,11 +104,11 @@ SDK field name: Python `aspect_ratio`, TypeScript `aspectRatio`.
 
 > REST equivalent: `parameters.aspectRatio`
 
-::: tip 💡 Size Control
+::: info Size Control
 `aspect_ratio` controls the aspect ratio, while `sampleImageSize` controls the resolution tier. Use them together for precise output size control. For OpenAI models, use the `imageSize` passthrough parameter to specify dimensions directly.
 :::
 
-#### output_mime_type `string` <font color="gray">Optional</font>
+#### output_mime_type `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 The output image format. Defaults to `image/png`.
 
@@ -121,7 +121,7 @@ SDK field name: Python `output_mime_type`, TypeScript `outputMimeType`.
 
 > REST equivalent: `parameters.outputOptions.mimeType`
 
-#### output_compression_quality `integer` <font color="gray">Optional</font>
+#### output_compression_quality `integer` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 The compression quality of the output image, ranging from 0 to 100. Only applies when `output_mime_type` is `image/jpeg`. Defaults to 100.
 
@@ -129,7 +129,7 @@ SDK field name: Python `output_compression_quality`, TypeScript `outputCompressi
 
 > REST equivalent: `parameters.outputOptions.compressionQuality`
 
-#### seed `integer` <font color="gray">Optional</font>
+#### seed `integer` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 A random seed for reproducible generation results. Supported providers: Google Imagen, Flux, Tongyi Wanxiang, Volcengine.
 
@@ -137,7 +137,7 @@ SDK field name: Python `seed`, TypeScript `seed`.
 
 > REST equivalent: `parameters.seed`
 
-#### enhance_prompt `boolean` <font color="gray">Optional</font>
+#### enhance_prompt `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Whether to enable prompt enhancement/optimization. When enabled, the model automatically expands and refines the prompt to improve generation quality. Supported providers: Flux, Hunyuan, Tongyi Wanxiang.
 
@@ -145,7 +145,7 @@ SDK field name: Python `enhance_prompt`, TypeScript `enhancePrompt`.
 
 > REST equivalent: `parameters.enhancePrompt`
 
-#### person_generation `string` <font color="gray">Optional</font>
+#### person_generation `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Person generation control. Only supported by Google Imagen models.
 
@@ -158,7 +158,7 @@ SDK field name: Python `person_generation`, TypeScript `personGeneration`.
 
 > REST equivalent: `parameters.personGeneration`
 
-#### safety_filter_level `string` <font color="gray">Optional</font>
+#### safety_filter_level `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Safety filter level. Only supported by Google Imagen models.
 
@@ -166,7 +166,7 @@ SDK field name: Python `safety_filter_level`, TypeScript `safetyFilterLevel`.
 
 > REST equivalent: `parameters.safetySetting`
 
-#### include_rai_reason `boolean` <font color="gray">Optional</font>
+#### include_rai_reason `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Whether to include the content moderation reason in the response. Only supported by Google Imagen models.
 
@@ -174,7 +174,7 @@ SDK field name: Python `include_rai_reason`, TypeScript `includeRaiReason`.
 
 > REST equivalent: `parameters.includeRaiReason`
 
-#### add_watermark `boolean` <font color="gray">Optional</font>
+#### add_watermark `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Whether to add a watermark. Supported providers: Google Imagen, Volcengine, GLM, Hunyuan, Tongyi Wanxiang, Baidu.
 
@@ -182,7 +182,7 @@ SDK field name: Python `add_watermark`, TypeScript `addWatermark`.
 
 > REST equivalent: `parameters.addWatermark`
 
-#### guidance_scale `number` <font color="gray">Optional</font>
+#### guidance_scale `number` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Guidance scale, controlling how closely the model follows the prompt. Only supported by Flux models.
 
@@ -194,7 +194,7 @@ SDK field name: Python `guidance_scale`, TypeScript `guidanceScale`.
 
 The following parameters are passed through via `http_options.extra_body` and only apply to OpenAI-class models (such as `openai/gpt-image-2`).
 
-#### http_options.extra_body.imageSize `string` <font color="gray">Optional</font>
+#### http_options.extra_body.imageSize `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Image dimensions (passthrough parameter). ZenMux forwards this parameter as-is to the underlying OpenAI API.
 
@@ -217,7 +217,7 @@ Common custom size reference:
 
 SDK field name: Python `http_options=types.HttpOptions(extra_body={"imageSize": "..."})`, TypeScript `httpOptions: { extraBody: { imageSize: "..." } }`.
 
-#### http_options.extra_body.quality `string` <font color="gray">Optional</font>
+#### http_options.extra_body.quality `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Image quality (passthrough parameter). ZenMux forwards this parameter as-is to the underlying OpenAI API.
 
@@ -232,7 +232,7 @@ SDK field name: Python `http_options=types.HttpOptions(extra_body={"quality": ".
 
 ### Non-OpenAI Model Resolution Control
 
-#### http_options.extra_body.sampleImageSize `string` <font color="gray">Optional</font>
+#### http_options.extra_body.sampleImageSize `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Resolution tier (passthrough parameter). Applicable to providers such as Volcengine and Baidu.
 
@@ -246,7 +246,7 @@ This parameter works in conjunction with `aspectRatio` — ZenMux calculates the
 
 SDK field name: Python `http_options=types.HttpOptions(extra_body={"sampleImageSize": "..."})`, TypeScript `httpOptions: { extraBody: { sampleImageSize: "..." } }`.
 
-::: tip 💡 About Passthrough Parameters
+::: info About Passthrough Parameters
 `imageSize`, `quality`, and `sampleImageSize` are passthrough parameters — ZenMux converts or forwards them as needed depending on the target provider. Standard Vertex AI fields (such as `numberOfImages`, `outputMimeType`, and `aspectRatio`) should be placed directly at the top level of `config`.
 :::
 
@@ -254,22 +254,24 @@ SDK field name: Python `http_options=types.HttpOptions(extra_body={"sampleImageS
 
 The following describes the parameters for the `edit_image` / `editImage` SDK method, used to modify an existing image.
 
-### prompt `string` <font color="red">Required</font>
+### prompt `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 A text description of the desired edit. It is recommended to explicitly instruct the model to preserve the original image's shape and composition, and only change the style or specific areas.
 
-### model `string` <font color="red">Required</font>
+### model `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 The model to use for image editing, in `{provider}/{model}` format — for example, `openai/gpt-image-2`.
 
-### reference_images `array` <font color="red">Required</font>
+### reference_images `array` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 A list of reference images, including the source image and an optional mask. Different providers have different limits on the number of reference images: Kling supports up to 1, Flux supports up to 8.
 
 ::: details RawReferenceImage (Source Image)
 
-- `reference_id` `integer` <font color="red">Required</font>: An identifier for the reference image.
-- `reference_image` `Image` <font color="red">Required</font>: The image object.
+- `reference_id` `integer` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : An identifier for the reference image.
+- `reference_image` `Image` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : The image object.
   - `image_bytes` `bytes`: The binary image data.
   - `mime_type` `string`: The image MIME type, such as `image/png` or `image/jpeg`.
 
@@ -277,16 +279,19 @@ A list of reference images, including the source image and an optional mask. Dif
 
 ::: details MaskReferenceImage (Mask, Optional)
 
-- `reference_id` `integer` <font color="red">Required</font>: An identifier for the mask.
-- `reference_image` `Image` <font color="red">Required</font>: The mask image object. Transparent regions indicate the areas to be edited.
+- `reference_id` `integer` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : An identifier for the mask.
+- `reference_image` `Image` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : The mask image object. Transparent regions indicate the areas to be edited.
   - `image_bytes` `bytes`: The binary mask data.
   - `mime_type` `string`: The image MIME type.
-- `config` `MaskReferenceConfig` <font color="red">Required</font>: Mask configuration.
+- `config` `MaskReferenceConfig` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : Mask configuration.
   - `mask_mode` `string`: The mask mode. Set to `MASK_MODE_USER_PROVIDED`.
 
 :::
 
-### config `EditImageConfig` <font color="gray">Optional</font>
+### config `EditImageConfig` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Image editing configuration object. Supports the same config fields as Generate Images.
 

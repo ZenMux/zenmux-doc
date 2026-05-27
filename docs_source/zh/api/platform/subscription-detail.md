@@ -12,7 +12,7 @@ head:
 
 # Get Subscription Detail
 
-::: tip 💡 错误排查
+::: info 错误排查
 调用过程中遇到错误？请参阅 [API 错误码参考](/zh/guide/advanced/error-codes) 获取完整的错误类型说明与排查方案。
 :::
 
@@ -24,7 +24,7 @@ GET https://zenmux.ai/api/v1/management/subscription/detail
 
 ## 鉴权
 
-### Authorization Header <font color="red">必选</font>
+### Authorization Header <span style="color: #FA6062; font-weight: 400">\*</span>
 
 ```http
 Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
@@ -34,7 +34,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 - **格式**：`Bearer <API_KEY>`
 - **说明**：Management API Key，在 [ZenMux 控制台](https://zenmux.ai/platform/management) 创建
 
-::: warning ⚠️ 仅支持 Management API Key
+::: warning 仅支持 Management API Key
 本接口仅接受 Management API Key 鉴权，不支持普通 API Key。
 :::
 
@@ -69,13 +69,13 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 
 账号当前状态，枚举值：
 
-| 值 | 说明 |
-|---|---|
-| `healthy` | 正常 |
+| 值          | 说明                           |
+| ----------- | ------------------------------ |
+| `healthy`   | 正常                           |
 | `monitored` | 监控中，用量异常但仍可正常使用 |
-| `abusive` | 滥用，已触发限制 |
-| `suspended` | 已暂停 |
-| `banned` | 已封禁 |
+| `abusive`   | 滥用，已触发限制               |
+| `suspended` | 已暂停                         |
+| `banned`    | 已封禁                         |
 
 ### data.quota_5_hour `object`
 
@@ -100,11 +100,12 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 - `max_flows` `number` — 当月最大可用 Flow 数
 - `max_value_usd` `number` — 当月总额度对应的美元价值
 
-::: info 💡 配额说明
+::: info 配额说明
+
 - `quota_5_hour` 和 `quota_7_day` 均为**滚动窗口**，每次请求后实时更新
 - `quota_monthly` 为固定的订阅周期上限，不含实时用量数据
 - 三个维度同时生效，任一维度超限均会限制请求
-:::
+  :::
 
 ::: api-request GET /api/v1/management/subscription/detail
 
@@ -124,9 +125,12 @@ print(response.json())
 ```
 
 ```javascript
-const response = await fetch("https://zenmux.ai/api/v1/management/subscription/detail", {
-  headers: { Authorization: `Bearer ${ZENMUX_MANAGEMENT_API_KEY}` },
-});
+const response = await fetch(
+  "https://zenmux.ai/api/v1/management/subscription/detail",
+  {
+    headers: { Authorization: `Bearer ${ZENMUX_MANAGEMENT_API_KEY}` },
+  },
+);
 const data = await response.json();
 ```
 

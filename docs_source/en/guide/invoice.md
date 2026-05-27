@@ -50,7 +50,7 @@ When you make a **Pay As You Go top-up** or **subscription plan payment**, you c
 3. After completing the form, click **"Save billing info"** to save your invoice information
 4. Continue with the payment process
 
-::: warning ⚠️ Important Note
+::: warning Important Note
 Invoice information must be filled in before payment. If you don't provide invoice information during payment, it may not be possible to issue an invoice retroactively, or you may need to contact customer support.
 :::
 
@@ -83,7 +83,7 @@ If you made a **Pay As You Go top-up**, you can download the invoice from your t
 
 <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/21/nZQY0YJ/ruhehuoqufapiao-xiazaifapiaostripejiemian.png" alt="download" style="width:400px; border-radius:8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 
-::: info 💡 Invoice Generation Time
+::: info Invoice Generation Time
 After a successful top-up, the invoice is generated immediately. Click the **View Invoice** link to download it right away.
 :::
 
@@ -155,14 +155,14 @@ Now that you understand how to obtain invoices, you can:
 - Visit the [Cost Analysis page](https://zenmux.ai/settings/cost) to view detailed expense breakdowns
 - Join the [Discord Community](http://discord.gg/vHZZzj84Bm) to connect with other developers
 
-::: tip Contact Us
-If you encounter any issues or have any suggestions and feedback, please feel free to contact us:
+<ContactCards>
+<ContactCard icon="mail" title="Email">
 
-- **Official Website**: <https://zenmux.ai>
-- **Technical Support Email**: [support@zenmux.ai](mailto:support@zenmux.ai)
-- **Business Cooperation Email**: [bd@zenmux.ai](mailto:bd@zenmux.ai)
-- **Twitter**: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
-- **Discord Community**: <http://discord.gg/vHZZzj84Bm>
+Technical support: [support@zenmux.ai](mailto:support@zenmux.ai)
 
-For more contact information and details, please visit our [Contact Us page](/en/help/contact).
-:::
+Business cooperation: [bd@zenmux.ai](mailto:bd@zenmux.ai)
+
+</ContactCard>
+<ContactCard icon="x" title="X / Twitter" link="https://x.com/ZenMuxAI" label="@ZenMuxAI" />
+<ContactCard icon="discord" title="Discord" link="https://discord.gg/vHZZzj84Bm" label="@ZenMuxAI" />
+</ContactCards>

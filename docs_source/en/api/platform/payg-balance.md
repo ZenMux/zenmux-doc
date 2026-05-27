@@ -12,7 +12,7 @@ head:
 
 # Get PAYG Balance
 
-::: tip 💡 Troubleshooting
+::: info Troubleshooting
 Encountering errors? See the [API Error Codes Reference](/guide/advanced/error-codes) for a complete list of error types and troubleshooting steps.
 :::
 
@@ -24,7 +24,7 @@ Returns the Pay As You Go credit balance for the current account, including the 
 
 ## Authentication
 
-### Authorization Header <font color="red">Required</font>
+### Authorization Header <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 ```http
 Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
@@ -34,7 +34,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 - **Format**: `Bearer <API_KEY>`
 - **Description**: A Management API Key created in the [ZenMux Console](https://zenmux.ai/platform/management)
 
-::: warning ⚠️ Management API Key required
+::: warning Management API Key required
 This endpoint only accepts Management API Keys. Standard API Keys are not supported.
 :::
 
@@ -60,7 +60,7 @@ Credits obtained through direct top-ups (USD).
 
 Credits obtained through bonuses, gifts, or promotions (USD).
 
-::: info 💡 Balance breakdown
+::: info Balance breakdown
 `total_credits` = `top_up_credits` + `bonus_credits` (minor floating-point differences may apply).
 :::
 
@@ -82,9 +82,12 @@ print(response.json())
 ```
 
 ```javascript
-const response = await fetch("https://zenmux.ai/api/v1/management/payg/balance", {
-  headers: { Authorization: `Bearer ${ZENMUX_MANAGEMENT_API_KEY}` },
-});
+const response = await fetch(
+  "https://zenmux.ai/api/v1/management/payg/balance",
+  {
+    headers: { Authorization: `Bearer ${ZENMUX_MANAGEMENT_API_KEY}` },
+  },
+);
 const data = await response.json();
 ```
 
@@ -98,7 +101,7 @@ const data = await response.json();
   "data": {
     "currency": "usd",
     "total_credits": 482.74,
-    "top_up_credits": 35.00,
+    "top_up_credits": 35.0,
     "bonus_credits": 447.74
   }
 }

@@ -237,7 +237,7 @@ if [ -n "$ZENMUX_API_KEY" ]; then
         sk-ai-v1-*) KEY_TYPE="PAYG" ; KEY_TYPE_COLOR="$YELLOW" ;;
         *)          KEY_TYPE="Key"  ; KEY_TYPE_COLOR="$DIM" ;;
     esac
-    KEY_PART=" ${DIM}|${RESET} 🔑 ${KEY_TYPE_COLOR}${KEY_TYPE}${RESET} ${DIM}${KEY_MASKED}${RESET}"
+    KEY_PART=" ${DIM}|${RESET}  ${KEY_TYPE_COLOR}${KEY_TYPE}${RESET} ${DIM}${KEY_MASKED}${RESET}"
 fi
 
 # ── Status indicator ─────────────────────────────────────────────────

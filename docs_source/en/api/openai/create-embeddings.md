@@ -4,15 +4,15 @@ title: API
 head:
   - - meta
     - name: description
-      content: Create Embeddings
+      content: Create an Embedding
   - - meta
     - name: keywords
       content: Zenmux, API, documentation, create, embeddings, OpenAI, vector, text-embedding
 ---
 
-# Create Embeddings
+# Create an Embedding
 
-::: tip 💡 Troubleshooting
+::: tip Troubleshooting
 Encountering errors during API calls? See the [API Error Codes Reference](/guide/advanced/error-codes) for a complete list of error types and troubleshooting solutions.
 :::
 
@@ -20,21 +20,21 @@ Encountering errors during API calls? See the [API Error Codes Reference](/guide
 POST https://zenmux.ai/api/v1/embeddings
 ```
 
-The Create Embeddings endpoint is compatible with OpenAI's [Create Embeddings](https://platform.openai.com/docs/api-reference/embeddings/create) API, used to convert input text into vector representations (embeddings).
+The Create an Embedding endpoint is compatible with OpenAI's [Create an Embedding](https://platform.openai.com/docs/api-reference/embeddings/create) API, used to convert input text into vector representations (embeddings).
 
 ## Request headers
 
-### Authorization `string` <font color="red">Required</font>
+### Authorization `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 Bearer Token authentication
 
-### Content-Type `string` <font color="red">Required</font>
+### Content-Type `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 Request content type, defaults to `application/json`
 
 ## Request
 
-### input `string or array` <font color="red">Required</font>
+### input `string or array` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 The input text to generate embeddings for. Can be a string or an array of strings. To embed multiple inputs in a single request, pass an array of strings.
 
@@ -46,34 +46,36 @@ Supported input types:
 - `array of integer arrays` — A 2D array of token integers to be embedded
 
 ::: warning Input Limitations
+
 - A single input cannot exceed the model's maximum input token limit (e.g., 8192 tokens for the `text-embedding-3` series)
 - Input cannot be an empty string
 - Array length cannot exceed 2048
 - Total token count across all inputs in a single request cannot exceed 300,000
-:::
+  :::
 
-### model `string` <font color="red">Required</font>
+### model `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 The model ID to use, in the format `<provider>/<model-name>`.
 
-Currently supported embedding model:
+Currently supported embedding models:
 
+- `openai/text-embedding-3-large` — High-accuracy embedding model with 3072 output dimensions
 - `openai/text-embedding-3-small` — Efficient embedding model with 1536 output dimensions
 
-### encoding_format `string` <font color="gray">Optional</font>
+### encoding_format `string` <span style="color: #666; font-weight: 400; font-size: 14px"> Optional </span>
 
 The encoding format for the returned embeddings.
 
 - `float` — Returns as an array of floating-point numbers (default)
 - `base64` — Returns as a Base64-encoded string
 
-### dimensions `integer` <font color="gray">Optional</font>
+### dimensions `integer` <span style="color: #666; font-weight: 400; font-size: 14px"> Optional </span>
 
 The number of dimensions for the output embeddings. Only supported by `text-embedding-3` and newer models.
 
 By specifying fewer dimensions, you can shorten the embedding vector without significantly losing semantic expressiveness, thereby reducing storage and retrieval costs.
 
-### user `string` <font color="gray">Optional</font>
+### user `string` <span style="color: #666; font-weight: 400; font-size: 14px"> Optional </span>
 
 A unique identifier representing the end user, which can help monitor and detect abuse.
 
@@ -89,8 +91,6 @@ The object type, always `list`.
 
 An array of embedding objects, each corresponding to the embedding result of an input text.
 
----
-
 #### data object
 
 ##### object `string`
@@ -104,8 +104,6 @@ The embedding vector, consisting of a list of floating-point numbers. The vector
 ##### index `integer`
 
 The index position of this embedding in the input list.
-
----
 
 ### model `string`
 
@@ -180,16 +178,8 @@ curl https://zenmux.ai/api/v1/embeddings \
     {
       "object": "embedding",
       "embedding": [
-        0.0023064255,
-        -0.009327292,
-        -0.0028842222,
-        0.018182484,
-        -0.012395813,
-        0.0073498537,
-        -0.020456877,
-        0.0118837105,
-        0.015375832,
-        -0.0036487724
+        0.0023064255, -0.009327292, -0.0028842222, 0.018182484, -0.012395813,
+        0.0073498537, -0.020456877, 0.0118837105, 0.015375832, -0.0036487724
       ],
       "index": 0
     }

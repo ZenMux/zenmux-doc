@@ -302,15 +302,14 @@ For the complete list, visit the [ZenMux Models page](https://zenmux.ai/models).
 
 ## Contact Us
 
-If you run into any issues or have suggestions and feedback, reach out through any of these channels:
+<ContactCards>
+<ContactCard icon="mail" title="Email">
 
-::: tip Get Help
+Technical support: [support@zenmux.ai](mailto:support@zenmux.ai)
 
-- **Website**: <https://zenmux.ai>
-- **Technical Support**: [support@zenmux.ai](mailto:support@zenmux.ai)
-- **Business Inquiries**: [bd@zenmux.ai](mailto:bd@zenmux.ai)
-- **Twitter**: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
-- **Discord Community**: <http://discord.gg/vHZZzj84Bm>
+Business cooperation: [bd@zenmux.ai](mailto:bd@zenmux.ai)
 
-For more contact options, visit our [Contact Us page](https://docs.zenmux.ai/help/contact).
-:::
+</ContactCard>
+<ContactCard icon="x" title="X / Twitter" link="https://x.com/ZenMuxAI" label="@ZenMuxAI" />
+<ContactCard icon="discord" title="Discord" link="https://discord.gg/vHZZzj84Bm" label="@ZenMuxAI" />
+</ContactCards>

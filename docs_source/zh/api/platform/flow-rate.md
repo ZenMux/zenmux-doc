@@ -12,7 +12,7 @@ head:
 
 # Get Flow Rate
 
-::: tip 💡 错误排查
+::: info 错误排查
 调用过程中遇到错误？请参阅 [API 错误码参考](/zh/guide/advanced/error-codes) 获取完整的错误类型说明与排查方案。
 :::
 
@@ -22,13 +22,13 @@ GET https://zenmux.ai/api/v1/management/flow_rate
 
 获取当前账号的 Flow 汇率信息，包括平台基准汇率和账号实际有效汇率。
 
-::: tip 💡 什么是 Flow？
+::: info 什么是 Flow？
 Flow 是 ZenMux 的统一计量单位，用于衡量 AI 推理请求的资源消耗。1 Flow ≈ 某一参考模型处理一次标准请求的成本。详见 [定价说明](https://zenmux.ai/pricing/subscription)。
 :::
 
 ## 鉴权
 
-### Authorization Header <font color="red">必选</font>
+### Authorization Header <span style="color: #FA6062; font-weight: 400">\*</span>
 
 ```http
 Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
@@ -38,7 +38,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 - **格式**：`Bearer <API_KEY>`
 - **说明**：Management API Key，在 [ZenMux 控制台](https://zenmux.ai/platform/management) 创建
 
-::: warning ⚠️ 仅支持 Management API Key
+::: warning 仅支持 Management API Key
 本接口仅接受 Management API Key 鉴权，不支持普通 API Key。
 :::
 

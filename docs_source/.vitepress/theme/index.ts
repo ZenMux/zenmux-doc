@@ -18,6 +18,13 @@ import Login from "./login.vue";
 import ApiContainer from "./api-container.vue";
 import EndpointDrawer from "./endpoint-drawer.vue";
 import AiAssistant from "./ai-assistant.vue";
+import DocTabs from "./doc-tabs.vue";
+import Breadcrumb from "./breadcrumb.vue";
+import ContactCards from "./contact-cards.vue";
+import ContactCard from "./contact-card.vue";
+import Accordion from "./accordion.vue";
+import AccordionItem from "./accordion-item.vue";
+import AsideActions from "./aside-actions.vue";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import "./style.css";
@@ -100,8 +107,10 @@ export default {
   Layout: () => {
     return h(DefaultTheme.Layout, null, {
       // https://vitepress.dev/guide/extending-default-theme#layout-slots
+      "layout-top": () => h(ClientOnly, null, { default: () => h(DocTabs) }),
       "doc-top": () => h(ClientOnly, null, { default: () => h(ApiContainer) }),
-      "doc-before": () => h(ClientOnly, null, { default: () => h(Select) }),
+      "doc-before": () => h(ClientOnly, null, { default: () => [h(Breadcrumb), h(Select)] }),
+      "aside-bottom": () => h(ClientOnly, null, { default: () => h(AsideActions) }),
       "nav-bar-content-before": () => h(ClientOnly, null, { default: () => h(AiAssistant) }),
       "nav-bar-content-after": () => h(ClientOnly, null, { default: () => [h(Login), h(EndpointDrawer)] }),
     });
@@ -134,6 +143,38 @@ export default {
         };
       }
     }
+
+    const tooltip = document.createElement('div');
+    tooltip.className = 'sidebar-tooltip';
+    document.body.appendChild(tooltip);
+    let tooltipTimer: ReturnType<typeof setTimeout> | null = null;
+
+    const showTooltip = (el: HTMLElement) => {
+      if (el.scrollWidth <= el.clientWidth) return;
+      tooltip.textContent = el.textContent || '';
+      const rect = el.getBoundingClientRect();
+      tooltip.style.left = rect.left + 'px';
+      tooltip.style.top = (rect.bottom + 6) + 'px';
+      tooltip.classList.add('visible');
+    };
+
+    const hideTooltip = () => {
+      tooltip.classList.remove('visible');
+    };
+
+    document.addEventListener('mouseover', (e) => {
+      const text = (e.target as HTMLElement).closest?.('.VPSidebarItem .item .text') as HTMLElement | null;
+      if (!text) return;
+      if (tooltipTimer) clearTimeout(tooltipTimer);
+      tooltipTimer = setTimeout(() => showTooltip(text), 300);
+    });
+
+    document.addEventListener('mouseout', (e) => {
+      const text = (e.target as HTMLElement).closest?.('.VPSidebarItem .item .text');
+      if (!text) return;
+      if (tooltipTimer) { clearTimeout(tooltipTimer); tooltipTimer = null; }
+      hideTooltip();
+    });
 
     const updateLogoLink = () => {
       const logoLink = document.querySelector(
@@ -181,6 +222,20 @@ export default {
         }
       }, true);
 
+      // Header anchor: copy link on click instead of navigating
+      document.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement;
+        const anchor = target.closest('a.header-anchor');
+        if (!anchor) return;
+        e.preventDefault();
+        const href = anchor.getAttribute('href') || '';
+        const url = location.origin + location.pathname + href;
+        navigator.clipboard.writeText(url).then(() => {
+          anchor.classList.add('copied');
+          setTimeout(() => anchor.classList.remove('copied'), 1500);
+        });
+      });
+
       console.info("isDocsHost:", isDocsHost);
       updateLogoLink();
       if (!isDocsHost) {
@@ -223,5 +278,9 @@ export default {
     // app.use(ElementPlus);11
     app.component("Login", Login);
     app.component("Copy", Select);
+    app.component("ContactCards", ContactCards);
+    app.component("ContactCard", ContactCard);
+    app.component("Accordion", Accordion);
+    app.component("AccordionItem", AccordionItem);
   },
 } satisfies Theme;

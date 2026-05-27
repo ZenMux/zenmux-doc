@@ -256,14 +256,14 @@ ZenMux 提供了完善的日志系统，帮助您实时监控和分析所有 API
 
 :::
 
-::: tip 联系我们
-如果您在使用过程中遇到任何问题，或有任何建议和反馈，欢迎通过以下方式联系我们：
+<ContactCards>
+<ContactCard icon="mail" title="邮箱">
 
-- **官方网站**：<https://zenmux.ai>
-- **技术支持邮箱**：[support@zenmux.ai](mailto:support@zenmux.ai)
-- **商务合作邮箱**：[bd@zenmux.ai](mailto:bd@zenmux.ai)
-- **Twitter**：[@ZenMuxAI](https://twitter.com/ZenMuxAI)
-- **Discord 社区**：<http://discord.gg/vHZZzj84Bm>
+技术支持: [support@zenmux.ai](mailto:support@zenmux.ai)
 
-更多联系方式和详细信息，请访问我们的[联系我们页面](/zh/help/contact)。
-:::
+商务合作: [bd@zenmux.ai](mailto:bd@zenmux.ai)
+
+</ContactCard>
+<ContactCard icon="x" title="X / Twitter" link="https://x.com/ZenMuxAI" label="@ZenMuxAI" />
+<ContactCard icon="discord" title="Discord" link="https://discord.gg/vHZZzj84Bm" label="@ZenMuxAI" />
+</ContactCards>
