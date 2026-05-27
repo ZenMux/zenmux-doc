@@ -72,6 +72,11 @@
     margin: 0 auto !important;
   }
 }
+@media (min-width: 1520px) {
+  .api-page .VPDoc .container {
+    padding-right: 416px !important;
+  }
+}
 
 .api-request-container,
 .api-response-container {
@@ -138,6 +143,18 @@
   }
   html.ai-panel-open.ai-panel-maximized .api-container {
     right: 540px !important;
+  }
+}
+
+@media (min-width: 1520px) {
+  html.ai-panel-open .api-container {
+    right: 400px !important;
+  }
+  html.ai-panel-open.ai-panel-maximized .api-container {
+    right: 540px !important;
+  }
+  html.ai-panel-open .api-page .VPDoc .container {
+    padding-right: 262px !important;
   }
 }
 
@@ -902,6 +919,10 @@
   margin-bottom: 12px;
 }
 
+.dark .VPDocAsideOutline .outline-title {
+  color: var(--zm-text-tertiary);
+}
+
 .VPDocAsideOutline .outline-marker {
   left: 12px !important;
   width: 2px !important;
@@ -917,6 +938,10 @@
 .VPDocOutlineItem.root {
   padding-left: 14px;
   border-left: 0.5px solid #e6e6e6;
+}
+
+.dark .VPDocOutlineItem.root {
+  border-left-color: var(--zm-border-primary);
 }
 .VPDocOutlineItem.root > li {
   padding-top: 16px;

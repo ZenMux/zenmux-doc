@@ -25,6 +25,12 @@ import ApiResponse from "./api-response.vue";
   overflow-y: auto;
 }
 
+@media (min-width: 1520px) {
+  .api-container {
+    right: 174px;
+  }
+}
+
 @media (max-width: 1280px) {
   .api-container {
     position: static;
