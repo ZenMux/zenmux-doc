@@ -35,6 +35,7 @@
   "repository": "git@github.com:ZenMux/zenmux-doc.git",
   "devDependencies": {
     "@types/node": "^24.10.8",
+    "cheerio": "^1.2.0",
     "tsx": "^4.21.0"
   }
 }

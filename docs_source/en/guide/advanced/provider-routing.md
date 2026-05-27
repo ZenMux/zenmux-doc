@@ -87,9 +87,9 @@ model_slug:provider_slug
 
 ::: info Model Slug Lookup
 Each model on ZenMux has a unique slug. You can find the slug on the Model List page (https://zenmux.ai/models):
-![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/AQG0SIr/model-slug.png)
+![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2026/05/26/es9d7he/20260526161559.jpg)
 Or on a specific model’s detail page (https://zenmux.ai/anthropic/claude-sonnet-4.5):
-![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/dWYxJnq/model-slug-3.png)
+![model-slug](https://cdn.marmot-cloud.com/storage/zenmux/2026/05/26/0kWfGkK/20260526161657.jpg)
 :::
 
 ::: info Provider Slug Lookup
@@ -148,7 +148,7 @@ print(response.choices[0].message.content)
 | Fast switching     | Switch providers by changing only the model name         |
 | Clear visibility   | Instantly see which provider is being used               |
 
-::: tip 💡 Best Practices
+::: info Best Practices
 For most scenarios, we recommend using the model name suffix syntax to specify providers—it’s the simplest and most direct approach. If you need more complex routing (e.g., multi-provider fallback, dynamic priorities), use the advanced routing configuration below.
 :::
 
@@ -304,7 +304,7 @@ When you specify a providers list, ZenMux behaves as follows:
 - Single provider: If only one provider is specified, ZenMux will call only that provider
 - Error handling: If the specified provider returns an error, return that error directly
 
-::: warning ⚠️ Cautions
+::: warning Cautions
 When using custom routing strategies, ensure that the specified providers actually support the selected model; otherwise, calls may fail.
 :::
 
@@ -421,14 +421,14 @@ A: The same model across different providers usually produces consistent outputs
 
 A: No. ZenMux’s routing decisions are made at millisecond scale, with negligible impact on overall latency. In fact, by intelligently selecting low-latency providers, it can reduce total response time.
 
-::: tip Contact Us
-If you encounter any issues during use or have suggestions and feedback, feel free to contact us:
+<ContactCards>
+<ContactCard icon="mail" title="Email">
 
-- Official website: <https://zenmux.ai>
-- Technical support email: [support@zenmux.ai](mailto:support@zenmux.ai)
-- Business cooperation email: [bd@zenmux.ai](mailto:bd@zenmux.ai)
-- Twitter: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
-- Discord community: <http://discord.gg/vHZZzj84Bm>
+Technical support: [support@zenmux.ai](mailto:support@zenmux.ai)
 
-For more contact methods and details, please visit our Contact Us page (/help/contact).
-:::
+Business cooperation: [bd@zenmux.ai](mailto:bd@zenmux.ai)
+
+</ContactCard>
+<ContactCard icon="x" title="X / Twitter" link="https://x.com/ZenMuxAI" label="@ZenMuxAI" />
+<ContactCard icon="discord" title="Discord" link="https://discord.gg/vHZZzj84Bm" label="@ZenMuxAI" />
+</ContactCards>

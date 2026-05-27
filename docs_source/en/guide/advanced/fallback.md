@@ -348,14 +348,14 @@ A: The model field in the response shows the actual model used. If it differs fr
 
 A: Yes. Per-request configuration has higher priority and overrides the global setting. This lets you use global configuration for most scenarios while applying differentiated fallback strategies to specific requests.
 
-::: tip Contact Us
-If you encounter any issues or have suggestions and feedback, feel free to reach us via:
+<ContactCards>
+<ContactCard icon="mail" title="Email">
 
-- Official website: <https://zenmux.ai>
-- Technical support email: [support@zenmux.ai](mailto:support@zenmux.ai)
-- Business cooperation email: [bd@zenmux.ai](mailto:bd@zenmux.ai)
-- Twitter: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
-- Discord Community: <http://discord.gg/vHZZzj84Bm>
+Technical support: [support@zenmux.ai](mailto:support@zenmux.ai)
 
-For more contact methods and details, please visit our [Contact Us page](/help/contact).
-:::
+Business cooperation: [bd@zenmux.ai](mailto:bd@zenmux.ai)
+
+</ContactCard>
+<ContactCard icon="x" title="X / Twitter" link="https://x.com/ZenMuxAI" label="@ZenMuxAI" />
+<ContactCard icon="discord" title="Discord" link="https://discord.gg/vHZZzj84Bm" label="@ZenMuxAI" />
+</ContactCards>

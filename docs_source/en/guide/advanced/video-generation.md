@@ -12,7 +12,7 @@ head:
 
 ZenMux supports calling video generation models via the Vertex AI protocol. This guide explains how to generate videos with ZenMux.
 
-::: tip 💡 About Video Generation
+::: info About Video Generation
 Video generation models can automatically produce high-quality video content from text descriptions. ZenMux aggregates leading video generation models such as Google Veo and ByteDance Seedance, allowing you to call them easily through a unified API interface.
 :::
 
@@ -24,7 +24,7 @@ The currently supported video generation models include (continuously updated):
 - `volcengine/doubao-seedance-1.5-pro` — ByteDance Seedance 1.5 Pro
 - `volcengine/doubao-seedance-2` — ByteDance Seedance 2, the latest-generation video generation model
 
-::: tip 📚 More Models
+::: info More Models
 Visit the [ZenMux model list](https://zenmux.ai/models) to search and view all available video generation models.
 :::
 
@@ -239,7 +239,7 @@ for video in operation.response.generated_videos:
 
 :::
 
-::: tip 💡 Image-to-Video Notes
+::: info Image-to-Video Notes
 
 - The `image` parameter is passed via `types.Image`, which supports `image_bytes` (binary data) and `mime_type` (e.g., `image/png`, `image/jpeg`).
 - The `prompt` parameter is optional and is used to describe how the content in the image should move or change.
@@ -282,7 +282,7 @@ operation = client.models.generate_videos(
 )
 ```
 
-::: tip 💡 Parameter Support Notes
+::: info Parameter Support Notes
 Support for optional parameters may vary by model. If you pass a parameter value that the model does not support, the API will return an error. We recommend testing with default parameters first, then adjusting gradually.
 :::
 
@@ -294,7 +294,7 @@ Video generation is an asynchronous process with three steps:
 2. **Poll status** (`operations.get`): Check generation status periodically; a 15-second interval is recommended
 3. **Retrieve results**: When `operation.done` is `True`, get the videos from `operation.response.generated_videos`
 
-::: warning ⚠️ Generation Time
+::: warning Generation Time
 Video generation typically takes a while (from tens of seconds to several minutes). Please be patient while polling completes, and avoid setting the polling interval too short.
 :::
 

@@ -18,7 +18,7 @@ head:
 - 💬 **Submit feedback**: File bugs and feature requests through conversation — GitHub Issues are created automatically.
 - 📟 **Watch status**: Keep subscription tier, quota usage, and wallet balance always visible in the Claude Code status line.
 
-::: tip 💡 What is a Skill?
+::: info What is a Skill?
 A Skill is an extension mechanism defined by the [Agent Skills open standard](https://agentskills.io). Each Skill is simply a `SKILL.md` file with YAML metadata. Once installed:
 
 - You can **invoke it explicitly** with `/skill-name`.
@@ -47,7 +47,7 @@ npx skills add ZenMux/skills
 
 This launches an interactive selection UI: first pick which Skills to install, then pick which Agents should receive them.
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/04/21/Qvoo1yw/skills.png" alt="Interactive selection UI for npx skills add ZenMux/skills" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/04/21/Qvoo1yw/skills.png" alt="Interactive selection UI for npx skills add ZenMux/skills" >
 
 Based on your selections, the tool copies each Skill into the appropriate Agent directory (for example, Claude Code → `~/.claude/skills/`; Cursor, Cline, Codex, and others that share the universal directory → `~/.agents/skills/`; Augment → `~/.augment/skills/`; and so on). The next time you open one of those Agents, it will recognize and be able to invoke the Skills.
 
@@ -70,7 +70,7 @@ npx skills add https://github.com/zenmux/skills --skill zenmux-feedback
 npx skills add https://github.com/zenmux/skills --skill zenmux-statusline
 ```
 
-::: info 📍 About where Skills are installed
+::: info About where Skills are installed
 Every Agent has its own directory convention, and `npx skills add` writes to each one automatically. Most Agents support **hot reload** — newly added or modified Skills take effect in the next session without a restart (exact behavior depends on the Agent you use).
 :::
 
@@ -84,12 +84,12 @@ Every Agent has its own directory convention, and `npx skills add` writes to eac
 
 These Agents all read the same `.agents/skills` directory, so one install covers all of them:
 
-| Agent | Agent | Agent |
-|------|------|------|
-| [Amp](https://ampcode.com/) | [Antigravity](https://antigravity.google/) | [Cline](https://cline.bot/) |
-| [Codex](https://github.com/openai/codex) | [Cursor](https://cursor.sh/) | [Deep Agents](https://deepagents.ai/) |
-| [Firebender](https://firebender.com/) | [Gemini CLI](https://github.com/google-gemini/gemini-cli) | [GitHub Copilot](https://github.com/features/copilot) |
-| [Kimi Code CLI](https://platform.moonshot.cn/) | [OpenCode](https://opencode.ai/) | [Warp](https://www.warp.dev/) |
+| Agent                                          | Agent                                                     | Agent                                                 |
+| ---------------------------------------------- | --------------------------------------------------------- | ----------------------------------------------------- |
+| [Amp](https://ampcode.com/)                    | [Antigravity](https://antigravity.google/)                | [Cline](https://cline.bot/)                           |
+| [Codex](https://github.com/openai/codex)       | [Cursor](https://cursor.sh/)                              | [Deep Agents](https://deepagents.ai/)                 |
+| [Firebender](https://firebender.com/)          | [Gemini CLI](https://github.com/google-gemini/gemini-cli) | [GitHub Copilot](https://github.com/features/copilot) |
+| [Kimi Code CLI](https://platform.moonshot.cn/) | [OpenCode](https://opencode.ai/)                          | [Warp](https://www.warp.dev/)                         |
 
 ### Additional (separate directories, opt-in)
 
@@ -105,7 +105,7 @@ These Agents each use their own Skills directory — select them in the interact
 - **Cortex Code** (`.cortex/skills`)
 - …and **23+** more
 
-::: tip 💡 The CLI is the source of truth
+::: info The CLI is the source of truth
 The list of supported Agents keeps growing. For the most up-to-date roster, run `npx skills add ZenMux/skills` and check the interactive selection UI.
 :::
 
@@ -113,13 +113,13 @@ The list of supported Agents keeps growing. For the most up-to-date roster, run 
 
 ## Skills overview
 
-| Skill | In one sentence | Example trigger |
-| ----- | --------------- | --------------- |
-| [**zenmux-context**](#zenmux-context-documentation-assistant) | Answers questions based on the latest ZenMux docs | "How does ZenMux handle model routing?" |
-| [**zenmux-setup**](#zenmux-setup-integration-helper) | Walks you through connecting a tool to ZenMux | "Help me connect Cursor to ZenMux" |
-| [**zenmux-usage**](#zenmux-usage-usage-query-helper) | Queries usage, balance, subscription, and cost | "How much Flow do I have left?" |
-| [**zenmux-feedback**](#zenmux-feedback-feedback-submission-helper) | Files GitHub Issues through conversation | "I want to report a bug to ZenMux" |
-| [**zenmux-statusline**](#zenmux-statusline-account-status-line) | Shows account info in the Claude Code status line (Claude Code only) | "Set up the ZenMux status line for me" |
+| Skill                                                              | In one sentence                                                      | Example trigger                         |
+| ------------------------------------------------------------------ | -------------------------------------------------------------------- | --------------------------------------- |
+| [**zenmux-context**](#zenmux-context-documentation-assistant)      | Answers questions based on the latest ZenMux docs                    | "How does ZenMux handle model routing?" |
+| [**zenmux-setup**](#zenmux-setup-integration-helper)               | Walks you through connecting a tool to ZenMux                        | "Help me connect Cursor to ZenMux"      |
+| [**zenmux-usage**](#zenmux-usage-usage-query-helper)               | Queries usage, balance, subscription, and cost                       | "How much Flow do I have left?"         |
+| [**zenmux-feedback**](#zenmux-feedback-feedback-submission-helper) | Files GitHub Issues through conversation                             | "I want to report a bug to ZenMux"      |
+| [**zenmux-statusline**](#zenmux-statusline-account-status-line)    | Shows account info in the Claude Code status line (Claude Code only) | "Set up the ZenMux status line for me"  |
 
 ---
 
@@ -219,7 +219,7 @@ Agent: [invokes zenmux-feedback and collects details]
 
 ### zenmux-statusline — account status line
 
-::: warning ⚠️ Claude Code only
+::: warning Claude Code only
 This Skill depends on Claude Code's **statusLine** mechanism and currently only works inside Claude Code. If you use a different Agent, skip this section and use `zenmux-usage` for interactive account queries instead.
 :::
 
@@ -230,7 +230,7 @@ This Skill depends on Claude Code's **statusLine** mechanism and currently only 
 ⚡ ZenMux Ultra | 🔑 Sub sk-ss-...6e6 | 5h █░░░░ 19% · 7d █░░░░ 24% | 💳 Bal $492.74
 ```
 
-::: tip 💡 Activate once after installing
+::: info Activate once after installing
 `npx skills add` only copies the Skill to your local machine. The first time you use it, explicitly invoke it once inside **Claude Code**:
 
 ```text
@@ -242,39 +242,39 @@ Claude Code will write the status line script into its config, install any missi
 
 #### Line 1 · Session info (injected by Claude Code)
 
-| Segment | Example | Description |
-|---------|---------|-------------|
-| **Model** | `[claude-opus-4-7[1m]]` | Current model slug |
-| **Directory** | `📁 skills` | Current working directory |
-| **Git** | `🌿 main*` | Branch name; `*` indicates uncommitted changes |
-| **Context** | `████░░░░░░ 42% ctx` | Context window usage: green <70%, yellow 70–89%, red ≥90% |
-| **Cache** | `💾 r72.0k w5.0k` | Prompt cache from the last API call: `r` = cache hits, `w` = cache writes. Hidden before the first API call |
+| Segment       | Example                 | Description                                                                                                 |
+| ------------- | ----------------------- | ----------------------------------------------------------------------------------------------------------- |
+| **Model**     | `[claude-opus-4-7[1m]]` | Current model slug                                                                                          |
+| **Directory** | `📁 skills`             | Current working directory                                                                                   |
+| **Git**       | `🌿 main*`              | Branch name; `*` indicates uncommitted changes                                                              |
+| **Context**   | `████░░░░░░ 42% ctx`    | Context window usage: green <70%, yellow 70–89%, red ≥90%                                                   |
+| **Cache**     | `💾 r72.0k w5.0k`       | Prompt cache from the last API call: `r` = cache hits, `w` = cache writes. Hidden before the first API call |
 
 #### Line 2 · ZenMux account
 
-| Segment | Example | Description |
-|---------|---------|-------------|
-| **Plan** | `⚡ ZenMux Ultra` | Subscription tier; a `⚠` suffix appears when the account is unhealthy |
-| **API Key** | `🔑 Sub sk-ss-...6e6` | Key type (`Sub` = subscription, `PAYG` = pay-as-you-go) + masked key. Hidden when `ZENMUX_API_KEY` is not set |
-| **5-hour quota** | `5h █░░░░ 19%` | 5-hour rolling quota; at 100%, shows `⏳ Xh Ym` countdown to reset |
-| **7-day quota** | `7d █░░░░ 24%` | 7-day rolling quota, same color and reset logic |
-| **PAYG balance** | `💳 Bal $492.74` | Available wallet balance (top-up + bonus); hidden when there is no PAYG balance |
+| Segment          | Example               | Description                                                                                                   |
+| ---------------- | --------------------- | ------------------------------------------------------------------------------------------------------------- |
+| **Plan**         | `⚡ ZenMux Ultra`     | Subscription tier; a `⚠` suffix appears when the account is unhealthy                                         |
+| **API Key**      | `🔑 Sub sk-ss-...6e6` | Key type (`Sub` = subscription, `PAYG` = pay-as-you-go) + masked key. Hidden when `ZENMUX_API_KEY` is not set |
+| **5-hour quota** | `5h █░░░░ 19%`        | 5-hour rolling quota; at 100%, shows `⏳ Xh Ym` countdown to reset                                            |
+| **7-day quota**  | `7d █░░░░ 24%`        | 7-day rolling quota, same color and reset logic                                                               |
+| **PAYG balance** | `💳 Bal $492.74`      | Available wallet balance (top-up + bonus); hidden when there is no PAYG balance                               |
 
 #### Fallback behavior
 
-| Situation | Behavior |
-|-----------|----------|
+| Situation                       | Behavior                                                            |
+| ------------------------------- | ------------------------------------------------------------------- |
 | `ZENMUX_MANAGEMENT_KEY` not set | Line 2 shows: `⚙ Set ZENMUX_MANAGEMENT_KEY to display account data` |
-| `ZENMUX_API_KEY` not set | API Key segment is hidden; everything else still shows |
-| API call fails | Uses the last cached value; if none, Line 2 is temporarily hidden |
+| `ZENMUX_API_KEY` not set        | API Key segment is hidden; everything else still shows              |
+| API call fails                  | Uses the last cached value; if none, Line 2 is temporarily hidden   |
 
 #### Refresh frequency
 
-| Data | Refresh interval | Source |
-|------|------------------|--------|
-| Session info (model, context, cache) | Real-time | Injected into statusLine by Claude Code after every assistant response |
-| Git branch | 5 seconds | Per-session cache |
-| ZenMux account (plan, quota, PAYG) | 120 seconds | Global shared cache (across sessions) |
+| Data                                 | Refresh interval | Source                                                                 |
+| ------------------------------------ | ---------------- | ---------------------------------------------------------------------- |
+| Session info (model, context, cache) | Real-time        | Injected into statusLine by Claude Code after every assistant response |
+| Git branch                           | 5 seconds        | Per-session cache                                                      |
+| ZenMux account (plan, quota, PAYG)   | 120 seconds      | Global shared cache (across sessions)                                  |
 
 #### Environment dependencies
 
@@ -287,10 +287,10 @@ Claude Code will write the status line script into its config, install any missi
 
 These Skills rely on the following environment variables:
 
-| Variable | Purpose | Where to create it |
-|----------|---------|--------------------|
-| `ZENMUX_API_KEY` | General-purpose API key; `zenmux-statusline` uses it to detect the key type | [Subscription console](https://zenmux.ai/platform/subscription) or [PAYG console](https://zenmux.ai/platform/pay-as-you-go) |
-| `ZENMUX_MANAGEMENT_KEY` | Management API key; used by `zenmux-usage` and `zenmux-statusline` to fetch account data | [Management console](https://zenmux.ai/platform/management) |
+| Variable                | Purpose                                                                                  | Where to create it                                                                                                          |
+| ----------------------- | ---------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `ZENMUX_API_KEY`        | General-purpose API key; `zenmux-statusline` uses it to detect the key type              | [Subscription console](https://zenmux.ai/platform/subscription) or [PAYG console](https://zenmux.ai/platform/pay-as-you-go) |
+| `ZENMUX_MANAGEMENT_KEY` | Management API key; used by `zenmux-usage` and `zenmux-statusline` to fetch account data | [Management console](https://zenmux.ai/platform/management)                                                                 |
 
 Add them to your shell startup file (`~/.zshrc` or `~/.bashrc`):
 
@@ -324,7 +324,7 @@ How much Flow quota do I have left?
 /zenmux-usage 5-hour quota
 ```
 
-::: tip 💡 What if it doesn't trigger?
+::: info What if it doesn't trigger?
 If the Agent doesn't pick the Skill automatically, just invoke it explicitly with `/skill-name`, or rephrase your request with clearer keywords ("quota", "balance", "status line", etc.). Different Agents have different matching strategies, and explicit invocation is usually the most reliable path.
 :::
 
@@ -385,11 +385,14 @@ First, confirm you're using **Claude Code** (this Skill targets Claude Code's st
   - [Pay As You Go](https://zenmux.ai/platform/pay-as-you-go)
   - [Management API Key](https://zenmux.ai/platform/management)
 
-::: tip Contact us
-If you have questions or suggestions while using ZenMux Skills, you can:
+<ContactCards>
+<ContactCard icon="mail" title="Email">
 
-- Submit feedback directly with **`/zenmux-feedback`** (fastest)
-- Open an issue at [GitHub Issues](https://github.com/ZenMux/skills/issues)
-- Email us at [support@zenmux.ai](mailto:support@zenmux.ai)
-- Join our Discord community: <http://discord.gg/vHZZzj84Bm>
-:::
+Technical support: [support@zenmux.ai](mailto:support@zenmux.ai)
+
+Business cooperation: [bd@zenmux.ai](mailto:bd@zenmux.ai)
+
+</ContactCard>
+<ContactCard icon="x" title="X / Twitter" link="https://x.com/ZenMuxAI" label="@ZenMuxAI" />
+<ContactCard icon="discord" title="Discord" link="https://discord.gg/vHZZzj84Bm" label="@ZenMuxAI" />
+</ContactCards>

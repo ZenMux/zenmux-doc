@@ -38,7 +38,7 @@ Claude 官方系列常用别名对照：
 | `claude-sonnet-4-6` | `anthropic/claude-sonnet-4.6`    |
 | `claude-haiku-4-5`  | `anthropic/claude-haiku-4.5`     |
 
-::: tip 💡 使用原则
+::: info 使用原则
 
 - **在官方 Coding 工具里使用原生模型**（如在 Claude Code 里跑 Claude 系列）：**不用单独指定模型名**——Claude Code 的内置默认已经对齐 ZenMux 的别名。
 - **在官方 Coding 工具里使用其他模型**（如在 Claude Code 里试用 `gpt-5.3-codex`）：仍需手动配置完整的 ZenMux 模型 ID，因为工具内部没有预设别名可匹配。

@@ -12,7 +12,7 @@ head:
 
 # Get Statistics Leaderboard
 
-::: tip 💡 错误排查
+::: info 错误排查
 调用过程中遇到错误？请参阅 [API 错误码参考](/zh/guide/advanced/error-codes) 获取完整的错误类型说明与排查方案。
 :::
 
@@ -24,13 +24,13 @@ GET https://zenmux.ai/api/v1/management/statistics/leaderboard
 
 可用于了解平台流量最大的模型、对比各供应商的消费情况，或构建排行榜可视化。
 
-::: info ℹ️ 数据时效性
+::: info 数据时效性
 统计数据按天聚合。最新可用数据为**昨日（T-1）**，当天的用量将在次日聚合后可见。
 :::
 
 ## 鉴权
 
-### Authorization Header <font color="red">必选</font>
+### Authorization Header <span style="color: #FA6062; font-weight: 400">\*</span>
 
 ```http
 Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
@@ -40,7 +40,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 - **格式**：`Bearer <API_KEY>`
 - **说明**：Management API Key，在 [ZenMux 控制台](https://zenmux.ai/platform/management) 创建
 
-::: warning ⚠️ 仅支持 Management API Key
+::: warning 仅支持 Management API Key
 本接口仅接受 Management API Key 鉴权，不支持普通 API Key。
 :::
 
@@ -50,7 +50,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 
 ## 参数
 
-### metric `string` <font color="red">必选</font>
+### metric `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 排名依据的指标类型。
 
@@ -139,7 +139,7 @@ const params = new URLSearchParams({
 
 const response = await fetch(
   `https://zenmux.ai/api/v1/management/statistics/leaderboard?${params}`,
-  { headers: { Authorization: `Bearer ${ZENMUX_MANAGEMENT_API_KEY}` } }
+  { headers: { Authorization: `Bearer ${ZENMUX_MANAGEMENT_API_KEY}` } },
 );
 const data = await response.json();
 ```
@@ -194,7 +194,7 @@ const data = await response.json();
         "label": "DeepSeek R1",
         "author": "deepseek",
         "author_label": "DeepSeek",
-        "value": 5432.10
+        "value": 5432.1
       },
       {
         "rank": 6,
@@ -211,6 +211,6 @@ const data = await response.json();
 
 :::
 
-::: tip 💡 全量排名
+::: info 全量排名
 省略 `starting_at` 参数，默认从 `2025-09-29`（平台上线日）开始，即可获取全量排名数据。
 :::

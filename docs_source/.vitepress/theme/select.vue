@@ -1,53 +1,31 @@
 <template>
   <div class="select-dropdown">
-      <el-button-group>
-        <el-button @click="handleClick">
-          <span v-if="!isCopied"><my-icon name="lucide/copy"></my-icon> Copy Page </span>
-          <span v-else><my-icon name="lucide/copy-check"></my-icon> Copied</span>
-        </el-button>
-      </el-button-group>
+    <button class="copy-page-btn" @click="handleClick">
+      <CopyIcon v-if="!isCopied" class="btn-icon" />
+      <CheckedIcon v-else class="btn-icon" />
+      <span>{{ isCopied ? 'Copied' : 'Copy page' }}</span>
+    </button>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import LZString from 'lz-string';
-import { ElButton, ElButtonGroup, ElDropdown, ElDropdownItem, ElDropdownMenu } from 'element-plus'
 import copyToClipboard from 'copy-to-clipboard';
 import { useData } from 'vitepress'
-import MyIcon from './icon.vue';
+import { Copy as CopyIcon, Checked as CheckedIcon } from './icons';
 
 export default defineComponent({
   name: 'SelectDropdown',
-  components: {
-    ElButton,
-    ElButtonGroup,
-    ElDropdown,
-    ElDropdownItem,
-    ElDropdownMenu,
-    MyIcon
-  },
+  components: { CopyIcon, CheckedIcon },
   setup() {
     const isCopied = ref(false);
-    const isOpen = ref(false);
-    const selected = ref('Select an option');
-    const { theme, page, frontmatter } = useData()
-
-    const toggleDropdown = () => {
-      isOpen.value = !isOpen.value;
-    };
-
-    const selectOption = (option: string) => {
-      selected.value = option;
-      isOpen.value = false;
-    };
+    const { page } = useData()
 
     const handleClick = () => {
       if (isCopied.value) return;
-      console.log('Button clicked!', page.value);
       // @ts-expect-error not error
       copyToClipboard(LZString.decompressFromBase64(page.value.content))
-      console.log('Button clicked!', page.value);
       isCopied.value = true;
       setTimeout(() => {
         isCopied.value = false;
@@ -55,35 +33,60 @@ export default defineComponent({
     };
 
     return {
-      isOpen,
       isCopied,
-      selected,
-      toggleDropdown,
-      selectOption,
       handleClick
     };
   }
 });
-
 </script>
 
 <style scoped>
-.button-with-caret {
-  padding: 0 8px;
-}
-
-.dropdown-item {
-  flex-direction: column;
-}
-
-.dropdown-item-description {
-  font-size: 12px;
-  color: #999;
-}
-
 .select-dropdown {
   display: flex;
   justify-content: end;
   transform: translateY(-100%);
+}
+
+.copy-page-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 12px;
+  height: 32px;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--zenmux-nav-font, -apple-system, sans-serif);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #333;
+  text-transform: capitalize;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.copy-page-btn:hover {
+  border-color: #ccc;
+  color: #000;
+}
+
+.copy-page-btn .btn-icon {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+}
+</style>
+
+<style>
+.dark .copy-page-btn {
+  color: var(--zm-text-tertiary) !important;
+  border-color: var(--zm-border-primary) !important;
+}
+
+.dark .copy-page-btn:hover {
+  color: var(--zm-text-secondary) !important;
+  border-color: var(--zm-text-tertiary) !important;
 }
 </style>

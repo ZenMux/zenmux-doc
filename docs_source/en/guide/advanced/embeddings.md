@@ -14,14 +14,15 @@ Text embeddings convert text into numerical vectors that capture semantic meanin
 
 ZenMux is compatible with OpenAI's Embeddings API, allowing you to call it directly using the OpenAI SDK.
 
-## Currently Supported Model
+## Currently Supported Models
 
-| Model | Output Dimensions | Max Input Tokens |
-| --- | --- | --- |
-| `openai/text-embedding-3-small` | 1536 (customizable) | 8191 |
+| Model                           | Output Dimensions   | Max Input Tokens |
+| ------------------------------- | ------------------- | ---------------- |
+| `openai/text-embedding-3-large` | 3072 (customizable) | 8191             |
+| `openai/text-embedding-3-small` | 1536 (customizable) | 8191             |
 
-::: tip 💡 About Dimensions
-`text-embedding-3-small` outputs 1536-dimensional vectors by default. You can specify lower dimensions (e.g., 512, 256) via the `dimensions` parameter to reduce storage and retrieval costs with minimal loss in semantic expressiveness.
+::: tip About Dimensions
+`text-embedding-3-large` outputs 3072-dimensional vectors by default, while `text-embedding-3-small` outputs 1536-dimensional vectors. You can specify lower dimensions (e.g., 1024, 512, 256) via the `dimensions` parameter to reduce storage and retrieval costs with minimal loss in semantic expressiveness. `text-embedding-3-large` offers superior semantic accuracy compared to `text-embedding-3-small`, making it ideal for scenarios that demand higher retrieval quality.
 :::
 
 ## Quick Start
@@ -50,12 +51,12 @@ print(f"First 5 values: {embedding[:5]}")
 import OpenAI from "openai";
 
 const client = new OpenAI({
-  baseURL: "https://zenmux.ai/api/v1",  // [!code highlight]
-  apiKey: "<your_ZENMUX_API_KEY>",  // [!code highlight]
+  baseURL: "https://zenmux.ai/api/v1", // [!code highlight]
+  apiKey: "<your_ZENMUX_API_KEY>", // [!code highlight]
 });
 
 const response = await client.embeddings.create({
-  model: "openai/text-embedding-3-small",  // [!code highlight]
+  model: "openai/text-embedding-3-small", // [!code highlight]
   input: "ZenMux is an LLM API aggregation service.",
 });
 
@@ -107,7 +108,7 @@ const texts = [
 
 const response = await client.embeddings.create({
   model: "openai/text-embedding-3-small",
-  input: texts,  // [!code highlight]
+  input: texts, // [!code highlight]
 });
 
 response.data.forEach((item, i) => {
@@ -118,9 +119,10 @@ response.data.forEach((item, i) => {
 :::
 
 ::: warning Batch Limits
+
 - Array length cannot exceed 2048
 - Total token count across all inputs in a single request cannot exceed 300,000
-:::
+  :::
 
 ## Custom Dimensions
 
@@ -279,23 +281,27 @@ print(f"Detected {len(anomalies)} anomalous data points")
 
 ## Best Practices
 
-::: tip 💡 Recommendations
+::: tip Recommendations
 
 **Text Preprocessing**
+
 - Clean excess whitespace and special characters before generating embeddings
 - For long documents, split by semantic paragraphs rather than fixed-length chunks
 
 **Choosing Dimensions**
-- Best accuracy: use the default 1536 dimensions
-- Balanced accuracy and cost: use 512 dimensions
+
+- Best accuracy: use `text-embedding-3-large` (default 3072 dimensions)
+- High accuracy with cost control: use `text-embedding-3-large` with dimensions reduced to 1024 or 512
+- Balanced accuracy and cost: use `text-embedding-3-small` (default 1536 dimensions)
 - Maximum compression: reduce to 256 dimensions, but test the impact on your use case
 
 **Performance Optimization**
+
 - Use batch requests instead of individual calls to reduce network overhead
 - Cache embedding results for static documents to avoid redundant computation
 - Build indexes in your vector database for faster retrieval
-:::
+  :::
 
 ## API Reference
 
-For the complete parameter reference of the Create Embeddings endpoint, see [Create Embeddings API Reference](/api/openai/create-embeddings).
+For the complete parameter reference of the Create an Embedding endpoint, see [Create an Embedding API Reference](/api/openai/create-embeddings).

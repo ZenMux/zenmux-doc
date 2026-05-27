@@ -12,7 +12,7 @@ head:
 
 # Google Vertex AI API: Generate Videos
 
-::: tip 💡 Troubleshooting
+::: info Troubleshooting
 Encountering errors? See the [API Error Codes Reference](/guide/advanced/error-codes) for a complete list of error types and troubleshooting solutions.
 :::
 
@@ -34,7 +34,7 @@ This endpoint corresponds to the `generate_videos` / `generateVideos` method in 
 
 For more usage examples, see the [Video Generation Guide](/guide/advanced/video-generation).
 
-::: warning ⚠️ Asynchronous Workflow
+::: warning Asynchronous Workflow
 Video generation is an **asynchronous process** consisting of three steps:
 
 1. **Submit request** (`generate_videos`): Send the video generation request and receive an `Operation` object
@@ -52,35 +52,35 @@ Video generation typically takes **30 seconds to 3 minutes**. Please be patient 
 | `volcengine/doubao-seedance-1.5-pro` | ByteDance Seedance 1.5 Pro | 720p / 1080p | 10s          | ✅ Supported |
 | `volcengine/doubao-seedance-2`       | ByteDance Seedance 2       | 720p / 1080p | 10s          | ✅ Supported |
 
-::: tip 📚 More Models
+::: info More Models
 Visit the [ZenMux Models List](https://zenmux.ai/models) to browse all available video generation models.
 :::
 
 ## Path parameters
 
-### provider `string` <font color="red">Required</font>
+### provider `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 The model provider identifier. This is the portion before `/` in the model name — for example, `google` in `google/veo-3.1-generate-001`.
 
-### model `string` <font color="red">Required</font>
+### model `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 The model name. This is the portion after `/` in the model name — for example, `veo-3.1-generate-001` in `google/veo-3.1-generate-001`.
 
 ## Authentication Parameters
 
-### api_key `string` <font color="red">Required</font>
+### api_key `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 Your ZenMux API key for authentication.
 
-### vertexai `boolean` <font color="red">Required</font>
+### vertexai `boolean` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 Must be set to `true` to enable the Vertex AI protocol.
 
-### http_options.base_url `string` <font color="red">Required</font>
+### http_options.base_url `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 ZenMux Vertex AI endpoint: `https://zenmux.ai/api/vertex-ai`.
 
-### http_options.api_version `string` <font color="red">Required</font>
+### http_options.api_version `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 API version, set to `v1`.
 
@@ -88,19 +88,19 @@ API version, set to `v1`.
 
 The following describes the parameters for the `generate_videos` / `generateVideos` SDK method. The SDK automatically converts these parameters to the Vertex AI REST format before sending them to ZenMux.
 
-### prompt `string` <font color="red">Required</font>
+### prompt `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 A text description of the video content. Include details such as subject, actions, environment, and lighting for best results.
 
-### model `string` <font color="red">Required</font>
+### model `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 The model to use for video generation. Format: `{provider}/{model}`, e.g., `google/veo-3.1-generate-001`.
 
-### config `GenerateVideosConfig` <font color="gray">Optional</font>
+### config `GenerateVideosConfig` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Video generation configuration object with the following fields:
 
-#### aspectRatio `string` <font color="gray">Optional</font>
+#### aspectRatio `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Video aspect ratio. Supported values may vary by provider.
 
@@ -112,7 +112,7 @@ Possible values:
 
 > REST field: `parameters.aspectRatio`
 
-#### resolution `string` <font color="gray">Optional</font>
+#### resolution `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Video resolution. Only supported by certain models.
 
@@ -123,7 +123,7 @@ Possible values:
 
 > REST field: `parameters.resolution`
 
-#### durationSeconds `integer` <font color="gray">Optional</font>
+#### durationSeconds `integer` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Video duration in seconds. Google Veo supports 5 or 8 seconds; other providers may support different ranges.
 
@@ -134,25 +134,25 @@ Possible values:
 
 > REST field: `parameters.durationSeconds`
 
-#### generateAudio `boolean` <font color="gray">Optional</font>
+#### generateAudio `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Whether to generate an audio track. When set to `true`, the model automatically generates audio that matches the video content.
 
 > REST field: `parameters.generateAudio`
 
-#### negativePrompt `string` <font color="gray">Optional</font>
+#### negativePrompt `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 A negative prompt describing content you do not want to appear in the video.
 
 > REST field: `parameters.negativePrompt`
 
-#### enhancePrompt `boolean` <font color="gray">Optional</font>
+#### enhancePrompt `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Whether to enable prompt enhancement. When enabled, the model automatically refines the prompt to improve video quality.
 
 > REST field: `parameters.enhancePrompt`
 
-#### personGeneration `string` <font color="gray">Optional</font>
+#### personGeneration `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Controls human figure generation. Only supported by Google Veo models.
 
@@ -163,7 +163,7 @@ Possible values:
 
 > REST field: `parameters.personGeneration`
 
-#### numberOfVideos `integer` <font color="gray">Optional</font>
+#### numberOfVideos `integer` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Number of videos to generate. Defaults to 1.
 
@@ -171,13 +171,13 @@ SDK field name: Python `number_of_videos`, TypeScript `numberOfVideos`.
 
 > REST field: `parameters.sampleCount`
 
-#### seed `integer` <font color="gray">Optional</font>
+#### seed `integer` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Random seed for reproducible generation results.
 
 > REST field: `parameters.seed`
 
-#### fps `integer` <font color="gray">Optional</font>
+#### fps `integer` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Video frame rate. Only supported by certain providers.
 
@@ -187,16 +187,18 @@ Video frame rate. Only supported by certain providers.
 
 In addition to text-to-video, you can provide an image as the starting frame and/or ending frame, combined with a text prompt to generate video.
 
-### image `Image` <font color="red">Required</font>
+### image `Image` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 The starting frame image object.
 
-- `image_bytes` `bytes` <font color="red">Required</font>: Binary image data.
-- `mime_type` `string` <font color="red">Required</font>: Image MIME type, e.g., `image/png`, `image/jpeg`.
+- `image_bytes` `bytes` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : Binary image data.
+- `mime_type` `string` <span style="color: #FA6062; font-weight: 400">\*</span>
+  : Image MIME type, e.g., `image/png`, `image/jpeg`.
 
 > REST field: `instances[0].image`
 
-### last_frame `Image` <font color="gray">Optional</font>
+### last_frame `Image` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 The ending frame image object. When used with the starting frame, the model generates a transition animation from the first frame to the last frame. Same format as `image`.
 
@@ -204,15 +206,15 @@ SDK field name: Python `last_frame`, TypeScript `lastFrame`.
 
 > REST field: `instances[0].lastFrame`
 
-### prompt `string` <font color="gray">Optional</font>
+### prompt `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 A text prompt describing how the content in the image should move or change.
 
-### model `string` <font color="red">Required</font>
+### model `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 Same as text-to-video.
 
-### config `GenerateVideosConfig` <font color="gray">Optional</font>
+### config `GenerateVideosConfig` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 Same as text-to-video configuration.
 
@@ -242,7 +244,7 @@ The list of generated videos.
 - `bytesBase64Encoded` `string`: Base64-encoded video data (returned by some providers).
 - `mimeType` `string`: Video MIME type, typically `video/mp4`.
 
-::: tip 💡 About SDK Responses
+::: info About SDK Responses
 The SDK automatically converts the REST response into a `GenerateVideosResponse` object. Access video content via `operation.response.generated_videos[].video`.
 :::
 

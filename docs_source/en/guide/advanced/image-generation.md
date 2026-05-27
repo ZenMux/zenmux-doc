@@ -18,7 +18,7 @@ This guide focuses on the Google Gemini protocol. If you want to call OpenAI ima
 
 ZenMux supports invoking image generation models through the Vertex AI protocol. This guide explains how to use ZenMux to generate images and save them locally.
 
-::: tip 💡 About Banana Models
+::: info About Banana Models
 Banana is a series of image generation models from Google that can produce high-quality images from text prompts. You can use these models in ZenMux through the Vertex AI protocol.
 :::
 
@@ -26,7 +26,7 @@ Banana is a series of image generation models from Google that can produce high-
 
 ZenMux continuously updates its image generation models. Visit the [ZenMux model catalog](https://zenmux.ai/models?sort=newest&output_modalities=image) to view all currently supported image generation models that support the Google Gemini protocol.
 
-::: tip 📚 OpenAI Images Protocol Models
+::: info OpenAI Images Protocol Models
 If you only want to view OpenAI image models that support the OpenAI Images protocol, visit the [OpenAI image model list](https://zenmux.ai/models?author=openai&sort=newest&output_modalities=image).
 :::
 
@@ -149,7 +149,7 @@ The following table maps the [official OpenAI image editing parameters](https://
 | `output_compression` | `config.output_compression_quality` | number | Compression quality | ✅ |
 | `background` | — | — | Not supported | ❌ |
 
-::: tip 💡 About Parameter Passing
+::: info About Parameter Passing
 
 `imageSize` and `quality` are **passthrough parameters** — ZenMux forwards them as-is to the underlying OpenAI-compatible image generation API without validation or transformation. The values shown in the tables above are the most common options; for the complete list of supported values and behavioral details, refer to the official OpenAI documentation for [image generation](https://developers.openai.com/api/reference/resources/images/methods/generate) and [image editing](https://developers.openai.com/api/reference/resources/images/methods/edit), and configure them based on your needs.
 
@@ -353,7 +353,7 @@ for (const img of response.generatedImages) {
 
 :::
 
-::: tip 💡 Size Options
+::: info Size Options
 
 **Preset sizes:** `1024x1024` (square), `1536x1024` (landscape), `1024x1536` (portrait), `auto`
 
@@ -410,7 +410,7 @@ const response = await client.models.generateImages({
 
 :::
 
-::: tip 💡 Output Formats
+::: info Output Formats
 - `image/png`: lossless format, ideal when high fidelity is needed (default)
 - `image/webp`: smaller file size, ideal for web display
 - `image/jpeg`: general-purpose lossy format; pair with `output_compression_quality` to control quality
@@ -420,7 +420,7 @@ const response = await client.models.generateImages({
 
 To modify an existing image, use the `edit_image` API. The example below uses the ZenMux logo and transforms it into Chinese paper-cut style.
 
-::: tip 💡 Prompt Tips
+::: info Prompt Tips
 
 The `edit_image` model is sensitive to the prompt. If the prompt is too vague (for example, `"Transform this logo into..."`), the model may freely generate from the style description and ignore the input image entirely. We recommend **explicitly instructing the model to preserve the subject/composition of the original image** and only change the style.
 
@@ -632,7 +632,7 @@ console.log(editResponse);
 
 :::
 
-::: tip 💡 API Differences
+::: info API Differences
 
 - **Google Gemini models** use the `generate_content` API with `response_modalities: ["TEXT", "IMAGE"]`; responses contain both text and images.
 - **Non-Google models** use the `generate_images` / `edit_image` APIs, which return image objects directly and support image editing.
@@ -654,7 +654,7 @@ ZenMux supports two invocation modes:
 - **Streaming** (`generate_content_stream` / `generateContentStream`): suitable for scenarios that need real-time feedback
 - **Non-streaming** (`generate_content` / `generateContent`): waits for the full response and returns it at once
 
-::: warning ⚠️ Response Handling
+::: warning Response Handling
 Image generation models may return both text and images in the same response. Iterate over `response.parts` to handle every content part.
 :::
 

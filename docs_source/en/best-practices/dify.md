@@ -78,15 +78,14 @@ ZenMux provides a rich selection of models for Dify. View all available models i
 
 ## Contact Us
 
-If you encounter any issues during use, or have suggestions and feedback, feel free to contact us via the following channels:
+<ContactCards>
+<ContactCard icon="mail" title="Email">
 
-::: tip Get Help
+Technical support: [support@zenmux.ai](mailto:support@zenmux.ai)
 
-- **Official Website**: <https://zenmux.ai>
-- **Technical Support Email**: [support@zenmux.ai](mailto:support@zenmux.ai)
-- **Business Partnership Email**: [bd@zenmux.ai](mailto:bd@zenmux.ai)
-- **Twitter**: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
-- **Discord Community**: <http://discord.gg/vHZZzj84Bm>
+Business cooperation: [bd@zenmux.ai](mailto:bd@zenmux.ai)
 
-For more contact options and details, please visit our [Contact Us page](/help/contact).
-:::
+</ContactCard>
+<ContactCard icon="x" title="X / Twitter" link="https://x.com/ZenMuxAI" label="@ZenMuxAI" />
+<ContactCard icon="discord" title="Discord" link="https://discord.gg/vHZZzj84Bm" label="@ZenMuxAI" />
+</ContactCards>

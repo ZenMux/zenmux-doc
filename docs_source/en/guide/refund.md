@@ -21,7 +21,7 @@ Both payment methods on ZenMux support refunds, subject to the following conditi
 | **Subscription** (Pro / Max / Ultra) | Within **24 hours** of subscribing, and API usage value has not exceeded the subscription amount                         |
 | **Pay-As-You-Go**                    | Within **24 hours** of each top-up order; refund applies to unused paid credits from that order (excludes bonus credits) |
 
-::: warning ⚠️ Refund Time Limit
+::: warning Refund Time Limit
 Refund requests must be submitted **within 24 hours** of a successful subscription or purchase. Requests after this window cannot be processed. The refund dialog displays the remaining refund window (e.g., "Refund window remaining Xh Ym") — please confirm that the plan or credits meet your needs promptly.
 :::
 
@@ -56,7 +56,7 @@ Refund amounts are calculated as follows:
 
 Formula: **Refund Amount = (Total Paid - Actual Usage - Already Refunded) × (1 - 5%)**
 
-::: warning ⚠️ Non-refundable Cases
+::: warning Non-refundable Cases
 If the equivalent API usage value has **exceeded your subscription payment amount**, the subscription is not eligible for a refund.
 :::
 
@@ -71,13 +71,13 @@ Pay-As-You-Go refunds are processed on a **per top-up order** basis, with each o
 | **- Already refunded**    | Amount previously refunded for this order (if any)           |
 | **= Refund amount**       | Amount actually returned after deducting the 5% platform fee |
 
-::: tip 💡 About Bonus Credits and Referral Rewards
+::: info About Bonus Credits and Referral Rewards
 
 - Credits obtained through top-up bonuses (Discount), platform gifts (Gift), or referral rewards (Referral) are **non-refundable** and will be forfeited upon refund approval.
 - If the refunded order is linked to a referral reward, the referrer will **not receive the $5 reward** for that order.
   :::
 
-::: warning ⚠️ In-Flight Requests
+::: warning In-Flight Requests
 API requests in transit between payment and refund initiation may still be billed. The final refund amount may differ from the amount shown in the refund preview — the actual settled amount prevails.
 :::
 
@@ -87,7 +87,7 @@ API requests in transit between payment and refund initiation may still be bille
 
 **Step 1: Initiate a refund**
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/03/20/fsjS4Sr/20260320154313.jpg" alt="Initiate refund" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/03/20/fsjS4Sr/20260320154313.jpg" alt="Initiate refund" >
 
 Go to the [Subscription Management page](https://zenmux.ai/platform/subscription) and click the **"Refund"** button in the Billing History section.
 
@@ -95,7 +95,7 @@ Go to the [Subscription Management page](https://zenmux.ai/platform/subscription
 
 **Step 2: Confirm refund details**
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/03/20/7AmamOi/20260320153822.jpg" alt="Confirm refund details" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/03/20/7AmamOi/20260320153822.jpg" alt="Confirm refund details" >
 
 The system will display a refund preview including the current plan, total paid, actual usage, already refunded amount, refundable balance, platform fee (with percentage), and the final refund amount. After confirming, click **"Submit Refund"** — a second confirmation is required before submission.
 
@@ -116,7 +116,7 @@ The refund status is also shown as a tag in the amount column of the Billing His
 
 **Step 1: Initiate a refund**
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/22/EDazFTu/20260522115739.jpg" alt="Initiate refund" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/22/EDazFTu/20260522115739.jpg" alt="Initiate refund" >
 
 Go to the [Credits Management page](https://zenmux.ai/platform/pay-as-you-go) and find the **Stripe** or **Antom** top-up order you want to refund in the Transactions list. Click the **"Refund"** button on that row.
 
@@ -124,7 +124,7 @@ Go to the [Credits Management page](https://zenmux.ai/platform/pay-as-you-go) an
 
 **Step 2: Confirm refund details**
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/22/sTVTHos/20260522115812.jpg" alt="Confirm refund details" style="border-radius:5px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/22/sTVTHos/20260522115812.jpg" alt="Confirm refund details" >
 
 The system will display a refund preview for the selected order, including the order amount, payment time, usage since payment, already refunded amount, final refund amount, and remaining refund window. After confirming, click **"Submit Refund"** — a second confirmation is required before submission.
 
@@ -204,14 +204,18 @@ If the refunded top-up order is linked to a referral reward, the referrer will n
 
 The refund amount is deducted from your top-up wallet balance. If your current balance is insufficient to cover the refund, the system will reject the request. Please ensure your wallet has enough top-up balance.
 
-::: tip Contact Us
-If you encounter any issues or have suggestions and feedback, feel free to reach out:
+## Need Help?
 
-- **Official Website**: <https://zenmux.ai>
-- **Technical Support**: [support@zenmux.ai](mailto:support@zenmux.ai)
-- **Business Inquiries**: [bd@zenmux.ai](mailto:bd@zenmux.ai)
-- **Twitter**: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
-- **Discord Community**: <http://discord.gg/vHZZzj84Bm>
+If you have questions about the refund calculation or need manual assistance, feel free to reach out:
 
-For more contact options and details, visit our [Contact Us page](/help/contact).
-:::
+<ContactCards>
+<ContactCard icon="mail" title="Email">
+
+Technical Support: [support@zenmux.ai](mailto:support@zenmux.ai)
+
+Business Inquiries: [bd@zenmux.ai](mailto:bd@zenmux.ai)
+
+</ContactCard>
+<ContactCard icon="x" title="X / Twitter" link="https://x.com/ZenMuxAI" label="@ZenMuxAI" />
+<ContactCard icon="discord" title="Discord" link="https://discord.gg/vHZZzj84Bm" label="@ZenMuxAI" />
+</ContactCards>

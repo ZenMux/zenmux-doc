@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
+import { Copy as CopyIcon } from "./icons";
 
 interface Endpoint {
   title: string;
@@ -36,19 +37,19 @@ const providersData: Provider[] = [
     },
     endpoints: [
       {
-        title: "Create Chat Completion",
+        title: "Create a Chat Completion",
         path: "/chat/completions",
         iconType: "chat",
         docUrl: "/docs/api/openai/create-chat-completion.html",
       },
       {
-        title: "Responses",
+        title: "Create a Model Response",
         path: "/responses",
         iconType: "chat",
         docUrl: "/docs/api/openai/openai-responses.html",
       },
       {
-        title: "Embeddings",
+        title: "Create an Embedding",
         path: "/embeddings",
         iconType: "embeddings",
         docUrl: "/docs/api/openai/create-embeddings.html",
@@ -303,20 +304,7 @@ onUnmounted(() => {
                   title="Copy"
                   @click="handleCopy(provider.baseUrl)"
                 >
-                  <svg
-                    width="14"
-                    height="15"
-                    viewBox="0 0 14 15"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="1.167"
-                  >
-                    <path
-                      d="M3.791 4v-.292c0-.966.784-1.75 1.75-1.75h5.25c.966 0 1.75.784 1.75 1.75v5.25a1.75 1.75 0 0 1-1.75 1.75h-.292M8.166 4.585h-5.25a1.75 1.75 0 0 0-1.75 1.75v5.25c0 .966.784 1.75 1.75 1.75h5.25a1.75 1.75 0 0 0 1.75-1.75v-5.25a1.75 1.75 0 0 0-1.75-1.75"
-                    />
-                  </svg>
+                  <CopyIcon class="icon-btn-svg" />
                   <span v-if="copyTip === provider.baseUrl" class="copy-tooltip"
                     >Copied!</span
                   >
@@ -365,7 +353,9 @@ onUnmounted(() => {
                         viewBox="0 0 16 16"
                         fill="currentColor"
                       >
-                        <path d="M2 3.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0m4.5 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0m4.5 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0M2 8a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0m4.5 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0m4.5 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0M2 12.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0m4.5 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0m4.5 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0" />
+                        <path
+                          d="M2 3.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0m4.5 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0m4.5 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0M2 8a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0m4.5 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0m4.5 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0M2 12.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0m4.5 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0m4.5 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0"
+                        />
                       </svg>
                       <!-- Generate icon -->
                       <svg
@@ -412,20 +402,7 @@ onUnmounted(() => {
                       title="Copy"
                       @click="handleCopy(endpoint.path)"
                     >
-                      <svg
-                        width="14"
-                        height="15"
-                        viewBox="0 0 14 15"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="1.167"
-                      >
-                        <path
-                          d="M3.791 4v-.292c0-.966.784-1.75 1.75-1.75h5.25c.966 0 1.75.784 1.75 1.75v5.25a1.75 1.75 0 0 1-1.75 1.75h-.292M8.166 4.585h-5.25a1.75 1.75 0 0 0-1.75 1.75v5.25c0 .966.784 1.75 1.75 1.75h5.25a1.75 1.75 0 0 0 1.75-1.75v-5.25a1.75 1.75 0 0 0-1.75-1.75"
-                        />
-                      </svg>
+                      <CopyIcon class="icon-btn-svg" />
                     </button>
                   </div>
                 </div>
@@ -648,6 +625,11 @@ onUnmounted(() => {
 
 .icon-btn:hover {
   color: var(--vp-c-text-2);
+}
+
+.icon-btn-svg {
+  width: 14px;
+  height: 15px;
 }
 
 .copy-tooltip {

@@ -12,7 +12,7 @@ head:
 
 # Get generation
 
-::: tip 💡 Troubleshooting
+::: info Troubleshooting
 Encountering errors? See the [API Error Codes Reference](/guide/advanced/error-codes) for a complete list of error types and troubleshooting steps.
 :::
 
@@ -20,7 +20,7 @@ Encountering errors? See the [API Error Codes Reference](/guide/advanced/error-c
 GET https://zenmux.ai/api/v1/management/generation?id=<generation_id>
 ```
 
-::: warning ⚠️ Previous URL deprecated
+::: warning Previous URL deprecated
 The previous endpoint `GET /api/v1/generation` is deprecated. Please migrate to the new URL `GET /api/v1/management/generation`. The old URL will be removed in a future release.
 :::
 
@@ -30,7 +30,7 @@ The Get generation endpoint is used to retrieve generation details, such as usag
 This endpoint supports retrieving generation details for all API protocols, including OpenAI Chat Completions, OpenAI Responses, Anthropic, and Vertex AI.
 :::
 
-::: warning ⚠️ Subscription Plan Limitations
+::: warning Subscription Plan Limitations
 This endpoint only supports billing queries for **Pay As You Go** API keys. If you call this endpoint with a subscription-plan API key (prefixed with `sk-ss-v1-`), billing-related fields (such as `usage`, `ratingResponses`, etc.) will not be returned.
 
 To retrieve billing information, please use a Pay As You Go API key. See:
@@ -54,13 +54,13 @@ To retrieve billing information, please use a Pay As You Go API key. See:
 
 **Billing data** (cost-related fields such as `usage`, `ratingResponses`, etc.) is **not currently returned synchronously** with the request. After the request completes, you must query it via this endpoint **3–5 minutes** later.
 
-::: info 💡 Billing upgrade in progress
+::: info Billing upgrade in progress
 We’re improving and upgrading our billing architecture to enable synchronous billing data in responses as soon as possible. Stay tuned!
 :::
 
 ## Request params
 
-### Authorization Header <font color="red">Required</font>
+### Authorization Header <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 **Header parameters:**
 
@@ -74,19 +74,19 @@ Authorization: Bearer <ZENMUX_API_KEY>
   - **Pay As You Go API key**: supports querying full metering and billing information
   - **Subscription API key** (prefixed with `sk-ss-v1-`): supports metering only; billing information is not supported
 
-::: tip 💡 Get an API key
+::: info Get an API key
 
 - Pay As You Go API key: create one in the [ZenMux Console](https://zenmux.ai/platform/pay-as-you-go)
 - Subscription API key: create one in the [Subscription Management](https://zenmux.ai/platform/subscription)
   :::
 
-### generate_id `string` <font color="red">Required</font>
+### generate_id `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
 **Query parameters:**
 
 The generation id returned by ZenMux API endpoints. You can obtain it from:
 
-- [Create Chat Completion](../openai/create-chat-completion.md) - OpenAI Chat Completions protocol
+- [Create a Chat Completion](../openai/create-chat-completion.md) - OpenAI Chat Completions protocol
 - [Create a Model Response](../openai/openai-responses.md) - OpenAI Responses protocol
 - [Create Messages](../anthropic/create-messages-new.md) - Anthropic protocol
 - [Generate Content](../vertexai/generate-content.md) - Vertex AI protocol

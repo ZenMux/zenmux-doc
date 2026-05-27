@@ -84,7 +84,7 @@ sudo dpkg -i cc-switch_*.deb
 
 :::
 
-::: tip 💡 Web UI（无头/SSH 环境）
+::: info Web UI（无头/SSH 环境）
 CC-Switch 还提供了 Web UI 版本，适用于无图形界面的服务器或 SSH 远程环境。从 Release 页面下载 Linux x64 的 tar.gz 包，解压后运行即可，默认端口为 17666。
 :::
 
@@ -124,7 +124,7 @@ CC-Switch 还提供了 Web UI 版本，适用于无图形界面的服务器或 S
 
 :::
 
-::: warning 💡 重要提示：选择正确的 API Key 类型
+::: warning 重要提示：选择正确的 API Key 类型
 
 - **个人开发/学习场景** → 使用 **订阅制 API Key**（`sk-ss-v1-xxx`），成本更低、更划算
 - **生产环境/商业化项目** → 使用 **按量付费 API Key**（`sk-ai-v1-xxx`），稳定性更高、无限制
@@ -140,7 +140,7 @@ CC-Switch 还提供了 Web UI 版本，适用于无图形界面的服务器或 S
 
 启动 CC-Switch 后，在头部导航栏中选择您要配置的编码工具（如 **Claude Code**），进入供应商管理页面。
 
-::: tip 💡 首次启动
+::: info 首次启动
 CC-Switch 首次启动时会自动导入您本机已有的 Claude Code / Codex / Gemini CLI / OpenCode 配置作为默认供应商，无需手动迁移。
 :::
 
@@ -166,7 +166,7 @@ CC-Switch 首次启动时会自动导入您本机已有的 Claude Code / Codex /
 | **Sonnet（平衡）** | `anthropic/claude-sonnet-4.5` | 日常开发推荐，性价比最优 |
 | **Opus（强力）**   | `anthropic/claude-opus-4.5`   | 复杂架构设计、大规模重构 |
 
-::: tip 💡 模型选择灵活
+::: info 模型选择灵活
 通过 ZenMux，您不仅可以使用 Claude 系列模型，还可以映射到其他供应商的模型。例如：
 
 - Haiku 档位 → `volcengine/doubao-seed-code`（豆包编码模型）
@@ -266,7 +266,7 @@ GEMINI_MODEL=google/gemini-3-flash-preview
 ![cc-switch](https://cdn.marmot-cloud.com/storage/zenmux/2026/02/09/48cGZ8v/20260209164702.jpg)
 将上述代码复制粘贴到 OpenCode 的配置文件中，保存后即可完成配置。
 
-::: warning 🔑 重要：替换 API Key
+::: warning 重要：替换 API Key
 请确保将配置中的 `<ZENMUX_API_KEY>` 替换为您的真实 ZenMux API Key：
 
 **订阅制 API Key（推荐个人开发）**
@@ -366,16 +366,14 @@ OpenAI 协议支持的模型数量更为丰富，可通过[模型列表](https:/
 - 选择上述支持列表中的模型进行使用
   :::
 
-::: tip 联系我们
-如果您在使用过程中遇到任何问题，或有任何建议和反馈，欢迎通过以下方式联系我们：
+<ContactCards>
+<ContactCard icon="mail" title="邮箱">
 
-- **官方网站**：<https://zenmux.ai>
-- **技术支持邮箱**：[support@zenmux.ai](mailto:support@zenmux.ai)
-- **商务合作邮箱**：[bd@zenmux.ai](mailto:bd@zenmux.ai)
-- **Twitter**：[@ZenMuxAI](https://twitter.com/ZenMuxAI)
-- **Discord 社区**：<http://discord.gg/vHZZzj84Bm>
+技术支持: [support@zenmux.ai](mailto:support@zenmux.ai)
 
-更多联系方式和详细信息，请访问我们的[联系我们页面](/zh/help/contact)。
+商务合作: [bd@zenmux.ai](mailto:bd@zenmux.ai)
 
-CC-Switch 项目相关问题，请前往 [CC-Switch GitHub Issues](https://github.com/farion1231/cc-switch/issues) 反馈。
-:::
+</ContactCard>
+<ContactCard icon="x" title="X / Twitter" link="https://x.com/ZenMuxAI" label="@ZenMuxAI" />
+<ContactCard icon="discord" title="Discord" link="https://discord.gg/vHZZzj84Bm" label="@ZenMuxAI" />
+</ContactCards>

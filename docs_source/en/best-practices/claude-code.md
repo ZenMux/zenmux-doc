@@ -79,7 +79,7 @@ winget install Anthropic.ClaudeCode
 
 :::
 
-::: tip 💡 Installation Notes
+::: tip Installation Notes
 
 - **Native install (recommended)**: The script-based installers for macOS/Linux/WSL and Windows auto-update so you always stay on the latest version.
 - **Package manager install**: Homebrew and WinGet require you to run the update command manually to get new versions.
@@ -145,7 +145,7 @@ For details, see: Pay-as-you-go Guide
 
 :::
 
-::: warning 💡 Important: Choose the Right API Key Type
+::: warning Important: Choose the Right API Key Type
 
 - **Personal development / learning** → Use a **Subscription API Key** (`sk-ss-v1-xxx`) for lower, better value cost
 - **Production / commercial projects** → Use a **Pay-as-you-go API Key** (`sk-ai-v1-xxx`) for higher stability and no limits
@@ -242,7 +242,7 @@ Write-Host "ANTHROPIC_AUTH_TOKEN: $env:ANTHROPIC_AUTH_TOKEN"
 
 :::
 
-::: warning 🔑 Important: Replace the API Key
+::: warning Important: Replace the API Key
 
 Be sure to replace `sk-ss-v1-xxx` or `sk-ai-v1-xxx` in the configuration with your real ZenMux API Key:
 
@@ -259,16 +259,16 @@ Be sure to replace `sk-ss-v1-xxx` or `sk-ai-v1-xxx` in the configuration with yo
 - Detailed guide: [Pay-as-you-go docs](/guide/pay-as-you-go)
   :::
 
-::: tip 📋 Environment Variable Reference
+::: tip Environment Variable Reference
 
-| Variable                                   | Required | Purpose            | Notes                                                                                      |
-| ------------------------------------------ | -------- | ------------------ | ------------------------------------------------------------------------------------------ |
-| `ANTHROPIC_BASE_URL`                       | ✅        | Service endpoint   | Redirects Claude Code requests to ZenMux                                                   |
-| `ANTHROPIC_AUTH_TOKEN`                     | ✅        | Auth token         | Your ZenMux API Key (subscription or pay-as-you-go)                                        |
-| `ANTHROPIC_API_KEY`                        | ✅        | Conflict avoidance | Clear to `""` to avoid conflicts with an existing local Anthropic config                   |
-| `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` |          | Traffic control    | Disables non-essential telemetry to improve privacy                                        |
-| `API_TIMEOUT_MS`                           |          | API timeout        | Sets the API request timeout in milliseconds                                               |
-| `ANTHROPIC_DEFAULT_*_MODEL`                |          | Model mapping      | Maps Haiku/Sonnet/Opus tiers. Leave unset to use Claude Code's built-in Claude defaults    |
+| Variable                                   | Required | Purpose            | Notes                                                                                   |
+| ------------------------------------------ | -------- | ------------------ | --------------------------------------------------------------------------------------- |
+| `ANTHROPIC_BASE_URL`                       | ✅       | Service endpoint   | Redirects Claude Code requests to ZenMux                                                |
+| `ANTHROPIC_AUTH_TOKEN`                     | ✅       | Auth token         | Your ZenMux API Key (subscription or pay-as-you-go)                                     |
+| `ANTHROPIC_API_KEY`                        | ✅       | Conflict avoidance | Clear to `""` to avoid conflicts with an existing local Anthropic config                |
+| `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` |          | Traffic control    | Disables non-essential telemetry to improve privacy                                     |
+| `API_TIMEOUT_MS`                           |          | API timeout        | Sets the API request timeout in milliseconds                                            |
+| `ANTHROPIC_DEFAULT_*_MODEL`                |          | Model mapping      | Maps Haiku/Sonnet/Opus tiers. Leave unset to use Claude Code's built-in Claude defaults |
 
 :::
 
@@ -334,7 +334,7 @@ export ANTHROPIC_DEFAULT_SONNET_MODEL="claude-sonnet-4-6"  # Balanced tier
 export ANTHROPIC_DEFAULT_OPUS_MODEL="claude-opus-4-7"      # Most capable tier
 ```
 
-::: tip 💡 Why use aliases?
+::: tip Why use aliases?
 
 Claude Code validates model names against hardcoded strings to enable features like the **1M context window** and **reasoning effort control**. When the validator sees `claude-sonnet-4-6`, the feature activates; when it sees `anthropic/claude-sonnet-4.6`, the check fails and the feature silently turns off.
 
@@ -431,7 +431,7 @@ Click **Edit in settings.json**, then add or modify the following configuration:
 }
 ```
 
-::: warning 🔑 Important Configuration Notes
+::: warning Important Configuration Notes
 
 1. **Replace the API Key**: Replace `sk-ss-v1-xxx` with your real ZenMux API Key
    - Subscription API Key (`sk-ss-v1-xxx`): best for personal development
@@ -456,7 +456,7 @@ After configuration, you can use the Claude Code extension in VSCode:
 2. Enter your question or task in the chat panel
 3. Claude will automatically read project files and help you
 
-::: tip 💡 Usage Tips
+::: tip Usage Tips
 
 - **Trust the workspace**: On first use, Claude Code will ask you to trust the current workspace—click **Trust This Folder** to allow access to project files.
 - **Switch models**: Type `/model` during a conversation to view the current model or switch to another.
@@ -516,7 +516,7 @@ You can use the '/model' command to confirm which model is currently in use:
    If the output is empty, the environment variables were not loaded correctly. Re-run `source ~/.zshrc` or restart the terminal.
 
 4. **Check the API Key status**:
-   - Confirm the API key is shown as "Enabled" in the console
+   - Confirm the API key is shown as “Enabled” in the console
    - Check whether the API key has been deleted or disabled
 
 5. **Get a new API Key**:
@@ -540,7 +540,7 @@ This usually happens because old config files cached prior authentication info, 
 
    ```powershell [Windows PowerShell]
    # Delete Claude Code config
-   Remove-Item -Path "$env:USERPROFILE\.claude\settings.json" -Force
+   Remove-Item -Path “$env:USERPROFILE\.claude\settings.json” -Force
    ```
 
 2. **Confirm your shell environment variables are configured correctly**:
@@ -548,12 +548,12 @@ This usually happens because old config files cached prior authentication info, 
    Check whether your shell config file (`~/.zshrc` or `~/.bashrc`) contains the full ZenMux configuration. Refer to the [Step 1: Configure Shell Environment Variables](#step-1-configure-shell-environment-variables-recommended) section above, and ensure it includes these key variables:
 
    ```bash
-   export ANTHROPIC_BASE_URL="https://zenmux.ai/api/anthropic"
-   export ANTHROPIC_AUTH_TOKEN="sk-ss-v1-xxx"  # Replace with your ZenMux API Key
-   export ANTHROPIC_API_KEY=""                 # Clear to avoid conflicts
-   export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC="1"
-   export API_TIMEOUT_MS="30000000"
-   # ANTHROPIC_DEFAULT_*_MODEL is optional — unset means "use Claude Code's built-in Claude defaults".
+   export ANTHROPIC_BASE_URL=”https://zenmux.ai/api/anthropic”
+   export ANTHROPIC_AUTH_TOKEN=”sk-ss-v1-xxx”  # Replace with your ZenMux API Key
+   export ANTHROPIC_API_KEY=””                 # Clear to avoid conflicts
+   export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=”1”
+   export API_TIMEOUT_MS=”30000000”
+   # ANTHROPIC_DEFAULT_*_MODEL is optional — unset means “use Claude Code’s built-in Claude defaults”.
    # To customize Claude models, prefer aliases so features like 1M context stay enabled. See:
    # /guide/advanced/model-alias
    ```
@@ -590,15 +590,15 @@ This usually happens because old config files cached prior authentication info, 
 
    ```powershell [Windows PowerShell]
    # Check ZenMux endpoint
-   Write-Host "ANTHROPIC_BASE_URL: $env:ANTHROPIC_BASE_URL"
+   Write-Host “ANTHROPIC_BASE_URL: $env:ANTHROPIC_BASE_URL”
    # Should output: https://zenmux.ai/api/anthropic
 
    # Check whether the API Key is set
-   Write-Host "ANTHROPIC_AUTH_TOKEN: $env:ANTHROPIC_AUTH_TOKEN"
+   Write-Host “ANTHROPIC_AUTH_TOKEN: $env:ANTHROPIC_AUTH_TOKEN”
    # Should output your ZenMux API Key
 
    # Confirm the old API Key is cleared
-   Write-Host "ANTHROPIC_API_KEY: $env:ANTHROPIC_API_KEY"
+   Write-Host “ANTHROPIC_API_KEY: $env:ANTHROPIC_API_KEY”
    # Should output empty
    ```
 
@@ -621,14 +621,14 @@ This usually happens because old config files cached prior authentication info, 
    Anthropic base URL: https://zenmux.ai/api/anthropic
    ```
 
-:::
+   :::
 
 ::: details The Model Does Not Support the Anthropic Protocol
 **Issue**: When using a model, you see a message saying it does not support the Anthropic protocol.
 
 **Solution**:
 
-- Use the [ZenMux model list](https://zenmux.ai/models) and filter by "Anthropic API Compatible" to see currently supported models
+- Use the [ZenMux model list](https://zenmux.ai/models) and filter by “Anthropic API Compatible” to see currently supported models
 - Or open the model’s detail page to confirm Anthropic protocol support
 - Choose a model from the supported list above
   :::
@@ -825,7 +825,6 @@ For the full list of supported aliases and more background, see the [Model Alias
 1. **Upgrade Claude Code to the latest version.** Opus 4.7 is only supported from **v2.1.111** onward. Run `claude --version` first — if it reports a lower version, upgrade before trying again (see the [Install Claude Code](#install-claude-code) section above; the native installer auto-updates, while Homebrew / WinGet require a manual upgrade command).
 
 2. **Configure the model name correctly.** Claude Code enforces a hardcoded check for Opus 4.7, so the model identifier must match exactly what it expects. Pick one of the following:
-
    - **Option A (Recommended): Use the model alias.** Following the [Model Aliases guide](/guide/advanced/model-alias), set the model to `claude-opus-4-7`:
 
      ```bash
@@ -856,14 +855,14 @@ After editing, reload your shell (`source ~/.zshrc` or `source ~/.bashrc`) and r
 See the [ZenMux model list](https://zenmux.ai/models) for all available models and detailed information.
 :::
 
-::: tip Contact Us
-If you run into any issues or have suggestions/feedback, feel free to contact us via:
+<ContactCards>
+<ContactCard icon="mail" title="Email">
 
-- **Website**: <https://zenmux.ai>
-- **Support**: [support@zenmux.ai](mailto:support@zenmux.ai)
-- **Business**: [bd@zenmux.ai](mailto:bd@zenmux.ai)
-- **Twitter**: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
-- **Discord**: <http://discord.gg/vHZZzj84Bm>
+Technical support: [support@zenmux.ai](mailto:support@zenmux.ai)
 
-For more contact options and details, visit our [Contact Us page](/help/contact).
-:::
+Business cooperation: [bd@zenmux.ai](mailto:bd@zenmux.ai)
+
+</ContactCard>
+<ContactCard icon="x" title="X / Twitter" link="https://x.com/ZenMuxAI" label="@ZenMuxAI" />
+<ContactCard icon="discord" title="Discord" link="https://discord.gg/vHZZzj84Bm" label="@ZenMuxAI" />
+</ContactCards>
