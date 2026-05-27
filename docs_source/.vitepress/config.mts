@@ -328,8 +328,8 @@ export default defineConfig({
 
   themeConfig: {
     logo: {
-      light: "/logo-text-dark.svg",
-      dark: "/logo-text-light.svg",
+      light: "/docs/logo-text-dark.svg",
+      dark: "/docs/logo-text-light.svg",
       alt: "ZenMux Logo",
     },
     siteTitle: false,
