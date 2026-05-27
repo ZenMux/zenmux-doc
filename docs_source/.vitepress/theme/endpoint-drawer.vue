@@ -43,7 +43,7 @@ const providersData: Provider[] = [
         docUrl: "/docs/api/openai/create-chat-completion.html",
       },
       {
-        title: "Responses",
+        title: "Create a Model Response",
         path: "/responses",
         iconType: "chat",
         docUrl: "/docs/api/openai/openai-responses.html",
