@@ -10,10 +10,10 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import LZString from 'lz-string';
 import copyToClipboard from 'copy-to-clipboard';
 import { useData } from 'vitepress'
 import { Copy as CopyIcon, Checked as CheckedIcon } from './icons';
+import { fetchPageContent } from './use-page-content';
 
 export default defineComponent({
   name: 'SelectDropdown',
@@ -22,10 +22,10 @@ export default defineComponent({
     const isCopied = ref(false);
     const { page } = useData()
 
-    const handleClick = () => {
+    const handleClick = async () => {
       if (isCopied.value) return;
-      // @ts-expect-error not error
-      copyToClipboard(LZString.decompressFromBase64(page.value.content))
+      const content = await fetchPageContent(page.value.filePath);
+      if (content) copyToClipboard(content);
       isCopied.value = true;
       setTimeout(() => {
         isCopied.value = false;
