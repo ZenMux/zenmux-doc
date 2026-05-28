@@ -18,11 +18,11 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useData } from "vitepress";
-import LZString from "lz-string";
 import copyToClipboard from "copy-to-clipboard";
 import { Copy as CopyIcon } from "./icons";
 import IconBack_top from "./icons/IconBack_top.vue";
 import ChatFrame from "./icons/ChatFrame.vue";
+import { fetchPageContent } from "./use-page-content";
 
 const AiIcon = ChatFrame;
 
@@ -31,12 +31,10 @@ const { page } = useData();
 const copyText = ref("Copy page");
 let copyTimer: ReturnType<typeof setTimeout> | null = null;
 
-function copyPage() {
+async function copyPage() {
   if (copyText.value !== "Copy page") return;
-  const content = (page.value as any).content;
-  if (content) {
-    copyToClipboard(LZString.decompressFromBase64(content));
-  }
+  const content = await fetchPageContent(page.value.filePath);
+  if (content) copyToClipboard(content);
   copyText.value = "Copied!";
   if (copyTimer) clearTimeout(copyTimer);
   copyTimer = setTimeout(() => {

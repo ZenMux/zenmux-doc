@@ -1,7 +1,6 @@
 import { defineConfig } from "vitepress";
 import container from "markdown-it-container";
 import fs from "node:fs";
-import LZString from "lz-string";
 import { groupIconVitePlugin } from "vitepress-plugin-group-icons";
 import { docsIndexPlugin } from "./plugins/docs-index-plugin";
 import { locales } from "../config";
@@ -317,13 +316,6 @@ export default defineConfig({
     if (pageData.frontmatter.pageClass === "api-page") {
       pageData.frontmatter.aside = false;
     }
-    // @ts-expect-error not error
-    pageData.content = LZString.compressToBase64(
-      fs
-        .readFileSync(basePath + pageData.filePath)
-        .toString()
-        .replace(/<Copy \/>/g, ""),
-    );
   },
 
   themeConfig: {
