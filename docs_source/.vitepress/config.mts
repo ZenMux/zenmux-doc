@@ -48,7 +48,7 @@ export default defineConfig({
   },
 
   transformHead: ({ pageData }) => {
-    const canonicalUrl = `https://zenmux.ai/docs${pageData.relativePath.replace(/\.md$/, ".html")}`;
+    const canonicalUrl = `https://zenmux.ai/docs/${pageData.relativePath.replace(/\.md$/, ".html")}`;
     return [["link", { rel: "canonical", href: canonicalUrl }]];
   },
 
