@@ -6,7 +6,11 @@
       "Bash(bash scripts/update-references.sh)",
       "Bash(bash .agents/skills/zenmux-context/scripts/get-doc-tree.sh)",
       "Bash(pnpm run *)",
-      "Bash(curl -s http://localhost:5173/)"
+      "Bash(curl -s http://localhost:5173/)",
+      "Bash(rm \"/Users/chenger/Desktop/zenmux 文档/zenmux-doc/docs_source/public/\"chunks-index-*.json \"/Users/chenger/Desktop/zenmux 文档/zenmux-doc/docs_source/public/\"docs-index-*.json)"
+    ],
+    "additionalDirectories": [
+      "/Users/chenger/Desktop/zenmux 文档/zenmux-doc/docs_source/public"
     ]
   }
 }
