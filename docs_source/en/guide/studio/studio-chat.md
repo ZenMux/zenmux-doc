@@ -1,354 +1,392 @@
 # Studio-Chat
 
-![studio-Chat](https://cdn.marmot-cloud.com/storage/zenmux/2026/02/05/mBVtF6W/20260205135553.jpg)
-Studio-Chat is an intelligent conversational tool provided by the ZenMux platform. It supports advanced features such as multi-model chat, PK mode, Artifact generation, image generation, and more. This document will help you quickly get up to speed with Studio-Chat’s core capabilities.
+Studio-Chat is ZenMux's intelligent conversational workspace. It supports multi-model chat, PK comparison, multimodal file input, Artifacts generation, web search, image generation/editing, voice input/output, and switching between subscription and pay-as-you-go billing.
 
-## Core Features
+Different models and providers support different capabilities — the interface automatically enables or disables features based on the currently selected model.
 
-### Start a New Chat
+![Studio-Chat main interface](https://cdn.marmot-cloud.com/storage/zenmux/2026/05/28/Ovn565e/20260528154328.png)
 
-1. Visit [Studio-Chat](https://zenmux.ai/platform/chat?chatId=new_chat)
-2. Enter your question in the input box at the bottom of the page
-3. Press `Enter` or click the send button to submit your message
-4. Wait for the AI model to generate a response
+## Quick Start
 
-### Select a Model
+1. Visit [Studio-Chat](https://zenmux.ai/platform/chat)
+2. Type your question in the input box
+3. Press `Enter` or click the send button
+4. Wait for the model to respond; click the stop button to interrupt generation
 
-In the model selector at the top of the chat area, you can:
+Common input methods:
 
-- Click the model name to open the model list
-- Search for and select the AI model you need
-- Different models support different capabilities (text, images, audio, etc.)
+| Action         | Method                                          |
+| -------------- | ----------------------------------------------- |
+| Send message   | `Enter`                                         |
+| New line       | `Shift + Enter`                                 |
+| Stop generating | Click the stop button to the right of the input box |
+| Fullscreen edit | Click the expand button at the top-right of the input box |
+| Paste image    | Copy an image, then paste directly in the input area |
+| Drag & drop file | Drag a file into the input area              |
 
-## PK Mode (Multi-Model Comparison)
+When entering Studio-Chat from a model detail page, the selected model is automatically applied. You can also specify a model via the `model` parameter in the URL; multiple model slugs separated by commas will create multiple PK windows directly.
 
-![studio-Chat](https://cdn.marmot-cloud.com/storage/zenmux/2026/02/05/pHc3z1v/4C415485-BE87-426A-B605-14DFBE6E125F.png)
+## Interface Layout
 
-PK mode lets you chat with multiple AI models at the same time, making it easy to compare response quality across models.
+Studio-Chat consists of four main areas:
 
-### Enable PK Mode
+| Area         | Description                                                                           |
+| ------------ | ------------------------------------------------------------------------------------- |
+| Left sidebar | Create new chats, browse history, group sessions, pin, rename, and delete             |
+| Model bar    | Select models, switch billing mode, view API examples, configure parameters, enable sync, add PK windows |
+| Message area | Displays user messages, model replies, reasoning content, citations, usage stats, and log access |
+| Input area   | Enter text, upload files, select Skills, record voice, send/stop                      |
 
-1. In the model selection area, click the **PK icon** (➕) to add a new chat window
-2. You can add up to **10** models for side-by-side comparison
-3. Each window can select a different model independently
+On mobile, a more compact sidebar and floating history panel are used.
 
-### Sync in PK Mode
+In an empty conversation, the current model's detail card is displayed so you can confirm its capabilities, pricing, and context length before sending a message.
 
-PK mode supports **synchronized sending**:
+## Selecting a Model
 
-| Icon    | Status   | Description                                                |
-| ------- | -------- | ---------------------------------------------------------- |
-| 🔛 On   | Sync On  | When you send a message, all synced models receive it      |
-| 🔚 Off  | Sync Off | This model window runs independently and won’t be synced   |
+Click the model name to open the model selector. The selector supports:
 
-**How to use:**
+![Model selector](https://cdn.marmot-cloud.com/storage/zenmux/2026/05/28/2imPcRv/20260528154419.png)
 
-1. Click the **sync toggle** icon in the model selection area
-2. When enabled, a message sent from any input box will be broadcast to all models with sync enabled
-3. When disabled, that model window requires separate input and sending
+- Searching by model name
+- Sorting by popularity or custom rules
+- Filtering by output type: All, Text, Image
+- Viewing model detail cards with context length, input/output modalities, pricing, provider, availability, and more
+- Choosing between standard models and auto-routing models
 
-### Remove a PK Window
+The current provider is shown next to the model name. After switching models, Studio-Chat recalculates the supported file types, output types, and available Skills.
 
-Click the **×** button in the model selection area to remove the corresponding chat window.
+## Input Area
+
+The input area supports text, multimodal attachments, Skills, and voice recording. Each PK window has its own independent input area; when sync is enabled, text, attachments, and some Skills are synchronized across participating windows.
+
+Key capabilities:
+
+- Attachments appear above the input box, showing file name, type, and a remove option
+- Images can be added via upload, drag-and-drop, or paste
+- For longer content, click the expand button to enter fullscreen editing
+- When the send button is disabled, hovering reveals the reason — e.g., empty input, generation in progress, or browser storage full
+- While the model is generating, the send button switches to a stop button
+
+## Skills
+
+The **Skills** menu to the left of the input box shows the capabilities available for the current model. Unavailable capabilities are grayed out or hidden.
+
+![Skills menu](https://cdn.marmot-cloud.com/storage/zenmux/2026/05/28/21gKjK7/20260528154510.png)
+
+| Skill              | Description                                                      |
+| ------------------ | ---------------------------------------------------------------- |
+| AI Image Generation | Generate images with models that support image output           |
+| AI Image Editing    | Perform basic edits on images                                   |
+| AI Image Cutout     | Remove backgrounds or extract subjects from images              |
+| AI Audio Generation | Available for models with audio output; actual output depends on model capabilities |
+| Web Search          | Let search-capable models fetch the latest information online   |
+| Artifacts           | Generate standalone content that can be previewed, copied, and downloaded |
+
+The Skills menu automatically determines availability based on model capabilities. It's recommended to enable only the skills relevant to your current task. Web search can be used alongside text chat and some multimodal tasks — availability depends on the current model.
 
 ## Artifacts
 
-![studio-Chat](https://cdn.marmot-cloud.com/storage/zenmux/2026/02/05/LSnC3V9/20260205140001.jpg)
+Artifacts are ideal for generating reusable content such as interactive web pages, Markdown documents, SVG graphics, and Mermaid diagram code.
 
-Artifacts is a powerful content generation and preview feature that supports generating interactive code, charts, documents, and more.
+![Artifacts generation and preview 1](https://cdn.marmot-cloud.com/storage/zenmux/2026/05/28/rtGfBgc/20260528154828.png)
 
-### Supported Artifact Types
+![Artifacts generation and preview 2](https://cdn.marmot-cloud.com/storage/zenmux/2026/05/28/aVLe5HX/20260528154948.png)
 
-| Type     | MIME Type                 | Description                 |
-| -------- | ------------------------- | --------------------------- |
-| Markdown | `text/markdown`           | Rich text documents         |
-| HTML     | `text/html`               | Interactive web content     |
-| SVG      | `image/svg+xml`           | Vector graphics             |
-| Mermaid  | `application/vnd.mermaid` | Flowcharts, sequence diagrams, etc. |
+How to use:
 
-### Use Artifacts
+1. Enable **Artifacts** in Skills
+2. Describe your request — for example, "Create a project flowchart" or "Build an interactive HTML page"
+3. After the model generates the Artifact, an Artifact card appears in the message
+4. Click the card or the **Preview** button to open the Artifact panel on the right; on mobile, it opens as a drawer
 
-1. In the input area, click **Skills** and select **Artifact Mode** (💡 icon), or click the **Artifacts** button in the input area
-2. Send your request, for example:
-   - "Help me create a project flowchart"
-   - "Generate an interactive HTML page"
-   - "Draw a logo in SVG"
-3. After the AI generates the content, the Artifact preview panel opens automatically
+Supported Artifact types:
 
-### Artifact Panel Features
+| Type     | MIME Type                 | Description                           |
+| -------- | ------------------------- | ------------------------------------- |
+| Markdown | `text/markdown`           | Documents, reports, structured text   |
+| HTML     | `text/html`               | Single-file HTML/CSS/JS interactive content |
+| SVG      | `image/svg+xml`           | Vector graphics                       |
+| Mermaid  | `application/vnd.mermaid` | Mermaid diagram code                  |
 
-![studio-Chat](https://cdn.marmot-cloud.com/storage/zenmux/2026/02/05/3FcHasL/20260205163615.jpg)
-![studio-Chat](https://cdn.marmot-cloud.com/storage/zenmux/2026/02/05/oeaQnij/20260205163634.jpg)
+The Artifact panel supports:
 
-- **Content / Preview toggle**: View source code or preview the rendered output
-- **Copy code**: One-click copy of the generated content
-- **Download file**: Save the content as a file in the corresponding format
-- **Fullscreen mode**: Expand the preview area
+- Switching between content and preview
+- Copying content
+- Downloading as the corresponding file type
+- Fullscreen preview
+- Closing to return to the normal chat view
 
 ## Web Search
 
-![studio-Chat](https://cdn.marmot-cloud.com/storage/zenmux/2026/02/05/1yYx6hi/20260205140326.jpg)
+Web search allows the model to retrieve information from the internet while answering your questions.
 
-Web Search allows the AI to search the internet for the latest information while answering your question.
+![Web search with cited sources](https://cdn.marmot-cloud.com/storage/zenmux/2026/05/28/s4bcEUW/20260528155104.png)
 
-### Models That Support Web Search
+How to use:
 
-⚠️ **Note**: Not all models support Web Search.
-
-**How to tell:**
-
-- In the Skills menu, if **Web Search** is clickable (not grayed out), the current model supports it
-- If it’s grayed out/disabled, the current model does not support it
-
-**Common models that support Web Search:**
-
-- Models that support the `web_search_options` parameter (e.g., some OpenAI and Google models)
-
-### Use Web Search
-
-1. Click **Skills**
-2. Enable **Web Search** (🌐 icon)
+1. Select a model and provider that support search
+2. Enable **Web Search** in Skills
 3. Send your question
-4. The AI will search the web and answer based on the latest information
 
-When enabled, responses will include cited sources (grounding chunks) to help you verify the information.
+If the current provider supports `web_search_options` or the Google Search tool, the web search entry will be available. When enabled, the model uses the corresponding search tool in requests; source links and citations depend on what the model actually returns.
+
+## Conversation Memory
+
+Conversation memory controls how many history messages are sent with each request — useful for reducing context overhead in long conversations.
+
+![Conversation memory and context settings](https://cdn.marmot-cloud.com/storage/zenmux/2026/05/28/bpwsEBX/20260528163100.png)
+
+The input area shows the current context count, such as `8/∞` or `6/20`. Clicking this entry lets you:
+
+- Open the maximum context settings
+- Clear the current context by inserting a **New Session** divider at the current position
+- See whether all messages or only the most recent N messages will be sent
+
+You can also adjust conversation memory in the advanced parameters panel. In PK sync mode, changing the context settings for a synced window applies to all other synced windows.
 
 ## Image Generation & Editing
 
-### Image Generation Mode
+Models that support image output will display image-related Skills.
 
-![studio-Chat](https://cdn.marmot-cloud.com/storage/zenmux/2026/02/05/6hOdh9V/20260205141003.jpg)
+### Image Generation
 
-Some models support image generation:
+![AI image generation mode](https://cdn.marmot-cloud.com/storage/zenmux/2026/05/28/UTVWbt0/20260528155247.png)
 
-1. Click **Skills**
-2. Select **Image Mode** (🖼️ icon)
-3. Describe the image you want to generate
-4. The AI will generate the corresponding image
+1. Select **AI Image Generation** in Skills
+2. Enter an image description
+3. Send and wait for the image to be generated
+4. The result can be previewed, downloaded, or used for further editing
 
-**Special settings for Google Imagen models:**
-![studio-Chat](https://cdn.marmot-cloud.com/storage/zenmux/2026/02/05/NESbRjH/20260205140650.jpg)
+Some Google / Nano Banana image models support image configuration:
 
-When using Google’s image generation models, you can configure:
+![Image aspect ratio and resolution settings](https://cdn.marmot-cloud.com/storage/zenmux/2026/05/28/fwfMrhM/20260528155336.png)
 
-- **Image Aspect Ratio**: Aspect ratio (1:1, 16:9, 9:16, etc.)
-- **Image Resolution**: Output resolution
+| Parameter        | Options                                                                                              |
+| ---------------- | ---------------------------------------------------------------------------------------------------- |
+| Image Aspect Ratio | Default options include `1:1`, `2:3`, `3:2`, `3:4`, `4:3`, `4:5`, `5:4`, `9:16`, `16:9`; actual options depend on model configuration |
+| Image Resolution   | Default options include `1K`, `2K`, `4K`; actual options depend on model configuration               |
+| Image Quality      | Only shown when the model provides a quality configuration                                           |
 
-### Image Editing Mode
+### Image Editing
 
-![studio-Chat](https://cdn.marmot-cloud.com/storage/zenmux/2026/02/05/yraseZ9/20260205140846.jpg)
+![AI image editing mode](https://cdn.marmot-cloud.com/storage/zenmux/2026/05/28/yPTrRpd/20260528155415.png)
 
-Models that support image output can also perform image editing:
+1. Upload an image, or use an image generated in the previous turn
+2. Select an editing mode in Skills
+3. Enter your editing instructions
+4. Send and view the edited result
 
-| Mode            | Description                           |
-| --------------- | ------------------------------------- |
-| **Basic Edit**  | Basic editing to modify image content |
-| **Cutout**      | Cutout: remove/replace the background |
-| **Upscale**     | Image upscaling (not available yet)   |
+| Mode         | Status    | Description                                    |
+| ------------ | --------- | ---------------------------------------------- |
+| Basic Edit   | Available | Modify image content, style, or specific elements |
+| Cutout       | Available | Remove backgrounds or extract subjects          |
 
-**Steps:**
+## File Upload
 
-1. Upload an image
-2. In Skills, select the corresponding editing mode
-3. Describe the edit you want
-4. The AI will return the edited image
+Click the attachment button to the left of the input box to upload files. Drag-and-drop and image pasting are also supported.
+
+![File upload menu and attachment preview](https://cdn.marmot-cloud.com/storage/zenmux/2026/05/28/PVuH6e8/20260528155540.png)
+
+File capabilities are determined by the current model — Studio-Chat automatically filters out unsupported attachment types.
+
+| Type       | Formats                                                                                                                                                                      |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Images     | `.jpg`, `.jpeg`, `.png`, `.gif`, `.webp`                                                                                                                                     |
+| PDF        | `.pdf`                                                                                                                                                                       |
+| Text/Code  | `.txt`, `.md`, `.csv`, `.json`, `.xml`, `.html`, `.htm`, `.markdown`, `.ts`, `.java`, `.c`, `.cpp`, `.cs`, `.go`, `.php`, `.rb`, `.swift`, `.sql`, `.yaml`, `.ini`, `.css`   |
+| Audio      | `.mp3`, `.wav`                                                                                                                                                               |
+| Video      | `.mp4`, `.avi`, `.mov`, `.mpeg`, `.webm`                                                                                                                                     |
+
+After uploading, attachment cards appear in the input area or message:
+
+- Images: display thumbnails with full-size preview
+- Audio: shown as a player after sending
+- Video: clickable for preview playback after sending
+- PDF, text, and code files: display file name and type, sent to the model for analysis
 
 ## Voice Input & Output
 
 ### Voice Input
 
-![studio-Chat](https://cdn.marmot-cloud.com/storage/zenmux/2026/02/05/ZoPtPCi/20260205141116.jpg)
+When the model supports audio input, a recording button appears to the right of the input box.
 
-Models that support voice input can accept audio messages:
+![Voice input recording](https://cdn.marmot-cloud.com/storage/zenmux/2026/05/28/0x8UZyc/20260528160539.png)
 
-1. Click the **microphone** icon in the input box to start recording
-2. Once recording is complete, it will upload automatically
-3. When you send the message, the audio will be sent to the AI along with it
+1. Click the recording button to start
+2. Click again or stop — the recording uploads as an audio attachment
+3. The audio is submitted along with the message when you send
+
+In PK sync mode, the recording state is synchronized across synced windows.
 
 ### Voice Output
 
-![studio-Chat](https://cdn.marmot-cloud.com/storage/zenmux/2026/02/05/EMrPXuS/20260205141146.jpg)
+When the model supports audio output, an **AI Audio Generation** entry appears in Skills. After the model returns an audio file, a playable audio control is displayed in the message.
 
-Some models support spoken replies:
+## PK Mode
 
-1. Enable **Audio Mode** (🎵 icon) in Skills
-2. Send a message
-3. The AI’s response will include audio content that you can play directly
+PK mode lets you compare responses from multiple models side by side.
 
-## API Call Example
+![PK mode multi-model comparison](https://cdn.marmot-cloud.com/storage/zenmux/2026/05/28/0smpocG/20260528154703.png)
 
-![studio-Chat](https://cdn.marmot-cloud.com/storage/zenmux/2026/02/05/gq0Lim5/20260205163217.jpg)
-![studio-Chat](https://cdn.marmot-cloud.com/storage/zenmux/2026/02/05/VVg5YLl/20260205162944.jpg)
+1. Click the PK add button in the model bar
+2. The new window copies the model configuration from the last window
+3. Each window can independently select its model, provider, parameters, and billing mode
+4. Up to 10 windows are supported
 
-Click the **</>** icon in the model selection area to view and copy an API call example for the model.
+Each window has a sync toggle:
+
+| Status   | Behavior                                                                                       |
+| -------- | ---------------------------------------------------------------------------------------------- |
+| Sync On  | Sending a message from any synced window delivers the same question, files, and Skills to all synced windows |
+| Sync Off | The window operates independently and does not participate in synchronized sending              |
+
+Click the remove button on a window to close it; when only one window remains, it automatically returns to single-window mode. If any synced window is generating, other synced windows enter a waiting state to prevent duplicate submissions.
+
+## API Call Examples
+
+Click the code icon in the model bar to open the code integration dialog.
+
+![API call example dialog](https://cdn.marmot-cloud.com/storage/zenmux/2026/05/28/N8YnZmK/20260528160659.png)
+
+The dialog shows copyable call examples based on the current model and protocol, including:
+
+- OpenAI Chat Completions
+- OpenAI Responses
+- Anthropic Messages
+- Gemini / Vertex AI
+- Imagen / Images
+- Auto-routing model examples
+
+At the bottom, you can copy the code or navigate to the Pay As You Go page to create an API key.
 
 ## Advanced Parameters
 
-![studio-Chat](https://cdn.marmot-cloud.com/storage/zenmux/2026/02/05/LieLZeb/20260205143826.jpg)
+Click the settings icon in the model bar to configure model parameters.
 
-Click the **⚙️ Settings** icon in the model selection area to configure advanced model parameters.
+![Advanced parameters dialog](https://cdn.marmot-cloud.com/storage/zenmux/2026/05/28/vZRTZFu/20260528160805.png)
 
-### Configurable Parameters
+| Parameter         | Description                                                                              |
+| ----------------- | ---------------------------------------------------------------------------------------- |
+| Protocol          | Select the API protocol; only shown when the model supports multiple protocols           |
+| Endpoint          | Select the provider/endpoint; only shown when multiple endpoints are available            |
+| System Prompt     | Define the model's role, tone, and behavioral constraints                                |
+| Conversation Memory | Control whether all history or only the most recent N messages are sent per request     |
+| Reasoning Effort  | Set reasoning intensity — e.g., low, medium, high, xhigh                                 |
+| Thinking Budget   | Set the thinking budget in tokens; some models enable this by default or require it       |
+| Max Output        | Control Max Tokens or Max Completion Tokens                                              |
+| Randomness        | Adjust Temperature, Top P                                                                |
+| Penalties         | Adjust Frequency Penalty, Presence Penalty, Repetition Penalty                           |
+| Seed              | Set a random seed for more deterministic output                                          |
+| Stop Sequences    | Define stop sequences                                                                    |
+| Logprobs          | Return token logprobs; Top Logprobs can be configured when supported                     |
+| Response Format   | Choose text, JSON Object, or other response formats                                      |
 
-![studio-Chat](https://cdn.marmot-cloud.com/storage/zenmux/2026/02/05/Ks1RA3s/20260205143850.jpg)
+Advanced parameters are automatically shown, enabled, or disabled based on the current model, protocol, and endpoint's `supported_parameters`. Some models require reasoning to be enabled, in which case the toggle is locked. Under the Google protocol, Reasoning Effort and Thinking Budget are mutually exclusive based on model capabilities.
 
-| Parameter                  | Description                                         | Range        |
-| ------------------------- | --------------------------------------------------- | ------------ |
-| **Provider**              | Select the model provider                           | Model-dependent |
-| **System Prompt**         | System prompt that defines the AI’s role and behavior | Text         |
-| **Enable Reasoning**      | Enable reasoning mode (chain-of-thought)            | On/Off       |
-| **Max Reasoning Tokens**  | Max tokens for reasoning                            | 0-100000     |
-| **Max Completion Tokens** | Max output tokens                                   | 0-262144     |
-| **Temperature**           | Controls randomness of the output                   | 0.0-2.0      |
-| **Top P**                 | Nucleus sampling                                    | 0.0-1.0      |
-| **Top K**                 | Only consider the top K most likely tokens          | 0-100        |
-| **Frequency Penalty**     | Frequency penalty                                   | -2.0 to 2.0  |
-| **Presence Penalty**      | Presence penalty                                    | -2.0 to 2.0  |
-| **Repetition Penalty**    | Repetition penalty                                  | 0.0-2.0      |
-| **Min P**                 | Minimum probability threshold                       | 0.0-1.0      |
-| **Top A**                 | Adaptive sampling parameter                         | 0.0-1.0      |
+## Billing Mode
 
-### Smart Routing Preferences
+Studio-Chat supports two billing modes:
 
-If you are using an auto-routing model, you can set routing preferences:
+![Billing mode switch menu](https://cdn.marmot-cloud.com/storage/zenmux/2026/05/28/taV6ViE/20260528160848.png)
 
-- **Performance**: Prefer the highest-performance provider
-- **Price**: Prefer the lowest-cost provider
-- **Balanced**: Balance performance and price
+| Mode            | Description                                                |
+| --------------- | ---------------------------------------------------------- |
+| Subscription    | Uses your subscription plan quota; only applies to models covered by your plan |
+| Pay As You Go   | Uses your account balance, billed per request              |
 
-### Reasoning Mode Notes
+To switch:
 
-- **Required**: For some models (e.g., the o1 series), reasoning mode is mandatory
-- **Optional**: Some models allow you to enable reasoning mode selectively
-- **Not supported**: Some models do not support reasoning mode
+1. Click the billing icon in the model bar
+2. Select **Subscription** or **Pay As You Go**
 
-## Billing Mode (PAYGo vs Subscription)
+The billing menu displays your current subscription quota usage, reset time, and pay-as-you-go balance. Values are highlighted when usage or balance is running low.
 
-![studio-Chat](https://cdn.marmot-cloud.com/storage/zenmux/2026/02/05/AV9ykpF/20260205144006.jpg)
+If the current model is not included in your subscription plan, subscription mode will be unavailable or will automatically switch to pay-as-you-go. When selecting a higher-tier model, the page will prompt you to upgrade your subscription.
 
-ZenMux offers two billing modes, allowing you to choose flexibly based on your usage.
+When your subscription quota is exhausted, the page will suggest switching to pay-as-you-go; non-free subscribers can also enable Extra Usage. If your pay-as-you-go balance is insufficient, a free model is rate-limited, or a premium model requires a balance, the page will prompt you to top up.
 
-### Subscription Mode
+## Quick Navigation
 
-| Item        | Description                 |
-| ----------- | --------------------------- |
-| 💰 Billing  | Monthly/annual subscription |
-| ✅ Best for | High-frequency users        |
-| 📋 Coverage | Models included in your plan |
-| 🔸 Icon     | Yellow subscription icon    |
+On desktop, when a single window contains 3 or more user messages, quick navigation appears on the right side of the message area.
 
-### Pay As You Go Mode
+![Quick navigation](https://cdn.marmot-cloud.com/storage/zenmux/2026/05/28/dtgNaum/20260528163221.png)
 
-| Item        | Description                                  |
-| ----------- | -------------------------------------------- |
-| 💰 Billing  | Pay based on actual usage                    |
-| ✅ Best for | Low-frequency usage or models not in your plan |
-| 📋 Coverage | All models                                   |
-| 🔸 Icon     | Blue API icon                                |
+- Navigation items use the user message content as titles
+- Click an item to jump to the corresponding turn
+- The current turn is automatically highlighted as you scroll
+- When manually scrolling up through history, a "scroll to bottom" button appears
 
-### Switch Billing Modes
+## Message Actions
 
-1. Click the **billing icon** (yellow/blue) next to the model selection area
-2. In the dropdown menu, choose:
-   - **Subscription Mode** - Use subscription quota
-   - **Pay As You Go Mode** - Use your account balance
+Common actions are displayed below each message. While the model is generating, action buttons on the current message are hidden; actions on other messages in the same window are temporarily grayed out and restored when generation finishes.
 
-### Notes
+![Message actions and usage info](https://cdn.marmot-cloud.com/storage/zenmux/2026/05/28/tMSW0xF/20260528163348.png)
 
-- If the selected model is not included in your subscription plan, the system will automatically switch to Pay As You Go mode
-- Some advanced models may require sufficient account balance to use
-- The system will automatically detect and prompt you to top up or upgrade your subscription
+| Action      | Description                                                                                 |
+| ----------- | ------------------------------------------------------------------------------------------- |
+| Copy        | Copy message text; available for both user messages and model replies                       |
+| Edit        | Edit a sent user message and regenerate based on the updated content                        |
+| Fork        | Branch the conversation from the current message; supports Fork to New Chat and Fork to PK (when fewer than 10 PK windows exist) |
+| Retry       | Regenerate the model reply using the same question and configuration                        |
+| Download    | Download generated images, Artifacts, or other file results                                 |
+| Delete      | Delete the current turn; both the user message and model reply are removed together         |
+| Log Details | Open the request log details and copy the Request ID                                        |
 
-## File Upload
+Long user messages are automatically collapsed and can be expanded to view the full content. When editing a user message, you can modify the text, remove or add attachments, then resend.
 
-![studio-Chat](https://cdn.marmot-cloud.com/storage/zenmux/2026/02/05/YozJ8yn/20260205163758.jpg)
-
-Studio-Chat supports uploading multiple file types.
-
-### Supported File Types
-
-Specific file types depend on model support. If an option is grayed out/disabled, the current model does not support it.
-
-| Type        | Formats                     | Description                 |
-| ----------- | --------------------------- | --------------------------- |
-| **Images**  | jpg, png, gif, webp, etc.   | Image understanding & analysis |
-| **Documents** | pdf                        | PDF document analysis       |
-| **Text**    | txt, md, json, yaml, etc.   | Text file analysis          |
-| **Video**   | mp4, etc.                   | Video understanding         |
-| **Audio**   | wav, mp3, etc.              | Speech-to-text              |
-
-### Upload Methods
-
-1. **Click to upload**: Click the **+** button on the left side of the input box, then choose a file type to upload
-2. **Drag and drop**: Drag files directly into the input area
-3. **Paste to upload**: Copy an image and paste it into the input box
-
-### File Preview
-
-Uploaded files are shown as thumbnails; click to preview:
-
-- Images: view full-size
-- PDF: view PDF content online
-- Text: view file contents
+Below the model reply, usage information is displayed — including latency, total time, input tokens, and output tokens. Models that support reasoning show a "Deep Thinking" section that can be expanded or collapsed. When a request fails, the message displays the error status code, error type, Request ID, and response details.
 
 ## Session Management
 
-### Session List
+The left sidebar displays chat history, grouped by time:
 
-The left sidebar shows your chat history, supporting:
+![Session history and management](https://cdn.marmot-cloud.com/storage/zenmux/2026/05/28/i067EP2/20260528163517.png)
 
-- **Create a new session**: Click the "New Chat" button
-- **Switch sessions**: Click any historical session
-- **Delete sessions**: Right-click a session item or click the delete button
-- **Rename sessions**: Double-click the session name to edit
-
-### Session Grouping
-
-Sessions are automatically grouped by time:
-
+- Pinned
 - Today
 - Yesterday
 - Last 7 Days
-- Last 30 Days
 - Older
 
-### Session Saving
+Supported session actions:
 
-- Each turn is saved automatically
-- Session titles default to the content of your first message
-- You can return at any time to continue previous conversations
+- Create a new chat
+- Switch between historical sessions
+- Double-click a session name to rename
+- Pin / unpin
+- Delete a session
+- Expand / collapse the sidebar
+- View session status: local, cloud, or syncing
 
-## Shortcuts
+New sessions are saved to the server when the first message is sent. Session titles default to the first message content. If an auto-summarization model is configured in privacy settings, the system will automatically generate a more suitable title once the conversation has enough content. When switching sessions, the model bar attempts to restore the model and provider used in the session's most recent reply.
 
-| Action        | Shortcut/Method                  |
-| ------------- | -------------------------------- |
-| Send message  | `Enter`                          |
-| New line      | `Shift + Enter`                  |
-| Stop generating | Click the Stop button          |
-| Copy reply    | Click the copy icon below a message |
-| Regenerate    | Click the refresh icon below a message |
+If the current session is actively generating, a confirmation prompt appears before switching. When opening a session link that belongs to another user, the system prompts whether to copy it to your own history.
 
 ## FAQ
 
-### Q: Why are some features unavailable?
+### Q: Why are some Skills or upload types unavailable?
 
-A: Different models support different features. Make sure the selected model supports the feature you need.
+A: Studio-Chat automatically determines capabilities based on the current model's input/output modalities and provider parameters. Unsupported features are grayed out, hidden, or filtered before sending.
 
 ### Q: How many models does PK mode support?
 
-A: Up to 10 models can be compared simultaneously.
+A: Up to 10 model windows.
 
-### Q: How do I know whether a model supports Web Search?
+### Q: Why can't I select subscription mode?
 
-A: If the Web Search option in the Skills menu is clickable, it’s supported.
+A: The current model may not be included in your subscription plan. You can switch to pay-as-you-go or upgrade to a plan that covers the model.
 
-### Q: Can Subscription and Pay As You Go be used at the same time?
+### Q: Why is web search not available?
 
-A: Yes. Each chat window can select its billing mode independently.
+A: Web search is only available when the current model and provider support search parameters or the Google Search tool.
+
+### Q: Does image editing require uploading an image?
+
+A: Typically yes. If the previous turn produced a generated image, some image models will automatically use it as the editing input.
 
 ### Q: Is there a file size limit for uploads?
 
-A: Yes. The specific limit depends on the file type and what the current model supports.
+A: Yes. The specific limit depends on the upload service, file type, and current model capabilities. If a file type is not supported by the model, it will be filtered when sending.
 
 ## Get Help
 
@@ -357,7 +395,7 @@ A: Yes. The specific limit depends on the file type and what the current model s
 
 Technical support: [support@zenmux.ai](mailto:support@zenmux.ai)
 
-Business cooperation: [bd@zenmux.ai](mailto:bd@zenmux.ai)
+Business inquiries: [bd@zenmux.ai](mailto:bd@zenmux.ai)
 
 </ContactCard>
 <ContactCard icon="x" title="X / Twitter" link="https://x.com/ZenMuxAI" label="@ZenMuxAI" />
