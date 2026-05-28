@@ -30,6 +30,16 @@ import "nprogress/nprogress.css";
 import "./style.css";
 import "./custom.css";
 
+declare global {
+  interface Window {
+    __VP_HASH_MAP__?: Record<string, string>;
+  }
+}
+
+const DOCS_PATH_PREFIX = "/docs";
+const DOCS_ASSETS_DIR = "docs";
+const prefetchedPageChunks = new Set<string>();
+
 const isDocsHost =
   inBrowser &&
   (location.hostname.startsWith("docs.") ||
@@ -57,6 +67,107 @@ NProgress.configure({
   speed: 500,
   minimum: 0.3,
 });
+
+function stripDocsPrefix(pathname: string) {
+  if (pathname === DOCS_PATH_PREFIX) {
+    return "/";
+  }
+  if (pathname.startsWith(`${DOCS_PATH_PREFIX}/`)) {
+    return pathname.slice(DOCS_PATH_PREFIX.length);
+  }
+  return pathname;
+}
+
+function normalizeDocsPathname(pathname: string) {
+  const normalized = stripDocsPrefix(pathname).replace(/\/index\.html$/, "/");
+  return normalized.replace(/\.html$/, "").replace(/\/$/, "") || "/";
+}
+
+function isSameDocsPage(a: URL, b: URL) {
+  return normalizeDocsPathname(a.pathname) === normalizeDocsPathname(b.pathname);
+}
+
+function getPageChunkPath(href: string, siteBase: string) {
+  if (!inBrowser || !window.__VP_HASH_MAP__) {
+    return null;
+  }
+
+  const url = new URL(href, location.href);
+  if (url.origin !== location.origin || url.pathname === location.pathname) {
+    return null;
+  }
+
+  const extMatch = url.pathname.match(/\.\w+$/);
+  if (extMatch && extMatch[0] !== ".html") {
+    return null;
+  }
+
+  let pagePath = stripDocsPrefix(url.pathname).replace(/\.html$/, "");
+  try {
+    pagePath = decodeURIComponent(pagePath);
+  } catch {
+    return null;
+  }
+  pagePath = pagePath.replace(/\/$/, "/index");
+
+  let pageFile = (pagePath.replace(/^\//, "").replace(/\//g, "_") || "index") + ".md";
+  let pageHash = window.__VP_HASH_MAP__[pageFile.toLowerCase()];
+  if (!pageHash) {
+    pageFile = pageFile.endsWith("_index.md")
+      ? pageFile.slice(0, -9) + ".md"
+      : pageFile.slice(0, -3) + "_index.md";
+    pageHash = window.__VP_HASH_MAP__[pageFile.toLowerCase()];
+  }
+  if (!pageHash) {
+    return null;
+  }
+
+  return `${siteBase}${DOCS_ASSETS_DIR}/${pageFile}.${pageHash}.js`;
+}
+
+function prefetchPageChunk(href: string, siteBase: string) {
+  const chunkPath = getPageChunkPath(href, siteBase);
+  if (!chunkPath || prefetchedPageChunks.has(chunkPath)) {
+    return;
+  }
+
+  prefetchedPageChunks.add(chunkPath);
+  const link = document.createElement("link");
+  link.rel = "prefetch";
+  link.as = "script";
+  link.href = chunkPath;
+  document.head.appendChild(link);
+}
+
+function prefetchLinksInside(root: ParentNode | null, siteBase: string) {
+  root?.querySelectorAll<HTMLAnchorElement>("a[href]").forEach((anchor) => {
+    prefetchPageChunk(anchor.href, siteBase);
+  });
+}
+
+function rewriteDocsLinks() {
+  updateLogoLink();
+  document.querySelectorAll("a").forEach((a) => {
+    const href = a.getAttribute("href");
+    if (href?.startsWith("#") || href?.startsWith("http")) {
+      return;
+    }
+    if (href?.startsWith("/") && !href.startsWith("/docs/")) {
+      a.setAttribute("href", "/docs" + href);
+    }
+  });
+}
+
+const updateLogoLink = () => {
+  const logoLink = document.querySelector(
+    ".VPNavBarTitle a"
+  ) as HTMLAnchorElement | null;
+  if (logoLink) {
+    logoLink.setAttribute("href", "https://zenmux.ai/");
+    logoLink.setAttribute("target", "_self");
+    logoLink.setAttribute("rel", "noopener");
+  }
+};
 
 if (typeof window !== "undefined") {
   window.addEventListener("beforeunload", () => {
@@ -117,6 +228,7 @@ export default {
   },
   enhanceApp({ app, router, siteData }) {
     const originGo = router.go;
+    const siteBase = siteData.value.base || "/";
     if (inBrowser) {
       if (!isDocsHost) {
         const originPushState = history.pushState;
@@ -144,20 +256,21 @@ export default {
       }
     }
 
-    const updateLogoLink = () => {
-      const logoLink = document.querySelector(
-        ".VPNavBarTitle a"
-      ) as HTMLAnchorElement | null;
-      if (logoLink) {
-        logoLink.setAttribute("href", "https://zenmux.ai/");
-        logoLink.setAttribute("target", "_self");
-        logoLink.setAttribute("rel", "noopener");
-      }
-    };
     router.go = async (href: string = inBrowser ? location.href : "/") => {
+      let shouldShowProgress = false;
       if (inBrowser) {
-        if (href.startsWith("https:")) {
-          const url = new URL(href);
+        const currentUrl = new URL(location.href);
+        const targetUrl = new URL(href, location.href);
+        shouldShowProgress =
+          targetUrl.origin === currentUrl.origin &&
+          !isSameDocsPage(targetUrl, currentUrl);
+        if (shouldShowProgress) {
+          prefetchPageChunk(targetUrl.href, siteBase);
+          NProgress.start();
+        }
+
+        const url = new URL(href, location.href);
+        if (url.origin === currentUrl.origin) {
           if (url.pathname.startsWith("/docs/")) {
             url.pathname = url.pathname.replace("/docs/", "/");
             href = url.toString();
@@ -168,8 +281,13 @@ export default {
           }
         }
       }
-      const ret = await originGo.call(router, href);
-      return ret;
+      try {
+        return await originGo.call(router, href);
+      } finally {
+        if (shouldShowProgress) {
+          NProgress.done();
+        }
+      }
     };
     if (inBrowser) {
       // Sidebar tooltip for truncated text
@@ -204,6 +322,37 @@ export default {
         if (tooltipTimer) { clearTimeout(tooltipTimer); tooltipTimer = null; }
         hideTooltip();
       });
+
+      const prefetchFromEventTarget = (target: EventTarget | null) => {
+        if (!(target instanceof HTMLElement)) return;
+
+        const anchor = target.closest("a") as HTMLAnchorElement | null;
+        if (anchor) {
+          prefetchPageChunk(anchor.href, siteBase);
+        }
+
+        const sidebarSection = target.closest(
+          ".VPSidebarItem.collapsible"
+        ) as HTMLElement | null;
+        if (sidebarSection) {
+          prefetchLinksInside(sidebarSection, siteBase);
+        }
+      };
+
+      document.addEventListener("pointerover", (e) => {
+        prefetchFromEventTarget(e.target);
+      }, { capture: true, passive: true });
+      document.addEventListener("focusin", (e) => {
+        prefetchFromEventTarget(e.target);
+      }, true);
+      document.addEventListener("touchstart", (e) => {
+        prefetchFromEventTarget(e.target);
+      }, { capture: true, passive: true });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          prefetchFromEventTarget(e.target);
+        }
+      }, true);
 
       // Auto-open endpoints drawer if ?endpoints=open was in the initial URL
       if (shouldOpenEndpoints) {
@@ -241,38 +390,12 @@ export default {
       updateLogoLink();
       if (!isDocsHost) {
         router.onAfterPageLoad = () => {
-          updateLogoLink();
-          document.querySelectorAll("a").forEach((a) => {
-            const href = a.getAttribute("href");
-            if (href?.startsWith("#") || href?.startsWith("http")) {
-              return;
-            }
-            if (href?.startsWith("/") && !href.startsWith("/docs/")) {
-              a.setAttribute("href", "/docs" + href);
-            }
-          });
+          rewriteDocsLinks();
         };
         window.addEventListener("load", () => {
-          updateLogoLink();
-          document.querySelectorAll("a").forEach((a) => {
-            const href = a.getAttribute("href");
-            if (href?.startsWith("#") || href?.startsWith("http")) {
-              return;
-            }
-            if (href?.startsWith("/") && !href.startsWith("/docs/")) {
-              a.setAttribute("href", "/docs" + href);
-            }
-          });
+          rewriteDocsLinks();
         });
-        document.querySelectorAll("a").forEach((a) => {
-          const href = a.getAttribute("href");
-          if (href?.startsWith("#") || href?.startsWith("http")) {
-            return;
-          }
-          if (href?.startsWith("/") && !href.startsWith("/docs/")) {
-            a.setAttribute("href", "/docs" + href);
-          }
-        });
+        rewriteDocsLinks();
       }
     }
     // ...
