@@ -78,7 +78,10 @@ const docsSidebar = [
       {
         text: "Studio",
         collapsed: true,
-        items: [{ text: "Studio-Chat", link: "/zh/guide/studio/studio-chat" }],
+        items: [
+          { text: "Studio-Chat", link: "/zh/guide/studio/studio-chat" },
+          { text: "Studio-Video", link: "/zh/guide/studio/studio-video" },
+        ],
       },
       {
         text: "ZenMux Skills",
