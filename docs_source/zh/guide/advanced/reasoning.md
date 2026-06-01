@@ -87,7 +87,7 @@ ZenMux 会根据您传递的参数自动计算和补充模型所需的参数,确
 
 **计算规则:**
 
-```
+```text
 low:    20% 的 max_completion_tokens
 medium: 50% 的 max_completion_tokens
 high:   80% 的 max_completion_tokens
