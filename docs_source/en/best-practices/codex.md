@@ -2,15 +2,20 @@
 head:
   - - meta
     - name: description
-      content: Guide to using Codex CLI with ZenMux
+      content: Example guide for integrating Codex CLI and Codex App with ZenMux
   - - meta
     - name: keywords
-      content: Zenmux, best practices, integration, codex, OpenAI, API
+      content: Zenmux, best practices, integration, codex, codex cli, codex app, OpenAI, API
 ---
 
-# Guide to Using Codex CLI with ZenMux
+# Codex CLI + Codex App Integration Example
 
-Codex CLI is an open-source programming assistant from OpenAI that runs in your local terminal. It can read, modify, and run code within a directory you choose. Built with Rust, it is fast and efficient, and is continuously improved on GitHub. By integrating with ZenMux, you gain access to more model options instead of being limited to the official OpenAI API.
+Codex is OpenAI's programming assistant, available in two forms:
+
+- **Codex CLI**: An open-source command-line tool that runs in your local terminal. It can read, modify, and run code within a directory you choose. Built with Rust, it is fast and efficient, and is continuously improved on GitHub.
+- **Codex App**: A graphical application (desktop / IDE plugin) that works out of the box—ideal for users who prefer a visual interface. See the [official Codex App page](https://developers.openai.com/codex/app) for details.
+
+**Both share the same configuration approach**: they read the same `~/.codex/config.toml` file and the same environment variables. As a result, the configuration below applies to both Codex CLI and Codex App—configure once and use it on both. By integrating with ZenMux, you gain access to more model options instead of being limited to the official OpenAI API.
 
 ::: info Compatibility Notes
 OpenAI has explicitly positioned Responses as the next-generation unified interface. Chat Completions is still available, but it is no longer the preferred choice for new projects. Codex will follow this direction as well—treating Chat Completions as a compatibility option and gradually migrating to Responses (the configuration in this article uses Responses).
@@ -20,16 +25,27 @@ Note the OpenAI-compatible setting: base_url="https://zenmux.ai/api/v1".
 
 ## Configuration Options
 
-### Install Codex CLI
+::: tip Configure once, use everywhere
+Codex CLI and Codex App read the same `~/.codex/config.toml` file and environment variables. Once you complete the steps below, both forms will automatically use ZenMux.
+:::
+
+### Install Codex
 
 ::: code-group
 
-```bash [npm/pnpm]
+```bash [Codex CLI]
 # Install with pnpm (recommended)
 pnpm install -g @openai/codex
 
 # Or install with npm
 npm install -g @openai/codex
+```
+
+```text [Codex App]
+# Download and install Codex App (desktop / IDE plugin) from the official page:
+# https://developers.openai.com/codex/app
+# No extra setup entry is needed—the App automatically reads the
+# ~/.codex/config.toml described below.
 ```
 
 :::
@@ -53,7 +69,7 @@ Create or modify the Codex configuration file `~/.codex/config.toml`:
 
 ```toml
 model_provider = "zenmux"  # [!code highlight]
-model = "openai/gpt-5.2-codex"  # [!code highlight]
+model = "gpt-5.2-codex"  # [!code highlight]
 
 [model_providers.zenmux]  # [!code highlight]
 name = "ZenMux"  # [!code highlight]
@@ -65,7 +81,7 @@ wire_api = "responses"  # [!code highlight]
 ::: tip Configuration Notes
 
 - `model_provider`: Use ZenMux as the model provider
-- `model`: The model to use; can be any model supported by ZenMux
+- `model`: The model to use; can be any model supported by ZenMux. For GPT-series models, we recommend using the native name directly (e.g., `gpt-5.2-codex`)—see the [Supported Models](#supported-models) section below
 - `base_url`: The base URL of the ZenMux API
 - `env_key`: The name of the environment variable that stores the API Key
 - `wire_api`: Use the Responses protocol (recommended)
@@ -73,9 +89,11 @@ wire_api = "responses"  # [!code highlight]
 
 ### Start Using It Immediately
 
-After configuration, reload your shell configuration and start Codex:
+Once configured, you can start Codex:
 
-```bash
+::: code-group
+
+```bash [Codex CLI]
 # Reload configuration
 source ~/.zshrc  # or source ~/.bashrc
 
@@ -86,142 +104,52 @@ cd my-project
 codex  # [!code highlight]
 ```
 
+```text [Codex App]
+# Just open Codex App—it automatically reads ~/.codex/config.toml.
+# If the App is already running, restart it once to load the latest configuration.
+```
+
+:::
+
+::: tip First launch of Codex App
+If Codex App prompts you to enter an API Key on first launch, simply enter your ZenMux API Key (`sk-ai-v1-xxx`), then close the App. Next, edit `~/.codex/config.toml` as described in [Configure Codex](#configure-codex) above, save it, and reopen Codex App for the changes to take effect.
+:::
+
 ::: tip Convenience
-After adding the environment variable to your shell configuration file, you won’t need to set it manually each time. The configuration will apply automatically every time you open a new terminal.
+After adding the environment variable to your shell configuration file, you won’t need to set it manually each time. The configuration applies automatically every time you open a new terminal, and both Codex CLI and Codex App will read it.
 :::
 
 ## Supported Models
 
 You can freely switch the `model` field in `config.toml` to any model supported by ZenMux.
 
-::: info Get the Model List
+For the complete, continuously updated model list, visit the **[ZenMux model list (Responses protocol) ↗](https://zenmux.ai/models?sort=newest&supported_protocol=responses)**. Just put the model name in the `model` field of `config.toml`.
 
-- View models available under the Responses protocol via the [ZenMux model list](https://zenmux.ai/models?sort=newest&supported_protocol=responses)
-- Use the model slug (e.g., `openai/gpt-5.2-codex`)
-- To target a specific provider, see the [Provider Routing documentation](/en/guide/provider-routing)
-  :::
+### Use Native Aliases for GPT-Series Models
 
-Below are some recommended models with strong coding performance:
+For OpenAI GPT-series models, **we recommend using the native name directly** (e.g., `gpt-5.2-codex`, `gpt-5.5`) rather than the prefixed full ZenMux model ID (e.g., `openai/gpt-5.2-codex`, `openai/gpt-5.5`).
 
-| #  | Model slug                   | Highlights               |
-| -- | ---------------------------- | ------------------------ |
-| 1  | `openai/gpt-5.2-codex`        | Coding-optimized         |
-| 2  | `openai/gpt-5.2`              | Strong general capability |
-| 3  | `anthropic/claude-sonnet-4.5` | Excellent reasoning      |
-| 4  | `anthropic/claude-opus-4.1`   | Complex tasks            |
-| 5  | `google/gemini-2.5-pro`       | Multimodal support       |
-| 6  | `x-ai/grok-code-fast-1`       | Fast responses           |
-| 7  | `x-ai/grok-4-fast`            | Efficient coding         |
-| 8  | `deepseek/deepseek-chat`      | Cost-effective           |
-| 9  | `qwen/qwen3-coder-plus`       | Chinese-friendly coding  |
-| 10 | `moonshotai/kimi-k2-0905`     | Long-context support     |
-| 11 | `z-ai/glm-4.6`                | Balanced overall         |
-| 12 | `inclusionai/ring-1t`         | Strong reasoning         |
+```toml
+# ✅ Recommended: use the native alias for maximum feature support
+model = "gpt-5.2-codex"  # [!code highlight]
 
-For more models, see the [ZenMux model list](https://zenmux.ai/models?sort=newest&supported_protocol=responses).
-
-### Responses-Compatible Models (Fetched on 2026-01-29)
-
-The list below is fetched from the [ZenMux model list (Responses filter)](https://zenmux.ai/models?sort=newest&supported_protocol=responses). Use that link for the latest updates.
-
-::: details Model slug list (Responses)
-
-```text
-inclusionai/llada2.0-flash-cap
-z-ai/glm-4.7
-minimax/minimax-m2.1
-volcengine/doubao-seed-1.8
-google/gemini-3-flash-preview
-google/gemini-3-flash-preview-free
-xiaomi/mimo-v2-flash
-xiaomi/mimo-v2-flash-free
-openai/gpt-5.2-codex
-openai/gpt-5.2-pro
-openai/gpt-5.2
-openai/gpt-5.2-chat
-z-ai/glm-4.6v
-z-ai/glm-4.6v-flash-free
-z-ai/glm-4.6v-flash
-deepseek/deepseek-v3.2
-mistralai/mistral-large-2512
-deepseek/deepseek-chat
-deepseek/deepseek-reasoner
-anthropic/claude-opus-4.5
-google/gemini-3-pro-image-preview
-x-ai/grok-4.1-fast
-x-ai/grok-4.1-fast-non-reasoning
-google/gemini-3-pro-preview
-openai/gpt-5.1
-openai/gpt-5.1-chat
-openai/gpt-5.1-codex
-openai/gpt-5.1-codex-mini
-baidu/ernie-5.0-thinking-preview
-volcengine/doubao-seed-code
-moonshotai/kimi-k2-thinking
-moonshotai/kimi-k2-thinking-turbo
-qwen/qwen3-max-preview
-inclusionai/ming-flash-omni-preview
-minimax/minimax-m2
-kuaishou/kat-coder-pro-v1
-kuaishou/kat-coder-pro-v1-free
-anthropic/claude-haiku-4.5
-inclusionai/ring-1t
-inclusionai/ling-1t
-google/gemini-2.5-flash-image
-openai/gpt-5-pro
-z-ai/glm-4.6
-anthropic/claude-sonnet-4.5
-deepseek/deepseek-v3.2-exp
-openai/gpt-5-codex
-qwen/qwen3-max
-qwen/qwen3-vl-plus
-x-ai/grok-4-fast
-x-ai/grok-4-fast-non-reasoning
-inclusionai/ling-flash-2.0
-inclusionai/ring-flash-2.0
-baidu/ernie-x1.1-preview
-moonshotai/kimi-k2-0905
-inclusionai/ling-mini-2.0
-inclusionai/ring-mini-2.0
-x-ai/grok-code-fast-1
-deepseek/deepseek-chat-v3.1
-volcengine/doubao-seed-1-6-vision
-openai/gpt-5
-openai/gpt-5-chat
-openai/gpt-5-mini
-openai/gpt-5-nano
-anthropic/claude-opus-4.1
-stepfun/step-3
-z-ai/glm-4.5
-z-ai/glm-4.5-air
-qwen/qwen3-coder-plus
-google/gemini-2.5-flash-lite
-qwen/qwen3-235b-a22b-2507
-qwen/qwen3-235b-a22b-thinking-2507
-qwen/qwen3-coder
-moonshotai/kimi-k2-0711
-x-ai/grok-4
-google/gemini-2.5-flash
-google/gemini-2.5-pro
-deepseek/deepseek-r1-0528
-anthropic/claude-opus-4
-anthropic/claude-sonnet-4
-google/gemma-3-12b-it
-qwen/qwen3-14b
-openai/o4-mini
-openai/gpt-4.1
-openai/gpt-4.1-mini
-openai/gpt-4.1-nano
-meta/llama-4-scout-17b-16e-instruct
-google/gemini-2.0-flash-lite-001
-anthropic/claude-3.7-sonnet
-google/gemini-2.0-flash
-meta/llama-3.3-70b-instruct
-anthropic/claude-3.5-haiku
-anthropic/claude-3.5-sonnet
-openai/gpt-4o-mini
-openai/gpt-4o
+# ⚠️ Not recommended: the prefixed full ID may prevent some native features from being enabled
+model = "openai/gpt-5.2-codex"
 ```
+
+::: info Why use the native alias?
+
+Codex validates model names against hardcoded strings to enable the corresponding native features (such as reasoning under the Responses protocol and codex-specific capabilities). When Codex sees a native name like `gpt-5.2-codex`, those features are activated correctly; when it sees a prefixed ID like `openai/gpt-5.2-codex`, validation may fail and the features silently fall back.
+
+ZenMux's model alias feature makes `gpt-5.2-codex` fully equivalent to `openai/gpt-5.2-codex`, so Codex's validation passes and all downstream features work as expected. For the full alias list and more details, see [Model Alias](/guide/advanced/model-alias).
+
+:::
+
+::: tip How to use other models
+
+- GPT series: use the native name directly (e.g., `gpt-5.2-codex`, `gpt-5.5`)
+- Models from other providers: use the prefixed full slug (e.g., `anthropic/claude-opus-4-8`, `deepseek/deepseek-v4-pro`); filter for Responses-protocol models in the [ZenMux model list](https://zenmux.ai/models?sort=newest&supported_protocol=responses) and copy their slugs
+- To target a specific provider, see the [Provider Routing documentation](/guide/provider-routing)
 
 :::
 
@@ -258,7 +186,7 @@ openai/gpt-4o
 
 - Reopen the terminal window, or run `source ~/.zshrc` or `source ~/.bashrc` to reload the configuration
 - Confirm the environment variable is set correctly: `echo $ZENMUX_API_KEY`
-- Make sure you added it to the correct shell configuration file (`.zshrc` for zsh, `.bashrc` for bash)
+- Make sure you added the environment variable to the correct shell configuration file (`.zshrc` for zsh users, `.bashrc` for bash users)
   :::
 
 ::: details Configuration File Path Issue
@@ -285,16 +213,15 @@ openai/gpt-4o
 
 ## Advanced Configuration
 
-### Configure Models of Different Sizes
+### Configure Different Models
 
-You can switch between different model sizes in `config.toml` based on your task requirements:
+To switch to any model supported by ZenMux, just change the `model` field in `config.toml`—everything else stays the same. The examples below show how to specify different models:
 
 ::: code-group
 
-```toml [Balanced Setup]
-# Model choice that balances performance and cost
+```toml [Claude Opus 4.8]
 model_provider = "zenmux"
-model = "anthropic/claude-sonnet-4.5"
+model = "anthropic/claude-opus-4-8"  # [!code highlight]
 
 [model_providers.zenmux]
 name = "ZenMux"
@@ -303,10 +230,9 @@ env_key = "ZENMUX_API_KEY"
 wire_api = "responses"
 ```
 
-```toml [Performance-First Setup]
-# Model choice optimized for performance
+```toml [DeepSeek V4 Pro]
 model_provider = "zenmux"
-model = "openai/gpt-5.2-codex"
+model = "deepseek/deepseek-v4-pro"  # [!code highlight]
 
 [model_providers.zenmux]
 name = "ZenMux"
@@ -315,10 +241,9 @@ env_key = "ZENMUX_API_KEY"
 wire_api = "responses"
 ```
 
-```toml [Cost-Optimized Setup]
-# Model choice optimized for cost efficiency
+```toml [Kimi K2.6]
 model_provider = "zenmux"
-model = "deepseek/deepseek-chat"
+model = "moonshotai/kimi-k2.6"  # [!code highlight]
 
 [model_providers.zenmux]
 name = "ZenMux"
@@ -327,6 +252,10 @@ env_key = "ZENMUX_API_KEY"
 wire_api = "responses"
 ```
 
+:::
+
+::: tip Note
+Use the actual slug from the [ZenMux model list](https://zenmux.ai/models?sort=newest&supported_protocol=responses) in the `model` field.
 :::
 
 <ContactCards>

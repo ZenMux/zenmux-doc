@@ -18,7 +18,7 @@ Claude Code 是 Anthropic 推出的官方 Coding Agent，通过与 ZenMux 的集
 
 ZenMux 完全支持 Anthropic API 协议，可以无缝集成到 Claude Code、Cursor 等工具中。只需修改两个参数即可使用。
 
-注意 Anthropic 协议的 base_url="<https://zenmux.ai/api/anthropic"。>
+注意 Anthropic 协议的 base_url 为 `https://zenmux.ai/api/anthropic`。
 :::
 
 ## 配置方案
@@ -178,9 +178,13 @@ export ANTHROPIC_AUTH_TOKEN="sk-ss-v1-xxx"                   # 替换为您的 Z
 # 避免冲突：如果您本机曾设置过 ANTHROPIC_API_KEY，建议显式置空
 export ANTHROPIC_API_KEY=""
 
-# 可选配置项
+# 性能优化（强烈推荐）：禁用 beta 特性，避免非 Anthropic 原厂供应商路由耗时过长（原理见下方说明）
+export CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS="1"            # 禁用实验性 beta 特性
+export CLAUDE_CODE_ATTRIBUTION_HEADER="0"                    # 关闭归属标识请求头
 export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC="1"          # 禁用非必要遥测流量
-export API_TIMEOUT_MS="30000000"                              # API 请求超时时间（毫秒）
+
+# 可选配置项
+export API_TIMEOUT_MS="30000000"                             # API 请求超时时间（毫秒）
 
 # 说明：上面三项核心变量已经足够。若不设置模型相关变量，
 #      Claude Code 将使用其内置默认模型（Anthropic 官方 Claude 系列）。
@@ -224,9 +228,13 @@ $env:ANTHROPIC_AUTH_TOKEN = "sk-ss-v1-xxx"                   # 替换为您的 Z
 # 避免冲突：如果您本机曾设置过 ANTHROPIC_API_KEY，建议显式置空
 $env:ANTHROPIC_API_KEY = ""
 
+# 性能优化（强烈推荐）：禁用 beta 特性，避免非 Anthropic 原厂供应商路由耗时过长（原理见下方说明）
+$env:CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS = "1"           # 禁用实验性 beta 特性
+$env:CLAUDE_CODE_ATTRIBUTION_HEADER = "0"                   # 关闭归属标识请求头
+$env:CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC = "1"         # 禁用非必要遥测流量
+
 # 可选配置项
-$env:CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC = "1"          # 禁用非必要遥测流量
-$env:API_TIMEOUT_MS = "30000000"                              # API 请求超时时间（毫秒）
+$env:API_TIMEOUT_MS = "30000000"                            # API 请求超时时间（毫秒）
 
 # 说明：上面三项核心变量已经足够。若不设置模型相关变量，
 #      Claude Code 将使用其内置默认模型（Anthropic 官方 Claude 系列）。
@@ -266,9 +274,27 @@ Write-Host "ANTHROPIC_AUTH_TOKEN: $env:ANTHROPIC_AUTH_TOKEN"
 | `ANTHROPIC_BASE_URL`                       | ✅    | 服务端点地址 | 将 Claude Code 的请求重定向到 ZenMux 服务                            |
 | `ANTHROPIC_AUTH_TOKEN`                     | ✅    | 认证密钥     | 您的 ZenMux API Key（订阅制或按量付费）                              |
 | `ANTHROPIC_API_KEY`                        | ✅    | 冲突避免     | 置为 `""` 以避免与本机已有 Anthropic 配置冲突                        |
-| `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` |      | 流量控制     | 禁用非必要的数据上报，提升隐私性                                     |
+| `CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS`   | 推荐 | 性能优化     | 禁用实验性 beta 特性，避免非原厂供应商路由耗时过长                   |
+| `CLAUDE_CODE_ATTRIBUTION_HEADER`           | 推荐 | 性能优化     | 关闭归属标识请求头，减少不必要的请求开销                            |
+| `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` | 推荐 | 流量控制     | 禁用非必要的数据上报，提升隐私性与响应速度                          |
 | `API_TIMEOUT_MS`                           |      | API 超时设置 | 设置 API 请求超时时间（毫秒）                                        |
 | `ANTHROPIC_DEFAULT_*_MODEL`                |      | 模型映射     | 定义 Haiku/Sonnet/Opus 档位。不设置即使用 Claude Code 内置默认 Claude |
+
+:::
+
+::: tip 为什么推荐禁用 beta 特性？（提升速度与稳定性）
+
+Claude 模型在 ZenMux 上由多家供应商提供（如 `anthropic` 原厂、`amazon-bedrock`、`azure` 等）。其中**只有 Anthropic 原厂对 Claude Code 的实验性 beta 特性支持较好**，其他供应商往往不支持这些特性。
+
+当 Claude Code 默认带上 beta 特性请求时，ZenMux 为了匹配能力会**反复尝试路由到支持该特性的供应商**，从而导致请求耗时显著增加、首字延迟变长。
+
+设置以下三个环境变量可关闭这些非必要特性，让请求能被更快地路由到任意可用供应商，**速度与体验将大幅提升**：
+
+```bash
+export CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS="1"   # 禁用实验性 beta 特性
+export CLAUDE_CODE_ATTRIBUTION_HEADER="0"           # 关闭归属标识请求头
+export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC="1" # 禁用非必要遥测流量
+```
 
 :::
 
@@ -420,6 +446,15 @@ export ANTHROPIC_DEFAULT_OPUS_MODEL="google/gemini-3-pro-preview"
       "value": "3000000"
     },
     {
+      // 性能优化（推荐）：禁用 beta 特性，避免非原厂供应商路由耗时过长
+      "name": "CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS",
+      "value": "1"
+    },
+    {
+      "name": "CLAUDE_CODE_ATTRIBUTION_HEADER",
+      "value": "0"
+    },
+    {
       "name": "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC",
       "value": "1"
     }
@@ -476,7 +511,7 @@ export ANTHROPIC_DEFAULT_OPUS_MODEL="google/gemini-3-pro-preview"
        loading="lazy" />
 </div>
 
-您可以通过'/model'命令来确定当前使用的模型：
+您可以通过 `/model` 命令来确定当前使用的模型：
 
 <div style="text-align: center;">
   <img src="https://cdn.marmot-cloud.com/storage/zenmux/2025/10/16/MOGcIN5/claude-code-v2-model.png"
@@ -551,6 +586,8 @@ export ANTHROPIC_DEFAULT_OPUS_MODEL="google/gemini-3-pro-preview"
    export ANTHROPIC_BASE_URL="https://zenmux.ai/api/anthropic"
    export ANTHROPIC_AUTH_TOKEN="sk-ss-v1-xxx"  # 替换为您的 ZenMux API Key
    export ANTHROPIC_API_KEY=""                 # 清空以避免冲突
+   export CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS="1"   # 禁用 beta 特性，提升路由速度
+   export CLAUDE_CODE_ATTRIBUTION_HEADER="0"           # 关闭归属标识请求头
    export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC="1"
    export API_TIMEOUT_MS="30000000"
    # ANTHROPIC_DEFAULT_*_MODEL 为可选项——不设置即使用 Claude Code 内置默认 Claude 模型。
@@ -655,8 +692,8 @@ export ANTHROPIC_DEFAULT_OPUS_MODEL="google/gemini-3-pro-preview"
    - 确认 `claudeCode.environmentVariables` 中包含正确的 `ANTHROPIC_BASE_URL` 和 `ANTHROPIC_AUTH_TOKEN`
 
 2. **检查模型配置**：
-   - 在设置中搜索 "claude-code.selectedModel"
-   - 确认模型名称格式正确（如 `anthropic/claude-sonnet-4.5`）
+   - 在设置中搜索 "claudeCode.selectedModel"
+   - 官方 Claude 模型推荐使用别名（如 `claude-sonnet-4-6`），以启用 1M 上下文等原生特性；非 Claude 模型则使用完整 ZenMux 模型 ID
    - 确认该模型支持 Anthropic 协议（通过[模型列表](https://zenmux.ai/models?sort=newest&supported_protocol=messages)查看）
 
 3. **解决环境变量冲突**：
