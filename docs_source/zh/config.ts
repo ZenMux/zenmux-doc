@@ -311,7 +311,7 @@ export default defineLoacaleConfig({
               link: "/zh/best-practices/claude-desktop",
             },
             {
-              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/3e4UfxM/Property-1Codex.svg" />CodeX接入ZenMux指南',
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/3e4UfxM/Property-1Codex.svg" />CodeX CLI + Codex APP 接入ZenMux指南',
               link: "/zh/best-practices/codex",
             },
             {
