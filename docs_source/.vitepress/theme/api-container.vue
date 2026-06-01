@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { h } from "vue";
+import "element-plus/theme-chalk/base.css";
+import "element-plus/theme-chalk/dark/css-vars.css";
+import "element-plus/theme-chalk/el-select.css";
+import "element-plus/theme-chalk/el-option.css";
+import "element-plus/theme-chalk/el-message.css";
 import ApiRequest from "./api-request.vue";
 import ApiResponse from "./api-response.vue";
 </script>

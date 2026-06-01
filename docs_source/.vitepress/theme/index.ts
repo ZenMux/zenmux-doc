@@ -1,5 +1,5 @@
 // https://vitepress.dev/guide/custom-theme
-import { h, defineComponent, ref, onMounted } from "vue";
+import { h, defineAsyncComponent, defineComponent, ref, onMounted } from "vue";
 import { inBrowser, type Theme } from "vitepress";
 
 const ClientOnly = defineComponent({
@@ -11,13 +11,8 @@ const ClientOnly = defineComponent({
 });
 import DefaultTheme from "vitepress/theme";
 import "virtual:group-icons.css";
-import "element-plus/theme-chalk/index.css";
-import "element-plus/theme-chalk/dark/css-vars.css";
 import Select from "./select.vue";
-import Login from "./login.vue";
-import ApiContainer from "./api-container.vue";
-import EndpointDrawer from "./endpoint-drawer.vue";
-import AiAssistant from "./ai-assistant.vue";
+import ApiContainerLoader from "./api-container-loader.vue";
 import DocTabs from "./doc-tabs.vue";
 import Breadcrumb from "./breadcrumb.vue";
 import ContactCards from "./contact-cards.vue";
@@ -29,6 +24,12 @@ import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import "./style.css";
 import "./custom.css";
+
+const Login = defineAsyncComponent(() => import("./login.vue"));
+const EndpointDrawer = defineAsyncComponent(
+  () => import("./endpoint-drawer.vue"),
+);
+const AiAssistant = defineAsyncComponent(() => import("./ai-assistant.vue"));
 
 declare global {
   interface Window {
@@ -219,7 +220,7 @@ export default {
     return h(DefaultTheme.Layout, null, {
       // https://vitepress.dev/guide/extending-default-theme#layout-slots
       "layout-top": () => h(ClientOnly, null, { default: () => h(DocTabs) }),
-      "doc-top": () => h(ClientOnly, null, { default: () => h(ApiContainer) }),
+      "doc-top": () => h(ClientOnly, null, { default: () => h(ApiContainerLoader) }),
       "doc-before": () => h(ClientOnly, null, { default: () => [h(Breadcrumb), h(Select)] }),
       "aside-bottom": () => h(ClientOnly, null, { default: () => h(AsideActions) }),
       "nav-bar-content-before": () => h(ClientOnly, null, { default: () => h(AiAssistant) }),
