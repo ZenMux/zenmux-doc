@@ -16,7 +16,7 @@ head:
 Running into errors? See the [API Error Code Reference](/guide/advanced/error-codes) for a complete list of error types and troubleshooting steps.
 :::
 
-```
+```http
 POST https://zenmux.ai/api/vertex-ai/v1/publishers/{provider}/models/{model}:predict
 ```
 

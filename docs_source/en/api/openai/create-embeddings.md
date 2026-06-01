@@ -16,7 +16,7 @@ head:
 Encountering errors during API calls? See the [API Error Codes Reference](/guide/advanced/error-codes) for a complete list of error types and troubleshooting solutions.
 :::
 
-```
+```http
 POST https://zenmux.ai/api/v1/embeddings
 ```
 

@@ -100,7 +100,7 @@ hermes model
 
 您会看到一个供应商列表（使用 ↑↓ 键导航，ENTER 键选择）：
 
-```
+```text
 Select provider:
   ↑↓ navigate  ENTER/SPACE select  ESC cancel
 
@@ -131,7 +131,7 @@ Select provider:
 hermes
 ```
 
-```
+```text
 你好，请只回复"嗨！"
 ```
 
@@ -149,7 +149,7 @@ hermes model
 
 配置完成后，供应商列表中会出现 ZenMux 的命名条目，例如：
 
-```
+```text
    ...
    (○) Zenmux.ai (zenmux.ai/api/v1) — openai/gpt-5.2
    (○) Custom endpoint (enter URL manually)
