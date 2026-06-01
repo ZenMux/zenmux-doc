@@ -15,7 +15,7 @@ Whether you need technical support, business inquiries, or want to share feedbac
 ::: info Get the Latest Contact Information
 Visit our official support page for team contact details and all social media accounts:
 
-**🔗 [https://zenmux.ai/supports](https://zenmux.ai/supports)**
+**[https://zenmux.ai/supports](https://zenmux.ai/supports)**
 
 There you can find:
 
@@ -30,7 +30,7 @@ There you can find:
 
 Running into technical issues or need help? Contact us via:
 
-**📧 Technical support email**: <support@zenmux.ai>
+**Technical support email**: <support@zenmux.ai>
 
 We typically respond within 24 hours.
 
@@ -50,7 +50,7 @@ When emailing us, please provide as much of the following information as possibl
 
 If you represent an enterprise customer or would like to learn about customized enterprise solutions:
 
-**💼 Business partnership email**: <bd@zenmux.ai>
+**Business partnership email**: <bd@zenmux.ai>
 
 We provide enterprise customers with:
 
@@ -65,21 +65,21 @@ We’ve built an active developer community—join us to connect and share:
 
 ### Global Community
 
-- **🐦 X (Twitter)**: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
+- **X (Twitter)**: [@ZenMuxAI](https://twitter.com/ZenMuxAI)
   Get product updates, technical news, and industry insights
 
-- **💬 Discord**: [discord.gg/vHZZzj84Bm](http://discord.gg/vHZZzj84Bm)
+- **Discord**: [discord.gg/vHZZzj84Bm](http://discord.gg/vHZZzj84Bm)
   Connect with other developers, get technical help, and stay up to date with the latest features
 
-- **📺 YouTube**: [@ZenMuxAI](https://www.youtube.com/@ZenMuxAI)
+- **YouTube**: [@ZenMuxAI](https://www.youtube.com/@ZenMuxAI)
   Watch product demos, tutorials, and technical talks
 
 <!-- ### Chinese Community
 
-- **💚 WeChat group**: Add us on WeChat to join the developer group
+- **WeChat group**: Add us on WeChat to join the developer group
   Visit the [support page](https://zenmux.ai/supports) to scan the QR code and join
 
-- **📕 Xiaohongshu**: @ZenMuxAI
+- **Xiaohongshu**: @ZenMuxAI
   Visit the [support page](https://zenmux.ai/supports) to scan the QR code and follow -->
 
 ::: info Community First
@@ -90,7 +90,7 @@ For general technical discussions and experience sharing, we recommend joining D
 
 Your feedback is a key driver of our continuous improvement. Whether it’s feature requests, UX improvements, or documentation enhancements, we’d love to hear from you.
 
-**📮 Feedback email**: <support@zenmux.ai>
+**Feedback email**: <support@zenmux.ai>
 
 We welcome feedback on:
 
@@ -103,11 +103,11 @@ We welcome feedback on:
 
 ## Other Resources
 
-- **📘 Official website**: [zenmux.ai](https://zenmux.ai)
-- **📚 Documentation hub**: [docs.zenmux.ai](https://docs.zenmux.ai)
-- **🔧 Model list**: [zenmux.ai/models](https://zenmux.ai/models)
-- **💳 Subscription management**: [zenmux.ai/platform/subscription](https://zenmux.ai/platform/subscription)
-- **💰 Pay-as-you-go**: [zenmux.ai/platform/pay-as-you-go](https://zenmux.ai/platform/pay-as-you-go)
+- **Official website**: [zenmux.ai](https://zenmux.ai)
+- **Documentation hub**: [docs.zenmux.ai](https://docs.zenmux.ai)
+- **Model list**: [zenmux.ai/models](https://zenmux.ai/models)
+- **Subscription management**: [zenmux.ai/platform/subscription](https://zenmux.ai/platform/subscription)
+- **Pay-as-you-go**: [zenmux.ai/platform/pay-as-you-go](https://zenmux.ai/platform/pay-as-you-go)
 
 ---
 

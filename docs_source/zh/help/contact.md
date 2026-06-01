@@ -15,7 +15,7 @@ head:
 ::: info 获取最新联系方式
 访问我们的官方支持页面获取团队成员联系方式和所有社交媒体账号：
 
-**🔗 [https://zenmux.ai/supports](https://zenmux.ai/supports)**
+**[https://zenmux.ai/supports](https://zenmux.ai/supports)**
 
 在那里您可以找到：
 
@@ -30,7 +30,7 @@ head:
 
 遇到技术问题或需要帮助？请通过以下方式联系我们：
 
-**📧 技术支持邮箱**：<support@zenmux.ai>
+**技术支持邮箱**：<support@zenmux.ai>
 
 我们通常会在 24 小时内回复您的邮件。
 
@@ -50,7 +50,7 @@ head:
 
 如果您代表企业客户，或希望了解定制化的企业解决方案：
 
-**💼 商务合作邮箱**：<bd@zenmux.ai>
+**商务合作邮箱**：<bd@zenmux.ai>
 
 我们为企业客户提供：
 
@@ -65,21 +65,21 @@ head:
 
 ### 国际社区
 
-- **🐦 X (Twitter)**：[@ZenMuxAI](https://twitter.com/ZenMuxAI)
+- **X (Twitter)**：[@ZenMuxAI](https://twitter.com/ZenMuxAI)
   获取产品更新、技术资讯和行业动态
 
-- **💬 Discord**：[discord.gg/vHZZzj84Bm](http://discord.gg/vHZZzj84Bm)
+- **Discord**：[discord.gg/vHZZzj84Bm](http://discord.gg/vHZZzj84Bm)
   与其他开发者交流经验、获取技术帮助、了解最新功能动态
 
-- **📺 YouTube**：[@ZenMuxAI](https://www.youtube.com/@ZenMuxAI)
+- **YouTube**：[@ZenMuxAI](https://www.youtube.com/@ZenMuxAI)
   观看产品演示、教程视频和技术分享
 
 <!-- ### 中文社区
 
-- **💚 微信群**：添加微信加入开发者交流群
+- **微信群**：添加微信加入开发者交流群
   访问 [支持页面](https://zenmux.ai/supports) 扫码加入
 
-- **📕 小红书**：@ZenMuxAI
+- **小红书**：@ZenMuxAI
   访问 [支持页面](https://zenmux.ai/supports) 扫码关注 -->
 
 ::: info 社区优先
@@ -90,7 +90,7 @@ head:
 
 您的反馈是我们持续改进产品和服务的重要动力。无论是功能建议、体验优化，还是文档改进，我们都非常期待听到您的声音。
 
-**📮 反馈邮箱**：<support@zenmux.ai>
+**反馈邮箱**：<support@zenmux.ai>
 
 欢迎向我们反馈：
 
@@ -103,11 +103,11 @@ head:
 
 ## 其他资源
 
-- **📘 官方网站**：[zenmux.ai](https://zenmux.ai)
-- **📚 文档中心**：[docs.zenmux.ai](https://docs.zenmux.ai)
-- **🔧 模型列表**：[zenmux.ai/models](https://zenmux.ai/models)
-- **💳 订阅管理**：[zenmux.ai/platform/subscription](https://zenmux.ai/platform/subscription)
-- **💰 按量付费**：[zenmux.ai/platform/pay-as-you-go](https://zenmux.ai/platform/pay-as-you-go)
+- **官方网站**：[zenmux.ai](https://zenmux.ai)
+- **文档中心**：[docs.zenmux.ai](https://docs.zenmux.ai)
+- **模型列表**：[zenmux.ai/models](https://zenmux.ai/models)
+- **订阅管理**：[zenmux.ai/platform/subscription](https://zenmux.ai/platform/subscription)
+- **按量付费**：[zenmux.ai/platform/pay-as-you-go](https://zenmux.ai/platform/pay-as-you-go)
 
 ---
 

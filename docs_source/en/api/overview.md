@@ -378,6 +378,6 @@ const stats = await generation.json();
 
 :::
 
-Please see the [Generation](/docs/api-reference/get-a-generation) API reference for the full response shape.
+Please see the [Generation](/docs/api-reference/get-a-generation) API Reference for the full response shape.
 
 Note that token counts are also available in the `usage` field of the response body for non-streaming completions.
