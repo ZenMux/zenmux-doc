@@ -126,7 +126,7 @@ The list below is fetched from the [ZenMux model list (Responses filter)](https:
 
 ::: details Model slug list (Responses)
 
-```
+```text
 inclusionai/llada2.0-flash-cap
 z-ai/glm-4.7
 minimax/minimax-m2.1

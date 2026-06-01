@@ -12,7 +12,7 @@ head:
 
 # Create a Chat Completion
 
-```
+```http
 POST https://zenmux.ai/api/v1/chat/completions
 ```
 

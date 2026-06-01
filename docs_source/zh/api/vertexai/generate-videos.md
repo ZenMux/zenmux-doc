@@ -18,13 +18,13 @@ head:
 
 ### 提交生成请求：
 
-```
+```http
 POST https://zenmux.ai/api/vertex-ai/v1/publishers/{provider}/models/{model}:predictLongRunning
 ```
 
 ### 轮询任务状态：
 
-```
+```http
 POST https://zenmux.ai/api/vertex-ai/v1/publishers/{provider}/models/{model}:fetchPredictOperation
 ```
 

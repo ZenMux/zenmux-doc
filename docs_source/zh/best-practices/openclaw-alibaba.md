@@ -129,7 +129,7 @@ openclaw models list
 
 示例输出：
 
-```
+```text
 NAME                                PROVIDER    ID
 openai/gpt-5.2                      zenmux      openai/gpt-5.2
 google/gemini-3.1-pro-preview       zenmux      google/gemini-3.1-pro-preview

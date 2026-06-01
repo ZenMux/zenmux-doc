@@ -18,13 +18,13 @@ Encountering errors? See the [API Error Codes Reference](/guide/advanced/error-c
 
 ### Non-streaming:
 
-```
+```http
 POST https://zenmux.ai/api/vertex-ai/v1/publishers/{provider}/models/{model}:generateContent
 ```
 
 ### Streaming:
 
-```
+```http
 POST https://zenmux.ai/api/vertex-ai/v1/publishers/{provider}/models/{model}:streamGenerateContent
 ```
 

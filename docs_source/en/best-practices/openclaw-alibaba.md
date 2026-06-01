@@ -129,7 +129,7 @@ A successful setup means ZenMux models like `zenmux/openai/gpt-5.2` appear in th
 
 Example output:
 
-```
+```text
 NAME                                PROVIDER    ID
 openai/gpt-5.2                      zenmux      openai/gpt-5.2
 google/gemini-3.1-pro-preview       zenmux      google/gemini-3.1-pro-preview

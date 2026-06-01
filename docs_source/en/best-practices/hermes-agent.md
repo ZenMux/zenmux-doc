@@ -100,7 +100,7 @@ hermes model
 
 You'll see a provider list (↑↓ to navigate, ENTER to select):
 
-```
+```text
 Select provider:
   ↑↓ navigate  ENTER/SPACE select  ESC cancel
 
@@ -131,7 +131,7 @@ Start Hermes Agent and send a quick test message to make sure the model responds
 hermes
 ```
 
-```
+```text
 Hello, please reply with just "Hi!"
 ```
 
@@ -147,7 +147,7 @@ hermes model
 
 Once configured, the provider list will show a named ZenMux entry:
 
-```
+```text
    ...
    (○) Zenmux.ai (zenmux.ai/api/v1) — openai/gpt-5.2
    (○) Custom endpoint (enter URL manually)

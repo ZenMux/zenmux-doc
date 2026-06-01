@@ -87,7 +87,7 @@ When the user specifies `max_completion_tokens`, or when the model itself has a 
 
 **Rules:**
 
-```
+```text
 low:    20% of max_completion_tokens
 medium: 50% of max_completion_tokens
 high:   80% of max_completion_tokens

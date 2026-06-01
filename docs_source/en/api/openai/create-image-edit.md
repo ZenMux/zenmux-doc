@@ -16,7 +16,7 @@ head:
 Running into an error while calling the API? See the [API error code reference](/guide/advanced/error-codes) for a complete list of error types and troubleshooting steps.
 :::
 
-```
+```http
 POST https://zenmux.ai/api/v1/images/edits
 ```
 

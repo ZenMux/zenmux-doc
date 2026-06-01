@@ -18,13 +18,13 @@ Encountering errors? See the [API Error Codes Reference](/guide/advanced/error-c
 
 ### Submit a generation request:
 
-```
+```http
 POST https://zenmux.ai/api/vertex-ai/v1/publishers/{provider}/models/{model}:predictLongRunning
 ```
 
 ### Poll task status:
 
-```
+```http
 POST https://zenmux.ai/api/vertex-ai/v1/publishers/{provider}/models/{model}:fetchPredictOperation
 ```
 

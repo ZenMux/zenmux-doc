@@ -409,7 +409,7 @@ Platform APIs require a **Management API Key** for authentication (some endpoint
 
 Retrieve detailed information about a specific API call, including token usage, latency, and billing breakdown.
 
-```
+```http
 GET https://zenmux.ai/api/v1/management/generation?id=<generation_id>
 ```
 
@@ -450,7 +450,7 @@ For detailed parameter descriptions, see the [Get Generation API docs](/api/plat
 
 Retrieve the current Pay As You Go balance for your account.
 
-```
+```http
 GET https://zenmux.ai/api/v1/management/payg/balance
 ```
 
@@ -481,7 +481,7 @@ For detailed parameter descriptions, see the [Get PAYG Balance API docs](/api/pl
 
 Retrieve your account's subscription information, including plan tier, Flow rate, and quota usage.
 
-```
+```http
 GET https://zenmux.ai/api/v1/management/subscription/detail
 ```
 
@@ -525,7 +525,7 @@ For detailed parameter descriptions, see the [Get Subscription Detail API docs](
 
 Retrieve the current Flow rate information for your account.
 
-```
+```http
 GET https://zenmux.ai/api/v1/management/flow_rate
 ```
 

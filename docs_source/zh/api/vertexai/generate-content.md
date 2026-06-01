@@ -18,13 +18,13 @@ head:
 
 ### 非流式：
 
-```
+```http
 POST https://zenmux.ai/api/vertex-ai/v1/publishers/{provider}/models/{model}:generateContent
 ```
 
 ### 流式：
 
-```
+```http
 POST https://zenmux.ai/api/vertex-ai/v1/publishers/{provider}/models/{model}:streamGenerateContent
 ```
 
