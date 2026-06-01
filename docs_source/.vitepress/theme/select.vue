@@ -45,7 +45,7 @@ import {
   ExternalOpen as ExternalOpenIcon,
   IconChevron_top as IconChevronTop,
 } from "./icons";
-import { fetchPageContent } from "./use-page-content";
+import { fetchPageContent, getRawPageUrl } from "./use-page-content";
 
 defineOptions({ name: "SelectDropdown" });
 
@@ -57,8 +57,7 @@ const dropdownRef = ref<HTMLElement | null>(null);
 let copiedTimer: ReturnType<typeof setTimeout> | null = null;
 
 const markdownUrl = computed(() => {
-  const rawPath = page.value.filePath.replace(/\.md$/, ".txt");
-  return `/raw/${rawPath}`;
+  return getRawPageUrl(page.value.filePath);
 });
 
 async function copyCurrentMarkdown() {
