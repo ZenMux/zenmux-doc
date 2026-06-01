@@ -72,6 +72,12 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
+import "element-plus/theme-chalk/base.css";
+import "element-plus/theme-chalk/dark/css-vars.css";
+import "element-plus/theme-chalk/el-button.css";
+import "element-plus/theme-chalk/el-dropdown.css";
+import "element-plus/theme-chalk/el-dropdown-menu.css";
+import "element-plus/theme-chalk/el-dropdown-item.css";
 import {
   ElButton,
   ElDropdown,
