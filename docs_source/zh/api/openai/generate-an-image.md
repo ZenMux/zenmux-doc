@@ -16,7 +16,7 @@ head:
 调用过程中遇到错误？请参阅 [API 错误码参考](/zh/guide/advanced/error-codes) 获取完整的错误类型说明与排查方案。
 :::
 
-```
+```http
 POST https://zenmux.ai/api/v1/images/generations
 ```
 

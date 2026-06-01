@@ -315,7 +315,7 @@ export GEMINI_MODEL="google/gemini-2.5-pro"  # [!code highlight]
 ::: warning 工具调用报错：Unknown name "id" at function_response
 当模型尝试使用内置工具（如 Google Search）时，可能出现以下报错：
 
-```
+```text
 [API Error: {"error":{"code":"400","type":"invalid_params","message":"Invalid JSON payload received. Unknown name \"id\" at 'contents[...].parts[0].function_response': Cannot find field."}}]
 ```
 
@@ -326,7 +326,7 @@ export GEMINI_MODEL="google/gemini-2.5-pro"  # [!code highlight]
 
 1. 找到文件（路径中的 Node 版本号请替换为您的实际版本）：
 
-   ```
+   ```text
    ~/.nvm/versions/node/<版本号>/lib/node_modules/@google/gemini-cli/node_modules/@google/gemini-cli-core/dist/src/core/turn.js
    ```
 

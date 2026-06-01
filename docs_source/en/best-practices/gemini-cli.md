@@ -315,7 +315,7 @@ Even if a model name switch works, it does not guarantee tool calling will work 
 ::: warning Tool call error: Unknown name "id" at function_response
 When the model tries to use built-in tools (such as Google Search), you may see the following error:
 
-```
+```text
 [API Error: {"error":{"code":"400","type":"invalid_params","message":"Invalid JSON payload received. Unknown name \"id\" at 'contents[...].parts[0].function_response': Cannot find field."}}]
 ```
 
@@ -326,7 +326,7 @@ When the model tries to use built-in tools (such as Google Search), you may see 
 
 1. Locate the file (replace the Node version in the path with your actual version):
 
-   ```
+   ```text
    ~/.nvm/versions/node/<version>/lib/node_modules/@google/gemini-cli/node_modules/@google/gemini-cli-core/dist/src/core/turn.js
    ```
 
