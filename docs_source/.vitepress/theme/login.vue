@@ -16,7 +16,12 @@
     >
       <el-icon-loading />
     </my-icon>
-    <el-dropdown v-else-if="user">
+    <el-dropdown
+      v-else-if="user"
+      trigger="hover"
+      placement="bottom-end"
+      popper-class="docs-user-dropdown-popper"
+    >
       <template #default>
         <img
           v-if="user.avatarUrl"
@@ -30,40 +35,27 @@
       </template>
       <template #dropdown>
         <el-dropdown-menu>
-          <el-dropdown-item @click="() => handleAction('platform/chat')"
-            >Chat</el-dropdown-item
-          >
           <el-dropdown-item
-            v-if="user?.flags?.internalMember"
-            @click="() => handleAction('platform/video')"
-            >Video</el-dropdown-item
+            v-for="item in menuItems"
+            :key="item.label"
+            class="user-dropdown-item"
+            @click="() => handleAction(item.slug)"
           >
-          <el-dropdown-item @click="() => handleAction('platform/logs')"
-            >Logs</el-dropdown-item
-          >
-          <el-dropdown-item @click="() => handleAction('platform/cost')"
-            >Cost</el-dropdown-item
-          >
-          <el-dropdown-item @click="() => handleAction('platform/usage')"
-            >Usage</el-dropdown-item
-          >
-          <el-dropdown-item @click="() => handleAction('platform/insurance')"
-            >Insurance</el-dropdown-item
-          >
+            <span class="user-menu-row">
+              <component :is="item.icon" class="user-menu-icon" />
+              <span class="user-menu-label">{{ item.label }}</span>
+            </span>
+          </el-dropdown-item>
           <el-dropdown-item
-            @click="() => handleAction('platform/pay-as-you-go')"
-            >PAYG API</el-dropdown-item
+            class="user-dropdown-item user-dropdown-item--signout"
+            divided
+            @click="goLogout"
           >
-          <el-dropdown-item @click="() => handleAction('platform/subscription')"
-            >Subscription API</el-dropdown-item
-          >
-          <el-dropdown-item @click="() => handleAction('platform/management')"
-            >Platform API</el-dropdown-item
-          >
-          <el-dropdown-item @click="() => handleAction('platform/settings')"
-            >Settings</el-dropdown-item
-          >
-          <el-dropdown-item @click="goLogout">Sign out</el-dropdown-item>
+            <span class="user-menu-row">
+              <ShutdownIcon class="user-menu-icon" />
+              <span class="user-menu-label">Sign out</span>
+            </span>
+          </el-dropdown-item>
         </el-dropdown-menu>
       </template>
     </el-dropdown>
@@ -71,7 +63,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { computed, defineComponent, ref, type Component } from "vue";
 import "element-plus/theme-chalk/base.css";
 import "element-plus/theme-chalk/dark/css-vars.css";
 import "element-plus/theme-chalk/el-button.css";
@@ -85,8 +77,28 @@ import {
   ElDropdownItem,
 } from "element-plus";
 import MyIcon from "./icon.vue";
+import {
+  Chat as ChatIcon,
+  Costs as CostsIcon,
+  IconKeychain as IconKeychainIcon,
+  IconPay_as_you_go as IconPayAsYouGoIcon,
+  IconSetting_01 as IconSettingIcon,
+  IconSubscriptionWallet as IconSubscriptionWalletIcon,
+  IconVideo as IconVideoIcon,
+  Insurance as InsuranceIcon,
+  Logs as LogsIcon,
+  Shutdown as ShutdownIcon,
+  Usage as UsageIcon,
+} from "./icons";
+import IconBillingIcon from "./icons/IconBilling.vue";
 import { inBrowser } from "vitepress";
 import { useAuth } from "./composables/use-auth";
+
+interface UserMenuItem {
+  label: string;
+  slug: string;
+  icon: Component;
+}
 
 export default defineComponent({
   name: "LoginButton",
@@ -96,6 +108,7 @@ export default defineComponent({
     ElDropdownMenu,
     ElDropdownItem,
     MyIcon,
+    ShutdownIcon,
   },
   setup() {
     const isCopied = ref(false);
@@ -113,6 +126,69 @@ export default defineComponent({
     const goLogout = () => {
       logout();
     };
+
+    const menuItems = computed<UserMenuItem[]>(() => {
+      const items: Array<UserMenuItem & { visible?: boolean }> = [
+        {
+          label: "Chat",
+          slug: "platform/chat",
+          icon: ChatIcon,
+        },
+        {
+          label: "Video",
+          slug: "platform/video",
+          icon: IconVideoIcon,
+          visible: Boolean(user.value?.flags?.internalMember),
+        },
+        {
+          label: "Logs",
+          slug: "platform/logs",
+          icon: LogsIcon,
+        },
+        {
+          label: "Cost",
+          slug: "platform/cost",
+          icon: CostsIcon,
+        },
+        {
+          label: "Usage",
+          slug: "platform/usage",
+          icon: UsageIcon,
+        },
+        {
+          label: "Insurance",
+          slug: "platform/insurance",
+          icon: InsuranceIcon,
+        },
+        {
+          label: "PAYG API",
+          slug: "platform/pay-as-you-go",
+          icon: IconPayAsYouGoIcon,
+        },
+        {
+          label: "Subscription API",
+          slug: "platform/subscription",
+          icon: IconSubscriptionWalletIcon,
+        },
+        {
+          label: "Platform API",
+          slug: "platform/management",
+          icon: IconKeychainIcon,
+        },
+        {
+          label: "Billing",
+          slug: "platform/billing",
+          icon: IconBillingIcon,
+        },
+        {
+          label: "Settings",
+          slug: "platform/settings",
+          icon: IconSettingIcon,
+        },
+      ];
+
+      return items.filter((item) => item.visible !== false);
+    });
 
     const goSettings = () => {
       if (inBrowser) {
@@ -163,6 +239,7 @@ export default defineComponent({
       handleClick,
       goLogout,
       isLoading,
+      menuItems,
       goSettings,
       goCredits,
       goApiKeys,
@@ -232,5 +309,109 @@ export default defineComponent({
 .loading-icon {
   font-size: 22px;
   margin-left: 10px;
+}
+
+.user-menu-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  height: 32px;
+  min-width: 0;
+}
+
+.user-menu-icon {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 14px;
+  color: #858585;
+}
+
+.user-menu-label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  color: #333;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+:global(.docs-user-dropdown-popper.el-popper) {
+  z-index: 9999;
+}
+
+:global(.docs-user-dropdown-popper.el-popper.is-light) {
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  box-shadow: none;
+}
+
+:global(.docs-user-dropdown-popper .el-popper__arrow) {
+  display: none;
+}
+
+:global(.docs-user-dropdown-popper .el-scrollbar) {
+  border-radius: 12px;
+}
+
+:global(.docs-user-dropdown-popper .el-dropdown-menu) {
+  min-width: 200px;
+  padding: 4px;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow:
+    0 0 1px rgba(0, 0, 0, 0.17),
+    0 14px 14px rgba(0, 0, 0, 0.05);
+}
+
+:global(.docs-user-dropdown-popper .el-dropdown-menu__item) {
+  display: flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 8px;
+  color: #333;
+  line-height: 32px;
+}
+
+:global(.docs-user-dropdown-popper .el-dropdown-menu__item:hover),
+:global(.docs-user-dropdown-popper .el-dropdown-menu__item:focus) {
+  background: #f5f5f5;
+  color: #333;
+}
+
+:global(.docs-user-dropdown-popper .el-dropdown-menu__item--divided) {
+  margin-top: 4px;
+  border-top: 1px solid #ededed;
+}
+
+:global(.docs-user-dropdown-popper .el-dropdown-menu__item--divided::before) {
+  display: none;
+}
+
+:global(.dark .docs-user-dropdown-popper .el-dropdown-menu) {
+  border-color: #3a3a3a;
+  background: #1f1f1f;
+  box-shadow:
+    0 0 1px rgba(0, 0, 0, 0.5),
+    0 14px 14px rgba(0, 0, 0, 0.22);
+}
+
+:global(.dark .docs-user-dropdown-popper .el-dropdown-menu__item:hover),
+:global(.dark .docs-user-dropdown-popper .el-dropdown-menu__item:focus) {
+  background: #2a2a2a;
+}
+
+:global(.dark .docs-user-dropdown-popper .el-dropdown-menu__item--divided) {
+  border-top-color: #333;
+}
+
+:global(.dark .docs-user-dropdown-popper .user-menu-label) {
+  color: #f2f2f2;
 }
 </style>
