@@ -1013,7 +1013,7 @@
 .VPDocFooter .pager-link {
   display: inline-flex !important;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   width: auto !important;
   height: 19px !important;
   padding: 0 !important;
@@ -1049,6 +1049,21 @@
   line-height: 19px !important;
   text-transform: capitalize;
   color: inherit !important;
+}
+
+.VPDocFooter .pager-link .title img {
+  display: inline-block !important;
+  width: 20px;
+  height: 20px;
+  margin: 0 8px 0 0;
+  vertical-align: -4px;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.api-page .VPDocFooter {
+  margin-bottom: 80px !important;
 }
 
 .VPDocFooter .pager-link::before,

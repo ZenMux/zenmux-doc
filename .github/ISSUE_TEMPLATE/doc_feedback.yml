@@ -24,7 +24,7 @@ body:
       description: Which section of the docs does this relate to?
       options:
         - Getting started / Quickstart
-        - API reference (OpenAI / Anthropic / Gemini / Platform)
+        - API Reference (OpenAI / Anthropic / Gemini / Platform)
         - Advanced usage (routing, streaming, caching, reasoning, etc.)
         - Best practices (Claude Code, Cursor, Cline, and other tool guides)
         - Pricing / Billing guides

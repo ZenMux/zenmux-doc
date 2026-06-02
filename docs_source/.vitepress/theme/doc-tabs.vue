@@ -41,7 +41,7 @@ const tabs = computed(() => {
       active: isDocsPage,
     },
     {
-      text: "API reference",
+      text: "API Reference",
       link: `${prefix}/api/openai/create-chat-completion`,
       active: isApiPage,
     },

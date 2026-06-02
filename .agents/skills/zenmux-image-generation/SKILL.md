@@ -111,17 +111,17 @@ in a way that will affect quality, ask **at most three** focused clarifying
 questions before moving on. Don't pepper the user — pick the questions that
 actually matter for this request.
 
-| Field | What it captures | Default if unspecified |
-|---|---|---|
-| `subject` | What the image is *of* — characters, objects, scene | required |
-| `style` | Photorealistic, illustration, watercolor, infographic, 3D render, etc. | inferred from subject |
-| `references` | Local paths or URLs to reference images for editing / style transfer / compositing | none |
-| `model` | Specific ZenMux model the user wants | `openai/gpt-image-2` |
-| `size` | e.g. `1024x1024`, `1024x1536`, `1536x1024`, `1920x1080`, `3840x2160` | `1024x1024` (square) unless aspect implies otherwise |
-| `quality` | `low` / `medium` / `high` | `medium` |
-| `n` | How many variants | `4` |
-| `output_format` | `image/png` (default), `image/jpeg`, `image/webp` | `image/png` |
-| `text_in_image` | Literal text the image must contain (taglines, labels, copy) | none |
+| Field           | What it captures                                                                   | Default if unspecified                               |
+| --------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| `subject`       | What the image is _of_ — characters, objects, scene                                | required                                             |
+| `style`         | Photorealistic, illustration, watercolor, infographic, 3D render, etc.             | inferred from subject                                |
+| `references`    | Local paths or URLs to reference images for editing / style transfer / compositing | none                                                 |
+| `model`         | Specific ZenMux model the user wants                                               | `openai/gpt-image-2`                                 |
+| `size`          | e.g. `1024x1024`, `1024x1536`, `1536x1024`, `1920x1080`, `3840x2160`               | `1024x1024` (square) unless aspect implies otherwise |
+| `quality`       | `low` / `medium` / `high`                                                          | `medium`                                             |
+| `n`             | How many variants                                                                  | `4`                                                  |
+| `output_format` | `image/png` (default), `image/jpeg`, `image/webp`                                  | `image/png`                                          |
+| `text_in_image` | Literal text the image must contain (taglines, labels, copy)                       | none                                                 |
 
 **Aspect inference shortcuts** (use these unless the user said otherwise):
 
@@ -136,14 +136,14 @@ actually matter for this request.
 Users may supply reference images in several forms — capture **all** of them
 and turn each into a single string suitable for `--reference-image`:
 
-| User says... | What to extract |
-|---|---|
-| "use this image: `/Users/me/Pictures/cat.png`" | `/Users/me/Pictures/cat.png` |
-| Drag-and-drop into Claude shows up as `[Image #1]: /var/.../tmp123.png` (or `[Image: source: /path/...]`) | the path after the `:` |
-| "参考图：`~/Downloads/style.jpg`" | `~/Downloads/style.jpg` (the script expands `~`) |
-| `file:///Users/me/Pictures/cat.png` | the whole `file://` URL works as-is |
-| `https://example.com/style.jpg` | the URL is downloaded automatically |
-| Quoted with single/double quotes (Finder paste) | the script strips quotes |
+| User says...                                                                                              | What to extract                                  |
+| --------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
+| "use this image: `/Users/me/Pictures/cat.png`"                                                            | `/Users/me/Pictures/cat.png`                     |
+| Drag-and-drop into Claude shows up as `[Image #1]: /var/.../tmp123.png` (or `[Image: source: /path/...]`) | the path after the `:`                           |
+| "参考图：`~/Downloads/style.jpg`"                                                                         | `~/Downloads/style.jpg` (the script expands `~`) |
+| `file:///Users/me/Pictures/cat.png`                                                                       | the whole `file://` URL works as-is              |
+| `https://example.com/style.jpg`                                                                           | the URL is downloaded automatically              |
+| Quoted with single/double quotes (Finder paste)                                                           | the script strips quotes                         |
 
 If the user pastes more than one image, **number them in the order they
 appeared** — `[Image #1]`, `[Image #2]`, ... — and use those tags consistently
@@ -164,12 +164,12 @@ size: 7 MB per file (ZenMux limit for direct upload).
 If the user named a model, use it verbatim — don't second-guess. Otherwise pick
 based on the task:
 
-| Task hint | Suggested default |
-|---|---|
-| Generic / unspecified | `openai/gpt-image-2` (the project default) |
-| Heavy real-world knowledge, web-search-backed visuals, cohesive storyboards, multilingual text, character consistency across scenes | `google/gemini-3-pro-image-preview` (Nano Banana Pro) |
-| Fast / high volume / lower-stakes | `google/gemini-3.1-flash-image-preview` or `openai/gpt-image-2` with `--quality low` |
-| Chinese-language design (posters, marketing) | `qwen/qwen-image-2.0-pro` or `bytedance/doubao-seedream-5.0-lite` |
+| Task hint                                                                                                                           | Suggested default                                                                    |
+| ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| Generic / unspecified                                                                                                               | `openai/gpt-image-2` (the project default)                                           |
+| Heavy real-world knowledge, web-search-backed visuals, cohesive storyboards, multilingual text, character consistency across scenes | `google/gemini-3-pro-image-preview` (Nano Banana Pro)                                |
+| Fast / high volume / lower-stakes                                                                                                   | `google/gemini-3.1-flash-image-preview` or `openai/gpt-image-2` with `--quality low` |
+| Chinese-language design (posters, marketing)                                                                                        | `qwen/qwen-image-2.0-pro` or `bytedance/doubao-seedream-5.0-lite`                    |
 
 If you suggest something other than the user's apparent intent, say so in one
 sentence so they can override.
@@ -200,11 +200,11 @@ real, battle-tested prompts, each paired with the image it produced. These
 are far more useful than abstract "best practice" lists for matching what
 the user actually wants:
 
-| Selected model | Cookbook to consult | Notes |
-|---|---|---|
-| `openai/gpt-image-*` | `references/awesome-gpt-image-2.md` | ~2700 prompts indexed by use case (avatar, social-media post, infographic, YouTube thumbnail, comic, product marketing, e-commerce main image, game asset, poster, app/web design) and style (photo, cinematic, anime, illustration, sketch, 3D render, isometric, pixel art, oil/watercolor/ink, retro, cyberpunk, minimalism). |
-| `google/gemini-*-image*` | `references/awesome-nano-banana-pro-prompts.md` | Equivalent cookbook curated for Nano Banana Pro / Nano Banana 2 — strong on multilingual text rendering, web-search-grounded visuals, character consistency, complex Bento/diagram layouts. |
-| Anything else (Qwen, Doubao, ERNIE, GLM, Hunyuan, Kling, ...) | Either cookbook | These models broadly respond to the same patterns; pick whichever has closer use-case coverage. |
+| Selected model                                                | Cookbook to consult                             | Notes                                                                                                                                                                                                                                                                                                                            |
+| ------------------------------------------------------------- | ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `openai/gpt-image-*`                                          | `references/awesome-gpt-image-2.md`             | ~2700 prompts indexed by use case (avatar, social-media post, infographic, YouTube thumbnail, comic, product marketing, e-commerce main image, game asset, poster, app/web design) and style (photo, cinematic, anime, illustration, sketch, 3D render, isometric, pixel art, oil/watercolor/ink, retro, cyberpunk, minimalism). |
+| `google/gemini-*-image*`                                      | `references/awesome-nano-banana-pro-prompts.md` | Equivalent cookbook curated for Nano Banana Pro / Nano Banana 2 — strong on multilingual text rendering, web-search-grounded visuals, character consistency, complex Bento/diagram layouts.                                                                                                                                      |
+| Anything else (Qwen, Doubao, ERNIE, GLM, Hunyuan, Kling, ...) | Either cookbook                                 | These models broadly respond to the same patterns; pick whichever has closer use-case coverage.                                                                                                                                                                                                                                  |
 
 **Don't read the cookbooks end-to-end** — each is ~5000 lines. Use them as a
 reference library:
@@ -242,7 +242,7 @@ explain each one to the user.
   exactly. Spell out unusual brand names letter-by-letter.
 - **Edits use invariants:** "change only X; preserve face, pose, lighting,
   framing, and background exactly" — repeat the preserve list every iteration.
-- **Photorealism cues:** include the word *photorealistic* and add real-world
+- **Photorealism cues:** include the word _photorealistic_ and add real-world
   texture cues (pores, fabric wear, film grain, lens, lighting). Avoid words
   like "perfect" or "studio polish" if you want the photo to feel candid.
 - **Quality lever:** set `quality=high` for dense text, infographics,
@@ -257,10 +257,10 @@ the metadata, and the script invocation stay aligned:
 
 - **Tag every image** with `[Image #N]` in the prompt body, numbered starting
   at 1 in the order the user supplied them. Even when there is only one
-  reference, still tag it `[Image #1]`. Example: *"Use the subject from
-  `[Image #1]` and the color palette from `[Image #2]`."*
+  reference, still tag it `[Image #1]`. Example: _"Use the subject from
+  `[Image #1]` and the color palette from `[Image #2]`."_
 - **Describe each image briefly** so the model knows what it's looking at:
-  *"`[Image #1]` is the product photo. `[Image #2]` is the lighting reference."*
+  _"`[Image #1]` is the product photo. `[Image #2]` is the lighting reference."_
 - **Describe the relationship explicitly** between images and target output:
   what to take from each, what to ignore. Vague references silently drift.
 - **State invariants** for the elements that must be preserved verbatim
@@ -271,6 +271,7 @@ the metadata, and the script invocation stay aligned:
   `[Image #2]`, and so on.
 
 Example prompt fragment for a 2-image edit:
+
 > Replace only the garment on the woman in `[Image #1]` with the jacket shown
 > in `[Image #2]`. Preserve her face, hair, pose, expression, lighting, and
 > background from `[Image #1]` exactly. Match the jacket's fabric texture and
@@ -311,7 +312,7 @@ Then **show the user the optimized prompt and the parameters** in the chat and
 ask them to confirm or edit. Suggested phrasing:
 
 > 这是我根据 `<model>` 优化后的提示词，已保存到 `<path>`。请确认或告诉我要调整的地方。
-> （或英文：*Here's the optimized prompt for `<model>`, saved at `<path>`. Confirm or tell me what to tweak.*）
+> （或英文：_Here's the optimized prompt for `<model>`, saved at `<path>`. Confirm or tell me what to tweak._）
 
 **Do not call the generation API until the user confirms.** If they ask for
 changes, edit the saved file in-place and re-show it; don't make a new file
@@ -387,7 +388,7 @@ config=types.GenerateImagesConfig(   # or EditImageConfig
 ```
 
 This is the supported path in both Python and TypeScript SDKs (per the
-ZenMux docs), so `--quality` is honoured on the Python path *and* `--size`
+ZenMux docs), so `--quality` is honoured on the Python path _and_ `--size`
 is honoured even on edits. No silent drops, no stderr warnings — what you
 pass on the CLI is what hits the API.
 
@@ -412,11 +413,12 @@ When the script succeeds it prints the saved file paths. Surface those to the
 user along with a one-sentence note about what to look at. Example:
 
 > 已生成 4 张图片，保存在 `skills/zenmux-image-generation/output/`：
+>
 > - `openai-gpt-image-2-20260428-153512-01.png`
 > - `openai-gpt-image-2-20260428-153512-02.png`
 > - `openai-gpt-image-2-20260428-153512-03.png`
 > - `openai-gpt-image-2-20260428-153512-04.png`
-> 
+>
 > 你可以打开看看；如果想换风格、调整构图、换字体或换背景，告诉我具体改哪里，我会基于同一张图做局部编辑。
 
 If a follow-up edit comes in, treat it as a new run: re-optimize the prompt
@@ -451,7 +453,7 @@ prompt set the user wants to try), re-run that script directly:
 bash skills/zenmux-image-generation/scripts/refresh_references.sh
 ```
 
-The full ZenMux API reference (parameter-level mapping between OpenAI image
+The full ZenMux API Reference (parameter-level mapping between OpenAI image
 params and the Vertex AI SDK) lives at `references/zenmux-image-api.md` and is
 refreshed by `refresh_references.sh` from `ZenMux/zenmux-doc`. Read it when
 the user asks for an unusual parameter (mask, output compression, custom size
