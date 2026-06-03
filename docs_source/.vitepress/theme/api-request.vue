@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, computed, watch } from "vue";
+import { ref, onMounted, computed, watch, nextTick } from "vue";
 import { ElMessage, ElSelect, ElOption } from "element-plus";
 import { Copy as CopyIcon, Checked as CheckedIcon } from "./icons";
 import { useData, inBrowser } from "vitepress";
@@ -12,13 +12,50 @@ const requestCodes = ref<Record<string, string>>({});
 const responseCodes = ref<Record<string, string>>({});
 const currentLang = ref("");
 const langOptions = ref<string[]>([]);
+const currentExampleId = ref("");
+const requestExamples = ref<RequestExample[]>([]);
 const httpMethod = ref("GET");
 const requestURL = ref("");
+const docTitle = ref("");
 
 const copiedReq = ref(false);
 const copiedResp = ref(false);
 const copiedPath = ref(false);
 const langSelectRef = ref();
+
+type RequestExample = {
+  id: string;
+  title: string;
+  description: string;
+  codes: Record<string, string>;
+  langOptions: string[];
+};
+
+const languageTitles = new Set([
+  "bash",
+  "c",
+  "cpp",
+  "curl",
+  "go",
+  "html",
+  "http",
+  "java",
+  "javascript",
+  "js",
+  "json",
+  "php",
+  "python",
+  "ruby",
+  "shell",
+  "sh",
+  "ts",
+  "typescript",
+  "xml",
+  "yaml",
+  "yml",
+]);
+
+const methodOrder = ["javascript", "python", "cURL"];
 
 function onLangWrapperClick(e: MouseEvent) {
   if (!(e.target as HTMLElement).closest(".el-select")) {
@@ -26,8 +63,874 @@ function onLangWrapperClick(e: MouseEvent) {
   }
 }
 
+function isLanguageTitle(title: string, lang: string) {
+  const normalizedTitle = title.trim().toLowerCase();
+  const normalizedLang = lang.trim().toLowerCase();
+  return (
+    normalizedTitle === normalizedLang ||
+    languageTitles.has(normalizedTitle)
+  );
+}
+
+function createExample(title: string, description = ""): RequestExample {
+  const id =
+    title
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "") || `example-${requestExamples.value.length + 1}`;
+
+  return {
+    id,
+    title,
+    description: description || title,
+    codes: {},
+    langOptions: [],
+  };
+}
+
+function setCurrentExample(example: RequestExample) {
+  currentExampleId.value = example.id;
+  currentLang.value = example.langOptions[0] || "";
+}
+
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function toCodeHtml(code: string) {
+  const lines = code.replace(/\n$/, "").split("\n");
+  return `<code>${lines
+    .map((line) => `<span class="line">${escapeHtml(line)}</span>`)
+    .join("\n")}</code>`;
+}
+
+function addGeneratedCode(example: RequestExample, lang: string, code?: string) {
+  if (!code || example.codes[lang]) return;
+  example.codes[lang] = toCodeHtml(code);
+  if (!example.langOptions.includes(lang)) {
+    example.langOptions.push(lang);
+  }
+}
+
+function sortLangOptions(example: RequestExample) {
+  example.langOptions.sort((a, b) => {
+    const aIndex = methodOrder.indexOf(a);
+    const bIndex = methodOrder.indexOf(b);
+    if (aIndex === -1 && bIndex === -1) return a.localeCompare(b);
+    if (aIndex === -1) return 1;
+    if (bIndex === -1) return -1;
+    return aIndex - bIndex;
+  });
+}
+
+function completeExampleMethods(example: RequestExample) {
+  const title = example.title;
+
+  if (requestURL.value.includes("/chat/completions")) {
+    addGeneratedCode(example, "python", getOpenAIChatPython(title));
+    addGeneratedCode(example, "cURL", getOpenAIChatCurl(title));
+  } else if (requestURL.value.includes("/responses")) {
+    addGeneratedCode(example, "python", getOpenAIResponsesPython(title));
+    addGeneratedCode(example, "cURL", getOpenAIResponsesCurl(title));
+  } else if (requestURL.value.includes("/anthropic")) {
+    addGeneratedCode(example, "python", getAnthropicPython(title));
+    addGeneratedCode(example, "cURL", getAnthropicCurl(title));
+  } else if (requestURL.value.includes("/vertex-ai")) {
+    addGeneratedCode(example, "python", getVertexPython(title));
+    addGeneratedCode(example, "cURL", getVertexCurl(title));
+  }
+
+  sortLangOptions(example);
+}
+
+function getPageTitle() {
+  if (!inBrowser) return "";
+  const heading = document.querySelector<HTMLElement>(".VPDoc h1, main h1, h1");
+  return (
+    heading?.textContent
+      ?.replace(/[\u200B-\u200D\uFEFF]/g, "")
+      .trim() ||
+    page.value.title ||
+    frontmatter.value.title ||
+    ""
+  );
+}
+
+function getOpenAIChatPython(title: string) {
+  const prefix = `from openai import OpenAI
+
+client = OpenAI(
+    base_url="https://zenmux.ai/api/v1",
+    api_key="<your_ZENMUX_API_KEY>",
+)
+
+`;
+
+  const snippets: Record<string, string> = {
+    "Image input": `${prefix}completion = client.chat.completions.create(
+    model="openai/gpt-5",
+    messages=[
+        {
+            "role": "user",
+            "content": [
+                {"type": "text", "text": "Describe this image."},
+                {
+                    "type": "image_url",
+                    "image_url": {"url": "https://storage.googleapis.com/generativeai-downloads/images/scones.jpg"},
+                },
+            ],
+        }
+    ],
+)
+
+print(completion.choices[0].message.content)`,
+    "Web search": `${prefix}completion = client.chat.completions.create(
+    model="openai/gpt-5",
+    web_search_options={},
+    messages=[
+        {"role": "user", "content": "What was a positive news story from today?"}
+    ],
+)
+
+print(completion.choices[0].message.content)`,
+    Streaming: `${prefix}stream = client.chat.completions.create(
+    model="openai/gpt-5",
+    stream=True,
+    messages=[{"role": "user", "content": "Write a short product tagline."}],
+)
+
+for chunk in stream:
+    print(chunk.choices[0].delta.content or "", end="")`,
+    Functions: `${prefix}completion = client.chat.completions.create(
+    model="openai/gpt-5",
+    tools=[
+        {
+            "type": "function",
+            "function": {
+                "name": "get_weather",
+                "description": "Get the current weather for a city.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {"location": {"type": "string"}},
+                    "required": ["location"],
+                    "additionalProperties": False,
+                },
+            },
+        }
+    ],
+    messages=[{"role": "user", "content": "What is the weather in Shanghai?"}],
+)
+
+print(completion.choices[0].message.tool_calls)`,
+    Reasoning: `${prefix}completion = client.chat.completions.create(
+    model="openai/gpt-5",
+    reasoning_effort="medium",
+    messages=[
+        {
+            "role": "user",
+            "content": "Compare two database indexing strategies for a write-heavy app.",
+        }
+    ],
+)
+
+print(completion.choices[0].message.content)`,
+  };
+
+  return snippets[title];
+}
+
+function getOpenAIChatCurl(title: string) {
+  const bodies: Record<string, string> = {
+    "Image input": `{
+    "model": "openai/gpt-5",
+    "messages": [
+      {
+        "role": "user",
+        "content": [
+          { "type": "text", "text": "Describe this image." },
+          {
+            "type": "image_url",
+            "image_url": { "url": "https://storage.googleapis.com/generativeai-downloads/images/scones.jpg" }
+          }
+        ]
+      }
+    ]
+  }`,
+    "Web search": `{
+    "model": "openai/gpt-5",
+    "web_search_options": {},
+    "messages": [
+      {
+        "role": "user",
+        "content": "What was a positive news story from today?"
+      }
+    ]
+  }`,
+    Streaming: `{
+    "model": "openai/gpt-5",
+    "stream": true,
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write a short product tagline."
+      }
+    ]
+  }`,
+    Functions: `{
+    "model": "openai/gpt-5",
+    "tools": [
+      {
+        "type": "function",
+        "function": {
+          "name": "get_weather",
+          "description": "Get the current weather for a city.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "location": { "type": "string" }
+            },
+            "required": ["location"],
+            "additionalProperties": false
+          }
+        }
+      }
+    ],
+    "messages": [
+      {
+        "role": "user",
+        "content": "What is the weather in Shanghai?"
+      }
+    ]
+  }`,
+    Reasoning: `{
+    "model": "openai/gpt-5",
+    "reasoning_effort": "medium",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Compare two database indexing strategies for a write-heavy app."
+      }
+    ]
+  }`,
+  };
+
+  return bodies[title]
+    ? `curl https://zenmux.ai/api/v1/chat/completions \\
+  -H "Content-Type: application/json" \\
+  -H "Authorization: Bearer $ZENMUX_API_KEY" \\
+  -d '${bodies[title]}'`
+    : undefined;
+}
+
+function getOpenAIResponsesPython(title: string) {
+  const prefix = `from openai import OpenAI
+
+client = OpenAI(
+    base_url="https://zenmux.ai/api/v1",
+    api_key="<your_ZENMUX_API_KEY>",
+)
+
+`;
+
+  const snippets: Record<string, string> = {
+    "Image input": `${prefix}response = client.responses.create(
+    model="openai/gpt-5",
+    input=[
+        {
+            "role": "user",
+            "content": [
+                {"type": "input_text", "text": "Describe this image."},
+                {
+                    "type": "input_image",
+                    "image_url": "https://storage.googleapis.com/generativeai-downloads/images/scones.jpg",
+                },
+            ],
+        }
+    ],
+)
+
+print(response.output_text)`,
+    "File input": `${prefix}response = client.responses.create(
+    model="openai/gpt-5",
+    input=[
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "input_file",
+                    "file_url": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+                },
+                {"type": "input_text", "text": "Summarize this document."},
+            ],
+        }
+    ],
+)
+
+print(response.output_text)`,
+    "Web search": `${prefix}response = client.responses.create(
+    model="openai/gpt-5",
+    tools=[{"type": "web_search"}],
+    input="What was a positive news story from today?",
+)
+
+print(response.output_text)`,
+    Streaming: `${prefix}stream = client.responses.create(
+    model="openai/gpt-5",
+    input="Write a short bedtime story about a robot gardener.",
+    stream=True,
+)
+
+for event in stream:
+    if event.type == "response.output_text.delta":
+        print(event.delta, end="")`,
+    Functions: `${prefix}response = client.responses.create(
+    model="openai/gpt-5",
+    tools=[
+        {
+            "type": "function",
+            "name": "get_weather",
+            "description": "Get the current weather for a city.",
+            "parameters": {
+                "type": "object",
+                "properties": {"location": {"type": "string"}},
+                "required": ["location"],
+                "additionalProperties": False,
+            },
+        }
+    ],
+    input="What is the weather in Shanghai?",
+)
+
+print(response.output)`,
+    Reasoning: `${prefix}response = client.responses.create(
+    model="openai/gpt-5",
+    reasoning={"effort": "medium"},
+    input="Compare two database indexing strategies for a write-heavy app.",
+)
+
+print(response.output_text)`,
+  };
+
+  return snippets[title];
+}
+
+function getOpenAIResponsesCurl(title: string) {
+  const bodies: Record<string, string> = {
+    "Image input": `{
+    "model": "openai/gpt-5",
+    "input": [
+      {
+        "role": "user",
+        "content": [
+          { "type": "input_text", "text": "Describe this image." },
+          {
+            "type": "input_image",
+            "image_url": "https://storage.googleapis.com/generativeai-downloads/images/scones.jpg"
+          }
+        ]
+      }
+    ]
+  }`,
+    "File input": `{
+    "model": "openai/gpt-5",
+    "input": [
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "input_file",
+            "file_url": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
+          },
+          { "type": "input_text", "text": "Summarize this document." }
+        ]
+      }
+    ]
+  }`,
+    "Web search": `{
+    "model": "openai/gpt-5",
+    "tools": [{ "type": "web_search" }],
+    "input": "What was a positive news story from today?"
+  }`,
+    Streaming: `{
+    "model": "openai/gpt-5",
+    "input": "Write a short bedtime story about a robot gardener.",
+    "stream": true
+  }`,
+    Functions: `{
+    "model": "openai/gpt-5",
+    "tools": [
+      {
+        "type": "function",
+        "name": "get_weather",
+        "description": "Get the current weather for a city.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "location": { "type": "string" }
+          },
+          "required": ["location"],
+          "additionalProperties": false
+        }
+      }
+    ],
+    "input": "What is the weather in Shanghai?"
+  }`,
+    Reasoning: `{
+    "model": "openai/gpt-5",
+    "reasoning": { "effort": "medium" },
+    "input": "Compare two database indexing strategies for a write-heavy app."
+  }`,
+  };
+
+  return bodies[title]
+    ? `curl https://zenmux.ai/api/v1/responses \\
+  -H "Content-Type: application/json" \\
+  -H "Authorization: Bearer $ZENMUX_API_KEY" \\
+  -d '${bodies[title]}'`
+    : undefined;
+}
+
+function getAnthropicPython(title: string) {
+  const prefix = `import anthropic
+
+client = anthropic.Anthropic(
+    api_key="<YOUR_ZENMUX_API_KEY>",
+    base_url="https://zenmux.ai/api/anthropic",
+)
+
+`;
+
+  const snippets: Record<string, string> = {
+    "Image input": `${prefix}message = client.messages.create(
+    model="anthropic/claude-sonnet-4.5",
+    max_tokens=1024,
+    messages=[
+        {
+            "role": "user",
+            "content": [
+                {"type": "text", "text": "Describe this image."},
+                {
+                    "type": "image",
+                    "source": {
+                        "type": "url",
+                        "url": "https://storage.googleapis.com/generativeai-downloads/images/scones.jpg",
+                    },
+                },
+            ],
+        }
+    ],
+)
+
+print(message.content)`,
+    "File input": `${prefix}message = client.messages.create(
+    model="anthropic/claude-sonnet-4.5",
+    max_tokens=1024,
+    messages=[
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "document",
+                    "source": {
+                        "type": "url",
+                        "url": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+                    },
+                },
+                {"type": "text", "text": "Summarize this document."},
+            ],
+        }
+    ],
+)
+
+print(message.content)`,
+    "Web search": `${prefix}message = client.messages.create(
+    model="anthropic/claude-sonnet-4.5",
+    max_tokens=1024,
+    tools=[{"type": "web_search_20250305", "name": "web_search"}],
+    messages=[
+        {"role": "user", "content": "What was a positive news story from today?"}
+    ],
+)
+
+print(message.content)`,
+    Streaming: `${prefix}with client.messages.stream(
+    model="anthropic/claude-sonnet-4.5",
+    max_tokens=1024,
+    messages=[{"role": "user", "content": "Write a short product tagline."}],
+) as stream:
+    for text in stream.text_stream:
+        print(text, end="")`,
+    Tools: `${prefix}message = client.messages.create(
+    model="anthropic/claude-sonnet-4.5",
+    max_tokens=1024,
+    tools=[
+        {
+            "name": "get_weather",
+            "description": "Get the current weather for a city.",
+            "input_schema": {
+                "type": "object",
+                "properties": {"location": {"type": "string"}},
+                "required": ["location"],
+            },
+        }
+    ],
+    messages=[{"role": "user", "content": "What is the weather in Shanghai?"}],
+)
+
+print(message.content)`,
+    Thinking: `${prefix}message = client.messages.create(
+    model="anthropic/claude-sonnet-4.5",
+    max_tokens=2048,
+    thinking={"type": "enabled", "budget_tokens": 1024},
+    messages=[
+        {
+            "role": "user",
+            "content": "Compare two database indexing strategies for a write-heavy app.",
+        }
+    ],
+)
+
+print(message.content)`,
+  };
+
+  return snippets[title];
+}
+
+function getAnthropicCurl(title: string) {
+  const bodies: Record<string, string> = {
+    "Image input": `{
+    "model": "anthropic/claude-sonnet-4.5",
+    "max_tokens": 1024,
+    "messages": [
+      {
+        "role": "user",
+        "content": [
+          { "type": "text", "text": "Describe this image." },
+          {
+            "type": "image",
+            "source": {
+              "type": "url",
+              "url": "https://storage.googleapis.com/generativeai-downloads/images/scones.jpg"
+            }
+          }
+        ]
+      }
+    ]
+  }`,
+    "File input": `{
+    "model": "anthropic/claude-sonnet-4.5",
+    "max_tokens": 1024,
+    "messages": [
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "document",
+            "source": {
+              "type": "url",
+              "url": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
+            }
+          },
+          { "type": "text", "text": "Summarize this document." }
+        ]
+      }
+    ]
+  }`,
+    "Web search": `{
+    "model": "anthropic/claude-sonnet-4.5",
+    "max_tokens": 1024,
+    "tools": [
+      { "type": "web_search_20250305", "name": "web_search" }
+    ],
+    "messages": [
+      {
+        "role": "user",
+        "content": "What was a positive news story from today?"
+      }
+    ]
+  }`,
+    Streaming: `{
+    "model": "anthropic/claude-sonnet-4.5",
+    "max_tokens": 1024,
+    "stream": true,
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write a short product tagline."
+      }
+    ]
+  }`,
+    Tools: `{
+    "model": "anthropic/claude-sonnet-4.5",
+    "max_tokens": 1024,
+    "tools": [
+      {
+        "name": "get_weather",
+        "description": "Get the current weather for a city.",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "location": { "type": "string" }
+          },
+          "required": ["location"]
+        }
+      }
+    ],
+    "messages": [
+      {
+        "role": "user",
+        "content": "What is the weather in Shanghai?"
+      }
+    ]
+  }`,
+    Thinking: `{
+    "model": "anthropic/claude-sonnet-4.5",
+    "max_tokens": 2048,
+    "thinking": { "type": "enabled", "budget_tokens": 1024 },
+    "messages": [
+      {
+        "role": "user",
+        "content": "Compare two database indexing strategies for a write-heavy app."
+      }
+    ]
+  }`,
+  };
+
+  return bodies[title]
+    ? `curl https://zenmux.ai/api/anthropic/v1/messages \\
+  -H "x-api-key: $ZENMUX_API_KEY" \\
+  -H "anthropic-version: 2023-06-01" \\
+  -H "content-type: application/json" \\
+  -d '${bodies[title]}'`
+    : undefined;
+}
+
+function getVertexPython(title: string) {
+  const prefix = `from google import genai
+from google.genai import types
+
+client = genai.Client(
+    api_key="<YOUR_ZENMUX_API_KEY>",
+    vertexai=True,
+    http_options=types.HttpOptions(
+        api_version="v1",
+        base_url="https://zenmux.ai/api/vertex-ai",
+    ),
+)
+
+`;
+
+  const snippets: Record<string, string> = {
+    "Image input": `${prefix}response = client.models.generate_content(
+    model="google/gemini-2.5-pro",
+    contents=[
+        {
+            "role": "user",
+            "parts": [
+                {"text": "Describe this image."},
+                {
+                    "file_data": {
+                        "mime_type": "image/jpeg",
+                        "file_uri": "https://storage.googleapis.com/generativeai-downloads/images/scones.jpg",
+                    }
+                },
+            ],
+        }
+    ],
+)
+
+print(response.text)`,
+    "File input": `${prefix}response = client.models.generate_content(
+    model="google/gemini-2.5-pro",
+    contents=[
+        {
+            "role": "user",
+            "parts": [
+                {
+                    "file_data": {
+                        "mime_type": "application/pdf",
+                        "file_uri": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+                    }
+                },
+                {"text": "Summarize this document."},
+            ],
+        }
+    ],
+)
+
+print(response.text)`,
+    "Web search": `${prefix}response = client.models.generate_content(
+    model="google/gemini-2.5-flash",
+    contents="What was a positive news story from today?",
+    config=types.GenerateContentConfig(
+        tools=[types.Tool(google_search=types.GoogleSearch())],
+    ),
+)
+
+print(response.text)`,
+    Streaming: `${prefix}stream = client.models.generate_content_stream(
+    model="google/gemini-2.5-flash",
+    contents="Write a short product tagline.",
+)
+
+for chunk in stream:
+    print(chunk.text or "", end="")`,
+    Functions: `${prefix}weather_tool = types.Tool(
+    function_declarations=[
+        types.FunctionDeclaration(
+            name="get_weather",
+            description="Get the current weather for a city.",
+            parameters={
+                "type": "object",
+                "properties": {"location": {"type": "string"}},
+                "required": ["location"],
+            },
+        )
+    ]
+)
+
+response = client.models.generate_content(
+    model="google/gemini-2.5-pro",
+    contents="What is the weather in Shanghai?",
+    config=types.GenerateContentConfig(tools=[weather_tool]),
+)
+
+print(response.function_calls)`,
+    Thinking: `${prefix}response = client.models.generate_content(
+    model="google/gemini-2.5-pro",
+    contents="Compare two database indexing strategies for a write-heavy app.",
+    config=types.GenerateContentConfig(
+        thinking_config=types.ThinkingConfig(thinking_budget=16000),
+    ),
+)
+
+print(response.text)`,
+  };
+
+  return snippets[title];
+}
+
+function getVertexCurl(title: string) {
+  const suffix =
+    title === "Streaming" ? ":streamGenerateContent?alt=sse" : ":generateContent";
+  const model = title === "Web search" || title === "Streaming"
+    ? "gemini-2.5-flash"
+    : "gemini-2.5-pro";
+  const bodies: Record<string, string> = {
+    "Image input": `{
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          { "text": "Describe this image." },
+          {
+            "fileData": {
+              "mimeType": "image/jpeg",
+              "fileUri": "https://storage.googleapis.com/generativeai-downloads/images/scones.jpg"
+            }
+          }
+        ]
+      }
+    ]
+  }`,
+    "File input": `{
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "fileData": {
+              "mimeType": "application/pdf",
+              "fileUri": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
+            }
+          },
+          { "text": "Summarize this document." }
+        ]
+      }
+    ]
+  }`,
+    "Web search": `{
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          { "text": "What was a positive news story from today?" }
+        ]
+      }
+    ],
+    "tools": [{ "googleSearch": {} }]
+  }`,
+    Streaming: `{
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          { "text": "Write a short product tagline." }
+        ]
+      }
+    ]
+  }`,
+    Functions: `{
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          { "text": "What is the weather in Shanghai?" }
+        ]
+      }
+    ],
+    "tools": [
+      {
+        "functionDeclarations": [
+          {
+            "name": "get_weather",
+            "description": "Get the current weather for a city.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "location": { "type": "string" }
+              },
+              "required": ["location"]
+            }
+          }
+        ]
+      }
+    ]
+  }`,
+    Thinking: `{
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Compare two database indexing strategies for a write-heavy app."
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "thinkingConfig": {
+        "thinkingBudget": 16000
+      }
+    }
+  }`,
+  };
+
+  return bodies[title]
+    ? `curl https://zenmux.ai/api/vertex-ai/v1/publishers/google/models/${model}${suffix} \\
+  -H "Content-Type: application/json" \\
+  -H "Authorization: Bearer $ZENMUX_API_KEY" \\
+  -d '${bodies[title]}'`
+    : undefined;
+}
+
 function initRequestData() {
   if (!inBrowser) return;
+  docTitle.value = getPageTitle();
   const dom = document.querySelector<HTMLElement>(".api-request");
   if (dom) {
     dom.dataset.info
@@ -47,47 +950,142 @@ function initRequestData() {
         }
       });
   }
-  dom?.querySelectorAll(".vp-adaptive-theme").forEach((theme) => {
-    const pre = theme.querySelector("pre");
-    const lang = theme.querySelector(".lang")?.textContent?.trim() || "";
-    if (!lang || !pre) return;
-    const html = pre.innerHTML; // 含高亮标签
-    if (lang === "json") {
-      responseCodes.value[lang] = html;
+  const labels = Array.from(
+    dom?.querySelectorAll<HTMLLabelElement>(".tabs label") || [],
+  );
+  const themes = Array.from(
+    dom?.querySelectorAll<HTMLElement>(".vp-adaptive-theme") || [],
+  );
+  const blocks = themes
+    .map((theme, index) => {
+      const pre = theme.querySelector("pre");
+      const lang = theme.querySelector(".lang")?.textContent?.trim() || "";
+      const label = labels[index];
+      const title =
+        label?.dataset.title?.trim() || label?.textContent?.trim() || lang;
+      const description = label?.dataset.description?.trim() || "";
+      return {
+        title,
+        description,
+        lang,
+        html: pre?.innerHTML || "",
+      };
+    })
+    .filter((block) => block.lang && block.html);
+
+  const hasUsageTabs = blocks.some(
+    (block) => !isLanguageTitle(block.title, block.lang),
+  );
+
+  if (hasUsageTabs) {
+    const examples = new Map<string, RequestExample>();
+
+    blocks.forEach((block) => {
+      if (block.lang.toLowerCase() === "json" && !block.title) {
+        responseCodes.value[block.lang] = block.html;
+        return;
+      }
+
+      const title = block.title || block.lang;
+      let example = examples.get(title);
+      if (!example) {
+        example = createExample(title, block.description);
+        examples.set(title, example);
+      }
+
+      example.codes[block.lang] = block.html;
+      if (!example.langOptions.includes(block.lang)) {
+        example.langOptions.push(block.lang);
+      }
+      if (!example.description && block.description) {
+        example.description = block.description;
+      }
+    });
+
+    requestExamples.value = Array.from(examples.values()).map((example) => {
+      completeExampleMethods(example);
+      return example;
+    });
+    if (requestExamples.value.length) {
+      setCurrentExample(requestExamples.value[0]);
+    }
+    return;
+  }
+
+  const fallbackExample = createExample("Request", requestURL.value || "Request");
+
+  blocks.forEach((block) => {
+    if (block.lang === "json") {
+      responseCodes.value[block.lang] = block.html;
     } else {
-      requestCodes.value[lang] = html;
-      if (!langOptions.value.includes(lang)) langOptions.value.push(lang);
-      if (!currentLang.value) currentLang.value = lang;
+      requestCodes.value[block.lang] = block.html;
+      fallbackExample.codes[block.lang] = block.html;
+      if (!langOptions.value.includes(block.lang)) {
+        langOptions.value.push(block.lang);
+      }
+      if (!fallbackExample.langOptions.includes(block.lang)) {
+        fallbackExample.langOptions.push(block.lang);
+      }
     }
   });
+
+  if (fallbackExample.langOptions.length) {
+    completeExampleMethods(fallbackExample);
+    requestExamples.value = [fallbackExample];
+    setCurrentExample(fallbackExample);
+  }
 }
 
-onMounted(() => {
+function resetRequestData() {
+  requestCodes.value = {};
+  responseCodes.value = {};
+  currentLang.value = "";
+  langOptions.value = [];
+  currentExampleId.value = "";
+  requestExamples.value = [];
+  httpMethod.value = "GET";
+  requestURL.value = "";
+  docTitle.value = "";
+  copiedReq.value = false;
+  copiedResp.value = false;
+  copiedPath.value = false;
+}
+
+onMounted(async () => {
+  await nextTick();
   initRequestData();
 });
 
 watch(
   () => page.value.filePath,
-  () => {
-    // 清空旧数据
-    requestCodes.value = {};
-    responseCodes.value = {};
-    currentLang.value = "";
-    langOptions.value = [];
-    httpMethod.value = "GET";
-    requestURL.value = "";
-    copiedReq.value = false;
-    copiedResp.value = false;
-    copiedPath.value = false;
-    // 重新初始化
+  async () => {
+    resetRequestData();
+    await nextTick();
     initRequestData();
   },
 );
 
-const rendered = computed(() => requestCodes.value[currentLang.value] || "");
+const currentExample = computed(() => {
+  return (
+    requestExamples.value.find((example) => example.id === currentExampleId.value) ||
+    requestExamples.value[0]
+  );
+});
+const currentLangOptions = computed(() => currentExample.value?.langOptions || []);
+const rendered = computed(() => currentExample.value?.codes[currentLang.value] || "");
 const renderedPlain = computed(() => htmlToPlain(rendered.value));
 const json = computed(() => responseCodes.value["json"] || "");
 const jsonPlain = computed(() => htmlToPlain(json.value));
+const requestTitle = computed(() => {
+  return docTitle.value || page.value.title || requestURL.value || "Request";
+});
+
+watch(currentExampleId, () => {
+  const options = currentLangOptions.value;
+  if (options.length && !options.includes(currentLang.value)) {
+    currentLang.value = options[0];
+  }
+});
 
 function htmlToPlain(html: string) {
   if (!html) return "";
@@ -143,14 +1141,38 @@ async function copyPath() {
 </script>
 
 <template>
-  <div v-if="isApiRequest" class="api-float-container">
+  <div v-if="isApiRequest && requestExamples.length" class="api-float-container">
+    <div
+      v-if="requestExamples.length > 1"
+      class="api-example-tabs"
+      role="tablist"
+      aria-label="Request examples"
+    >
+      <button
+        v-for="example in requestExamples"
+        :key="example.id"
+        type="button"
+        class="api-example-tab"
+        :class="{ active: example.id === currentExampleId }"
+        role="tab"
+        :aria-selected="example.id === currentExampleId"
+        @click="currentExampleId = example.id"
+      >
+        {{ example.title }}
+      </button>
+    </div>
+
     <div class="api-request-container">
       <div class="api-header">
-        <div class="left"></div>
+        <div class="left">
+          <span class="http-path" :title="requestTitle">
+            {{ requestTitle }}
+          </span>
+        </div>
         <div class="right">
           <div
             class="lang-select-wrapper"
-            v-if="langOptions.length > 1"
+            v-if="currentLangOptions.length > 1"
             @click="onLangWrapperClick"
           >
             <el-select
@@ -161,7 +1183,7 @@ async function copyPath() {
               popper-class="api-lang-dropdown"
             >
               <el-option
-                v-for="l in langOptions"
+                v-for="l in currentLangOptions"
                 :key="l"
                 :label="l"
                 :value="l"
@@ -183,6 +1205,9 @@ async function copyPath() {
                 stroke-linejoin="round"
               />
             </svg>
+          </div>
+          <div v-else-if="currentLang" class="lang-static-label">
+            {{ currentLang }}
           </div>
           <CheckedIcon
             v-if="copiedReq"
@@ -240,6 +1265,81 @@ async function copyPath() {
   width: 100%;
 }
 
+/* ===== Usage Tabs ===== */
+.api-example-tabs {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 34px;
+  margin: 20px 0 8px;
+  padding: 2px;
+  background: #f2f2f2;
+  border-radius: 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.api-example-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.api-example-tab {
+  flex: 0 0 auto;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  padding: 0 18px;
+  border: 0.2px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  font-family:
+    "SF Pro",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #666;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s,
+    color 0.2s;
+}
+
+.api-example-tab:hover {
+  color: #000;
+}
+
+.api-example-tab.active {
+  background: #fff;
+  border-color: #e6e6e6;
+  color: #000;
+  font-weight: 700;
+}
+
+.dark .api-example-tabs {
+  background: var(--zm-bg-secondary);
+}
+
+.dark .api-example-tab {
+  color: var(--zm-text-secondary);
+}
+
+.dark .api-example-tab:hover,
+.dark .api-example-tab.active {
+  color: var(--zm-text-primary);
+}
+
+.dark .api-example-tab.active {
+  background: var(--zm-bg-primary);
+  border-color: var(--zm-border-primary);
+}
+
 /* ===== Request / Response Container ===== */
 .api-float-container .api-request-container {
   margin: 20px 0;
@@ -247,6 +1347,10 @@ async function copyPath() {
   border: 0.5px solid #e6e6e6;
   border-radius: 12px;
   overflow: hidden;
+}
+
+.api-example-tabs + .api-request-container {
+  margin-top: 8px;
 }
 
 .dark .api-float-container .api-request-container {
@@ -275,36 +1379,12 @@ async function copyPath() {
   border-bottom-color: var(--zm-border-primary);
 }
 
-/* Left: method badge + path */
+/* Left: request title */
 .api-header .left {
   display: flex;
   align-items: center;
-  gap: 12px;
   min-width: 0;
   flex: 1;
-}
-
-.api-header .left .http-method {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2px 6px;
-  background: #fff;
-  border: 0.5px solid #e6e6e6;
-  border-radius: 4px;
-  font-family: "SF Mono", monospace;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 14px;
-  color: #666;
-  text-transform: capitalize;
-  flex-shrink: 0;
-}
-
-.dark .api-header .left .http-method {
-  background: var(--zm-bg-tertiary);
-  border-color: var(--zm-border-primary);
-  color: var(--zm-text-secondary);
 }
 
 .api-header .left .http-path {
@@ -380,6 +1460,25 @@ async function copyPath() {
   align-items: center;
   flex-shrink: 0;
   width: auto;
+  gap: 4px;
+}
+
+.lang-static-label {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 8px;
+  font-family:
+    "SF Pro",
+    -apple-system,
+    sans-serif;
+  font-size: 13px;
+  line-height: 24px;
+  color: #666;
+}
+
+.dark .lang-static-label {
+  color: var(--zm-text-tertiary);
 }
 
 /* ===== Copy Icon ===== */

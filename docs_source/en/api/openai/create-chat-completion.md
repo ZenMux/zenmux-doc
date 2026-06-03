@@ -1069,32 +1069,23 @@ When `stream_options: {"include_usage": true}` is set, the final chunk includes 
 
 ::: api-request POST /api/v1/chat/completions
 
-```TypeScript
+```javascript [Text input | Create a chat completion from text]
 import OpenAI from "openai";
 
-const openai = new OpenAI({
-  baseURL: 'https://zenmux.ai/api/v1',
-  apiKey: '<ZENMUX_API_KEY>',
+const client = new OpenAI({
+  baseURL: "https://zenmux.ai/api/v1",
+  apiKey: process.env.ZENMUX_API_KEY,
 });
 
-async function main() {
-  const completion = await openai.chat.completions.create({
-    model: "openai/gpt-5",
-    messages: [
-      {
-        role: "user",
-        content: "What is the meaning of life?",
-      },
-    ],
-  });
+const completion = await client.chat.completions.create({
+  model: "openai/gpt-5",
+  messages: [{ role: "user", content: "What is the meaning of life?" }],
+});
 
-  console.log(completion.choices[0].message);
-}
-
-main();
+console.log(completion.choices[0].message.content);
 ```
 
-```Python
+```python [Text input | Create a chat completion from text]
 from openai import OpenAI
 
 client = OpenAI(
@@ -1105,17 +1096,14 @@ client = OpenAI(
 completion = client.chat.completions.create(
     model="openai/gpt-5",
     messages=[
-        {
-            "role": "user",
-            "content": "What is the meaning of life?"
-        }
-    ]
+        {"role": "user", "content": "What is the meaning of life?"}
+    ],
 )
 
 print(completion.choices[0].message.content)
 ```
 
-```cURL
+```cURL [Text input | Create a chat completion from text]
 curl https://zenmux.ai/api/v1/chat/completions \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
@@ -1128,6 +1116,126 @@ curl https://zenmux.ai/api/v1/chat/completions \
       }
     ]
   }'
+```
+
+```javascript [Image input | Analyze an image in chat]
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://zenmux.ai/api/v1",
+  apiKey: process.env.ZENMUX_API_KEY,
+});
+
+const completion = await client.chat.completions.create({
+  model: "openai/gpt-5",
+  messages: [
+    {
+      role: "user",
+      content: [
+        { type: "text", text: "Describe this image." },
+        {
+          type: "image_url",
+          image_url: { url: "https://storage.googleapis.com/generativeai-downloads/images/scones.jpg" },
+        },
+      ],
+    },
+  ],
+});
+
+console.log(completion.choices[0].message.content);
+```
+
+```javascript [Web search | Use web search in chat]
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://zenmux.ai/api/v1",
+  apiKey: process.env.ZENMUX_API_KEY,
+});
+
+const completion = await client.chat.completions.create({
+  model: "openai/gpt-5",
+  web_search_options: {},
+  messages: [
+    { role: "user", content: "What was a positive news story from today?" },
+  ],
+});
+
+console.log(completion.choices[0].message.content);
+```
+
+```javascript [Streaming | Stream chat completion text]
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://zenmux.ai/api/v1",
+  apiKey: process.env.ZENMUX_API_KEY,
+});
+
+const stream = await client.chat.completions.create({
+  model: "openai/gpt-5",
+  stream: true,
+  messages: [{ role: "user", content: "Write a short product tagline." }],
+});
+
+for await (const chunk of stream) {
+  process.stdout.write(chunk.choices[0]?.delta?.content || "");
+}
+```
+
+```javascript [Functions | Call a function from chat]
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://zenmux.ai/api/v1",
+  apiKey: process.env.ZENMUX_API_KEY,
+});
+
+const completion = await client.chat.completions.create({
+  model: "openai/gpt-5",
+  tools: [
+    {
+      type: "function",
+      function: {
+        name: "get_weather",
+        description: "Get the current weather for a city.",
+        parameters: {
+          type: "object",
+          properties: {
+            location: { type: "string" },
+          },
+          required: ["location"],
+          additionalProperties: false,
+        },
+      },
+    },
+  ],
+  messages: [{ role: "user", content: "What is the weather in Shanghai?" }],
+});
+
+console.log(completion.choices[0].message.tool_calls);
+```
+
+```javascript [Reasoning | Use reasoning in chat]
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://zenmux.ai/api/v1",
+  apiKey: process.env.ZENMUX_API_KEY,
+});
+
+const completion = await client.chat.completions.create({
+  model: "openai/gpt-5",
+  reasoning_effort: "medium",
+  messages: [
+    {
+      role: "user",
+      content: "Compare two database indexing strategies for a write-heavy app.",
+    },
+  ],
+});
+
+console.log(completion.choices[0].message.content);
 ```
 
 :::
