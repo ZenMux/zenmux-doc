@@ -26,6 +26,14 @@ function extractLang(info: string) {
     .replace(/^ansi$/, "");
 }
 
+function parseCodeTabTitle(title: string) {
+  const [label, ...descriptionParts] = title.split("|");
+  return {
+    label: label.trim(),
+    description: descriptionParts.join("|").trim(),
+  };
+}
+
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   lang: "en-US",
@@ -249,9 +257,14 @@ export default defineConfig({
                 );
 
                 if (title) {
+                  const tabTitle = parseCodeTabTitle(title);
+                  const tabLabel = md.utils.escapeHtml(tabTitle.label || title);
+
                   tabs += `<input type="radio" name="group-${idx}" id="tab-${i}" ${checked}><label data-title="${md.utils.escapeHtml(
-                    title,
-                  )}" for="tab-${i}">${title}</label>`;
+                    tabTitle.label || title,
+                  )}" data-description="${md.utils.escapeHtml(
+                    tabTitle.description,
+                  )}" for="tab-${i}">${tabLabel}</label>`;
 
                   if (checked && !isHtml) tokens[i].info += " active";
                   checked = "";
@@ -294,9 +307,14 @@ export default defineConfig({
                 );
 
                 if (title) {
+                  const tabTitle = parseCodeTabTitle(title);
+                  const tabLabel = md.utils.escapeHtml(tabTitle.label || title);
+
                   tabs += `<input type="radio" name="group-${idx}" id="tab-${i}" ${checked}><label data-title="${md.utils.escapeHtml(
-                    title,
-                  )}" for="tab-${i}">${title}</label>`;
+                    tabTitle.label || title,
+                  )}" data-description="${md.utils.escapeHtml(
+                    tabTitle.description,
+                  )}" for="tab-${i}">${tabLabel}</label>`;
 
                   if (checked && !isHtml) tokens[i].info += " active";
                   checked = "";
