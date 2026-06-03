@@ -1479,62 +1479,209 @@ Error details.
 
 ::: api-request POST /api/anthropic/v1/messages
 
-```TypeScript
-import Anthropic from '@anthropic-ai/sdk';
+```javascript [Text input | Create a message from text]
+import Anthropic from "@anthropic-ai/sdk";
 
-// 1. Initialize the Anthropic client
 const anthropic = new Anthropic({
-  // 2. Replace with the API Key you obtained from the ZenMux user console
-  apiKey: '<YOUR ZENMUX_API_KEY>', // [!code highlight]
-  // 3. Point the base URL to the ZenMux endpoint
-  baseURL: "https://zenmux.ai/api/anthropic", // [!code highlight]
+  apiKey: process.env.ZENMUX_API_KEY,
+  baseURL: "https://zenmux.ai/api/anthropic",
 });
 
-async function main () {
-    const msg = await anthropic.messages.create({
-        model: "anthropic/claude-sonnet-4.5",
-        max_tokens: 1024,
-        messages: [{ role: "user", content: "Hello, Claude" }],
-    });
-    console.log(msg);
-}
+const message = await anthropic.messages.create({
+  model: "anthropic/claude-sonnet-4.5",
+  max_tokens: 1024,
+  messages: [{ role: "user", content: "Hello, Claude" }],
+});
 
-main();
+console.log(message.content);
 ```
 
-```Python
+```python [Text input | Create a message from text]
 import anthropic
 
-## 1. Initialize the Anthropic client
 client = anthropic.Anthropic(
-    # Replace with the API Key you obtained from the ZenMux user console
-    api_key="<YOUR ZENMUX_API_KEY>", # [!code highlight]
-    # 3. Point the base URL to the ZenMux endpoint
-    base_url="https://zenmux.ai/api/anthropic"  # [!code highlight]
+    api_key="<YOUR_ZENMUX_API_KEY>",
+    base_url="https://zenmux.ai/api/anthropic",
 )
+
 message = client.messages.create(
     model="anthropic/claude-sonnet-4.5",
     max_tokens=1024,
-    messages=[
-        {"role": "user", "content": "Hello, Claude"}
-    ]
+    messages=[{"role": "user", "content": "Hello, Claude"}],
 )
+
 print(message.content)
 ```
 
-```cURL
-curl https://zenmux.ai/api/anthropic/v1/messages/v1/messages \
-     --header "x-api-key: $ZENMUX_API_KEY" \
-     --header "anthropic-version: 2023-06-01" \
-     --header "content-type: application/json" \
-     --data \
-'{
+```cURL [Text input | Create a message from text]
+curl https://zenmux.ai/api/anthropic/v1/messages \
+  -H "x-api-key: $ZENMUX_API_KEY" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "content-type: application/json" \
+  -d '{
     "model": "anthropic/claude-sonnet-4.5",
     "max_tokens": 1024,
     "messages": [
-        {"role": "user", "content": "Hello, world"}
+      { "role": "user", "content": "Hello, Claude" }
     ]
-}'
+  }'
+```
+
+```javascript [Image input | Analyze an image with Claude]
+import Anthropic from "@anthropic-ai/sdk";
+
+const anthropic = new Anthropic({
+  apiKey: process.env.ZENMUX_API_KEY,
+  baseURL: "https://zenmux.ai/api/anthropic",
+});
+
+const message = await anthropic.messages.create({
+  model: "anthropic/claude-sonnet-4.5",
+  max_tokens: 1024,
+  messages: [
+    {
+      role: "user",
+      content: [
+        { type: "text", text: "Describe this image." },
+        {
+          type: "image",
+          source: {
+            type: "url",
+            url: "https://storage.googleapis.com/generativeai-downloads/images/scones.jpg",
+          },
+        },
+      ],
+    },
+  ],
+});
+
+console.log(message.content);
+```
+
+```javascript [File input | Summarize a document with Claude]
+import Anthropic from "@anthropic-ai/sdk";
+
+const anthropic = new Anthropic({
+  apiKey: process.env.ZENMUX_API_KEY,
+  baseURL: "https://zenmux.ai/api/anthropic",
+});
+
+const message = await anthropic.messages.create({
+  model: "anthropic/claude-sonnet-4.5",
+  max_tokens: 1024,
+  messages: [
+    {
+      role: "user",
+      content: [
+        {
+          type: "document",
+          source: {
+            type: "url",
+            url: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+          },
+        },
+        { type: "text", text: "Summarize this document." },
+      ],
+    },
+  ],
+});
+
+console.log(message.content);
+```
+
+```javascript [Web search | Use Claude web search]
+import Anthropic from "@anthropic-ai/sdk";
+
+const anthropic = new Anthropic({
+  apiKey: process.env.ZENMUX_API_KEY,
+  baseURL: "https://zenmux.ai/api/anthropic",
+});
+
+const message = await anthropic.messages.create({
+  model: "anthropic/claude-sonnet-4.5",
+  max_tokens: 1024,
+  tools: [{ type: "web_search_20250305", name: "web_search" }],
+  messages: [
+    { role: "user", content: "What was a positive news story from today?" },
+  ],
+});
+
+console.log(message.content);
+```
+
+```javascript [Streaming | Stream Claude message text]
+import Anthropic from "@anthropic-ai/sdk";
+
+const anthropic = new Anthropic({
+  apiKey: process.env.ZENMUX_API_KEY,
+  baseURL: "https://zenmux.ai/api/anthropic",
+});
+
+const stream = await anthropic.messages.create({
+  model: "anthropic/claude-sonnet-4.5",
+  max_tokens: 1024,
+  stream: true,
+  messages: [{ role: "user", content: "Write a short product tagline." }],
+});
+
+for await (const event of stream) {
+  if (event.type === "content_block_delta") {
+    process.stdout.write(event.delta.text || "");
+  }
+}
+```
+
+```javascript [Tools | Call a client tool with Claude]
+import Anthropic from "@anthropic-ai/sdk";
+
+const anthropic = new Anthropic({
+  apiKey: process.env.ZENMUX_API_KEY,
+  baseURL: "https://zenmux.ai/api/anthropic",
+});
+
+const message = await anthropic.messages.create({
+  model: "anthropic/claude-sonnet-4.5",
+  max_tokens: 1024,
+  tools: [
+    {
+      name: "get_weather",
+      description: "Get the current weather for a city.",
+      input_schema: {
+        type: "object",
+        properties: {
+          location: { type: "string" },
+        },
+        required: ["location"],
+      },
+    },
+  ],
+  messages: [{ role: "user", content: "What is the weather in Shanghai?" }],
+});
+
+console.log(message.content);
+```
+
+```javascript [Thinking | Enable Claude extended thinking]
+import Anthropic from "@anthropic-ai/sdk";
+
+const anthropic = new Anthropic({
+  apiKey: process.env.ZENMUX_API_KEY,
+  baseURL: "https://zenmux.ai/api/anthropic",
+});
+
+const message = await anthropic.messages.create({
+  model: "anthropic/claude-sonnet-4.5",
+  max_tokens: 2048,
+  thinking: { type: "enabled", budget_tokens: 1024 },
+  messages: [
+    {
+      role: "user",
+      content: "Compare two database indexing strategies for a write-heavy app.",
+    },
+  ],
+});
+
+console.log(message.content);
 ```
 
 :::
