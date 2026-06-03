@@ -2474,27 +2474,23 @@ MCP list tools 进行中事件。
 
 ::: api-request POST /api/v1/responses
 
-```TypeScript
+```javascript [Text input | Create a response from text]
 import OpenAI from "openai";
 
-const openai = new OpenAI({
-  baseURL: 'https://zenmux.ai/api/v1',
-  apiKey: '<ZENMUX_API_KEY>',
+const client = new OpenAI({
+  baseURL: "https://zenmux.ai/api/v1",
+  apiKey: process.env.ZENMUX_API_KEY,
 });
 
-async function main() {
-  const response = await openai.responses.create({
-    model: "openai/gpt-5",
-    input: "What is the meaning of life?"
-  })
+const response = await client.responses.create({
+  model: "openai/gpt-5",
+  input: "What is the meaning of life?",
+});
 
-  print(response)
-}
-
-main();
+console.log(response.output_text);
 ```
 
-```Python
+```python [Text input | Create a response from text]
 from openai import OpenAI
 
 client = OpenAI(
@@ -2503,14 +2499,14 @@ client = OpenAI(
 )
 
 response = client.responses.create(
-    model: "openai/gpt-5",
-    input: "What is the meaning of life?"
+    model="openai/gpt-5",
+    input="What is the meaning of life?",
 )
 
-print(response)
+print(response.output_text)
 ```
 
-```cURL
+```cURL [Text input | Create a response from text]
 curl https://zenmux.ai/api/v1/responses \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
@@ -2518,6 +2514,146 @@ curl https://zenmux.ai/api/v1/responses \
     "model": "openai/gpt-5",
     "input": "What is the meaning of life?"
   }'
+```
+
+```javascript [Image input | Analyze an image in a response]
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://zenmux.ai/api/v1",
+  apiKey: process.env.ZENMUX_API_KEY,
+});
+
+const response = await client.responses.create({
+  model: "openai/gpt-5",
+  input: [
+    {
+      role: "user",
+      content: [
+        { type: "input_text", text: "Describe this image." },
+        {
+          type: "input_image",
+          image_url: "https://storage.googleapis.com/generativeai-downloads/images/scones.jpg",
+        },
+      ],
+    },
+  ],
+});
+
+console.log(response.output_text);
+```
+
+```javascript [File input | Summarize a file in a response]
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://zenmux.ai/api/v1",
+  apiKey: process.env.ZENMUX_API_KEY,
+});
+
+const response = await client.responses.create({
+  model: "openai/gpt-5",
+  input: [
+    {
+      role: "user",
+      content: [
+        {
+          type: "input_file",
+          file_url: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+        },
+        { type: "input_text", text: "Summarize this document." },
+      ],
+    },
+  ],
+});
+
+console.log(response.output_text);
+```
+
+```javascript [Web search | Use web search in a response]
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://zenmux.ai/api/v1",
+  apiKey: process.env.ZENMUX_API_KEY,
+});
+
+const response = await client.responses.create({
+  model: "openai/gpt-5",
+  tools: [{ type: "web_search" }],
+  input: "What was a positive news story from today?",
+});
+
+console.log(response.output_text);
+```
+
+```javascript [Streaming | Stream response text]
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://zenmux.ai/api/v1",
+  apiKey: process.env.ZENMUX_API_KEY,
+});
+
+const stream = await client.responses.create({
+  model: "openai/gpt-5",
+  input: "Write a short bedtime story about a robot gardener.",
+  stream: true,
+});
+
+for await (const event of stream) {
+  if (event.type === "response.output_text.delta") {
+    process.stdout.write(event.delta);
+  }
+}
+```
+
+```javascript [Functions | Call a function from a response]
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://zenmux.ai/api/v1",
+  apiKey: process.env.ZENMUX_API_KEY,
+});
+
+const response = await client.responses.create({
+  model: "openai/gpt-5",
+  tools: [
+    {
+      type: "function",
+      name: "get_weather",
+      description: "Get the current weather for a city.",
+      parameters: {
+        type: "object",
+        properties: {
+          location: { type: "string" },
+        },
+        required: ["location"],
+        additionalProperties: false,
+      },
+    },
+  ],
+  input: "What is the weather in Shanghai?",
+});
+
+console.log(response.output);
+```
+
+```javascript [Reasoning | Use reasoning in a response]
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  baseURL: "https://zenmux.ai/api/v1",
+  apiKey: process.env.ZENMUX_API_KEY,
+});
+
+const response = await client.responses.create({
+  model: "openai/gpt-5",
+  reasoning: { effort: "medium" },
+  input: "Compare two database indexing strategies for a write-heavy app.",
+});
+
+console.log(response.output_text);
 ```
 
 :::

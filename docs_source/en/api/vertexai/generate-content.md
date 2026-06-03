@@ -1039,11 +1039,11 @@ Token usage.
 
 ::: api-request POST /api/vertex-ai/v1
 
-```TypeScript
+```javascript [Text input | Generate content from text]
 import { GoogleGenAI } from "@google/genai";
 
-const client = GoogleGenAI({
-  apiKey: "$ZENMUX_API_KEY",
+const client = new GoogleGenAI({
+  apiKey: process.env.ZENMUX_API_KEY,
   vertexai: true,
   httpOptions: {
     baseUrl: "https://zenmux.ai/api/vertex-ai",
@@ -1055,27 +1055,220 @@ const response = await client.models.generateContent({
   model: "google/gemini-2.5-pro",
   contents: "How does AI work?",
 });
-console.log(response);
+
+console.log(response.text);
 ```
 
-```Python
+```python [Text input | Generate content from text]
 from google import genai
 from google.genai import types
 
 client = genai.Client(
-    api_key="$ZENMUX_API_KEY",
+    api_key="<YOUR_ZENMUX_API_KEY>",
     vertexai=True,
     http_options=types.HttpOptions(
-        api_version='v1',
-        base_url='https://zenmux.ai/api/vertex-ai'
+        api_version="v1",
+        base_url="https://zenmux.ai/api/vertex-ai",
     ),
 )
 
 response = client.models.generate_content(
     model="google/gemini-2.5-pro",
-    contents="How does AI work?"
+    contents="How does AI work?",
 )
+
 print(response.text)
+```
+
+```cURL [Text input | Generate content from text]
+curl https://zenmux.ai/api/vertex-ai/v1/publishers/google/models/gemini-2.5-pro:generateContent \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $ZENMUX_API_KEY" \
+  -d '{
+    "contents": [
+      {
+        "role": "user",
+        "parts": [
+          { "text": "How does AI work?" }
+        ]
+      }
+    ]
+  }'
+```
+
+```javascript [Image input | Analyze an image with Gemini]
+import { GoogleGenAI } from "@google/genai";
+
+const client = new GoogleGenAI({
+  apiKey: process.env.ZENMUX_API_KEY,
+  vertexai: true,
+  httpOptions: {
+    baseUrl: "https://zenmux.ai/api/vertex-ai",
+    apiVersion: "v1",
+  },
+});
+
+const response = await client.models.generateContent({
+  model: "google/gemini-2.5-pro",
+  contents: [
+    {
+      role: "user",
+      parts: [
+        { text: "Describe this image." },
+        {
+          fileData: {
+            mimeType: "image/jpeg",
+            fileUri: "https://storage.googleapis.com/generativeai-downloads/images/scones.jpg",
+          },
+        },
+      ],
+    },
+  ],
+});
+
+console.log(response.text);
+```
+
+```javascript [File input | Summarize a document with Gemini]
+import { GoogleGenAI } from "@google/genai";
+
+const client = new GoogleGenAI({
+  apiKey: process.env.ZENMUX_API_KEY,
+  vertexai: true,
+  httpOptions: {
+    baseUrl: "https://zenmux.ai/api/vertex-ai",
+    apiVersion: "v1",
+  },
+});
+
+const response = await client.models.generateContent({
+  model: "google/gemini-2.5-pro",
+  contents: [
+    {
+      role: "user",
+      parts: [
+        {
+          fileData: {
+            mimeType: "application/pdf",
+            fileUri: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+          },
+        },
+        { text: "Summarize this document." },
+      ],
+    },
+  ],
+});
+
+console.log(response.text);
+```
+
+```javascript [Web search | Ground Gemini with Google Search]
+import { GoogleGenAI } from "@google/genai";
+
+const client = new GoogleGenAI({
+  apiKey: process.env.ZENMUX_API_KEY,
+  vertexai: true,
+  httpOptions: {
+    baseUrl: "https://zenmux.ai/api/vertex-ai",
+    apiVersion: "v1",
+  },
+});
+
+const response = await client.models.generateContent({
+  model: "google/gemini-2.5-flash",
+  contents: "What was a positive news story from today?",
+  config: {
+    tools: [{ googleSearch: {} }],
+  },
+});
+
+console.log(response.text);
+```
+
+```javascript [Streaming | Stream Gemini output]
+import { GoogleGenAI } from "@google/genai";
+
+const client = new GoogleGenAI({
+  apiKey: process.env.ZENMUX_API_KEY,
+  vertexai: true,
+  httpOptions: {
+    baseUrl: "https://zenmux.ai/api/vertex-ai",
+    apiVersion: "v1",
+  },
+});
+
+const stream = await client.models.generateContentStream({
+  model: "google/gemini-2.5-flash",
+  contents: "Write a short product tagline.",
+});
+
+for await (const chunk of stream) {
+  process.stdout.write(chunk.text || "");
+}
+```
+
+```javascript [Functions | Call a function with Gemini]
+import { GoogleGenAI } from "@google/genai";
+
+const client = new GoogleGenAI({
+  apiKey: process.env.ZENMUX_API_KEY,
+  vertexai: true,
+  httpOptions: {
+    baseUrl: "https://zenmux.ai/api/vertex-ai",
+    apiVersion: "v1",
+  },
+});
+
+const response = await client.models.generateContent({
+  model: "google/gemini-2.5-pro",
+  contents: "What is the weather in Shanghai?",
+  config: {
+    tools: [
+      {
+        functionDeclarations: [
+          {
+            name: "get_weather",
+            description: "Get the current weather for a city.",
+            parameters: {
+              type: "object",
+              properties: {
+                location: { type: "string" },
+              },
+              required: ["location"],
+            },
+          },
+        ],
+      },
+    ],
+  },
+});
+
+console.log(response.functionCalls);
+```
+
+```javascript [Thinking | Configure Gemini thinking]
+import { GoogleGenAI } from "@google/genai";
+
+const client = new GoogleGenAI({
+  apiKey: process.env.ZENMUX_API_KEY,
+  vertexai: true,
+  httpOptions: {
+    baseUrl: "https://zenmux.ai/api/vertex-ai",
+    apiVersion: "v1",
+  },
+});
+
+const response = await client.models.generateContent({
+  model: "google/gemini-2.5-pro",
+  contents: "Compare two database indexing strategies for a write-heavy app.",
+  config: {
+    thinkingConfig: {
+      thinkingBudget: 16000,
+    },
+  },
+});
+
+console.log(response.text);
 ```
 
 :::
