@@ -16,7 +16,7 @@ You can register directly on the [ZenMux website](https://zenmux.ai).
 
 ## 2. What exactly is the LLM Insurance feature, and how should I use it?
 
-LLM Insurance provides coverage and compensation for large model outputs that do not meet expectations. This feature is now available. For details, please refer to the [AI Insurance documentation](/guide/insurance).
+LLM Insurance provides coverage and compensation for large model outputs that do not meet expectations. This feature is now available. For details, please refer to the [AI Insurance documentation](/guide/observability/insurance).
 
 ## 3. I’m unsure how to use certain parameters or features. What should I do?
 

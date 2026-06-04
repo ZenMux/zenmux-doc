@@ -46,8 +46,8 @@ head:
 ### 关于 ZenMux
 
 - [简介](/zh/about/intro) - 全面的产品概述
-- [模型&供应商](/zh/about/models-and-providers) - 支持的模型和供应商
-- [价格&费用](/zh/about/pricing-and-cost) - 价格信息和费用
+- [架构](/zh/about/architecture) - 系统架构与设计
+- [基准测试](/zh/about/zenmux-benchmark) - 模型评测和性能表现
 
 ### 使用文档
 
@@ -71,7 +71,7 @@ head:
 
 ### API 参考
 
-- [Chat Completion](/zh/api/openai/chat-completion) - OpenAI 兼容聊天 API
+- [Chat Completion](/zh/api/openai/create-chat-completion) - OpenAI 兼容聊天 API
 - [Get a generation](/zh/api/platform/get-generation) - ZenMux 平台特定 API
 - [Message](/zh/api/anthropic/create-messages) - Anthropic API
 - [VertexAI](/zh/api/vertexai/generate-content) - Google Vertex AI API

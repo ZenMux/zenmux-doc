@@ -71,7 +71,7 @@ For more information about ZenMux, please visit our [Introduction page](/about/i
 
 ### API Reference
 
-- [Chat Completion](/api/openai/chat-completion) - OpenAI-compatible Chat API
+- [Chat Completion](/api/openai/create-chat-completion) - OpenAI-compatible Chat API
 - [Get a generation](/api/platform/get-generation) - ZenMux platform-specific API
 - [Message](/api/anthropic/create-messages) - Anthropic API
 - [VertexAI](/api/vertexai/generate-content) - Google Vertex AI API
