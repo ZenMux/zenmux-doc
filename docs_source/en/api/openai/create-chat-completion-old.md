@@ -80,7 +80,7 @@ An integer between 0 and 20, specifying the number of most likely tokens to retu
 
 ### response_format `object` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
-Used to control model output of structured content. If not provided, structured output is not used by default. For detailed usage of structured output, see [Structured Output](../advanced/structured-output.md).
+Used to control model output of structured content. If not provided, structured output is not used by default. For detailed usage of structured output, see [Structured Output](../../guide/advanced/structured-output.md).
 
 ### stop `string/array` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span> `Default null`
 
@@ -88,7 +88,7 @@ Supported by some models only, used to specify stop sequences. Can be a string o
 
 ### tools `array` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
-List of tools available to the large model. If not provided, tool calling is not used. Currently only supports function-type tools. For detailed usage of tool calling, see [Tool Calls](../advanced/tool-calls.md)
+List of tools available to the large model. If not provided, tool calling is not used. Currently only supports function-type tools. For detailed usage of tool calling, see [Tool Calls](../../guide/advanced/tool-calls.md)
 
 ### tool_choice `string/object` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
@@ -106,7 +106,7 @@ Used to control the content returned in streaming responses, only available when
 
 ### reasoning `object` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
-Used to control reasoning output, supports specifying both effort and max_tokens simultaneously. Different models may have different effective fields. For details, see [Reasoning Models](../guide/advanced/reasoning.md).
+Used to control reasoning output, supports specifying both effort and max_tokens simultaneously. Different models may have different effective fields. For details, see [Reasoning Models](../../guide/advanced/reasoning.md).
 
 ## Returns
 

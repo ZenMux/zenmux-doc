@@ -88,7 +88,7 @@ ZenMux API 接口返回的 generation id，可以从以下接口获得：
 
 - [Create a Chat Completion](../openai/create-chat-completion.md) - OpenAI Chat Completions 协议
 - [Create a Model Response](../openai/openai-responses.md) - OpenAI Responses 协议
-- [Create Messages](../anthropic/create-messages-new.md) - Anthropic 协议
+- [Create Messages](../anthropic/create-messages.md) - Anthropic 协议
 - [Generate Content](../vertexai/generate-content.md) - Vertex AI 协议
 
 ## Returns

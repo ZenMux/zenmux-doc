@@ -149,7 +149,7 @@ ZenMux's model alias feature makes `gpt-5.2-codex` fully equivalent to `openai/g
 
 - GPT series: use the native name directly (e.g., `gpt-5.2-codex`, `gpt-5.5`)
 - Models from other providers: use the prefixed full slug (e.g., `anthropic/claude-opus-4-8`, `deepseek/deepseek-v4-pro`); filter for Responses-protocol models in the [ZenMux model list](https://zenmux.ai/models?sort=newest&supported_protocol=responses) and copy their slugs
-- To target a specific provider, see the [Provider Routing documentation](/guide/provider-routing)
+- To target a specific provider, see the [Provider Routing documentation](/guide/advanced/provider-routing)
 
 :::
 

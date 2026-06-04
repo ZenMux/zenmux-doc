@@ -65,7 +65,7 @@ console.log(response);
 ## 支持的模型
 
 ::: info Google Vertex AI 协议支持模型说明
-支持 Google Vertex AI 协议的模型正在分批适配中，当前已支持的模型可以通过[官方模型列表](https://zenmux.ai/models)筛选 VextexAI API Compatible 查看:
+支持 Google Vertex AI 协议的模型正在分批适配中，当前已支持的模型可以通过[官方模型列表](https://zenmux.ai/models)筛选 Vertex AI API Compatible 查看:
 ![VertexAI-support](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/29/eD1abKu/vertexai-support.png)
 或者也可以通过[模型详情页](https://zenmux.ai/google/gemini-2.5-flash-image)查看:
 ![VertexAI-support](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/29/mlmpIst/detail-vertexai-support.png)
