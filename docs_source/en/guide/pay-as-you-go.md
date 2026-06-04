@@ -265,7 +265,7 @@ In **Transaction History**, click **View Invoice** for the relevant top-up recor
 Now that you understand how Pay As You Go works, you can:
 
 - Read the [Advanced Calling Guide](/guide/advanced/streaming) to learn streaming, multimodal, and other advanced features
-- Review the [AI Insurance Docs](/guide/insurance) to learn how to file claims
+- Review the [AI Insurance Docs](/guide/observability/insurance) to learn how to file claims
 - Visit the [Cost Analytics page](https://zenmux.ai/platform/cost) for detailed cost attribution and usage trends
 - Join the [Discord community](http://discord.gg/vHZZzj84Bm) to connect with other developers
 

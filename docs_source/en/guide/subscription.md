@@ -522,7 +522,7 @@ Subscription API Keys can be seamlessly integrated into various AI coding tools 
 - [Claude Code Integration Guide](/best-practices/claude-code) - Anthropic official CLI tool
 - [CodeX Integration Guide](/best-practices/codex) - Intelligent code editor
 - [Cline Integration Guide](/best-practices/cline) - VS Code AI assistant extension
-- [VS Code Copilot Integration Guide](/best-practices/copilot) - GitHub Copilot alternative
+- [VS Code Copilot Integration Guide](/best-practices/github-copilot) - GitHub Copilot alternative
 - [Neovate Integration Guide](/best-practices/neovate-code) - Modern AI coding tool
 - [OpenCode Integration Guide](/best-practices/opencode) - Open-source AI coding assistant
 

@@ -265,7 +265,7 @@ main();
 现在你已经了解了 Pay As You Go 的使用方法，可以：
 
 - 查看 [高级调用指南](/zh/guide/advanced/streaming)，了解流式输出、多模态等高级特性
-- 阅读 [AI 保险文档](/zh/guide/insurance)，了解如何申请理赔
+- 阅读 [AI 保险文档](/zh/guide/observability/insurance)，了解如何申请理赔
 - 访问 [成本分析页面](https://zenmux.ai/platform/cost)，查看详细的成本归因和使用趋势
 - 加入 [Discord 社区](http://discord.gg/vHZZzj84Bm)，与其他开发者交流
 

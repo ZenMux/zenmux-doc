@@ -92,7 +92,7 @@ ZenMux 为 Sider 提供了丰富的模型选择，通过 [ZenMux 模型列表](h
 | **DeepSeek** | `https://zenmux.ai/api/v1`  |
 | **Groq** | `https://zenmux.ai/api/v1` | 
 | **Google (Gemini)** | `https://zenmux.ai/api/v1` | 
-| **Anthropic (Claude)** | `https://zenmux.ai/api` | 
+| **Anthropic (Claude)** | `https://zenmux.ai/api/anthropic` |
 
 :::
 

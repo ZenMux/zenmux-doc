@@ -522,7 +522,7 @@ Flow/USD 汇率当前锚定在 **1 Flow ≈ $0.03283**（约 30 Flows = $1）。
 - [Claude Code 接入指南](/zh/best-practices/claude-code) - Anthropic 官方 CLI 工具
 - [CodeX 接入指南](/zh/best-practices/codex) - 智能代码编辑器
 - [Cline 接入指南](/zh/best-practices/cline) - VS Code AI 助手扩展
-- [VS Code Copilot 接入指南](/zh/best-practices/copilot) - GitHub Copilot 替代方案
+- [VS Code Copilot 接入指南](/zh/best-practices/github-copilot) - GitHub Copilot 替代方案
 - [Neovate 接入指南](/zh/best-practices/neovate-code) - 现代化 AI 编程工具
 - [OpenCode 接入指南](/zh/best-practices/opencode) - 开源 AI 代码助手
 

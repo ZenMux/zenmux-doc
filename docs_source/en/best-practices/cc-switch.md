@@ -240,11 +240,11 @@ Copy and paste the configuration above into Gemini CLI’s config file, then sav
 
 #### OpenCode Configuration (OpenAI Protocol)
 
-| Setting           | Value                             | Notes                                |
-| ----------------- | --------------------------------- | ------------------------------------ |
-| **Provider Name** | `ZenMux`                          | Custom name for easy identity        |
-| **Base URL**      | `https://zenmux.ai/api/vertex-ai` | ZenMux Vertex AI-compatible endpoint |
-| **API Key**       | `sk-ss-v1-xxx` or `sk-ai-v1-xxx`  | Your ZenMux API key                  |
+| Setting           | Value                            | Notes                             |
+| ----------------- | -------------------------------- | --------------------------------- |
+| **Provider Name** | `ZenMux`                         | Custom name for easy identity     |
+| **Base URL**      | `https://zenmux.ai/api/v1`       | ZenMux OpenAI-compatible endpoint |
+| **API Key**       | `sk-ss-v1-xxx` or `sk-ai-v1-xxx` | Your ZenMux API key               |
 
 ##### JSON Config Example (Copy & Paste)
 
@@ -327,7 +327,7 @@ The OpenAI protocol supports a much broader set of models. You can filter the [m
 3. **Confirm the Base URL is correct**:
    - Claude Code (Anthropic protocol): `https://zenmux.ai/api/anthropic`
    - Codex / OpenCode (OpenAI protocol): `https://zenmux.ai/api/v1`
-   - Gemini CLI (Vertex AI protocol): `https://zenmux.ai/api/vertexai`
+   - Gemini CLI (Vertex AI protocol): `https://zenmux.ai/api/vertex-ai`
      :::
 
 ::: details macOS Shows “Developer Cannot Be Verified”
