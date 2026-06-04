@@ -92,7 +92,7 @@ We also support connecting to our model service in Sider by configuring certain 
 | **DeepSeek** | `https://zenmux.ai/api/v1`  |
 | **Groq** | `https://zenmux.ai/api/v1` | 
 | **Google (Gemini)** | `https://zenmux.ai/api/v1` | 
-| **Anthropic (Claude)** | `https://zenmux.ai/api` | 
+| **Anthropic (Claude)** | `https://zenmux.ai/api/anthropic` |
 
 :::
 

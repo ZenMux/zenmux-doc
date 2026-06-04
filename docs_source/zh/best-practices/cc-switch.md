@@ -240,11 +240,11 @@ GEMINI_MODEL=google/gemini-3-flash-preview
 
 #### OpenCode 配置（OpenAI 协议）
 
-| 配置项            | 值                                | 说明                      |
-| ----------------- | --------------------------------- | ------------------------- |
-| **Provider Name** | `ZenMux`                          | 自定义名称，便于识别      |
-| **Base URL**      | `https://zenmux.ai/api/vertex-ai` | ZenMux Vertex AI 兼容端点 |
-| **API Key**       | `sk-ss-v1-xxx` 或 `sk-ai-v1-xxx`  | 您的 ZenMux API Key       |
+| 配置项            | 值                               | 说明                   |
+| ----------------- | -------------------------------- | ---------------------- |
+| **Provider Name** | `ZenMux`                         | 自定义名称，便于识别   |
+| **Base URL**      | `https://zenmux.ai/api/v1`       | ZenMux OpenAI 兼容端点 |
+| **API Key**       | `sk-ss-v1-xxx` 或 `sk-ai-v1-xxx` | 您的 ZenMux API Key    |
 
 ##### 配置JSON示例（可直接复制）
 
@@ -327,7 +327,7 @@ OpenAI 协议支持的模型数量更为丰富，可通过[模型列表](https:/
 3. **确认 Base URL 配置正确**：
    - Claude Code（Anthropic 协议）：`https://zenmux.ai/api/anthropic`
    - Codex / OpenCode（OpenAI 协议）：`https://zenmux.ai/api/v1`
-   - Gemini CLI（Vertex AI 协议）：`https://zenmux.ai/api/vertexai`
+   - Gemini CLI（Vertex AI 协议）：`https://zenmux.ai/api/vertex-ai`
      :::
 
 ::: details macOS 提示"无法验证开发者"

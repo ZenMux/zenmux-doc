@@ -80,7 +80,7 @@ messages 里的每个元素表示一条对话消息，每条消息由 role 和 c
 
 ### response_format `object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
-用于控制模型输出结构化内容，如果不传默认不使用结构化输出。关于结构化输出详细使用方法参见[结构化输出](../advanced/structured-output.md)。
+用于控制模型输出结构化内容，如果不传默认不使用结构化输出。关于结构化输出详细使用方法参见[结构化输出](../../guide/advanced/structured-output.md)。
 
 ### stop `string/array` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span> `默认 null`
 
@@ -88,17 +88,17 @@ messages 里的每个元素表示一条对话消息，每条消息由 role 和 c
 
 ### tools `array` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
-大模型可以选择的工具列表，如果不传则不使用工具调用，当前仅支持 function 类型的工具。关于工具调用详细使用方法参见 [工具调用](../advanced/tool-calls.md)
+大模型可以选择的工具列表，如果不传则不使用工具调用，当前仅支持 function 类型的工具。关于工具调用详细使用方法参见 [工具调用](../../guide/advanced/tool-calls.md)
 
 ### tool_choice `string/object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
-用于控制模型如何选择使用工具，与 tools 参数搭配使用。'none' 表示告诉模型不要使用任何工具，'auto' 表示模型可以自由决定是否使用工具及使用哪几个工具，'required' 表示模型必须选择使用工具。同时也可以传 object 告诉模型必须选择使用指定的模型。
+用于控制模型如何选择使用工具，与 tools 参数搭配使用。'none' 表示告诉模型不要使用任何工具，'auto' 表示模型可以自由决定是否使用工具及使用哪几个工具，'required' 表示模型必须选择使用工具。同时也可以传 object 告诉模型必须选择使用指定的工具。
 
 如果 tools 为空，默认为 none，如果 tools 不为空，默认为 auto。
 
 ### parallel_tool_calls `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span> `默认 true`
 
-控制模型是否可以一次选择多个模型。
+控制模型是否可以一次选择多个工具。
 
 ### stream_options `object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
@@ -106,7 +106,7 @@ messages 里的每个元素表示一条对话消息，每条消息由 role 和 c
 
 ### reasoning `object` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
-用于控制 reasoning 输出，支持同时指定 effort 与 max_tokens，根据模型不同，生效的字段也不同。详情参见 [推理模型](../guide/advanced/reasoning.md)。
+用于控制 reasoning 输出，支持同时指定 effort 与 max_tokens，根据模型不同，生效的字段也不同。详情参见 [推理模型](../../guide/advanced/reasoning.md)。
 
 ## Returns
 

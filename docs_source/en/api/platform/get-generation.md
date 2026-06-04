@@ -88,7 +88,7 @@ The generation id returned by ZenMux API endpoints. You can obtain it from:
 
 - [Create a Chat Completion](../openai/create-chat-completion.md) - OpenAI Chat Completions protocol
 - [Create a Model Response](../openai/openai-responses.md) - OpenAI Responses protocol
-- [Create Messages](../anthropic/create-messages-new.md) - Anthropic protocol
+- [Create Messages](../anthropic/create-messages.md) - Anthropic protocol
 - [Generate Content](../vertexai/generate-content.md) - Vertex AI protocol
 
 ## Returns
