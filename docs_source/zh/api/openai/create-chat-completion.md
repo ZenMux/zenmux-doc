@@ -70,7 +70,7 @@ messages 里的每个元素表示一条对话消息，每条消息由 role 和 c
 - name `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
   参与者<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>名称。为模型提供区分相同角色参与者的信息。
-  :::
+:::
 
 ::: details System message `object`
 开发者提供的指令，无论用户发送什么消息，模型都应遵循。在 o1 及更新模型中，应使用 developer 消息来实现此目的。
@@ -100,7 +100,7 @@ messages 里的每个元素表示一条对话消息，每条消息由 role 和 c
 - name `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
   参与者<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>名称。为模型提供区分相同角色参与者的信息。
-  :::
+:::
 
 ::: details User message `object`  
 终端用户发送给模型的消息，大多数对话场景中你只需要使用此角色。
@@ -149,7 +149,7 @@ messages 里的每个元素表示一条对话消息，每条消息由 role 和 c
 - name `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
   参与者<span style="color: #666; font-weight: 400; font-size: 14px">可选</span>名称。为模型提供区分相同角色参与者的信息。  
-  :::
+:::
 
 ::: details Assistant message `object`  
 模型在对话中发送给用户的回复消息。你可以在新的请求中把这些历史助手消息一并传回，以便模型继续基于完整上下文进行推理。
@@ -307,7 +307,7 @@ messages 里的每个元素表示一条对话消息，每条消息由 role 和 c
 - name `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
   工具名称（通常与声明在 `tools` 中的 function 名称一致）。  
-  :::
+:::
 
 ::: info Function message `object` <font color="FA6062">官方已弃用不支持</font>
 :::
@@ -1282,7 +1282,7 @@ console.log(completion.choices[0].message.content);
 - **背景**：Claude Opus 4.5 原生使用 Anthropic Messages 协议，Zenmux 将 Chat Completion 协议转换为 Messages 协议。
 - **问题**：开启 reasoning 时，工具调用场景的第二轮对话需要传入 reasoning 的 `signature`，用于验证推理内容的完整性和连续性。
 - **解决方案**：将上一轮 assistant 消息中的 `reasoning`、`reasoning_details` 字段完整传回即可。
-  :::
+:::
 
 ### 请求示例
 

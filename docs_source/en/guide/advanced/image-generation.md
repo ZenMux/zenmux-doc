@@ -636,7 +636,7 @@ console.log(editResponse);
 
 - **Google Gemini models** use the `generate_content` API with `response_modalities: ["TEXT", "IMAGE"]`; responses contain both text and images.
 - **Non-Google models** use the `generate_images` / `edit_image` APIs, which return image objects directly and support image editing.
-  :::
+:::
 
 ## Configuration
 

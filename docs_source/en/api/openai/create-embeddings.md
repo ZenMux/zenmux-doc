@@ -51,7 +51,7 @@ Supported input types:
 - Input cannot be an empty string
 - Array length cannot exceed 2048
 - Total token count across all inputs in a single request cannot exceed 300,000
-  :::
+:::
 
 ### model `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 

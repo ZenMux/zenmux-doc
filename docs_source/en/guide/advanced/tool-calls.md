@@ -75,7 +75,7 @@ Paris is 25°C today.
 
 - A function (`function`) is a specific type of tool defined by a JSON Schema. A function definition lets the model pass data to your application, where your code can access data or execute the action the model suggests.
 - In addition to function tools, there are custom tools that can handle free-form text input and output.
-  :::
+:::
 
 #### Tool calling flow
 

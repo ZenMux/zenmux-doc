@@ -17,7 +17,7 @@ Anthropic’s Claude model family supports expanding the context window from the
 - **Massive context**: Process roughly 750,000 English words or thousands of pages in a single request
 - **Deep analysis**: Ideal for large codebase reviews, long-form literature analysis, full conversation history, and more
 - **Seamless integration**: Enable it via ZenMux’s unified interface by adding a single request header
-  :::
+:::
 
 ## Supported Models
 
@@ -205,7 +205,7 @@ When the number of tokens in a request exceeds 200K, long-context pricing will a
 - Only the portion that **actually exceeds 200K** is billed at the higher multiplier; the portion within 200K is still billed at the standard rate
 - The output-token multiplier (1.5x) is lower than the input-token multiplier (2x), keeping the overall cost increase manageable
 - We recommend using this together with [Prompt Caching](/guide/advanced/prompt-cache) to significantly reduce costs in long-context scenarios
-  :::
+:::
 
 ## Best Practices
 
@@ -218,7 +218,7 @@ When the number of tokens in a request exceeds 200K, long-context pricing will a
 - **Multi-document comparison**: Analyze multiple related documents simultaneously for cross-referencing and comparison
 - **Full conversation history**: Preserve complete context in very long conversations to avoid losing information
 - **Data analysis**: Process large volumes of structured or unstructured data
-  :::
+:::
 
 ### Optimization Tips
 
@@ -228,7 +228,7 @@ When the number of tokens in a request exceeds 200K, long-context pricing will a
 2. **Combine with prompt caching**: For long documents reused repeatedly, cache static content via `cache_control` to save up to 90% of input costs
 3. **Control context size wisely**: You don’t need to use the full 1M window every time—load only what’s relevant to the current task
 4. **Use structured markup**: Organize long documents with clear XML tags or Markdown headings to help the model locate key information
-   :::
+:::
 
 ## FAQ
 

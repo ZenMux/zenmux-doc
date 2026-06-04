@@ -22,7 +22,7 @@ There you can find:
 - **Core team members**: Contact the founding team directly
 - **Social media accounts**: Follow us on X (Twitter), Discord, YouTube, and more
 - **Latest updates**: Get product updates, technical news, and community event information
-  :::
+:::
 
 ## Quick Contact Options
 
@@ -44,7 +44,7 @@ When emailing us, please provide as much of the following information as possibl
 - **Error details**: Relevant error codes, logs, or screenshots
 - **Time of occurrence**: When the issue first appeared
 - **Technical environment**: Programming language, SDK version, operating system, etc.
-  :::
+:::
 
 ### Business Partnerships
 

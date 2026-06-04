@@ -244,7 +244,7 @@ for video in operation.response.generated_videos:
 - The `image` parameter is passed via `types.Image`, which supports `image_bytes` (binary data) and `mime_type` (e.g., `image/png`, `image/jpeg`).
 - The `prompt` parameter is optional and is used to describe how the content in the image should move or change.
 - The image will be used as the starting frame of the video, and the model will generate subsequent animation based on the image content and the prompt.
-  :::
+:::
 
 ## Configuration
 

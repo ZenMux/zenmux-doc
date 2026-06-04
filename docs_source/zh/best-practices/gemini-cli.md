@@ -138,7 +138,7 @@ $env:GOOGLE_GEMINI_BASE_URL = "https://zenmux.ai/api/vertex-ai"  # [!code highli
 - `GEMINI_MODEL`：指定使用的模型，可以是 ZenMux 支持的 Google 模型
 - `GOOGLE_GEMINI_BASE_URL`：ZenMux Vertex AI 兼容端点
 - `selectedType`：认证方式，设置为 `gemini-api-key` 跳过 Google 登录
-  :::
+:::
 
 #### Step 4: 验证连接
 
@@ -202,7 +202,7 @@ Gemini CLI 按以下层级查找并合并 `GEMINI.md` 文件：
 - 说明构建、测试和部署流程
 - 列出常用的项目命令
 - 支持通过 `@path/to/file.md` 语法导入其他文件
-  :::
+:::
 
 ### 常用斜杠命令
 
@@ -304,7 +304,7 @@ export GEMINI_MODEL="google/gemini-2.5-pro"  # [!code highlight]
 - 通过 [ZenMux 模型列表](https://zenmux.ai/models?sort=newest&supported_protocol=google) 查看 Google AI 协议可用模型
 - 使用模型的 slug 名称（如 `google/gemini-2.5-pro`）
 - 如需指定特定供应商，请参考 [Provider Routing 文档](/zh/guide/advanced/provider-routing)
-  :::
+:::
 
 ::: tip 切换模型
 即使模型名可以切换成功，也不代表工具调用会一并可用。当前限制主要来自 ZenMux 对 Gemini CLI Agent 协议的兼容性，而不只是模型本身。
@@ -353,7 +353,7 @@ export GEMINI_MODEL="google/gemini-2.5-pro"  # [!code highlight]
 
 - 每次更新或重装 Gemini CLI 后需要重新执行此修改
 - 后续 ZenMux 补齐 function calling 兼容性后将自动支持，届时无需此修改
-  :::
+:::
 
 ## 故障排除
 
@@ -366,7 +366,7 @@ export GEMINI_MODEL="google/gemini-2.5-pro"  # [!code highlight]
 
 - 检查 `~/.gemini/settings.json` 中的 `selectedType` 是否正确设置为 `"gemini-api-key"`
 - 使用 `cat ~/.gemini/settings.json` 验证配置内容
-  :::
+:::
 
 ::: details API Key 错误
 **问题**：提示 API Key 无效或未授权
@@ -376,7 +376,7 @@ export GEMINI_MODEL="google/gemini-2.5-pro"  # [!code highlight]
 - 检查 API Key 是否正确（订阅制以 `sk-ss-v1-` 开头，按量付费以 `sk-ai-v1-` 开头）
 - 确认 API Key 已激活且有足够余额
 - 在 [ZenMux 控制台](https://zenmux.ai/settings/keys) 中验证 Key 状态
-  :::
+:::
 
 ::: details 连接失败问题
 **问题**：Gemini CLI 无法连接到 ZenMux 服务
@@ -387,7 +387,7 @@ export GEMINI_MODEL="google/gemini-2.5-pro"  # [!code highlight]
 - 验证 Base URL 是否配置正确为 `https://zenmux.ai/api/vertex-ai`
 - 确认防火墙设置是否阻止了外部连接
 - 尝试使用 `curl https://zenmux.ai/api/vertex-ai/models` 测试连接
-  :::
+:::
 
 ::: details .env 配置文件不生效
 **问题**：在 `~/.gemini/.env` 中设置了变量但未生效
@@ -399,7 +399,7 @@ export GEMINI_MODEL="google/gemini-2.5-pro"  # [!code highlight]
 - 检查 Shell 中是否已 `export` 过同名变量：`env | grep -E "GEMINI_|GOOGLE_"`
 - 检查父目录中是否存在更早命中的 `.env` 文件
 - 重新打开终端窗口，或执行 `source ~/.zshrc` 重新加载配置
-  :::
+:::
 
 ::: details 改文件时报 function_response 相关错误
 **问题**：尝试让 Gemini CLI 自动编辑文件时出现类似错误：
@@ -414,7 +414,7 @@ Invalid JSON payload received. Unknown name "id" at 'contents[3].parts[0].functi
 - 当前请将使用场景限制为问答和只读分析
 - 不要依赖 Gemini CLI 完成自动编辑、命令执行等 Agent 操作
 - 后续 ZenMux 补齐 function calling 兼容性后将自动支持
-  :::
+:::
 
 ::: details 模型不可用
 **问题**：使用某个模型时提示模型不可用或不支持
@@ -425,7 +425,7 @@ Invalid JSON payload received. Unknown name "id" at 'contents[3].parts[0].functi
 - 检查 `GEMINI_MODEL` 环境变量中的模型名拼写是否正确
 - 尝试使用 `google/gemini-2.5-pro` 等默认模型进行测试
 - 确认您的账户是否有权限访问该模型
-  :::
+:::
 
 ::: details 请求偶发超时
 **问题**：只读文件分析请求偶尔超时
@@ -436,7 +436,7 @@ Invalid JSON payload received. Unknown name "id" at 'contents[3].parts[0].functi
 - 缩小 prompt 和引用文件的范围
 - 如频繁超时，尝试换用较小的模型（如 `google/gemini-2.5-flash`）
 - 检查网络连接是否稳定
-  :::
+:::
 
 ::: details 沙盒模式问题
 **问题**：启用沙盒模式后命令执行失败
@@ -447,7 +447,7 @@ Invalid JSON payload received. Unknown name "id" at 'contents[3].parts[0].functi
 - 检查 Docker 服务是否正在运行：`docker ps`
 - 尝试禁用沙盒模式测试：在 `settings.json` 中设置 `"sandbox": false`
 - 如果使用自定义沙盒，检查 `.gemini/sandbox.Dockerfile` 配置
-  :::
+:::
 
 ## 进阶配置
 

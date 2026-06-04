@@ -37,7 +37,7 @@ To retrieve billing information, please use a Pay As You Go API key. See:
 
 - [Pay As You Go Guide](../../guide/pay-as-you-go.md)
 - [Subscription Guide](../../guide/subscription.md)
-  :::
+:::
 
 ## Metering and Billing Information
 
@@ -78,7 +78,7 @@ Authorization: Bearer <ZENMUX_API_KEY>
 
 - Pay As You Go API key: create one in the [ZenMux Console](https://zenmux.ai/platform/pay-as-you-go)
 - Subscription API key: create one in the [Subscription Management](https://zenmux.ai/platform/subscription)
-  :::
+:::
 
 ### generate_id `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 

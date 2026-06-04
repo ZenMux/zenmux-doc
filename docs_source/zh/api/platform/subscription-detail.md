@@ -105,7 +105,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 - `quota_5_hour` 和 `quota_7_day` 均为**滚动窗口**，每次请求后实时更新
 - `quota_monthly` 为固定的订阅周期上限，不含实时用量数据
 - 三个维度同时生效，任一维度超限均会限制请求
-  :::
+:::
 
 ::: api-request GET /api/v1/management/subscription/detail
 

@@ -75,7 +75,7 @@ Pay-As-You-Go refunds are processed on a **per top-up order** basis, with each o
 
 - Credits obtained through top-up bonuses (Discount), platform gifts (Gift), or referral rewards (Referral) are **non-refundable** and will be forfeited upon refund approval.
 - If the refunded order is linked to a referral reward, the referrer will **not receive the $5 reward** for that order.
-  :::
+:::
 
 ::: warning In-Flight Requests
 API requests in transit between payment and refund initiation may still be billed. The final refund amount may differ from the amount shown in the refund preview — the actual settled amount prevails.

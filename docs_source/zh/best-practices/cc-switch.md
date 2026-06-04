@@ -280,7 +280,7 @@ GEMINI_MODEL=google/gemini-3-flash-preview
 - 格式：`sk-ai-v1-xxx`
 - 获取位置：[按量付费页面](https://zenmux.ai/platform/pay-as-you-go)
 - 详细指南：[按量付费文档](/zh/guide/pay-as-you-go)
-  :::
+:::
 
 ### 步骤 3：切换到 ZenMux 供应商
 
@@ -328,7 +328,7 @@ OpenAI 协议支持的模型数量更为丰富，可通过[模型列表](https:/
    - Claude Code（Anthropic 协议）：`https://zenmux.ai/api/anthropic`
    - Codex / OpenCode（OpenAI 协议）：`https://zenmux.ai/api/v1`
    - Gemini CLI（Vertex AI 协议）：`https://zenmux.ai/api/vertex-ai`
-     :::
+:::
 
 ::: details macOS 提示"无法验证开发者"
 **问题**：首次打开 CC-Switch 时提示"无法验证开发者"
@@ -354,7 +354,7 @@ OpenAI 协议支持的模型数量更为丰富，可通过[模型列表](https:/
 2. 检查 CC-Switch 中对应编码工具的供应商是否已正确切换（当前生效的供应商会高亮显示）
 3. 尝试在编码工具中发起新的请求，确认是否走 ZenMux 通道
 4. 如果仍不生效，尝试重启编码工具后再测试
-   :::
+:::
 
 ::: details 模型不支持 Anthropic 协议
 **问题**：在 Claude Code 中使用某个模型时提示不支持 Anthropic 协议
@@ -364,7 +364,7 @@ OpenAI 协议支持的模型数量更为丰富，可通过[模型列表](https:/
 - 请通过 [ZenMux 模型列表](https://zenmux.ai/models?sort=newest&supported_protocol=messages) 筛选 "Anthropic API Compatible" 查看当前支持的模型
 - 确保模型映射中填写的模型 ID 正确（如 `anthropic/claude-sonnet-4.5`，而非 `claude-sonnet-4.5`）
 - 选择上述支持列表中的模型进行使用
-  :::
+:::
 
 <ContactCards>
 <ContactCard icon="mail" title="邮箱">

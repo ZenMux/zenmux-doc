@@ -168,3 +168,5 @@ curl "https://zenmux.ai/api/v1/chat/completions" \
     "stream": true
   }'
 ```
+
+:::

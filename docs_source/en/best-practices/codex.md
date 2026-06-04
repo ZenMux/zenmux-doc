@@ -85,7 +85,7 @@ wire_api = "responses"  # [!code highlight]
 - `base_url`: The base URL of the ZenMux API
 - `env_key`: The name of the environment variable that stores the API Key
 - `wire_api`: Use the Responses protocol (recommended)
-  :::
+:::
 
 ### Start Using It Immediately
 
@@ -166,7 +166,7 @@ ZenMux's model alias feature makes `gpt-5.2-codex` fully equivalent to `openai/g
 - Use `echo $ZENMUX_API_KEY` to verify the environment variable value
 - Confirm the API Key is active and that you have sufficient balance
 - Verify the API Key format starts with `sk-ai-v1-`
-  :::
+:::
 
 ::: details Connection Failure
 **Issue**: Codex CLI cannot connect to the ZenMux service.
@@ -177,7 +177,7 @@ ZenMux's model alias feature makes `gpt-5.2-codex` fully equivalent to `openai/g
 - Verify that `base_url` in `config.toml` is correctly set to `https://zenmux.ai/api/v1`
 - Confirm your firewall settings are not blocking outbound connections
 - Try `curl https://zenmux.ai/api/v1/models` to test connectivity
-  :::
+:::
 
 ::: details Environment Variable Not Taking Effect
 **Issue**: Even after setting the API Key, it still says it is not configured.
@@ -187,7 +187,7 @@ ZenMux's model alias feature makes `gpt-5.2-codex` fully equivalent to `openai/g
 - Reopen the terminal window, or run `source ~/.zshrc` or `source ~/.bashrc` to reload the configuration
 - Confirm the environment variable is set correctly: `echo $ZENMUX_API_KEY`
 - Make sure you added the environment variable to the correct shell configuration file (`.zshrc` for zsh users, `.bashrc` for bash users)
-  :::
+:::
 
 ::: details Configuration File Path Issue
 **Issue**: Changes to the configuration file do not take effect.
@@ -198,7 +198,7 @@ ZenMux's model alias feature makes `gpt-5.2-codex` fully equivalent to `openai/g
 - If the directory does not exist, create it first: `mkdir -p ~/.codex`
 - Check that the configuration file syntax is correct (TOML format)
 - Use `cat ~/.codex/config.toml` to verify the file contents
-  :::
+:::
 
 ::: details Model Unavailable
 **Issue**: A model is reported as unavailable or unsupported.
@@ -209,7 +209,7 @@ ZenMux's model alias feature makes `gpt-5.2-codex` fully equivalent to `openai/g
 - Check that the model slug is spelled correctly
 - Try another recommended model to test
 - Confirm your account has permission to access the model
-  :::
+:::
 
 ## Advanced Configuration
 
