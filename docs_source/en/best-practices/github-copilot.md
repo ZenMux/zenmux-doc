@@ -19,7 +19,7 @@ Visual Studio Code Copilot is an AI programming assistant from Microsoft integra
 - Ensure your VS Code version is up to date.
 - Have your ZenMux API key ready.
 - It is recommended to read the full guide first to understand the detailed configuration steps.
-  :::
+:::
 
 ## Quick Start
 
@@ -53,7 +53,7 @@ Ensure your VS Code version is 1.104.0 or higher. You can check your current ver
 - If the command line shows a version lower than 1.104.0
 - Or the GUI shows a version that does not meet the requirements
 - Please go to the [VS Code Official Website](https://code.visualstudio.com/) to download the latest version
-  :::
+:::
 
 If you cannot update directly, consider:
 
@@ -141,7 +141,7 @@ Once configured, you can:
 
 - Shortcuts can greatly improve your coding efficiency.
 - Shortcuts differ slightly between operating systems; please note the distinction.
-  :::
+:::
 
 | Action              | macOS         | Windows/Linux  | Usage Scenario                                     |
 | ------------------- | ------------- | -------------- | -------------------------------------------------- |
@@ -157,7 +157,7 @@ Once configured, you can:
 
 - Some shortcuts may conflict with system or other software shortcuts.
 - If conflicts occur, you can customize shortcuts in VS Code settings.
-  :::
+:::
 
 ## Resource Links
 

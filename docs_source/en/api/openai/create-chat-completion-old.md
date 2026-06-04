@@ -199,7 +199,6 @@ Which choice this is, related to n. Since we don't support multiple simultaneous
 #### logprobs `object`
 
 Log probability information for the choice.
-:::
 
 #### usage `object`
 

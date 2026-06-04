@@ -402,7 +402,7 @@ If your project is about to go live or is already commercialized, switch to the 
 - More stable service quality
 - More flexible scalability
 - Professional business support
-  :::
+:::
 
 ## How to Subscribe
 
@@ -495,7 +495,7 @@ Once enabled, the page will display details of the Pay As You Go API Key you sel
 - Make sure your Pay As You Go account has sufficient balance to avoid interruptions after switching
 - You can view Extra Usage consumption and spending at any time on the Subscription Management page
 - To change the backup key, click **"Reselect"** and choose again
-  :::
+:::
 
 ::: warning Billing reminder
 After enabling Extra Usage, when your subscription quota runs out, charges will be automatically deducted from your Pay As You Go balance. Monitor your balance to avoid unexpected costs.

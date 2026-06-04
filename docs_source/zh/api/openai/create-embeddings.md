@@ -51,7 +51,7 @@ Bearer Token 鉴权
 - 输入不能为空字符串
 - 数组长度不能超过 2048
 - 单次请求中所有输入的 token 总数不能超过 300,000
-  :::
+:::
 
 ### model `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 

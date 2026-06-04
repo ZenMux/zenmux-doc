@@ -74,7 +74,7 @@ ZenMux 为 Dify 提供了丰富的模型选择，通过 [ZenMux 模型列表](ht
 - 检查您输入的 ZenMux API Key 是否正确
 - 确认 API Key 是否已激活且有足够余额
 - 验证 API Key 格式是否以 `sk-ai-v1-` 开头
-  :::
+:::
 
 ## 联系我们
 

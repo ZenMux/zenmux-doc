@@ -69,6 +69,8 @@ const response = await client.models.generateContent({
 console.log(response);
 ```
 
+:::
+
 ## Supported Models
 
 ::: info Supported Models for the Google Vertex AI Protocol

@@ -122,7 +122,7 @@ response.data.forEach((item, i) => {
 
 - Array length cannot exceed 2048
 - Total token count across all inputs in a single request cannot exceed 300,000
-  :::
+:::
 
 ## Custom Dimensions
 
@@ -300,7 +300,7 @@ print(f"Detected {len(anomalies)} anomalous data points")
 - Use batch requests instead of individual calls to reduce network overhead
 - Cache embedding results for static documents to avoid redundant computation
 - Build indexes in your vector database for faster retrieval
-  :::
+:::
 
 ## API Reference
 

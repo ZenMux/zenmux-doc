@@ -71,8 +71,6 @@ Make sure to replace `sk-ss-v1-xxx` or `sk-ai-v1-xxx` with your real ZenMux API 
 
 After configuration, you can select ZenMux-provided models from the model list in RikkaHub and start chatting.
 
-:::
-
 ## FAQ
 
 ### What if the connection fails?

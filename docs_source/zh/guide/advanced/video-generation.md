@@ -244,7 +244,7 @@ for video in operation.response.generated_videos:
 - `image` 参数通过 `types.Image` 传入，支持 `image_bytes`（二进制数据）和 `mime_type`（如 `image/png`、`image/jpeg`）
 - `prompt` 参数为可选，用于描述图片中的内容应如何运动或变化
 - 图片将作为视频的起始帧，模型会基于图片内容和提示词生成后续动画
-  :::
+:::
 
 ## 配置说明
 

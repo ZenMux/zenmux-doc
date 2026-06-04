@@ -103,7 +103,7 @@ Pay As You Go 的 API Key 与订阅制完全独立，专为生产环境设计。
 - 为不同的项目或环境创建独立的 API Key，方便成本归因和管理
 - 定期检查 **Last Used** 和 **Used** 列，识别不活跃或高消耗的 Key
 - 如果发现 API Key 泄露，请立即禁用或删除该 Key
-  :::
+:::
 
 ### Limits 限制配置
 

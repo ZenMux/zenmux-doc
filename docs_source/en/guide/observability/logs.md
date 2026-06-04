@@ -116,7 +116,7 @@ Choose the display mode that best fits your needs:
 
 - Use **Pretty mode** when reviewing the conversation and analyzing interaction quality
 - Use **JSON mode** when debugging your API integration or troubleshooting technical issues, and switch data sources as needed to inspect request/response details at different stages
-  :::
+:::
 
 #### Right: Metrics and metadata
 

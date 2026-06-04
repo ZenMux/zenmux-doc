@@ -37,7 +37,7 @@ Get generation 接口用于查询生成信息，如用量和费用等。
 
 - [Pay As You Go 使用指南](../../guide/pay-as-you-go.md)
 - [订阅制使用指南](../../guide/subscription.md)
-  :::
+:::
 
 ## 计量与计费信息说明
 
@@ -78,7 +78,7 @@ Authorization: Bearer <ZENMUX_API_KEY>
 
 - Pay As You Go API Key：登录 [ZenMux 控制台](https://zenmux.ai/platform/pay-as-you-go) 创建
 - 订阅制 API Key：登录 [订阅管理页面](https://zenmux.ai/platform/subscription) 创建
-  :::
+:::
 
 ### generate_id `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 

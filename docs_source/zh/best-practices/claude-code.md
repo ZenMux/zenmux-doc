@@ -265,7 +265,7 @@ Write-Host "ANTHROPIC_AUTH_TOKEN: $env:ANTHROPIC_AUTH_TOKEN"
 - 格式：`sk-ai-v1-xxx`
 - 获取位置：[按量付费页面](https://zenmux.ai/platform/pay-as-you-go)
 - 详细指南：[按量付费文档](/zh/guide/pay-as-you-go)
-  :::
+:::
 
 ::: info 环境变量说明
 
@@ -557,7 +557,7 @@ export ANTHROPIC_DEFAULT_OPUS_MODEL="google/gemini-3-pro-preview"
 5. **获取新的 API Key**：
    - [订阅制 API Key 获取指南](/zh/guide/subscription#第-3-步管理订阅和获取-api-key)
    - [按量付费 API Key 获取指南](/zh/guide/pay-as-you-go#创建和管理-api-key)
-     :::
+:::
 
 ::: details 从其他平台切换到 ZenMux 时认证失败
 **问题**：之前使用过 Claude Code 官方账号或其他平台（如 MiniMax、GLM 等），切换到 ZenMux 后出现认证失败或配置冲突
@@ -668,7 +668,7 @@ export ANTHROPIC_DEFAULT_OPUS_MODEL="google/gemini-3-pro-preview"
 - 请通过 [ZenMux 模型列表](https://zenmux.ai/models) 筛选 "Anthropic API Compatible" 查看当前支持的模型
 - 或访问具体模型的详情页确认是否支持 Anthropic 协议
 - 选择上述支持列表中的模型进行使用
-  :::
+:::
 
 ::: details 连接失败问题
 **问题**：Claude Code 无法连接到 ZenMux 服务
@@ -678,7 +678,7 @@ export ANTHROPIC_DEFAULT_OPUS_MODEL="google/gemini-3-pro-preview"
 - 检查网络连接是否正常
 - 验证 `ANTHROPIC_BASE_URL` 是否配置正确为 `https://zenmux.ai/api/anthropic`
 - 确认防火墙设置是否阻止了外部连接
-  :::
+:::
 
 ::: details VSCode Claude Code 扩展配置问题
 **问题**：在 VSCode 的 Claude Code 扩展中遇到认证失败、模型无法使用等问题
@@ -739,7 +739,7 @@ export ANTHROPIC_DEFAULT_OPUS_MODEL="google/gemini-3-pro-preview"
 - `Restricted`（默认）：不允许运行任何脚本
 - `RemoteSigned`：本地脚本可运行，远程下载的脚本需要数字签名
 - `Unrestricted`：允许运行所有脚本（不推荐）
-  :::
+:::
 
 ::: details Windows 找不到 claude 命令
 **问题**：安装 Claude Code 后，PowerShell 提示找不到 `claude` 命令
@@ -887,7 +887,7 @@ export ANTHROPIC_DEFAULT_OPUS_MODEL="claude-opus-4-6"      # [!code highlight]
    ```
 
 3. 如果问题持续，建议避免在环境变量值中使用中文字符
-   :::
+:::
 
 ::: info 更多模型
 查看 [ZenMux 模型列表](https://zenmux.ai/models) 了解所有可用模型及其详细信息
