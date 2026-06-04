@@ -55,7 +55,18 @@ const languageTitles = new Set([
   "yml",
 ]);
 
-const methodOrder = ["javascript", "python", "cURL"];
+const methodOrder = ["javascript", "python", "curl"];
+
+const languageDisplayNames: Record<string, string> = {
+  bash: "Bash",
+  curl: "cURL",
+  javascript: "JavaScript",
+  js: "JavaScript",
+  json: "JSON",
+  python: "Python",
+  ts: "TypeScript",
+  typescript: "TypeScript",
+};
 
 function onLangWrapperClick(e: MouseEvent) {
   if (!(e.target as HTMLElement).closest(".el-select")) {
@@ -70,6 +81,15 @@ function isLanguageTitle(title: string, lang: string) {
     normalizedTitle === normalizedLang ||
     languageTitles.has(normalizedTitle)
   );
+}
+
+function getLanguageKey(lang: string) {
+  const normalized = lang.trim().toLowerCase();
+  return normalized === "curl" ? "curl" : normalized;
+}
+
+function getLanguageDisplayName(lang: string) {
+  return languageDisplayNames[getLanguageKey(lang)] || lang;
 }
 
 function createExample(title: string, description = ""): RequestExample {
@@ -118,9 +138,13 @@ function addGeneratedCode(example: RequestExample, lang: string, code?: string) 
 
 function sortLangOptions(example: RequestExample) {
   example.langOptions.sort((a, b) => {
-    const aIndex = methodOrder.indexOf(a);
-    const bIndex = methodOrder.indexOf(b);
-    if (aIndex === -1 && bIndex === -1) return a.localeCompare(b);
+    const aKey = getLanguageKey(a);
+    const bKey = getLanguageKey(b);
+    const aIndex = methodOrder.indexOf(aKey);
+    const bIndex = methodOrder.indexOf(bKey);
+    if (aIndex === -1 && bIndex === -1) {
+      return getLanguageDisplayName(a).localeCompare(getLanguageDisplayName(b));
+    }
     if (aIndex === -1) return 1;
     if (bIndex === -1) return -1;
     return aIndex - bIndex;
@@ -1185,7 +1209,7 @@ async function copyPath() {
               <el-option
                 v-for="l in currentLangOptions"
                 :key="l"
-                :label="l"
+                :label="getLanguageDisplayName(l)"
                 :value="l"
               />
             </el-select>
@@ -1207,7 +1231,7 @@ async function copyPath() {
             </svg>
           </div>
           <div v-else-if="currentLang" class="lang-static-label">
-            {{ currentLang }}
+            {{ getLanguageDisplayName(currentLang) }}
           </div>
           <CheckedIcon
             v-if="copiedReq"
