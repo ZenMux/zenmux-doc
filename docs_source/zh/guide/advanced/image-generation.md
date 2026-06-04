@@ -637,7 +637,7 @@ console.log(editResponse);
 
 - **Google Gemini 模型**使用 `generate_content` 接口,需要指定 `response_modalities: ["TEXT", "IMAGE"]`,响应中同时包含文本和图片。
 - **非 Google 模型**使用 `generate_images` / `edit_image` 接口,直接返回图片对象,支持图片编辑功能。
-  :::
+:::
 
 ## 配置说明
 

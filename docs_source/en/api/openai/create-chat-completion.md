@@ -70,7 +70,7 @@ Instructions provided by the developer. The model should follow these instructio
 - name `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   An optional participant name. Helps the model distinguish between participants with the same role.
-  :::
+:::
 
 ::: details System message `object`
 Instructions provided by the developer. The model should follow these instructions regardless of what the user says. In o1 and newer models, you should use `developer` messages for this purpose.
@@ -100,7 +100,7 @@ Instructions provided by the developer. The model should follow these instructio
 - name `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   An optional participant name. Helps the model distinguish between participants with the same role.
-  :::
+:::
 
 ::: details User message `object`  
 A message sent to the model by the end user. In most chat scenarios, this is the only role you need.
@@ -160,7 +160,7 @@ A message sent to the model by the end user. In most chat scenarios, this is the
 - name `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   An optional participant name. Helps the model distinguish between participants with the same role.  
-  :::
+:::
 
 ::: details Assistant message `object`  
 A reply message sent to the user by the model during the conversation. You can include these historical assistant messages in new requests so the model can continue reasoning with the full context.
@@ -324,7 +324,7 @@ A message used to return the execution result of an external tool (function) cal
 - name `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
   The tool name (usually matches the function name declared in `tools`).  
-  :::
+:::
 
 ::: info Function message `object` <font color="FA6062">Deprecated by the official spec and not supported</font>
 :::
@@ -1306,7 +1306,7 @@ When using Anthropic models such as Claude Opus 4.5 with `reasoning` enabled, in
 - **Background**: Claude Opus 4.5 natively uses the Anthropic Messages protocol, and Zenmux converts the Chat Completion protocol to the Messages protocol.
 - **Issue**: When reasoning is enabled, the second turn in a tool-calling conversation must include the reasoning `signature` to verify the integrity and continuity of the reasoning content.
 - **Solution**: Pass back the previous assistant message’s `reasoning` and `reasoning_details` fields in full.
-  :::
+:::
 
 ### Request example
 

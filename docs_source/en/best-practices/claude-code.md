@@ -264,7 +264,7 @@ Be sure to replace `sk-ss-v1-xxx` or `sk-ai-v1-xxx` in the configuration with yo
 - Format: `sk-ai-v1-xxx`
 - Where to get it: [Pay-as-you-go page](https://zenmux.ai/platform/pay-as-you-go)
 - Detailed guide: [Pay-as-you-go docs](/guide/pay-as-you-go)
-  :::
+:::
 
 ::: info Environment variable reference
 
@@ -556,7 +556,7 @@ You can use the `/model` command to confirm which model is currently in use:
 5. **Get a new API Key**:
    - [Subscription API Key guide](/guide/subscription#step-3-manage-your-subscription-and-get-an-api-key)
    - [Pay-as-you-go API Key guide](/guide/pay-as-you-go#creating-and-managing-api-keys)
-     :::
+:::
 
 ::: details Authentication fails when switching to ZenMux from another platform
 **Problem**: You previously used an official Claude Code account or another platform (such as MiniMax or GLM), and after switching to ZenMux you hit authentication failures or configuration conflicts.
@@ -667,7 +667,7 @@ This usually happens because the old config file cached previous authentication 
 - In the [ZenMux model list](https://zenmux.ai/models), filter for "Anthropic API Compatible" to see the currently supported models.
 - Or open a specific model's detail page to confirm whether it supports the Anthropic protocol.
 - Choose a model from the supported list above.
-  :::
+:::
 
 ::: details Connection failures
 **Problem**: Claude Code can't connect to the ZenMux service.
@@ -677,7 +677,7 @@ This usually happens because the old config file cached previous authentication 
 - Check that your network connection is working.
 - Verify that `ANTHROPIC_BASE_URL` is correctly set to `https://zenmux.ai/api/anthropic`.
 - Confirm that your firewall isn't blocking outbound connections.
-  :::
+:::
 
 ::: details VSCode Claude Code extension configuration issues
 **Problem**: You encounter authentication failures, models that won't work, or similar issues in the VSCode Claude Code extension.
@@ -738,7 +738,7 @@ This is a Windows PowerShell security mechanism. You need to change the executio
 - `Restricted` (default): no scripts are allowed to run
 - `RemoteSigned`: local scripts can run; remotely downloaded scripts require a digital signature
 - `Unrestricted`: all scripts are allowed to run (not recommended)
-  :::
+:::
 
 ::: details Windows can't find the claude command
 **Problem**: After installing Claude Code, PowerShell reports that the `claude` command can't be found.
@@ -886,7 +886,7 @@ After making changes, reload the config (`source ~/.zshrc` or `source ~/.bashrc`
    ```
 
 3. If the problem persists, avoid using Chinese characters in environment variable values.
-   :::
+:::
 
 ::: info More models
 See the [ZenMux model list](https://zenmux.ai/models) for all available models and their details.

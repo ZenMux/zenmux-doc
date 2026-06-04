@@ -105,7 +105,7 @@ Monthly subscription cycle quota (upper limits only; no real-time usage data):
 - `quota_5_hour` and `quota_7_day` are **rolling windows** that update in real time after each request.
 - `quota_monthly` is a fixed cap for the current billing cycle and does not include real-time usage.
 - All three windows are enforced simultaneously — hitting any one of them will rate-limit further requests.
-  :::
+:::
 
 ::: api-request GET /api/v1/management/subscription/detail
 

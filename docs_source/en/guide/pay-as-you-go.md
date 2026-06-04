@@ -103,7 +103,7 @@ Pay As You Go API keys are completely separate from subscription keys and are de
 - Create separate API keys for different projects/environments to simplify cost attribution and management
 - Regularly review **Last Used** and **Used** to identify inactive or high-spend keys
 - If you suspect a key has been leaked, immediately disable or delete it
-  :::
+:::
 
 ### Limits configuration
 

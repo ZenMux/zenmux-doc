@@ -83,6 +83,8 @@ curl https://zenmux.ai/api/anthropic/v1/messages \
 }'
 ```
 
+:::
+
 ## Claude code 使用方式
 
 见[Claude Code Integration](/zh/best-practices/claude-code)

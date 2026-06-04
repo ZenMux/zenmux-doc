@@ -62,6 +62,8 @@ const response = await client.models.generateContent({
 console.log(response);
 ```
 
+:::
+
 ## 支持的模型
 
 ::: info Google Vertex AI 协议支持模型说明

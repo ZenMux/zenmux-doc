@@ -105,7 +105,7 @@ After configuration, you can use Copilot in the following way:
 - Verify the API Key format starts with `sk-ai-v1-`
 - Confirm the API Key is active and has sufficient balance
 - Check the API Key status in the [ZenMux Console](https://zenmux.ai/settings/keys)
-  :::
+:::
 
 ::: details Connection Failure
 **Issue**: Copilot cannot connect to the ZenMux service
@@ -116,7 +116,7 @@ After configuration, you can use Copilot in the following way:
 - Verify the Base URL is configured as `https://zenmux.ai/api/v1` (note it is `/v1` and not `/anthropic`)
 - Confirm your firewall or proxy settings are not blocking the connection
 - Try accessing <https://zenmux.ai> in a browser to confirm the service is reachable
-  :::
+:::
 
 ::: details Model Unavailable
 **Issue**: The model is reported as non-existent or does not support the OpenAI protocol
@@ -127,7 +127,7 @@ After configuration, you can use Copilot in the following way:
 - Common mistake: `anthropic/claude-hiku-4.5-sonnet` should be `anthropic/claude-haiku-4.5` (haiku, not hiku)
 - Visit the [ZenMux Model List](https://zenmux.ai/models) and filter by "OpenAI API Compatible" to view available models
 - Confirm the selected model supports the OpenAI Chat-Completion protocol
-  :::
+:::
 
 ::: details Test Succeeds but Fails During Use
 **Issue**: Connection test succeeds, but errors occur during actual use
@@ -138,7 +138,7 @@ After configuration, you can use Copilot in the following way:
 - Verify the model capability settings are correct (Chat, Streaming, etc.)
 - Open the Obsidian Developer Console (`Ctrl/Cmd + Shift + I`) for detailed error messages
 - Try switching to another model to test whether it is a model-specific issue
-  :::
+:::
 
 ::: details Slow Response or Timeout
 **Issue**: AI responses take too long or requests time out
@@ -149,7 +149,7 @@ After configuration, you can use Copilot in the following way:
 - Try faster models such as `anthropic/claude-haiku-4.5` or `deepseek/deepseek-chat`
 - Reduce the text length per conversation
 - Adjust timeout parameters in Copilot settings
-  :::
+:::
 
 ::: details Plugin Configuration Lost
 **Issue**: Configuration is lost after restarting Obsidian
@@ -160,7 +160,7 @@ After configuration, you can use Copilot in the following way:
 - Check permissions for the `.obsidian/plugins/obsidian-copilot/` directory in your Obsidian vault
 - Try reinstalling the Copilot plugin
 - Back up important configurations to avoid accidental loss
-  :::
+:::
 
 <ContactCards>
 <ContactCard icon="mail" title="Email">

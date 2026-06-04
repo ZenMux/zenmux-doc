@@ -73,9 +73,6 @@ ZenMux 完全支持 OpenAI Chat Completions 协议，可以无缝集成到 Rikka
 
 配置完成后，您可以在 RikkaHub 的模型列表中选择 ZenMux 提供的模型，开始对话。
 
-
-:::
-
 ## 常见问题
 
 ### 连接失败怎么办？

@@ -199,7 +199,6 @@ choice 属性定义
 #### logprobs `object`
 
 Log probability information for the choice.
-:::
 
 #### usage `object`
 

@@ -280,7 +280,7 @@ Make sure to replace `<ZENMUX_API_KEY>` in the configuration with your real ZenM
 - Format: `sk-ai-v1-xxx`
 - Get it here: [Pay-as-you-go page](https://zenmux.ai/platform/pay-as-you-go)
 - Detailed guide: [Pay-as-you-go docs](/guide/pay-as-you-go)
-  :::
+:::
 
 ### Step 3: Switch to the ZenMux Provider
 
@@ -328,7 +328,7 @@ The OpenAI protocol supports a much broader set of models. You can filter the [m
    - Claude Code (Anthropic protocol): `https://zenmux.ai/api/anthropic`
    - Codex / OpenCode (OpenAI protocol): `https://zenmux.ai/api/v1`
    - Gemini CLI (Vertex AI protocol): `https://zenmux.ai/api/vertex-ai`
-     :::
+:::
 
 ::: details macOS Shows “Developer Cannot Be Verified”
 **Issue**: On first launch, macOS shows “Developer cannot be verified”.
@@ -354,7 +354,7 @@ This prompt will not appear on subsequent launches.
 2. Check whether the provider for that coding tool has been switched correctly in CC-Switch (the active provider is highlighted)
 3. Trigger a new request in the coding tool and confirm it routes through ZenMux
 4. If it still doesn’t work, restart the coding tool and test again
-   :::
+:::
 
 ::: details Model Does Not Support the Anthropic Protocol
 **Issue**: In Claude Code, a model reports that it doesn’t support the Anthropic protocol.
@@ -364,7 +364,7 @@ This prompt will not appear on subsequent launches.
 - Use the [ZenMux model list](https://zenmux.ai/models?sort=newest&supported_protocol=messages) and filter by "Anthropic API Compatible" to see currently supported models
 - Ensure the model ID in model mapping is correct (e.g., `anthropic/claude-sonnet-4.5`, not `claude-sonnet-4.5`)
 - Use a model from the supported list above
-  :::
+:::
 
 <ContactCards>
 <ContactCard icon="mail" title="Email">

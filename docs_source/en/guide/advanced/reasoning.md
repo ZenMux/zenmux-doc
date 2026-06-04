@@ -246,7 +246,7 @@ else:
 - For simple factual questions, `low` or `medium` reasoning effort is usually sufficient
 - For tasks that require complex logical deduction (e.g., math problems, code generation), `high` reasoning effort is recommended
 - Use the `max_tokens` parameter to control cost while maintaining reasoning quality
-  :::
+:::
 
 ## OpenAI Responses API
 
@@ -410,7 +410,7 @@ Anthropic Claude models provide reasoning capabilities via **Extended Thinking**
 - When thinking is enabled, modifying `temperature` or `top_k` is not supported
 - Response pre-fill is not supported
 - Forced tool calling is not supported (`tool_choice: "any"` or a specific tool name)
-  :::
+:::
 
 ### API Call Examples
 
@@ -603,7 +603,7 @@ thinking_config=types.ThinkingConfig(
 
 - For Gemini 2.5 Flash/Flash-Lite, set `thinking_budget=0` to disable thinking
 - For Gemini 2.5 Pro and Gemini 3 Pro, thinking cannot be disabled
-  :::
+:::
 
 ### API Call Examples
 

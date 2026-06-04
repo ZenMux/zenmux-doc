@@ -138,7 +138,7 @@ Set the auth method to Gemini API Key to avoid being prompted to sign in with Go
 - `GEMINI_MODEL`: the model to use (any ZenMux-supported Google model)
 - `GOOGLE_GEMINI_BASE_URL`: ZenMux Vertex AI–compatible endpoint
 - `selectedType`: auth type—set to `gemini-api-key` to skip Google sign-in
-  :::
+:::
 
 #### Step 4: Verify connectivity
 
@@ -202,7 +202,7 @@ Gemini CLI searches for and merges `GEMINI.md` files in the following order:
 - Document build, test, and deployment workflows
 - List commonly used project commands
 - Support importing other files via `@path/to/file.md`
-  :::
+:::
 
 ### Common Slash Commands
 
@@ -304,7 +304,7 @@ Recommended models for Gemini CLI:
 - View available Google AI protocol models via the [ZenMux model list](https://zenmux.ai/models?sort=newest&supported_protocol=google)
 - Use the model slug (e.g., `google/gemini-2.5-pro`)
 - To route to a specific provider, see the [Provider Routing docs](/guide/advanced/provider-routing)
-  :::
+:::
 
 ::: tip Switching models
 Even if a model name switch works, it does not guarantee tool calling will work as well. Current limitations mainly come from ZenMux’s compatibility with the Gemini CLI Agent protocol, not just the model itself.
@@ -352,7 +352,7 @@ When the model tries to use built-in tools (such as Google Search), you may see 
 
 - You must re-apply this change after each Gemini CLI update or reinstall
 - Once ZenMux completes function calling compatibility, this will be supported automatically and you won’t need this modification
-  :::
+:::
 
 ## Troubleshooting
 
@@ -365,7 +365,7 @@ When the model tries to use built-in tools (such as Google Search), you may see 
 
 - Check whether `selectedType` in `~/.gemini/settings.json` is correctly set to `"gemini-api-key"`
 - Verify the config using `cat ~/.gemini/settings.json`
-  :::
+:::
 
 ::: details API Key error
 **Issue**: The API Key is reported as invalid or unauthorized.
@@ -375,7 +375,7 @@ When the model tries to use built-in tools (such as Google Search), you may see 
 - Check that the API Key is correct (subscription keys start with `sk-ss-v1-`, pay-as-you-go keys start with `sk-ai-v1-`)
 - Ensure the API Key is active and has sufficient balance
 - Verify the key status in the [ZenMux Console](https://zenmux.ai/settings/keys)
-  :::
+:::
 
 ::: details Connection failure
 **Issue**: Gemini CLI cannot connect to ZenMux.
@@ -386,7 +386,7 @@ When the model tries to use built-in tools (such as Google Search), you may see 
 - Verify the Base URL is set to `https://zenmux.ai/api/vertex-ai`
 - Check whether firewall settings are blocking outbound connections
 - Try `curl https://zenmux.ai/api/vertex-ai/models` to test connectivity
-  :::
+:::
 
 ::: details .env file not taking effect
 **Issue**: Variables set in `~/.gemini/.env` do not take effect.
@@ -398,7 +398,7 @@ When the model tries to use built-in tools (such as Google Search), you may see 
 - Check whether the same variables were already `export`ed in your shell: `env | grep -E "GEMINI_|GOOGLE_"`
 - Check whether an earlier `.env` file exists in a parent directory that is being matched first
 - Reopen the terminal window, or run `source ~/.zshrc` to reload your profile
-  :::
+:::
 
 ::: details function_response-related errors when editing files
 **Issue**: When attempting to have Gemini CLI edit files automatically, you see errors like:
@@ -413,7 +413,7 @@ Invalid JSON payload received. Unknown name "id" at 'contents[3].parts[0].functi
 - For now, limit usage to Q&A and read-only analysis
 - Do not rely on Gemini CLI for agent actions such as auto-editing or command execution
 - Once ZenMux completes function calling compatibility, this will be supported automatically
-  :::
+:::
 
 ::: details Model unavailable
 **Issue**: A model is reported as unavailable or unsupported.
@@ -424,7 +424,7 @@ Invalid JSON payload received. Unknown name "id" at 'contents[3].parts[0].functi
 - Verify the spelling of the model name in the `GEMINI_MODEL` environment variable
 - Try a default model such as `google/gemini-2.5-pro`
 - Confirm your account has access to the model
-  :::
+:::
 
 ::: details Occasional request timeouts
 **Issue**: Read-only file analysis requests occasionally time out.
@@ -435,7 +435,7 @@ Invalid JSON payload received. Unknown name "id" at 'contents[3].parts[0].functi
 - Reduce the size of the prompt and referenced files
 - If timeouts are frequent, try a smaller model (e.g., `google/gemini-2.5-flash`)
 - Check that your network connection is stable
-  :::
+:::
 
 ::: details Sandbox mode issues
 **Issue**: Command execution fails after enabling sandbox mode.
@@ -446,7 +446,7 @@ Invalid JSON payload received. Unknown name "id" at 'contents[3].parts[0].functi
 - Check that Docker is running: `docker ps`
 - Try disabling sandbox mode to test: set `"sandbox": false` in `settings.json`
 - If using a custom sandbox, check the `.gemini/sandbox.Dockerfile` configuration
-  :::
+:::
 
 ## Advanced Configuration
 
