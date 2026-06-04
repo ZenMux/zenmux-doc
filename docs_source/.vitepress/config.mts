@@ -34,6 +34,11 @@ function parseCodeTabTitle(title: string) {
   };
 }
 
+function withDocsSitemapPath(url: string) {
+  const normalized = url ? (url.startsWith("/") ? url : `/${url}`) : "/";
+  return normalized.startsWith("/docs/") ? normalized : `/docs${normalized}`;
+}
+
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   lang: "en-US",
@@ -52,7 +57,17 @@ export default defineConfig({
   },
 
   sitemap: {
-    hostname: "https://docs.zenmux.ai",
+    hostname: "https://zenmux.ai",
+    transformItems: (items) => {
+      return items.map((item) => ({
+        ...item,
+        url: withDocsSitemapPath(item.url),
+        links: item.links?.map((link) => ({
+          ...link,
+          url: withDocsSitemapPath(link.url),
+        })),
+      }));
+    },
   },
 
   transformHead: ({ pageData }) => {
