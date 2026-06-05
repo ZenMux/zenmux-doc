@@ -34,6 +34,73 @@ function parseCodeTabTitle(title: string) {
   };
 }
 
+function withDocsSitemapPath(url: string) {
+  const normalized = url ? (url.startsWith("/") ? url : `/${url}`) : "/";
+  return normalized.startsWith("/docs/") ? normalized : `/docs${normalized}`;
+}
+
+function isDeprecatedDocsSitemapUrl(url: string) {
+  return /-old\.html$/.test(url) || url === "/docs/zh/sider.html";
+}
+
+function withXDefaultLink(links = []) {
+  if (!links.length || links.some((link) => link.lang === "x-default" || link.hreflang === "x-default")) {
+    return links;
+  }
+
+  const defaultLink = links.find((link) => (
+    link.lang === "en-US" ||
+    link.hreflang === "en-US" ||
+    link.lang === "en" ||
+    link.hreflang === "en"
+  )) || links[0];
+
+  return [
+    ...links,
+    {
+      lang: "x-default",
+      url: defaultLink.url,
+    },
+  ];
+}
+
+function canonicalDocsPath(relativePath: string) {
+  const htmlPath = relativePath.replace(/\.md$/, ".html");
+  const normalizedPath = htmlPath.startsWith("zh/") ? htmlPath : htmlPath.replace(/^en\//, "");
+  const canonicalMap = new Map([
+    [
+      "api/anthropic/create-messages-old.html",
+      "api/anthropic/create-messages.html",
+    ],
+    [
+      "zh/api/anthropic/create-messages-old.html",
+      "zh/api/anthropic/create-messages.html",
+    ],
+    [
+      "api/openai/create-chat-completion-old.html",
+      "api/openai/create-chat-completion.html",
+    ],
+    [
+      "zh/api/openai/create-chat-completion-old.html",
+      "zh/api/openai/create-chat-completion.html",
+    ],
+    [
+      "api/vertexai/generate-content-old.html",
+      "api/vertexai/generate-content.html",
+    ],
+    [
+      "zh/api/vertexai/generate-content-old.html",
+      "zh/api/vertexai/generate-content.html",
+    ],
+    [
+      "zh/sider.html",
+      "zh/best-practices/sider.html",
+    ],
+  ]);
+
+  return canonicalMap.get(normalizedPath) || normalizedPath;
+}
+
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   lang: "en-US",
@@ -52,11 +119,35 @@ export default defineConfig({
   },
 
   sitemap: {
-    hostname: "https://docs.zenmux.ai",
+    hostname: "https://zenmux.ai",
+    xmlns: {
+      news: false,
+      video: false,
+      xhtml: true,
+      image: false,
+    },
+    transformItems: (items) => {
+      return items
+        .map((item) => {
+          const url = withDocsSitemapPath(item.url);
+          const links = withXDefaultLink(
+            item.links?.map((link) => ({
+              ...link,
+              url: withDocsSitemapPath(link.url),
+            })),
+          );
+          return {
+            ...item,
+            url,
+            links,
+          };
+        })
+        .filter((item) => !isDeprecatedDocsSitemapUrl(item.url));
+    },
   },
 
   transformHead: ({ pageData }) => {
-    const canonicalUrl = `https://zenmux.ai/docs/${pageData.relativePath.replace(/\.md$/, ".html")}`;
+    const canonicalUrl = `https://zenmux.ai/docs/${canonicalDocsPath(pageData.relativePath)}`;
     return [["link", { rel: "canonical", href: canonicalUrl }]];
   },
 
