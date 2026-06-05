@@ -6,6 +6,23 @@ import { docsIndexPlugin } from "./plugins/docs-index-plugin";
 import { locales } from "../config";
 
 const basePath = process.cwd() + "/docs_source/";
+const siteOrigin = "https://zenmux.ai";
+
+type DocsHeader = {
+  level?: number;
+  title?: string;
+  slug?: string;
+};
+
+type DocsPageData = {
+  relativePath: string;
+  title?: string;
+  description?: string;
+  frontmatter?: Record<string, any>;
+  headers?: DocsHeader[];
+};
+
+type JsonLdObject = Record<string, unknown>;
 
 function extractTitle(info: string, html = false) {
   if (html) {
@@ -101,6 +118,197 @@ function canonicalDocsPath(relativePath: string) {
   return canonicalMap.get(normalizedPath) || normalizedPath;
 }
 
+function docsCanonicalUrl(relativePath: string) {
+  return `${siteOrigin}/docs/${canonicalDocsPath(relativePath)}`;
+}
+
+function docsPathSegments(relativePath: string) {
+  const canonicalPath = canonicalDocsPath(relativePath)
+    .replace(/\.html$/, "")
+    .split("/")
+    .filter(Boolean);
+  if (canonicalPath[0] === "en") {
+    canonicalPath.shift();
+  }
+  return canonicalPath;
+}
+
+function humanizeDocsSegment(segment: string) {
+  const labels = new Map([
+    ["zh", "中文"],
+    ["api", "API"],
+    ["openai", "OpenAI"],
+    ["anthropic", "Anthropic"],
+    ["vertexai", "Vertex AI"],
+    ["best-practices", "Best Practices"],
+    ["guide", "Guide"],
+    ["advanced", "Advanced"],
+    ["observability", "Observability"],
+    ["studio", "Studio"],
+    ["help", "Help"],
+  ]);
+  return labels.get(segment) || segment
+    .split("-")
+    .filter(Boolean)
+    .map((part) => `${part.charAt(0).toUpperCase()}${part.slice(1)}`)
+    .join(" ");
+}
+
+function cleanMarkdownText(value: string) {
+  return value
+    .replace(/```[\s\S]*?```/g, " ")
+    .replace(/`([^`]+)`/g, "$1")
+    .replace(/!\[[^\]]*]\([^)]*\)/g, " ")
+    .replace(/\[([^\]]+)]\([^)]*\)/g, "$1")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/^:::.+$/gm, " ")
+    .replace(/^[-*+]\s+/gm, " ")
+    .replace(/^>\s?/gm, " ")
+    .replace(/[#*_~|]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function stripFrontmatter(content: string) {
+  return content.replace(/^---[\s\S]*?---\s*/, "");
+}
+
+function readDocsMarkdown(relativePath: string) {
+  try {
+    return fs.readFileSync(`${basePath}${relativePath}`, "utf-8");
+  } catch {
+    return "";
+  }
+}
+
+function cleanFaqQuestion(title: string) {
+  return title.replace(/^\d+[.)、]\s*/, "").trim();
+}
+
+function docsPageTitle(pageData: DocsPageData) {
+  return (
+    pageData.frontmatter?.title ||
+    pageData.title ||
+    humanizeDocsSegment(docsPathSegments(pageData.relativePath).at(-1) || "Docs")
+  );
+}
+
+function buildJsonLdHead(jsonLd: JsonLdObject) {
+  return [
+    "script",
+    { type: "application/ld+json" },
+    JSON.stringify(jsonLd).replace(/<\/script/gi, "<\\/script"),
+  ];
+}
+
+function buildDocsBreadcrumbJsonLd(pageData: DocsPageData): JsonLdObject {
+  const segments = docsPathSegments(pageData.relativePath);
+  const itemListElement = [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: `${siteOrigin}/`,
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Docs",
+      item: `${siteOrigin}/docs/`,
+    },
+  ];
+  let path = "/docs";
+  segments.forEach((segment, index) => {
+    path += `/${segment}`;
+    const isLast = index === segments.length - 1;
+    itemListElement.push({
+      "@type": "ListItem",
+      position: index + 3,
+      name: isLast ? docsPageTitle(pageData) : humanizeDocsSegment(segment),
+      item: isLast ? docsCanonicalUrl(pageData.relativePath) : `${siteOrigin}${path}/`,
+    });
+  });
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement,
+  };
+}
+
+function extractDocsFaqItems(relativePath: string) {
+  if (!/\/help\/faq\.md$/.test(relativePath)) {
+    return [];
+  }
+  const content = stripFrontmatter(readDocsMarkdown(relativePath));
+  const headings = [...content.matchAll(/^##\s+(.+)$/gm)].map((match) => ({
+    title: cleanFaqQuestion(match[1]),
+    index: match.index || 0,
+  }));
+  return headings.map((heading, index) => {
+    const next = headings[index + 1]?.index ?? content.length;
+    const rawAnswer = content.slice(heading.index, next).replace(/^##\s+.+$/m, "");
+    const answer = cleanMarkdownText(rawAnswer);
+    return {
+      question: heading.title,
+      answer,
+    };
+  }).filter((item) => item.question && item.answer);
+}
+
+function buildDocsFaqJsonLd(pageData: DocsPageData): JsonLdObject | null {
+  const faqItems = extractDocsFaqItems(pageData.relativePath);
+  if (!faqItems.length) {
+    return null;
+  }
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+}
+
+function isDocsHowToPage(relativePath: string) {
+  const normalized = relativePath.replace(/^en\//, "");
+  return (
+    /^(zh\/)?best-practices\//.test(normalized) ||
+    /^(zh\/)?guide\/quickstart\.md$/.test(normalized) ||
+    /^(zh\/)?guide\/studio\//.test(normalized)
+  );
+}
+
+function buildDocsHowToJsonLd(pageData: DocsPageData): JsonLdObject | null {
+  if (!isDocsHowToPage(pageData.relativePath)) {
+    return null;
+  }
+  const title = docsPageTitle(pageData);
+  const headers = (pageData.headers || [])
+    .filter((header) => (header.level || 2) <= 3 && header.title && header.slug)
+    .filter((header) => !/faq|常见问题|troubleshooting|故障排除/i.test(header.title || ""))
+    .slice(0, 12);
+  if (headers.length < 2) {
+    return null;
+  }
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: title,
+    description: pageData.description || pageData.frontmatter?.description || title,
+    step: headers.map((header, index) => ({
+      "@type": "HowToStep",
+      position: index + 1,
+      name: header.title,
+      url: `${docsCanonicalUrl(pageData.relativePath)}#${header.slug}`,
+    })),
+  };
+}
+
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   lang: "en-US",
@@ -147,8 +355,16 @@ export default defineConfig({
   },
 
   transformHead: ({ pageData }) => {
-    const canonicalUrl = `https://zenmux.ai/docs/${canonicalDocsPath(pageData.relativePath)}`;
-    return [["link", { rel: "canonical", href: canonicalUrl }]];
+    const docsPageData = pageData as DocsPageData;
+    const jsonLdItems = [
+      buildDocsBreadcrumbJsonLd(docsPageData),
+      buildDocsFaqJsonLd(docsPageData),
+      buildDocsHowToJsonLd(docsPageData),
+    ].filter(Boolean) as JsonLdObject[];
+    return [
+      ["link", { rel: "canonical", href: docsCanonicalUrl(docsPageData.relativePath) }],
+      ...jsonLdItems.map(buildJsonLdHead),
+    ];
   },
 
   head: [
