@@ -174,11 +174,16 @@ function stripFrontmatter(content: string) {
 }
 
 function readDocsMarkdown(relativePath: string) {
-  try {
-    return fs.readFileSync(`${basePath}${relativePath}`, "utf-8");
-  } catch {
-    return "";
+  const candidates = [
+    `${basePath}${relativePath}`,
+    `${basePath}en/${relativePath}`,
+  ];
+  for (const file of candidates) {
+    if (fs.existsSync(file)) {
+      return fs.readFileSync(file, "utf-8");
+    }
   }
+  return "";
 }
 
 function cleanFaqQuestion(title: string) {
@@ -236,7 +241,7 @@ function buildDocsBreadcrumbJsonLd(pageData: DocsPageData): JsonLdObject {
 }
 
 function extractDocsFaqItems(relativePath: string) {
-  if (!/\/help\/faq\.md$/.test(relativePath)) {
+  if (!/(^|\/)help\/faq\.md$/.test(relativePath)) {
     return [];
   }
   const content = stripFrontmatter(readDocsMarkdown(relativePath));
@@ -274,6 +279,22 @@ function buildDocsFaqJsonLd(pageData: DocsPageData): JsonLdObject | null {
   };
 }
 
+function extractDocsHeadings(relativePath: string) {
+  const content = stripFrontmatter(readDocsMarkdown(relativePath));
+  return [...content.matchAll(/^(#{2,3})\s+(.+)$/gm)]
+    .map((match) => ({
+      level: match[1].length,
+      title: cleanMarkdownText(match[2]),
+      slug: match[2]
+        .trim()
+        .toLowerCase()
+        .replace(/[`*_~]/g, "")
+        .replace(/[^\p{L}\p{N}\s-]/gu, "")
+        .replace(/\s+/g, "-"),
+    }))
+    .filter((heading) => heading.title && heading.slug);
+}
+
 function isDocsHowToPage(relativePath: string) {
   const normalized = relativePath.replace(/^en\//, "");
   return (
@@ -288,7 +309,9 @@ function buildDocsHowToJsonLd(pageData: DocsPageData): JsonLdObject | null {
     return null;
   }
   const title = docsPageTitle(pageData);
-  const headers = (pageData.headers || [])
+  const headers = ((pageData.headers || []).length
+    ? pageData.headers || []
+    : extractDocsHeadings(pageData.relativePath))
     .filter((header) => (header.level || 2) <= 3 && header.title && header.slug)
     .filter((header) => !/faq|常见问题|troubleshooting|故障排除/i.test(header.title || ""))
     .slice(0, 12);
