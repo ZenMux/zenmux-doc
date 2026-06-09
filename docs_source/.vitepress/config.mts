@@ -23,6 +23,18 @@ type DocsPageData = {
 };
 
 type JsonLdObject = Record<string, unknown>;
+type DocsSitemapLink = {
+  lang?: string;
+  hreflang?: string;
+  url: string;
+};
+
+const singleLanguageXDefaultPaths = new Set([
+  "/docs/about/models-and-providers.html",
+  "/docs/about/pricing-and-cost.html",
+  "/docs/about/provider-routing.html",
+  "/docs/api/overview.html",
+]);
 
 function extractTitle(info: string, html = false) {
   if (html) {
@@ -60,7 +72,7 @@ function isDeprecatedDocsSitemapUrl(url: string) {
   return /-old\.html$/.test(url) || url === "/docs/zh/sider.html";
 }
 
-function withXDefaultLink(links = []) {
+function withXDefaultLink(links: DocsSitemapLink[] = []) {
   if (!links.length || links.some((link) => link.lang === "x-default" || link.hreflang === "x-default")) {
     return links;
   }
@@ -79,6 +91,52 @@ function withXDefaultLink(links = []) {
       url: defaultLink.url,
     },
   ];
+}
+
+function docsSitemapSourceCandidates(url: string) {
+  const pathname = url
+    .replace(/^https:\/\/zenmux\.ai/, "")
+    .replace(/^\/docs\/?/, "");
+  if (!pathname) {
+    return ["en/index.md"];
+  }
+  if (pathname === "zh" || pathname === "zh/") {
+    return ["zh/index.md"];
+  }
+
+  const markdownPath = pathname.endsWith("/")
+    ? `${pathname}index.md`
+    : pathname.replace(/\.html$/, ".md");
+  if (markdownPath.startsWith("zh/")) {
+    return [markdownPath];
+  }
+  return [`en/${markdownPath}`, markdownPath];
+}
+
+function docsSitemapLastmod(url: string) {
+  for (const candidate of docsSitemapSourceCandidates(url)) {
+    const file = `${basePath}${candidate}`;
+    if (fs.existsSync(file)) {
+      return fs.statSync(file).mtime.toISOString().split("T")[0];
+    }
+  }
+  return new Date().toISOString().split("T")[0];
+}
+
+function docsSitemapLinks(url: string, links?: DocsSitemapLink[]) {
+  const normalizedLinks = links?.map((link) => ({
+    ...link,
+    url: withDocsSitemapPath(link.url),
+  })) || [];
+  if (!normalizedLinks.length && singleLanguageXDefaultPaths.has(url)) {
+    return [
+      {
+        lang: "x-default",
+        url,
+      },
+    ];
+  }
+  return withXDefaultLink(normalizedLinks);
 }
 
 function canonicalDocsPath(relativePath: string) {
@@ -361,20 +419,16 @@ export default defineConfig({
       return items
         .map((item) => {
           const url = withDocsSitemapPath(item.url);
-          const links = withXDefaultLink(
-            item.links?.map((link) => ({
-              ...link,
-              url: withDocsSitemapPath(link.url),
-            })),
-          );
           return {
             ...item,
             url,
-            links,
+            lastmod: item.lastmod || docsSitemapLastmod(url),
+            links: docsSitemapLinks(url, item.links),
           };
         })
         .filter((item) => !isDeprecatedDocsSitemapUrl(item.url));
     },
+    lastmodDateOnly: true,
   },
 
   transformHead: ({ pageData }) => {
