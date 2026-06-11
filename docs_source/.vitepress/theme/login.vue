@@ -6,7 +6,7 @@
       @click="handleClick"
       :disabled="isCopied"
     >
-      Login
+      {{ labels.login }}
     </el-button>
     <my-icon
       v-else-if="isLoading"
@@ -53,7 +53,7 @@
           >
             <span class="user-menu-row">
               <ShutdownIcon class="user-menu-icon" />
-              <span class="user-menu-label">Sign out</span>
+              <span class="user-menu-label">{{ labels.signOut }}</span>
             </span>
           </el-dropdown-item>
         </el-dropdown-menu>
@@ -113,6 +113,42 @@ export default defineComponent({
   setup() {
     const isCopied = ref(false);
     const { user, isLoading, logout } = useAuth();
+    const labels = computed(() => {
+      const isZh =
+        inBrowser &&
+        window.location.pathname.replace(/^\/docs/, "").startsWith("/zh");
+      return isZh
+        ? {
+            login: "登录",
+            signOut: "退出登录",
+            chat: "对话",
+            video: "视频",
+            logs: "日志",
+            cost: "费用",
+            usage: "用量",
+            insurance: "保险",
+            paygApi: "PAYG API",
+            subscriptionApi: "订阅 API",
+            platformApi: "平台 API",
+            billing: "账单",
+            settings: "设置",
+          }
+        : {
+            login: "Login",
+            signOut: "Sign out",
+            chat: "Chat",
+            video: "Video",
+            logs: "Logs",
+            cost: "Cost",
+            usage: "Usage",
+            insurance: "Insurance",
+            paygApi: "PAYG API",
+            subscriptionApi: "Subscription API",
+            platformApi: "Platform API",
+            billing: "Billing",
+            settings: "Settings",
+          };
+    });
 
     const handleClick = () => {
       if (isCopied.value || !inBrowser) return;
@@ -130,58 +166,58 @@ export default defineComponent({
     const menuItems = computed<UserMenuItem[]>(() => {
       const items: Array<UserMenuItem & { visible?: boolean }> = [
         {
-          label: "Chat",
+          label: labels.value.chat,
           slug: "platform/chat",
           icon: ChatIcon,
         },
         {
-          label: "Video",
+          label: labels.value.video,
           slug: "platform/video",
           icon: IconVideoIcon,
           visible: Boolean(user.value?.flags?.internalMember),
         },
         {
-          label: "Logs",
+          label: labels.value.logs,
           slug: "platform/logs",
           icon: LogsIcon,
         },
         {
-          label: "Cost",
+          label: labels.value.cost,
           slug: "platform/cost",
           icon: CostsIcon,
         },
         {
-          label: "Usage",
+          label: labels.value.usage,
           slug: "platform/usage",
           icon: UsageIcon,
         },
         {
-          label: "Insurance",
+          label: labels.value.insurance,
           slug: "platform/insurance",
           icon: InsuranceIcon,
         },
         {
-          label: "PAYG API",
+          label: labels.value.paygApi,
           slug: "platform/pay-as-you-go",
           icon: IconPayAsYouGoIcon,
         },
         {
-          label: "Subscription API",
+          label: labels.value.subscriptionApi,
           slug: "platform/subscription",
           icon: IconSubscriptionWalletIcon,
         },
         {
-          label: "Platform API",
+          label: labels.value.platformApi,
           slug: "platform/management",
           icon: IconKeychainIcon,
         },
         {
-          label: "Billing",
+          label: labels.value.billing,
           slug: "platform/billing",
           icon: IconBillingIcon,
         },
         {
-          label: "Settings",
+          label: labels.value.settings,
           slug: "platform/settings",
           icon: IconSettingIcon,
         },
@@ -239,6 +275,7 @@ export default defineComponent({
       handleClick,
       goLogout,
       isLoading,
+      labels,
       menuItems,
       goSettings,
       goCredits,

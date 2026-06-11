@@ -52,6 +52,62 @@ const shouldOpenEndpoints =
   inBrowser &&
   new URLSearchParams(window.location.search).get("endpoints") === "open";
 
+function getDocsLocale(value: string | null) {
+  if (!value) {
+    return null;
+  }
+  return value.toLowerCase().startsWith("zh") ? "zh" : "en";
+}
+
+function getDocsPathWithoutLocale(pathname: string) {
+  const withoutDocs = stripDocsPrefix(pathname);
+  return withoutDocs.replace(/^\/zh(?=\/|$)/, "") || "/";
+}
+
+function getPathWithDocsLocale(pathname: string, locale: "en" | "zh") {
+  const docsPath = getDocsPathWithoutLocale(pathname);
+  const localizedPath = locale === "zh" ? `/zh${docsPath}` : docsPath;
+
+  return pathname.startsWith(DOCS_PATH_PREFIX)
+    ? `${DOCS_PATH_PREFIX}${localizedPath}`
+    : localizedPath;
+}
+
+function syncDocsLocaleCookie(locale: "en" | "zh") {
+  document.cookie = `locale=${locale === "zh" ? "zh-CN" : "en-US"}; path=/; max-age=31536000`;
+}
+
+function applyInheritedDocsLocale() {
+  if (!inBrowser) {
+    return;
+  }
+
+  const url = new URL(window.location.href);
+  const inheritedLocale =
+    getDocsLocale(url.searchParams.get("locale")) ||
+    getDocsLocale(url.searchParams.get("lang"));
+
+  if (!inheritedLocale) {
+    const currentDocsPath = stripDocsPrefix(url.pathname);
+    syncDocsLocaleCookie(
+      /^\/zh(?=\/|$)/.test(currentDocsPath) ? "zh" : "en",
+    );
+    return;
+  }
+
+  url.searchParams.delete("locale");
+  url.searchParams.delete("lang");
+  url.pathname = getPathWithDocsLocale(url.pathname, inheritedLocale);
+  syncDocsLocaleCookie(inheritedLocale);
+
+  if (url.pathname !== window.location.pathname) {
+    window.location.replace(url.toString());
+    return;
+  }
+
+  window.history.replaceState({}, document.title, url.toString());
+}
+
 if (shouldOpenEndpoints) {
   const params = new URLSearchParams(window.location.search);
   params.delete("endpoints");
@@ -62,6 +118,7 @@ if (shouldOpenEndpoints) {
 }
 
 console.info("isDocsHost:", isDocsHost);
+applyInheritedDocsLocale();
 
 NProgress.configure({
   showSpinner: false,
@@ -366,7 +423,8 @@ export default {
       document.addEventListener('click', (e) => {
         const target = e.target as HTMLElement;
         const anchor = target.closest('a');
-        if (anchor && anchor.textContent?.trim() === 'Endpoints') {
+        const label = anchor?.textContent?.trim();
+        if (anchor && (label === 'Endpoints' || label === '接入点')) {
           e.preventDefault();
           e.stopPropagation();
           document.dispatchEvent(new CustomEvent('endpoints'));
