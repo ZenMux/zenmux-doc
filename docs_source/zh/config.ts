@@ -111,67 +111,67 @@ export default defineLoacaleConfig({
     },
     nav: [
       {
-        text: "Studio",
+        text: "工作室",
         items: [
-          { text: "Chat", link: "https://zenmux.ai/chat", noIcon: true },
-          { text: "Video", link: "https://zenmux.ai/video", noIcon: true },
+          { text: "对话", link: "https://zenmux.ai/chat", noIcon: true },
+          { text: "视频", link: "https://zenmux.ai/video", noIcon: true },
         ],
       },
-      { text: "Models", link: "https://zenmux.ai/models", noIcon: true },
+      { text: "模型", link: "https://zenmux.ai/models", noIcon: true },
       {
-        text: "Pricing",
+        text: "开发者",
+        items: [
+          { text: "文档", link: "/zh/", noIcon: true },
+          { text: "接入点", link: "javascript:void(0)", noIcon: true },
+          { text: "博客", link: "https://zenmux.ai/blog", noIcon: true },
+          {
+            text: "更新日志",
+            link: "https://zenmux.ai/changelog",
+            noIcon: true,
+          },
+          {
+            text: "路线图与反馈",
+            link: "https://github.com/orgs/ZenMux/projects/2",
+            noIcon: true,
+          },
+        ],
+      },
+      { text: "数据分析", link: "https://zenmux.ai/analytics", noIcon: true },
+      {
+        text: "定价",
         items: [
           {
-            text: "Overview",
+            text: "概览",
             link: "https://zenmux.ai/pricing/overview",
             noIcon: true,
           },
           {
-            text: "Pay As You Go",
+            text: "按量付费",
             link: "https://zenmux.ai/pricing/pay-as-you-go",
             noIcon: true,
           },
           {
-            text: "Subscription",
+            text: "订阅",
             link: "https://zenmux.ai/pricing/subscription",
             noIcon: true,
           },
           {
-            text: "Promotions",
+            text: "优惠活动",
             link: "https://zenmux.ai/pricing/promotions",
             noIcon: true,
           },
         ],
       },
       {
-        text: "Developers",
-        items: [
-          { text: "Docs", link: "/", noIcon: true },
-          { text: "Endpoints", link: "javascript:void(0)", noIcon: true },
-          { text: "Blog", link: "https://zenmux.ai/blog", noIcon: true },
-          {
-            text: "Changelog",
-            link: "https://zenmux.ai/changelog",
-            noIcon: true,
-          },
-          {
-            text: "Roadmap & Feedback",
-            link: "https://github.com/orgs/ZenMux/projects/2",
-            noIcon: true,
-          },
-        ],
-      },
-      { text: "Analytics", link: "https://zenmux.ai/analytics", noIcon: true },
-      {
-        text: "About Us",
+        text: "关于我们",
         items: [
           {
-            text: "The ZenMux Way",
+            text: "ZenMux 之道",
             link: "https://zenmux.ai/aboutus",
             noIcon: true,
           },
           {
-            text: "Supports",
+            text: "支持",
             link: "https://zenmux.ai/supports",
             noIcon: true,
           },

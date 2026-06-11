@@ -117,6 +117,25 @@ export default defineLoacaleConfig({
       },
       { text: "Models", link: "https://zenmux.ai/models", noIcon: true },
       {
+        text: "Developers",
+        items: [
+          { text: "Docs", link: "/", noIcon: true },
+          { text: "Endpoints", link: "javascript:void(0)", noIcon: true },
+          { text: "Blog", link: "https://zenmux.ai/blog", noIcon: true },
+          {
+            text: "Changelog",
+            link: "https://zenmux.ai/changelog",
+            noIcon: true,
+          },
+          {
+            text: "Roadmap & Feedback",
+            link: "https://github.com/orgs/ZenMux/projects/2",
+            noIcon: true,
+          },
+        ],
+      },
+      { text: "Analytics", link: "https://zenmux.ai/analytics", noIcon: true },
+      {
         text: "Pricing",
         items: [
           {
@@ -141,25 +160,6 @@ export default defineLoacaleConfig({
           },
         ],
       },
-      {
-        text: "Developers",
-        items: [
-          { text: "Docs", link: "/", noIcon: true },
-          { text: "Endpoints", link: "javascript:void(0)", noIcon: true },
-          { text: "Blog", link: "https://zenmux.ai/blog", noIcon: true },
-          {
-            text: "Changelog",
-            link: "https://zenmux.ai/changelog",
-            noIcon: true,
-          },
-          {
-            text: "Roadmap & Feedback",
-            link: "https://github.com/orgs/ZenMux/projects/2",
-            noIcon: true,
-          },
-        ],
-      },
-      { text: "Analytics", link: "https://zenmux.ai/analytics", noIcon: true },
       {
         text: "About Us",
         items: [

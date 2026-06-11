@@ -191,7 +191,7 @@
 /* ===== Layout Skeleton ===== */
 
 :root {
-  --vp-nav-height: 52px;
+  --vp-nav-height: 56px;
   --vp-sidebar-width: 260px;
   --vp-aside-width: 260px;
   --vp-sidebar-bg-color: var(--vp-c-bg);
@@ -224,6 +224,10 @@
   padding-right: 20px !important;
   flex-grow: 0 !important;
   width: 100%;
+}
+
+.VPNavBar .wrapper {
+  padding: 0 20px !important;
 }
 
 .divider-line {
