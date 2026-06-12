@@ -379,6 +379,31 @@ Subscription plans are designed for **personal development, learning/exploration
 - **Quota window:** Refreshes within a rolling 5-hour window
 - **Weekly limit:** Resets within a rolling weekly window
 
+### Window Resets
+
+Subscription users have a certain number of **5-hour window reset** opportunities per billing cycle (month). When your 5-hour quota is about to run out, you can manually reset the window to immediately restore your quota and continue using without waiting for the natural rolling reset.
+
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/06/11/ahFja9m/20260611202440.jpg" alt="Window reset feature" >
+
+<table style="width:100%">
+<thead>
+<tr><th>Plan</th><th>Monthly Resets</th></tr>
+</thead>
+<tbody>
+<tr><td>Pro</td><td>4 times</td></tr>
+<tr><td>Max</td><td>3 times</td></tr>
+<tr><td>Ultra</td><td>2 times</td></tr>
+</tbody>
+</table>
+
+::: info Note
+Reset counts per plan may be adjusted in the future based on operational strategy. Please refer to the actual display on the [Subscription Management page](https://zenmux.ai/platform/subscription).
+:::
+
+::: tip How to use
+You can view your remaining reset count on the [Subscription Management page](https://zenmux.ai/platform/subscription) and click the "Reset Window" button to immediately refresh your 5-hour quota. You can also enable **auto-reset** so the system automatically uses one reset chance when your 5-hour quota is exhausted—no manual action needed. Reset counts are calculated per subscription cycle (e.g., June 3rd to July 3rd) and do not roll over.
+:::
+
 ### Applicable Scenarios
 
 ✅ **Allowed:**
