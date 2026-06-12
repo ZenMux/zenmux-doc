@@ -59,6 +59,41 @@ function getDocsLocale(value: string | null) {
   return value.toLowerCase().startsWith("zh") ? "zh" : "en";
 }
 
+function getCookie(name: string) {
+  const match = document.cookie.match(
+    new RegExp(`(?:^|; )${name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}=([^;]*)`),
+  );
+  return match ? decodeURIComponent(match[1]) : null;
+}
+
+function getStoredDocsLocale() {
+  const candidateValues = [
+    getCookie("locale"),
+    getCookie("umi_locale"),
+    localStorage.getItem("locale"),
+    localStorage.getItem("umi_locale"),
+  ];
+
+  for (const value of candidateValues) {
+    const locale = getDocsLocale(value);
+    if (locale) {
+      return locale;
+    }
+  }
+
+  return null;
+}
+
+function getNavigatorDocsLocale() {
+  const languages = [
+    navigator.language,
+    ...(Array.isArray(navigator.languages) ? navigator.languages : []),
+  ];
+  return languages.some((language) => getDocsLocale(language) === "zh")
+    ? "zh"
+    : "en";
+}
+
 function getDocsPathWithoutLocale(pathname: string) {
   const withoutDocs = stripDocsPrefix(pathname);
   return withoutDocs.replace(/^\/zh(?=\/|$)/, "") || "/";
@@ -77,21 +112,48 @@ function syncDocsLocaleCookie(locale: "en" | "zh") {
   document.cookie = `locale=${locale === "zh" ? "zh-CN" : "en-US"}; path=/; max-age=31536000`;
 }
 
+function syncDocsLocaleFromPath(pathname: string) {
+  const currentDocsPath = stripDocsPrefix(pathname);
+  syncDocsLocaleCookie(/^\/zh(?=\/|$)/.test(currentDocsPath) ? "zh" : "en");
+}
+
+function syncDocsLocaleFromHref(href: string | null) {
+  if (!href) {
+    return;
+  }
+
+  try {
+    const url = new URL(href, window.location.href);
+    if (url.origin !== window.location.origin) {
+      return;
+    }
+    syncDocsLocaleFromPath(url.pathname);
+  } catch {
+    return;
+  }
+}
+
 function applyInheritedDocsLocale() {
   if (!inBrowser) {
     return;
   }
 
   const url = new URL(window.location.href);
+  const currentDocsPath = stripDocsPrefix(url.pathname);
+  const currentLocale = /^\/zh(?=\/|$)/.test(currentDocsPath) ? "zh" : "en";
   const inheritedLocale =
     getDocsLocale(url.searchParams.get("locale")) ||
-    getDocsLocale(url.searchParams.get("lang"));
+    getDocsLocale(url.searchParams.get("lang")) ||
+    getStoredDocsLocale() ||
+    getNavigatorDocsLocale();
 
-  if (!inheritedLocale) {
-    const currentDocsPath = stripDocsPrefix(url.pathname);
-    syncDocsLocaleCookie(
-      /^\/zh(?=\/|$)/.test(currentDocsPath) ? "zh" : "en",
-    );
+  if (inheritedLocale === currentLocale) {
+    url.searchParams.delete("locale");
+    url.searchParams.delete("lang");
+    syncDocsLocaleCookie(inheritedLocale);
+    if (url.toString() !== window.location.href) {
+      window.history.replaceState({}, document.title, url.toString());
+    }
     return;
   }
 
@@ -423,6 +485,9 @@ export default {
       document.addEventListener('click', (e) => {
         const target = e.target as HTMLElement;
         const anchor = target.closest('a');
+        if (anchor?.closest('.VPNavBarTranslations, .VPNavBarExtra')) {
+          syncDocsLocaleFromHref(anchor.getAttribute('href'));
+        }
         const label = anchor?.textContent?.trim();
         if (anchor && (label === 'Endpoints' || label === '接入点')) {
           e.preventDefault();
