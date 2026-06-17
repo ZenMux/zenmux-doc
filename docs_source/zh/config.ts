@@ -295,6 +295,10 @@ export default defineLoacaleConfig({
               text: "Get Statistics Market Share",
               link: "/zh/api/platform/statistics-market-share",
             },
+            {
+              text: "Get Model Usage",
+              link: "/zh/api/platform/statistics-model-usage",
+            },
           ],
         },
       ],
