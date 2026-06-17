@@ -52,7 +52,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 
 ### model `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
-要查询的模型标识（slug），如 `anthropic/claude-sonnet-4-6`。
+要查询的模型标识（slug），如 `anthropic/claude-opus-4.8`。
 
 - 免费变体（`-free` 后缀）会与对应的付费模型**合并统计**。例如查询 `stepfun/step-3.7-flash` 会同时包含 `stepfun/step-3.7-flash-free` 的用量。
 - 若该模型在指定区间内无任何用量，`value` 返回 `0`，`series` 返回空数组。
@@ -91,7 +91,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 
 ### data.label `string`
 
-模型展示名称（如 `Claude Sonnet 4.6`）。若模型库中无该 slug，则回退为 slug 本身。
+模型展示名称（如 `Claude Opus 4.8`）。若模型库中无该 slug，则回退为 slug 本身。
 
 ### data.metric `string`
 
@@ -124,43 +124,11 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 ```cURL
 curl -G https://zenmux.ai/api/v1/management/statistics/model_usage \
   -H "Authorization: Bearer $ZENMUX_MANAGEMENT_API_KEY" \
-  -d model=anthropic/claude-sonnet-4-6 \
+  -d model=anthropic/claude-opus-4.8 \
   -d metric=tokens \
-  -d starting_at=2026-04-10 \
-  -d ending_at=2026-04-13
+  -d starting_at=2026-06-13 \
+  -d ending_at=2026-06-16
 ```
-
-```python
-import requests
-
-response = requests.get(
-    "https://zenmux.ai/api/v1/management/statistics/model_usage",
-    headers={"Authorization": f"Bearer {ZENMUX_MANAGEMENT_API_KEY}"},
-    params={
-        "model": "anthropic/claude-sonnet-4-6",
-        "metric": "tokens",
-        "starting_at": "2026-04-10",
-        "ending_at": "2026-04-13",
-    },
-)
-print(response.json())
-```
-
-```javascript
-const params = new URLSearchParams({
-  model: "anthropic/claude-sonnet-4-6",
-  metric: "tokens",
-  starting_at: "2026-04-10",
-  ending_at: "2026-04-13",
-});
-
-const response = await fetch(
-  `https://zenmux.ai/api/v1/management/statistics/model_usage?${params}`,
-  { headers: { Authorization: `Bearer ${ZENMUX_MANAGEMENT_API_KEY}` } },
-);
-const data = await response.json();
-```
-
 :::
 
 ::: api-response
@@ -169,28 +137,28 @@ const data = await response.json();
 {
   "success": true,
   "data": {
-    "model": "anthropic/claude-sonnet-4-6",
-    "label": "Claude Sonnet 4.6",
+    "model": "anthropic/claude-opus-4.8",
+    "label": "Claude Opus 4.8",
     "metric": "tokens",
-    "starting_at": "2026-04-10",
-    "ending_at": "2026-04-13",
-    "value": 89234567890,
+    "starting_at": "2026-06-13",
+    "ending_at": "2026-06-16",
+    "value": 39861207125,
     "series": [
       {
-        "date": "2026-04-10",
-        "value": 21345678901
+        "date": "2026-06-13",
+        "value": 7761156540
       },
       {
-        "date": "2026-04-11",
-        "value": 23456789012
+        "date": "2026-06-14",
+        "value": 6342332731
       },
       {
-        "date": "2026-04-12",
-        "value": 19876543210
+        "date": "2026-06-15",
+        "value": 13925770233
       },
       {
-        "date": "2026-04-13",
-        "value": 24555556767
+        "date": "2026-06-16",
+        "value": 11831947621
       }
     ]
   }

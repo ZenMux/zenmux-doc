@@ -70,27 +70,6 @@ Credits obtained through bonuses, gifts, or promotions (USD).
 curl https://zenmux.ai/api/v1/management/payg/balance \
   -H "Authorization: Bearer $ZENMUX_MANAGEMENT_API_KEY"
 ```
-
-```python
-import requests
-
-response = requests.get(
-    "https://zenmux.ai/api/v1/management/payg/balance",
-    headers={"Authorization": f"Bearer {ZENMUX_MANAGEMENT_API_KEY}"}
-)
-print(response.json())
-```
-
-```javascript
-const response = await fetch(
-  "https://zenmux.ai/api/v1/management/payg/balance",
-  {
-    headers: { Authorization: `Bearer ${ZENMUX_MANAGEMENT_API_KEY}` },
-  },
-);
-const data = await response.json();
-```
-
 :::
 
 ::: api-response

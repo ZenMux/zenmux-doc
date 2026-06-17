@@ -52,7 +52,7 @@ Each endpoint has its own independent rate limit counter. The maximum number of 
 
 ### model `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
 
-The model identifier (slug) to query, e.g. `anthropic/claude-sonnet-4-6`.
+The model identifier (slug) to query, e.g. `anthropic/claude-opus-4.8`.
 
 - Free variants (the `-free` suffix) are **merged into** their corresponding paid model. For example, querying `stepfun/step-3.7-flash` also includes usage from `stepfun/step-3.7-flash-free`.
 - If the model has no usage within the specified range, `value` returns `0` and `series` returns an empty array.
@@ -91,7 +91,7 @@ Echo of the requested model identifier (the original `model` parameter value).
 
 ### data.label `string`
 
-Model display name (e.g. `Claude Sonnet 4.6`). Falls back to the slug itself if the slug is not found in the model catalog.
+Model display name (e.g. `Claude Opus 4.8`). Falls back to the slug itself if the slug is not found in the model catalog.
 
 ### data.metric `string`
 
@@ -124,43 +124,11 @@ Array broken down by day (sorted in ascending date order). Each element contains
 ```cURL
 curl -G https://zenmux.ai/api/v1/management/statistics/model_usage \
   -H "Authorization: Bearer $ZENMUX_MANAGEMENT_API_KEY" \
-  -d model=anthropic/claude-sonnet-4-6 \
+  -d model=anthropic/claude-opus-4.8 \
   -d metric=tokens \
-  -d starting_at=2026-04-10 \
-  -d ending_at=2026-04-13
+  -d starting_at=2026-06-13 \
+  -d ending_at=2026-06-16
 ```
-
-```python
-import requests
-
-response = requests.get(
-    "https://zenmux.ai/api/v1/management/statistics/model_usage",
-    headers={"Authorization": f"Bearer {ZENMUX_MANAGEMENT_API_KEY}"},
-    params={
-        "model": "anthropic/claude-sonnet-4-6",
-        "metric": "tokens",
-        "starting_at": "2026-04-10",
-        "ending_at": "2026-04-13",
-    },
-)
-print(response.json())
-```
-
-```javascript
-const params = new URLSearchParams({
-  model: "anthropic/claude-sonnet-4-6",
-  metric: "tokens",
-  starting_at: "2026-04-10",
-  ending_at: "2026-04-13",
-});
-
-const response = await fetch(
-  `https://zenmux.ai/api/v1/management/statistics/model_usage?${params}`,
-  { headers: { Authorization: `Bearer ${ZENMUX_MANAGEMENT_API_KEY}` } },
-);
-const data = await response.json();
-```
-
 :::
 
 ::: api-response
@@ -169,28 +137,28 @@ const data = await response.json();
 {
   "success": true,
   "data": {
-    "model": "anthropic/claude-sonnet-4-6",
-    "label": "Claude Sonnet 4.6",
+    "model": "anthropic/claude-opus-4.8",
+    "label": "Claude Opus 4.8",
     "metric": "tokens",
-    "starting_at": "2026-04-10",
-    "ending_at": "2026-04-13",
-    "value": 89234567890,
+    "starting_at": "2026-06-13",
+    "ending_at": "2026-06-16",
+    "value": 39861207125,
     "series": [
       {
-        "date": "2026-04-10",
-        "value": 21345678901
+        "date": "2026-06-13",
+        "value": 7761156540
       },
       {
-        "date": "2026-04-11",
-        "value": 23456789012
+        "date": "2026-06-14",
+        "value": 6342332731
       },
       {
-        "date": "2026-04-12",
-        "value": 19876543210
+        "date": "2026-06-15",
+        "value": 13925770233
       },
       {
-        "date": "2026-04-13",
-        "value": 24555556767
+        "date": "2026-06-16",
+        "value": 11831947621
       }
     ]
   }

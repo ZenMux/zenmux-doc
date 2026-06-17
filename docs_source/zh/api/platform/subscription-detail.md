@@ -113,27 +113,6 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 curl https://zenmux.ai/api/v1/management/subscription/detail \
   -H "Authorization: Bearer $ZENMUX_MANAGEMENT_API_KEY"
 ```
-
-```python
-import requests
-
-response = requests.get(
-    "https://zenmux.ai/api/v1/management/subscription/detail",
-    headers={"Authorization": f"Bearer {ZENMUX_MANAGEMENT_API_KEY}"}
-)
-print(response.json())
-```
-
-```javascript
-const response = await fetch(
-  "https://zenmux.ai/api/v1/management/subscription/detail",
-  {
-    headers: { Authorization: `Bearer ${ZENMUX_MANAGEMENT_API_KEY}` },
-  },
-);
-const data = await response.json();
-```
-
 :::
 
 ::: api-response

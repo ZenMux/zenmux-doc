@@ -146,38 +146,6 @@ curl -G https://zenmux.ai/api/v1/management/statistics/market_share \
   -d starting_at=2026-01-01 \
   -d ending_at=2026-04-13
 ```
-
-```python
-import requests
-
-response = requests.get(
-    "https://zenmux.ai/api/v1/management/statistics/market_share",
-    headers={"Authorization": f"Bearer {ZENMUX_MANAGEMENT_API_KEY}"},
-    params={
-        "metric": "tokens",
-        "bucket_width": "1w",
-        "starting_at": "2026-01-01",
-        "ending_at": "2026-04-13",
-    },
-)
-print(response.json())
-```
-
-```javascript
-const params = new URLSearchParams({
-  metric: "tokens",
-  bucket_width: "1w",
-  starting_at: "2026-01-01",
-  ending_at: "2026-04-13",
-});
-
-const response = await fetch(
-  `https://zenmux.ai/api/v1/management/statistics/market_share?${params}`,
-  { headers: { Authorization: `Bearer ${ZENMUX_MANAGEMENT_API_KEY}` } },
-);
-const data = await response.json();
-```
-
 :::
 
 ::: api-response

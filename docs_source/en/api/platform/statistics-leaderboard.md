@@ -112,38 +112,6 @@ curl -G https://zenmux.ai/api/v1/management/statistics/leaderboard \
   -d ending_at=2026-04-15 \
   -d limit=5
 ```
-
-```python
-import requests
-
-response = requests.get(
-    "https://zenmux.ai/api/v1/management/statistics/leaderboard",
-    headers={"Authorization": f"Bearer {ZENMUX_MANAGEMENT_API_KEY}"},
-    params={
-        "metric": "cost",
-        "starting_at": "2026-04-01",
-        "ending_at": "2026-04-15",
-        "limit": 5,
-    },
-)
-print(response.json())
-```
-
-```javascript
-const params = new URLSearchParams({
-  metric: "cost",
-  starting_at: "2026-04-01",
-  ending_at: "2026-04-15",
-  limit: "5",
-});
-
-const response = await fetch(
-  `https://zenmux.ai/api/v1/management/statistics/leaderboard?${params}`,
-  { headers: { Authorization: `Bearer ${ZENMUX_MANAGEMENT_API_KEY}` } },
-);
-const data = await response.json();
-```
-
 :::
 
 ::: api-response
