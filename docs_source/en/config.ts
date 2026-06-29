@@ -291,6 +291,14 @@ export default defineLoacaleConfig({
               text: "Get Model Usage",
               link: "/api/platform/statistics-model-usage",
             },
+            {
+              text: "Get Statistics Trending",
+              link: "/api/platform/statistics-trending",
+            },
+            {
+              text: "Get Statistics Performance",
+              link: "/api/platform/statistics-performance",
+            },
           ],
         },
       ],
