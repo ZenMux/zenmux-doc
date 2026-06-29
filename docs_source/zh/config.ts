@@ -223,6 +223,14 @@ export default defineLoacaleConfig({
                   link: "/zh/api/openai/image-edit-streaming-events",
                 },
                 {
+                  text: "Create speech",
+                  link: "/zh/api/openai/create-audio-speech",
+                },
+                {
+                  text: "Create transcription",
+                  link: "/zh/api/openai/create-audio-transcriptions",
+                },
+                {
                   text: "List Models",
                   link: "/zh/api/openai/openai-list-models",
                 },
