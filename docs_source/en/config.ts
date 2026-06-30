@@ -208,6 +208,10 @@ export default defineLoacaleConfig({
                   link: "/api/openai/create-embeddings",
                 },
                 {
+                  text: "Create Rerank",
+                  link: "/api/openai/rerank",
+                },
+                {
                   text: "Create image",
                   link: "/api/openai/generate-an-image",
                 },
@@ -230,10 +234,6 @@ export default defineLoacaleConfig({
                 {
                   text: "Create transcription",
                   link: "/api/openai/create-audio-transcriptions",
-                },
-                {
-                  text: "Create Rerank",
-                  link: "/api/openai/rerank",
                 },
                 {
                   text: "List Models",

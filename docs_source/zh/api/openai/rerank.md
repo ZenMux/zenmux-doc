@@ -38,7 +38,7 @@ Bearer Token 鉴权。
 
 ### model `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
-要使用的模型 ID，格式为 `<provider>/<model-name>`，例如 `alibaba/gte-rerank-v2`。
+要使用的模型 ID，格式为 `<provider>/<model-name>`，例如 `qwen/qwen3-rerank`。
 
 ### input `object` <span style="color: #FA6062; font-weight: 400">\*</span>
 
@@ -127,7 +127,7 @@ curl https://zenmux.ai/api/v1/rerank \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
   -d '{
-    "model": "alibaba/gte-rerank-v2",
+    "model": "qwen/qwen3-rerank",
     "input": {
       "query": "中国的首都是哪里？",
       "documents": [
@@ -153,7 +153,7 @@ resp = requests.post(
         "Content-Type": "application/json",
     },
     json={
-        "model": "alibaba/gte-rerank-v2",
+        "model": "qwen/qwen3-rerank",
         "input": {
             "query": "中国的首都是哪里？",
             "documents": [
@@ -177,7 +177,7 @@ const resp = await fetch("https://zenmux.ai/api/v1/rerank", {
     "Content-Type": "application/json",
   },
   body: JSON.stringify({
-    model: "alibaba/gte-rerank-v2",
+    model: "qwen/qwen3-rerank",
     input: {
       query: "中国的首都是哪里？",
       documents: ["北京是中国的首都。", "上海是中国最大的城市。", "长城是中国著名的地标。"],
@@ -196,7 +196,7 @@ console.log(await resp.json());
 ```json
 {
   "object": "list",
-  "model": "alibaba/gte-rerank-v2",
+  "model": "qwen/qwen3-rerank",
   "results": [
     {
       "index": 0,
