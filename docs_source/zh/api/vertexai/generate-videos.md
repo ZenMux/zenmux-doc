@@ -204,6 +204,22 @@ SDK 字段名：Python `last_frame`，TypeScript `lastFrame`。
 
 > REST 对应字段：`instances[0].lastFrame`
 
+### audio `Audio` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
+
+参考音频对象。仅 `bytedance/doubao-seedance-2.0`（字节跳动 Seedance 2）支持。模型会以传入的音频作为参考，使生成视频的画面节奏、口型或动作与音频内容对齐。
+
+- `bytesBase64Encoded` `string`：音频的 base64 编码数据。
+- `gcsUri` `string`：音频文件的 URL（与 `bytesBase64Encoded` 二选一）。
+- `mimeType` `string`：音频 MIME 类型，如 `audio/mpeg`、`audio/wav`。
+
+> REST 对应字段：`audio`（请求体顶层字段，与 `instances`、`parameters` 同级）
+
+::: warning Seedance 2 参考输入组合限制
+
+- 参考音频 `audio` 不能与首帧 `image` 同时使用。
+- `audio` 应与参考图（`referenceImages`，`referenceType` 为 `asset`）和/或参考视频 `video` 搭配使用。
+  :::
+
 ### prompt `string` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
 
 描述图片中的内容应如何运动或变化的文本提示词。
@@ -497,6 +513,66 @@ for video in operation.response.generated_videos:
 ```json
 {
   "name": "publishers/google/models/veo-3.1-generate-001/operations/xyz789",
+  "done": true,
+  "response": {
+    "videos": [
+      {
+        "bytesBase64Encoded": "AAAAIGZ0eXBpc29t...",
+        "mimeType": "video/mp4"
+      }
+    ]
+  }
+}
+```
+
+:::
+
+## Seedance 2 参考音频示例
+
+`bytedance/doubao-seedance-2.0` 支持传入参考音频，使生成视频与音频内容对齐。参考音频通过请求体顶层的 `audio` 字段传入（与 `instances`、`parameters` 同级），需与参考图（`referenceImages`）和/或参考视频（`video`）搭配，**不能**与首帧 `image` 同时使用。
+
+::: api-request POST /api/vertex-ai/v1
+
+```cURL
+# Step 1: 提交带参考音频的视频生成请求
+curl -X POST "https://zenmux.ai/api/vertex-ai/v1/publishers/bytedance/models/doubao-seedance-2.0:predictLongRunning" \
+  -H "Authorization: Bearer $ZENMUX_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "instances": [{
+      "prompt": "The singer performs on stage in sync with the music",
+      "referenceImages": [{
+        "image": {
+          "bytesBase64Encoded": "<BASE64_IMAGE_DATA>",
+          "mimeType": "image/png"
+        },
+        "referenceType": "asset"
+      }]
+    }],
+    "parameters": {
+      "resolution": "720p",
+      "durationSeconds": 5
+    },
+    "audio": {
+      "bytesBase64Encoded": "<BASE64_AUDIO_DATA>",
+      "mimeType": "audio/mpeg"
+    }
+  }'
+
+# Step 2: 轮询任务状态
+curl -X POST "https://zenmux.ai/api/vertex-ai/v1/publishers/bytedance/models/doubao-seedance-2.0:fetchPredictOperation" \
+  -H "Authorization: Bearer $ZENMUX_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"operationName": "publishers/bytedance/models/doubao-seedance-2.0/operations/aud123"}'
+```
+
+:::
+
+::: api-response
+
+```json
+{
+  "name": "publishers/bytedance/models/doubao-seedance-2.0/operations/aud123",
   "done": true,
   "response": {
     "videos": [
