@@ -232,6 +232,10 @@ export default defineLoacaleConfig({
                   link: "/api/openai/create-audio-transcriptions",
                 },
                 {
+                  text: "Create Rerank",
+                  link: "/api/openai/rerank",
+                },
+                {
                   text: "List Models",
                   link: "/api/openai/openai-list-models",
                 },
