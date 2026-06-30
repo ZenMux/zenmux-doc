@@ -206,6 +206,22 @@ SDK field name: Python `last_frame`, TypeScript `lastFrame`.
 
 > REST field: `instances[0].lastFrame`
 
+### audio `Audio` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
+
+The reference audio object. Only supported by `bytedance/doubao-seedance-2.0` (ByteDance Seedance 2). The model uses the provided audio as a reference, aligning the generated video's pacing, lip movement, or motion with the audio content.
+
+- `bytesBase64Encoded` `string`: Base64-encoded audio data.
+- `gcsUri` `string`: URL of the audio file (provide either this or `bytesBase64Encoded`).
+- `mimeType` `string`: Audio MIME type, e.g., `audio/mpeg`, `audio/wav`.
+
+> REST field: `audio` (top-level request body field, a sibling of `instances` and `parameters`)
+
+::: warning Seedance 2 reference input constraints
+
+- Reference audio `audio` cannot be combined with the first frame `image`.
+- `audio` should be paired with reference images (`referenceImages` with `referenceType` set to `asset`) and/or a reference video `video`.
+  :::
+
 ### prompt `string` <span style="color: #666; font-weight: 400; font-size: 14px">Optional</span>
 
 A text prompt describing how the content in the image should move or change.
@@ -499,6 +515,66 @@ for video in operation.response.generated_videos:
 ```json
 {
   "name": "publishers/google/models/veo-3.1-generate-001/operations/xyz789",
+  "done": true,
+  "response": {
+    "videos": [
+      {
+        "bytesBase64Encoded": "AAAAIGZ0eXBpc29t...",
+        "mimeType": "video/mp4"
+      }
+    ]
+  }
+}
+```
+
+:::
+
+## Seedance 2 Reference Audio Example
+
+`bytedance/doubao-seedance-2.0` supports passing reference audio to align the generated video with the audio content. Reference audio is passed via the top-level `audio` field (a sibling of `instances` and `parameters`) and must be paired with reference images (`referenceImages`) and/or a reference video (`video`). It **cannot** be combined with the first frame `image`.
+
+::: api-request POST /api/vertex-ai/v1
+
+```cURL
+# Step 1: Submit a video generation request with reference audio
+curl -X POST "https://zenmux.ai/api/vertex-ai/v1/publishers/bytedance/models/doubao-seedance-2.0:predictLongRunning" \
+  -H "Authorization: Bearer $ZENMUX_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "instances": [{
+      "prompt": "The singer performs on stage in sync with the music",
+      "referenceImages": [{
+        "image": {
+          "bytesBase64Encoded": "<BASE64_IMAGE_DATA>",
+          "mimeType": "image/png"
+        },
+        "referenceType": "asset"
+      }]
+    }],
+    "parameters": {
+      "resolution": "720p",
+      "durationSeconds": 5
+    },
+    "audio": {
+      "bytesBase64Encoded": "<BASE64_AUDIO_DATA>",
+      "mimeType": "audio/mpeg"
+    }
+  }'
+
+# Step 2: Poll task status
+curl -X POST "https://zenmux.ai/api/vertex-ai/v1/publishers/bytedance/models/doubao-seedance-2.0:fetchPredictOperation" \
+  -H "Authorization: Bearer $ZENMUX_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"operationName": "publishers/bytedance/models/doubao-seedance-2.0/operations/aud123"}'
+```
+
+:::
+
+::: api-response
+
+```json
+{
+  "name": "publishers/bytedance/models/doubao-seedance-2.0/operations/aud123",
   "done": true,
   "response": {
     "videos": [
