@@ -38,7 +38,7 @@ Request content type, defaults to `application/json`.
 
 ### model `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
-The model ID to use, in the format `<provider>/<model-name>`.
+The model ID to use, in the format `<provider>/<model-name>`, for example `google/gemini-3.1-flash-tts-preview`.
 
 ### input `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
@@ -73,7 +73,7 @@ On success, the response is a JSON object with the base64-encoded audio, its med
 
 ```json
 {
-  "model": "<provider>/<model-name>",
+  "model": "google/gemini-3.1-flash-tts-preview",
   "audio": "<base64-encoded audio bytes>",
   "mime_type": "audio/L16;rate=24000",
   "usage": {
@@ -123,9 +123,9 @@ curl https://zenmux.ai/api/v1/audio/speech \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
   -d '{
-    "model": "<provider>/<model-name>",
+    "model": "google/gemini-3.1-flash-tts-preview",
     "input": "ZenMux is an LLM API aggregation service.",
-    "voice": "<voice>",
+    "voice": "Kore",
     "response_format": "pcm"
   }'
 ```
@@ -138,9 +138,9 @@ const response = await fetch("https://zenmux.ai/api/v1/audio/speech", {
     Authorization: `Bearer ${process.env.ZENMUX_API_KEY}`, // [!code highlight]
   },
   body: JSON.stringify({
-    model: "<provider>/<model-name>",
+    model: "google/gemini-3.1-flash-tts-preview",
     input: "ZenMux is an LLM API aggregation service.",
-    voice: "<voice>",
+    voice: "Kore",
     response_format: "pcm",
   }),
 });
@@ -163,9 +163,9 @@ response = requests.post(
         "Authorization": f"Bearer {os.environ['ZENMUX_API_KEY']}",  # [!code highlight]
     },
     json={
-        "model": "<provider>/<model-name>",
+        "model": "google/gemini-3.1-flash-tts-preview",
         "input": "ZenMux is an LLM API aggregation service.",
-        "voice": "<voice>",
+        "voice": "Kore",
         "response_format": "pcm",
     },
 )
@@ -181,7 +181,7 @@ with open("speech.pcm", "wb") as f:
 
 ```json
 {
-  "model": "<provider>/<model-name>",
+  "model": "google/gemini-3.1-flash-tts-preview",
   "audio": "<base64-encoded audio bytes>",
   "mime_type": "audio/L16;rate=24000",
   "usage": {
@@ -203,9 +203,9 @@ curl https://zenmux.ai/api/v1/audio/speech \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
   -d '{
-    "model": "<provider>/<model-name>",
+    "model": "google/gemini-3.1-flash-tts-preview",
     "input": "ZenMux is an LLM API aggregation service.",
-    "voice": "<voice>",
+    "voice": "Kore",
     "response_format": "pcm",
     "stream": true
   }'
