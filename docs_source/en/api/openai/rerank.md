@@ -38,7 +38,7 @@ Request content type, defaults to `application/json`.
 
 ### model `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
-The model ID to use, in the format `<provider>/<model-name>`, for example `alibaba/gte-rerank-v2`.
+The model ID to use, in the format `<provider>/<model-name>`, for example `qwen/qwen3-rerank`.
 
 ### input `object` <span style="color: #FA6062; font-weight: 400">\*</span>
 
@@ -127,7 +127,7 @@ curl https://zenmux.ai/api/v1/rerank \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
   -d '{
-    "model": "alibaba/gte-rerank-v2",
+    "model": "qwen/qwen3-rerank",
     "input": {
       "query": "What is the capital of China?",
       "documents": [
@@ -153,7 +153,7 @@ resp = requests.post(
         "Content-Type": "application/json",
     },
     json={
-        "model": "alibaba/gte-rerank-v2",
+        "model": "qwen/qwen3-rerank",
         "input": {
             "query": "What is the capital of China?",
             "documents": [
@@ -177,7 +177,7 @@ const resp = await fetch("https://zenmux.ai/api/v1/rerank", {
     "Content-Type": "application/json",
   },
   body: JSON.stringify({
-    model: "alibaba/gte-rerank-v2",
+    model: "qwen/qwen3-rerank",
     input: {
       query: "What is the capital of China?",
       documents: [
@@ -200,7 +200,7 @@ console.log(await resp.json());
 ```json
 {
   "object": "list",
-  "model": "alibaba/gte-rerank-v2",
+  "model": "qwen/qwen3-rerank",
   "results": [
     {
       "index": 0,
