@@ -63,7 +63,7 @@ Bearer Token 鉴权，格式为 `Bearer $ZENMUX_API_KEY`。
 ```json
 {
   "text": "ZenMux is an LLM API aggregation service.",
-  "model": "<provider>/<model-name>",
+  "model": "qwen/qwen3-asr-flash",
   "usage": {
     "input_tokens": 120,
     "output_tokens": 11,
@@ -101,7 +101,7 @@ curl https://zenmux.ai/api/v1/audio/transcriptions \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
   -d '{
-    "model": "<provider>/<model-name>",
+    "model": "qwen/qwen3-asr-flash",
     "input_audio": {
       "data": "'"$AUDIO_B64"'",
       "format": "wav"
@@ -123,7 +123,7 @@ const response = await fetch("https://zenmux.ai/api/v1/audio/transcriptions", {
     Authorization: `Bearer ${process.env.ZENMUX_API_KEY}`, // [!code highlight]
   },
   body: JSON.stringify({
-    model: "<provider>/<model-name>",
+    model: "qwen/qwen3-asr-flash",
     input_audio: {
       data,
       format: "wav",
@@ -152,7 +152,7 @@ response = requests.post(
         "Authorization": f"Bearer {os.environ['ZENMUX_API_KEY']}",  # [!code highlight]
     },
     json={
-        "model": "<provider>/<model-name>",
+        "model": "qwen/qwen3-asr-flash",
         "input_audio": {
             "data": data,
             "format": "wav",
@@ -171,7 +171,7 @@ print(response.json()["text"])
 ```json
 {
   "text": "ZenMux is an LLM API aggregation service.",
-  "model": "<provider>/<model-name>",
+  "model": "qwen/qwen3-asr-flash",
   "usage": {
     "input_tokens": 120,
     "output_tokens": 11,
