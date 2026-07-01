@@ -275,6 +275,15 @@ export default defineLoacaleConfig({
                 },
               ],
             },
+            {
+              text: "ZenMux Native",
+              items: [
+                {
+                  text: "Generate Videos",
+                  link: "/api/zenmux/generate-videos-native",
+                },
+              ],
+            },
           ],
         },
         {
