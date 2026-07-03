@@ -251,7 +251,8 @@ Token usage information for GPT image model image generation.
 
 ::: api-request POST /api/v1/images/edits
 
-```bash [cURL]curl -s -D >(grep -i x-request-id >&2) \
+```cURL
+curl -s -D >(grep -i x-request-id >&2) \
   -o >(jq -r '.data[0].b64_json' | base64 --decode > gift-basket.png) \
   -X POST "https://zenmux.ai/api/v1/images/edits" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \

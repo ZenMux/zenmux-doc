@@ -896,7 +896,8 @@ Maximum token count (exclusive). The actual token count must be < this value; nu
 
 ::: api-request GET /api/anthropic/v1/models
 
-```bash [cURL]curl https://zenmux.ai/api/anthropic/v1/models
+```cURL
+curl https://zenmux.ai/api/anthropic/v1/models
 ```
 
 :::

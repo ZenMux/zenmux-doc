@@ -156,7 +156,8 @@ embedding = client.embeddings.create(
 print(embedding.data[0].embedding)
 ```
 
-```bash [cURL]curl https://zenmux.ai/api/v1/embeddings \
+```cURL
+curl https://zenmux.ai/api/v1/embeddings \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
   -d '{

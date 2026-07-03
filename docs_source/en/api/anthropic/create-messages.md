@@ -1513,7 +1513,7 @@ message = client.messages.create(
 print(message.content)
 ```
 
-```bash [Text input | Create a message from text]
+```cURL [Text input | Create a message from text]
 curl https://zenmux.ai/api/anthropic/v1/messages \
   -H "x-api-key: $ZENMUX_API_KEY" \
   -H "anthropic-version: 2023-06-01" \

@@ -138,7 +138,8 @@ for bucket in data["series"]:
 
 ::: api-request GET /api/v1/management/statistics/market_share
 
-```bash [cURL]curl -G https://zenmux.ai/api/v1/management/statistics/market_share \
+```cURL
+curl -G https://zenmux.ai/api/v1/management/statistics/market_share \
   -H "Authorization: Bearer $ZENMUX_MANAGEMENT_API_KEY" \
   -d metric=tokens \
   -d bucket_width=1w \
