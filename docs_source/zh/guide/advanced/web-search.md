@@ -51,8 +51,7 @@ Chat Completions API 使用 `web_search_options` 参数启用 Web Search 功能�
 
 ::: code-group
 
-```cURL
-curl -X POST "https://zenmux.ai/api/v1/chat/completions" \
+```bash [cURL]curl -X POST "https://zenmux.ai/api/v1/chat/completions" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -d '{
@@ -194,8 +193,7 @@ Messages API 使用 `tools` 参数中的 `web_search_20250305` 类型启用 Web 
 
 ::: code-group
 
-```cURL
-curl -X POST "https://zenmux.ai/api/anthropic/v1/messages" \
+```bash [cURL]curl -X POST "https://zenmux.ai/api/anthropic/v1/messages" \
   -H "Content-Type: application/json" \
   -H "x-api-key: YOUR_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
@@ -360,8 +358,7 @@ Responses API 使用 `tools` 参数中的 `web_search` 系列类型启用 Web Se
 
 ::: code-group
 
-```cURL
-curl -X POST "https://zenmux.ai/api/v1/responses" \
+```bash [cURL]curl -X POST "https://zenmux.ai/api/v1/responses" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -d '{

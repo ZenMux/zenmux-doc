@@ -330,8 +330,7 @@ SDK 底层接收的 REST 响应格式如下：
 
 ::: api-request POST /api/vertex-ai/v1
 
-```cURL
-curl -X POST "https://zenmux.ai/api/vertex-ai/v1/publishers/openai/models/gpt-image-2:predict" \
+```bash [cURL]curl -X POST "https://zenmux.ai/api/vertex-ai/v1/publishers/openai/models/gpt-image-2:predict" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -428,8 +427,7 @@ for i, img in enumerate(response.generated_images):
 
 ::: api-request POST /api/vertex-ai/v1
 
-```cURL
-curl -X POST "https://zenmux.ai/api/vertex-ai/v1/publishers/openai/models/gpt-image-2:predict" \
+```bash [cURL]curl -X POST "https://zenmux.ai/api/vertex-ai/v1/publishers/openai/models/gpt-image-2:predict" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{

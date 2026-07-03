@@ -1079,7 +1079,7 @@ completion = client.chat.completions.create(
 print(completion.choices[0].message.content)
 ```
 
-```cURL [Text input | Create a chat completion from text]
+```bash [Text input | Create a chat completion from text]
 curl https://zenmux.ai/api/v1/chat/completions \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \

@@ -51,8 +51,7 @@ The Chat Completions API enables Web Search via the `web_search_options` paramet
 
 ::: code-group
 
-```cURL
-curl -X POST "https://zenmux.ai/api/v1/chat/completions" \
+```bash [cURL]curl -X POST "https://zenmux.ai/api/v1/chat/completions" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -d '{
@@ -194,8 +193,7 @@ The Messages API enables Web Search using the `web_search_20250305` type within 
 
 ::: code-group
 
-```cURL
-curl -X POST "https://zenmux.ai/api/anthropic/v1/messages" \
+```bash [cURL]curl -X POST "https://zenmux.ai/api/anthropic/v1/messages" \
   -H "Content-Type: application/json" \
   -H "x-api-key: YOUR_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
@@ -360,8 +358,7 @@ The Responses API enables Web Search using the `web_search` family of types with
 
 ::: code-group
 
-```cURL
-curl -X POST "https://zenmux.ai/api/v1/responses" \
+```bash [cURL]curl -X POST "https://zenmux.ai/api/v1/responses" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -d '{

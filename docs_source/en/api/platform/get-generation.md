@@ -171,8 +171,7 @@ Whether this is the final retry.
 
 ::: api-request GET /api/v1/management/generation
 
-```cURL
-curl https://zenmux.ai/api/v1/management/generation?id=<generation_id> \
+```bash [cURL]curl https://zenmux.ai/api/v1/management/generation?id=<generation_id> \
   -H "Authorization: Bearer $ZENMUX_API_KEY"
 ```
 

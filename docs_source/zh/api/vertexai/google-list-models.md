@@ -239,8 +239,7 @@ token 计量单位，固定为 `"kTokens"` 表示千 tokens（1000 tokens）。
 
 ::: api-request GET /api/vertex-ai/v1beta/models
 
-```cURL
-curl https://zenmux.ai/api/vertex-ai/v1beta/models
+```bash [cURL]curl https://zenmux.ai/api/vertex-ai/v1beta/models
 ```
 
 :::
