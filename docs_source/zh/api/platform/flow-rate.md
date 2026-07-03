@@ -65,7 +65,8 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 
 ::: api-request GET /api/v1/management/flow_rate
 
-```bash [cURL]curl https://zenmux.ai/api/v1/management/flow_rate \
+```cURL
+curl https://zenmux.ai/api/v1/management/flow_rate \
   -H "Authorization: Bearer $ZENMUX_MANAGEMENT_API_KEY"
 ```
 :::

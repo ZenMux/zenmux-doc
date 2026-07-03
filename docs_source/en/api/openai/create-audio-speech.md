@@ -118,7 +118,8 @@ On error, the endpoint returns a JSON object instead of audio:
 
 ::: api-request POST /api/v1/audio/speech
 
-```bash [cURL]curl https://zenmux.ai/api/v1/audio/speech \
+```cURL
+curl https://zenmux.ai/api/v1/audio/speech \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
   -d '{
@@ -197,7 +198,8 @@ To receive the audio as Server-Sent Events instead, set `stream` to `true`:
 
 ::: api-request POST /api/v1/audio/speech
 
-```bash [cURL]curl https://zenmux.ai/api/v1/audio/speech \
+```cURL
+curl https://zenmux.ai/api/v1/audio/speech \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
   -d '{

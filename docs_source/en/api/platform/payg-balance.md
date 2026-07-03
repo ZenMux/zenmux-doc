@@ -66,7 +66,8 @@ Credits obtained through bonuses, gifts, or promotions (USD).
 
 ::: api-request GET /api/v1/management/payg/balance
 
-```bash [cURL]curl https://zenmux.ai/api/v1/management/payg/balance \
+```cURL
+curl https://zenmux.ai/api/v1/management/payg/balance \
   -H "Authorization: Bearer $ZENMUX_MANAGEMENT_API_KEY"
 ```
 :::

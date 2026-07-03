@@ -126,7 +126,8 @@ Top 10 models. The entry shape depends on `metric`.
 
 ::: api-request GET /api/v1/management/statistics/performance
 
-```bash [cURL]curl -G https://zenmux.ai/api/v1/management/statistics/performance \
+```cURL
+curl -G https://zenmux.ai/api/v1/management/statistics/performance \
   -H "Authorization: Bearer $ZENMUX_MANAGEMENT_API_KEY" \
   -d metric=throughput \
   -d starting_at=2026-06-14 \

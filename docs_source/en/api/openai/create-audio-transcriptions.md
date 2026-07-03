@@ -93,7 +93,8 @@ Errors use standard HTTP status codes (e.g. `400` for an invalid request such as
 
 ::: api-request POST /api/v1/audio/transcriptions
 
-```bash [cURL]# Build the base64 audio from a local file, then POST it as JSON.
+```cURL
+# Build the base64 audio from a local file, then POST it as JSON.
 AUDIO_B64=$(base64 -w 0 speech.wav)
 
 curl https://zenmux.ai/api/v1/audio/transcriptions \

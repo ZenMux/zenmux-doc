@@ -20,7 +20,8 @@ Image streaming can return image generation and editing results in real time thr
 
 ::: api-request POST /api/v1/images/generations
 
-```bash [cURL]curl https://zenmux.ai/api/v1/images/generations \
+```cURL
+curl https://zenmux.ai/api/v1/images/generations \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
   -d '{

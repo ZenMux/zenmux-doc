@@ -202,7 +202,8 @@ GPT image 模型的图片生成 token 用量信息。
 
 ::: api-request POST /api/v1/images/generations
 
-```bash [cURL]curl https://zenmux.ai/api/v1/images/generations \
+```cURL
+curl https://zenmux.ai/api/v1/images/generations \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
   -d '{
