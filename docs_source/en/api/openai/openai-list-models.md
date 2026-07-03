@@ -404,7 +404,7 @@ Maximum token count (exclusive). The actual token count must be < this value; nu
 
 ::: api-request GET /api/v1/models
 
-```bash [cURL]
+```cURL
 curl https://zenmux.ai/api/v1/models
 ```
 

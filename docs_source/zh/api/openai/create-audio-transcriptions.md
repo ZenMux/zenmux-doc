@@ -93,7 +93,7 @@ Bearer Token 鉴权，格式为 `Bearer $ZENMUX_API_KEY`。
 
 ::: api-request POST /api/v1/audio/transcriptions
 
-```bash [cURL]
+```cURL
 # 从本地文件构建 base64 音频，然后以 JSON 形式 POST。
 AUDIO_B64=$(base64 -w 0 speech.wav)
 

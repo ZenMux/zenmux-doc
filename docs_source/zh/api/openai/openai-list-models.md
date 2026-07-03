@@ -404,7 +404,7 @@ token 计量单位，固定为 `"kTokens"` 表示千 tokens（1000 tokens）。
 
 ::: api-request GET /api/v1/models
 
-```bash [cURL]
+```cURL
 curl https://zenmux.ai/api/v1/models
 ```
 

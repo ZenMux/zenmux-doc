@@ -278,7 +278,7 @@ When generation fails, `raiMediaFilteredCount` is greater than 0 and `raiMediaFi
 
 ::: api-request POST /api/vertex-ai/v1
 
-```bash [cURL]
+```cURL
 # Step 1: Submit video generation request
 curl -X POST "https://zenmux.ai/api/vertex-ai/v1/publishers/google/models/veo-3.1-generate-001:predictLongRunning" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
@@ -403,7 +403,7 @@ for video in operation.response.generated_videos:
 
 ::: api-request POST /api/vertex-ai/v1
 
-```bash [cURL]
+```cURL
 # Step 1: Submit image-to-video request (image passed as base64)
 curl -X POST "https://zenmux.ai/api/vertex-ai/v1/publishers/google/models/veo-3.1-generate-001:predictLongRunning" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
@@ -535,7 +535,7 @@ for video in operation.response.generated_videos:
 
 ::: api-request POST /api/vertex-ai/v1
 
-```bash [cURL]
+```cURL
 # Step 1: Submit a video generation request with reference audio
 curl -X POST "https://zenmux.ai/api/vertex-ai/v1/publishers/bytedance/models/doubao-seedance-2.0:predictLongRunning" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
