@@ -239,7 +239,7 @@ Maximum token count (exclusive). The actual token count must be < this value; nu
 
 ::: api-request GET /api/vertex-ai/v1beta/models
 
-```bash [cURL]
+```cURL
 curl https://zenmux.ai/api/vertex-ai/v1beta/models
 ```
 

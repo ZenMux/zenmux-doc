@@ -251,7 +251,7 @@ GPT image 模型的图片生成 token 用量信息。
 
 ::: api-request POST /api/v1/images/edits
 
-```bash [cURL]
+```cURL
 curl -s -D >(grep -i x-request-id >&2) \
   -o >(jq -r '.data[0].b64_json' | base64 --decode > gift-basket.png) \
   -X POST "https://zenmux.ai/api/v1/images/edits" \

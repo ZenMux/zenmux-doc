@@ -2506,7 +2506,7 @@ response = client.responses.create(
 print(response.output_text)
 ```
 
-```bash [Text input | Create a response from text]
+```cURL [Text input | Create a response from text]
 curl https://zenmux.ai/api/v1/responses \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \

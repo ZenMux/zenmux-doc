@@ -125,7 +125,7 @@ Array of time buckets. Each bucket contains:
 
 ::: api-request GET /api/v1/management/statistics/timeseries
 
-```bash [cURL]
+```cURL
 curl -G https://zenmux.ai/api/v1/management/statistics/timeseries \
   -H "Authorization: Bearer $ZENMUX_MANAGEMENT_API_KEY" \
   -d metric=tokens \

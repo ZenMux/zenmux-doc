@@ -122,7 +122,7 @@ Models sorted by combined score (growth × magnitude), descending. Each entry co
 
 ::: api-request GET /api/v1/management/statistics/trending
 
-```bash [cURL]
+```cURL
 curl -G https://zenmux.ai/api/v1/management/statistics/trending \
   -H "Authorization: Bearer $ZENMUX_MANAGEMENT_API_KEY" \
   -d metric=cost \

@@ -226,7 +226,7 @@ The model slug used for this task.
 
 ::: api-request POST /api/v1/videos
 
-```bash [cURL]
+```cURL
 # Step 1: Submit a video generation request
 curl -X POST "https://zenmux.ai/api/v1/videos" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
@@ -251,7 +251,7 @@ curl "https://zenmux.ai/api/v1/videos/fff8799f449e4ada8ceebe0079f7c01c" \
   -H "Authorization: Bearer $ZENMUX_API_KEY"
 ```
 
-```bash [Image-to-video / reference audio]
+```cURL [Image-to-video / reference audio]
 # Pass a first-frame image, reference video, or reference audio via the content array
 curl -X POST "https://zenmux.ai/api/v1/videos" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
