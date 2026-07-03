@@ -109,8 +109,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 
 ::: api-request GET /api/v1/management/subscription/detail
 
-```cURL
-curl https://zenmux.ai/api/v1/management/subscription/detail \
+```bash [cURL]curl https://zenmux.ai/api/v1/management/subscription/detail \
   -H "Authorization: Bearer $ZENMUX_MANAGEMENT_API_KEY"
 ```
 :::

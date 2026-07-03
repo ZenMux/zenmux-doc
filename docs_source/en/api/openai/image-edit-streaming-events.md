@@ -20,8 +20,7 @@ Image streaming can return image generation and editing results in real time thr
 
 ::: api-request POST /api/v1/images/edits
 
-```cURL
-curl -s -N -X POST "https://zenmux.ai/api/v1/images/edits" \
+```bash [cURL]curl -s -N -X POST "https://zenmux.ai/api/v1/images/edits" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
   -F "model=openai/gpt-image-2" \
   -F "image[]=@body-lotion.png" \
