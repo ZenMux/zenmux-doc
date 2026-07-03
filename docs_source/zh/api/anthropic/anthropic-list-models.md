@@ -896,7 +896,7 @@ token 计量单位，固定为 `"kTokens"` 表示千 tokens（1000 tokens）。
 
 ::: api-request GET /api/anthropic/v1/models
 
-```cURL
+```bash [cURL]
 curl https://zenmux.ai/api/anthropic/v1/models
 ```
 

@@ -121,7 +121,7 @@ Array broken down by day (sorted in ascending date order). Each element contains
 
 ::: api-request GET /api/v1/management/statistics/model_usage
 
-```cURL
+```bash [cURL]
 curl -G https://zenmux.ai/api/v1/management/statistics/model_usage \
   -H "Authorization: Bearer $ZENMUX_MANAGEMENT_API_KEY" \
   -d model=anthropic/claude-opus-4.8 \

@@ -109,7 +109,7 @@ Monthly subscription cycle quota (upper limits only; no real-time usage data):
 
 ::: api-request GET /api/v1/management/subscription/detail
 
-```cURL
+```bash [cURL]
 curl https://zenmux.ai/api/v1/management/subscription/detail \
   -H "Authorization: Bearer $ZENMUX_MANAGEMENT_API_KEY"
 ```

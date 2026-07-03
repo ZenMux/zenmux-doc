@@ -20,7 +20,7 @@ head:
 
 ::: api-request POST /api/v1/images/edits
 
-```cURL
+```bash [cURL]
 curl -s -N -X POST "https://zenmux.ai/api/v1/images/edits" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
   -F "model=openai/gpt-image-2" \

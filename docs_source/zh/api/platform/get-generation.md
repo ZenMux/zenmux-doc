@@ -171,7 +171,7 @@ API 类型，根据调用的协议不同，取值如下：
 
 ::: api-request GET /api/v1/management/generation
 
-```cURL
+```bash [cURL]
 curl https://zenmux.ai/api/v1/management/generation?id=<generation_id> \
   -H "Authorization: Bearer $ZENMUX_API_KEY"
 ```

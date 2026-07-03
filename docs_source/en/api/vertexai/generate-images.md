@@ -335,7 +335,7 @@ The underlying REST response format received by the SDK:
 
 ::: api-request POST /api/vertex-ai/v1
 
-```cURL
+```bash [cURL]
 curl -X POST "https://zenmux.ai/api/vertex-ai/v1/publishers/openai/models/gpt-image-2:predict" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
   -H "Content-Type: application/json" \
@@ -433,7 +433,7 @@ for i, img in enumerate(response.generated_images):
 
 ::: api-request POST /api/vertex-ai/v1
 
-```cURL
+```bash [cURL]
 curl -X POST "https://zenmux.ai/api/vertex-ai/v1/publishers/openai/models/gpt-image-2:predict" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
   -H "Content-Type: application/json" \

@@ -202,7 +202,7 @@ Token usage information for GPT image model image generation.
 
 ::: api-request POST /api/v1/images/generations
 
-```cURL
+```bash [cURL]
 curl https://zenmux.ai/api/v1/images/generations \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \

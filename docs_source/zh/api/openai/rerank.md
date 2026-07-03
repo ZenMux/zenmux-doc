@@ -122,7 +122,7 @@ Bearer Token 鉴权。
 
 ::: api-request POST /api/v1/rerank
 
-```cURL
+```bash [cURL]
 curl https://zenmux.ai/api/v1/rerank \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
@@ -224,7 +224,7 @@ console.log(await resp.json());
 
 ::: api-request POST /api/v1/rerank
 
-```cURL
+```bash [cURL]
 curl https://zenmux.ai/api/v1/rerank \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
