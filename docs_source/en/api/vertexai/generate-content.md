@@ -1080,7 +1080,7 @@ response = client.models.generate_content(
 print(response.text)
 ```
 
-```cURL [Text input | Generate content from text]
+```bash [Text input | Generate content from text]
 curl https://zenmux.ai/api/vertex-ai/v1/publishers/google/models/gemini-2.5-pro:generateContent \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \

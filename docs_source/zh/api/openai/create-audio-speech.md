@@ -118,7 +118,7 @@ data: [DONE]
 
 ::: api-request POST /api/v1/audio/speech
 
-```cURL
+```bash [cURL]
 curl https://zenmux.ai/api/v1/audio/speech \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
@@ -198,7 +198,7 @@ with open("speech.pcm", "wb") as f:
 
 ::: api-request POST /api/v1/audio/speech
 
-```cURL
+```bash [cURL]
 curl https://zenmux.ai/api/v1/audio/speech \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \

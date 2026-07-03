@@ -226,7 +226,7 @@ GET https://zenmux.ai/api/v1/videos/{jobId}
 
 ::: api-request POST /api/v1/videos
 
-```cURL
+```bash [cURL]
 # Step 1: 提交视频生成请求
 curl -X POST "https://zenmux.ai/api/v1/videos" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
@@ -251,7 +251,7 @@ curl "https://zenmux.ai/api/v1/videos/fff8799f449e4ada8ceebe0079f7c01c" \
   -H "Authorization: Bearer $ZENMUX_API_KEY"
 ```
 
-```cURL [图生视频 / 参考音频]
+```bash [图生视频 / 参考音频]
 # 通过 content 数组传入首帧图、参考视频或参考音频
 curl -X POST "https://zenmux.ai/api/v1/videos" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \

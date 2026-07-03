@@ -276,7 +276,7 @@ SDK 会自动将 REST 响应转换为 `GenerateVideosResponse` 对象，通过 `
 
 ::: api-request POST /api/vertex-ai/v1
 
-```cURL
+```bash [cURL]
 # Step 1: 提交视频生成请求
 curl -X POST "https://zenmux.ai/api/vertex-ai/v1/publishers/google/models/veo-3.1-generate-001:predictLongRunning" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
@@ -401,7 +401,7 @@ for video in operation.response.generated_videos:
 
 ::: api-request POST /api/vertex-ai/v1
 
-```cURL
+```bash [cURL]
 # Step 1: 提交图生视频请求（图片以 base64 编码传入）
 curl -X POST "https://zenmux.ai/api/vertex-ai/v1/publishers/google/models/veo-3.1-generate-001:predictLongRunning" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
@@ -533,7 +533,7 @@ for video in operation.response.generated_videos:
 
 ::: api-request POST /api/vertex-ai/v1
 
-```cURL
+```bash [cURL]
 # Step 1: 提交带参考音频的视频生成请求
 curl -X POST "https://zenmux.ai/api/vertex-ai/v1/publishers/bytedance/models/doubao-seedance-2.0:predictLongRunning" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \

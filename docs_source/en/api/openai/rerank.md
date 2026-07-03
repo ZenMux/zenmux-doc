@@ -122,7 +122,7 @@ Token usage information for this request.
 
 ::: api-request POST /api/v1/rerank
 
-```cURL
+```bash [cURL]
 curl https://zenmux.ai/api/v1/rerank \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
@@ -228,7 +228,7 @@ Multimodal rerank models can rank image or video documents against a text query.
 
 ::: api-request POST /api/v1/rerank
 
-```cURL
+```bash [cURL]
 curl https://zenmux.ai/api/v1/rerank \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \

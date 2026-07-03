@@ -126,7 +126,7 @@ Top 10 模型。条目结构取决于 `metric`。
 
 ::: api-request GET /api/v1/management/statistics/performance
 
-```cURL
+```bash [cURL]
 curl -G https://zenmux.ai/api/v1/management/statistics/performance \
   -H "Authorization: Bearer $ZENMUX_MANAGEMENT_API_KEY" \
   -d metric=throughput \

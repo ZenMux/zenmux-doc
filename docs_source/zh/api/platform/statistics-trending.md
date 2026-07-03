@@ -122,7 +122,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 
 ::: api-request GET /api/v1/management/statistics/trending
 
-```cURL
+```bash [cURL]
 curl -G https://zenmux.ai/api/v1/management/statistics/trending \
   -H "Authorization: Bearer $ZENMUX_MANAGEMENT_API_KEY" \
   -d metric=cost \
