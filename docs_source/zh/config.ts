@@ -261,6 +261,10 @@ export default defineLoacaleConfig({
                   link: "/zh/api/vertexai/generate-content",
                 },
                 {
+                  text: "Create Interaction",
+                  link: "/zh/api/vertexai/create-interaction-native",
+                },
+                {
                   text: "Generate Images",
                   link: "/zh/api/vertexai/generate-images",
                 },
