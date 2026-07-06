@@ -173,7 +173,8 @@ Each event may carry a `metadata` object with the cumulative `total_usage` (same
 
 ::: api-request POST /api/v1/interactions
 
-```cURL [Text input | Create an interaction from text]
+```cURL
+# Non-streaming: single JSON response
 curl -X POST "https://zenmux.ai/api/v1/interactions" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
   -H "Content-Type: application/json" \
@@ -182,9 +183,8 @@ curl -X POST "https://zenmux.ai/api/v1/interactions" \
     "input": "What is the capital of France?",
     "generation_config": { "max_output_tokens": 100 }
   }'
-```
 
-```cURL [Multi-modal input | Text + image via native content]
+# Multi-modal input: text + image via the native content structure
 curl -X POST "https://zenmux.ai/api/v1/interactions" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
   -H "Content-Type: application/json" \
@@ -202,9 +202,8 @@ curl -X POST "https://zenmux.ai/api/v1/interactions" \
     "system_instruction": "You are a helpful creative assistant.",
     "generation_config": { "temperature": 0.8 }
   }'
-```
 
-```cURL [Streaming | Stream interaction events]
+# Streaming: set stream: true for incremental Server-Sent Events
 curl -N -X POST "https://zenmux.ai/api/v1/interactions" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
   -H "Content-Type: application/json" \

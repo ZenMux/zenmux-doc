@@ -173,7 +173,8 @@ POST https://zenmux.ai/api/v1beta1/interactions
 
 ::: api-request POST /api/v1/interactions
 
-```cURL [文本输入 | 从文本创建交互]
+```cURL
+# 非流式：返回单个 JSON
 curl -X POST "https://zenmux.ai/api/v1/interactions" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
   -H "Content-Type: application/json" \
@@ -182,9 +183,8 @@ curl -X POST "https://zenmux.ai/api/v1/interactions" \
     "input": "What is the capital of France?",
     "generation_config": { "max_output_tokens": 100 }
   }'
-```
 
-```cURL [多模态输入 | 通过原生 content 传入文本+图像]
+# 多模态输入：通过原生 content 结构传入文本 + 图像
 curl -X POST "https://zenmux.ai/api/v1/interactions" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
   -H "Content-Type: application/json" \
@@ -202,9 +202,8 @@ curl -X POST "https://zenmux.ai/api/v1/interactions" \
     "system_instruction": "You are a helpful creative assistant.",
     "generation_config": { "temperature": 0.8 }
   }'
-```
 
-```cURL [流式 | 增量接收交互事件]
+# 流式：设置 stream: true 以增量接收 Server-Sent Events
 curl -N -X POST "https://zenmux.ai/api/v1/interactions" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
   -H "Content-Type: application/json" \
