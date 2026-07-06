@@ -173,8 +173,7 @@ POST https://zenmux.ai/api/v1beta1/interactions
 
 ::: api-request POST /api/v1/interactions
 
-```cURL
-# 非流式：返回单个 JSON
+```cURL [文本输入 | 从文本创建交互]
 curl -X POST "https://zenmux.ai/api/v1/interactions" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
   -H "Content-Type: application/json" \
@@ -185,8 +184,7 @@ curl -X POST "https://zenmux.ai/api/v1/interactions" \
   }'
 ```
 
-```cURL [多模态输入]
-# 通过原生 Content 结构传入 文本 + 图像
+```cURL [多模态输入 | 通过原生 content 传入文本+图像]
 curl -X POST "https://zenmux.ai/api/v1/interactions" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
   -H "Content-Type: application/json" \
@@ -197,7 +195,7 @@ curl -X POST "https://zenmux.ai/api/v1/interactions" \
         "role": "user",
         "content": [
           { "type": "text", "text": "Describe this scene, then animate it." },
-          { "type": "image_url", "image_url": { "url": "https://example.com/scene.png" } }
+          { "type": "image", "data": "<base64>", "mime_type": "image/png" }
         ]
       }
     ],
@@ -206,8 +204,7 @@ curl -X POST "https://zenmux.ai/api/v1/interactions" \
   }'
 ```
 
-```cURL [流式（SSE）]
-# 设置 stream: true 以增量接收 Server-Sent Events
+```cURL [流式 | 增量接收交互事件]
 curl -N -X POST "https://zenmux.ai/api/v1/interactions" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
   -H "Content-Type: application/json" \

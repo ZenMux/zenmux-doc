@@ -173,8 +173,7 @@ Each event may carry a `metadata` object with the cumulative `total_usage` (same
 
 ::: api-request POST /api/v1/interactions
 
-```bash [cURL]
-# Non-streaming: single JSON response
+```cURL [Text input | Create an interaction from text]
 curl -X POST "https://zenmux.ai/api/v1/interactions" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
   -H "Content-Type: application/json" \
@@ -185,8 +184,7 @@ curl -X POST "https://zenmux.ai/api/v1/interactions" \
   }'
 ```
 
-```bash [Multi-modal input]
-# Text + image input via the native Content structure
+```cURL [Multi-modal input | Text + image via native content]
 curl -X POST "https://zenmux.ai/api/v1/interactions" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
   -H "Content-Type: application/json" \
@@ -197,7 +195,7 @@ curl -X POST "https://zenmux.ai/api/v1/interactions" \
         "role": "user",
         "content": [
           { "type": "text", "text": "Describe this scene, then animate it." },
-          { "type": "image_url", "image_url": { "url": "https://example.com/scene.png" } }
+          { "type": "image", "data": "<base64>", "mime_type": "image/png" }
         ]
       }
     ],
@@ -206,8 +204,7 @@ curl -X POST "https://zenmux.ai/api/v1/interactions" \
   }'
 ```
 
-```bash [Streaming (SSE)]
-# Set stream: true for incremental Server-Sent Events
+```cURL [Streaming | Stream interaction events]
 curl -N -X POST "https://zenmux.ai/api/v1/interactions" \
   -H "Authorization: Bearer $ZENMUX_API_KEY" \
   -H "Content-Type: application/json" \
