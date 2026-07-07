@@ -192,6 +192,10 @@ export default defineLoacaleConfig({
           text: "模型端点",
           items: [
             {
+              text: "协议转换参数兼容性",
+              link: "/zh/api/protocol-conversion",
+            },
+            {
               text: "OpenAI 兼容",
               items: [
                 {

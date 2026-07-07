@@ -193,6 +193,10 @@ export default defineLoacaleConfig({
           text: "Model Endpoints",
           items: [
             {
+              text: "Protocol Conversion Compatibility",
+              link: "/api/protocol-conversion",
+            },
+            {
               text: "OpenAI Compatible",
               items: [
                 {
