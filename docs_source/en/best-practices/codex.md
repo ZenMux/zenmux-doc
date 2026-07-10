@@ -76,6 +76,9 @@ name = "ZenMux"  # [!code highlight]
 base_url = "https://zenmux.ai/api/v1"  # [!code highlight]
 env_key = "ZENMUX_API_KEY"  # [!code highlight]
 wire_api = "responses"  # [!code highlight]
+
+[features.multi_agent_v2]
+tool_namespace = "agents"
 ```
 
 ::: tip Configuration Notes
@@ -85,6 +88,7 @@ wire_api = "responses"  # [!code highlight]
 - `base_url`: The base URL of the ZenMux API
 - `env_key`: The name of the environment variable that stores the API Key
 - `wire_api`: Use the Responses protocol (recommended)
+- `features.multi_agent_v2.tool_namespace`: Sets the `agents` namespace for multi-agent tools; keep this setting when using the GPT-5.6 models listed below
 :::
 
 ### Start Using It Immediately
@@ -143,6 +147,27 @@ Codex validates model names against hardcoded strings to enable the correspondin
 
 ZenMux's model alias feature makes `gpt-5.2-codex` fully equivalent to `openai/gpt-5.2-codex`, so Codex's validation passes and all downstream features work as expected. For the full alias list and more details, see [Model Alias](/guide/advanced/model-alias).
 
+:::
+
+### Multi-Agent Configuration for GPT-5.6 Luna, Terra, and Sol
+
+::: warning Important
+When using the latest `gpt-5.6-luna`, `gpt-5.6-terra`, or `gpt-5.6-sol`, you may encounter the following error:
+
+```json
+{"error":{"code":"400","type":"invalid_params","message":"Invalid Value: 'tools'. Namespace 'collaboration' is reserved for encrypted tool use by this model."}}
+```
+
+Add the following configuration to `~/.codex/config.toml` (it is already included in the default example above):
+
+```toml
+[features.multi_agent_v2]
+tool_namespace = "agents"
+```
+
+Starting with Codex `v0.144.1`, `multi_agent` is a new feature. When Codex defines multi-agent tools, it uses the special `collaboration` field. `gpt-5.6-sol` reserves `collaboration` as a namespace for encrypted tool use, which causes the conflict and the error above.
+
+This switches multi-agent tools to the `agents` namespace, avoiding the namespace conflict. Restart Codex after saving the configuration.
 :::
 
 ::: tip How to use other models
