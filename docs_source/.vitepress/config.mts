@@ -1,4 +1,4 @@
-import { defineConfig } from "vitepress";
+import { defineConfig, type HeadConfig } from "vitepress";
 import container from "markdown-it-container";
 import fs from "node:fs";
 import { groupIconVitePlugin } from "vitepress-plugin-group-icons";
@@ -256,12 +256,63 @@ function docsPageTitle(pageData: DocsPageData) {
   );
 }
 
-function buildJsonLdHead(jsonLd: JsonLdObject) {
+function buildJsonLdHead(jsonLd: JsonLdObject): HeadConfig {
   return [
     "script",
     { type: "application/ld+json" },
     JSON.stringify(jsonLd).replace(/<\/script/gi, "<\\/script"),
   ];
+}
+
+function buildDocsSocialHead(pageData: DocsPageData): HeadConfig[] {
+  const seo = pageData.frontmatter?.seo;
+  if (!seo) {
+    return [];
+  }
+  const title = docsPageTitle(pageData);
+  const description = pageData.description || pageData.frontmatter?.description || title;
+  const canonicalUrl = docsCanonicalUrl(pageData.relativePath);
+  const image = seo.image || seo.article?.image;
+  const twitterDescription = seo.twitterDescription || description;
+  const keywords = Array.isArray(seo.keywords)
+    ? seo.keywords.join(", ")
+    : seo.keywords;
+  const head: HeadConfig[] = [
+    ["meta", { property: "og:site_name", content: "ZenMux" }],
+    ["meta", { property: "og:type", content: seo.type || "website" }],
+    ["meta", { property: "og:title", content: title }],
+    ["meta", { property: "og:description", content: description }],
+    ["meta", { property: "og:url", content: canonicalUrl }],
+    ["meta", { name: "twitter:card", content: "summary_large_image" }],
+    ["meta", { name: "twitter:title", content: title }],
+    ["meta", { name: "twitter:description", content: twitterDescription }],
+    ["meta", { name: "twitter:site", content: "@ZenMuxAI" }],
+  ];
+  if (image) {
+    head.push(
+      ["meta", { property: "og:image", content: image }],
+      ["meta", { name: "twitter:image", content: image }],
+    );
+  }
+  if (seo.imageWidth) {
+    head.push(["meta", { property: "og:image:width", content: String(seo.imageWidth) }]);
+  }
+  if (seo.imageHeight) {
+    head.push(["meta", { property: "og:image:height", content: String(seo.imageHeight) }]);
+  }
+  if (seo.imageAlt) {
+    head.push(["meta", { property: "og:image:alt", content: seo.imageAlt }]);
+  }
+  if (seo.ogLocale) {
+    head.push(["meta", { property: "og:locale", content: seo.ogLocale }]);
+  }
+  if (seo.imageType) {
+    head.push(["meta", { property: "og:image:type", content: seo.imageType }]);
+  }
+  if (keywords) {
+    head.push(["meta", { name: "keywords", content: keywords }]);
+  }
+  return head;
 }
 
 function buildDocsBreadcrumbJsonLd(pageData: DocsPageData): JsonLdObject {
@@ -298,18 +349,40 @@ function buildDocsBreadcrumbJsonLd(pageData: DocsPageData): JsonLdObject {
   };
 }
 
-function extractDocsFaqItems(relativePath: string) {
-  if (!/(^|\/)help\/faq\.md$/.test(relativePath)) {
+function extractDocsFaqItems(pageData: DocsPageData) {
+  const { relativePath } = pageData;
+  const isDedicatedFaqPage = /(^|\/)help\/faq\.md$/.test(relativePath);
+  const isFaqEnabled = pageData.frontmatter?.seo?.faq === true;
+  if (!isDedicatedFaqPage && !isFaqEnabled) {
     return [];
   }
   const content = stripFrontmatter(readDocsMarkdown(relativePath));
-  const headings = [...content.matchAll(/^##\s+(.+)$/gm)].map((match) => ({
+  let faqContent = content;
+  let headingPattern = /^##\s+(.+)$/gm;
+
+  if (!isDedicatedFaqPage) {
+    const faqHeading = content.match(/^##\s+(?:FAQ|常见问题)\s*$/m);
+    if (!faqHeading || faqHeading.index === undefined) {
+      return [];
+    }
+    const sectionStart = faqHeading.index + faqHeading[0].length;
+    const nextSectionOffset = content.slice(sectionStart).search(/^##\s+/m);
+    const sectionEnd = nextSectionOffset === -1
+      ? content.length
+      : sectionStart + nextSectionOffset;
+    faqContent = content.slice(sectionStart, sectionEnd);
+    headingPattern = /^###\s+(.+)$/gm;
+  }
+
+  const headings = [...faqContent.matchAll(headingPattern)].map((match) => ({
     title: cleanFaqQuestion(match[1]),
     index: match.index || 0,
   }));
   return headings.map((heading, index) => {
-    const next = headings[index + 1]?.index ?? content.length;
-    const rawAnswer = content.slice(heading.index, next).replace(/^##\s+.+$/m, "");
+    const next = headings[index + 1]?.index ?? faqContent.length;
+    const rawAnswer = faqContent
+      .slice(heading.index, next)
+      .replace(/^#{2,3}\s+.+$/m, "");
     const answer = cleanMarkdownText(rawAnswer);
     return {
       question: heading.title,
@@ -319,7 +392,7 @@ function extractDocsFaqItems(relativePath: string) {
 }
 
 function buildDocsFaqJsonLd(pageData: DocsPageData): JsonLdObject | null {
-  const faqItems = extractDocsFaqItems(pageData.relativePath);
+  const faqItems = extractDocsFaqItems(pageData);
   if (!faqItems.length) {
     return null;
   }
@@ -334,6 +407,57 @@ function buildDocsFaqJsonLd(pageData: DocsPageData): JsonLdObject | null {
         text: item.answer,
       },
     })),
+  };
+}
+
+function buildDocsTechArticleJsonLd(pageData: DocsPageData): JsonLdObject | null {
+  const seo = pageData.frontmatter?.seo;
+  const article = seo?.article;
+  if (!article) {
+    return null;
+  }
+  const about = Array.isArray(article.about)
+    ? article.about
+      .filter((item: unknown) => item && typeof item === "object")
+      .map((item: Record<string, unknown>) => ({
+        "@type": item.type || "Thing",
+        name: item.name,
+      }))
+      .filter((item: Record<string, unknown>) => item.name)
+    : [];
+  const isChinese = canonicalDocsPath(pageData.relativePath).startsWith("zh/");
+  const canonicalUrl = docsCanonicalUrl(pageData.relativePath);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    headline: article.headline || docsPageTitle(pageData),
+    description: pageData.description || pageData.frontmatter?.description,
+    image: article.image || seo.image,
+    url: canonicalUrl,
+    datePublished: article.datePublished,
+    dateModified: article.dateModified,
+    inLanguage: isChinese ? "zh-CN" : "en-US",
+    author: {
+      "@type": "Organization",
+      name: "ZenMux",
+      url: siteOrigin,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "ZenMux",
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteOrigin}/docs/favicon.svg`,
+        width: 160,
+        height: 160,
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": canonicalUrl,
+    },
+    ...(about.length ? { about } : {}),
   };
 }
 
@@ -363,7 +487,10 @@ function isDocsHowToPage(relativePath: string) {
 }
 
 function buildDocsHowToJsonLd(pageData: DocsPageData): JsonLdObject | null {
-  if (!isDocsHowToPage(pageData.relativePath)) {
+  if (
+    !isDocsHowToPage(pageData.relativePath) ||
+    pageData.frontmatter?.seo?.howTo === false
+  ) {
     return null;
   }
   const title = docsPageTitle(pageData);
@@ -435,11 +562,13 @@ export default defineConfig({
     const docsPageData = pageData as DocsPageData;
     const jsonLdItems = [
       buildDocsBreadcrumbJsonLd(docsPageData),
+      buildDocsTechArticleJsonLd(docsPageData),
       buildDocsFaqJsonLd(docsPageData),
       buildDocsHowToJsonLd(docsPageData),
     ].filter(Boolean) as JsonLdObject[];
     return [
       ["link", { rel: "canonical", href: docsCanonicalUrl(docsPageData.relativePath) }],
+      ...buildDocsSocialHead(docsPageData),
       ...jsonLdItems.map(buildJsonLdHead),
     ];
   },

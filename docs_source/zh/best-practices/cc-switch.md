@@ -1,30 +1,64 @@
 ---
-head:
-  - - meta
-    - name: description
-      content: 通过 CC-Switch 管理 ZenMux 与 Claude Code / Codex / Gemini CLI / OpenCode 的集成配置
-  - - meta
-    - name: keywords
-      content: Zenmux, best practices, integration, CC-Switch, cc-switch, Claude Code, Codex, Gemini CLI, OpenCode, 模型切换, provider
+title: cc-switch — 一键切换 Claude Code 订阅与 API 配置
+titleTemplate: false
+description: cc-switch 是一款免费、开源的跨平台桌面应用，可一键切换 Claude Code 的 Anthropic 订阅与 ZenMux 等 API 供应商配置。
+seo:
+  type: article
+  keywords: Zenmux, best practices, integration, CC-Switch, cc-switch, Claude Code, Codex, Gemini CLI, OpenCode, 模型切换, provider
+  image: https://cdn.marmot-cloud.com/storage/zenmux/2026/06/12/y4TPMcW/single.png
+  imageWidth: 1200
+  imageHeight: 630
+  imageType: image/png
+  imageAlt: ZenMux — 统一接入 100+ AI 模型
+  ogLocale: zh_CN
+  twitterDescription: cc-switch 是一款免费、开源的跨平台桌面应用，可一键切换 Claude Code 的 Anthropic 订阅与 ZenMux 等 API 供应商配置。
+  faq: true
+  howTo: false
+  article:
+    headline: cc-switch — 切换 Claude Code 订阅与 API 配置的开源工具
+    datePublished: "2026-02-09"
+    dateModified: "2026-07-17"
+    about:
+      - type: SoftwareApplication
+        name: cc-switch
+      - type: Thing
+        name: Claude Code
+      - type: Thing
+        name: API 供应商切换
 ---
 
-# 通过 ZenMux 使用 CC-Switch 指南
+# cc-switch — 切换 Claude Code 订阅与 API 配置的开源工具
 
-[CC-Switch](https://github.com/farion1231/cc-switch) 是一款开源的跨平台桌面工具，专为统一管理 AI 编码助手的配置而设计。它支持同时管理 Claude Code、Codex、Gemini CLI 和 OpenCode 四大编码工具的供应商配置，让您无需手动编辑环境变量或 JSON 文件，即可通过可视化界面一键切换不同的 API 供应商。
+## 什么是 cc-switch？
+
+[cc-switch](https://github.com/farion1231/cc-switch) 是一款免费、开源的桌面应用，用于统一管理 AI 编码工具配置。开发者无需手动编辑环境变量或 JSON 文件，就能在 Claude Code 的 Anthropic 订阅与 ZenMux 等 API 供应商之间切换。该应用支持 macOS、Windows 和 Linux。
+
+## 为什么使用 cc-switch？
+
+- **订阅额度用完后继续工作**：切换到按 API 用量计费的 ZenMux 配置，无需等待订阅额度重置。
+- **管理多套供应商配置**：将工作、个人和实验配置隔离保存，需要时再启用。
+- **按任务选择不同模型**：把 Claude Code 的模型档位映射到 ZenMux 上兼容的模型。
+- **统一管理多个编码工具**：用相同的可视化流程管理 Claude Code、Claude Desktop、Codex、Gemini CLI、OpenCode、OpenClaw 和 Hermes Agent。
+
+## cc-switch 如何工作？
+
+在标准供应商切换模式下，cc-switch 会把配置保存在本地 SQLite 数据库，并将当前启用的配置写入编码工具的实时配置文件。Claude Code 目前支持无需重启即可切换供应商数据；多数其他 CLI 工具需要新开终端或重新启动应用，才能读取更新后的配置。
+
+cc-switch 还提供可选的 **Proxy & Failover** 模式。启用后，本地代理可以提供热切换、协议转换、健康检查和故障转移；未启用代理模式时，请求会由编码工具直接发送到所配置的供应商端点。
 
 ::: info 兼容性说明
-CC-Switch 支持管理 **Claude Code**、**Codex**、**Gemini CLI** 和 **OpenCode** 四种编码工具。通过在 CC-Switch 中配置 ZenMux 作为供应商，您可以：
+cc-switch 支持管理 **Claude Code**、**Claude Desktop**、**Codex**、**Gemini CLI**、**OpenCode**、**OpenClaw** 和 **Hermes Agent**。本文提供经过验证的 Claude Code、Codex、Gemini CLI 和 OpenCode 的 ZenMux 配置。通过这些集成，您可以：
 
 - **可视化管理**：告别手动编辑环境变量和配置文件，通过图形界面完成所有配置
-- **一键切换**：在 ZenMux 与其他供应商之间即时切换，无需重启终端
+- **一键切换**：从应用或系统托盘启用 ZenMux 或其他已保存配置
 - **统一配置**：一次配置 ZenMux，同步到多个编码工具
-- **自动故障切换**：当主供应商异常时，自动切换到备用供应商
-- **请求监控**：实时查看请求日志和用量统计
+- **可选故障转移**：需要健康检查和自动兜底时启用本地代理
+- **可选用量监控**：通过代理模式的仪表盘查看请求、Token 和预估成本
 
 CC-Switch 支持 Anthropic 协议和 OpenAI 协议，均可与 ZenMux 无缝集成。
 :::
 
-## 安装 CC-Switch
+## 快速开始：安装并配置 cc-switch
 
 ### macOS
 
@@ -36,13 +70,10 @@ brew install --cask cc-switch
 ```
 
 ```text [手动安装]
-1. 前往 CC-Switch Release 页面下载最新的 macOS ZIP 包：
+1. 前往 CC-Switch Release 页面下载最新的 macOS DMG（推荐）或 ZIP 包：
    https://github.com/farion1231/cc-switch/releases
 
-2. 解压后将 CC-Switch.app 拖入 Applications 文件夹
-
-3. 首次打开可能提示"无法验证开发者"，前往：
-   系统设置 → 隐私与安全性 → 点击"仍然打开"
+2. 打开安装包并将 CC-Switch.app 移入 Applications 文件夹
 ```
 
 :::
@@ -82,10 +113,6 @@ sudo dpkg -i cc-switch_*.deb
 3. 双击运行或在终端执行：./CC-Switch_*.AppImage
 ```
 
-:::
-
-::: info Web UI（无头/SSH 环境）
-CC-Switch 还提供了 Web UI 版本，适用于无图形界面的服务器或 SSH 远程环境。从 Release 页面下载 Linux x64 的 tar.gz 包，解压后运行即可，默认端口为 17666。
 :::
 
 ## 获取 ZenMux API Key
@@ -132,6 +159,24 @@ CC-Switch 还提供了 Web UI 版本，适用于无图形界面的服务器或 S
 订阅制禁止用于生产环境，违规使用将导致账号受限。
 :::
 
+## 支持的工具与供应商
+
+cc-switch 支持 Claude Code、Claude Desktop、Codex、Gemini CLI、OpenCode、OpenClaw 和 Hermes Agent，内置 50 多个供应商预设，同时支持自定义端点。只要工具接受 Anthropic、OpenAI 兼容或 Vertex AI 协议，就可以配置对应的 ZenMux 端点。
+
+供应商配置决定每个工具使用的端点、API 凭证和模型映射。Universal Provider 可以在 Claude Code、Codex 和 Gemini CLI 之间共享兼容设置，各工具的专属字段仍独立保存。
+
+## 通过 ZenMux 切换 Claude Code 订阅与 API
+
+这是最常见的 cc-switch 使用方式：平时保留 Anthropic 官方订阅配置，需要按 API 用量计费或使用其他兼容模型时，再启用 ZenMux API 配置。
+
+1. 按上面的方式创建 ZenMux API Key。
+2. 在 cc-switch 中选择 **Claude Code**，点击**添加供应商**，新建名为 `ZenMux` 的配置。
+3. 将 **Base URL** 设置为 `https://zenmux.ai/api/anthropic`，并填写 ZenMux API Key。
+4. 从 [ZenMux 模型目录](https://zenmux.ai/models?sort=newest&supported_protocol=messages)中选择当前支持 Anthropic API 的模型，映射到 Haiku、Sonnet 和 Opus 档位。
+5. 保存并点击**启用**。需要切回订阅时，启用 Anthropic 官方配置，并按提示完成登录。
+
+Claude Code 支持供应商数据热切换。如果已有会话仍使用旧凭证，请先新开一个 Claude Code 会话，再排查供应商配置。
+
 ## 配置 ZenMux 供应商
 
 ### 步骤 1：打开供应商管理
@@ -163,8 +208,8 @@ CC-Switch 首次启动时会自动导入您本机已有的 Claude Code / Codex /
 | 档位               | 推荐模型                      | 说明                     |
 | ------------------ | ----------------------------- | ------------------------ |
 | **Haiku（快速）**  | `anthropic/claude-haiku-4.5`  | 适合快速补全、简单任务   |
-| **Sonnet（平衡）** | `anthropic/claude-sonnet-4.5` | 日常开发推荐，性价比最优 |
-| **Opus（强力）**   | `anthropic/claude-opus-4.5`   | 复杂架构设计、大规模重构 |
+| **Sonnet（平衡）** | `anthropic/claude-sonnet-4.6` | 日常开发推荐，性价比最优 |
+| **Opus（强力）**   | `anthropic/claude-opus-4.8`   | 复杂架构设计、大规模重构 |
 
 ::: info 模型选择灵活
 通过 ZenMux，您不仅可以使用 Claude 系列模型，还可以映射到其他供应商的模型。例如：
@@ -184,9 +229,9 @@ CC-Switch 首次启动时会自动导入您本机已有的 Claude Code / Codex /
     "ANTHROPIC_AUTH_TOKEN": "<ZENMUX_API_KEY>",
     "ANTHROPIC_BASE_URL": "https://zenmux.ai/api/anthropic",
     "ANTHROPIC_DEFAULT_HAIKU_MODEL": "anthropic/claude-haiku-4.5",
-    "ANTHROPIC_DEFAULT_OPUS_MODEL": "anthropic/claude-opus-4.5",
-    "ANTHROPIC_DEFAULT_SONNET_MODEL": "anthropic/claude-sonnet-4.5",
-    "ANTHROPIC_MODEL": "anthropic/claude-opus-4.5",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "anthropic/claude-opus-4.8",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "anthropic/claude-sonnet-4.6",
+    "ANTHROPIC_MODEL": "anthropic/claude-opus-4.8",
     "API_TIMEOUT_MS": "30000000",
     "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1"
   }
@@ -287,7 +332,7 @@ GEMINI_MODEL=google/gemini-3-flash-preview
 添加完成后，在供应商列表中点击 **ZenMux** 条目旁的切换按钮，即可将当前编码工具的请求切换到 ZenMux。
 
 ::: info 热切换支持
-CC-Switch 支持热切换供应商，**无需重启终端或编码工具**。切换后，新的请求会立即通过 ZenMux 转发，已有的对话上下文不受影响。
+Claude Code 目前支持供应商数据热切换，因此新启用的配置可以在不重启终端的情况下生效。多数其他工具需要新开终端或重启应用来重新读取配置。若启用 cc-switch 的可选本地代理，Proxy & Failover 功能还会提供另一套热切换机制。
 :::
 
 ### 步骤 4：跨应用共享配置（可选）
@@ -306,9 +351,7 @@ CC-Switch 支持热切换供应商，**无需重启终端或编码工具**。切
 OpenAI 协议支持的模型数量更为丰富，可通过[模型列表](https://zenmux.ai/models)筛选 "OpenAI API Compatible" 查看。
 :::
 
-## 故障排除
-
-### 常见问题解决
+## 常见故障排除
 
 ::: details API Key 错误或认证失败
 **问题**：配置供应商后提示 API Key 无效或未授权
@@ -330,19 +373,19 @@ OpenAI 协议支持的模型数量更为丰富，可通过[模型列表](https:/
    - Gemini CLI（Vertex AI 协议）：`https://zenmux.ai/api/vertex-ai`
 :::
 
-::: details macOS 提示"无法验证开发者"
-**问题**：首次打开 CC-Switch 时提示"无法验证开发者"
+::: details macOS 阻止打开应用
+**问题**：macOS 阻止打开已下载的应用
 
 **解决方案**：
 
-由于开发者暂未获得 Apple Developer 签名，macOS 会拦截首次运行。
+当前 cc-switch 版本已经过代码签名和 Apple 公证。请先从官方 GitHub Releases 页面下载最新 DMG；如果 macOS 仍然阻止打开：
 
 1. 前往 **系统设置** → **隐私与安全性**
 2. 在页面底部找到被阻止的 CC-Switch 提示
 3. 点击 **仍然打开**
 4. 在弹出的确认对话框中点击 **打开**
 
-后续启动将不再出现此提示。
+请避免使用第三方下载站提供的未签名安装包。
 :::
 
 ::: details 切换供应商后编码工具无响应
@@ -362,9 +405,44 @@ OpenAI 协议支持的模型数量更为丰富，可通过[模型列表](https:/
 **解决方案**：
 
 - 请通过 [ZenMux 模型列表](https://zenmux.ai/models?sort=newest&supported_protocol=messages) 筛选 "Anthropic API Compatible" 查看当前支持的模型
-- 确保模型映射中填写的模型 ID 正确（如 `anthropic/claude-sonnet-4.5`，而非 `claude-sonnet-4.5`）
+- 确保模型映射中填写的模型 ID 正确（如 `anthropic/claude-sonnet-4.6`，而非 `claude-sonnet-4.6`）
 - 选择上述支持列表中的模型进行使用
 :::
+
+## 常见问题
+
+### cc-switch 是什么，可以做什么？
+
+cc-switch 是一款免费、开源的桌面应用，用于管理 Claude Code 等 AI 编码工具的配置。它可以在 Anthropic 订阅配置和 ZenMux 等 API 供应商之间切换，无需手动编辑配置文件。
+
+### cc-switch 可以免费使用吗？
+
+可以。cc-switch 采用 MIT 许可证，可免费安装和使用。Anthropic、ZenMux 或其他供应商的订阅费和 API 用量费用需要另外支付。
+
+### cc-switch 只支持 macOS，还是也支持 Windows 和 Linux？
+
+cc-switch 支持 macOS、Windows 和 Linux。安装包可从官方 GitHub Releases 页面下载，macOS 还支持通过 Homebrew 安装。
+
+### Claude Code 订阅和 API 配置可以同时使用吗？
+
+可以在 cc-switch 中同时保存两种配置并随时切换，但一套 Claude Code 配置在同一时间只会启用一个供应商。需要切回订阅时，请启用 Anthropic 官方配置，并在需要时完成登录。
+
+### Claude Code 订阅额度用完后，cc-switch 有什么帮助？
+
+启用 ZenMux API 配置后，可以改用按 API 用量计费的方式继续工作，无需等待订阅额度重置。请从 ZenMux 当前模型目录中选择支持 Anthropic Messages 协议的模型；可用性和价格取决于所选模型及计费方式。
+
+### cc-switch 会代理或记录我的 API 请求吗？
+
+标准供应商切换只会把所选配置写入编码工具，工具将直接连接该供应商端点。只有主动启用 cc-switch 的本地 Proxy & Failover 模式时，代理才会进入请求链路，并可提供请求和用量统计。启用前请检查 cc-switch 的代理设置。
+
+## 相关资源
+
+- [如何获取 Anthropic API Key](https://zenmux.ai/blog/how-to-get-your-anthropic-api-key-a-step-by-step-guide)
+- [Claude Code 接入 ZenMux 最佳实践](/zh/best-practices/claude-code)
+- [通过 ZenMux 使用 Claude Agent SDK](https://zenmux.ai/blog/claude-agent-sdk)
+- [ZenMux 上的 Claude Opus 4.8 API](https://zenmux.ai/anthropic/claude-opus-4.8)
+- [浏览 ZenMux 上的 Anthropic 模型](https://zenmux.ai/anthropic)
+- [从 OpenRouter 切换到 ZenMux](https://zenmux.ai/blog/openrouter-alternatives-you-should-try-cheaper-faster-and-more-flexible-options)
 
 <ContactCards>
 <ContactCard icon="mail" title="邮箱">
