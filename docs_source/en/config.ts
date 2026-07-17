@@ -83,6 +83,7 @@ const docsSidebar = [
         collapsed: true,
         items: [
           { text: "Studio-Chat", link: "/guide/studio/studio-chat" },
+          { text: "Studio-Image", link: "/guide/studio/studio-image" },
           { text: "Studio-Video", link: "/guide/studio/studio-video" },
         ],
       },
@@ -112,6 +113,7 @@ export default defineLoacaleConfig({
         text: "Studio",
         items: [
           { text: "Chat", link: "https://zenmux.ai/chat", noIcon: true },
+          { text: "Image", link: "https://zenmux.ai/platform/image", noIcon: true },
           { text: "Video", link: "https://zenmux.ai/video", noIcon: true },
         ],
       },
