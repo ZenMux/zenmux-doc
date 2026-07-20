@@ -22,7 +22,7 @@ POST https://zenmux.ai/api/v1/audio/transcriptions
 
 Create transcription 接口将输入音频转换为文本（语音转文本，Speech-to-Text）。
 
-本接口使用 **JSON** 请求体。音频以 base64 编码的字节（或通过 URL）内联在 `input_audio` 对象中传入。本接口为非流式：返回单个 JSON 响应，包含转写文本和 token 用量。
+本接口使用 **JSON** 请求体。音频以 base64 编码的字节（或通过 URL）内联在 `input_audio` 对象中传入。本接口默认返回单个 JSON 响应，包含转写文本和 token 用量。将 `stream` 设为 `true` 可改为以 Server-Sent Events 形式增量接收转写文本。
 
 ## Request headers
 
@@ -56,7 +56,16 @@ Bearer Token 鉴权，格式为 `Bearer $ZENMUX_API_KEY`。
 
 是否对转写结果应用逆文本归一化（例如将口述数字渲染为阿拉伯数字）。省略时使用模型的默认值。
 
+### stream `boolean` <span style="color: #666; font-weight: 400; font-size: 14px">可选</span>
+
+是否流式返回转写文本，默认值为 `false`。
+
+- `false` — 返回单个 JSON 响应，包含完整的转写文本和 token 用量。
+- `true` — 以 **Server-Sent Events** 形式返回转写文本（`Content-Type: text/event-stream`），与 OpenAI 的流式格式一致。转写文本以 `transcript.text.delta` 事件增量下发（每个事件携带一段 `delta`），随后是携带完整 `text` 和 token 用量的 `transcript.text.done` 事件，最后是 `[DONE]` 事件。
+
 ## Response
+
+### 非流式（默认）
 
 请求成功时，响应为一个 JSON 对象，包含转写文本和 token 用量：
 
@@ -76,6 +85,26 @@ Bearer Token 鉴权，格式为 `Bearer $ZENMUX_API_KEY`。
 - `text` — 转写得到的文本。
 - `model` — 用于生成转写结果的模型 slug。
 - `usage` — token 用量，包含 `input_tokens`、`output_tokens` 和 `total_tokens`。可选的 `seconds` 字段表示被转写音频的时长（秒），在供应商返回该值时提供。
+
+### 流式（`stream: true`）
+
+响应为 `text/event-stream` 的 Server-Sent Events 流。每个事件是一行 `data:`，内含一个 JSON 对象：
+
+```text
+data: {"type":"transcript.text.delta","delta":"ZenMux is "}
+
+data: {"type":"transcript.text.delta","delta":"an LLM API aggregation service."}
+
+data: {"type":"transcript.text.done","text":"ZenMux is an LLM API aggregation service.","usage":{"input_tokens":120,"output_tokens":11,"total_tokens":131,"seconds":3}}
+
+data: [DONE]
+```
+
+- `transcript.text.delta` — 携带一段增量转写文本 `delta`。将所有 delta 拼接后，即得到与非流式 `text` 字段相同的文本。
+- `transcript.text.done` — 携带完整 `text` 和 token `usage` 对象，包含 `input_tokens`、`output_tokens` 和 `total_tokens`（供应商返回时还包含 `seconds`）。
+- `[DONE]` — 标志流结束。
+
+对于没有原生增量转写接口的供应商，会将完整转写文本作为单个 `transcript.text.delta` 下发，随后是 `transcript.text.done`。
 
 发生错误时，接口返回 JSON 对象：
 
@@ -179,6 +208,42 @@ print(response.json()["text"])
     "seconds": 3
   }
 }
+```
+
+:::
+
+若希望以 Server-Sent Events 形式接收转写文本，将 `stream` 设为 `true`：
+
+::: api-request POST /api/v1/audio/transcriptions
+
+```cURL
+curl https://zenmux.ai/api/v1/audio/transcriptions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $ZENMUX_API_KEY" \
+  -d '{
+    "model": "qwen/qwen3-asr-flash",
+    "input_audio": {
+      "url": "https://example.com/speech.mp3",
+      "format": "mp3"
+    },
+    "stream": true
+  }'
+```
+
+:::
+
+::: api-response
+
+```text
+Content-Type: text/event-stream
+
+data: {"type":"transcript.text.delta","delta":"ZenMux is "}
+
+data: {"type":"transcript.text.delta","delta":"an LLM API aggregation service."}
+
+data: {"type":"transcript.text.done","text":"ZenMux is an LLM API aggregation service.","usage":{"input_tokens":120,"output_tokens":11,"total_tokens":131,"seconds":3}}
+
+data: [DONE]
 ```
 
 :::
