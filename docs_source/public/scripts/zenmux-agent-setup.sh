@@ -167,7 +167,9 @@ agent_installed() {
  codex)
  command -v codex >/dev/null 2>&1 ||
  [ -d "/Applications/Codex.app" ] ||
- [ -d "$HOME/Applications/Codex.app" ]
+ [ -d "$HOME/Applications/Codex.app" ] ||
+ [ -x "/Applications/ChatGPT.app/Contents/Resources/codex" ] ||
+ [ -x "$HOME/Applications/ChatGPT.app/Contents/Resources/codex" ]
  ;;
  claude-code) command -v claude >/dev/null 2>&1 ;;
  gemini-cli) command -v gemini >/dev/null 2>&1 ;;
