@@ -4,7 +4,7 @@ Studio-Image（ImageStudio）是 ZenMux 平台提供的一站式 AI 图片创作
 
 你可以从一句文字描述开始生成图片，也可以上传参考图控制主体、风格或构图。生成结果还可以继续进入编辑工作台，通过自然语言和可视化工具完成局部修改、画面扩展、光线调整等操作。
 
-![Studio-Image 主界面](https://cdn.marmot-cloud.com/storage/zenmux/2026/07/17/kwBf552/FE090CDF-CE38-4C8C-A9F4-55FD08137178.png)
+![Studio-Image 主界面](https://cdn.marmot-cloud.com/storage/zenmux/2026/07/21/5Z8q3Zo/CA775C4D-5639-4AF8-BDEF-C621C8960F19.png)
 
 ## 快速开始
 

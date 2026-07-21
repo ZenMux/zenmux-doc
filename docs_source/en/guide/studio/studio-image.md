@@ -4,7 +4,7 @@ Studio-Image (ImageStudio) is ZenMux's all-in-one workspace for AI image creatio
 
 You can start with a text prompt or upload reference images to guide the subject, style, or composition. Generated images can then be opened in the editing workspace, where natural-language instructions and visual tools help you make local changes, expand the canvas, adjust lighting, and more.
 
-![Studio-Image main interface](https://cdn.marmot-cloud.com/storage/zenmux/2026/07/17/kwBf552/FE090CDF-CE38-4C8C-A9F4-55FD08137178.png)
+![Studio-Image main interface](https://cdn.marmot-cloud.com/storage/zenmux/2026/07/21/5Z8q3Zo/CA775C4D-5639-4AF8-BDEF-C621C8960F19.png)
 
 ## Quick Start
 
