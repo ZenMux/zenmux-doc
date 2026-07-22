@@ -9,6 +9,7 @@ const docsSidebar = [
     text: "User Guide",
     items: [
       { text: "Quickstart", link: "/guide/quickstart" },
+      { text: "Organizations", link: "/guide/organization" },
       {
         text: "Advanced",
         collapsed: true,

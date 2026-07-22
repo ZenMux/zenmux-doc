@@ -9,6 +9,7 @@ const docsSidebar = [
     text: "使用文档",
     items: [
       { text: "快速开始", link: "/zh/guide/quickstart" },
+      { text: "组织账户", link: "/zh/guide/organization" },
       {
         text: "高级调用",
         collapsed: true,
