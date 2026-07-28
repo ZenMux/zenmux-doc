@@ -235,6 +235,23 @@ tool_namespace = "agents"
 - 确认您的账户是否有权限访问该模型
 :::
 
+::: details 报错 codex-auto-review 模型不存在
+**问题**：使用 ZenMux 作为模型提供商时，Codex 报错提示找不到或不支持 `codex-auto-review` 模型，例如：
+
+```
+The supported API model names are ..., but you passed codex-auto-review.
+```
+
+**原因**：Codex 的自动审批（auto-review）默认使用名为 `codex-auto-review` 的模型来评估请求。该模型仅存在于 OpenAI 官方后端，ZenMux 及其他第三方 / 自建 provider 都没有这个模型，因此调用时会向上游发送一个不存在的模型 ID 而被拒绝。详见 [openai/codex#31255](https://github.com/openai/codex/issues/31255)。
+
+**解决方案**：将审批请求路由给人工确认，不再走自动审批模型：
+
+```toml
+# ~/.codex/config.toml
+approvals_reviewer = "user"  # [!code highlight]
+```
+:::
+
 ## 进阶配置
 
 ### 配置不同模型
