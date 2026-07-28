@@ -236,6 +236,23 @@ This switches multi-agent tools to the `agents` namespace, avoiding the namespac
 - Confirm your account has permission to access the model
 :::
 
+::: details codex-auto-review Model Not Found
+**Issue**: When using ZenMux as the model provider, Codex reports that the `codex-auto-review` model cannot be found or is not supported, for example:
+
+```
+The supported API model names are ..., but you passed codex-auto-review.
+```
+
+**Cause**: Codex's automatic approval review (auto-review) uses a model named `codex-auto-review` by default to evaluate requests. This model only exists on OpenAI's official backend; ZenMux and any other third-party or self-hosted provider do not have it, so the call sends a non-existent model ID upstream and is rejected. See [openai/codex#31255](https://github.com/openai/codex/issues/31255).
+
+**Solution**: Route approval requests to manual user confirmation instead of the auto-review model:
+
+```toml
+# ~/.codex/config.toml
+approvals_reviewer = "user"  # [!code highlight]
+```
+:::
+
 ## Advanced Configuration
 
 ### Configure Different Models

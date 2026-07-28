@@ -416,6 +416,15 @@ export default defineLoacaleConfig({
             },
           ],
         },
+        {
+          text: "Network Environment",
+          items: [
+            {
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/07/28/nX2cLeT/network-environments.svg" />Agent Tools Proxy Configuration Guide',
+              link: "/best-practices/network-environments",
+            },
+          ],
+        },
       ],
       "/cookbook/": [
         {
