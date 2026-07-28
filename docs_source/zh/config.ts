@@ -424,6 +424,15 @@ export default defineLoacaleConfig({
             },
           ],
         },
+        {
+          text: "网络环境",
+          items: [
+            {
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/07/28/nX2cLeT/network-environments.svg" />Agent 工具代理配置指南',
+              link: "/zh/best-practices/network-environments",
+            },
+          ],
+        },
       ],
       "/zh/cookbook/": [
         {

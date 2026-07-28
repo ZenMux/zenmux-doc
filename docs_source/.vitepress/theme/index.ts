@@ -34,6 +34,7 @@ const AiAssistant = defineAsyncComponent(() => import("./ai-assistant.vue"));
 declare global {
   interface Window {
     __VP_HASH_MAP__?: Record<string, string>;
+    __ZENMUX_OUTLINE_VISIBILITY_OBSERVER__?: MutationObserver;
   }
 }
 
@@ -442,6 +443,61 @@ export default {
         if (tooltipTimer) { clearTimeout(tooltipTimer); tooltipTimer = null; }
         hideTooltip();
       });
+
+      // Keep the active table-of-contents link inside the independently
+      // scrollable outline viewport.
+      const keepActiveOutlineLinkVisible = (link: HTMLElement) => {
+        const content = link.closest(
+          ".VPDocAsideOutline .content",
+        ) as HTMLElement | null;
+        if (!content || content.scrollHeight <= content.clientHeight) return;
+
+        const contentRect = content.getBoundingClientRect();
+        const linkRect = link.getBoundingClientRect();
+        const visibleTop = contentRect.top + 16;
+        const visibleBottom = contentRect.bottom - 64;
+        let nextScrollTop = content.scrollTop;
+
+        if (linkRect.top < visibleTop) {
+          nextScrollTop += linkRect.top - visibleTop;
+        } else if (linkRect.bottom > visibleBottom) {
+          nextScrollTop += linkRect.bottom - visibleBottom;
+        } else {
+          return;
+        }
+
+        content.scrollTo({
+          top: Math.max(
+            0,
+            Math.min(
+              nextScrollTop,
+              content.scrollHeight - content.clientHeight,
+            ),
+          ),
+          behavior: "smooth",
+        });
+      };
+
+      window.__ZENMUX_OUTLINE_VISIBILITY_OBSERVER__?.disconnect();
+      const outlineVisibilityObserver = new MutationObserver((mutations) => {
+        for (const mutation of mutations) {
+          const target = mutation.target;
+          if (
+            target instanceof HTMLElement &&
+            target.matches(".VPDocOutlineItem .outline-link.active")
+          ) {
+            requestAnimationFrame(() => keepActiveOutlineLinkVisible(target));
+            return;
+          }
+        }
+      });
+      outlineVisibilityObserver.observe(document.body, {
+        attributes: true,
+        attributeFilter: ["class"],
+        subtree: true,
+      });
+      window.__ZENMUX_OUTLINE_VISIBILITY_OBSERVER__ =
+        outlineVisibilityObserver;
 
       const prefetchFromEventTarget = (target: EventTarget | null) => {
         if (!(target instanceof HTMLElement)) return;
