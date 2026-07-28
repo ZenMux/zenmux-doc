@@ -1,5 +1,12 @@
 // https://vitepress.dev/guide/custom-theme
-import { h, defineAsyncComponent, defineComponent, ref, onMounted } from "vue";
+import {
+  h,
+  defineAsyncComponent,
+  defineComponent,
+  ref,
+  onMounted,
+  nextTick,
+} from "vue";
 import { inBrowser, type Theme } from "vitepress";
 
 const ClientOnly = defineComponent({
@@ -569,7 +576,13 @@ export default {
       console.info("isDocsHost:", isDocsHost);
       updateLogoLink();
       if (!isDocsHost) {
-        router.onAfterPageLoad = () => {
+        const originAfterRouteChange = router.onAfterRouteChange;
+        router.onAfterRouteChange = async (to) => {
+          await originAfterRouteChange?.(to);
+          // VitePress calls onAfterPageLoad before replacing the route
+          // component. Wait until the new sidebar/content has rendered before
+          // adding the production /docs prefix to newly-created links.
+          await nextTick();
           rewriteDocsLinks();
         };
         window.addEventListener("load", () => {
