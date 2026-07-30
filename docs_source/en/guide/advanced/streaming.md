@@ -14,6 +14,10 @@ ZenMux allows any model to return generated results incrementally in a streaming
 
 You can enable streaming output by setting the `stream` parameter to `true` in your request. Below are two example approaches:
 
+::: warning Billing notice for cancelled streams
+Even if you cancel a streaming request mid-flight, **you will still be billed for the request**. Once the upstream provider has successfully processed the request, the request is charged — cancelling the client-side stream does not reverse charges that the provider has already incurred.
+:::
+
 ## Method 1: Use the OpenAI-compatible API (Recommended)
 
 ::: code-group
