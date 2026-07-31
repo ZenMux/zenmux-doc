@@ -67,41 +67,6 @@ function getDocsLocale(value: string | null) {
   return value.toLowerCase().startsWith("zh") ? "zh" : "en";
 }
 
-function getCookie(name: string) {
-  const match = document.cookie.match(
-    new RegExp(`(?:^|; )${name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}=([^;]*)`),
-  );
-  return match ? decodeURIComponent(match[1]) : null;
-}
-
-function getStoredDocsLocale() {
-  const candidateValues = [
-    getCookie("locale"),
-    getCookie("umi_locale"),
-    localStorage.getItem("locale"),
-    localStorage.getItem("umi_locale"),
-  ];
-
-  for (const value of candidateValues) {
-    const locale = getDocsLocale(value);
-    if (locale) {
-      return locale;
-    }
-  }
-
-  return null;
-}
-
-function getNavigatorDocsLocale() {
-  const languages = [
-    navigator.language,
-    ...(Array.isArray(navigator.languages) ? navigator.languages : []),
-  ];
-  return languages.some((language) => getDocsLocale(language) === "zh")
-    ? "zh"
-    : "en";
-}
-
 function getDocsPathWithoutLocale(pathname: string) {
   const withoutDocs = stripDocsPrefix(pathname);
   return withoutDocs.replace(/^\/zh(?=\/|$)/, "") || "/";
@@ -141,7 +106,7 @@ function syncDocsLocaleFromHref(href: string | null) {
   }
 }
 
-function applyInheritedDocsLocale() {
+function applyRequestedDocsLocale() {
   if (!inBrowser) {
     return;
   }
@@ -149,16 +114,17 @@ function applyInheritedDocsLocale() {
   const url = new URL(window.location.href);
   const currentDocsPath = stripDocsPrefix(url.pathname);
   const currentLocale = /^\/zh(?=\/|$)/.test(currentDocsPath) ? "zh" : "en";
-  const inheritedLocale =
+  const requestedLocale =
     getDocsLocale(url.searchParams.get("locale")) ||
-    getDocsLocale(url.searchParams.get("lang")) ||
-    getStoredDocsLocale() ||
-    getNavigatorDocsLocale();
+    getDocsLocale(url.searchParams.get("lang"));
 
-  if (inheritedLocale === currentLocale) {
+  // An explicit docs URL is authoritative so shared links always open in the
+  // language encoded by their path. Query parameters remain an opt-in way for
+  // the main site to request a different locale.
+  if (!requestedLocale || requestedLocale === currentLocale) {
     url.searchParams.delete("locale");
     url.searchParams.delete("lang");
-    syncDocsLocaleCookie(inheritedLocale);
+    syncDocsLocaleCookie(currentLocale);
     if (url.toString() !== window.location.href) {
       window.history.replaceState({}, document.title, url.toString());
     }
@@ -167,8 +133,8 @@ function applyInheritedDocsLocale() {
 
   url.searchParams.delete("locale");
   url.searchParams.delete("lang");
-  url.pathname = getPathWithDocsLocale(url.pathname, inheritedLocale);
-  syncDocsLocaleCookie(inheritedLocale);
+  url.pathname = getPathWithDocsLocale(url.pathname, requestedLocale);
+  syncDocsLocaleCookie(requestedLocale);
 
   if (url.pathname !== window.location.pathname) {
     window.location.replace(url.toString());
@@ -188,7 +154,7 @@ if (shouldOpenEndpoints) {
 }
 
 console.info("isDocsHost:", isDocsHost);
-applyInheritedDocsLocale();
+applyRequestedDocsLocale();
 
 NProgress.configure({
   showSpinner: false,
