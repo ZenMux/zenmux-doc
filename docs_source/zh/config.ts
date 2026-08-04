@@ -66,6 +66,10 @@ const docsSidebar = [
         link: "/zh/guide/invoice",
       },
       {
+        text: "礼品卡指南",
+        link: "/zh/guide/gift-card",
+      },
+      {
         text: "可观测性",
         collapsed: true,
         items: [
