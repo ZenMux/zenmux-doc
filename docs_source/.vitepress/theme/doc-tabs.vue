@@ -4,7 +4,7 @@
       <a
         v-for="tab in tabs"
         :key="tab.text"
-        :href="tab.link"
+        :href="withBase(tab.link)"
         :class="['doc-tab-item', { active: tab.active }]"
         @click.prevent="navigate(tab.link)"
         >{{ tab.text }}</a
@@ -15,19 +15,23 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { useData, useRoute, useRouter } from "vitepress";
+import { useData, useRouter, withBase } from "vitepress";
 
 const router = useRouter();
 function navigate(href: string) {
-  router.go(href);
+  // base:"/docs/" 后 router.go / 渲染的 href 都必须含 base 前缀，
+  // 否则 VitePress 的 pathToFile 会错误地 slice(base.length) → 404。
+  router.go(withBase(href));
 }
 
-const { localeIndex } = useData();
-const route = useRoute();
+const { page, localeIndex } = useData();
 
 const tabs = computed(() => {
   const isZh = localeIndex.value === "zh";
-  const path = route.path;
+  // 用 relativePath 派生 base 无关路径。route.path 在浏览器里含 /docs 前缀，
+  // 会让下面的 startsWith 段匹配失效；relativePath 不含 base、保留 zh/（en 已被 rewrite 去掉）。
+  const path =
+    "/" + page.value.relativePath.replace(/(^|\/)index\.md$/, "$1").replace(/\.md$/, "");
   const prefix = isZh ? "/zh" : "";
 
   const isApiPage = path.startsWith(`${prefix}/api/`);

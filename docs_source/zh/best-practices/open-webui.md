@@ -15,7 +15,7 @@ Open WebUI 是一款可扩展、功能丰富且用户友好的自托管人工智
 ::: info 兼容性说明
 ZenMux 完全支持 OpenAI API 协议，只需简单配置即可使用。
 
-注意 OpenAI 协议的 base_url="https://zenmux.ai/api/v1"。
+注意 OpenAI 协议的 base_url=`https://zenmux.ai/api/v1`。
 :::
 
 ## 配置方案
@@ -32,7 +32,7 @@ ZenMux 完全支持 OpenAI API 协议，只需简单配置即可使用。
 1. 点击 **⚙️ 管理员设置**
 2. 前往 **设置** > **外部链接** > **OpenAI API** > **管理 OpenAI API 连接**
 3. 点击 **➕** 新建外部链接
-4. 输入 **URL**："https://zenmux.ai/api/v1"
+4. 输入 **URL**：`https://zenmux.ai/api/v1`
 5. 输入 **API 秘钥**：ZenMux API Key
 6. 点击 **保存**
 

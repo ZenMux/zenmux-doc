@@ -20,7 +20,7 @@ Codex is OpenAI's programming assistant, available in two forms:
 ::: info Compatibility Notes
 OpenAI has explicitly positioned Responses as the next-generation unified interface. Chat Completions is still available, but it is no longer the preferred choice for new projects. Codex will follow this direction as well—treating Chat Completions as a compatibility option and gradually migrating to Responses (the configuration in this article uses Responses).
 
-Note the OpenAI-compatible setting: base_url="https://zenmux.ai/api/v1".
+Note the OpenAI-compatible setting: base_url=`https://zenmux.ai/api/v1`.
 :::
 
 ## Configuration Options

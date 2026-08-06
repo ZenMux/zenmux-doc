@@ -20,7 +20,7 @@ Codex 是 OpenAI 推出的编程助手，提供两种使用形态：
 ::: info 兼容性说明
 OpenAI 已明确将 Responses 作为新一代统一接口，Chat Completions 仍可使用但不再是新项目首选；Codex 也将顺应这一方向，把 Chat Completions 视为兼容选项并逐步迁移到 Responses（本文配置即按 Responses 给出）。
 
-注意 OpenAI 协议的 base_url="https://zenmux.ai/api/v1"。
+注意 OpenAI 协议的 base_url=`https://zenmux.ai/api/v1`。
 :::
 
 ## 配置方案

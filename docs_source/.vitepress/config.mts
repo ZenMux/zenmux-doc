@@ -523,8 +523,12 @@ export default defineConfig({
   description:
     "Get started with ZenMux quickly. Access our comprehensive developer documentation, guides, and API references to build and scale your applications with ZenMux",
   outDir: "../docs",
-  base: "/",
-  assetsDir: "docs",
+  // 文档部署在 zenmux.ai/docs/ 下，base 必须带 /docs/，否则 VitePress 生成的站内
+  // <a href> 会缺前缀（/guide/x.html），在主站落到 SPA 兜底路由并返回 404。
+  base: "/docs/",
+  // assetsDir 保持默认 assets：历史上曾用 "docs" 来给资源 URL 凑出 /docs 前缀，
+  // base 修正后不再需要。改动需同步 theme/index.ts 的 DOCS_ASSETS_DIR 与 copy-to-root.sh。
+  assetsDir: "assets",
   title: "ZenMux | Documentation",
   ignoreDeadLinks: true,
 
@@ -579,9 +583,10 @@ export default defineConfig({
       "script",
       {},
       `
-      // 自动重定向：docs.zenmux.ai -> zenmux.ai/docs/
+      // 自动重定向：docs.zenmux.ai -> zenmux.ai
+      // base 已为 /docs/，pathname 本身即含 /docs 前缀，直接换 host 即可（勿再补 /docs，否则双前缀）。
       if (window.location.hostname === 'docs.zenmux.ai') {
-        const newUrl = 'https://zenmux.ai/docs' + window.location.pathname + window.location.search + window.location.hash;
+        const newUrl = 'https://zenmux.ai' + window.location.pathname + window.location.search + window.location.hash;
         window.location.replace(newUrl);
       }
       `,
