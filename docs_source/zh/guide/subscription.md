@@ -12,6 +12,10 @@ head:
 
 ZenMux Builder Plan 订阅制为个人开发者提供固定月费、可预测的 AI 模型调用方案,让您专注于编程和创作,无需担心每次 API 调用的费用。
 
+::: info Pro 套餐已升级为 Starter
+自 Starter 套餐上线后,原 **Pro** 套餐($20/月)已**下线,不再向新用户开放订阅**。已订阅 Pro 的老用户**不受影响**,可以继续**自动续费并正常使用**原有权益;如需变更,可随时升级到 Max / Ultra。
+:::
+
 ## 什么是 Flows?
 
 **Flow** 是 ZenMux 的复合计费单位，综合了 token 消耗量和 API 调用开销。你可以把它理解为一种**货币**——就像不同商品在美元中有不同的价格一样，不同的 AI 模型每次请求消耗的 Flows 数量也不同。Flow/USD 汇率可能会随时间波动，最新汇率始终在 [Pricing 页面](https://zenmux.ai/pricing/subscription) 实时公布。
@@ -38,22 +42,25 @@ Flow/USD 汇率当前锚定在 **1 Flow ≈ $0.03283**（约 30 Flows = $1）。
 
 ### 📊 套餐对比 — 月度最大 Flows 及等价 USD 价值
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/04/20/ySQMzyd/20260420140640.jpg" alt="套餐对比 - 月度最大 Flows 及等价 USD 价值" >
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/08/06/eCyeq9c/Plan-new.png" alt="套餐对比 - 月度最大 Flows 及等价 USD 价值" >
 
 ::: tip 以上为截图示例
 套餐对比数据均为**动态计算**，页面截图仅供参考。请以 [Pricing 页面](https://zenmux.ai/pricing/subscription) 实时显示的数据为准。
 :::
 
-| 套餐  | 价格    | 5h 配额 (Flows) | 周最大 Flows | 月最大 Flows | 等价 USD 价值 | 价值杠杆 |
-| ----- | ------- | --------------- | ------------ | ------------ | ------------- | -------- |
-| Free  | $0/月   | 5               | 38.64        | 165.6        | $5.44         | -        |
-| Pro   | $20/月  | 50              | 213.37       | 914.443      | $30.03        | 1.50x    |
-| Max   | $100/月 | 300             | 1,280.22     | 5,486.659    | $180.15       | 1.80x    |
-| Ultra | $200/月 | 800             | 3,413.921    | 14,631.091   | $480.40       | 2.40x    |
+| 套餐          | 价格    | 5h 配额 (Flows) | 周最大 Flows | 月最大 Flows | 等价 USD 价值 | 价值杠杆 |
+| ------------- | ------- | --------------- | ------------ | ------------ | ------------- | -------- |
+| Free          | $0/月   | 5               | 38.64        | 165.6        | $5.44         | -        |
+| Starter       | $20/月  | 50              | 213.37       | 914.443      | $30.03        | 1.50x    |
+| Max           | $100/月 | 300             | 1,280.22     | 5,486.659    | $180.15       | 1.80x    |
+| Ultra         | $200/月 | 800             | 3,413.921    | 14,631.091   | $480.40       | 2.40x    |
+| Pro（已下线） | $20/月  | 50              | 213.37       | 914.443      | $30.03        | 1.50x    |
 
 > **等价 USD 价值** = 月最大 Flows × Flow 单价（$0.03283/Flow）
 >
 > **价值杠杆** = 等价 USD 价值 / 套餐价格 — 表示相比订阅费用，你能获得多少倍的 API 价值
+>
+> **Pro（已下线）** 仅对存量订阅用户可见，其价格与配额与 Starter 完全相同；新用户请选择 **Starter**。
 
 ## 为什么选择 Builder Plan?
 
@@ -92,7 +99,7 @@ Flow/USD 汇率当前锚定在 **1 Flow ≈ $0.03283**（约 30 Flows = $1）。
 
 ## 套餐对比
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/04/22/BsZgRQH/20260422225424.jpg" alt="subscription-free" >
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/08/06/eCyeq9c/Plan-new.png" alt="subscription-free" >
 
 ### Free - 免费体验
 
@@ -122,9 +129,236 @@ Flow/USD 汇率当前锚定在 **1 Flow ≈ $0.03283**（约 30 Flows = $1）。
 - `z-ai/glm-4.7-flash-free` - Z.AI: GLM 4.7 Flash (Free)
 - `openai/gpt-image-2` - OpenAI: GPT Image 2（生图模型）
 
-### Pro - 开发者首选
+### Starter - 开发者首选 {#starter}
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/04/22/kRFpXun/20260422225025.jpg" alt="subscription-free" style="width:300px; border-radius:8px;">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/08/06/FtEQsC4/starter-card.png" alt="subscription-starter" style="width:300px; border-radius:8px;">
+
+**支持的模型：** 以下为 Starter **常驻可用**的模型（共 130+ 个，按厂商整理）；此外每期还会额外开放少量**限时高级模型（轮换）**，详见下方说明。
+
+**Anthropic Claude 系列**
+
+- `anthropic/claude-haiku-4.5` - Claude Haiku 4.5
+- `anthropic/claude-sonnet-4` - Claude Sonnet 4
+- `anthropic/claude-sonnet-4.5` - Claude Sonnet 4.5
+- `anthropic/claude-sonnet-4.6` - Claude Sonnet 4.6
+- `anthropic/claude-sonnet-5` - Claude Sonnet 5
+
+**OpenAI GPT 系列**
+
+- `openai/chat-latest` - Chat Latest (GPT-5.5 Instant)
+- `openai/gpt-4.1` - GPT-4.1
+- `openai/gpt-4.1-mini` - GPT-4.1 Mini
+- `openai/gpt-4.1-nano` - GPT-4.1 Nano
+- `openai/gpt-4o` - GPT-4o
+- `openai/gpt-4o-mini` - GPT-4o-mini
+- `openai/gpt-5` - GPT-5
+- `openai/gpt-5-chat` - GPT-5 Chat
+- `openai/gpt-5-mini` - GPT-5 Mini
+- `openai/gpt-5-nano` - GPT-5 Nano
+- `openai/gpt-5.1` - GPT-5.1
+- `openai/gpt-5.1-chat` - GPT-5.1 Chat
+- `openai/gpt-5.1-codex-mini` - GPT-5.1-Codex-Mini
+- `openai/gpt-5.2` - GPT-5.2
+- `openai/gpt-5.2-chat` - GPT-5.2 Chat
+- `openai/gpt-5.3-chat` - GPT-5.3 Chat
+- `openai/gpt-5.4-mini` - GPT-5.4 Mini
+- `openai/gpt-5.4-nano` - GPT-5.4 Nano
+- `openai/gpt-5.5` - GPT-5.5
+- `openai/gpt-5.6-luna` - GPT-5.6 Luna
+- `openai/gpt-5.6-terra` - GPT-5.6 Terra
+
+**Google Gemini / Gemma 系列**
+
+- `google/gemini-2.5-flash` - Gemini 2.5 Flash
+- `google/gemini-2.5-flash-lite` - Gemini 2.5 Flash Lite
+- `google/gemini-2.5-pro` - Gemini 2.5 Pro
+- `google/gemini-3-flash-preview` - Gemini 3 Flash Preview
+- `google/gemini-3.1-flash-lite` - Gemini 3.1 Flash Lite
+- `google/gemini-3.5-flash-lite` - Gemini 3.5 Flash Lite
+- `google/gemini-3.6-flash` - Gemini 3.6 Flash
+- `google/gemma-4-26b-a4b-it` - Gemma 4 26B A4B IT
+
+**xAI Grok 系列**
+
+- `x-ai/grok-4.5` - Grok 4.5
+
+**Z.AI GLM 系列**
+
+- `z-ai/glm-4.5` - GLM 4.5
+- `z-ai/glm-4.5-air` - GLM 4.5 Air
+- `z-ai/glm-4.6` - GLM 4.6
+- `z-ai/glm-4.6v` - GLM 4.6V
+- `z-ai/glm-4.6v-flash` - GLM 4.6V FlashX
+- `z-ai/glm-4.6v-flash-free` - GLM 4.6V Flash (Free)
+- `z-ai/glm-4.7` - GLM 4.7
+- `z-ai/glm-4.7-flash-free` - GLM 4.7 Flash (Free)
+- `z-ai/glm-4.7-flashx` - GLM 4.7 FlashX
+- `z-ai/glm-5` - GLM 5
+- `z-ai/glm-5-turbo` - GLM 5 Turbo
+- `z-ai/glm-5.1` - GLM 5.1
+- `z-ai/glm-5.2` - GLM 5.2
+- `z-ai/glm-5v-turbo` - GLM 5V Turbo
+
+**DeepSeek 系列**
+
+- `deepseek/deepseek-chat-v3.1` - DeepSeek V3.1
+- `deepseek/deepseek-r1-0528` - DeepSeek R1 0528
+- `deepseek/deepseek-v3.2` - DeepSeek V3.2
+- `deepseek/deepseek-v3.2-exp` - DeepSeek-V3.2-Exp
+- `deepseek/deepseek-v4-flash` - DeepSeek V4 Flash 0731
+- `deepseek/deepseek-v4-pro` - DeepSeek V4 Pro
+
+**Qwen / 通义千问 系列**
+
+- `qwen/qwen3-14b` - Qwen3-14B
+- `qwen/qwen3-235b-a22b-2507` - Qwen3 235B A22B Instruct 2507
+- `qwen/qwen3-235b-a22b-thinking-2507` - Qwen3 235B A22B Thinking 2507
+- `qwen/qwen3-coder` - Qwen3-Coder
+- `qwen/qwen3-coder-plus` - Qwen3-Coder-Plus
+- `qwen/qwen3-vl-plus` - Qwen3-VL-Plus
+- `qwen/qwen3.5-flash` - Qwen3.5-Flash
+- `qwen/qwen3.5-plus` - Qwen3.5-Plus
+- `qwen/qwen3.6-flash` - Qwen3.6 Flash
+- `qwen/qwen3.6-max-preview` - Qwen3.6 Max Preview
+- `qwen/qwen3.6-plus` - Qwen3.6-Plus
+- `qwen/qwen3.7-flash` - Qwen3.7-Flash
+- `qwen/qwen3.7-max` - Qwen3.7-Max
+- `qwen/qwen3.7-plus` - Qwen3.7-Plus
+- `qwen/qwen3.8-max` - Qwen3.8-Max
+
+**Moonshot / Kimi 系列**
+
+- `moonshotai/kimi-k2.5` - Kimi K2.5
+- `moonshotai/kimi-k2.6` - Kimi K2.6
+- `moonshotai/kimi-k2.7-code` - Kimi K2.7 Code
+- `moonshotai/kimi-k3` - Kimi K3
+
+**Baidu ERNIE 系列**
+
+- `baidu/ernie-5.0-thinking-preview` - ERNIE 5.0
+- `baidu/ernie-5.1` - ERNIE 5.1
+- `baidu/ernie-x1.1-preview` - ERNIE-X1.1-Preview
+
+**InclusionAI 系列**
+
+- `inclusionai/ling-2.6-1t` - Ling-2.6-1T
+- `inclusionai/ling-2.6-flash` - Ling-2.6-flash
+- `inclusionai/ling-3.0-flash` - Ling-3.0-flash
+- `inclusionai/llada2.1-flash` - LLaDA2.1-flash
+- `inclusionai/ring-2.6-1t` - Ring-2.6-1T
+
+**Meta Llama 系列**
+
+- `meta/llama-3.3-70b-instruct` - Llama 3.3 70B Instruct
+- `meta/llama-4-scout-17b-16e-instruct` - Llama 4 Scout Instruct
+- `meta/muse-spark-1.1` - Muse Spark 1.1
+- `meta/muse-spark-1.2` - Muse Spark 1.2
+
+**Mistral 系列**
+
+- `mistralai/mistral-large-2512` - Mistral Large 3
+
+**MiniMax 系列**
+
+- `minimax/minimax-m2` - MiniMax M2
+- `minimax/minimax-m2-her` - MiniMax M2-her
+- `minimax/minimax-m2.1` - MiniMax M2.1
+- `minimax/minimax-m2.5` - MiniMax M2.5
+- `minimax/minimax-m2.7` - MiniMax M2.7
+- `minimax/minimax-m3` - MiniMax M3
+
+**快手 Kuaishou**
+
+- `kuaishou/kat-coder-air-v2.5` - KAT-Coder-Air-V2.5
+- `kuaishou/kat-coder-pro-v2` - KAT-Coder-Pro-V2
+- `kuaishou/kat-coder-pro-v2.5` - KAT-Coder-Pro-V2.5
+
+**阶跃 StepFun**
+
+- `stepfun/step-3.5-flash` - Step 3.5 Flash
+- `stepfun/step-3.7-flash` - Step 3.7 Flash
+
+**字节 ByteDance / Volcengine Doubao**
+
+- `bytedance/doubao-seed-1.8` - Doubao-Seed-1.8
+- `bytedance/doubao-seed-2.0-code` - Doubao-Seed-2.0-Code
+- `bytedance/doubao-seed-2.0-lite` - Doubao-Seed-2.0-lite
+- `bytedance/doubao-seed-2.0-mini` - Doubao-Seed-2.0-mini
+- `bytedance/doubao-seed-2.0-pro` - Doubao-Seed-2.0-pro
+- `bytedance/doubao-seed-2.1-pro` - Doubao-Seed-2.1-pro
+- `bytedance/doubao-seed-2.1-turbo` - Doubao-Seed-2.1-turbo
+- `bytedance/doubao-seed-character` - Doubao-Seed-Character
+- `bytedance/doubao-seed-code` - Doubao-Seed-Code
+- `bytedance/doubao-seed-evolving` - Doubao-Seed-Evolving
+
+**腾讯 Tencent**
+
+- `tencent/hy3` - Hy3
+- `tencent/hy3-preview` - Hy3 preview
+
+**Sapiens AI 系列**
+
+- `sapiens-ai/agnes-2.0-flash` - Agnes-2.0-Flash
+
+**小米 Xiaomi**
+
+- `xiaomi/mimo-v2.5` - MiMo-V2.5
+- `xiaomi/mimo-v2.5-pro` - MiMo-V2.5-Pro
+
+**美团 Meituan**
+
+- `meituan/longcat-2.0` - LongCat-2.0
+
+**生图模型（Image Generation）**
+
+- `bytedance/doubao-seedream-5.0-lite` - Doubao-Seedream-5.0-lite
+- `bytedance/doubao-seedream-5.0-pro` - Doubao-Seedream-5.0-pro
+- `google/gemini-2.5-flash-image` - Gemini 2.5 Flash Image (Nano Banana)
+- `google/gemini-3.1-flash-image` - Nano Banana 2 (Gemini 3.1 Flash Image)
+- `google/gemini-3.1-flash-lite-image` - Nano Banana 2 Lite (Gemini 3.1 Flash-Lite Image)
+- `qwen/qwen-image-2.0` - Qwen-Image-2.0
+- `qwen/qwen-image-3.0` - Qwen-Image-3.0
+- `qwen/qwen-image-3.0-pro` - Qwen-Image-3.0-Pro
+- `tencent/hy-image-v3.0` - HY-Image-V3.0
+- `z-ai/glm-image` - GLM-Image
+
+**生视频模型（Video Generation）**
+
+- `google/gemini-omni-flash-preview` - Gemini Omni Flash Preview
+- `minimax/minimax-h3` - MiniMax H3
+- `sapiens-ai/agnes-video-v2.0` - Agnes-Video-V2.0
+
+**Embedding 模型**
+
+- `openai/text-embedding-3-large` - Text Embedding 3 Large
+- `openai/text-embedding-3-small` - Text Embedding 3 Small
+- `qwen/qwen3-vl-embedding` - Qwen3 VL Embedding
+
+**语音 / 其他模型（ASR / TTS / Rerank）**
+
+- `qwen/qwen-audio-3.0-tts-plus` - Qwen-Audio-3.0-TTS-Plus
+- `qwen/qwen3-asr-flash` - Qwen3 ASR Flash
+- `qwen/qwen3-rerank` - Qwen3 Rerank
+- `qwen/qwen3-vl-rerank` - Qwen3 VL Rerank
+- `x-ai/grok-voice-stt-1.0` - Grok Voice STT 1.0
+- `x-ai/grok-voice-tts-1.0` - Grok Voice TTS 1.0
+- `xiaomi/mimo-v2.5-asr` - MiMo-V2.5-ASR
+
+::: tip 限时高级模型（轮换）
+除上述常驻模型外，Starter 每期还会开放一批**限时高级模型**，以**轮换**方式提供。每个限时模型都有对应的**福利到期时间**，到期后会更换为新的限时模型。当前可用的限时模型及其到期日期，请以 [Pricing 页面](https://zenmux.ai/pricing/subscription) 实时显示为准。
+:::
+
+::: tip 想要完整模型访问权限？
+如果你需要稳定、不受限时轮换影响的**全量高级模型**，建议选择 Max 或 Ultra 套餐。
+:::
+
+### Pro - 开发者首选（已下线,仅供老用户续费）{#pro}
+
+::: warning 套餐已下线
+Pro 套餐已被 **Starter** 替代,**不再向新用户开放**。以下内容仅供存量 Pro 订阅用户参考;这些用户可继续续费并保留原有的 **150+ 模型完整访问权限**。
+:::
+
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/04/22/kRFpXun/20260422225025.jpg" alt="subscription-pro-legacy" style="width:300px; border-radius:8px;">
 
 **支持的模型：** 共 **150+** 个模型（含文本、生图、生视频、Embedding），按厂商整理如下
 
@@ -341,11 +575,11 @@ Flow/USD 汇率当前锚定在 **1 Flow ≈ $0.03283**（约 30 Flows = $1）。
 - `openai/text-embedding-3-large` - Text Embedding 3 Large
 - `openai/text-embedding-3-small` - Text Embedding 3 Small
 
-### Max - 高强度开发
+### Max - 高强度开发 {#max}
 
 <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/04/22/3jGyUDK/20260422225040.jpg" alt="subscription-free" style="width:300px; border-radius:8px;">
 
-**额外支持的超旗舰模型（Pro 套餐全部模型 + 以下独占模型）:**
+**额外支持的高级模型（在 Starter 基础上,开放上文列出的**全量高级模型**,并额外包含以下独占超旗舰模型）:**
 
 超旗舰文本模型：
 
@@ -361,7 +595,7 @@ Flow/USD 汇率当前锚定在 **1 Flow ≈ $0.03283**（约 30 Flows = $1）。
 - `bytedance/doubao-seedance-2.0` - Doubao Seedance 2.0
 - `bytedance/doubao-seedance-1.5-pro` - Doubao Seedance 1.5 Pro
 
-### Ultra - 专业级旗舰
+### Ultra - 专业级旗舰 {#ultra}
 
 <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/04/22/Qyl1Ezo/20260422225055.jpg" alt="subscription-free" style="width:300px; border-radius:8px;">
 
@@ -390,9 +624,10 @@ Flow/USD 汇率当前锚定在 **1 Flow ≈ $0.03283**（约 30 Flows = $1）。
 <tr><th>套餐</th><th>每月重置次数</th></tr>
 </thead>
 <tbody>
-<tr><td>Pro</td><td>4 次</td></tr>
+<tr><td>Starter</td><td>4 次</td></tr>
 <tr><td>Max</td><td>3 次</td></tr>
 <tr><td>Ultra</td><td>2 次</td></tr>
+<tr><td>Pro（已下线）</td><td>4 次</td></tr>
 </tbody>
 </table>
 
@@ -403,7 +638,6 @@ Flow/USD 汇率当前锚定在 **1 Flow ≈ $0.03283**（约 30 Flows = $1）。
 ::: tip 使用方式
 您可以在 [订阅管理页面](https://zenmux.ai/platform/subscription) 查看剩余重置次数，点击「重置窗口」按钮即可立即刷新 5 小时配额。也可以开启 **自动重置**，当 5 小时配额用尽时系统自动消耗一次重置机会刷新窗口，无需手动操作。重置次数按订阅周期计算（例如 6月3日 至 7月3日），过期不累计。
 :::
-
 
 ### 适用场景
 
@@ -428,7 +662,7 @@ Flow/USD 汇率当前锚定在 **1 Flow ≈ $0.03283**（约 30 Flows = $1）。
 - 更稳定的服务质量
 - 更灵活的扩展能力
 - 专业的商业支持
-:::
+  :::
 
 ## 如何订阅
 
@@ -436,12 +670,12 @@ Flow/USD 汇率当前锚定在 **1 Flow ≈ $0.03283**（约 30 Flows = $1）。
 
 访问 [ZenMux Pricing 页面](https://zenmux.ai/pricing/subscription) 查看所有订阅套餐的详细信息和价格。
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/7shxqbP/dingyuezhi-jiage2-dapingbanben.png" alt="subscription-free" >
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/08/06/eCyeq9c/Plan-new.png" alt="subscription-free" >
 
 ### 第 2 步:选择并订阅套餐
 
 1. 在 Pricing 页面选择适合您的套餐
-2. 点击对应套餐的 **"Get Max"** 或 **"Get Ultra"** 按钮(Pro 用户点击 **"Upgrade"**)
+2. 点击对应套餐的 **"Get Starter"** / **"Get Max"** / **"Get Ultra"** 按钮（已订阅用户点击 **"Upgrade"** 升级）
 3. 完成支付流程
 
 ### 第 3 步:管理订阅和获取 API Key
@@ -521,7 +755,7 @@ Flow/USD 汇率当前锚定在 **1 Flow ≈ $0.03283**（约 30 Flows = $1）。
 - 确保你的 Pay As You Go 账户有足够余额,以避免超额切换后因余额不足而中断服务
 - 可以随时在订阅管理页面查看 Extra Usage 的使用情况和消费金额
 - 如需更换备用 Key,点击 **"Reselect"** 按钮重新选择即可
-:::
+  :::
 
 ::: warning 计费提醒
 启用 Extra Usage 后,当订阅配额用尽时会自动从你的 Pay As You Go 余额中扣费。请注意监控账户余额,避免产生意外费用。
@@ -597,7 +831,7 @@ Studio Chat 和 API 调用使用相同的订阅配额池。在 Studio Chat 中�
 
 ## 升级与降级
 
-订阅期间可以随时切换套餐。**升级**（如 Pro → Max）会立即生效，并按当前计费周期的剩余时长收取差价；**降级**则会在当前周期结束后生效，不产生额外费用。
+订阅期间可以随时切换套餐。**升级**（如 Starter → Max）会立即生效，并按当前计费周期的剩余时长收取差价；**降级**则会在当前周期结束后生效，不产生额外费用。
 
 ### 升级的差价计算（按剩余周期 Proration）
 
@@ -621,7 +855,7 @@ Studio Chat 和 API 调用使用相同的订阅配额池。在 Studio Chat 中�
 
 即：**差价 = 套餐价差 × 剩余周期占比**。若 `P_new ≤ P_old`（不构成升级），差价取 0。
 
-**示例**：Pro（$20/月）升级到 Max（$100/月），本周期还剩 15 天（周期共 30 天）：
+**示例**：Starter（$20/月）升级到 Max（$100/月），本周期还剩 15 天（周期共 30 天）：
 
 ```text
 Δ = (100 − 20) × (15 / 30) = 80 × 0.5 = $40

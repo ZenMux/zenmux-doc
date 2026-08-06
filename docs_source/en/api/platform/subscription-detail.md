@@ -48,7 +48,7 @@ Each endpoint has its own independent rate limit counter. The maximum number of 
 
 Current subscription plan details:
 
-- `tier` `string` — Plan tier: `"free"` / `"pro"` / `"max"` / `"ultra"`
+- `tier` `string` — Plan tier: `"free"` / `"starter"` / `"max"` / `"ultra"` (`"pro"` is a retired plan and may still be returned for existing subscribers)
 - `amount_usd` `number` — Monthly plan price (USD)
 - `interval` `string` — Billing cycle, always `"month"`
 - `expires_at` `string` — Current subscription period expiry time (ISO 8601)

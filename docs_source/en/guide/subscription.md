@@ -12,6 +12,10 @@ head:
 
 The ZenMux Builder Plan subscription offers individual developers a fixed monthly fee and a predictable way to call AI models—so you can focus on coding and creating without worrying about the cost of each API request.
 
+::: info The Pro plan has been upgraded to Starter
+Since the Starter plan launched, the original **Pro** plan ($20/mo) has been **discontinued and is no longer offered to new users**. Existing Pro subscribers are **unaffected**—they can continue to **auto-renew and use** their existing benefits as usual. If you want to change plans, you can upgrade to Max / Ultra at any time.
+:::
+
 ## What Are Flows?
 
 A **Flow** is ZenMux’s composite billing unit that combines token consumption and per-request overhead. You can think of it as a **currency**—just as different products have different prices in USD, different AI models consume different numbers of Flows per request. The Flow/USD exchange rate may fluctuate over time, and the latest rate is always published in real time on the [Pricing page](https://zenmux.ai/pricing/subscription).
@@ -38,22 +42,25 @@ For accounts found violating the Builder Plan Terms of Service (e.g., automated 
 
 ### 📊 Plan Comparison — Monthly Max Flows and USD Equivalent Value
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/04/20/ySQMzyd/20260420140640.jpg" alt="Plan comparison - monthly max Flows and USD equivalent value" >
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/08/06/eCyeq9c/Plan-new.png" alt="Plan comparison - monthly max Flows and USD equivalent value" >
 
 ::: tip Screenshot example
 Plan comparison data is **dynamically calculated**. The screenshot is for reference only. Please refer to the real-time data shown on the [Pricing page](https://zenmux.ai/pricing/subscription).
 :::
 
-| Plan  | Price   | 5h Quota (Flows) | Weekly Max Flows | Monthly Max Flows | USD Equivalent Value | Value Multiplier |
-| ----- | ------- | ---------------- | ---------------- | ----------------- | -------------------- | ---------------- |
-| Free  | $0/mo   | 5                | 38.64            | 165.6             | $5.44                | -                |
-| Pro   | $20/mo  | 50               | 213.37           | 914.443           | $30.03               | 1.50x            |
-| Max   | $100/mo | 300              | 1,280.22         | 5,486.659         | $180.15              | 1.80x            |
-| Ultra | $200/mo | 800              | 3,413.921        | 14,631.091        | $480.40              | 2.40x            |
+| Plan          | Price   | 5h Quota (Flows) | Weekly Max Flows | Monthly Max Flows | USD Equivalent Value | Value Multiplier |
+| ------------- | ------- | ---------------- | ---------------- | ----------------- | -------------------- | ---------------- |
+| Free          | $0/mo   | 5                | 38.64            | 165.6             | $5.44                | -                |
+| Starter       | $20/mo  | 50               | 213.37           | 914.443           | $30.03               | 1.50x            |
+| Max           | $100/mo | 300              | 1,280.22         | 5,486.659         | $180.15              | 1.80x            |
+| Ultra         | $200/mo | 800              | 3,413.921        | 14,631.091        | $480.40              | 2.40x            |
+| Pro (retired) | $20/mo  | 50               | 213.37           | 914.443           | $30.03               | 1.50x            |
 
 > **USD Equivalent Value** = Monthly Max Flows × Flow unit price ($0.03283/Flow)
 >
 > **Value Multiplier** = USD Equivalent Value / Plan price — indicates how many times more API value you get compared to the subscription fee
+>
+> **Pro (retired)** is visible only to existing subscribers; its price and quota are identical to Starter. New users should choose **Starter**.
 
 ## Why Choose the Builder Plan?
 
@@ -92,7 +99,7 @@ Plan comparison data is **dynamically calculated**. The screenshot is for refere
 
 ## Plan Comparison
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/04/22/BsZgRQH/20260422225424.jpg" alt="subscription-free" >
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/08/06/eCyeq9c/Plan-new.png" alt="subscription-free" >
 
 ### Free - Free Trial
 
@@ -122,9 +129,236 @@ Plan comparison data is **dynamically calculated**. The screenshot is for refere
 - `z-ai/glm-4.7-flash-free` - Z.AI: GLM 4.7 Flash (Free)
 - `openai/gpt-image-2` - OpenAI: GPT Image 2 (Image Generation)
 
-### Pro - Top Choice for Developers
+### Starter - Top Pick for Daily Vibe Working {#starter}
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/04/22/kRFpXun/20260422225025.jpg" alt="subscription-free" style="width:300px; border-radius:8px;">
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/08/06/FtEQsC4/starter-card.png" alt="subscription-starter" style="width:300px; border-radius:8px;">
+
+**Supported models:** the following are the models **permanently available** on Starter (130+ in total, organized by provider). In addition, a small set of **limited-time premium models (rotating)** is offered each period—see the note below.
+
+**Anthropic Claude Series**
+
+- `anthropic/claude-haiku-4.5` - Claude Haiku 4.5
+- `anthropic/claude-sonnet-4` - Claude Sonnet 4
+- `anthropic/claude-sonnet-4.5` - Claude Sonnet 4.5
+- `anthropic/claude-sonnet-4.6` - Claude Sonnet 4.6
+- `anthropic/claude-sonnet-5` - Claude Sonnet 5
+
+**OpenAI GPT Series**
+
+- `openai/chat-latest` - Chat Latest (GPT-5.5 Instant)
+- `openai/gpt-4.1` - GPT-4.1
+- `openai/gpt-4.1-mini` - GPT-4.1 Mini
+- `openai/gpt-4.1-nano` - GPT-4.1 Nano
+- `openai/gpt-4o` - GPT-4o
+- `openai/gpt-4o-mini` - GPT-4o-mini
+- `openai/gpt-5` - GPT-5
+- `openai/gpt-5-chat` - GPT-5 Chat
+- `openai/gpt-5-mini` - GPT-5 Mini
+- `openai/gpt-5-nano` - GPT-5 Nano
+- `openai/gpt-5.1` - GPT-5.1
+- `openai/gpt-5.1-chat` - GPT-5.1 Chat
+- `openai/gpt-5.1-codex-mini` - GPT-5.1-Codex-Mini
+- `openai/gpt-5.2` - GPT-5.2
+- `openai/gpt-5.2-chat` - GPT-5.2 Chat
+- `openai/gpt-5.3-chat` - GPT-5.3 Chat
+- `openai/gpt-5.4-mini` - GPT-5.4 Mini
+- `openai/gpt-5.4-nano` - GPT-5.4 Nano
+- `openai/gpt-5.5` - GPT-5.5
+- `openai/gpt-5.6-luna` - GPT-5.6 Luna
+- `openai/gpt-5.6-terra` - GPT-5.6 Terra
+
+**Google Gemini / Gemma Series**
+
+- `google/gemini-2.5-flash` - Gemini 2.5 Flash
+- `google/gemini-2.5-flash-lite` - Gemini 2.5 Flash Lite
+- `google/gemini-2.5-pro` - Gemini 2.5 Pro
+- `google/gemini-3-flash-preview` - Gemini 3 Flash Preview
+- `google/gemini-3.1-flash-lite` - Gemini 3.1 Flash Lite
+- `google/gemini-3.5-flash-lite` - Gemini 3.5 Flash Lite
+- `google/gemini-3.6-flash` - Gemini 3.6 Flash
+- `google/gemma-4-26b-a4b-it` - Gemma 4 26B A4B IT
+
+**xAI Grok Series**
+
+- `x-ai/grok-4.5` - Grok 4.5
+
+**Z.AI GLM Series**
+
+- `z-ai/glm-4.5` - GLM 4.5
+- `z-ai/glm-4.5-air` - GLM 4.5 Air
+- `z-ai/glm-4.6` - GLM 4.6
+- `z-ai/glm-4.6v` - GLM 4.6V
+- `z-ai/glm-4.6v-flash` - GLM 4.6V FlashX
+- `z-ai/glm-4.6v-flash-free` - GLM 4.6V Flash (Free)
+- `z-ai/glm-4.7` - GLM 4.7
+- `z-ai/glm-4.7-flash-free` - GLM 4.7 Flash (Free)
+- `z-ai/glm-4.7-flashx` - GLM 4.7 FlashX
+- `z-ai/glm-5` - GLM 5
+- `z-ai/glm-5-turbo` - GLM 5 Turbo
+- `z-ai/glm-5.1` - GLM 5.1
+- `z-ai/glm-5.2` - GLM 5.2
+- `z-ai/glm-5v-turbo` - GLM 5V Turbo
+
+**DeepSeek Series**
+
+- `deepseek/deepseek-chat-v3.1` - DeepSeek V3.1
+- `deepseek/deepseek-r1-0528` - DeepSeek R1 0528
+- `deepseek/deepseek-v3.2` - DeepSeek V3.2
+- `deepseek/deepseek-v3.2-exp` - DeepSeek-V3.2-Exp
+- `deepseek/deepseek-v4-flash` - DeepSeek V4 Flash 0731
+- `deepseek/deepseek-v4-pro` - DeepSeek V4 Pro
+
+**Qwen Series**
+
+- `qwen/qwen3-14b` - Qwen3-14B
+- `qwen/qwen3-235b-a22b-2507` - Qwen3 235B A22B Instruct 2507
+- `qwen/qwen3-235b-a22b-thinking-2507` - Qwen3 235B A22B Thinking 2507
+- `qwen/qwen3-coder` - Qwen3-Coder
+- `qwen/qwen3-coder-plus` - Qwen3-Coder-Plus
+- `qwen/qwen3-vl-plus` - Qwen3-VL-Plus
+- `qwen/qwen3.5-flash` - Qwen3.5-Flash
+- `qwen/qwen3.5-plus` - Qwen3.5-Plus
+- `qwen/qwen3.6-flash` - Qwen3.6 Flash
+- `qwen/qwen3.6-max-preview` - Qwen3.6 Max Preview
+- `qwen/qwen3.6-plus` - Qwen3.6-Plus
+- `qwen/qwen3.7-flash` - Qwen3.7-Flash
+- `qwen/qwen3.7-max` - Qwen3.7-Max
+- `qwen/qwen3.7-plus` - Qwen3.7-Plus
+- `qwen/qwen3.8-max` - Qwen3.8-Max
+
+**Moonshot / Kimi Series**
+
+- `moonshotai/kimi-k2.5` - Kimi K2.5
+- `moonshotai/kimi-k2.6` - Kimi K2.6
+- `moonshotai/kimi-k2.7-code` - Kimi K2.7 Code
+- `moonshotai/kimi-k3` - Kimi K3
+
+**Baidu ERNIE Series**
+
+- `baidu/ernie-5.0-thinking-preview` - ERNIE 5.0
+- `baidu/ernie-5.1` - ERNIE 5.1
+- `baidu/ernie-x1.1-preview` - ERNIE-X1.1-Preview
+
+**InclusionAI Series**
+
+- `inclusionai/ling-2.6-1t` - Ling-2.6-1T
+- `inclusionai/ling-2.6-flash` - Ling-2.6-flash
+- `inclusionai/ling-3.0-flash` - Ling-3.0-flash
+- `inclusionai/llada2.1-flash` - LLaDA2.1-flash
+- `inclusionai/ring-2.6-1t` - Ring-2.6-1T
+
+**Meta Llama Series**
+
+- `meta/llama-3.3-70b-instruct` - Llama 3.3 70B Instruct
+- `meta/llama-4-scout-17b-16e-instruct` - Llama 4 Scout Instruct
+- `meta/muse-spark-1.1` - Muse Spark 1.1
+- `meta/muse-spark-1.2` - Muse Spark 1.2
+
+**Mistral Series**
+
+- `mistralai/mistral-large-2512` - Mistral Large 3
+
+**MiniMax Series**
+
+- `minimax/minimax-m2` - MiniMax M2
+- `minimax/minimax-m2-her` - MiniMax M2-her
+- `minimax/minimax-m2.1` - MiniMax M2.1
+- `minimax/minimax-m2.5` - MiniMax M2.5
+- `minimax/minimax-m2.7` - MiniMax M2.7
+- `minimax/minimax-m3` - MiniMax M3
+
+**Kuaishou**
+
+- `kuaishou/kat-coder-air-v2.5` - KAT-Coder-Air-V2.5
+- `kuaishou/kat-coder-pro-v2` - KAT-Coder-Pro-V2
+- `kuaishou/kat-coder-pro-v2.5` - KAT-Coder-Pro-V2.5
+
+**StepFun**
+
+- `stepfun/step-3.5-flash` - Step 3.5 Flash
+- `stepfun/step-3.7-flash` - Step 3.7 Flash
+
+**ByteDance / Volcengine Doubao**
+
+- `bytedance/doubao-seed-1.8` - Doubao-Seed-1.8
+- `bytedance/doubao-seed-2.0-code` - Doubao-Seed-2.0-Code
+- `bytedance/doubao-seed-2.0-lite` - Doubao-Seed-2.0-lite
+- `bytedance/doubao-seed-2.0-mini` - Doubao-Seed-2.0-mini
+- `bytedance/doubao-seed-2.0-pro` - Doubao-Seed-2.0-pro
+- `bytedance/doubao-seed-2.1-pro` - Doubao-Seed-2.1-pro
+- `bytedance/doubao-seed-2.1-turbo` - Doubao-Seed-2.1-turbo
+- `bytedance/doubao-seed-character` - Doubao-Seed-Character
+- `bytedance/doubao-seed-code` - Doubao-Seed-Code
+- `bytedance/doubao-seed-evolving` - Doubao-Seed-Evolving
+
+**Tencent**
+
+- `tencent/hy3` - Hy3
+- `tencent/hy3-preview` - Hy3 preview
+
+**Sapiens AI Series**
+
+- `sapiens-ai/agnes-2.0-flash` - Agnes-2.0-Flash
+
+**Xiaomi**
+
+- `xiaomi/mimo-v2.5` - MiMo-V2.5
+- `xiaomi/mimo-v2.5-pro` - MiMo-V2.5-Pro
+
+**Meituan**
+
+- `meituan/longcat-2.0` - LongCat-2.0
+
+**Image Generation Models**
+
+- `bytedance/doubao-seedream-5.0-lite` - Doubao-Seedream-5.0-lite
+- `bytedance/doubao-seedream-5.0-pro` - Doubao-Seedream-5.0-pro
+- `google/gemini-2.5-flash-image` - Gemini 2.5 Flash Image (Nano Banana)
+- `google/gemini-3.1-flash-image` - Nano Banana 2 (Gemini 3.1 Flash Image)
+- `google/gemini-3.1-flash-lite-image` - Nano Banana 2 Lite (Gemini 3.1 Flash-Lite Image)
+- `qwen/qwen-image-2.0` - Qwen-Image-2.0
+- `qwen/qwen-image-3.0` - Qwen-Image-3.0
+- `qwen/qwen-image-3.0-pro` - Qwen-Image-3.0-Pro
+- `tencent/hy-image-v3.0` - HY-Image-V3.0
+- `z-ai/glm-image` - GLM-Image
+
+**Video Generation Models**
+
+- `google/gemini-omni-flash-preview` - Gemini Omni Flash Preview
+- `minimax/minimax-h3` - MiniMax H3
+- `sapiens-ai/agnes-video-v2.0` - Agnes-Video-V2.0
+
+**Embedding Models**
+
+- `openai/text-embedding-3-large` - Text Embedding 3 Large
+- `openai/text-embedding-3-small` - Text Embedding 3 Small
+- `qwen/qwen3-vl-embedding` - Qwen3 VL Embedding
+
+**Audio / Other Models (ASR / TTS / Rerank)**
+
+- `qwen/qwen-audio-3.0-tts-plus` - Qwen-Audio-3.0-TTS-Plus
+- `qwen/qwen3-asr-flash` - Qwen3 ASR Flash
+- `qwen/qwen3-rerank` - Qwen3 Rerank
+- `qwen/qwen3-vl-rerank` - Qwen3 VL Rerank
+- `x-ai/grok-voice-stt-1.0` - Grok Voice STT 1.0
+- `x-ai/grok-voice-tts-1.0` - Grok Voice TTS 1.0
+- `xiaomi/mimo-v2.5-asr` - MiMo-V2.5-ASR
+
+::: tip Limited-time premium models (rotating)
+In addition to the permanent models above, Starter offers a set of **limited-time premium models** each period on a **rotating** basis. Each limited-time model has its own **benefit end date**, after which it is replaced by a new one. For the models currently available and their end dates, refer to the live data on the [Pricing page](https://zenmux.ai/pricing/subscription).
+:::
+
+::: tip Want full model access?
+If you need the **complete set of premium models** without limited-time rotation, choose the Max or Ultra plan.
+:::
+
+### Pro - Top Choice for Developers (retired, renewals for existing users only) {#pro-developer-favorite}
+
+::: warning Plan retired
+The Pro plan has been replaced by **Starter** and is **no longer offered to new users**. The content below is for reference by existing Pro subscribers only; those users can continue to renew and keep their original **full access to 150+ models**.
+:::
+
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/04/22/kRFpXun/20260422225025.jpg" alt="subscription-pro-legacy" style="width:300px; border-radius:8px;">
 
 **Supported models:** **150+** models (text, image generation, video generation, embedding), organized by provider below
 
@@ -341,11 +575,11 @@ Plan comparison data is **dynamically calculated**. The screenshot is for refere
 - `openai/text-embedding-3-large` - Text Embedding 3 Large
 - `openai/text-embedding-3-small` - Text Embedding 3 Small
 
-### Max - High-Intensity Development
+### Max - High-Intensity Development {#max}
 
 <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/04/22/3jGyUDK/20260422225040.jpg" alt="subscription-free" style="width:300px; border-radius:8px;">
 
-**Additional exclusive models (all Pro models + the following):**
+**Additional premium models (on top of Starter, unlocks all premium models listed above, plus the following exclusive ultra-flagship models):**
 
 Ultra-flagship text models:
 
@@ -361,7 +595,7 @@ Ultra-flagship video generation models:
 - `bytedance/doubao-seedance-2.0` - Doubao Seedance 2.0
 - `bytedance/doubao-seedance-1.5-pro` - Doubao Seedance 1.5 Pro
 
-### Ultra - Professional-Grade Flagship
+### Ultra - Professional-Grade Flagship {#ultra}
 
 <img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/04/22/Qyl1Ezo/20260422225055.jpg" alt="subscription-free" style="width:300px; border-radius:8px;">
 
@@ -390,9 +624,10 @@ Subscription users have a certain number of **5-hour window reset** opportunitie
 <tr><th>Plan</th><th>Monthly Resets</th></tr>
 </thead>
 <tbody>
-<tr><td>Pro</td><td>4 times</td></tr>
+<tr><td>Starter</td><td>4 times</td></tr>
 <tr><td>Max</td><td>3 times</td></tr>
 <tr><td>Ultra</td><td>2 times</td></tr>
+<tr><td>Pro (retired)</td><td>4 times</td></tr>
 </tbody>
 </table>
 
@@ -427,7 +662,7 @@ If your project is about to go live or is already commercialized, switch to the 
 - More stable service quality
 - More flexible scalability
 - Professional business support
-:::
+  :::
 
 ## How to Subscribe
 
@@ -435,12 +670,12 @@ If your project is about to go live or is already commercialized, switch to the 
 
 Visit the [ZenMux Pricing page](https://zenmux.ai/pricing/subscription) to see detailed information and pricing for all subscription plans.
 
-<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/20/7shxqbP/dingyuezhi-jiage2-dapingbanben.png" alt="subscription-free" >
+<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/08/06/eCyeq9c/Plan-new.png" alt="subscription-free" >
 
 ### Step 2: Choose and subscribe
 
 1. Select the plan that fits your needs on the Pricing page
-2. Click **"Get Max"** or **"Get Ultra"** for the corresponding plan (Pro users click **"Upgrade"**)
+2. Click **"Get Starter"** / **"Get Max"** / **"Get Ultra"** for the corresponding plan (existing subscribers click **"Upgrade"**)
 3. Complete the payment flow
 
 ### Step 3: Manage your subscription and get an API Key
@@ -520,7 +755,7 @@ Once enabled, the page will display details of the Pay As You Go API Key you sel
 - Make sure your Pay As You Go account has sufficient balance to avoid interruptions after switching
 - You can view Extra Usage consumption and spending at any time on the Subscription Management page
 - To change the backup key, click **"Reselect"** and choose again
-:::
+  :::
 
 ::: warning Billing reminder
 After enabling Extra Usage, when your subscription quota runs out, charges will be automatically deducted from your Pay As You Go balance. Monitor your balance to avoid unexpected costs.
@@ -596,7 +831,7 @@ Studio Chat and API calls share the same subscription quota pool. Conversations 
 
 ## Upgrades & Downgrades
 
-You can switch plans at any time during an active subscription. **Upgrades** (e.g., Pro → Max) take effect immediately and are billed only for the remaining time in the current cycle; **downgrades** take effect at the end of the current cycle and incur no additional charge.
+You can switch plans at any time during an active subscription. **Upgrades** (e.g., Starter → Max) take effect immediately and are billed only for the remaining time in the current cycle; **downgrades** take effect at the end of the current cycle and incur no additional charge.
 
 ### Upgrade Proration
 
@@ -620,7 +855,7 @@ When you upgrade, you only pay the price difference for the time left in the cur
 
 In plain English: **proration = plan price difference × fraction of the cycle remaining.** If `P_new ≤ P_old` (i.e., not actually an upgrade), the charge is 0.
 
-**Example**: Upgrading from Pro ($20/month) to Max ($100/month) with 15 days left in a 30-day cycle:
+**Example**: Upgrading from Starter ($20/month) to Max ($100/month) with 15 days left in a 30-day cycle:
 
 ```text
 Δ = (100 − 20) × (15 / 30) = 80 × 0.5 = $40

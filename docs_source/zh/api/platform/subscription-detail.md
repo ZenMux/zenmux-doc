@@ -48,7 +48,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 
 当前套餐信息：
 
-- `tier` `string` — 套餐等级，如 `"free"` / `"pro"` / `"max"` / `"ultra"`
+- `tier` `string` — 套餐等级，如 `"free"` / `"starter"` / `"max"` / `"ultra"`（`"pro"` 为已下线套餐，仅存量用户可能返回）
 - `amount_usd` `number` — 套餐月费（美元）
 - `interval` `string` — 计费周期，固定为 `"month"`
 - `expires_at` `string` — 当前订阅周期到期时间（ISO 8601）
