@@ -16,7 +16,7 @@ head:
 
 ### 1. 获取 ZenMux API Key
 
-前往 [ZenMux 控制台](https://zenmux.ai/console) 注册账户并获取您的 API Key。
+前往 [ZenMux 控制台](https://zenmux.ai/platform) 注册账户并获取您的 API Key。
 
 ::: tip 快速开始
 仅需几分钟即可完成配置，立即体验高质量的多模型翻译服务

@@ -398,7 +398,7 @@ print(response_2.json())
 - **用量统计**：该供应商的接入所有模型的用量统计数据
 
 ::: info 供应商详情页示例
-例如访问 [Anthropic 供应商页面](https://zenmux.ai/providers/anthropic)，可以看到该供应商提供的所有 Claude 模型及其详细信息。
+例如访问 [Anthropic 供应商页面](https://zenmux.ai/provider/anthropic)，可以看到该供应商提供的所有 Claude 模型及其详细信息。
 :::
 
 ![Provider Details](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/iYwxXFg/provider-analysis.png)
