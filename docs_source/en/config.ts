@@ -69,6 +69,10 @@ const docsSidebar = [
         link: "/guide/invoice",
       },
       {
+        text: "Gift Cards",
+        link: "/guide/gift-card",
+      },
+      {
         text: "Observability",
         collapsed: true,
         items: [
