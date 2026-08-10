@@ -164,6 +164,12 @@ ZenMux 的模型别名功能让 `gpt-5.2-codex` 与 `openai/gpt-5.2-codex` 完�
 tool_namespace = "agents"
 ```
 
+如果配置了 `model_catalog_json`，还需要在对应的模型条目中增加：
+
+```json
+"multi_agent_version": "v2"
+```
+
 自 Codex `v0.144.1` 起，`multi_agent` 成为新特性；Codex 在定义多智能体工具时会使用特殊的 `collaboration` 字段。`gpt-5.6-sol` 将 `collaboration` 作为加密工具调用的保留命名空间，因此会发生冲突并返回上述错误。
 
 该配置会将多智能体工具切换到 `agents` 命名空间，避免命名空间冲突。保存后重启 Codex 使配置生效。
