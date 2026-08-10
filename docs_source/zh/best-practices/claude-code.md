@@ -122,7 +122,7 @@ Claude Code 默认直接连接到 Anthropic 官方服务，但通过配置环境
 
 获取方式：
 1. 访问订阅管理页面：https://zenmux.ai/platform/subscription
-2. 选择适合的套餐（Pro $20/月、Max $100/月、Ultra $200/月）
+2. 选择适合的套餐（Starter $20/月、Max $100/月、Ultra $200/月）
 3. 完成订阅后，在页面中创建订阅制 API Key
 
 详细说明请参考：订阅制套餐指南
