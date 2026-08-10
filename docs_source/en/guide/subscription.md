@@ -10,16 +10,7 @@ head:
 
 # Subscription Plans
 
-The ZenMux **Builder Plan** gives individual developers a fixed monthly fee and predictable access to AI models. A single subscription lets you tap into the platform's top models, so you can focus on building instead of worrying about the cost of every API call.
-
-::: tip How this page relates to the pricing page
-The Builder Plan's **model list, Flow exchange rate, and quota figures** are all **live data** that change as new models launch and market conditions shift.
-
-- **This document** covers the rules and mechanics: how Flows are calculated, how quotas refresh, how to subscribe, and how to use your key in developer tools.
-- **The [subscription pricing page](https://zenmux.ai/pricing/subscription)** provides the live data: the **complete model list** for each plan, the current Flow/USD rate, and remaining spots.
-
-For that reason, this page **no longer enumerates individual model names**. Use the steps in [Viewing the models included in a plan](#supported-models) to look up the current list at any time.
-:::
+The ZenMux **Builder Plan** gives individual developers a fixed monthly fee and predictable access to AI models. A single subscription lets you tap into the world's top models, so you can focus on building instead of worrying about the cost of every API call.
 
 ## Plan Overview
 
@@ -44,30 +35,17 @@ The top of the pricing page shows **SPOTS REMAINING**. The Builder Plan is curre
 
 ## Viewing the models included in a plan {#supported-models}
 
-The ZenMux model list changes continuously: new models launch, limited-time premium models rotate in and out, and some models move between plans. **Any model list hard-coded into documentation goes stale quickly**, so always treat the pricing page as the source of truth.
+The ZenMux model list changes continuously: new models launch, limited-time premium models rotate in and out, and some models move between plans — always treat the pricing page as the source of truth.
 
 ### Look up the live list in three steps
 
-1. Open the **[subscription pricing page](https://zenmux.ai/pricing/subscription)** and scroll down to the plan cards
-2. In the plan card you're interested in, find the model row and click the **View** button on the right
-3. Browse, search, or filter by type in the **Supported models** dialog that opens
+#### Step 1 — Open the **[subscription pricing page](https://zenmux.ai/pricing/subscription)** and scroll down to the plan cards
 
-**Step 2 — click the View button on the plan card:**
+#### Step 2 — Click the View button on the plan card
 
 <img src="https://static.zenmux.ai/public/images/doc/03-click-view-button.png" alt="Click the View button on a plan card to see its model list" style="width:320px; border-radius:8px; box-shadow: 0 4px 12px rgba(0,0,0,0.12);">
 
-**Step 3 — review the full list in the Supported models dialog:**
-
-<img src="https://static.zenmux.ai/public/images/doc/04-models-modal-starter.png" alt="The Supported models dialog listing available models" style="width:480px; border-radius:8px; box-shadow: 0 4px 12px rgba(0,0,0,0.12);">
-
-### What you can do in the dialog
-
-| Control                        | What it does                                                                 |
-| ------------------------------ | ---------------------------------------------------------------------------- |
-| **Search models**              | Search by model or provider keyword to confirm whether a specific model is included |
-| **Newest**                     | Change the sort order so the most recently launched models appear first      |
-| **All / Text / Image / Video** | Filter by modality: everything, text, image generation, or video generation  |
-| Click any model                | See that model's pricing, context length, max output, and available providers |
+#### Step 3 — Review the full list in the Supported models dialog
 
 <img src="https://static.zenmux.ai/public/images/doc/05-models-modal-starter-image.png" alt="Filtering the model list by the Image type" style="width:480px; border-radius:8px; box-shadow: 0 4px 12px rgba(0,0,0,0.12);">
 
@@ -145,7 +123,7 @@ This rate may be adjusted based on market conditions and model pricing changes, 
 :::
 
 ::: danger Abuse policy
-Accounts found to be violating the Builder Plan terms of service — through automated abuse, resource hoarding, multi-account pooling, unauthorized resale, and similar behavior — will have their effective Flow value **reduced below the standard rate**, meaning each Flow is worth less in USD-equivalent terms. Please use your subscription responsibly.
+Accounts found to be violating the Builder Plan terms of service — through automated abuse, resource hoarding, multi-account pooling, unauthorized resale, account sharing, and similar behavior — will have their effective Flow value **reduced below the standard rate**, meaning each Flow is worth less in USD-equivalent terms. Please use your subscription responsibly.
 :::
 
 ## Quotas and limits
@@ -154,14 +132,7 @@ Accounts found to be violating the Builder Plan terms of service — through aut
 
 <img src="https://static.zenmux.ai/public/images/doc/07-plan-comparison-table.png" alt="Plan quota comparison: 5-hour, weekly, and monthly max Flows with equivalent USD value" >
 
-The table below is a **snapshot from 2026-08-04**, intended to convey the relative scale of each tier:
-
-| Plan        | Monthly fee | 5-hour quota | Weekly max Flows | Monthly max Flows | Equivalent USD value | Value leverage |
-| ----------- | ----------- | ------------ | ---------------- | ----------------- | -------------------- | -------------- |
-| **Free**    | $0/mo       | 5 Flows      | 38.64 Flows      | 165.6 Flows       | $5.44                | —              |
-| **Starter** | $20/mo      | 50 Flows     | 213.293 Flows    | 914.112 Flows     | $30.01               | 1.50x          |
-| **Max**     | $100/mo     | 300 Flows    | 1,280.22 Flows   | 5,486.659 Flows   | $180.15              | 1.80x          |
-| **Ultra**   | $200/mo     | 800 Flows    | 3,413.921 Flows  | 14,631.091 Flows  | $480.40              | 2.40x          |
+The table above is a **snapshot from 2026-08-04**, intended to convey the relative scale of each tier.
 
 - **Equivalent USD value (Worth)** — the **theoretical maximum monthly API value** included in the plan, based on equivalent pay-as-you-go pricing.
 - **Value leverage** — equivalent USD value ÷ monthly fee, showing how many times your subscription cost you get back in API value.

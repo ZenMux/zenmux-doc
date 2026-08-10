@@ -10,16 +10,7 @@ head:
 
 # 订阅制套餐
 
-ZenMux **Builder Plan** 为个人开发者提供固定月费、可预测的 AI 模型调用方案。一次订阅即可调度全平台顶尖模型，让你专注编程与创作，无需担心每次 API 调用的费用。
-
-::: tip 本页与定价页的分工
-Builder Plan 的**模型清单、Flow 汇率、配额数值**均为**动态数据**，会随模型上线与市场变化持续调整。
-
-- **本文档**讲解规则与用法：Flows 怎么算、配额怎么刷新、怎么订阅、怎么在工具中使用。
-- **[订阅定价页](https://zenmux.ai/pricing/subscription)** 提供实时数据：各套餐支持的**完整模型清单**、当前 Flow/USD 汇率、剩余名额。
-
-因此本页**不再罗列具体模型名称**，请通过下方 [查看套餐支持的模型](#supported-models) 的方法随时查询最新清单。
-:::
+ZenMux **Builder Plan** 为个人开发者提供固定月费、可预测的 AI 模型调用方案。一次订阅即可调度全球顶尖模型，让你专注编程与创作，无需担心每次 API 调用的费用。
 
 ## 套餐总览
 
@@ -44,30 +35,17 @@ Free 套餐仅可在 **[Studio Chat](https://zenmux.ai/chat)** 网页端体验�
 
 ## 查看套餐支持的模型 {#supported-models}
 
-ZenMux 的模型清单持续变化：新模型上线、限时开放的旗舰模型轮换、部分模型调整所属套餐。**任何写死在文档里的模型列表都会很快过时**，请始终以定价页的实时清单为准。
+ZenMux 的模型清单持续变化：新模型上线、限时开放的旗舰模型轮换、部分模型调整所属套餐，请始终以定价页的实时清单为准。
 
 ### 三步查询实时清单
 
-1. 打开 **[订阅定价页](https://zenmux.ai/pricing/subscription)**，向下滚动到套餐卡片区域
-2. 在目标套餐卡片中找到模型权益一行，点击右侧的 **View** 按钮
-3. 在弹出的 **Supported models** 窗口中浏览、搜索或按类型筛选
+#### 第 1 步 打开 **[订阅定价页](https://zenmux.ai/pricing/subscription)**，向下滚动到套餐卡片区域
 
-**第 2 步 — 点击卡片中的 View 按钮：**
+#### 第 2 步 — 点击卡片中的 View 按钮
 
 <img src="https://static.zenmux.ai/public/images/doc/03-click-view-button.png" alt="点击套餐卡片中的 View 按钮查看模型清单" style="width:320px; border-radius:8px; box-shadow: 0 4px 12px rgba(0,0,0,0.12);">
 
-**第 3 步 — 在 Supported models 弹窗中查看完整清单：**
-
-<img src="https://static.zenmux.ai/public/images/doc/04-models-modal-starter.png" alt="Supported models 模型清单弹窗" style="width:480px; border-radius:8px; box-shadow: 0 4px 12px rgba(0,0,0,0.12);">
-
-### 弹窗中可用的操作
-
-| 操作                          | 说明                                                     |
-| ----------------------------- | -------------------------------------------------------- |
-| **Search models**             | 按模型名称或厂商关键字搜索，快速确认某个模型是否包含在内 |
-| **Newest**                    | 切换排序方式，最新上线的模型排在前面                     |
-| **All / Text / Image / Video** | 按模态筛选：全部 / 文本 / 生图 / 生视频                   |
-| 点击任意模型                  | 查看该模型的定价、上下文长度、最大输出与可用供应商等详情 |
+#### 第 3 步 — 在 Supported models 弹窗中查看完整清单
 
 <img src="https://static.zenmux.ai/public/images/doc/05-models-modal-starter-image.png" alt="按 Image 类型筛选生图模型" style="width:480px; border-radius:8px; box-shadow: 0 4px 12px rgba(0,0,0,0.12);">
 
@@ -145,7 +123,7 @@ Flows 帮助平台平衡 token 负载，在保证服务质量稳定的前提下�
 :::
 
 ::: danger 滥用政策
-对于违反 Builder Plan 服务条款的账号（如自动化滥用、资源囤积、多账号池化、未授权转售等），其有效 Flow 价值将被**降低至标准费率以下**，即每个 Flow 的 USD 等价价值会减少。请合理使用你的订阅。
+对于违反 Builder Plan 服务条款的账号（如自动化滥用、资源囤积、多账号池化、未授权转售、共享账号等），其有效 Flow 价值将被**降低至标准费率以下**，即每个 Flow 的 USD 等价价值会减少。请合理使用你的订阅。
 :::
 
 ## 配额与限制
@@ -154,14 +132,7 @@ Flows 帮助平台平衡 token 负载，在保证服务质量稳定的前提下�
 
 <img src="https://static.zenmux.ai/public/images/doc/07-plan-comparison-table.png" alt="套餐配额对比：5 小时 / 每周 / 每月最大 Flows 及等价 USD 价值" >
 
-下表为 **2026-08-04 的数据快照**，用于理解各档位的量级关系：
-
-| 套餐        | 月费    | 5 小时配额     | 每周最大 Flows      | 每月最大 Flows        | 等价 USD 价值 | 价值杠杆 |
-| ----------- | ------- | -------------- | ------------------- | --------------------- | ------------- | -------- |
-| **Free**    | $0/月   | 5 Flows        | 38.64 Flows         | 165.6 Flows           | $5.44         | —        |
-| **Starter** | $20/月  | 50 Flows       | 213.293 Flows       | 914.112 Flows         | $30.01        | 1.50x    |
-| **Max**     | $100/月 | 300 Flows      | 1,280.22 Flows      | 5,486.659 Flows       | $180.15       | 1.80x    |
-| **Ultra**   | $200/月 | 800 Flows      | 3,413.921 Flows     | 14,631.091 Flows      | $480.40       | 2.40x    |
+上表为 **2026-08-04 的数据快照**，用于理解各档位的量级关系。
 
 - **等价 USD 价值（Worth）** — 该套餐每月包含的**理论最大 API 价值**，按等效的按量付费价格折算。
 - **价值杠杆** — 等价 USD 价值 ÷ 套餐月费，表示相比订阅费用你能获得多少倍的 API 价值。
