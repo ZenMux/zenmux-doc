@@ -351,6 +351,10 @@ export default defineLoacaleConfig({
           text: "最佳实践",
           items: [
             {
+              text: "OAuth PKCE 接入指南",
+              link: "/zh/best-practices/oauth-pkce",
+            },
+            {
               text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/HTMS2Uv/Property-1Calude.svg" />ClaudeCode接入ZenMux指南',
               link: "/zh/best-practices/claude-code",
             },

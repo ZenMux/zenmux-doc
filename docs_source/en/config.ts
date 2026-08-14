@@ -343,6 +343,10 @@ export default defineLoacaleConfig({
           text: "Integrations",
           items: [
             {
+              text: "OAuth PKCE Integration Guide",
+              link: "/best-practices/oauth-pkce",
+            },
+            {
               text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/HTMS2Uv/Property-1Calude.svg" />Claude Code Integration',
               link: "/best-practices/claude-code",
             },
