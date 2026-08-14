@@ -18,7 +18,7 @@ ZenMux 支持通过 OAuth 2.0 Authorization Code + PKCE 将账号授权给本地
 | --- | --- | --- |
 | OpenClaw | `@zenmux/openclaw-plugin` | `openclaw models auth login --provider zenmux` |
 | Codex CLI / Codex App | `@zenmux/codex-oauth` | `zenmux-codex-auth login` |
-| DeepSeek Harness（DSH Web） | `@zenmux/dsh-plugins` | `/zenmux login` |
+| [DeepSeek Harness（DSH Web）](/zh/best-practices/deepseek-harness) | `@zenmux/dsh-plugins` | `/zenmux login` |
 | OpenCode | `@zenmux/opencode-oauth` | `/connect` 或 `opencode auth login` |
 | Pi | `@zenmux/pi-zenmux-oauth` | `/login zenmux` |
 
@@ -94,6 +94,8 @@ npm uninstall -g @zenmux/codex-oauth
 ```
 
 ## DeepSeek Harness
+
+完整安装、代理和模型配置说明请参阅 [DeepSeek Harness 接入 ZenMux](/zh/best-practices/deepseek-harness)。
 
 将 ZenMux 插件安装到 DSH Web Profile，然后启动 DSH：
 

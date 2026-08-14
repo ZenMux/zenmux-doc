@@ -18,7 +18,7 @@ The following agents are currently supported:
 | --- | --- | --- |
 | OpenClaw | `@zenmux/openclaw-plugin` | `openclaw models auth login --provider zenmux` |
 | Codex CLI / Codex App | `@zenmux/codex-oauth` | `zenmux-codex-auth login` |
-| DeepSeek Harness (DSH Web) | `@zenmux/dsh-plugins` | `/zenmux login` |
+| [DeepSeek Harness (DSH Web)](/best-practices/deepseek-harness) | `@zenmux/dsh-plugins` | `/zenmux login` |
 | OpenCode | `@zenmux/opencode-oauth` | `/connect` or `opencode auth login` |
 | Pi | `@zenmux/pi-zenmux-oauth` | `/login zenmux` |
 
@@ -94,6 +94,8 @@ npm uninstall -g @zenmux/codex-oauth
 ```
 
 ## DeepSeek Harness
+
+For complete installation, proxy, and model configuration details, see [DeepSeek Harness Integration](/best-practices/deepseek-harness).
 
 Install the ZenMux bundle into the DSH Web profile, then start DSH:
 

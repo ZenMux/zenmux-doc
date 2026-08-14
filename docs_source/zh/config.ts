@@ -367,6 +367,10 @@ export default defineLoacaleConfig({
               link: "/zh/best-practices/codex",
             },
             {
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2025/10/15/tmeJLqx/Property-1deepseek.svg" />DeepSeek Harness 接入 ZenMux 指南',
+              link: "/zh/best-practices/deepseek-harness",
+            },
+            {
               text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/LksmNgb/Property-1Gemini.svg" />Gemini CLI接入ZenMux指南',
               link: "/zh/best-practices/gemini-cli",
             },
