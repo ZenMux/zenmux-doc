@@ -437,7 +437,7 @@ export default defineLoacaleConfig({
           text: "OAuth",
           items: [
             {
-              text: "OAuth PKCE Integration Guide",
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/08/14/nQf3Lhi/OAuth-20-Logo.png" />OAuth PKCE Integration Guide',
               link: "/best-practices/oauth-pkce",
             },
           ],
