@@ -17,6 +17,22 @@ DeepSeek Harness（DSH）支持两种方式接入 ZenMux：
 | 普通 API Key 配置 | 不需要 | 已有 ZenMux API Key，希望直接使用 DSH 内置 DeepSeek Provider |
 | OAuth PKCE | 需要 `@zenmux/dsh-plugins` | 希望通过浏览器登录，不复制或长期保存 API Key |
 
+## 安装 DeepSeek Harness
+
+使用 npm 全局安装官方 `@deepseek-ai/dsh` 包：
+
+```bash
+npm i -g @deepseek-ai/dsh
+```
+
+安装完成后检查命令是否可用：
+
+```bash
+dsh --version
+```
+
+如果终端提示找不到 `dsh`，请重新打开终端，并确认 npm 全局可执行文件目录已加入 `PATH`。
+
 ## 使用普通 API Key 配置
 
 普通配置直接复用 DSH 内置的 `deepseek-official` Provider，不需要安装 ZenMux PKCE 插件。
