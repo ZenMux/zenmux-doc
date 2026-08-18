@@ -22,6 +22,10 @@ The following agents are currently supported:
 | OpenCode | `@zenmux/opencode-oauth` | `/connect` or `opencode auth login` |
 | Pi | `@zenmux/pi-zenmux-oauth` | `/login zenmux` |
 
+::: info Register a new OAuth client
+OAuth clients are currently registered by the ZenMux backend. To register a client for a new agent or application, email [support@zenmux.ai](mailto:support@zenmux.ai) with the application name, project or package URL, redirect URI, requested scopes, and contact information.
+:::
+
 ::: tip OAuth PKCE versus API keys
 OAuth PKCE authorization is tied to your ZenMux user and an authorization grant. It does not distribute a client secret to the plugin and does not require writing an API key into your shell configuration. You can revoke access at any time from ZenMux Authorized Apps.
 :::

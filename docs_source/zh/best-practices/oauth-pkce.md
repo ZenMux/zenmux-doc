@@ -22,6 +22,10 @@ ZenMux 支持通过 OAuth 2.0 Authorization Code + PKCE 将账号授权给本地
 | OpenCode | `@zenmux/opencode-oauth` | `/connect` 或 `opencode auth login` |
 | Pi | `@zenmux/pi-zenmux-oauth` | `/login zenmux` |
 
+::: info 注册新的 OAuth Client
+目前 OAuth Client 只能由 ZenMux 后端注册。如果你需要为新的 Agent 或应用注册 Client，请发送邮件至 [support@zenmux.ai](mailto:support@zenmux.ai)，并提供应用名称、项目或包地址、Redirect URI、所需 Scope 和联系人信息。
+:::
+
 ::: tip OAuth PKCE 与 API Key 的区别
 OAuth PKCE 授权绑定到当前 ZenMux 用户和授权记录，不会向插件分发客户端密钥，也不需要把 API Key 写入 shell 配置。你可以随时在 ZenMux 的已授权应用中撤销访问。
 :::
