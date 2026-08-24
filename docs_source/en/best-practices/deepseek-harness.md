@@ -61,11 +61,40 @@ dsh web
 
 For a persistent setup, add `export ZENMUX_API_KEY="..."` to `~/.zshrc` or `~/.bashrc`, depending on the active shell, and then open a new terminal.
 
-If the terminal must reach ZenMux through a proxy, Node.js 24 can be started as follows:
+### Configure a proxy for DeepSeek Harness
 
-```bash
-HTTPS_PROXY="http://127.0.0.1:7890" NODE_OPTIONS="--use-env-proxy" dsh web
+DeepSeek Harness (`dsh`) runs on Node.js under the hood. Because the Node.js runtime does not read system `http_proxy` or `https_proxy` environment variables by default, you need to explicitly enable proxy support and inject environment variables before starting DSH:
+
+::: code-group
+```bash [Temporary (current shell)]
+# Enable Node.js proxy support; replace 7890 with your actual proxy port
+export NODE_USE_ENV_PROXY="1"
+export HTTPS_PROXY="http://127.0.0.1:7890"
+export HTTP_PROXY="http://127.0.0.1:7890"
+
+dsh web
 ```
+
+```bash [Single line command]
+# Replace 7890 with your actual proxy port
+NODE_USE_ENV_PROXY="1" HTTPS_PROXY="http://127.0.0.1:7890" dsh web
+```
+
+```bash [Persistent (~/.zshrc or ~/.bashrc)]
+# Enable Node.js to read system proxy environment variables (replace 7890 with your actual proxy port)
+export NODE_USE_ENV_PROXY="1"
+export HTTPS_PROXY="http://127.0.0.1:7890"
+export HTTP_PROXY="http://127.0.0.1:7890"
+```
+:::
+
+::: tip Note: Proxy ports vary by client
+The port `7890` in the examples is for illustration purposes. Different proxy clients use different default local listening ports (e.g., Clash defaults to `7890`, v2ray / Qv2ray typically uses `10809`, Surge defaults to `6152`, etc.). Replace `7890` with the actual port configured in your proxy software.
+:::
+
+::: tip How it works
+The Node.js runtime (built-in `fetch` / `undici`) ignores system `http_proxy` variables by default. Setting `NODE_USE_ENV_PROXY="1"` (or passing `--use-env-proxy` in `NODE_OPTIONS`) explicitly enables Node.js environment proxy support, allowing it to honor `HTTP_PROXY`, `HTTPS_PROXY`, and `NO_PROXY`.
+:::
 
 ::: tip Verified configuration
 This minimal configuration was tested with DSH `0.1.0-rc.6` and its built-in `deepseek-v4-flash` model. The test used a separate temporary `$DSH_HOME`, did not modify the user's existing configuration, and did not install the PKCE plugin.
@@ -149,14 +178,18 @@ On logout, the plugin attempts to revoke the refresh token at ZenMux and then cl
 
 ### Proxy and network configuration
 
-OAuth discovery, token, and revocation requests connect directly to ZenMux by default. If the DSH environment requires a proxy, configure `proxyUrl` in the DSH profile or set `HTTPS_PROXY` before startup:
+OAuth discovery, token, and revocation requests connect directly to ZenMux by default. If the DSH environment requires a proxy, note that the underlying Node.js runtime does not read system `http_proxy` variables by default. Enable proxy support and inject the environment variables before startup (replace `7890` with your actual proxy port):
 
 ```bash
+# Replace 7890 with your actual proxy port
+export NODE_USE_ENV_PROXY="1"
 export HTTPS_PROXY="http://127.0.0.1:7890"
+export HTTP_PROXY="http://127.0.0.1:7890"
+
 dsh web
 ```
 
-The plugin supports HTTP, HTTPS, `socks4a://`, and `socks5h://` proxies. An explicit `proxyUrl` in the DSH profile takes priority over environment variables.
+Alternatively, configure `proxyUrl` directly in the DSH profile (explicit `proxyUrl` in the DSH profile takes priority over environment variables). The plugin supports HTTP, HTTPS, `socks4a://`, and `socks5h://` proxies.
 
 ::: warning Browser and DSH networking are separate
 The browser must reach the ZenMux authorization page and send the callback to the temporary loopback port on the DSH host. When DSH runs on a remote server or in a container, or when the browser is on another machine, the browser's `127.0.0.1` may not refer to the DSH host.

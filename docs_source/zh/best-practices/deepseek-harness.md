@@ -61,11 +61,40 @@ dsh web
 
 如果需要让 API Key 长期生效，请根据当前 Shell 将 `export ZENMUX_API_KEY="..."` 写入 `~/.zshrc` 或 `~/.bashrc`，然后重新打开终端。
 
-如果终端必须通过代理访问 ZenMux，Node.js 24 可以这样启动：
+### 为 DeepSeek Harness 设置代理
 
-```bash
-HTTPS_PROXY="http://127.0.0.1:7890" NODE_OPTIONS="--use-env-proxy" dsh web
+DeepSeek Harness（`dsh`）底层运行在 Node.js 环境中。由于 Node.js 运行时默认不会读取系统的 `http_proxy` / `https_proxy` 环境变量，如果你的网络环境需要通过代理访问外网或 ZenMux，请在启动命令前显式开启代理支持并注入环境变量：
+
+::: code-group
+```bash [临时生效]
+# 开启 Node.js 代理支持，并将 7890 替换为你的实际代理端口
+export NODE_USE_ENV_PROXY="1"
+export HTTPS_PROXY="http://127.0.0.1:7890"
+export HTTP_PROXY="http://127.0.0.1:7890"
+
+dsh web
 ```
+
+```bash [单行启动]
+# 将 7890 替换为你的实际代理端口
+NODE_USE_ENV_PROXY="1" HTTPS_PROXY="http://127.0.0.1:7890" dsh web
+```
+
+```bash [长期生效（~/.zshrc 或 ~/.bashrc）]
+# 开启 Node.js 运行时读取系统代理环境变量（将 7890 替换为你的实际代理端口）
+export NODE_USE_ENV_PROXY="1"
+export HTTPS_PROXY="http://127.0.0.1:7890"
+export HTTP_PROXY="http://127.0.0.1:7890"
+```
+:::
+
+::: tip 注意：代理端口因客户端而异
+示例中的 `7890` 仅供参考。不同代理工具的本地监听端口可能不同（例如 Clash 默认为 `7890`，v2ray / Qv2ray 常见为 `10809`，Surge 默认为 `6152` 等），请根据你所使用的代理软件实际配置替换端口号。
+:::
+
+::: tip 原理说明
+Node.js 运行时（内置 `fetch` / `undici`）默认不读取系统的 `http_proxy` 等环境变量。通过注入 `NODE_USE_ENV_PROXY="1"`（或在 `NODE_OPTIONS` 中传入 `--use-env-proxy`），可以显式开启 Node.js 的环境代理支持，使其正确遵循 `HTTP_PROXY`、`HTTPS_PROXY` 和 `NO_PROXY`。
+:::
 
 ::: tip 已验证配置
 以上最小配置已使用 DSH `0.1.0-rc.6` 和其内置的 `deepseek-v4-flash` 发起真实请求并获得正常响应。测试使用独立的临时 `$DSH_HOME`，没有修改用户已有配置，也没有安装 PKCE 插件。
@@ -149,14 +178,18 @@ OAuth 回调使用一次性的 `127.0.0.1:<临时端口>/callback`。监听器�
 
 ### 代理与网络配置
 
-OAuth Discovery、Token 和 Revocation 请求默认直接连接 ZenMux。如果 DSH 所在环境必须使用代理，可以在 DSH Profile 中配置 `proxyUrl`，或在启动前设置 `HTTPS_PROXY`：
+OAuth Discovery、Token 和 Revocation 请求默认直接连接 ZenMux。如果 DSH 所在环境必须使用代理，由于底层的 Node.js 运行时默认不读取系统的 `http_proxy` 环境变量，请在启动命令前显式开启代理支持并注入环境变量（请将 `7890` 替换为你实际使用的代理端口）：
 
 ```bash
+# 将 7890 替换为你的代理客户端实际端口
+export NODE_USE_ENV_PROXY="1"
 export HTTPS_PROXY="http://127.0.0.1:7890"
+export HTTP_PROXY="http://127.0.0.1:7890"
+
 dsh web
 ```
 
-插件支持 HTTP、HTTPS、`socks4a://` 和 `socks5h://` 代理。DSH Profile 中显式配置的 `proxyUrl` 优先于环境变量。
+也可以在 DSH Profile 中显式配置 `proxyUrl`（DSH Profile 中配置的 `proxyUrl` 优先于环境变量）。插件支持 HTTP、HTTPS、`socks4a://` 和 `socks5h://` 代理。
 
 ::: warning 浏览器与 DSH 网络相互独立
 浏览器需要能够访问 ZenMux 授权页，并将回调发送到运行 DSH 的临时 Loopback 端口。远程服务器、容器或浏览器不在同一台机器时，浏览器中的 `127.0.0.1` 不一定指向 DSH 主机。
