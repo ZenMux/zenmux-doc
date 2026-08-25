@@ -1,5 +1,6 @@
 <template>
   <nav v-if="crumbs.length > 1" class="breadcrumb">
+    <IconCategory class="breadcrumb-category-icon" aria-hidden="true" />
     <span v-for="(crumb, i) in crumbs" :key="i" class="breadcrumb-item">
       <span v-if="i > 0" class="breadcrumb-sep"> &rsaquo; </span>
       <a v-if="crumb.link && i < crumbs.length - 1" :href="crumb.link">{{
@@ -12,7 +13,8 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { useData, useRoute } from "vitepress";
+import { useData, useRoute, type DefaultTheme } from "vitepress";
+import IconCategory from "./icons/IconCategory.vue";
 
 const { localeIndex, theme } = useData();
 const route = useRoute();
@@ -73,7 +75,11 @@ const crumbs = computed(() => {
   return result;
 });
 
-function findInItems(items: any[], path: string, chain: string[]): boolean {
+function findInItems(
+  items: DefaultTheme.SidebarItem[],
+  path: string,
+  chain: string[],
+): boolean {
   for (const item of items) {
     const itemLink = item.link?.replace(/\.html$/, "");
     if (itemLink && path.startsWith(itemLink)) return true;
@@ -97,6 +103,11 @@ function findInItems(items: any[], path: string, chain: string[]): boolean {
   line-height: 16px;
   color: #999;
   margin-bottom: 16px;
+}
+
+.breadcrumb-category-icon {
+  display: none;
+  flex: 0 0 auto;
 }
 
 .breadcrumb-item a {
@@ -136,5 +147,23 @@ function findInItems(items: any[], path: string, chain: string[]): boolean {
 
 .dark .breadcrumb-sep {
   color: var(--zm-border-primary);
+}
+
+@media (max-width: 959px) {
+  .breadcrumb {
+    gap: 0;
+    margin-bottom: 28px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  .breadcrumb-category-icon {
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin-right: 16px;
+    color: var(--zm-text-tertiary);
+  }
 }
 </style>

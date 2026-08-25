@@ -37,6 +37,7 @@ const EndpointDrawer = defineAsyncComponent(
   () => import("./endpoint-drawer.vue"),
 );
 const AiAssistant = defineAsyncComponent(() => import("./ai-assistant.vue"));
+const MobileSearch = defineAsyncComponent(() => import("./mobile-search.vue"));
 
 declare global {
   interface Window {
@@ -313,11 +314,20 @@ export default {
     return h(DefaultTheme.Layout, null, {
       // https://vitepress.dev/guide/extending-default-theme#layout-slots
       "layout-top": () => h(ClientOnly, null, { default: () => h(DocTabs) }),
+      "layout-bottom": () =>
+        h(ClientOnly, null, { default: () => h(MobileSearch) }),
       "doc-top": () => h(ClientOnly, null, { default: () => h(ApiContainerLoader) }),
       "doc-before": () => h(ClientOnly, null, { default: () => [h(Breadcrumb), h(Select)] }),
       "aside-bottom": () => h(ClientOnly, null, { default: () => h(AsideActions) }),
+      "sidebar-nav-before": () =>
+        h(ClientOnly, null, {
+          default: () => h(DocTabs, { variant: "sidebar" }),
+        }),
       "nav-bar-content-before": () => h(ClientOnly, null, { default: () => h(AiAssistant) }),
-      "nav-bar-content-after": () => h(ClientOnly, null, { default: () => [h(Login), h(EndpointDrawer)] }),
+      "nav-bar-content-after": () =>
+        h(ClientOnly, null, {
+          default: () => [h(Login), h(EndpointDrawer)],
+        }),
     });
   },
   enhanceApp({ app, router, siteData }) {
