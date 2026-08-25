@@ -2199,6 +2199,11 @@ html.zenmux-mobile-overlay-open body {
     padding: 0 !important;
   }
 
+  .VPSidebar .group + .group {
+    margin-top: 20px;
+    padding-top: 0 !important;
+  }
+
   .VPSidebarItem.level-0 > .item,
   .VPSidebarItem.level-1 > .item,
   .VPSidebarItem.level-2 > .item {
@@ -2212,6 +2217,26 @@ html.zenmux-mobile-overlay-open body {
     padding-top: 0;
     padding-bottom: 0;
     align-items: center;
+  }
+
+  .VPSidebarItem.level-0 > .item {
+    height: 36px;
+    min-height: 36px;
+    padding-top: 0;
+    padding-bottom: 0;
+    align-items: center;
+  }
+
+  .VPSidebarItem.level-0 > .item > .link {
+    height: 100%;
+    align-items: center;
+  }
+
+  .VPSidebarItem.level-0 > .item .text {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    line-height: 17px !important;
   }
 
   .VPSidebarItem.level-1 > .item > .link {
@@ -2235,7 +2260,7 @@ html.zenmux-mobile-overlay-open body {
   }
 
   .VPSidebarItem.level-0 > .item .text {
-    line-height: normal !important;
+    line-height: 17px !important;
   }
 
   .VPSidebarItem.level-1 > .item .text {
