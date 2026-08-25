@@ -576,6 +576,7 @@ export default defineComponent({
     width: 40px;
     height: 40px;
     margin-left: 0;
+    outline: none;
   }
 
   .user-avatar-wrap {
