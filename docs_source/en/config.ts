@@ -141,6 +141,7 @@ export default defineLoacaleConfig({
           },
         ],
       },
+      { text: "Analytics", link: "https://zenmux.ai/analytics", noIcon: true },
       {
         text: "Pricing",
         items: [
@@ -167,7 +168,6 @@ export default defineLoacaleConfig({
         ],
       },
       { text: "Campaign", link: "https://zenmux.ai/campaign", noIcon: true },
-      { text: "Analytics", link: "https://zenmux.ai/analytics", noIcon: true },
       {
         text: "About Us",
         items: [

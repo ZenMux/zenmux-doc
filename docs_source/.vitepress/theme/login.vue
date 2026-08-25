@@ -23,14 +23,37 @@
       popper-class="docs-user-dropdown-popper"
     >
       <template #default>
-        <img
-          v-if="user.avatarUrl"
-          :src="getAvatarUrl(user.avatarUrl)"
-          alt="avatar"
-          class="user-avatar"
-        />
-        <span v-else class="user-avatar text-avatar">
-          {{ user.displayName ? user.displayName.charAt(0) : "" }}
+        <span class="user-avatar-trigger">
+          <span class="user-avatar-wrap">
+            <img
+              v-if="activeAvatarUrl"
+              :src="getAvatarUrl(activeAvatarUrl)"
+              :alt="activeDisplayName ? `${activeDisplayName} avatar` : 'avatar'"
+              class="user-avatar"
+            />
+            <span v-else class="user-avatar text-avatar">
+              {{ activeDisplayName ? activeDisplayName.charAt(0).toUpperCase() : "" }}
+            </span>
+            <span v-if="membershipPlanKey" class="avatar-membership-ring-clip" aria-hidden="true">
+              <span
+                class="avatar-membership-ring"
+                :class="membershipPlanClass"
+              />
+            </span>
+            <span
+              v-if="membershipPlanKey"
+              class="membership-plan-tag"
+              :aria-label="`${membershipPlanLabel} member`"
+            >
+              <span class="membership-plan-icon-wrap">
+                <span class="membership-plan-icon-background" />
+                <IconSubscriptionColor class="membership-plan-icon" />
+              </span>
+              <span class="membership-plan-label" :class="membershipPlanClass">
+                {{ membershipPlanLabel }}
+              </span>
+            </span>
+          </span>
         </span>
       </template>
       <template #dropdown>
@@ -91,6 +114,7 @@ import {
   Usage as UsageIcon,
 } from "./icons";
 import IconBillingIcon from "./icons/IconBilling.vue";
+import IconSubscriptionColor from "./icons/IconSubscriptionColor.vue";
 import { inBrowser } from "vitepress";
 import { useAuth } from "./composables/use-auth";
 
@@ -98,6 +122,17 @@ interface UserMenuItem {
   label: string;
   slug: string;
   icon: Component;
+}
+
+const PLAN_STYLE_CLASSES: Record<string, string> = {
+  pro: "membership-plan--pro",
+  starter: "membership-plan--starter",
+  max: "membership-plan--max",
+  ultra: "membership-plan--ultra",
+};
+
+function formatPlanLabel(planKey: string) {
+  return planKey.charAt(0).toUpperCase() + planKey.slice(1);
 }
 
 export default defineComponent({
@@ -109,10 +144,39 @@ export default defineComponent({
     ElDropdownItem,
     MyIcon,
     ShutdownIcon,
+    IconSubscriptionColor,
   },
   setup() {
     const isCopied = ref(false);
     const { user, isLoading, logout } = useAuth();
+    const activeAccount = computed(() => user.value?.activeAccount);
+    const activeAvatarUrl = computed(
+      () => activeAccount.value?.avatarUrl || user.value?.avatarUrl || "",
+    );
+    const activeDisplayName = computed(
+      () => activeAccount.value?.displayName || user.value?.displayName || "",
+    );
+    const membershipPlanKey = computed(() => {
+      const account = activeAccount.value;
+      if (
+        !user.value?.flags?.subscription ||
+        account?.type.toLowerCase() === "organization"
+      ) {
+        return null;
+      }
+
+      const planKey = account?.subscriptionPlanKey?.trim().toLowerCase();
+      return planKey && planKey !== "free" ? planKey : null;
+    });
+    const membershipPlanClass = computed(() => {
+      const planKey = membershipPlanKey.value;
+      if (!planKey) return "";
+      return PLAN_STYLE_CLASSES[planKey] || "membership-plan--free";
+    });
+    const membershipPlanLabel = computed(() => {
+      const planKey = membershipPlanKey.value;
+      return planKey ? formatPlanLabel(planKey) : "";
+    });
     const labels = computed(() => {
       const isZh =
         inBrowser &&
@@ -284,6 +348,11 @@ export default defineComponent({
       goLogs,
       handleAction,
       getAvatarUrl,
+      activeAvatarUrl,
+      activeDisplayName,
+      membershipPlanKey,
+      membershipPlanClass,
+      membershipPlanLabel,
     };
   },
 });
@@ -322,16 +391,158 @@ export default defineComponent({
   }
 }
 
-.user-avatar {
+.user-avatar-trigger {
   width: 32px;
   height: 32px;
-  border-radius: 50%;
   margin-left: 10px;
-  object-fit: cover;
-  box-shadow: 0 1px 4px var(--vp-c-gray-soft);
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.user-avatar-wrap {
+  position: relative;
+  display: block;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+}
+
+.user-avatar {
+  box-sizing: border-box;
+  width: 32px;
+  height: 32px;
+  border: 0.5px solid var(--vp-c-divider);
+  border-radius: 50%;
+  object-fit: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-membership-ring-clip {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  width: 36px;
+  height: 36px;
+  overflow: hidden;
+  clip-path: inset(0 0 20% 0);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+.avatar-membership-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  box-sizing: border-box;
+  width: 36px;
+  height: 36px;
+  border-width: 1.5px;
+  border-style: solid;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.membership-plan-tag {
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  transform: translateX(-50%) scale(0.7);
+  transform-origin: center bottom;
+}
+
+.membership-plan-icon-wrap {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: 21px;
+  height: 21px;
+  flex: 0 0 21px;
+}
+
+.membership-plan-icon-background {
+  position: absolute;
+  top: 44%;
+  left: 51%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fff;
+  transform: translate(-50%, -50%);
+}
+
+.membership-plan-icon {
+  position: relative;
+  z-index: 1;
+  width: 21px;
+  height: 21px;
+  color: #fda829;
+}
+
+.membership-plan-label {
+  box-sizing: border-box;
+  height: 16px;
+  margin-left: -10px;
+  padding: 0 6px 0 12px;
+  border-radius: 0 8px 8px 0;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 14px;
+}
+
+.avatar-membership-ring.membership-plan--pro {
+  border-color: #bd5d1a;
+}
+
+.membership-plan-label.membership-plan--pro {
+  border: 0.5px solid rgba(0, 0, 0, 0.1);
+  background: linear-gradient(156.66deg, #ff7402 -6.78%, #cd3100 154.9%);
+}
+
+.avatar-membership-ring.membership-plan--starter {
+  border-color: #166cde;
+}
+
+.membership-plan-label.membership-plan--starter {
+  border: 0.5px solid rgba(0, 0, 0, 0.1);
+  background: linear-gradient(156.66deg, #267aff -6.78%, #0d4eb8 154.9%);
+}
+
+.avatar-membership-ring.membership-plan--max {
+  border-color: #3a4777;
+}
+
+.membership-plan-label.membership-plan--max {
+  border: 0.5px solid rgba(0, 0, 0, 0.1);
+  background: linear-gradient(166.04deg, #415a9b 12.32%, #282e4c 179.9%);
+  line-height: 15px;
+}
+
+.avatar-membership-ring.membership-plan--ultra {
+  border-color: #292f36;
+}
+
+.membership-plan-label.membership-plan--ultra {
+  background: linear-gradient(192.55deg, #4f5c7e -85.39%, #101114 112.86%);
+  line-height: 16px;
+}
+
+.avatar-membership-ring.membership-plan--free {
+  border-color: #e5e5e5;
+}
+
+.membership-plan-label.membership-plan--free {
+  background: #e5e5e5;
+  color: #000;
+  line-height: 16px;
 }
 
 .text-avatar {
@@ -346,6 +557,92 @@ export default defineComponent({
 .loading-icon {
   font-size: 22px;
   margin-left: 10px;
+}
+
+@media (max-width: 959px) {
+  .login-button {
+    margin-right: 0;
+    padding: 0;
+    line-height: 60px;
+  }
+
+  .login-button button.el-button {
+    min-height: 32px;
+    padding: 7px 10px;
+    font-size: 13px;
+  }
+
+  .user-avatar-trigger {
+    width: 40px;
+    height: 40px;
+    margin-left: 0;
+  }
+
+  .user-avatar-wrap {
+    width: 40px;
+    height: 40px;
+    flex-basis: 40px;
+  }
+
+  .user-avatar {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .avatar-membership-ring-clip {
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 36px;
+    clip-path: none;
+    transform: none;
+  }
+
+  .avatar-membership-ring {
+    top: 20px;
+    left: 20px;
+    width: 36.5px;
+    height: 36.5px;
+  }
+
+  .membership-plan-tag {
+    bottom: 2px;
+    transform: translateX(-50%);
+  }
+
+  .membership-plan-icon-wrap,
+  .membership-plan-icon {
+    width: 13px;
+    height: 12px;
+    flex-basis: 13px;
+  }
+
+  .membership-plan-icon-background {
+    display: none;
+  }
+
+  .membership-plan-label {
+    height: 12px;
+    margin-left: -6px;
+    padding: 0 4px 0 8px;
+    border-radius: 0 20px 20px 0;
+    font-size: 9px;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.54px;
+  }
+
+  .membership-plan-label.membership-plan--max {
+    background: linear-gradient(174.32deg, #465997 12.315%, #292e49 179.9%);
+    line-height: normal;
+  }
+
+  .loading-icon {
+    margin-left: 0;
+  }
 }
 
 .user-menu-row {

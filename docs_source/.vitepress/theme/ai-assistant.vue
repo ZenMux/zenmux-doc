@@ -4,12 +4,18 @@ import { marked } from "marked";
 import { useDocContext } from "./composables/use-doc-context";
 import { useChatStream } from "./composables/use-chat-stream";
 import { useImageAttach } from "./composables/use-image-attach";
+import {
+  getOpenAiAssistantDetail,
+  OPEN_AI_ASSISTANT_EVENT,
+} from "./assistant-events";
+import { useBodyScrollLock } from "./composables/use-body-scroll-lock";
 import ChatFrame from "./icons/ChatFrame.vue";
 import IconCollapse from "./icons/IconCollapse.vue";
 import IconExpand from "./icons/IconExpand.vue";
 import IconSync from "./icons/IconSync.vue";
 import Close from "./icons/Close.vue";
 import ImageIcon from "./icons/Image.vue";
+import IconPlus from "./icons/IconPlus.vue";
 import IconSendV5 from "./icons/IconSendV5.vue";
 import IconStop from "./icons/IconStop.vue";
 
@@ -19,7 +25,12 @@ const inputText = ref("");
 const messagesContainer = ref<HTMLElement | null>(null);
 const inputRef = ref<HTMLTextAreaElement | null>(null);
 const fileInputRef = ref<HTMLInputElement | null>(null);
+const panelRef = ref<HTMLElement | null>(null);
 const isDragging = ref(false);
+const isMobile = ref(false);
+
+let mobileMediaQuery: MediaQueryList | null = null;
+let previousFocus: HTMLElement | null = null;
 
 const { isZh } = useDocContext();
 const { messages, isStreaming, sendMessage, stopStream, clearChat } =
@@ -41,6 +52,8 @@ const welcomeMessage = computed(() =>
 const inputPlaceholder = computed(() =>
   isZh.value ? "输入你的问题..." : "Ask AI a question...",
 );
+
+useBodyScrollLock(computed(() => panelOpen.value && isMobile.value));
 
 // --- Body class to push content ---
 
@@ -65,18 +78,29 @@ watch([panelOpen, maximized], updateBodyClass);
 
 // --- Panel controls ---
 
-function togglePanel() {
-  panelOpen.value = !panelOpen.value;
+function openPanel(trigger?: HTMLElement) {
+  previousFocus = trigger || (document.activeElement as HTMLElement | null);
+  panelOpen.value = true;
+  nextTick(() => {
+    inputRef.value?.focus();
+    scrollToBottom();
+  });
+}
+
+function togglePanel(event?: MouseEvent) {
   if (panelOpen.value) {
-    nextTick(() => {
-      inputRef.value?.focus();
-      scrollToBottom();
-    });
+    closePanel();
+    return;
   }
+  openPanel(event?.currentTarget as HTMLElement | undefined);
 }
 
 function closePanel() {
   panelOpen.value = false;
+  if (isMobile.value) {
+    maximized.value = false;
+  }
+  nextTick(() => previousFocus?.focus());
 }
 
 function toggleMaximize() {
@@ -222,21 +246,78 @@ function handleGlobalKeydown(e: KeyboardEvent) {
   }
 }
 
-function handleOpenAI() {
+function getFocusableElements() {
+  if (!panelRef.value) {
+    return [];
+  }
+  return Array.from(
+    panelRef.value.querySelectorAll<HTMLElement>(
+      'button:not([disabled]), textarea:not([disabled]), input:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])',
+    ),
+  );
+}
+
+function handlePanelKeydown(event: KeyboardEvent) {
+  if (event.key === "Escape") {
+    event.preventDefault();
+    event.stopPropagation();
+    closePanel();
+    return;
+  }
+  if (event.key !== "Tab" || !isMobile.value) {
+    return;
+  }
+
+  const focusable = getFocusableElements();
+  if (!focusable.length) {
+    return;
+  }
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault();
+    last.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault();
+    first.focus();
+  }
+}
+
+function handleMobileViewportChange(event: MediaQueryListEvent) {
+  isMobile.value = event.matches;
+  if (event.matches) {
+    maximized.value = false;
+  }
+}
+
+async function handleOpenAI(event: Event) {
+  const detail = getOpenAiAssistantDetail(event);
+  if (detail.query) {
+    inputText.value = detail.query;
+    resetTextareaHeight();
+  }
   if (!panelOpen.value) {
-    panelOpen.value = true;
+    openPanel();
+  }
+  await nextTick();
+  if (detail.query && detail.autoSend && !isStreaming.value) {
+    await handleSend();
   }
 }
 
 onMounted(() => {
+  mobileMediaQuery = window.matchMedia("(max-width: 959px)");
+  isMobile.value = mobileMediaQuery.matches;
+  mobileMediaQuery.addEventListener("change", handleMobileViewportChange);
   document.addEventListener("keydown", handleGlobalKeydown);
-  document.addEventListener("open-ai-assistant", handleOpenAI);
+  document.addEventListener(OPEN_AI_ASSISTANT_EVENT, handleOpenAI);
   updateBodyClass();
 });
 
 onUnmounted(() => {
+  mobileMediaQuery?.removeEventListener("change", handleMobileViewportChange);
   document.removeEventListener("keydown", handleGlobalKeydown);
-  document.removeEventListener("open-ai-assistant", handleOpenAI);
+  document.removeEventListener(OPEN_AI_ASSISTANT_EVENT, handleOpenAI);
   document.documentElement.classList.remove(
     "ai-panel-open",
     "ai-panel-maximized",
@@ -256,10 +337,37 @@ onUnmounted(() => {
     <span class="ai-trigger-text">Ask AI</span>
   </button>
 
+  <button
+    class="ai-mobile-trigger"
+    type="button"
+    :aria-label="isZh ? '询问 AI' : 'Ask AI'"
+    :title="isZh ? '询问 AI' : 'Ask AI'"
+    @click="togglePanel"
+  >
+    <ChatFrame aria-hidden="true" />
+  </button>
+
   <!-- Right sidebar panel -->
   <Teleport to="body">
+    <Transition name="ai-backdrop">
+      <div
+        v-if="panelOpen && isMobile"
+        class="ai-mobile-backdrop"
+        @mousedown.self="closePanel"
+      />
+    </Transition>
     <Transition name="ai-sidebar">
-      <div v-if="panelOpen" class="ai-sidebar" :class="{ maximized }">
+      <div
+        v-if="panelOpen"
+        ref="panelRef"
+        class="ai-sidebar"
+        :class="{ maximized }"
+        role="dialog"
+        :aria-modal="isMobile ? 'true' : undefined"
+        :aria-label="isZh ? 'AI 助手' : 'AI Assistant'"
+        tabindex="-1"
+        @keydown="handlePanelKeydown"
+      >
         <!-- Header -->
         <div class="ai-sidebar-header">
           <div class="ai-sidebar-title">
@@ -268,7 +376,7 @@ onUnmounted(() => {
           </div>
           <div class="ai-sidebar-actions">
             <button
-              class="ai-icon-btn"
+              class="ai-icon-btn ai-action-secondary"
               :title="maximized ? 'Minimize' : 'Maximize'"
               @click="toggleMaximize"
             >
@@ -276,7 +384,7 @@ onUnmounted(() => {
               <IconExpand v-else width="15" height="15" />
             </button>
             <button
-              class="ai-icon-btn"
+              class="ai-icon-btn ai-action-secondary"
               title="New conversation"
               @click="handleRefresh"
             >
@@ -292,6 +400,7 @@ onUnmounted(() => {
         <div
           ref="messagesContainer"
           class="ai-messages"
+          :class="{ 'ai-messages-empty': messages.length === 0 }"
           @scroll="onMessagesScroll"
         >
           <!-- Welcome message -->
@@ -421,7 +530,8 @@ onUnmounted(() => {
               @click="openFilePicker"
               :disabled="pendingImages.length >= 4"
             >
-              <ImageIcon width="16" height="16" />
+              <ImageIcon class="ai-attach-icon-desktop" width="16" height="16" />
+              <IconPlus class="ai-attach-icon-mobile" />
             </button>
             <textarea
               ref="inputRef"
@@ -504,6 +614,11 @@ onUnmounted(() => {
   color: #666;
 }
 
+.ai-mobile-trigger,
+.ai-mobile-backdrop {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .ai-trigger-text {
     display: none;
@@ -535,12 +650,59 @@ onUnmounted(() => {
   width: 520px;
 }
 
-@media (max-width: 960px) {
-  .ai-sidebar {
-    width: 100%;
+@media (max-width: 959px) {
+  .ai-trigger {
+    display: none;
   }
+
+  .ai-mobile-trigger {
+    position: fixed;
+    right: 16px;
+    bottom: calc(76px + env(safe-area-inset-bottom));
+    z-index: 28;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    padding: 14px;
+    border: 0.5px solid var(--zm-border-primary);
+    border-radius: 50%;
+    color: var(--zm-text-primary);
+    background: var(--zm-bg-primary);
+    box-shadow: 0 14px 12px rgb(0 0 0 / 5%);
+    cursor: pointer;
+  }
+
+  .ai-mobile-trigger svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .ai-mobile-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 89;
+    display: block;
+    background: rgb(0 0 0 / 60%);
+  }
+
+  .ai-sidebar {
+    top: 74px;
+    width: 100%;
+    height: calc(100dvh - 74px);
+    overflow: hidden;
+    border: 0;
+    border-radius: 20px 20px 0 0;
+    z-index: 90;
+  }
+
   .ai-sidebar.maximized {
     width: 100%;
+  }
+
+  .ai-action-secondary {
+    display: none;
   }
 }
 
@@ -875,6 +1037,10 @@ onUnmounted(() => {
   cursor: not-allowed;
 }
 
+.ai-attach-icon-mobile {
+  display: none;
+}
+
 .ai-drag-over {
   background: var(--vp-c-brand-soft);
   border-radius: 12px;
@@ -1004,6 +1170,143 @@ onUnmounted(() => {
   opacity: 0.7;
 }
 
+@media (max-width: 959px) {
+  .ai-action-secondary {
+    display: none;
+  }
+
+  .ai-sidebar-header {
+    flex: 0 0 60px;
+    gap: 8px;
+    padding: 6px 20px;
+    border-bottom: 1px solid var(--zm-border-primary);
+  }
+
+  .ai-sidebar-title {
+    min-width: 0;
+    flex: 1;
+    gap: 8px;
+    font-size: 20px;
+    font-weight: 590;
+    line-height: normal;
+    letter-spacing: -0.4px;
+  }
+
+  .ai-sidebar-title svg {
+    width: 20px;
+    height: 20px;
+    flex: 0 0 20px;
+  }
+
+  .ai-sidebar-actions,
+  .ai-icon-btn {
+    width: 24px;
+    height: 24px;
+    flex: 0 0 24px;
+  }
+
+  .ai-icon-btn svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .ai-messages {
+    padding: 20px;
+  }
+
+  .ai-messages.ai-messages-empty {
+    padding: 0;
+  }
+
+  .ai-welcome {
+    gap: 16px;
+    padding: 0 49px;
+  }
+
+  .ai-welcome-text {
+    margin: 0;
+    color: #333;
+    font-size: 16px;
+    line-height: normal;
+  }
+
+  .ai-welcome-tip {
+    margin: 0;
+    color: #999;
+    font-size: 14px;
+    line-height: normal;
+  }
+
+  .dark .ai-welcome-text {
+    color: var(--zm-text-secondary);
+  }
+
+  .dark .ai-welcome-tip {
+    color: var(--zm-text-tertiary);
+  }
+
+  .ai-input-area {
+    padding: 20px 20px calc(20px + env(safe-area-inset-bottom));
+    border-top: 0;
+  }
+
+  .ai-input-wrapper {
+    display: grid;
+    grid-template-columns: 36px minmax(0, 1fr) 36px;
+    grid-template-rows: minmax(0, 1fr) 36px;
+    gap: 0;
+    width: 100%;
+    height: 120px;
+    padding: 12px;
+    border-width: 0.5px;
+  }
+
+  .ai-input {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    align-self: start;
+    width: 100%;
+    min-height: 27px;
+    max-height: 52px;
+    padding: 4px;
+    font-size: 16px;
+    line-height: normal;
+  }
+
+  .ai-attach-btn {
+    grid-column: 1;
+    grid-row: 2;
+    width: 36px;
+    height: 36px;
+  }
+
+  .ai-attach-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .ai-attach-icon-desktop {
+    display: none;
+  }
+
+  .ai-attach-icon-mobile {
+    display: block;
+  }
+
+  .ai-send-btn {
+    grid-column: 3;
+    grid-row: 2;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+  }
+
+  .ai-send-btn svg {
+    width: 36px;
+    height: 36px;
+  }
+}
+
 /* --- Transition --- */
 .ai-sidebar-enter-active {
   transition: transform 0.3s ease;
@@ -1019,6 +1322,32 @@ onUnmounted(() => {
 
 .ai-sidebar-leave-to {
   transform: translateX(100%);
+}
+
+.ai-backdrop-enter-active,
+.ai-backdrop-leave-active {
+  transition: opacity 180ms ease;
+}
+
+.ai-backdrop-enter-from,
+.ai-backdrop-leave-to {
+  opacity: 0;
+}
+
+@media (max-width: 959px) {
+  .ai-sidebar-enter-from,
+  .ai-sidebar-leave-to {
+    transform: translateY(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ai-sidebar-enter-active,
+  .ai-sidebar-leave-active,
+  .ai-backdrop-enter-active,
+  .ai-backdrop-leave-active {
+    transition: none;
+  }
 }
 </style>
 

@@ -740,6 +740,19 @@ export default defineConfig({
 
   markdown: {
     config(md) {
+      const renderHeadingClose =
+        md.renderer.rules.heading_close ||
+        ((tokens, idx, options, _env, self) =>
+          self.renderToken(tokens, idx, options));
+
+      md.renderer.rules.heading_close = (tokens, idx, options, env, self) => {
+        const closingTag = renderHeadingClose(tokens, idx, options, env, self);
+        if (tokens[idx].tag !== "h1") {
+          return closingTag;
+        }
+        return `${closingTag}\n<Copy class="mobile-copy-page" />\n`;
+      };
+
       md.use(container, "api-request", {
         render(tokens, idx) {
           if (tokens[idx].nesting === 1) {
