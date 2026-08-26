@@ -336,6 +336,14 @@ export default defineLoacaleConfig({
               text: "Get Statistics Performance",
               link: "/api/platform/statistics-performance",
             },
+            {
+              text: "Get App Trending",
+              link: "/api/platform/statistics-app-trending",
+            },
+            {
+              text: "Get App Leaderboard",
+              link: "/api/platform/statistics-app-leaderboard",
+            },
           ],
         },
       ],
