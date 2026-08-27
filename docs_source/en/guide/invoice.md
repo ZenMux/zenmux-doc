@@ -172,8 +172,8 @@ ZenMux provides standard electronic invoices in English, available for download 
 Now that you know how to obtain invoices, you can:
 
 - Visit the [Billing page](https://zenmux.ai/platform/billing) to manage and download invoices
-- Read the [Pay As You Go Guide](/en/guide/pay-as-you-go) to learn about top-ups and balance management
-- Read the [Subscription Plan Guide](/en/guide/subscription) to learn about subscription billing
+- Read the [Pay As You Go Guide](/guide/pay-as-you-go) to learn about top-ups and balance management
+- Read the [Subscription Plan Guide](/guide/subscription) to learn about subscription billing
 - Visit the [Cost Analysis page](https://zenmux.ai/settings/cost) to view detailed expense breakdowns
 - Join the [Discord Community](http://discord.gg/vHZZzj84Bm) to connect with other developers
 

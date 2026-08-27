@@ -47,7 +47,8 @@ declare global {
 }
 
 const DOCS_PATH_PREFIX = "/docs";
-const DOCS_ASSETS_DIR = "docs";
+// 必须与 config.mts 的 assetsDir 保持一致，否则页面 chunk 的 prefetch 全部 404
+const DOCS_ASSETS_DIR = "assets";
 const prefetchedPageChunks = new Set<string>();
 
 const isDocsHost =
@@ -241,16 +242,10 @@ function prefetchLinksInside(root: ParentNode | null, siteBase: string) {
 }
 
 function rewriteDocsLinks() {
+  // base:"/docs/" 后 VitePress 已原生生成带 /docs 前缀的站内链接，无需再在运行时
+  // 逐个补前缀。旧逻辑会把指向主站的相对链接（如 /models）误改成 /docs/models，
+  // 且服务端 HTML 依赖它才正确 = 正是本次要根治的 SEO 病因。仅保留 logo 指回主站。
   updateLogoLink();
-  document.querySelectorAll("a").forEach((a) => {
-    const href = a.getAttribute("href");
-    if (href?.startsWith("#") || href?.startsWith("http")) {
-      return;
-    }
-    if (href?.startsWith("/") && !href.startsWith("/docs/")) {
-      a.setAttribute("href", "/docs" + href);
-    }
-  });
 }
 
 const updateLogoLink = () => {
@@ -333,32 +328,8 @@ export default {
   enhanceApp({ app, router, siteData }) {
     const originGo = router.go;
     const siteBase = siteData.value.base || "/";
-    if (inBrowser) {
-      if (!isDocsHost) {
-        const originPushState = history.pushState;
-        const originReplaceState = history.replaceState;
-        history.pushState = function (data, title, url) {
-          if (inBrowser) {
-            // @ts-expect-error not error
-            if (url && url.startsWith("https:")) {
-              return originPushState.call(this, data, title, url);
-            }
-            const urlObj = new URL(url as string, location.href);
-            if (!urlObj.pathname.startsWith("/docs")) {
-              urlObj.pathname = "/docs" + urlObj.pathname;
-              url = urlObj.toString();
-            }
-            // If the resulting path matches the current path (e.g. during
-            // VitePress hydration), use replaceState instead of pushState
-            // to avoid creating a duplicate history entry.
-            if (urlObj.pathname === location.pathname) {
-              return originReplaceState.call(this, data, title, url);
-            }
-          }
-          return originPushState.call(this, data, title, url);
-        };
-      }
-    }
+    // 注：base 已改为 "/docs/"，VitePress 原生按 /docs 前缀生成链接与 history，
+    // 因此不再需要旧的 history.pushState 补 /docs 前缀 hack（已删除）。
 
     router.go = async (href: string = inBrowser ? location.href : "/") => {
       let shouldShowProgress = false;
@@ -373,17 +344,8 @@ export default {
           NProgress.start();
         }
 
-        const url = new URL(href, location.href);
-        if (url.origin === currentUrl.origin) {
-          if (url.pathname.startsWith("/docs/")) {
-            url.pathname = url.pathname.replace("/docs/", "/");
-            href = url.toString();
-          }
-          if (url.pathname === "/docs") {
-            url.pathname = "/";
-            href = url.toString();
-          }
-        }
+        // base:"/docs/" 后 VitePress router 期望的就是带 /docs 前缀的路径，
+        // 旧逻辑在此把 /docs/ 剥成 / 会让 router 匹配不到 → URL 被重置 + 404。
       }
       try {
         return await originGo.call(router, href);

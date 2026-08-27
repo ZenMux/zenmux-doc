@@ -15,7 +15,7 @@ head:
 ::: info Compatibility Note
 ZenMux fully supports the OpenAI API protocol and can be used with simple configuration.
 
-Note that the OpenAI protocol base_url is "https://zenmux.ai/api/v1".
+Note that the OpenAI protocol base_url is `https://zenmux.ai/api/v1`.
 :::
 
 ## Installing Cline
@@ -32,7 +32,7 @@ Cline supports multiple development tools such as Visual Studio Code, JetBrains 
 2. Click the settings icon ⚙️ in the top right corner of the panel.
 3. In the API Configuration tab:
   - Select OpenAI Compatible for API Provider
-  - Enter https://zenmux.ai/api/v1 in Base URL
+  - Enter `https://zenmux.ai/api/v1` in Base URL
   - Enter your ZenMux API Key in OpenAI Compatible API Key
   - Enter the ZenMux model slug in Model ID, such as anthropic/claude-3.7-sonnet
 4. Click the Done button in the top right corner to complete the configuration.

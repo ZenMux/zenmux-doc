@@ -15,7 +15,7 @@ Obsidian Copilot 是一个强大的 AI 助手插件,通过与 ZenMux 的集成,�
 ::: info 兼容性说明
 ZenMux 完全支持 OpenAI API 协议,可以无缝集成到 Obsidian Copilot 插件中。只需简单配置即可使用。
 
-注意 OpenAI 协议的 base_url="https://zenmux.ai/api/v1"。
+注意 OpenAI 协议的 base_url=`https://zenmux.ai/api/v1`。
 :::
 
 ## 安装和配置

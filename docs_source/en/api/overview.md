@@ -2,7 +2,7 @@
 title: API Reference
 subtitle: An overview of OpenRouter's API
 headline: OpenRouter API Reference | Complete API Documentation
-canonical-url: 'https://zenmux.ai/docs/api-reference/overview'
+canonical-url: 'https://zenmux.ai/docs/api/overview.html'
 'og:site_name': OpenRouter Documentation
 'og:title': OpenRouter API Reference - Complete Documentation
 'og:description': >-
@@ -33,9 +33,9 @@ OpenRouter's request and response schemas are very similar to the OpenAI Chat AP
 
 ### Completions Request Format
 
-Here is the request schema as a TypeScript type. This will be the body of your `POST` request to the `/api/v1/chat/completions` endpoint (see the [quick start](/docs/quick-start) above for an example).
+Here is the request schema as a TypeScript type. This will be the body of your `POST` request to the `/api/v1/chat/completions` endpoint (see the [quick start](/guide/quickstart) above for an example).
 
-For a complete list of parameters, see the [Parameters](/docs/api-reference/parameters).
+For a complete list of parameters, see the [Parameters](/api/openai/create-chat-completion).
 
 ::: code-group
 
@@ -56,7 +56,7 @@ type Request = {
   stop?: string | string[];
   stream?: boolean; // Enable streaming
 
-  // See LLM Parameters (zenmux.ai/docs/api-reference/parameters)
+  // See LLM Parameters (zenmux.ai/docs/api/openai/create-chat-completion.html)
   max_tokens?: number; // Range: [1, context_length)
   temperature?: number; // Range: [0, 2]
 
@@ -152,7 +152,7 @@ type ToolChoice =
 
 :::
 
-The `response_format` parameter ensures you receive a structured response from the LLM. The parameter is only supported by OpenAI models, Nitro models, and some others - check the providers on the model page on zenmux.ai/models to see if it's supported, and set `require_parameters` to true in your Provider Preferences. See [Provider Routing](/docs/features/provider-routing)
+The `response_format` parameter ensures you receive a structured response from the LLM. The parameter is only supported by OpenAI models, Nitro models, and some others - check the providers on the model page on zenmux.ai/models to see if it's supported, and set `require_parameters` to true in your Provider Preferences. See [Provider Routing](/guide/advanced/provider-routing)
 
 ### Headers
 
@@ -189,7 +189,7 @@ fetch('https://zenmux.ai/api/v1/chat/completions', {
 ::: info Model routing
   If the `model` parameter is omitted, the user or payer's default is used.
   Otherwise, remember to select a value for `model` from the [supported
-  models](/models) or [API](/api/v1/models), and include the organization
+  models](https://zenmux.ai/models) or [API](/api/openai/openai-list-models), and include the organization
   prefix. OpenRouter will select the least expensive and best GPUs available to
   serve the request, and fall back to other providers or GPUs if it receives a
   5xx response code or if you are rate-limited.
@@ -378,6 +378,6 @@ const stats = await generation.json();
 
 :::
 
-Please see the [Generation](/docs/api-reference/get-a-generation) API Reference for the full response shape.
+Please see the [Generation](/api/platform/get-generation) API Reference for the full response shape.
 
 Note that token counts are also available in the `usage` field of the response body for non-streaming completions.

@@ -15,7 +15,7 @@ _Cline_ 是一款用于复杂工作的协作式编程智能体，通过与 ZenMu
 ::: info 兼容性说明
 ZenMux 完全支持 OpenAI API 协议，只需简单配置即可使用。
 
-注意 OpenAI 协议的 base_url="https://zenmux.ai/api/v1"。
+注意 OpenAI 协议的 base_url=`https://zenmux.ai/api/v1`。
 :::
 
 ## 安装 Cline
@@ -34,7 +34,7 @@ Cline 支持多种开发工具，如 Visual Studio Code, JetBrains IDEs 等，�
 3. 在 API Configuration 标签页中:
 
 - API Provider 选择 OpenAI Compatible
-- Base URL 中填入 https://zenmux.ai/api/v1
+- Base URL 中填入 `https://zenmux.ai/api/v1`
 - OpenAI Compatible API Key 填入 ZenMux API Key
 - Model ID 填入 ZenMux 的模型 slug，如 anthropic/claude-3.7-sonnet
 

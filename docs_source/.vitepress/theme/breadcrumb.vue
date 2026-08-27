@@ -12,7 +12,7 @@
     </button>
     <span v-for="(crumb, i) in crumbs" :key="i" class="breadcrumb-item">
       <span v-if="i > 0" class="breadcrumb-sep"> &rsaquo; </span>
-      <a v-if="crumb.link && i < crumbs.length - 1" :href="crumb.link">{{
+      <a v-if="crumb.link && i < crumbs.length - 1" :href="withBase(crumb.link)">{{
         crumb.text
       }}</a>
       <span v-else>{{ crumb.text }}</span>
@@ -22,11 +22,10 @@
 
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref } from "vue";
-import { useData, useRoute, type DefaultTheme } from "vitepress";
+import { useData, withBase, type DefaultTheme } from "vitepress";
 import IconCategory from "./icons/IconCategory.vue";
 
-const { localeIndex, theme } = useData();
-const route = useRoute();
+const { page, localeIndex, theme } = useData();
 const isSidebarOpen = ref(false);
 let sidebarTrigger: HTMLButtonElement | null = null;
 let sidebarStateObserver: MutationObserver | null = null;
@@ -63,7 +62,10 @@ onUnmounted(() => {
 
 const crumbs = computed(() => {
   const isZh = localeIndex.value === "zh";
-  const path = route.path;
+  // 用 relativePath 派生 base 无关路径（route.path 在浏览器里含 /docs 前缀，
+  // 会让与 sidebar 配置（不含 base）的匹配失效）。
+  const path =
+    "/" + page.value.relativePath.replace(/(^|\/)index\.md$/, "$1").replace(/\.md$/, "");
   const prefix = isZh ? "/zh" : "";
   const result: { text: string; link?: string }[] = [];
 

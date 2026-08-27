@@ -29,12 +29,9 @@ head:
   - - script
     - {}
     - |
-      (function() {
-        var h = location.hostname;
-        var isDocsHost = h.startsWith('docs.') || h === 'localhost' || h === '127.0.0.1';
-        var path = isDocsHost ? '/about/intro' : '/docs/about/intro';
-        location.replace(path);
-      })();
+      // base 统一为 /docs/，各环境（本地 dev、zenmux.ai/docs、docs.zenmux.ai）
+      // 文档都在 /docs/ 下，首页统一重定向到 /docs/about/intro。
+      location.replace('/docs/about/intro');
 ---
 
 ::: info Welcome to the ZenMux Documentation

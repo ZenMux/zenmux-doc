@@ -398,7 +398,7 @@ You can also view all models supported by a provider on the provider details pag
 - Usage statistics: Usage data across all models integrated by that provider
 
 ::: info Provider Details Page Example
-For example, visit the Anthropic provider page (https://zenmux.ai/providers/anthropic) to see all Claude models provided by that provider and their details.
+For example, visit the Anthropic provider page (https://zenmux.ai/provider/anthropic) to see all Claude models provided by that provider and their details.
 :::
 
 ![Provider Details](https://cdn.marmot-cloud.com/storage/zenmux/2025/10/21/iYwxXFg/provider-analysis.png)

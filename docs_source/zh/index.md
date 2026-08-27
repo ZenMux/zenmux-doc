@@ -29,12 +29,8 @@ head:
   - - script
     - {}
     - |
-      (function() {
-        var h = location.hostname;
-        var isDocsHost = h.startsWith('docs.') || h === 'localhost' || h === '127.0.0.1';
-        var path = isDocsHost ? '/zh/about/intro' : '/docs/zh/about/intro';
-        location.replace(path);
-      })();
+      // base 统一为 /docs/，首页统一重定向到 /docs/zh/about/intro。
+      location.replace('/docs/zh/about/intro');
 ---
 
 ::: info 欢迎来到 ZenMux 文档

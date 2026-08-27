@@ -11,9 +11,12 @@ if [ ! -d "docs" ]; then
   mkdir -p docs
 fi
 
-# 复制所有子目录到 docs/docs/ 下（排除 docs 和 assets 目录本身）
+# 复制所有子目录到 docs/docs/ 下（仅排除 docs 目录本身，避免自我递归）
+# 注意：assets/ 必须一起复制。base=/docs/ 后资源 URL 为 /docs/assets/xxx，
+# 而 zenmux.ai/docs/** 回源时保留完整路径，命中的是 docs/docs/ 这一份，
+# 漏掉 assets 会导致文档站样式与 JS 全部 404。
 for dir in */; do
-  if [ "$dir" != "docs/" ] && [ "$dir" != "assets/" ]; then
+  if [ "$dir" != "docs/" ]; then
     echo "Copying $dir to docs/$dir..."
     cp -r "$dir" "docs/$dir"
   fi

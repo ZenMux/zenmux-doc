@@ -16,7 +16,7 @@ Immersive Translate is a high-quality bilingual side-by-side translation extensi
 
 ### 1. Obtain a ZenMux API Key
 
-Go to the [ZenMux Console](https://zenmux.ai/console) to register an account and get your API Key.
+Go to the [ZenMux Console](https://zenmux.ai/platform) to register an account and get your API Key.
 
 ::: tip Quick Start
 Configuration takes just a few minutes—start experiencing high-quality, multi-model translation right away.

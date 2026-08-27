@@ -31,7 +31,7 @@ On the website's **Models** page, you can view all supported models and their ba
 
 Most large language models are integrated with multiple providers. If a provider experiences a service incident, ZenMux automatically switches to other available providers to ensure service continuity.
 
-For details on provider routing strategies, see the [Provider Routing documentation](https://docs.zenmux.ai/zh/about/provider-routing.html)
+For details on provider routing strategies, see the [Provider Routing documentation](/about/provider-routing)
 
 ### Provider Details
 
