@@ -169,6 +169,7 @@ export default defineLoacaleConfig({
           },
         ],
       },
+      { text: "活动", link: "https://zenmux.ai/campaign", noIcon: true },
       {
         text: "关于我们",
         items: [
@@ -343,6 +344,14 @@ export default defineLoacaleConfig({
               text: "Get Statistics Performance",
               link: "/zh/api/platform/statistics-performance",
             },
+            {
+              text: "Get App Trending",
+              link: "/zh/api/platform/statistics-app-trending",
+            },
+            {
+              text: "Get App Leaderboard",
+              link: "/zh/api/platform/statistics-app-leaderboard",
+            },
           ],
         },
       ],
@@ -350,6 +359,14 @@ export default defineLoacaleConfig({
         {
           text: "最佳实践",
           items: [
+            {
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/zBEE8Dm/Property-1CC-Switch.svg" />CC-Switch 接入 ZenMux 指南',
+              link: "/zh/best-practices/cc-switch",
+            },
+            {
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/aA2YGDk/Property-1cherrystudio.svg" />CherryStudio接入ZenMux指南',
+              link: "/zh/best-practices/cherry-studio",
+            },
             {
               text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/HTMS2Uv/Property-1Calude.svg" />ClaudeCode接入ZenMux指南',
               link: "/zh/best-practices/claude-code",
@@ -359,72 +376,72 @@ export default defineLoacaleConfig({
               link: "/zh/best-practices/claude-desktop",
             },
             {
-              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/3e4UfxM/Property-1Codex.svg" />CodeX CLI + Codex APP 接入ZenMux指南',
-              link: "/zh/best-practices/codex",
-            },
-            {
-              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/LksmNgb/Property-1Gemini.svg" />Gemini CLI接入ZenMux指南',
-              link: "/zh/best-practices/gemini-cli",
-            },
-            {
-              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/aJSfGT3/Property-1opencode.svg" />OpenCode 接入ZenMux指南',
-              link: "/zh/best-practices/opencode",
-            },
-            {
               text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/ev9eqnc/Property-1cline.svg" />Cline接入ZenMux指南',
               link: "/zh/best-practices/cline",
             },
             {
-              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/aA2YGDk/Property-1cherrystudio.svg" />CherryStudio接入ZenMux指南',
-              link: "/zh/best-practices/cherry-studio",
-            },
-            {
-              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/e8rAwRd/Property-1obsidian.svg" />Obsidian接入ZenMux指南',
-              link: "/zh/best-practices/obsidian",
-            },
-            {
-              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/J4cCdCL/Property-1Sider.svg" />Sider接入ZenMux指南',
-              link: "/zh/best-practices/sider",
-            },
-            {
-              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/BaUQozX/Property-1openwebui.svg" />Open-WebUI接入ZenMux指南',
-              link: "/zh/best-practices/open-webui",
-            },
-            {
-              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/YziH1Wm/Property-1dify.svg" />Dify接入ZenMux指南',
-              link: "/zh/best-practices/dify",
-            },
-            {
-              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/hVDPe9M/Property-1Neovate.svg" />Neovate接入ZenMux指南',
-              link: "/zh/best-practices/neovate-code",
-            },
-            {
-              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/Tbnm5fx/Property-1githubcopilot.svg" />Github Copilot 接入 ZenMux 指南',
-              link: "/zh/best-practices/github-copilot",
-            },
-            {
-              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/i0H2J7w/Property-1openclaw.svg" />OpenClaw 接入 ZenMux 指南',
-              link: "/zh/best-practices/openclaw",
-            },
-            {
-              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/i0H2J7w/Property-1openclaw.svg" />阿里云部署 OpenClaw 并集成 ZenMux 指南',
-              link: "/zh/best-practices/openclaw-alibaba",
-            },
-            {
-              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/zBEE8Dm/Property-1CC-Switch.svg" />CC-Switch 接入 ZenMux 指南',
-              link: "/zh/best-practices/cc-switch",
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/3e4UfxM/Property-1Codex.svg" />CodeX CLI + Codex APP 接入ZenMux指南',
+              link: "/zh/best-practices/codex",
             },
             {
               text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/cT6lvK5/Property-1Cursor.svg" />Cursor 接入 ZenMux 指南',
               link: "/zh/best-practices/cursor",
             },
             {
-              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/mFIxohk/Property-1RikkaHub.svg" />RikkaHub 接入 ZenMux 指南',
-              link: "/zh/best-practices/rikkahub",
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2025/10/15/tmeJLqx/Property-1deepseek.svg" />DeepSeek Harness 接入 ZenMux 指南',
+              link: "/zh/best-practices/deepseek-harness",
+            },
+            {
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/i0H2J7w/Property-1openclaw.svg" />阿里云部署 OpenClaw 并集成 ZenMux 指南',
+              link: "/zh/best-practices/openclaw-alibaba",
+            },
+            {
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/YziH1Wm/Property-1dify.svg" />Dify接入ZenMux指南',
+              link: "/zh/best-practices/dify",
+            },
+            {
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/LksmNgb/Property-1Gemini.svg" />Gemini CLI接入ZenMux指南',
+              link: "/zh/best-practices/gemini-cli",
+            },
+            {
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/Tbnm5fx/Property-1githubcopilot.svg" />Github Copilot 接入 ZenMux 指南',
+              link: "/zh/best-practices/github-copilot",
             },
             {
               text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/jT0X0zI/Property-1Hermes.svg" />Hermes Agent 接入 ZenMux 指南',
               link: "/zh/best-practices/hermes-agent",
+            },
+            {
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/hVDPe9M/Property-1Neovate.svg" />Neovate接入ZenMux指南',
+              link: "/zh/best-practices/neovate-code",
+            },
+            {
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/e8rAwRd/Property-1obsidian.svg" />Obsidian接入ZenMux指南',
+              link: "/zh/best-practices/obsidian",
+            },
+            {
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/i0H2J7w/Property-1openclaw.svg" />OpenClaw 接入 ZenMux 指南',
+              link: "/zh/best-practices/openclaw",
+            },
+            {
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/aJSfGT3/Property-1opencode.svg" />OpenCode 接入ZenMux指南',
+              link: "/zh/best-practices/opencode",
+            },
+            {
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/BaUQozX/Property-1openwebui.svg" />Open-WebUI接入ZenMux指南',
+              link: "/zh/best-practices/open-webui",
+            },
+            {
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/08/17/AiPNvoR/Pi-Logo-black-outline.svg" />Pi Coding Agent 接入 ZenMux 指南',
+              link: "/zh/best-practices/pi-coding-agent",
+            },
+            {
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/mFIxohk/Property-1RikkaHub.svg" />RikkaHub 接入 ZenMux 指南',
+              link: "/zh/best-practices/rikkahub",
+            },
+            {
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/05/18/J4cCdCL/Property-1Sider.svg" />Sider接入ZenMux指南',
+              link: "/zh/best-practices/sider",
             },
           ],
         },
@@ -434,6 +451,15 @@ export default defineLoacaleConfig({
             {
               text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/07/28/nX2cLeT/network-environments.svg" />Agent 工具代理配置指南',
               link: "/zh/best-practices/network-environments",
+            },
+          ],
+        },
+        {
+          text: "OAuth",
+          items: [
+            {
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/08/14/nQf3Lhi/OAuth-20-Logo.png" />OAuth PKCE 接入指南',
+              link: "/zh/best-practices/oauth-pkce",
             },
           ],
         },

@@ -1,5 +1,15 @@
 <template>
   <nav v-if="crumbs.length > 1" class="breadcrumb">
+    <button
+      type="button"
+      class="breadcrumb-menu-button"
+      :aria-label="sidebarMenuLabel"
+      :aria-expanded="isSidebarOpen"
+      aria-controls="VPSidebarNav"
+      @click="openSidebar"
+    >
+      <IconCategory class="breadcrumb-category-icon" aria-hidden="true" />
+    </button>
     <span v-for="(crumb, i) in crumbs" :key="i" class="breadcrumb-item">
       <span v-if="i > 0" class="breadcrumb-sep"> &rsaquo; </span>
       <a v-if="crumb.link && i < crumbs.length - 1" :href="withBase(crumb.link)">{{
@@ -11,10 +21,44 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
-import { useData, withBase } from "vitepress";
+import { computed, onMounted, onUnmounted, ref } from "vue";
+import { useData, withBase, type DefaultTheme } from "vitepress";
+import IconCategory from "./icons/IconCategory.vue";
 
 const { page, localeIndex, theme } = useData();
+const isSidebarOpen = ref(false);
+let sidebarTrigger: HTMLButtonElement | null = null;
+let sidebarStateObserver: MutationObserver | null = null;
+
+const sidebarMenuLabel = computed(() =>
+  localeIndex.value === "zh" ? "打开文档目录" : "Open documentation menu",
+);
+
+function syncSidebarState() {
+  isSidebarOpen.value = sidebarTrigger?.getAttribute("aria-expanded") === "true";
+}
+
+function openSidebar() {
+  sidebarTrigger?.click();
+}
+
+onMounted(() => {
+  sidebarTrigger = document.querySelector<HTMLButtonElement>(
+    ".VPLocalNav.has-sidebar .menu",
+  );
+  if (!sidebarTrigger) return;
+
+  syncSidebarState();
+  sidebarStateObserver = new MutationObserver(syncSidebarState);
+  sidebarStateObserver.observe(sidebarTrigger, {
+    attributes: true,
+    attributeFilter: ["aria-expanded"],
+  });
+});
+
+onUnmounted(() => {
+  sidebarStateObserver?.disconnect();
+});
 
 const crumbs = computed(() => {
   const isZh = localeIndex.value === "zh";
@@ -75,7 +119,11 @@ const crumbs = computed(() => {
   return result;
 });
 
-function findInItems(items: any[], path: string, chain: string[]): boolean {
+function findInItems(
+  items: DefaultTheme.SidebarItem[],
+  path: string,
+  chain: string[],
+): boolean {
   for (const item of items) {
     const itemLink = item.link?.replace(/\.html$/, "");
     if (itemLink && path.startsWith(itemLink)) return true;
@@ -99,6 +147,16 @@ function findInItems(items: any[], path: string, chain: string[]): boolean {
   line-height: 16px;
   color: #999;
   margin-bottom: 16px;
+}
+
+.breadcrumb-category-icon {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+}
+
+.breadcrumb-menu-button {
+  display: none;
 }
 
 .breadcrumb-item a {
@@ -138,5 +196,30 @@ function findInItems(items: any[], path: string, chain: string[]): boolean {
 
 .dark .breadcrumb-sep {
   color: var(--zm-border-primary);
+}
+
+@media (max-width: 959px) {
+  .breadcrumb {
+    gap: 0;
+    margin-bottom: 28px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  .breadcrumb-menu-button {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    margin: -10px 8px -10px -8px;
+    padding: 0 12px 0 8px;
+    flex: 0 0 40px;
+    align-items: center;
+    justify-content: flex-start;
+    border: 0;
+    background: transparent;
+    color: var(--zm-text-tertiary);
+    cursor: pointer;
+  }
 }
 </style>

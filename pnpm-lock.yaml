@@ -41,6 +41,9 @@ importers:
       marked:
         specifier: ^18.0.0
         version: 18.0.0
+      minisearch:
+        specifier: ^7.2.0
+        version: 7.2.0
       nprogress:
         specifier: ^0.2.0
         version: 0.2.0

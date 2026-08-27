@@ -25,6 +25,7 @@
     "lz-string": "^1.5.0",
     "markdown-it-container": "^4.0.0",
     "marked": "^18.0.0",
+    "minisearch": "^7.2.0",
     "nprogress": "^0.2.0",
     "openai": "^5.23.2",
     "vitepress": "1.6.3",

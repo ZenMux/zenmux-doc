@@ -165,6 +165,12 @@ Add the following configuration to `~/.codex/config.toml` (it is already include
 tool_namespace = "agents"
 ```
 
+If you configure `model_catalog_json`, also add the following field to the corresponding model entry:
+
+```json
+"multi_agent_version": "v2"
+```
+
 Starting with Codex `v0.144.1`, `multi_agent` is a new feature. When Codex defines multi-agent tools, it uses the special `collaboration` field. `gpt-5.6-sol` reserves `collaboration` as a namespace for encrypted tool use, which causes the conflict and the error above.
 
 This switches multi-agent tools to the `agents` namespace, avoiding the namespace conflict. Restart Codex after saving the configuration.

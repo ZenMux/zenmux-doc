@@ -121,7 +121,7 @@ Before configuring Claude Code, you need a ZenMux API Key. ZenMux offers two bil
 
 How to get it:
 1. Go to the subscription management page: https://zenmux.ai/platform/subscription
-2. Choose a plan that fits (Pro $20/mo, Max $100/mo, Ultra $200/mo)
+2. Choose a plan that fits (Starter $20/mo, Max $100/mo, Ultra $200/mo)
 3. After subscribing, create a subscription API Key on the page
 
 For details, see the subscription plan guide:

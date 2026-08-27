@@ -45,7 +45,7 @@ Key format: sk-ss-v1-xxx
 
 How to get one:
 1. Visit the Subscription page: https://zenmux.ai/platform/subscription
-2. Pick a plan (Pro $20/mo, Max $100/mo, Ultra $200/mo)
+2. Pick a plan (Starter $20/mo, Max $100/mo, Ultra $200/mo)
 3. After subscribing, create a Subscription API Key on the page
 
 For details, see the Subscription Plans guide:

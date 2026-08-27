@@ -25,3 +25,4 @@ docs_source/public/raw/
 
 # Icon loading script (run `pnpm run load-icons` to regenerate icons)
 scripts/load-icons.ts
+tmp/

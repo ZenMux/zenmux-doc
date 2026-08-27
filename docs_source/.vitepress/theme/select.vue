@@ -278,6 +278,14 @@ onUnmounted(() => {
   height: 16px;
 }
 
+@media (max-width: 959px) {
+  .select-dropdown.mobile-copy-page .copy-page-menu {
+    right: auto;
+    left: 0;
+    max-width: calc(100vw - 32px);
+  }
+}
+
 </style>
 
 <style>

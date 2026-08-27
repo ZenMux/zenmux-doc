@@ -45,7 +45,7 @@ API Key 格式：sk-ss-v1-xxx
 
 获取方式：
 1. 访问订阅管理页面：https://zenmux.ai/platform/subscription
-2. 选择套餐（Pro $20/月、Max $100/月、Ultra $200/月）
+2. 选择套餐（Starter $20/月、Max $100/月、Ultra $200/月）
 3. 订阅后在页面创建订阅 API Key
 
 详细说明请参阅：订阅套餐指南

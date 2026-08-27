@@ -128,7 +128,7 @@ Before configuring CC-Switch, you’ll need a ZenMux API Key. ZenMux offers two 
 
 How to get it:
 1. Visit the subscription management page: https://zenmux.ai/platform/subscription
-2. Choose a plan (Pro $20/month, Max $100/month, Ultra $200/month)
+2. Choose a plan (Starter $20/month, Max $100/month, Ultra $200/month)
 3. After subscribing, create a subscription API key on the page
 
 For details, see: Subscription Plan Guide

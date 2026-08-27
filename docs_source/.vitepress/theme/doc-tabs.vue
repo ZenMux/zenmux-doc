@@ -1,5 +1,5 @@
 <template>
-  <nav class="doc-tabs-bar">
+  <nav :class="['doc-tabs-bar', `doc-tabs-${variant}`]">
     <div class="doc-tabs-content">
       <a
         v-for="tab in tabs"
@@ -7,7 +7,7 @@
         :href="withBase(tab.link)"
         :class="['doc-tab-item', { active: tab.active }]"
         @click.prevent="navigate(tab.link)"
-        >{{ tab.text }}</a
+        >{{ variant === "sidebar" ? tab.sidebarText || tab.text : tab.text }}</a
       >
     </div>
   </nav>
@@ -16,6 +16,15 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useData, useRouter, withBase } from "vitepress";
+
+withDefaults(
+  defineProps<{
+    variant?: "bar" | "sidebar";
+  }>(),
+  {
+    variant: "bar",
+  },
+);
 
 const router = useRouter();
 function navigate(href: string) {
@@ -41,16 +50,19 @@ const tabs = computed(() => {
   return [
     {
       text: isZh ? "文档" : "Docs",
+      sidebarText: "",
       link: `${prefix}/guide/quickstart`,
       active: isDocsPage,
     },
     {
       text: "API Reference",
+      sidebarText: "API reference",
       link: `${prefix}/api/openai/create-chat-completion`,
       active: isApiPage,
     },
     {
       text: isZh ? "集成" : "Integrations",
+      sidebarText: "",
       link: `${prefix}/best-practices/claude-code`,
       active: isIntegrationsPage,
     },
@@ -72,8 +84,56 @@ const tabs = computed(() => {
   align-items: center;
 }
 
+.doc-tabs-sidebar {
+  position: static;
+  display: none;
+  width: 100%;
+  height: 46px;
+  margin-bottom: 28px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.doc-tabs-sidebar .doc-tabs-content {
+  gap: 16px;
+  padding: 0;
+}
+
+.doc-tabs-sidebar .doc-tab-item {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  height: 46px;
+  padding: 12px 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  color: rgb(102 102 102 / 88%);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  text-overflow: ellipsis;
+}
+
+.doc-tabs-sidebar .doc-tab-item.active {
+  border-bottom: 2px solid var(--zm-text-primary);
+  color: var(--zm-text-primary);
+  font-weight: 700;
+  background: transparent;
+  box-shadow: none;
+}
+
+@media (max-width: 959px) {
+  .doc-tabs-sidebar {
+    display: flex;
+  }
+}
+
 @media (min-width: 960px) {
-  .doc-tabs-bar {
+  .doc-tabs-bar:not(.doc-tabs-sidebar) {
     display: flex;
   }
 }
