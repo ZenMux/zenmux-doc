@@ -1,6 +1,6 @@
 ---
 pageClass: api-page
-title: API
+title: Anthropic List Models API
 head:
   - - meta
     - name: description

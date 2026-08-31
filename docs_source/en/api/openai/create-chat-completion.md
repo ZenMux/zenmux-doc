@@ -1,6 +1,6 @@
 ---
 pageClass: api-page
-title: API
+title: OpenAI Chat Completion API
 head:
   - - meta
     - name: description

@@ -1,6 +1,6 @@
 ---
 pageClass: api-page
-title: API
+title: Google Vertex AI List Models API
 head:
   - - meta
     - name: description

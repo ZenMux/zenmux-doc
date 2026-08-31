@@ -1,6 +1,6 @@
 ---
 pageClass: api-page
-title: 接口
+title: 获取生成记录
 head:
   - - meta
     - name: description

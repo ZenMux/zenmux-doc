@@ -1,6 +1,6 @@
 ---
 pageClass: api-page
-title: API
+title: OpenAI Create Speech API
 head:
   - - meta
     - name: description

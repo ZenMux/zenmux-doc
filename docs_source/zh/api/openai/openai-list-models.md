@@ -1,6 +1,6 @@
 ---
 pageClass: api-page
-title: 接口
+title: OpenAI 兼容模型列表 API
 head:
   - - meta
     - name: description
