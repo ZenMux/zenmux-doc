@@ -1,6 +1,6 @@
 ---
 pageClass: api-page
-title: 接口
+title: 获取模型用量
 head:
   - - meta
     - name: description

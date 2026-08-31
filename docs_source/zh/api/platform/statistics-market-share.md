@@ -1,6 +1,6 @@
 ---
 pageClass: api-page
-title: 接口
+title: 获取模型市场份额
 head:
   - - meta
     - name: description

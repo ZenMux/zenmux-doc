@@ -1,6 +1,6 @@
 ---
 pageClass: api-page
-title: 接口
+title: 获取 Flow 速率
 head:
   - - meta
     - name: description

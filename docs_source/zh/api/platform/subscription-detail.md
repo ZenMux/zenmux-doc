@@ -1,6 +1,6 @@
 ---
 pageClass: api-page
-title: 接口
+title: 获取订阅详情
 head:
   - - meta
     - name: description

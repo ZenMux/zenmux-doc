@@ -1,6 +1,6 @@
 ---
 pageClass: api-page
-title: 接口
+title: OpenAI 语音转录 API
 head:
   - - meta
     - name: description

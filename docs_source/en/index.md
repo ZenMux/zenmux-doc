@@ -30,8 +30,8 @@ head:
     - {}
     - |
       // base 统一为 /docs/，各环境（本地 dev、zenmux.ai/docs、docs.zenmux.ai）
-      // 文档都在 /docs/ 下，首页统一重定向到 /docs/about/intro。
-      location.replace('/docs/about/intro');
+      // 文档都在 /docs/ 下，首页统一重定向到最终 canonical 页面。
+      location.replace('/docs/about/intro.html');
 ---
 
 ::: info Welcome to the ZenMux Documentation

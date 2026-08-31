@@ -1,6 +1,6 @@
 ---
 pageClass: api-page
-title: 接口
+title: 获取模型性能
 head:
   - - meta
     - name: description

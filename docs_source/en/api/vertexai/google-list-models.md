@@ -1,6 +1,6 @@
 ---
 pageClass: api-page
-title: API
+title: Google Vertex AI List Models API
 head:
   - - meta
     - name: description
@@ -10,7 +10,7 @@ head:
       content: Zenmux, API, documentation, google, list, models
 ---
 
-# List Models
+# Google Vertex AI List Models API
 
 ::: info Troubleshooting
 Encountering errors? See the [API Error Codes Reference](/guide/advanced/error-codes) for a complete list of error types and troubleshooting steps.

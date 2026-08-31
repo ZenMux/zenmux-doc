@@ -1,6 +1,6 @@
 ---
 pageClass: api-page
-title: 接口
+title: 获取 PAYG 余额
 head:
   - - meta
     - name: description

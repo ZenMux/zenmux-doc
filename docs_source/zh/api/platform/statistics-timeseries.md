@@ -1,6 +1,6 @@
 ---
 pageClass: api-page
-title: 接口
+title: 获取统计时间序列
 head:
   - - meta
     - name: description

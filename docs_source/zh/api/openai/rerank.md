@@ -1,6 +1,6 @@
 ---
 pageClass: api-page
-title: API
+title: 文档重排序 API
 head:
   - - meta
     - name: description

@@ -1,6 +1,6 @@
 ---
 pageClass: api-page
-title: API
+title: OpenAI Embeddings API
 head:
   - - meta
     - name: description
