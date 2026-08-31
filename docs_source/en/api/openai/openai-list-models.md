@@ -10,7 +10,7 @@ head:
       content: Zenmux, API, documentation, openai, list, models, OpenAI, Anthropic, Claude, GPT
 ---
 
-# List Models
+# OpenAI-compatible List Models API
 
 ::: info Troubleshooting
 Encountering errors? See the [API Error Codes Reference](/guide/advanced/error-codes) for a complete list of error types and troubleshooting steps.
