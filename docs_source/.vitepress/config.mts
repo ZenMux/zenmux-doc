@@ -68,8 +68,13 @@ function withDocsSitemapPath(url: string) {
   return normalized.startsWith("/docs/") ? normalized : `/docs${normalized}`;
 }
 
-function isDeprecatedDocsSitemapUrl(url: string) {
-  return /-old\.html$/.test(url) || url === "/docs/zh/sider.html";
+function isExcludedDocsSitemapUrl(url: string) {
+  return (
+    /-old\.html$/.test(url) ||
+    url === "/docs/zh/sider.html" ||
+    url === "/docs/" ||
+    url === "/docs/zh/"
+  );
 }
 
 function withXDefaultLink(links: DocsSitemapLink[] = []) {
@@ -143,6 +148,8 @@ function canonicalDocsPath(relativePath: string) {
   const htmlPath = relativePath.replace(/\.md$/, ".html");
   const normalizedPath = htmlPath.startsWith("zh/") ? htmlPath : htmlPath.replace(/^en\//, "");
   const canonicalMap = new Map([
+    ["index.html", "about/intro.html"],
+    ["zh/index.html", "zh/about/intro.html"],
     [
       "api/anthropic/create-messages-old.html",
       "api/anthropic/create-messages.html",
@@ -557,7 +564,7 @@ export default defineConfig({
             links: docsSitemapLinks(url, item.links),
           };
         })
-        .filter((item) => !isDeprecatedDocsSitemapUrl(item.url));
+        .filter((item) => !isExcludedDocsSitemapUrl(item.url));
     },
     lastmodDateOnly: true,
   },

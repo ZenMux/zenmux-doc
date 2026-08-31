@@ -29,8 +29,8 @@ head:
   - - script
     - {}
     - |
-      // base 统一为 /docs/，首页统一重定向到 /docs/zh/about/intro。
-      location.replace('/docs/zh/about/intro');
+      // base 统一为 /docs/，首页统一重定向到最终 canonical 页面。
+      location.replace('/docs/zh/about/intro.html');
 ---
 
 ::: info 欢迎来到 ZenMux 文档
