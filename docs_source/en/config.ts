@@ -103,6 +103,7 @@ const docsSidebar = [
     items: [
       { text: "Privacy Policy", link: "/privacy" },
       { text: "Terms of Service", link: "/terms-of-service" },
+      { text: "RSS Feeds", link: "/help/rss" },
       { text: "Contact Us", link: "/help/contact" },
     ],
   },

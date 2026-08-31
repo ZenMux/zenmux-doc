@@ -100,6 +100,7 @@ const docsSidebar = [
     items: [
       { text: "隐私政策", link: "/zh/privacy" },
       { text: "服务协议", link: "/zh/terms-of-service" },
+      { text: "RSS 订阅", link: "/zh/help/rss" },
       { text: "联系我们", link: "/zh/help/contact" },
     ],
   },
