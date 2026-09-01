@@ -7,7 +7,7 @@ head:
       content: 获取统计市场份额
   - - meta
     - name: keywords
-      content: Zenmux, API, statistics, 统计, 市场份额, market share, tokens, cost, management
+      content: Zenmux, API, statistics, 统计, 市场份额, market share, tokens, requests, cost, management
 ---
 
 # Get Statistics Market Share
@@ -55,6 +55,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 计算市场份额所使用的指标。
 
 - `tokens` — 输入 + 输出 Token 总数
+- `requests` — 请求总次数
 - `cost` — 按标价计算的 USD 成本
 
 ### bucket_width `string` <span style="color: #FA6062; font-weight: 400">\*</span>
@@ -94,7 +95,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 
 ### data.metric `string`
 
-请求指标的回显（`"tokens"` 或 `"cost"`）。
+请求指标的回显（`"tokens"`、`"requests"` 或 `"cost"`）。
 
 ### data.bucket_width `string`
 
@@ -121,7 +122,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 - `authors` `array` — 按供应商拆分：
   - `author` `string` — 供应商标识（如 `anthropic`）。Top N 之外的为 `__others__`。
   - `label` `string` — 供应商展示名称（如 "Anthropic"）
-  - `value` `number` — 该桶内的 Token 绝对数或 USD 绝对成本（非百分比）
+  - `value` `number` — 该桶内的 Token 数、请求次数或 USD 成本（均为绝对值，非百分比）
 
 ::: info 计算百分比
 接口返回绝对值。要计算市场份额百分比，将每个供应商的值除以该桶的总值：

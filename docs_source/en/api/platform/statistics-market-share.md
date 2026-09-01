@@ -7,7 +7,7 @@ head:
       content: Get Statistics Market Share
   - - meta
     - name: keywords
-      content: Zenmux, API, statistics, market share, provider, tokens, cost, management
+      content: Zenmux, API, statistics, market share, provider, tokens, requests, cost, management
 ---
 
 # Get Statistics Market Share
@@ -55,6 +55,7 @@ Each endpoint has its own independent rate limit counter. The maximum number of 
 Which metric to compute market share for.
 
 - `tokens` — total input + output token count
+- `requests` — total request count
 - `cost` — list-price cost in USD
 
 ### bucket_width `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
@@ -94,7 +95,7 @@ Top N providers per bucket.
 
 ### data.metric `string`
 
-Echo of the requested metric (`"tokens"` or `"cost"`).
+Echo of the requested metric (`"tokens"`, `"requests"`, or `"cost"`).
 
 ### data.bucket_width `string`
 
@@ -121,7 +122,7 @@ Array of time buckets. Each bucket contains:
 - `authors` `array` — Per-provider breakdown:
   - `author` `string` — Provider slug (e.g., `anthropic`). `__others__` for providers outside top N.
   - `label` `string` — Provider display name (e.g., "Anthropic")
-  - `value` `number` — Absolute token count or USD cost for this bucket (not a percentage)
+  - `value` `number` — Absolute token count, request count, or USD cost for this bucket (not a percentage)
 
 ::: info Computing percentages
 The API returns absolute values. To compute market share percentages, divide each provider's value by the bucket total:

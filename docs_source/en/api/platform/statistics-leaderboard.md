@@ -7,7 +7,7 @@ head:
       content: Get Statistics Leaderboard
   - - meta
     - name: keywords
-      content: Zenmux, API, statistics, leaderboard, ranking, tokens, cost, management
+      content: Zenmux, API, statistics, leaderboard, ranking, tokens, requests, cost, management
 ---
 
 # Get Statistics Leaderboard
@@ -20,7 +20,7 @@ Encountering errors? See the [API Error Codes Reference](/guide/advanced/error-c
 GET https://zenmux.ai/api/v1/management/statistics/leaderboard
 ```
 
-Rank models by total token consumption or cost over a date range. Returns the top N models plus an aggregated "Others" entry for the remainder.
+Rank models by total token consumption, request count, or cost over a date range. Returns the top N models plus an aggregated "Others" entry for the remainder.
 
 Use this endpoint to see which models dominate platform traffic, compare spending across providers, or build leaderboard visualizations.
 
@@ -55,6 +55,7 @@ Each endpoint has its own independent rate limit counter. The maximum number of 
 Which metric to rank by.
 
 - `tokens` — total input + output token count
+- `requests` — total request count
 - `cost` — list-price cost in USD
 
 ### starting_at `string`
@@ -81,7 +82,7 @@ Top N models to return.
 
 ### data.metric `string`
 
-Echo of the requested metric (`"tokens"` or `"cost"`).
+Echo of the requested metric (`"tokens"`, `"requests"`, or `"cost"`).
 
 ### data.starting_at `string`
 
@@ -100,7 +101,7 @@ Ranked list of models. Each entry contains:
 - `label` `string` — Display name (e.g., "Claude Opus 4.6")
 - `author` `string` — Provider slug (e.g., `anthropic`, `openai`). Empty for `__others__`.
 - `author_label` `string` — Provider display name (e.g., "Anthropic"). Empty for `__others__`.
-- `value` `number` — Total token count or USD cost over the date range
+- `value` `number` — Total token count, request count, or USD cost over the date range
 
 ::: api-request GET /api/v1/management/statistics/leaderboard
 

@@ -7,7 +7,7 @@ head:
       content: Get App Leaderboard
   - - meta
     - name: keywords
-      content: Zenmux, API, statistics, apps, agents, leaderboard, ranking, tokens, cost, management
+      content: Zenmux, API, statistics, apps, agents, leaderboard, ranking, tokens, requests, cost, management
 ---
 
 # Get App Leaderboard
@@ -55,6 +55,7 @@ Each endpoint has its own independent rate limit counter. The maximum number of 
 Which metric to rank by.
 
 - `tokens` — total input + output token count
+- `requests` — total request count attributed to the App / Agent
 - `cost` — list-price cost in USD
 
 ### period `string`
@@ -92,7 +93,7 @@ Maximum number of entries to return, between `1` and `11` (top 10 plus the aggre
 
 ### data.metric `string`
 
-Echo of the requested metric (`"tokens"` or `"cost"`).
+Echo of the requested metric (`"tokens"`, `"requests"`, or `"cost"`).
 
 ### data.period `string`
 

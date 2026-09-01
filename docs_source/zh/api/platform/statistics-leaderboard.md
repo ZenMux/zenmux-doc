@@ -7,7 +7,7 @@ head:
       content: 获取统计排行榜
   - - meta
     - name: keywords
-      content: Zenmux, API, statistics, 统计, 排行榜, leaderboard, tokens, cost, management
+      content: Zenmux, API, statistics, 统计, 排行榜, leaderboard, tokens, requests, cost, management
 ---
 
 # Get Statistics Leaderboard
@@ -20,7 +20,7 @@ head:
 GET https://zenmux.ai/api/v1/management/statistics/leaderboard
 ```
 
-按 Token 消耗量或成本对模型进行排名。返回 Top N 模型及一条聚合的 "Others" 条目。
+按 Token 消耗量、请求次数或成本对模型进行排名。返回 Top N 模型及一条聚合的 "Others" 条目。
 
 可用于了解平台流量最大的模型、对比各供应商的消费情况，或构建排行榜可视化。
 
@@ -55,6 +55,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 排名依据的指标类型。
 
 - `tokens` — 输入 + 输出 Token 总数
+- `requests` — 请求总次数
 - `cost` — 按标价计算的 USD 成本
 
 ### starting_at `string`
@@ -81,7 +82,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 
 ### data.metric `string`
 
-请求指标的回显（`"tokens"` 或 `"cost"`）。
+请求指标的回显（`"tokens"`、`"requests"` 或 `"cost"`）。
 
 ### data.starting_at `string`
 
@@ -100,7 +101,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 - `label` `string` — 展示名称（如 "Claude Opus 4.6"）
 - `author` `string` — 供应商标识（如 `anthropic`、`openai`）。`__others__` 为空。
 - `author_label` `string` — 供应商展示名称（如 "Anthropic"）。`__others__` 为空。
-- `value` `number` — 日期范围内的 Token 总数或 USD 总成本
+- `value` `number` — 日期范围内的 Token 总数、请求总次数或 USD 总成本
 
 ::: api-request GET /api/v1/management/statistics/leaderboard
 

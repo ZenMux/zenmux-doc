@@ -7,7 +7,7 @@ head:
       content: Get daily model usage for a single model over a time range
   - - meta
     - name: keywords
-      content: Zenmux, API, statistics, model usage, tokens, cost, management
+      content: Zenmux, API, statistics, model usage, tokens, requests, cost, management
 ---
 
 # Get Model Usage
@@ -20,7 +20,7 @@ Encountering errors? See the [API Error Codes Reference](/guide/advanced/error-c
 GET https://zenmux.ai/api/v1/management/statistics/model_usage
 ```
 
-Retrieve the token consumption or cost of a **specific model** over a time range, **returned as daily data**, together with an aggregate value for the entire range. Useful for single-model bill reconciliation, daily usage trend charts, and similar scenarios.
+Retrieve the token consumption, request count, or cost of a **specific model** over a time range, **returned as daily data**, together with an aggregate value for the entire range. Useful for single-model bill reconciliation, daily usage trend charts, and similar scenarios.
 
 Returns platform-wide aggregated data available from **2025-09-29** onward.
 
@@ -62,6 +62,7 @@ The model identifier (slug) to query, e.g. `anthropic/claude-opus-4.8`.
 Which metric to retrieve.
 
 - `tokens` — total input + output token count
+- `requests` — total request count
 - `cost` — list-price cost in USD
 
 ### starting_at `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
@@ -95,7 +96,7 @@ Model display name (e.g. `Claude Opus 4.8`). Falls back to the slug itself if th
 
 ### data.metric `string`
 
-Echo of the requested metric (`"tokens"` or `"cost"`).
+Echo of the requested metric (`"tokens"`, `"requests"`, or `"cost"`).
 
 ### data.starting_at `string`
 
@@ -110,6 +111,7 @@ Echo of the end date (`YYYY-MM-DD`).
 The aggregate metric value for the model across the **entire range** (equal to the sum of each day's `value` in `series`):
 
 - For `metric=tokens`, the total token count (integer).
+- For `metric=requests`, the total request count (integer).
 - For `metric=cost`, the USD cost.
 
 ### data.series `array`
@@ -117,7 +119,7 @@ The aggregate metric value for the model across the **entire range** (equal to t
 Array broken down by day (sorted in ascending date order). Each element contains:
 
 - `date` `string` — date, in `YYYY-MM-DD` format
-- `value` `number` — token count or USD cost for that day. Days with no data do not appear in the series.
+- `value` `number` — token count, request count, or USD cost for that day. Days with no data do not appear in the series.
 
 ::: api-request GET /api/v1/management/statistics/model_usage
 
@@ -167,6 +169,6 @@ curl -G https://zenmux.ai/api/v1/management/statistics/model_usage \
 
 :::
 
-::: info Querying cost
-Set `metric` to `cost` to retrieve the USD cost for the same model over the same range. The response structure is identical; in this case `value` and `series[].value` represent cost amounts.
+::: info Querying cost or request count
+Set `metric` to `cost` to retrieve USD cost, or to `requests` to retrieve request count for the same model over the same range. The response structure is identical; `value` and `series[].value` represent the selected metric.
 :::

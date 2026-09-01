@@ -7,7 +7,7 @@ head:
       content: 查询单个模型在时间段内的按天用量
   - - meta
     - name: keywords
-      content: Zenmux, API, statistics, 统计, 模型用量, tokens, cost, management
+      content: Zenmux, API, statistics, 统计, 模型用量, tokens, requests, cost, management
 ---
 
 # Get Model Usage
@@ -20,7 +20,7 @@ head:
 GET https://zenmux.ai/api/v1/management/statistics/model_usage
 ```
 
-查询**指定模型**在某个时间段内的 Token 消耗量或成本，**按天返回每日数据**，同时给出整个区间的汇总值。适合做单模型账单核对、每日用量趋势图等场景。
+查询**指定模型**在某个时间段内的 Token 消耗量、请求次数或成本，**按天返回每日数据**，同时给出整个区间的汇总值。适合做单模型账单核对、每日用量趋势图等场景。
 
 返回平台范围内从 **2025-09-29** 起的聚合数据。
 
@@ -62,6 +62,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 要获取的指标类型。
 
 - `tokens` — 输入 + 输出 Token 总数
+- `requests` — 请求总次数
 - `cost` — 按标价计算的 USD 成本
 
 ### starting_at `string` <span style="color: #FA6062; font-weight: 400">\*</span>
@@ -95,7 +96,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 
 ### data.metric `string`
 
-请求指标的回显（`"tokens"` 或 `"cost"`）。
+请求指标的回显（`"tokens"`、`"requests"` 或 `"cost"`）。
 
 ### data.starting_at `string`
 
@@ -110,6 +111,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 该模型在**整个区间**内的指标汇总值（等于 `series` 中各天 `value` 之和）：
 
 - `metric=tokens` 时为 Token 总数（整数）。
+- `metric=requests` 时为请求总次数（整数）。
 - `metric=cost` 时为 USD 成本。
 
 ### data.series `array`
@@ -117,7 +119,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 按天拆分的数组（按日期升序），每个元素包含：
 
 - `date` `string` — 日期，格式 `YYYY-MM-DD`
-- `value` `number` — 当天的 Token 数或 USD 成本。无数据的日期不会出现在序列中。
+- `value` `number` — 当天的 Token 数、请求次数或 USD 成本。无数据的日期不会出现在序列中。
 
 ::: api-request GET /api/v1/management/statistics/model_usage
 
@@ -167,6 +169,6 @@ curl -G https://zenmux.ai/api/v1/management/statistics/model_usage \
 
 :::
 
-::: info 查询成本
-将 `metric` 改为 `cost` 即可查询同一模型同一区间的 USD 成本，响应结构相同，`value` 与 `series[].value` 此时为成本金额。
+::: info 查询成本或请求次数
+将 `metric` 改为 `cost` 可查询 USD 成本，改为 `requests` 可查询同一模型同一区间的请求次数。响应结构相同，`value` 与 `series[].value` 表示所选指标。
 :::
