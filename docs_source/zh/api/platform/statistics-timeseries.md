@@ -7,7 +7,7 @@ head:
       content: 获取统计时间序列
   - - meta
     - name: keywords
-      content: Zenmux, API, statistics, 统计, 时间序列, tokens, cost, management
+      content: Zenmux, API, statistics, 统计, 时间序列, tokens, requests, cost, management
 ---
 
 # Get Statistics Timeseries
@@ -20,7 +20,7 @@ head:
 GET https://zenmux.ai/api/v1/management/statistics/timeseries
 ```
 
-获取按模型维度拆分的 Token 消耗量或成本时间序列数据。返回平台范围内从 **2025-09-29** 起的聚合数据。
+获取按模型维度拆分的 Token 消耗量、请求次数或成本时间序列数据。返回平台范围内从 **2025-09-29** 起的聚合数据。
 
 可用于构建堆叠柱状图、追踪消费趋势，或将历史数据导出为 CSV。
 
@@ -55,6 +55,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 要获取的指标类型。
 
 - `tokens` — 输入 + 输出 Token 总数
+- `requests` — 请求总次数
 - `cost` — 按标价计算的 USD 成本
 
 ### bucket_width `string` <span style="color: #FA6062; font-weight: 400">\*</span>
@@ -94,7 +95,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 
 ### data.metric `string`
 
-请求指标的回显（`"tokens"` 或 `"cost"`）。
+请求指标的回显（`"tokens"`、`"requests"` 或 `"cost"`）。
 
 ### data.bucket_width `string`
 
@@ -121,7 +122,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 - `models` `array` — 按模型拆分：
   - `model` `string` — 模型标识（如 `anthropic/claude-sonnet-4-6`）。Top N 之外的为 `__others__`。
   - `label` `string` — 展示名称（如 "Claude Sonnet 4.6"）
-  - `value` `number` — 该桶内的 Token 数或 USD 成本
+  - `value` `number` — 该桶内的 Token 数、请求次数或 USD 成本
 
 ::: api-request GET /api/v1/management/statistics/timeseries
 

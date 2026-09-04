@@ -7,7 +7,7 @@ head:
       content: Get App Trending
   - - meta
     - name: keywords
-      content: Zenmux, API, statistics, apps, agents, trending, growth, tokens, cost, management
+      content: Zenmux, API, statistics, apps, agents, trending, growth, tokens, requests, cost, management
 ---
 
 # Get App Trending
@@ -59,6 +59,7 @@ Each endpoint has its own independent rate limit counter. The maximum number of 
 Which metric to rank and compute growth by.
 
 - `tokens` — total input + output token count
+- `requests` — total request count attributed to the App / Agent
 - `cost` — list-price cost in USD
 
 ### bucket_width `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
@@ -93,7 +94,7 @@ Maximum number of entries to return, between `1` and `10`.
 
 ### data.metric `string`
 
-Echo of the requested metric (`"tokens"` or `"cost"`).
+Echo of the requested metric (`"tokens"`, `"requests"`, or `"cost"`).
 
 ### data.bucket_width `string`
 

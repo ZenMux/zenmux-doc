@@ -7,7 +7,7 @@ head:
       content: Get Statistics Timeseries
   - - meta
     - name: keywords
-      content: Zenmux, API, statistics, timeseries, tokens, cost, management
+      content: Zenmux, API, statistics, timeseries, tokens, requests, cost, management
 ---
 
 # Get Statistics Timeseries
@@ -20,7 +20,7 @@ Encountering errors? See the [API Error Codes Reference](/guide/advanced/error-c
 GET https://zenmux.ai/api/v1/management/statistics/timeseries
 ```
 
-Retrieve token consumption or cost over time, broken down by model. Returns platform-wide aggregated data available from **2025-09-29** onward.
+Retrieve token consumption, request count, or cost over time, broken down by model. Returns platform-wide aggregated data available from **2025-09-29** onward.
 
 Use this endpoint to build stacked bar charts of model usage, track spending trends, or export historical data to CSV.
 
@@ -55,6 +55,7 @@ Each endpoint has its own independent rate limit counter. The maximum number of 
 Which metric to retrieve.
 
 - `tokens` — total input + output token count
+- `requests` — total request count
 - `cost` — list-price cost in USD
 
 ### bucket_width `string` <span style="color: #FA6062; font-weight: 400">&#42;</span>
@@ -94,7 +95,7 @@ Top N models per bucket.
 
 ### data.metric `string`
 
-Echo of the requested metric (`"tokens"` or `"cost"`).
+Echo of the requested metric (`"tokens"`, `"requests"`, or `"cost"`).
 
 ### data.bucket_width `string`
 
@@ -121,7 +122,7 @@ Array of time buckets. Each bucket contains:
 - `models` `array` — Per-model breakdown:
   - `model` `string` — Model slug (e.g., `anthropic/claude-sonnet-4-6`). `__others__` for models outside top N.
   - `label` `string` — Display name (e.g., "Claude Sonnet 4.6")
-  - `value` `number` — Token count or USD cost for this bucket
+  - `value` `number` — Token count, request count, or USD cost for this bucket
 
 ::: api-request GET /api/v1/management/statistics/timeseries
 

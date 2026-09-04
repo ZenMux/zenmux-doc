@@ -7,7 +7,7 @@ head:
       content: 获取统计增长榜
   - - meta
     - name: keywords
-      content: Zenmux, API, statistics, 统计, 增长榜, trending, 增长率, tokens, cost, management
+      content: Zenmux, API, statistics, 统计, 增长榜, trending, 增长率, tokens, requests, cost, management
 ---
 
 # Get Statistics Trending
@@ -57,6 +57,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 用于计算增长率的指标。
 
 - `tokens` — 输入 + 输出 Token 总数
+- `requests` — 请求总次数
 - `cost` — 按标价计算的 USD 成本
 
 ### bucket_width `string` <span style="color: #FA6062; font-weight: 400">\*</span>
@@ -91,7 +92,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 
 ### data.metric `string`
 
-请求指标的回显（`"tokens"` 或 `"cost"`）。
+请求指标的回显（`"tokens"`、`"requests"` 或 `"cost"`）。
 
 ### data.bucket_width `string`
 
