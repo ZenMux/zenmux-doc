@@ -1,6 +1,11 @@
 <template>
-  <nav v-if="crumbs.length > 1" class="breadcrumb">
+  <nav
+    v-if="crumbs.length > 1 || hasSidebar"
+    class="breadcrumb"
+    :class="{ 'breadcrumb-single': crumbs.length <= 1 }"
+  >
     <button
+      v-if="hasSidebar"
       type="button"
       class="breadcrumb-menu-button"
       :aria-label="sidebarMenuLabel"
@@ -23,9 +28,11 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref } from "vue";
 import { useData, withBase, type DefaultTheme } from "vitepress";
+import { useSidebar } from "vitepress/theme";
 import IconCategory from "./icons/IconCategory.vue";
 
 const { page, localeIndex, theme } = useData();
+const { hasSidebar } = useSidebar();
 const isSidebarOpen = ref(false);
 let sidebarTrigger: HTMLButtonElement | null = null;
 let sidebarStateObserver: MutationObserver | null = null;
@@ -155,6 +162,10 @@ function findInItems(
   flex: 0 0 auto;
 }
 
+.breadcrumb-single {
+  display: none;
+}
+
 .breadcrumb-menu-button {
   display: none;
 }
@@ -199,6 +210,11 @@ function findInItems(
 }
 
 @media (max-width: 959px) {
+  /* A single category still needs the mobile sidebar entry point. */
+  .breadcrumb-single {
+    display: flex;
+  }
+
   .breadcrumb {
     gap: 0;
     margin-bottom: 28px;

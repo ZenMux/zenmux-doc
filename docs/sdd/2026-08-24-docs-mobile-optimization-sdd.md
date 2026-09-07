@@ -22,11 +22,12 @@ The documentation site currently relies on VitePress's generic mobile navigation
 ## Affected files and modules
 
 - `docs_source/.vitepress/config.mts`: injects the mobile Copy Page control after Markdown H1 headings.
-- `docs_source/.vitepress/theme/index.ts`: connects mobile search, sidebar tabs, and the existing assistant to VitePress layout slots.
+- `docs_source/.vitepress/theme/index.ts`: connects mobile search, sidebar tabs, and the existing assistant to VitePress layout slots; keeps the breadcrumb in `doc-before` and renders async API examples in `doc-footer-before`.
 - `docs_source/.vitepress/theme/custom.css`: isolates desktop navigation rules and defines the `<960px` shell, drawer, article, and overlay behavior.
 - `doc-tabs.vue`, `breadcrumb.vue`, `login.vue`, `ai-assistant.vue`: responsive variants, membership avatar presentation, and mobile interaction behavior.
 - `mobile-search.vue`: new mobile search surface.
 - `assistant-events.ts`, `composables/use-auth.ts`, `composables/use-body-scroll-lock.ts`, `virtual-modules.d.ts`: typed events, user-info fields, shared scroll lock, and local-search module declarations.
+- `test/e2e/mobile-navigation.js` and its adjacent logic document: browser regression for mobile category navigation.
 
 ## API and data contracts
 
@@ -48,6 +49,25 @@ The opened Header navigation follows the `Menu_mobile` variants under Figma node
 
 The 360px drawer uses 12px content padding. Its 46px three-column tab row has a 16px gap and a 2px active underline; navigation rows remain backed by the locale-specific VitePress sidebar configuration and use the design's 36px top-level rows, 32px nested rows, and 20px section separation.
 
+### Category navigation fix (2026-09-07)
+
+Work item `2026090400118823567` exposed two ways to lose the mobile directory
+entry point. API examples were mounted in `doc-top`, before the `doc-before`
+breadcrumb; once their async component loaded in the inline layout, the menu
+was pushed below the first viewport (1870px in the 390px reproduction).
+Integrations deduplicates its category and sidebar group into a single crumb,
+which the old `crumbs.length > 1` condition hid together with the menu button.
+
+`doc-before` renders Breadcrumb and Select; `doc-footer-before` renders
+ApiContainerLoader after the complete article but before previous/next chapter
+navigation. Inline API examples therefore appear at the bottom of the document
+content, with chapter navigation last. The examples retain their existing fixed
+desktop positioning and inline styling. Breadcrumb uses VitePress's
+public `useSidebar().hasSidebar` to render the mobile menu even when only one
+crumb exists. Single-crumb breadcrumbs remain hidden at desktop widths, and
+pages without a sidebar do not gain an inactive menu button. Category switches
+still close the native drawer, which can be reopened from the destination page.
+
 ### Search and assistant
 
 The floating Search button and mobile `Cmd/Ctrl+K` or `/` shortcut open a focus-trapped modal and lock page scrolling. A non-empty query shows the localized AI prompt first and up to five MiniSearch results loaded from `@localSearchIndex`. Selecting the AI prompt closes search, opens the assistant, and requests immediate send. The assistant is a bottom sheet on mobile, retains the existing message and attachment state, and restores focus when closed.
@@ -68,6 +88,8 @@ The mobile search overlay uses 60% black, 20px viewport padding, a maximum 362px
 - Missing or partial user-info fields fall back to the existing avatar and display name without breaking Header rendering.
 - Shared body-lock state prevents one overlay from re-enabling scroll while another overlay remains open.
 - Dynamic viewport height and safe-area insets account for mobile browser chrome and the on-screen keyboard.
+- Wait for async API examples before checking menu geometry; checking only H1 or
+  initial DOM visibility misses the layout shift that caused the API failure.
 
 ## Validation plan
 
@@ -75,10 +97,33 @@ The mobile search overlay uses 60% black, 20px viewport padding, a maximum 362px
 - Exercise sidebar route close, search keyboard navigation, search-to-AI automatic send, streaming prefill, overlay and Escape close, and focus restoration.
 - Verify no page-level horizontal overflow for tables, code blocks, images, drawers, or sheets.
 - Run repository static checks and `git diff --check`; do not run a frontend production build or start a development server for this change.
+- For the category navigation regression, run `test/e2e/mobile-navigation.js`
+  with Playwright CLI against a preview of the current source (see the adjacent
+  logic document). It checks English/Chinese at 390px and 959px, category URLs,
+  menu viewport bounds after async rendering, reopening, active tabs, and Escape.
+  API examples must follow the article and precede chapter navigation in DOM order
+  and rendered geometry; direct
+  visits to Create image edit cover the screenshot's exact page in both locales.
+  Also inspect the existing desktop category bar and fixed API examples.
+
+Category-fix validation (2026-09-07): the regression failed before the fix with
+the API menu at y=1860px, then passed all 12 locale/width/category combinations.
+At 1440px the category bar remained visible, API examples retained `position:
+fixed`, and the single-crumb desktop breadcrumb stayed hidden. Browser screenshots,
+script syntax checking, and `git diff --check` passed. No production build was run.
+
+Follow-up validation on the existing local server: the added article-order
+assertion failed before moving examples to `doc-after`, then all 16 checks passed,
+including direct Create image edit visits. The 390px screenshot shows navigation
+and the article first; the 1440px API panel still uses fixed positioning.
+
+Chapter-navigation ordering: the regression failed while examples were below the
+pager, then passed all 16 checks after moving them to `doc-footer-before`.
+The assertion verifies both DOM order and geometry: article, examples, then pager.
 
 ## Rollout and compatibility
 
-All new mobile layout behavior is guarded by `max-width: 959px`. Desktop slots and interaction remain in place. The assistant event extension is backward compatible, and the membership treatment consumes fields already returned by the existing user-info endpoint, so it requires no server rollout.
+Mobile breadcrumb visibility is guarded by `max-width: 959px`. API examples use the existing fixed desktop positioning; wherever the existing responsive styles make them inline, they follow the article and precede chapter navigation. The assistant event extension is backward compatible, and the membership treatment consumes fields already returned by the existing user-info endpoint, so it requires no server rollout.
 
 ## Open questions
 
