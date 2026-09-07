@@ -311,8 +311,8 @@ export default {
       "layout-top": () => h(ClientOnly, null, { default: () => h(DocTabs) }),
       "layout-bottom": () =>
         h(ClientOnly, null, { default: () => h(MobileSearch) }),
-      "doc-top": () => h(ClientOnly, null, { default: () => h(ApiContainerLoader) }),
       "doc-before": () => h(ClientOnly, null, { default: () => [h(Breadcrumb), h(Select)] }),
+      "doc-footer-before": () => h(ClientOnly, null, { default: () => h(ApiContainerLoader) }),
       "aside-bottom": () => h(ClientOnly, null, { default: () => h(AsideActions) }),
       "sidebar-nav-before": () =>
         h(ClientOnly, null, {
