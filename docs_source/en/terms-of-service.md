@@ -10,15 +10,15 @@ head:
 
 # ZenMux User Agreement
 
-Last updated: 3/17/2026
+**Effective Date:** September 9, 2026
 
 Thank you for using ZenMux! Before you access Our Service, please read the ZenMux User Agreement.
 
-ZenMux's products and services (referred to as "Our Service") are owned and operated by AI Force Singapore Pte. Ltd. (referred to herein as "we," "us," or "the Company"). Before using our products and services, the user (referred to as "you"), must carefully and thoroughly read and understand Zenmux User Agreement (referred to as "this Agreement"). **Pay special attention to the bolded clauses, including but not limited to those concerning limitations or exclusions of the Company's liability, restrictions on your rights, and the governing law and dispute resolution mechanisms.**
+ZenMux's products and services (referred to as "Our Service") are owned and operated by NexaMind Singapore Pte. Ltd. (referred to herein as "we," "us," or "the Company"). Before using our products and services, the user (referred to as "You"), must carefully and thoroughly read and understand ZenMux User Agreement (referred to as "this Agreement"). **Pay special attention to the bolded clauses, including but not limited to those concerning limitations or exclusions of the Company's liability, restrictions on your rights, and the governing law and dispute resolution mechanisms.**
 
-This Agreement is jointly entered into by you and the Company and is legally binding on both parties. The content of this Agreement includes the main text and various specific agreements and service rules that the Company has already published or may publish in the future. For example, we may enter into other specific agreements or rules with you when you use certain specific features of Our Services. In the event of a conflict between this Agreement and other specific agreements, the provisions of the other specific agreements shall prevail. The aforementioned agreements constitute an inseparable part of this Agreement and have the same legal effect as the main text.
+This Agreement is jointly entered into by You and the Company and is legally binding on both parties. The content of this Agreement includes the main text and various specific agreements and service rules that the Company has already published or may publish in the future. For example, we may enter into other specific agreements or rules with You when You use certain specific features of Our Services. In the event of a conflict between this Agreement and other specific agreements, the provisions of the other specific agreements shall prevail. The aforementioned agreements constitute an inseparable part of this Agreement and have the same legal effect as the main text.
 
-Unless you have read and accepted all the terms of this Agreement, please do not use Our Service. Your access or use of Our Service via web pages, browser plugins, or any other means will be deemed as your acknowledgment, understanding, and full acceptance of the entire content of this Agreement, thereby establishing this legal relationship with us. We may update this Agreement from time to time in accordance with applicable laws, regulations, or business developments. Changes will be announced through website pop-ups, in-service notifications, or other appropriate means. Please regularly review the latest terms of the Agreement. If you do not accept the content of the updated Agreement, please immediately stop using Our Service. Your continued use of our Service will be considered as your consent to and acceptance of the updated Agreement.
+Unless You have read and accepted all the terms of this Agreement, please do not use Our Service. Your access or use of Our Service via web pages, browser plugins, or any other means will be deemed as your acknowledgment, understanding, and full acceptance of the entire content of this Agreement, thereby establishing this legal relationship with us. We may update this Agreement from time to time in accordance with applicable laws, regulations, or business developments. Changes will be announced through website pop-ups, in-service notifications, or other appropriate means. Please regularly review the latest terms of the Agreement. If You do not accept the content of the updated Agreement, please immediately stop using Our Service. Your continued use of our Service will be considered as your consent to and acceptance of the updated Agreement.
 
 ---
 
@@ -26,9 +26,9 @@ Unless you have read and accepted all the terms of this Agreement, please do not
 
 Unless otherwise stated, the terms below shall have the following meanings in this Agreement:
 
-**1.1** We / "The Company": Refers to AI Force Singapore Pte. Ltd, the operator of the ZenMux's products and services.
+**1.1** We / "The Company": Refers to NexaMind Singapore Pte. Ltd., the operator of the ZenMux's products and services, which is a company incorporated under the laws of Singapore, with its registered place at 11 COLLYER QUAY, #05-06C, THE ARCADE, SINGAPORE 049317.
 
-**1.2** "Our Service" / "ZenMux": Refers to Our Service we provide via the ZenMux website（[https://zenmux.ai/](https://zenmux.ai/)）, which curates and offers access to multiple top-tier algorithm models for users.
+**1.2** "Our Service" / "ZenMux": Refers to Our Service we provide via the ZenMux website ([https://zenmux.ai/](https://zenmux.ai/)), which curates and offers access to multiple top-tier algorithm models for users.
 
 **1.3** "User" / "You": Refers to any individual, organization, or enterprise that accesses or uses Our Service.
 
@@ -36,9 +36,9 @@ Unless otherwise stated, the terms below shall have the following meanings in th
 
 ## II. Regarding our Service
 
-**2.1** Our Service include the products and services we provide to you via our website or other formats that may emerge with technological advancement and business adjustments. As our technology, models, and products continuously evolve and relevant laws and regulations change, we may upgrade, modify, suspend, or terminate Our Service, and may conduct internal or external testing for new service features.
+**2.1** Our Service include the products and services we provide to You via our website or other formats that may emerge with technological advancement and business adjustments. As our technology, models, and products continuously evolve and relevant laws and regulations change, we may upgrade, modify, suspend, or terminate Our Service, and may conduct internal or external testing for new service features.
 
-**2.2** **You must be at least 18 years old or the age of majority in your jurisdiction, whichever is higher, in order to access or use Our Service. If you are younger than 18 years old or the age of majority in your jurisdiction, you must not access or use Our Service.**
+**2.2** **You must be at least 18 years old or the age of majority in your jurisdiction, whichever is higher, in order to access or use Our Service. If You are younger than 18 years old or the age of majority in your jurisdiction, You must not access or use Our Service.**
 
 **2.3** The LLM underpinning our Service include:
 
@@ -52,11 +52,13 @@ Unless otherwise stated, the terms below shall have the following meanings in th
 - Z.AI: GLM series
 - Ant Group: Bailing series
 
+Please refer to Our service page at [https://zenmux.ai/models](https://zenmux.ai/models) for details.
+
 These large language models (LLM) are provided by the companies listed above and integrated into Our Service. You must ensure compliance with the terms and conditions set by the respective LLM providers, which may include but are not limited to usage restrictions, data protection policies, intellectual property rights clauses, and other relevant requirements. You are responsible for familiarizing yourself with and adhering to the requirements of these third-party LLM providers.
 
 **The Company shall not be held liable for any consequences arising from your failure to comply with the terms and conditions of these third-party LLM providers. You shall bear all risks and liabilities resulting from any violations of the third-party LLM provider's policies.**
 
-Additionally, due to ongoing technological and business advancements, the integrated LLM services and related algorithm models may be modified, replaced, or adjusted at any time. We will notify you of any significant changes as needed, but we do not guarantee that any specific LLM will remain part of our Service in the long term.
+Additionally, due to ongoing technological and business advancements, the integrated LLM services and related algorithm models may be modified, replaced, or adjusted at any time. We will notify You of any significant changes as needed, but we do not guarantee that any specific LLM will remain part of our Service in the long term.
 
 ---
 
@@ -64,9 +66,9 @@ Additionally, due to ongoing technological and business advancements, the integr
 
 **3.1** Users must first register a user account to use our Service. In accordance with relevant regulations, users are required to register using their personal information. Users may terminate their account usage at any time by following the instructions provided within our Service. We reserve the right to retain or terminate accounts as stipulated in this Agreement.
 
-**3.2** You acknowledge and agree that all information provided during registration is truthful, accurate, lawful, and valid, and that you consent to this Agreement and other rules or policies. You warrant that the ZenMux account information you set does not contain any content that violates national laws, regulations, policies, this Agreement, or related service rules or policies; you shall not impersonate others (e.g., using others' names, trademarks, images, etc.) without authorization. You shall not maliciously use the account to cause misunderstanding by others. Otherwise, we reserve the right to immediately suspend services, and you shall bear all legal liabilities arising therefrom.
+**3.2** You acknowledge and agree that all information provided during registration is truthful, accurate, lawful, and valid, and that You consent to this Agreement and other rules or policies. You warrant that the ZenMux account information You set does not contain any content that violates national laws, regulations, policies, this Agreement, or related service rules or policies; You shall not impersonate others (e.g., using others' names, trademarks, images, etc.) without authorization. You shall not maliciously use the account to cause misunderstanding by others. Otherwise, we reserve the right to immediately suspend services, and You shall bear all legal liabilities arising therefrom.
 
-**3.3** You shall safeguard your account and login credentials to prevent unauthorized access by others. Without our consent, you may not lend, lease, transfer, gift, sell, inherit, or otherwise permit others to use your account. Furthermore, you shall not engage in malicious registration activities such as frequent or bulk registration of ZenMux accounts. You must promptly notify us upon discovering any unauthorized use or suspicious activity that may be unlawful. We assume no liability for losses resulting from your failure to comply with this requirement.
+**3.3** You shall safeguard your account and login credentials to prevent unauthorized access by others. Without our consent, You may not lend, lease, transfer, gift, sell, inherit, or otherwise permit others to use your account. Furthermore, You shall not engage in malicious registration activities such as frequent or bulk registration of ZenMux accounts. You must promptly notify us upon discovering any unauthorized use or suspicious activity that may be unlawful. We assume no liability for losses resulting from your failure to comply with this requirement.
 
 **3.4** Your use of our Service must comply with the law. You are solely responsible for all activities under your account, including but not limited to inputting instructions, generating outputs, and uploading attachments. You must independently evaluate the use of content and features and bear all risks associated with such use. We are not liable for any loss or damage caused by your actions.
 
@@ -74,9 +76,9 @@ Additionally, due to ongoing technological and business advancements, the integr
 
 ## IV. Product and Service Guidelines
 
-**4.1** Subject to this Agreement, the Company grants you a limited, non-transferable, non-exclusive license to use Our Service, including related websites. All rights not expressly granted herein are reserved by the Company. Your exercise of such rights requires separate permission from the Company. The Company's failure to enforce any right hereunder does not constitute a waiver of that right.
+**4.1** Subject to this Agreement, the Company grants You a limited, non-transferable, non-exclusive license to use Our Service, including related websites. All rights not expressly granted herein are reserved by the Company. Your exercise of such rights requires separate permission from the Company. The Company's failure to enforce any right hereunder does not constitute a waiver of that right.
 
-**4.2** As a ZenMux user, you agree to comply with the following usage guidelines when using Our Service:
+**4.2** As a ZenMux user, You agree to comply with the following usage guidelines when using Our Service:
 
 ### 4.2.1 Network and System Security
 
@@ -112,7 +114,7 @@ You shall not input, generate, or disseminate illegal or harmful information in 
 
 ### 4.2.3 Prohibited Misuse
 
-In addition to adhering to the above guidelines, you shall not, without the Company's permission, use Our Service for the following illegal or improper activities:
+In addition to adhering to the above guidelines, You shall not, without the Company's permission, use Our Service for the following illegal or improper activities:
 
 **(1)** Any purpose that violates applicable laws or infringes upon the legitimate rights and interests of third parties;
 
@@ -128,30 +130,38 @@ In addition to adhering to the above guidelines, you shall not, without the Comp
 
 ## V. Personal Information Protection
 
-**5.1** We fully respect the protection of your personal information. You can read the ZenMux Privacy Policy to understand the purposes, methods, and scope of our collection and use of your personal information while you use Our Service, your rights regarding your personal information, and the security measures we implement to protect your information.
+**5.1** We fully respect the protection of your personal information. You can read the ZenMux Privacy Policy to understand the purposes, methods, and scope of our collection and use of your personal information while You use Our Service, your rights regarding your personal information, and the security measures we implement to protect your information.
+
+**5.2** You may access to your user data, including but not limited to conversation history, usage logs, and uploaded content for a maximum period of 180 calendar days from the date of generation and/or relevant interaction. For more model usage records detail, please refer to ZenMux Privacy Policy. Notwithstanding the above, the Company may retain your usage data for longer periods when:
+
+(a) Required by applicable law, regulation, or legal process;
+
+(b) Necessary to enforce this Agreement and for the Company's legitimate rights;
+
+(c) Required for security incident investigation or fraud prevention.
 
 ---
 
 ## VI. Intellectual Property and Licenses
 
-**6.1** As the developer and operator of Our Service, the Company owns all intellectual property rights (including but not limited to copyrights, trademarks, patents, and other proprietary rights) in all content provided within Our Service (including but not limited to software, technology, models, code, user interfaces, electronic documentation, etc.). All rights not expressly granted herein are reserved by the Company. Without the Company's permission, you may not use, exploit, copy, or transfer these in any manner.
+**6.1** As the developer and operator of Our Service, the Company owns all intellectual property rights (including but not limited to copyrights, trademarks, patents, and other proprietary rights) in all content provided within Our Service (including but not limited to software, technology, models, code, user interfaces, electronic documentation, etc.). All rights not expressly granted herein are reserved by the Company. Without the Company's permission, You may not use, exploit, copy, or transfer these in any manner.
 
-**6.2** To the extent permitted by law, you retain ownership, intellectual property rights, and other relevant rights to the content you input while using Our Service. Subject to your authorization and compliance with relevant laws, regulations, and the terms of this Agreement, we may use such content to provide, maintain, develop, and improve Our Service.
+**6.2** To the extent permitted by law, You retain ownership, intellectual property rights, and other relevant rights to the content You input while using Our Service. Subject to your authorization and compliance with relevant laws, regulations, and the terms of this Agreement, we may use such content to provide, maintain, develop, and improve Our Service.
 
-**6.3** You warrant that the content you input while using Our Service is either your original creation or you possess the legal authorization for its use, and that it does not infringe upon any third party's intellectual property rights, portrait rights, reputation rights, name rights, privacy rights, personal information rights, trade secrets, or other legitimate rights and interests.
+**6.3** You warrant that the content You input while using Our Service is either your original creation or You possess the legal authorization for its use, and that it does not infringe upon any third party's intellectual property rights, portrait rights, reputation rights, name rights, privacy rights, personal information rights, trade secrets, or other legitimate rights and interests.
 
-**6.4** Without permission, you shall not use any trademarks, service marks, trade names, domain names, website names, or other distinctive brand features of the Company or Our Service under any circumstances. Without the Company's prior written consent, you shall not display, use, apply to register as a trademark, register as a domain name, or otherwise handle these identifiers, either alone or in combination.
+**6.4** Without permission, You shall not use any trademarks, service marks, trade names, domain names, website names, or other distinctive brand features of the Company or Our Service under any circumstances. Without the Company's prior written consent, You shall not display, use, apply to register as a trademark, register as a domain name, or otherwise handle these identifiers, either alone or in combination.
 
 ### 6.5 Notice and Procedure for Making Claims of Copyright Infringement
 
-**6.5.1** If you believe that your work has been copied in a way that constitutes copyright infringement, you may provide written notice to us in the form prescribed by and containing the information required under the Copyright Act 2021 of Singapore, to be submitted to our designated representative, as follows:
+**6.5.1** If You believe that your work has been copied in a way that constitutes copyright infringement, You may provide written notice to us in the form prescribed by and containing the information required under the Copyright Act 2021 of Singapore, to be submitted to our designated representative, as follows:
 
-- **Name:** AI Force Singapore Pte. Ltd.
+- **Name:** NexaMind Singapore Pte. Ltd.
 - **Email:** [bd@zenmux.ai](mailto:bd@zenmux.ai)
 
 **6.5.2** We will only process notices in the English language that comply with the requirements under the Copyright Act 2021 of Singapore, other applicable laws, and these Terms. Any notices that do not comply with the above may not be processed.
 
-**6.5.3** We will duly consider all notices submitted in accordance with the requirements above. You agree that you shall not take any legal action or exercise any legal remedy you may have against us in respect of any allegedly infringing material, unless you have first given us notice in accordance with the requirements above, and a reasonable and sufficient opportunity to remove the allegedly infringing material following your notice to us. Where we remove the allegedly infringing material in response to your notice, you agree not to exercise and you hereby waive, any right of action against us under applicable law which you may have in respect of any infringing material appearing on Our Service prior to such removal by us.
+**6.5.3** We will duly consider all notices submitted in accordance with the requirements above. You agree that You shall not take any legal action or exercise any legal remedy You may have against us in respect of any allegedly infringing material, unless You have first given us notice in accordance with the requirements above, and a reasonable and sufficient opportunity to remove the allegedly infringing material following your notice to us. Where we remove the allegedly infringing material in response to your notice, You agree not to exercise and You hereby waive, any right of action against us under applicable law which You may have in respect of any infringing material appearing on Our Service prior to such removal by us.
 
 You agree and acknowledge that we have no control and are not responsible or liable for any content or material on third-party platforms or services.
 
@@ -163,23 +173,29 @@ You agree and acknowledge that we have no control and are not responsible or lia
 
 **7.2** **Under no circumstances shall the Company be liable for any inability to access Our Service, service interruptions, leakage, delay, stagnation, or error of information and data, or failure or delay in providing services, resulting from:** unstable third-party factors like network connection failures, power outages, hacker attacks, internet viruses, adjustments by network operators; force majeure events such as natural disasters, strikes, riots, wars, governmental actions, judicial or administrative orders; or any other causes beyond the Company's reasonable control.
 
-**7.3** To provide you with better products and services, we may periodically perform maintenance, updates, and introduce new features. During testing phases of new features, service instability may occur. Except as expressly required by law, the Company makes no guarantees regarding the stability or performance of features in testing phases and assumes no liability for such matters.
+**7.3** To provide You with better products and services, we may periodically perform maintenance, updates, and introduce new features. During testing phases of new features, service instability may occur. Except as expressly required by law, the Company makes no guarantees regarding the stability or performance of features in testing phases and assumes no liability for such matters.
 
-**7.4** The Company is not responsible for any services or content provided by third parties (if any), nor for any loss you incur due to your use of such third-party services or content.
+**7.4** The Company is not responsible for any services or content provided by third parties (if any), nor for any loss You incur due to your use of such third-party services or content.
 
-**7.5** You acknowledge that if you violate this Agreement or other service guidelines or policies, we have the right to take actions against you, including warnings, requests for rectification within a time limit, restriction of account functions, suspension of use, account closure, prohibition of re-registration, or deletion of related content. We will preserve records of suspected illegal activities or crimes and report them to relevant authorities or cooperate with investigations as required by law. **You shall bear all legal liabilities or any claims, demands, or losses asserted by third parties arising from your breach. If the Company suffers any losses due to your breach, you shall be liable for compensation.**
+**7.5** The Company service of Builder Plan (Subscription) is designed and licensed for personal Copilot use only, which is primarily for personal assistance and cannot be shared, used in production environment settings, for data processing at scale and/or automated workflows. The Company reserves the right to audit your usage data, including but not limited to API call patterns, token consumption, request frequency, and service endpoints accessed. If the Company find, at its sole discretion, that You have violated the aforementioned restriction, the Company reserves the right to seek damages for any losses resulting from unauthorized commercial use.
 
-**7.6** You agree that you shall bear all losses (including but not limited to infringement against third parties, compensation for damages) resulting from your breach of this Agreement or relevant laws and regulations. **Unless otherwise stated in this Agreement, the service interface, or expressly required by law, the Company shall not be liable for any losses you incur arising from the use of Our Services.**
+**7.6** The Company offers a Bring Your Own Key (BYOK) option that allows You to use your own API keys from third-party AI providers with ZenMux services, and You acknowledge and agree that You are solely responsible for obtaining, maintaining, and securing your API keys and to comply with the terms of service and acceptable use policies of the respective third-party providers. The Company disclaims all liability for any interruption, suspension, or termination by the third-party provider, and You agree to indemnify and hold harmless the Company from any claims, damages, losses, or expenses arising from your use of BYOK.
+
+**7.7** You acknowledge that if You violate this Agreement or other service guidelines or policies, we have the right to take actions against You, including warnings, requests for rectification within a time limit, restriction of account functions, suspension of use, account closure, prohibition of re-registration, or deletion of related content. We will preserve records of suspected illegal activities or crimes and report them to relevant authorities or cooperate with investigations as required by law. **You shall bear all legal liabilities or any claims, demands, or losses asserted by third parties arising from your breach. If the Company suffers any losses due to your breach, You shall be liable for compensation.**
+
+**7.8** You agree that You shall bear all losses (including but not limited to infringement against third parties, compensation for damages) resulting from your breach of this Agreement or relevant laws and regulations. **Unless otherwise stated in this Agreement, the service interface, or expressly required by law, the Company shall not be liable for any losses You incur arising from the use of Our Services.**
 
 ---
 
 ## VIII. Fees
 
-**8.1** Unless otherwise agreed by the parties, User shall be responsible for paying us the fees incurred by its account at the rates specified on the model pricing page. We may update the published rates, with updates becoming effective the earlier of 30 days after the updated rates are posted by us or User otherwise receives Notice.
+**8.1** Unless otherwise agreed by the parties, You shall be responsible for paying us the fees incurred by its account at the rates specified on the model pricing page. We may update the published rates, with updates becoming effective the earlier of 30 days after the updated rates are posted by us or User otherwise receives Notice.
 
-**8.2 Taxes.** Fees do not include any taxes, duties, or assessments that may be owed by user for use of Our Service ("Taxes"), unless otherwise specified in the applicable invoice. User is responsible for remitting any necessary withholding Taxes to the relevant authority on a timely basis and providing us with evidence of the same upon request. Where law provides for the reduction or elimination of withholding taxes, including via tax treaty, the parties will collaborate in good faith to do so. For clarity, User must pay us an additional amount (a "Gross-up Payment") sufficient to ensure that we receive the same net amount it would have received if no such withholding or reduction had been required (taking into account any and all applicable Taxes (including any Taxes imposed on the Gross-up Payment itself)).
+**8.2** You acknowledge that due to system latency and real-time usage calculation, your Credit balance may temporarily show a negative value ("Overusage") when your consumption exceeds your available Credit and your account balance will display as a negative value until additional Credit is added. Any subsequent Credit top-up You paid will be automatically applied to settle the outstanding negative balance first before being available for new usage. The Company reserves the right to suspend or terminate services until the negative balance is settled.
 
-**8.3** If User fails to pay us all amounts due when due, we may suspend or terminate User's access to Our Service. We reserve all other rights it may have regarding the collection of fees.
+**8.3 Taxes.** Fees do not include any taxes, duties, or assessments that may be owed by user for use of Our Service ("Taxes"), unless otherwise specified in the applicable invoice. User is responsible for remitting any necessary withholding Taxes to the relevant authority on a timely basis and providing us with evidence of the same upon request. Where law provides for the reduction or elimination of withholding taxes, including via tax treaty, the parties will collaborate in good faith to do so. For clarity, User must pay us an additional amount (a "Gross-up Payment") sufficient to ensure that we receive the same net amount it would have received if no such withholding or reduction had been required (taking into account any and all applicable Taxes (including any Taxes imposed on the Gross-up Payment itself)).
+
+**8.4** If User fails to pay us all amounts due when due, we may suspend or terminate User's access to Our Service. We reserve all other rights it may have regarding the collection of fees.
 
 ---
 
@@ -187,11 +203,11 @@ You agree and acknowledge that we have no control and are not responsible or lia
 
 **You may apply for refund according to the following terms and conditions.**
 
-### 9.1 Refund Rights.
+### 9.1 Refund Rights
 
-**9.1.1 Pay-as-you-go:** **If you chose the Pay-as-you-go to pay us fees, you may apply for a refund of the fees corresponding to the unused PAYG credits that you have paid for, which does not include the premium PAYG credits (the "Unused Paid PAYG Credits") within twenty-four (24) hours after purchasing. The Premium PAYG credits will be forfeited immediately once you apply for the refund and are non-refundable. No fees will be refund after twenty-four (24) hours after purchasing.**
+**9.1.1 Pay-as-you-go:** **If You chose the Pay-as-you-go to pay us fees, You may apply for a refund of the fees corresponding to the unused PAYG credits that You have paid for, which does not include the premium PAYG credits (the “Unused Paid PAYG Credits”) within twenty-four (24) hours after purchasing. The Premium PAYG credits will be forfeited immediately once You apply for the refund and are non-refundable. No fees will be refund after twenty-four (24) hours after purchasing.**
 
-**9.1.2 Subscription:** **if you chose to subscribe for our ZenMux Builder Plan, and the fees calculated based on the PAYG pricing rates for the tokens actually consumed as of you send the refund application email ("Consumption Fee") are less than the subscription fees you have actually paid ("Subscription Fee"), you may apply for a refund of the balance between the Consumption Fee and the Subscription Fee within twenty-four (24) hours after subscription. No fees will be refund after twenty-four (24) hours after subscription.**
+**9.1.2 Subscription:** **if You chose to subscribe for our ZenMux Builder Plan, and the fees calculated based on the PAYG pricing rates for the tokens actually consumed as of You send the refund application email (“Consumption Fee”) are less than the subscription fees You have actually paid (“Subscription Fee”), You may apply for a refund of the balance between the Consumption Fee and the Subscription Fee within twenty-four (24) hours after subscription. No fees will be refund after twenty-four (24) hours after subscription.**
 
 ### 9.2 Refund Amount
 
@@ -201,11 +217,11 @@ You agree and acknowledge that we have no control and are not responsible or lia
 
 - **Pay-as-you-go Fee Refund Amount = fees corresponding to the Unused Paid PAYG Credits × (1 − 5%)**, in which,
 
-  Unused Paid PAYG Credits = the total PAYG credits you paid for – the PAYG credits you have used
+  Unused Paid PAYG Credits = the total PAYG credits You paid for – the PAYG credits You have used
 
 - **Subscription Fee Refund Amount = (Subscription Fee − Consumption Fee) × (1 − 5%)**
 
-**9.3 Refund Application:** **Please send your refund application to [support@zenmux.ai](mailto:support@zenmux.ai), and provide your account email / account ID, purchase/subscription starting date and time (YYYY−MM−DDHH), purchase/subscription fee amount, current unused credits balance, reason for refund request and any other information we may require from time to time.**
+**9.3 Refund Application:** **Please send your refund application to [support@zenmux.ai](mailto:support@zenmux.ai), and provide your account email / account ID, purchase/subscription starting date and time (YYYY-MM-DDHH), purchase/subscription fee amount, current unused credits balance, reason for refund request and any other information we may require from time to time.**
 
 **9.4 Refund Processing:** We will review your refund application within **7 business days** of receiving your application email. Eligible refund application will be processed and we will process the refund to your original payment account in the original payment currency via the original payment method in accordance with these terms. Any discrepancies arising from exchange rate fluctuations shall be borne solely by yourself.
 
@@ -221,26 +237,28 @@ These Terms and any dispute, action, or claim arising out of or in connection wi
 
 ## XI. Modification and Termination of the Agreement
 
-**11.1** We reserve the right to modify the terms of this Agreement when necessary. Once amended or changed, the revised terms will be announced via website pop-ups, in-service notifications, or other appropriate methods. Please regularly check for and read the latest terms. If you disagree with the changes, you must actively cancel Our Service. Your continued use of Our Service constitutes acceptance of the modified terms.
+**11.1** We reserve the right to modify the terms of this Agreement when necessary. Once amended or changed, the revised terms will be announced via website pop-ups, in-service notifications, or other appropriate methods. Please regularly check for and read the latest terms. If You disagree with the changes, You must actively cancel Our Service. Your continued use of Our Service constitutes acceptance of the modified terms.
 
 **11.2** This Agreement will automatically terminate or be rescinded under the following circumstances:
 
 (1) We cease providing Our Service;
 
-(2) Either we or you cease to exist or lose legal capacity due to dissolution, bankruptcy, liquidation, etc.;
+(2) Either we or You cease to exist or lose legal capacity due to dissolution, bankruptcy, liquidation, etc.;
 
-(3) You request account deletion and it is approved by us, or you otherwise cease using Our Service.
+(3) You request account deletion and it is approved by us, or You otherwise cease using Our Service.
 
 ---
 
 ## XII. Contact Information
 
-If you discover any illegal activities or violations of this Agreement while using Our Service, or if you have any opinions or suggestions regarding this Agreement or Our Service, you may contact us through the following channels:
+If You discover any illegal activities or violations of this Agreement while using Our Service, or if You have any opinions or suggestions regarding this Agreement or Our Service, You may contact us through the following channels:
 
-- **Name:** AI Force Singapore Pte. Ltd.
+- **Name:** NexaMind Singapore Pte. Ltd.
 - **Email:** [bd@zenmux.ai](mailto:bd@zenmux.ai)
 
 For refund-related inquiries, please contact:
 
 - **Email:** [support@zenmux.ai](mailto:support@zenmux.ai)
 - **Website:** [https://zenmux.ai](https://zenmux.ai)
+
+(The end)
