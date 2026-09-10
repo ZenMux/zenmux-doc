@@ -322,6 +322,14 @@ export default defineLoacaleConfig({
               link: "/zh/api/platform/get-generation",
             },
             {
+              text: "Get Account Usage",
+              link: "/zh/api/platform/account-usage",
+            },
+            {
+              text: "Get Account Cost",
+              link: "/zh/api/platform/account-cost",
+            },
+            {
               text: "Get Statistics Timeseries",
               link: "/zh/api/platform/statistics-timeseries",
             },

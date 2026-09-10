@@ -29,6 +29,7 @@ type RequestExample = {
   description: string;
   codes: Record<string, string>;
   langOptions: string[];
+  responseCode: string;
 };
 
 const languageTitles = new Set([
@@ -106,6 +107,7 @@ function createExample(title: string, description = ""): RequestExample {
     description: description || title,
     codes: {},
     langOptions: [],
+    responseCode: "",
   };
 }
 
@@ -1017,6 +1019,11 @@ function initRequestData() {
         examples.set(title, example);
       }
 
+      if (block.lang.toLowerCase() === "json") {
+        example.responseCode = block.html;
+        return;
+      }
+
       example.codes[block.lang] = block.html;
       if (!example.langOptions.includes(block.lang)) {
         example.langOptions.push(block.lang);
@@ -1098,7 +1105,9 @@ const currentExample = computed(() => {
 const currentLangOptions = computed(() => currentExample.value?.langOptions || []);
 const rendered = computed(() => currentExample.value?.codes[currentLang.value] || "");
 const renderedPlain = computed(() => htmlToPlain(rendered.value));
-const json = computed(() => responseCodes.value["json"] || "");
+const json = computed(
+  () => currentExample.value?.responseCode || responseCodes.value["json"] || "",
+);
 const jsonPlain = computed(() => htmlToPlain(json.value));
 const requestTitle = computed(() => {
   return docTitle.value || page.value.title || requestURL.value || "Request";
