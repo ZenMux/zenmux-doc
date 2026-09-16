@@ -341,11 +341,11 @@ Once enabled, the page shows details for the selected key, including its name an
 
 1. **Normal usage** — subscription quota (Flows) is consumed first
 2. **Quota exhausted** — when the 5-hour or weekly window hits its limit, traffic switches to the designated pay-as-you-go API Key
-3. **Metered billing** — calls during this period are charged to your account balance
+3. **Metered billing** — calls during this period first consume any available Token Packs, then are charged to your account balance
 4. **Automatic recovery** — once the subscription window resets, billing returns to your subscription
 
 ::: warning Billing reminder
-With Extra Usage enabled, exhausting your subscription quota automatically draws from your pay-as-you-go balance. Keep that balance funded and monitor it to avoid service interruptions or unexpected charges. To switch backup keys, click **Reselect**.
+With Extra Usage enabled, exhausting your subscription quota automatically switches to metered billing: available [Token Packs](/guide/token-pack) are consumed first, then your pay-as-you-go balance. Keep that balance funded and monitor it to avoid service interruptions or unexpected charges. To switch backup keys, click **Reselect**.
 :::
 
 ## Using subscriptions in Studio Chat

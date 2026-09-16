@@ -72,7 +72,7 @@ At the top of the page, you’ll see three balance types:
 - **Bonus & Compensation Credits**: credits from top-up bonuses, referral rewards, insurance compensation, etc.
 
 ::: info Balance notes
-All credits are denominated in USD ($). 1 credit equals $1 worth of API usage. During consumption, bonus credits are used first, then top-up credits.
+All credits are denominated in USD ($). 1 credit equals $1 worth of API usage. PAYG consumption order: **Token Packs (if any) → Bonus & Compensation Credits → Top-Up Credits**. See the [Token Packs guide](/guide/token-pack) for the full deduction priority (including subscription quota).
 :::
 
 ### Step 3: Top up your account
@@ -251,6 +251,10 @@ Yes. You can use the **Builder Plan (Subscription)** during personal development
 ### How long does it take for credits to arrive after topping up?
 
 Credits are applied **immediately** after a successful top-up—no waiting required. The system also automatically adds bonus credits (the exact percentage is shown on the page).
+
+### How do my Token Packs relate to this balance?
+
+**Token Packs** are separate, fixed-quantity token allowances; they are not part of your Total Balance. PAYG consumption deducts from them **before** your balance, and switches to your balance once they are exhausted. See [Token Packs](/guide/token-pack).
 
 ### How do I view usage details for a specific API key?
 
