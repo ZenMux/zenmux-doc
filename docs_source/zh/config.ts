@@ -58,6 +58,10 @@ const docsSidebar = [
         link: "/zh/guide/pay-as-you-go",
       },
       {
+        text: "Token 包",
+        link: "/zh/guide/token-pack",
+      },
+      {
         text: "退款说明",
         link: "/zh/guide/refund",
       },

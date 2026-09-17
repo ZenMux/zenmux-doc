@@ -61,6 +61,10 @@ const docsSidebar = [
         link: "/guide/pay-as-you-go",
       },
       {
+        text: "Token Packs",
+        link: "/guide/token-pack",
+      },
+      {
         text: "Refunds",
         link: "/guide/refund",
       },
