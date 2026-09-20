@@ -1,11 +1,39 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, markRaw, onMounted, onUnmounted } from "vue";
 import { Copy as CopyIcon } from "./icons";
+import {
+  Chat,
+  IconModels,
+  IconWishlist_01,
+  IconEmbedding,
+  IconRerank,
+  IconSound,
+  IconTranscription,
+  IconVideo,
+  IconImageai,
+  IconComment,
+  IconPercentage,
+  IconPay_as_you_go,
+  IconSubscriptionWallet,
+} from "./icons";
 
 interface Endpoint {
   title: string;
   path: string;
-  iconType: "chat" | "models" | "generate" | "embeddings";
+  iconType:
+    | "chat"
+    | "models"
+    | "generate"
+    | "embeddings"
+    | "rerank"
+    | "speech"
+    | "transcriptions"
+    | "videos"
+    | "imagen"
+    | "interactions"
+    | "flow_rate"
+    | "payg"
+    | "subscription";
   docUrl?: string;
 }
 
@@ -13,11 +41,11 @@ interface Provider {
   name: string;
   subtitle: string;
   baseUrl: string;
-  supportedModels: {
+  supportedModels?: {
     iconList: string[];
     url: string;
   };
-  iconType: "openai" | "anthropic" | "google";
+  iconType: "openai" | "anthropic" | "google" | "platform" | "zenmux";
   endpoints: Endpoint[];
 }
 
@@ -53,6 +81,24 @@ const providersData: Provider[] = [
         path: "/embeddings",
         iconType: "embeddings",
         docUrl: "/docs/api/openai/create-embeddings.html",
+      },
+      {
+        title: "Create Rerank",
+        path: "/rerank",
+        iconType: "rerank",
+        docUrl: "/docs/api/openai/rerank.html",
+      },
+      {
+        title: "Create Speech",
+        path: "/audio/speech",
+        iconType: "speech",
+        docUrl: "/docs/api/openai/create-audio-speech.html",
+      },
+      {
+        title: "Create Transcription",
+        path: "/audio/transcriptions",
+        iconType: "transcriptions",
+        docUrl: "/docs/api/openai/create-audio-transcriptions.html",
       },
       {
         title: "List Models",
@@ -116,6 +162,24 @@ const providersData: Provider[] = [
         docUrl: "/docs/api/vertexai/generate-content.html",
       },
       {
+        title: "Generate Images",
+        path: "/v1/publishers/{provider}/models/{model}:predict",
+        iconType: "imagen",
+        docUrl: "/docs/api/vertexai/generate-images.html",
+      },
+      {
+        title: "Generate Videos",
+        path: "/v1/publishers/{provider}/models/{model}:predictLongRunning",
+        iconType: "videos",
+        docUrl: "/docs/api/vertexai/generate-videos.html",
+      },
+      {
+        title: "Create Interaction",
+        path: "/interactions",
+        iconType: "interactions",
+        docUrl: "/docs/api/vertexai/create-interaction-native.html",
+      },
+      {
         title: "List Models",
         path: "/v1beta/models",
         iconType: "models",
@@ -123,7 +187,73 @@ const providersData: Provider[] = [
       },
     ],
   },
+  {
+    name: "ZenMux Videos",
+    subtitle: "ZenMux Videos",
+    baseUrl: "https://zenmux.ai/api/v1",
+    iconType: "zenmux",
+    supportedModels: {
+      iconList: [],
+      url: "/models?supported_protocol=videos",
+    },
+    endpoints: [
+      {
+        title: "Create a Video",
+        path: "/videos",
+        iconType: "videos",
+        docUrl: "/docs/api/zenmux/generate-videos-native.html",
+      },
+    ],
+  },
+  {
+    name: "Platform API",
+    subtitle: "Account & Subscription",
+    baseUrl: "https://zenmux.ai/api/v1/management",
+    iconType: "platform",
+    endpoints: [
+      {
+        title: "Get Flow Rate",
+        path: "/flow_rate",
+        iconType: "flow_rate",
+        docUrl: "https://zenmux.ai/docs/api/platform/flow-rate",
+      },
+      {
+        title: "Get PAYG Balance",
+        path: "/payg/balance",
+        iconType: "payg",
+        docUrl: "https://zenmux.ai/docs/api/platform/payg-balance",
+      },
+      {
+        title: "Get Subscription Detail",
+        path: "/subscription/detail",
+        iconType: "subscription",
+        docUrl: "https://zenmux.ai/docs/api/platform/subscription-detail",
+      },
+      {
+        title: "Get Generation",
+        path: "/generation",
+        iconType: "generate",
+        docUrl: "https://zenmux.ai/docs/api/platform/get-generation",
+      },
+    ],
+  },
 ];
+
+const endpointIcons = {
+  chat: markRaw(Chat),
+  models: markRaw(IconModels),
+  generate: markRaw(IconWishlist_01),
+  embeddings: markRaw(IconEmbedding),
+  rerank: markRaw(IconRerank),
+  speech: markRaw(IconSound),
+  transcriptions: markRaw(IconTranscription),
+  videos: markRaw(IconVideo),
+  imagen: markRaw(IconImageai),
+  interactions: markRaw(IconComment),
+  flow_rate: markRaw(IconPercentage),
+  payg: markRaw(IconPay_as_you_go),
+  subscription: markRaw(IconSubscriptionWallet),
+};
 
 const open = ref(false);
 const copyTip = ref<string | null>(null);
@@ -280,8 +410,16 @@ onUnmounted(() => {
                   </svg>
                   <!-- Google icon -->
                   <img
-                    v-else
+                    v-else-if="provider.iconType === 'google'"
                     src="https://cdn.marmot-cloud.com/storage/zenmux/2026/01/21/gUA1fLu/Property-1Google.svg"
+                    :alt="provider.iconType"
+                    width="20"
+                    height="20"
+                  />
+                  <!-- ZenMux icon (platform / zenmux) -->
+                  <img
+                    v-else
+                    src="https://cdn.marmot-cloud.com/storage/zenmux/2025/11/04/hn9lgft/Property-1ZenMux.svg"
                     :alt="provider.iconType"
                     width="20"
                     height="20"
@@ -321,54 +459,11 @@ onUnmounted(() => {
                 >
                   <div class="endpoint-info">
                     <div class="endpoint-icon-wrapper">
-                      <!-- Chat icon -->
-                      <svg
-                        v-if="endpoint.iconType === 'chat'"
+                      <component
+                        :is="endpointIcons[endpoint.iconType]"
                         width="16"
                         height="16"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          d="M17.503 9.515c0-3.604-3.276-6.67-7.504-6.67S2.496 5.91 2.496 9.515c0 1.675.695 3.216 1.867 4.401.41.414.62 1.037.45 1.657l-.355 1.302v.002l.003.003 5.766-.68a1 1 0 0 1 .16-.024l.376-.026c3.855-.344 6.74-3.251 6.74-6.635M6.675 9.102a.83.83 0 0 1 0 1.66h-.009a.83.83 0 0 1 0-1.66zm3.333 0a.83.83 0 0 1 0 1.66h-.009a.83.83 0 0 1 0-1.66zm3.333 0a.83.83 0 0 1 0 1.66h-.008a.83.83 0 0 1 0-1.66zm5.822.413c0 4.497-3.87 8.043-8.584 8.311q-.034.009-.07.014l-5.853.688a1.664 1.664 0 0 1-1.8-2.09l.356-1.301-.002-.01a.1.1 0 0 0-.027-.044C1.733 13.618.836 11.667.836 9.515c0-4.68 4.187-8.33 9.163-8.33s9.164 3.649 9.164 8.33"
-                        />
-                      </svg>
-                      <!-- Models icon -->
-                      <svg
-                        v-else-if="endpoint.iconType === 'models'"
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="currentColor"
-                      >
-                        <path
-                          d="M10 14.666V14H8.666v.666a.667.667 0 1 1-1.333 0V14H6v.666a.667.667 0 0 1-1.334 0v-.734a3.34 3.34 0 0 1-2.6-2.599h-.733a.667.667 0 0 1 0-1.333H2V8.666h-.667a.667.667 0 1 1 0-1.333H2V6h-.667a.667.667 0 0 1 0-1.334h.734a3.34 3.34 0 0 1 2.6-2.6v-.733a.667.667 0 0 1 1.333 0V2h1.333v-.667a.667.667 0 0 1 1.333 0V2H10v-.667a.667.667 0 1 1 1.333 0v.734a3.34 3.34 0 0 1 2.6 2.6h.733a.667.667 0 0 1 0 1.333H14v1.333h.666a.667.667 0 0 1 0 1.333H14V10h.666a.667.667 0 1 1 0 1.333h-.733a3.34 3.34 0 0 1-2.6 2.599v.734a.667.667 0 0 1-1.333 0M5.333 3.333a2 2 0 0 0-2 2v5.333a2 2 0 0 0 2 2h5.333a2 2 0 0 0 2-2V5.333a2 2 0 0 0-2-2zm1.333 3.333v2.667h2.667V6.666zm4 2.667c0 .737-.596 1.333-1.333 1.333H6.666a1.333 1.333 0 0 1-1.333-1.333V6.666c0-.736.597-1.333 1.333-1.333h2.667c.736 0 1.333.597 1.333 1.333z"
-                        />
-                      </svg>
-                      <!-- Embeddings icon -->
-                      <svg
-                        v-else-if="endpoint.iconType === 'embeddings'"
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="currentColor"
-                      >
-                        <path
-                          d="M2 3.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0m4.5 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0m4.5 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0M2 8a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0m4.5 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0m4.5 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0M2 12.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0m4.5 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0m4.5 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0"
-                        />
-                      </svg>
-                      <!-- Generate icon -->
-                      <svg
-                        v-else
-                        width="16"
-                        height="16"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          d="M8.447 2.229a1.128 1.128 0 0 1 1.884 0l.084.156L12.5 6.999l4.615 2.086c.884.399.884 1.654 0 2.053L12.5 13.222l-2.085 4.615c-.399.884-1.654.884-2.053 0l-2.085-4.615-4.614-2.084c-.884-.4-.884-1.654 0-2.053l4.614-2.086 2.085-4.614zm-.778 5.6c-.113.25-.313.45-.563.562l-3.808 1.72 3.808 1.72c.25.113.45.313.563.563l1.72 3.807 1.72-3.807.046-.091c.117-.208.298-.373.516-.472l3.808-1.72-3.808-1.72a1.13 1.13 0 0 1-.562-.562L9.389 4.02zM15.861.943c.356-.633 1.33-.587 1.598.135l.477 1.29 1.29.478c.77.285.77 1.374 0 1.66l-1.29.477-.477 1.29c-.286.77-1.375.77-1.66 0l-.478-1.29-1.29-.478c-.77-.285-.77-1.374 0-1.66l1.29-.478.478-1.29zm.478 1.92a.88.88 0 0 1-.523.522l-.783.29.783.29a.89.89 0 0 1 .485.434l.038.09.29.782.29-.783.038-.089c.1-.2.273-.355.485-.433l.782-.29-.782-.29a.88.88 0 0 1-.523-.523l-.29-.784z"
-                        />
-                      </svg>
+                      />
                     </div>
                     <div class="endpoint-text">
                       <div class="endpoint-title">{{ endpoint.title }}</div>
@@ -409,8 +504,9 @@ onUnmounted(() => {
               </div>
 
               <!-- Supported Models -->
-              <div class="section-label">Supported Models</div>
-              <div class="supported-models">
+              <template v-if="provider.supportedModels">
+                <div class="section-label">Supported Models</div>
+                <div class="supported-models">
                 <div class="avatar-group">
                   <img
                     v-for="(avatar, aIdx) in provider.supportedModels.iconList"
@@ -440,7 +536,8 @@ onUnmounted(() => {
                     />
                   </svg>
                 </a>
-              </div>
+                </div>
+              </template>
             </div>
           </div>
         </div>

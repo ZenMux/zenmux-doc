@@ -162,6 +162,8 @@ export { default as IconUnpin } from './IconUnpin.vue';
 export { default as IconMore_he } from './IconMore_he.vue';
 export { default as IconSound_off } from './IconSound_off.vue';
 export { default as IconSound } from './IconSound.vue';
+export { default as IconRerank } from './IconRerank.vue';
+export { default as IconTranscription } from './IconTranscription.vue';
 export { default as IconGuide } from './IconGuide.vue';
 export { default as Logo_1 } from './Logo_1.vue';
 export { default as IconMail } from './IconMail.vue';
