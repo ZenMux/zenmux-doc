@@ -303,6 +303,10 @@ export default defineLoacaleConfig({
                   text: "Generate Videos",
                   link: "/api/zenmux/generate-videos-native",
                 },
+                {
+                  text: "Create System One Evaluation",
+                  link: "/api/zenmux/systemone",
+                },
               ],
             },
           ],
