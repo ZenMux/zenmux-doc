@@ -2,10 +2,10 @@
 head:
   - - meta
     - name: description
-      content: Connect OpenClaw, Codex, DeepSeek Harness, OpenCode, and Pi to ZenMux with OAuth 2.0 Authorization Code + PKCE, without copying an API key
+      content: Connect OpenClaw, Codex, DeepSeek Harness, OpenCode, Pi, and Hermes Agent to ZenMux with OAuth 2.0 Authorization Code + PKCE, without copying an API key
   - - meta
     - name: keywords
-      content: ZenMux, OAuth, PKCE, OpenClaw, Codex, DeepSeek Harness, DSH, OpenCode, Pi, agent login
+      content: ZenMux, OAuth, PKCE, OpenClaw, Codex, DeepSeek Harness, DSH, OpenCode, Pi, Hermes Agent, agent login
 ---
 
 # Sign in to ZenMux with OAuth PKCE
@@ -14,13 +14,14 @@ ZenMux supports connecting local agents through OAuth 2.0 Authorization Code + P
 
 The following agents are currently supported:
 
-| Agent | npm package | Sign-in entry point |
+| Agent | Plugin / installation source | Sign-in entry point |
 | --- | --- | --- |
 | OpenClaw | `@zenmux/openclaw-plugin` | `openclaw models auth login --provider zenmux` |
 | Codex CLI / Codex App | `@zenmux/codex-oauth` | `zenmux-codex-auth login` |
 | [DeepSeek Harness (DSH Web)](/best-practices/deepseek-harness) | `@zenmux/dsh-plugins` | `/zenmux login` |
 | OpenCode | `@zenmux/opencode-oauth` | `/connect` or `opencode auth login` |
 | Pi | `@zenmux/pi-zenmux-oauth` | `/login zenmux` |
+| [Hermes Agent](/best-practices/hermes-agent) | GitHub: `ZenMux/hermes-plugin`; PyPI: `zenmux-hermes-plugin` | `hermes auth add zenmux` |
 
 ::: info Register a new OAuth client
 OAuth clients are currently registered by the ZenMux backend. To register a client for a new agent or application, email [support@zenmux.ai](mailto:support@zenmux.ai) with the application name, project or package URL, redirect URI, requested scopes, and contact information.
@@ -32,7 +33,7 @@ OAuth PKCE authorization is tied to your ZenMux user and an authorization grant.
 
 ## Authorization flow
 
-All five integrations follow the same core flow:
+These integrations follow the same core flow:
 
 1. The agent generates a one-time PKCE `code_verifier` and its S256 `code_challenge`.
 2. A browser opens the ZenMux authorization page, where you confirm the account and requested access.
@@ -168,6 +169,54 @@ After starting Pi, sign in with:
 
 When browser authorization finishes, return to Pi, run `/model`, and select a ZenMux model. Pi manages access and refresh tokens through its provider credential store and caches the model catalog at `~/.pi/agent/models-store.json`.
 
+## Hermes Agent
+
+For complete installation, default provider configuration, remote authorization, and troubleshooting, see [Hermes Agent Integration](/best-practices/hermes-agent#oauth-plugin). Source code and alternative installation methods are available at [ZenMux/hermes-plugin](https://github.com/ZenMux/hermes-plugin/blob/main/README.md).
+
+::: warning Hermes version requirement
+Hermes must include the declarative OAuth PKCE plugin API (`main` must include commit `3e67877e1b` or later). Update older Hermes installations first. This is not an npm package: installing from GitHub through Hermes is recommended, or install the PyPI package `zenmux-hermes-plugin` in the same Python 3.11+ environment as Hermes.
+:::
+
+Install and enable the plugin:
+
+```bash
+hermes plugins install ZenMux/hermes-plugin --enable
+hermes gateway restart
+```
+
+If no Gateway is running, restart Hermes instead. Restart Gateways managed by PM2 or another process manager through that manager.
+
+Sign in and check status:
+
+```bash
+hermes auth add zenmux
+hermes auth status zenmux
+```
+
+On the ZenMux authorization page, select your account and billing option, then approve access. OAuth avoids manually creating an API Key, but model requests are still billed to the selected account and billing option.
+
+After authorization, run `hermes model` and select the plugin's ZenMux provider and a model, or specify them explicitly:
+
+```bash
+hermes --provider zenmux -m google/gemini-2.5-flash-lite
+```
+
+Send a test message and confirm that the model responds. `zenmux` is the provider name; use the full `vendor/model` slug **without adding a `zenmux/` prefix**. When migrating from an API Key custom endpoint, switch the provider from `custom` to `zenmux` rather than only replacing credentials.
+
+Hermes stores access and refresh tokens in its credential pool and serializes refresh token rotation through credential locks. The plugin reads the live model catalog and filters image-only and video-only generation models. Valid unlisted slugs require Hermes support for `ProviderProfile.model_listing_authoritative`; API permissions and responses remain authoritative.
+
+Manage authentication with:
+
+```bash
+hermes auth list zenmux
+hermes auth refresh zenmux
+hermes auth logout zenmux
+```
+
+::: tip Remote servers and headless environments
+Run `hermes auth add zenmux --no-browser` in the remote terminal. Forward the callback port printed for that login over SSH from your local machine, then open the current authorization URL in your local browser. Do not reuse old URLs or a fixed example port. Plugin version `0.1.1` and later waits up to 10 minutes. See [Remote authorization](/best-practices/hermes-agent#remote-oauth) for detailed steps.
+:::
+
 ## Credential storage and security
 
 | Agent | Credential storage |
@@ -177,8 +226,9 @@ When browser authorization finishes, return to Pi, run `/model`, and select a Ze
 | DeepSeek Harness | DSH `ctx.credentials` service |
 | OpenCode | OpenCode credential store |
 | Pi | Pi provider credential store |
+| Hermes Agent | Hermes credential pool (`credential_pool.zenmux` in `auth.json`), not the plugin directory |
 
-- Production uses bundled native public client IDs. No client secret is stored in the npm packages.
+- Production uses bundled native public client IDs. No client secret is stored in the plugin packages.
 - Callback listeners bind only to temporary ports on `127.0.0.1` and validate OAuth `state`.
 - Access tokens are refreshed before expiration. When the server rotates a refresh token, the plugin saves the replacement.
 - Never copy OAuth tokens into model settings, environment variables, logs, or screenshots.
@@ -197,8 +247,10 @@ zenmux-codex-auth login
 
 ### The terminal keeps waiting after browser authorization
 
-The OAuth callback uses a temporary port on `127.0.0.1`. Confirm that a firewall is not blocking loopback connections and that the authorization browser can reach the callback on the machine running the agent. In remote or container environments, the browser's `127.0.0.1` is not necessarily the agent host. OpenClaw is currently the only integration in this guide that explicitly supports pasting the full redirect URL back into the terminal.
+The OAuth callback uses a temporary port on `127.0.0.1`. Confirm that a firewall is not blocking loopback connections and that the authorization browser can reach the callback on the machine running the agent. In remote or container environments, the browser's `127.0.0.1` is not necessarily the agent host. OpenClaw supports pasting the full redirect URL back into the terminal. For Hermes, use `--no-browser` and forward the actual callback port for the current login; see [Remote authorization](/best-practices/hermes-agent#remote-oauth).
 
 ### Sign-in succeeds, but ZenMux models are missing
 
 Reopen the agent's model selector and confirm that the model catalog endpoint is reachable. OpenClaw, OpenCode, and Pi preserve the last valid catalog cache. DeepSeek Harness currently provides two bundled model entries. Codex writes its catalog during `zenmux-codex-auth install`; run that command again after the production catalog changes.
+
+Hermes uses the live catalog rather than the disk catalog caches described above. For `Unknown provider`, run `hermes plugins list` to confirm installation and enablement, then restart Hermes / Gateway. If a valid unlisted slug is rejected, update Hermes and the plugin; see [Hermes troubleshooting](/best-practices/hermes-agent#troubleshooting).
