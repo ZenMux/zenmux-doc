@@ -2,10 +2,10 @@
 head:
   - - meta
     - name: description
-      content: 使用 OAuth 2.0 Authorization Code + PKCE 将 ZenMux 接入 OpenClaw、Codex、DeepSeek Harness、OpenCode 和 Pi，无需复制 API Key
+      content: 使用 OAuth 2.0 Authorization Code + PKCE 将 ZenMux 接入 OpenClaw、Codex、DeepSeek Harness、OpenCode、Pi 和 Hermes Agent，无需复制 API Key
   - - meta
     - name: keywords
-      content: ZenMux, OAuth, PKCE, OpenClaw, Codex, DeepSeek Harness, DSH, OpenCode, Pi, Agent 登录
+      content: ZenMux, OAuth, PKCE, OpenClaw, Codex, DeepSeek Harness, DSH, OpenCode, Pi, Hermes Agent, Agent 登录
 ---
 
 # 使用 OAuth PKCE 登录 ZenMux
@@ -14,13 +14,14 @@ ZenMux 支持通过 OAuth 2.0 Authorization Code + PKCE 将账号授权给本地
 
 目前支持以下 Agent：
 
-| Agent | npm 包 | 登录入口 |
+| Agent | 插件 / 安装来源 | 登录入口 |
 | --- | --- | --- |
 | OpenClaw | `@zenmux/openclaw-plugin` | `openclaw models auth login --provider zenmux` |
 | Codex CLI / Codex App | `@zenmux/codex-oauth` | `zenmux-codex-auth login` |
 | [DeepSeek Harness（DSH Web）](/zh/best-practices/deepseek-harness) | `@zenmux/dsh-plugins` | `/zenmux login` |
 | OpenCode | `@zenmux/opencode-oauth` | `/connect` 或 `opencode auth login` |
 | Pi | `@zenmux/pi-zenmux-oauth` | `/login zenmux` |
+| [Hermes Agent](/zh/best-practices/hermes-agent) | GitHub：`ZenMux/hermes-plugin`；PyPI：`zenmux-hermes-plugin` | `hermes auth add zenmux` |
 
 ::: info 注册新的 OAuth Client
 目前 OAuth Client 只能由 ZenMux 后端注册。如果你需要为新的 Agent 或应用注册 Client，请发送邮件至 [support@zenmux.ai](mailto:support@zenmux.ai)，并提供应用名称、项目或包地址、Redirect URI、所需 Scope 和联系人信息。
@@ -32,7 +33,7 @@ OAuth PKCE 授权绑定到当前 ZenMux 用户和授权记录，不会向插件�
 
 ## 授权流程
 
-五个集成使用相同的核心流程：
+这些集成使用相同的核心流程：
 
 1. Agent 生成一次性的 PKCE `code_verifier` 和对应的 S256 `code_challenge`。
 2. 浏览器打开 ZenMux 授权页，由用户确认账号和授权范围。
@@ -168,6 +169,54 @@ pi install npm:@zenmux/pi-zenmux-oauth
 
 浏览器授权完成后返回 Pi，运行 `/model` 并选择 ZenMux 模型。Pi 会在自己的 Provider 凭据存储中管理 Access Token 与 Refresh Token，并把模型目录缓存到 `~/.pi/agent/models-store.json`。
 
+## Hermes Agent
+
+完整安装、默认供应商配置、远程授权和故障排查请参阅 [Hermes Agent 接入 ZenMux](/zh/best-practices/hermes-agent#oauth-plugin)。插件源码与其他安装方式见 [ZenMux/hermes-plugin](https://github.com/ZenMux/hermes-plugin/blob/main/README.zh.md)。
+
+::: warning Hermes 版本要求
+Hermes 必须包含声明式 OAuth PKCE 插件 API（`main` 分支至少包含提交 `3e67877e1b`）。旧版请先更新 Hermes。该插件不是 npm 包；推荐通过 Hermes 插件命令从 GitHub 安装，也可在 Hermes 使用的同一 Python 3.11+ 环境中安装 PyPI 包 `zenmux-hermes-plugin`。
+:::
+
+安装并启用插件：
+
+```bash
+hermes plugins install ZenMux/hermes-plugin --enable
+hermes gateway restart
+```
+
+没有运行 Gateway 时，重新启动 Hermes 即可；由 PM2 等进程管理器托管的 Gateway 请在对应管理器中重启。
+
+登录并查看状态：
+
+```bash
+hermes auth add zenmux
+hermes auth status zenmux
+```
+
+浏览器打开 ZenMux 授权页后，选择账户与计费方式并批准授权。OAuth 无需手动创建 API Key，但模型调用仍按所选账户和计费方式结算。
+
+授权后运行 `hermes model`，选择插件的 ZenMux 供应商和模型，或显式指定：
+
+```bash
+hermes --provider zenmux -m google/gemini-2.5-flash-lite
+```
+
+发送一条测试消息并确认收到模型回复。`zenmux` 是 provider 名，模型必须使用完整 `vendor/model` slug，**不要添加 `zenmux/` 前缀**。从 API Key 自定义端点迁移时，请将 provider 从 `custom` 切换为 `zenmux`，不要只替换凭据。
+
+Hermes 将 Access Token 与 Refresh Token 保存在自己的凭据池中，通过凭据锁串行化 Refresh Token 轮换。插件读取实时模型目录，过滤纯图片/视频生成模型；有效但未列入目录的 slug 需要 Hermes 支持 `ProviderProfile.model_listing_authoritative`，最终仍以 API 权限和响应为准。
+
+认证管理命令：
+
+```bash
+hermes auth list zenmux
+hermes auth refresh zenmux
+hermes auth logout zenmux
+```
+
+::: tip 远程服务器或无界面环境
+在远程终端运行 `hermes auth add zenmux --no-browser`，根据本次登录输出的回调端口，在本机通过 SSH 转发该端口，再用本机浏览器打开本次授权 URL。不要复用旧 URL 或固定示例端口；插件 `0.1.1` 及以上版本最多等待 10 分钟。详细步骤见[远程服务器授权](/zh/best-practices/hermes-agent#remote-oauth)。
+:::
+
 ## 凭据与安全
 
 | Agent | 凭据存储 |
@@ -177,8 +226,9 @@ pi install npm:@zenmux/pi-zenmux-oauth
 | DeepSeek Harness | DSH `ctx.credentials` 凭据服务 |
 | OpenCode | OpenCode 自身的 Credential Store |
 | Pi | Pi Provider Credential Store |
+| Hermes Agent | Hermes 凭据池（`auth.json` 中的 `credential_pool.zenmux`），不在插件目录中 |
 
-- 官方生产环境使用预置的 Native Public Client ID，不在 npm 包中保存 Client Secret。
+- 官方生产环境使用预置的 Native Public Client ID，不在插件包中保存 Client Secret。
 - 回调监听器只绑定到 `127.0.0.1` 的临时端口，并校验 OAuth `state`。
 - Access Token 过期前会自动刷新；服务端返回新的 Refresh Token 时，插件会保存轮换后的 Token。
 - 不要把 OAuth Token 手动复制到模型配置、环境变量、日志或截图中。
@@ -197,8 +247,10 @@ zenmux-codex-auth login
 
 ### 浏览器授权后，终端仍在等待
 
-OAuth 回调使用临时的 `127.0.0.1` 端口。确认防火墙没有阻止本地回环连接，并确认授权浏览器能够访问运行 Agent 的回调端口。远程或容器环境不能假设浏览器的 `127.0.0.1` 就是 Agent 所在机器；目前只有 OpenClaw 明确支持复制完整 Redirect URL 回终端。
+OAuth 回调使用临时的 `127.0.0.1` 端口。确认防火墙没有阻止本地回环连接，并确认授权浏览器能够访问运行 Agent 的回调端口。远程或容器环境不能假设浏览器的 `127.0.0.1` 就是 Agent 所在机器；OpenClaw 支持复制完整 Redirect URL 回终端；Hermes 请使用 `--no-browser` 并转发本次实际回调端口，参阅[远程授权说明](/zh/best-practices/hermes-agent#remote-oauth)。
 
 ### 登录成功但看不到 ZenMux 模型
 
 重新打开 Agent 的模型选择器，并确认模型目录接口可访问。OpenClaw、OpenCode 和 Pi 会保留最近一次有效模型缓存；DeepSeek Harness 当前提供两个预置模型入口；Codex 的模型目录由 `zenmux-codex-auth install` 写入，模型目录更新后可以重新执行该命令。
+
+Hermes 使用实时目录，不采用上述磁盘目录缓存。若提示 `Unknown provider`，先运行 `hermes plugins list` 确认插件安装和启用状态，并重启 Hermes / Gateway；若有效 slug 因不在目录而被拒绝，请更新 Hermes 和插件，详见 [Hermes 故障排查](/zh/best-practices/hermes-agent#故障排除)。

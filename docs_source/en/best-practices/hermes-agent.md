@@ -2,185 +2,227 @@
 head:
   - - meta
     - name: description
-      content: Guide to integrating Hermes Agent with ZenMux
+      content: Install, authorize, and troubleshoot Hermes Agent with ZenMux using the OAuth plugin or an API Key
   - - meta
     - name: keywords
-      content: ZenMux, best practices, integration, Hermes, Hermes Agent, OpenAI, API, AI agent
+      content: ZenMux, best practices, integration, Hermes, Hermes Agent, OAuth, PKCE, OpenAI, API, AI agent
 ---
 
 # Hermes Agent Integration with ZenMux
 
-Hermes Agent is a powerful AI agent framework with support for tool calling, browser automation, code execution, file operations, and more. By connecting it to ZenMux, you get unified access to the latest models from every major provider — no need to juggle separate API keys. One ZenMux API Key covers them all.
+Hermes Agent supports tool calling, browser automation, code execution, and file operations. Connect it to ZenMux to access models from multiple providers through one account.
 
-::: info Compatibility
-ZenMux is fully compatible with the OpenAI API protocol, so it works out of the box with Hermes Agent's custom endpoint feature.
+This guide covers two integration options:
 
-The OpenAI-compatible base URL is `https://zenmux.ai/api/v1`.
-:::
+| Option | Authentication | Best for |
+| --- | --- | --- |
+| [OAuth plugin (recommended)](#oauth-plugin) | Sign in and authorize in a browser, without manually creating or pasting an API Key | Hermes with the OAuth PKCE plugin API |
+| [API Key custom endpoint](#api-key) | Configure a ZenMux API Key manually | API Key users or installations that cannot upgrade Hermes yet |
+
+Both options use the OpenAI-compatible Chat Completions protocol at `https://zenmux.ai/api/v1`. OAuth is an authorization method, not free access; requests are billed to the account and billing option selected during authorization.
+
+For OAuth integration with other agents and shared security guidance, see [Sign in with OAuth PKCE](/best-practices/oauth-pkce).
 
 ## Prerequisites
 
-- Operating system: Linux / macOS / WSL2 / Android (Termux)
-- **Git** (the only dependency you need to install manually — the install script handles everything else)
-- A ZenMux API Key (see [Step 0](#step-0-get-a-zenmux-api-key) below)
+- A [ZenMux account](https://zenmux.ai).
+- Hermes Agent installed. See the [official quickstart](https://hermes-agent.nousresearch.com/docs/getting-started/quickstart) for installation. Windows users should use WSL2.
+- The OAuth plugin requires Hermes with the declarative OAuth PKCE plugin API: `main` must include commit `3e67877e1b` or later. Update older Hermes installations first; installing the plugin alone cannot add this capability.
+- PyPI installation requires Python 3.11 or later, in the same Python environment as Hermes.
+- A browser for initial OAuth authorization. For remote installations, see [Remote authorization](#remote-oauth).
 
-::: tip About Other Dependencies
-The Hermes Agent one-line installer automatically detects and installs the following — **no manual setup required**:
-- Python 3.11 (via the uv package manager, no sudo needed)
-- Node.js v22 (for browser automation and the WhatsApp gateway)
-- ripgrep (fast file search)
-- ffmpeg (audio format conversion for voice features)
+::: tip Plugin Source
+This guide follows the [ZenMux Hermes plugin README](https://github.com/ZenMux/hermes-plugin/blob/main/README.md). The plugin includes a dedicated public OAuth client and uses OAuth 2.0 Authorization Code + S256 PKCE. No client secret is required.
 :::
 
-## Step 0: Get a ZenMux API Key
+## Option 1: OAuth Plugin (Recommended) {#oauth-plugin}
 
-Before configuring Hermes Agent, you need a ZenMux API Key. ZenMux offers two billing options:
+### 1. Install and Enable the Plugin
+
+Installing from GitHub is recommended:
+
+```bash
+hermes plugins install ZenMux/hermes-plugin --enable
+hermes gateway restart
+```
+
+If no Gateway is running, simply restart Hermes after installation. If your Gateway is managed by PM2 or another process manager, restart it there instead, for example with `pm2 restart hermes-gateway --update-env`.
+
+::: details Alternative Installation and Version Pinning
+For reproducible installation, get a full 40-character commit from the [Releases page](https://github.com/ZenMux/hermes-plugin/releases) and replace the placeholder:
+
+```bash
+hermes plugins install ZenMux/hermes-plugin --ref <40-character-commit> --enable
+```
+
+You can also install from PyPI. The following path assumes the default Hermes virtual environment; use your actual Python path for custom installations:
+
+```bash
+~/.hermes/hermes-agent/venv/bin/python -m pip install zenmux-hermes-plugin
+hermes plugins enable zenmux
+hermes gateway restart
+```
+
+The plugin must be installed in the same Python environment as Hermes to be discovered. See the [plugin README](https://github.com/ZenMux/hermes-plugin/blob/main/README.md) for filesystem provider installation.
+:::
+
+### 2. Sign In and Authorize
+
+```bash
+hermes auth add zenmux
+hermes auth status zenmux
+```
+
+Hermes opens the ZenMux authorization page. Select your account and billing option, approve access, then return to the terminal to check authentication status.
+
+Hermes stores access and refresh tokens in its credential pool, not in the plugin directory. The plugin's `zenmux.json` contains only the public OAuth client ID. Refresh token rotation is serialized through Hermes credential locks.
+
+::: warning Protect Your Credentials
+Do not paste tokens, authorization codes, or complete authentication files into chats, tickets, or repositories. The OAuth plugin does not require copying tokens into an API Key configuration.
+:::
+
+### 3. Select a Model and Verify
+
+Open the model selector and choose the plugin's ZenMux provider and your desired model:
+
+```bash
+hermes model
+```
+
+Alternatively, explicitly specify the provider and full model slug to avoid reusing a previous custom endpoint configuration:
+
+```bash
+hermes --provider zenmux -m google/gemini-2.5-flash-lite
+hermes --provider zenmux -m anthropic/claude-sonnet-4.5
+```
+
+Send a short message and confirm that the model responds. To make ZenMux the default provider:
+
+```bash
+hermes config set model.provider zenmux
+hermes config set model.default google/gemini-2.5-flash-lite
+hermes config set model.base_url https://zenmux.ai/api/v1
+hermes config set model.api_mode chat_completions
+
+hermes -z "Reply with exactly: OK" --safe-mode
+```
+
+Successful login confirms authorization only; an actual model response verifies that inference works.
+
+### 4. Switch Models and Understand the Catalog
+
+In a chat or messaging bot already using ZenMux, enter:
+
+```text
+/model z-ai/glm-5.3-flashx
+```
+
+`zenmux` is the provider name, not a model slug prefix. Use the full `vendor/model` ID, such as `z-ai/glm-5.3-flashx`, not `zenmux/glm-5.3-flashx`.
+
+The plugin reads the live catalog at `https://zenmux.ai/api/v1/models`. It keeps text-output models and filters image-only and video-only generation models out of the chat selector. A small fallback list is used only when the catalog is temporarily unavailable. Example models are not guaranteed to be available to every account; account permissions and API responses determine actual availability.
+
+::: info Models Outside the Catalog
+The live catalog supports model selection and spelling suggestions; it is not an account permission allowlist. For account-specific, staged, or special-routing slugs, Hermes must support `ProviderProfile.model_listing_authoritative` to allow requests for unlisted slugs. Older Hermes versions may reject them before sending a request; update Hermes and the plugin first. Invalid or unauthorized slugs are still rejected by the ZenMux API.
+:::
+
+### Remote Servers and Headless Environments {#remote-oauth}
+
+OAuth uses a temporary loopback callback such as `http://127.0.0.1:54321/callback`. The port is not fixed.
+
+1. Start login in the remote terminal to obtain the current authorization URL and callback port:
+
+   ```bash
+   hermes auth add zenmux --no-browser
+   ```
+
+2. Leave the remote login command waiting. Open another terminal on your local machine and forward **the port actually shown for this login** (`54321` is only an example):
+
+   ```bash
+   ssh -N -L 54321:127.0.0.1:54321 user@remote-host
+   ```
+
+3. Open the current authorization URL in your local browser, approve access, and check the result in the remote terminal.
+
+Plugin version `0.1.1` and later waits up to 10 minutes. After a timeout, restart login and use the new URL and port; expired authorization codes cannot be reused. Do not expose the callback server to the public internet.
+
+For hosted containers without SSH forwarding, the README describes authorizing with a temporary local `HERMES_HOME` and securely merging only `credential_pool.zenmux`. Transfer only that provider's credentials; never overwrite other remote provider credentials with an entire local `auth.json`. See the [remote environment instructions](https://github.com/ZenMux/hermes-plugin/blob/main/README.md#remote-and-headless-hosts).
+
+### Manage Authentication and Update
+
+```bash
+# Inspect credentials, refresh explicitly, or log out
+hermes auth list zenmux
+hermes auth refresh zenmux
+hermes auth logout zenmux
+```
+
+Update using your original installation method, then restart Hermes or the Gateway:
 
 ::: code-group
 
-```text [Subscription API Key (Recommended)]
-Best for:   Personal development, learning, exploration
-Highlights: Fixed monthly fee, predictable costs, 5–10× price leverage
-Key format: sk-ss-v1-xxx
-
-How to get one:
-1. Visit the Subscription page: https://zenmux.ai/platform/subscription
-2. Pick a plan (Starter $20/mo, Max $100/mo, Ultra $200/mo)
-3. After subscribing, create a Subscription API Key on the page
-
-For details, see the Subscription Plans guide:
-https://docs.zenmux.ai/guide/subscription
+```bash [GitHub]
+hermes plugins install ZenMux/hermes-plugin --force --enable
+hermes gateway restart
 ```
 
-```text [Pay-As-You-Go API Key]
-Best for:   Production environments, commercial products, enterprise use
-Highlights: No rate limits, production-grade reliability, usage-based billing
-Key format: sk-ai-v1-xxx
-
-How to get one:
-1. Visit the Pay-As-You-Go page: https://zenmux.ai/platform/pay-as-you-go
-2. Top up your account
-3. Create an API Key in the "Pay-As-You-Go API Keys" section
-
-For details, see the Pay-As-You-Go guide:
-https://docs.zenmux.ai/guide/pay-as-you-go
+```bash [PyPI]
+~/.hermes/hermes-agent/venv/bin/python -m pip install --upgrade zenmux-hermes-plugin
+hermes gateway restart
 ```
 
 :::
 
-## Step 1: Install Hermes Agent
+To stop using the plugin, run `hermes auth logout zenmux`, then `hermes plugins disable zenmux`. See the [plugin README](https://github.com/ZenMux/hermes-plugin/blob/main/README.md#uninstall) for complete removal instructions.
 
-If Hermes Agent is already installed, skip ahead to [Step 2](#step-2-configure-the-zenmux-provider).
+## Option 2: API Key Custom Endpoint {#api-key}
 
-Run the one-line installer in your terminal (works on Linux / macOS / WSL2 / Android Termux):
+You can still connect with an API Key without installing the OAuth plugin.
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash
-```
+1. Create a [Subscription API Key](/guide/subscription) or [Pay-As-You-Go API Key](/guide/pay-as-you-go). Refer to those pages for current plans, pricing, and quotas.
+2. Run `hermes model` and select **Custom endpoint (enter URL manually)**.
+3. Enter the following values:
 
-After installation, reload your shell configuration:
+   | Setting | Value |
+   | --- | --- |
+   | API Base URL | `https://zenmux.ai/api/v1` |
+   | API Key | Your ZenMux API Key |
+   | Model name | A full model ID, such as `openai/gpt-5.4` |
 
-```bash
-source ~/.bashrc   # If you use zsh, run: source ~/.zshrc
-```
+4. Run `hermes` and send a test message to confirm that the model responds.
 
-::: tip Windows Users
-Install [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install) first, then run the command above inside a WSL2 terminal.
+::: warning Keep the Two Methods Separate
+API Key custom endpoints use `model.provider: custom`; the OAuth plugin uses provider `zenmux`. When migrating from the old method, select the plugin provider again or set the default provider as shown above. Neither method adds a `zenmux/` prefix to model IDs.
 :::
-
-For additional installation methods, see the [Hermes Agent official quickstart](https://hermes-agent.nousresearch.com/docs/getting-started/quickstart).
-
-## Step 2: Configure the ZenMux Provider
-
-Run `hermes model` to open the provider selection screen:
-
-```bash
-hermes model
-```
-
-You'll see a provider list (↑↓ to navigate, ENTER to select):
-
-```text
-Select provider:
-  ↑↓ navigate  ENTER/SPACE select  ESC cancel
-
-   (○) OpenRouter (100+ models, pay-per-use)
-   (○) Anthropic (Claude models — API key or Claude Code)
-   ...
-   (○) Custom endpoint (enter URL manually)    ← Select this for first-time setup
-   (○) Cancel
-```
-
-Choose **"Custom endpoint (enter URL manually)"** and fill in the prompts:
-
-1. **API Base URL**: `https://zenmux.ai/api/v1`
-2. **API Key**: Paste your ZenMux API Key (e.g., `sk-ss-v1-xxx`)
-3. **Model name**: The model ID you want to use, e.g., `openai/gpt-5.2`
-
-The wizard saves everything to `~/.hermes/config.yaml` automatically — no manual file editing needed.
-
-::: warning About Model Names
-Use the raw ZenMux model ID (e.g., `openai/gpt-5.2`). You do **not** need a `zenmux/` prefix — Hermes sends the name directly to the configured `base_url` endpoint.
-:::
-
-## Step 3: Verify the Configuration
-
-Start Hermes Agent and send a quick test message to make sure the model responds:
-
-```bash
-hermes
-```
-
-```text
-Hello, please reply with just "Hi!"
-```
-
-If you get a response, the setup is complete.
-
-## Step 4: Switch Models (Optional)
-
-ZenMux supports many models, and you can switch between them at any time with `hermes model`.
-
-```bash
-hermes model
-```
-
-Once configured, the provider list will show a named ZenMux entry:
-
-```text
-   ...
-   (○) Zenmux.ai (zenmux.ai/api/v1) — openai/gpt-5.2
-   (○) Custom endpoint (enter URL manually)
-   ...
-```
-
-Select the **"Zenmux.ai"** entry to browse available models and pick a new one. The change is persisted and takes effect the next time you launch Hermes.
-
-::: tip Model ID Examples
-Some example model IDs on ZenMux:
-- `openai/gpt-5.2` → GPT-5.2
-- `anthropic/claude-sonnet-4.5` → Claude Sonnet 4.5
-- `deepseek/deepseek-chat` → DeepSeek Chat
-- `google/gemini-3-pro-preview` → Gemini 3 Pro
-
-For the full list, see the [ZenMux Models page](https://zenmux.ai/models).
-:::
-
-## Using ZenMux Models
-
-With configuration complete, you can use ZenMux models in several ways:
-
-### Interactive CLI Chat
-
-```bash
-# Start an interactive Hermes Agent session (uses the configured default model)
-hermes
-
-# Ask questions directly in the conversation
-> Explain quantum computing in simple terms
-```
 
 ## Troubleshooting
+
+### OAuth Plugin Issues
+
+::: details Unknown provider 'zenmux'
+First confirm that Hermes meets the version requirement, then check that the plugin is installed and enabled:
+
+```bash
+hermes plugins list
+hermes plugins enable zenmux
+hermes gateway restart
+```
+
+For PyPI installations, also check that the plugin is in the Python environment used by Hermes. Restart externally managed Gateways through their process manager.
+:::
+
+::: details OAuth Timeout or Authorization Failure
+Run `hermes auth add zenmux` again and use the newly generated URL and port. Remote servers require forwarding as described in [Remote authorization](#remote-oauth). Do not reuse authorization codes from expired login attempts.
+
+If authentication fails after login, check `hermes auth status zenmux` and try `hermes auth refresh zenmux`. Sign in again if refreshing still fails.
+:::
+
+::: details Logged In, but Inference Reports a Missing Endpoint
+Update the plugin and run `hermes auth add zenmux` again. The current plugin saves `base_url=https://zenmux.ai/api/v1` with credentials; early development versions did not save this field.
+:::
+
+::: details Model Rejected Because It Is Not in the Catalog
+Check the full `vendor/model` slug first. For a valid unlisted model, update Hermes to a version supporting `ProviderProfile.model_listing_authoritative`, then update the plugin. Allowing an unlisted slug does not grant access; the ZenMux API response remains authoritative.
+:::
 
 ### Common Issues
 
@@ -217,13 +259,13 @@ hermes
 **Solution**:
 
 1. **Re-run `hermes model`**:
-   Select "Custom endpoint" again and confirm the URL is `https://zenmux.ai/api/v1`
+   For OAuth, select the plugin's ZenMux provider; for API Keys, select "Custom endpoint". Confirm the URL is `https://zenmux.ai/api/v1`
 
 2. **Check the current configuration**:
    ```bash
    hermes config
    ```
-   Verify that `provider` is `custom` and `base_url` is `https://zenmux.ai/api/v1` in the `model` section
+   In the `model` section, verify that `provider` is `zenmux` for the OAuth plugin or `custom` for an API Key custom endpoint. The `base_url` should be `https://zenmux.ai/api/v1`
 
 3. **Double-check the base_url format**:
    - Correct: `https://zenmux.ai/api/v1`
@@ -243,7 +285,8 @@ hermes
 
 2. **Check firewalls and proxies**:
    - Make sure your firewall isn't blocking outbound HTTPS connections
-   - If you need a proxy, set `HTTPS_PROXY` in `~/.hermes/.env`
+   - Configure proxies with standard `HTTP_PROXY` / `HTTPS_PROXY` variables
+   - If the proxy terminates TLS, configure its CA with `SSL_CERT_FILE` / `REQUESTS_CA_BUNDLE`; do not globally disable TLS verification
 
 3. **DNS troubleshooting**:
    ```bash
