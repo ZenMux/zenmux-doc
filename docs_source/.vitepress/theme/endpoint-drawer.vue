@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, markRaw, onMounted, onUnmounted } from "vue";
+import { useData } from "vitepress";
 import { Copy as CopyIcon } from "./icons";
 import {
   Chat,
@@ -11,6 +12,7 @@ import {
   IconTranscription,
   IconVideo,
   IconImageai,
+  IconImage_editing,
   IconComment,
   IconPercentage,
   IconPay_as_you_go,
@@ -30,11 +32,13 @@ interface Endpoint {
     | "transcriptions"
     | "videos"
     | "imagen"
+    | "image-edit"
     | "interactions"
     | "flow_rate"
     | "payg"
     | "subscription";
   docUrl?: string;
+  docUrlZh?: string;
 }
 
 interface Provider {
@@ -48,6 +52,8 @@ interface Provider {
   iconType: "openai" | "anthropic" | "google" | "platform" | "zenmux";
   endpoints: Endpoint[];
 }
+
+const { localeIndex } = useData();
 
 const providersData: Provider[] = [
   {
@@ -87,6 +93,20 @@ const providersData: Provider[] = [
         path: "/rerank",
         iconType: "rerank",
         docUrl: "/docs/api/openai/rerank.html",
+      },
+      {
+        title: "Generate image",
+        path: "/images/generations",
+        iconType: "imagen",
+        docUrl: "/docs/api/openai/generate-an-image.html",
+        docUrlZh: "/docs/zh/api/openai/generate-an-image.html",
+      },
+      {
+        title: "Generate image edit",
+        path: "/images/edits",
+        iconType: "image-edit",
+        docUrl: "/docs/api/openai/create-image-edit.html",
+        docUrlZh: "/docs/zh/api/openai/create-image-edit.html",
       },
       {
         title: "Create Speech",
@@ -249,6 +269,7 @@ const endpointIcons = {
   transcriptions: markRaw(IconTranscription),
   videos: markRaw(IconVideo),
   imagen: markRaw(IconImageai),
+  "image-edit": markRaw(IconImage_editing),
   interactions: markRaw(IconComment),
   flow_rate: markRaw(IconPercentage),
   payg: markRaw(IconPay_as_you_go),
@@ -285,8 +306,11 @@ const handleCopy = async (text: string) => {
   }
 };
 
-const openDoc = (url: string) => {
-  if (typeof window !== "undefined") {
+const openDoc = (endpoint: Endpoint) => {
+  const url = localeIndex.value === "zh" && endpoint.docUrlZh
+    ? endpoint.docUrlZh
+    : endpoint.docUrl;
+  if (url && typeof window !== "undefined") {
     window.open(url, "_blank");
   }
 };
@@ -475,7 +499,7 @@ onUnmounted(() => {
                       v-if="endpoint.docUrl"
                       class="icon-btn"
                       title="Docs"
-                      @click="openDoc(endpoint.docUrl!)"
+                      @click="openDoc(endpoint)"
                     >
                       <!-- IconPdf -->
                       <svg

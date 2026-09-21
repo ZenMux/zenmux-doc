@@ -124,31 +124,31 @@ export default defineLoacaleConfig({
       {
         text: "工作室",
         items: [
-          { text: "对话", link: "https://zenmux.ai/chat", noIcon: true },
-          { text: "图片", link: "https://zenmux.ai/image", noIcon: true },
-          { text: "视频", link: "https://zenmux.ai/video", noIcon: true },
+          {
+            text: "对话",
+            link: "https://zenmux.ai/platform/chat?newChat=true",
+            noIcon: true,
+          },
+          { text: "图片", link: "https://zenmux.ai/platform/image", noIcon: true },
+          { text: "视频", link: "https://zenmux.ai/platform/video", noIcon: true },
         ],
       },
       { text: "模型", link: "https://zenmux.ai/models", noIcon: true },
       {
-        text: "开发者",
+        text: "数据分析",
         items: [
-          { text: "文档", link: "/zh/", noIcon: true },
-          { text: "接入点", link: "javascript:void(0)", noIcon: true },
-          { text: "博客", link: "https://zenmux.ai/blog", noIcon: true },
           {
-            text: "更新日志",
-            link: "https://zenmux.ai/changelog",
+            text: "模型",
+            link: "https://zenmux.ai/analytics/models",
             noIcon: true,
           },
           {
-            text: "路线图与反馈",
-            link: "https://github.com/orgs/ZenMux/projects/2",
+            text: "应用",
+            link: "https://zenmux.ai/analytics/apps",
             noIcon: true,
           },
         ],
       },
-      { text: "数据分析", link: "https://zenmux.ai/analytics", noIcon: true },
       {
         text: "定价",
         items: [
@@ -170,6 +170,24 @@ export default defineLoacaleConfig({
           {
             text: "优惠活动",
             link: "https://zenmux.ai/pricing/promotions",
+            noIcon: true,
+          },
+        ],
+      },
+      {
+        text: "开发者",
+        items: [
+          { text: "文档", link: "/zh/", noIcon: true },
+          { text: "接入点", link: "javascript:void(0)", noIcon: true },
+          { text: "博客", link: "https://zenmux.ai/blog", noIcon: true },
+          {
+            text: "更新日志",
+            link: "https://zenmux.ai/changelog",
+            noIcon: true,
+          },
+          {
+            text: "路线图与反馈",
+            link: "https://github.com/orgs/ZenMux/projects/2",
             noIcon: true,
           },
         ],
@@ -228,20 +246,12 @@ export default defineLoacaleConfig({
                   link: "/zh/api/openai/rerank",
                 },
                 {
-                  text: "Create image",
+                  text: "Generate image",
                   link: "/zh/api/openai/generate-an-image",
                 },
                 {
-                  text: "Create image edit",
+                  text: "Generate image edit",
                   link: "/zh/api/openai/create-image-edit",
-                },
-                {
-                  text: "Image generation streaming events",
-                  link: "/zh/api/openai/image-generation-streaming-events",
-                },
-                {
-                  text: "Image edit streaming events",
-                  link: "/zh/api/openai/image-edit-streaming-events",
                 },
                 {
                   text: "Create speech",

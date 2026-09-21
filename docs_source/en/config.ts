@@ -122,31 +122,31 @@ export default defineLoacaleConfig({
       {
         text: "Studio",
         items: [
-          { text: "Chat", link: "https://zenmux.ai/chat", noIcon: true },
-          { text: "Image", link: "https://zenmux.ai/image", noIcon: true },
-          { text: "Video", link: "https://zenmux.ai/video", noIcon: true },
+          {
+            text: "Chat",
+            link: "https://zenmux.ai/platform/chat?newChat=true",
+            noIcon: true,
+          },
+          { text: "Image", link: "https://zenmux.ai/platform/image", noIcon: true },
+          { text: "Video", link: "https://zenmux.ai/platform/video", noIcon: true },
         ],
       },
       { text: "Models", link: "https://zenmux.ai/models", noIcon: true },
       {
-        text: "Developers",
+        text: "Analytics",
         items: [
-          { text: "Docs", link: "/", noIcon: true },
-          { text: "Endpoints", link: "javascript:void(0)", noIcon: true },
-          { text: "Blog", link: "https://zenmux.ai/blog", noIcon: true },
           {
-            text: "Changelog",
-            link: "https://zenmux.ai/changelog",
+            text: "Models",
+            link: "https://zenmux.ai/analytics/models",
             noIcon: true,
           },
           {
-            text: "Roadmap & Feedback",
-            link: "https://github.com/orgs/ZenMux/projects/2",
+            text: "Apps",
+            link: "https://zenmux.ai/analytics/apps",
             noIcon: true,
           },
         ],
       },
-      { text: "Analytics", link: "https://zenmux.ai/analytics", noIcon: true },
       {
         text: "Pricing",
         items: [
@@ -168,6 +168,24 @@ export default defineLoacaleConfig({
           {
             text: "Promotions",
             link: "https://zenmux.ai/pricing/promotions",
+            noIcon: true,
+          },
+        ],
+      },
+      {
+        text: "Developers",
+        items: [
+          { text: "Docs", link: "/", noIcon: true },
+          { text: "Endpoints", link: "javascript:void(0)", noIcon: true },
+          { text: "Blog", link: "https://zenmux.ai/blog", noIcon: true },
+          {
+            text: "Changelog",
+            link: "https://zenmux.ai/changelog",
+            noIcon: true,
+          },
+          {
+            text: "Roadmap & Feedback",
+            link: "https://github.com/orgs/ZenMux/projects/2",
             noIcon: true,
           },
         ],
@@ -229,20 +247,12 @@ export default defineLoacaleConfig({
                   link: "/api/openai/rerank",
                 },
                 {
-                  text: "Create image",
+                  text: "Generate image",
                   link: "/api/openai/generate-an-image",
                 },
                 {
-                  text: "Create image edit",
+                  text: "Generate image edit",
                   link: "/api/openai/create-image-edit",
-                },
-                {
-                  text: "Image generation streaming events",
-                  link: "/api/openai/image-generation-streaming-events",
-                },
-                {
-                  text: "Image edit streaming events",
-                  link: "/api/openai/image-edit-streaming-events",
                 },
                 {
                   text: "Create speech",

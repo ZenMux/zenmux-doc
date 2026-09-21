@@ -4,13 +4,13 @@ title: 编辑图片（OpenAI Images API）
 head:
   - - meta
     - name: description
-      content: Create image edit
+      content: 通过 ZenMux OpenAI 兼容图片接口，根据输入图片和提示词编辑图片。
   - - meta
     - name: keywords
       content: Zenmux, API, documentation, openai, images, edit, image, OpenAI
 ---
 
-# Create image edit
+# Generate image edit
 
 ::: info 错误排查
 调用过程中遇到错误？请参阅 [API 错误码参考](/zh/guide/advanced/error-codes) 获取完整的错误类型说明与排查方案。
@@ -20,7 +20,7 @@ head:
 POST https://zenmux.ai/api/v1/images/edits
 ```
 
-Create image edit 接口兼容 OpenAI 的 [Create image edit](https://developers.openai.com/api/reference/typescript/resources/images/methods/edit) 接口，用于根据一张或多张源图片和提示词，创建编辑后或扩展后的图片。
+Generate image edit 接口兼容 OpenAI 的 [Create image edit](https://developers.openai.com/api/reference/typescript/resources/images/methods/edit) 接口，用于根据一张或多张源图片和提示词，创建编辑后或扩展后的图片。
 
 ::: tip 当前支持模型
 ZenMux 支持的 OpenAI 图片生成模型会持续更新。请前往 [ZenMux 模型目录](https://zenmux.ai/models?author=openai&sort=newest&output_modalities=image) 查询当前可用模型。

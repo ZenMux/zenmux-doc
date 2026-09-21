@@ -371,5 +371,5 @@ Common output parameters include:
 
 For the complete API fields, see:
 
-- [Create image](/api/openai/generate-an-image)
-- [Create image edit](/api/openai/create-image-edit)
+- [Generate image](/api/openai/generate-an-image)
+- [Generate image edit](/api/openai/create-image-edit)

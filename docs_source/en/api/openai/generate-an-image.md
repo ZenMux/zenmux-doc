@@ -1,16 +1,16 @@
 ---
 pageClass: api-page
-title: Create image (OpenAI Images API)
+title: Generate image (OpenAI Images API)
 head:
   - - meta
     - name: description
-      content: Create image
+      content: Generate images from text prompts with the OpenAI-compatible Images API on ZenMux.
   - - meta
     - name: keywords
       content: Zenmux, API, documentation, openai, images, generate, image, OpenAI
 ---
 
-# Create image
+# Generate image
 
 ::: info Troubleshooting
 Running into an error while calling the API? See the [API error code reference](/guide/advanced/error-codes) for a complete list of error types and troubleshooting steps.
@@ -20,7 +20,7 @@ Running into an error while calling the API? See the [API error code reference](
 POST https://zenmux.ai/api/v1/images/generations
 ```
 
-The Create image endpoint is compatible with OpenAI's [Create image](https://developers.openai.com/api/reference/typescript/resources/images/methods/generate) endpoint and creates images from prompts.
+The Generate image endpoint is compatible with OpenAI's [Create image](https://developers.openai.com/api/reference/typescript/resources/images/methods/generate) endpoint and creates images from prompts.
 
 The parameters below cover what different models may support. Support varies by model. ZenMux passes through the OpenAI Images API protocol; when calling ZenMux, set the Base URL to `https://zenmux.ai/api/v1` and authenticate with your ZenMux API Key.
 

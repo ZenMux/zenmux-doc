@@ -1,16 +1,16 @@
 ---
 pageClass: api-page
-title: Create image edit (OpenAI Images API)
+title: Generate image edit (OpenAI Images API)
 head:
   - - meta
     - name: description
-      content: Create image edit
+      content: Edit images using source images and prompts with the OpenAI-compatible Images API on ZenMux.
   - - meta
     - name: keywords
       content: Zenmux, API, documentation, openai, images, edit, image, OpenAI
 ---
 
-# Create image edit
+# Generate image edit
 
 ::: info Troubleshooting
 Running into an error while calling the API? See the [API error code reference](/guide/advanced/error-codes) for a complete list of error types and troubleshooting steps.
@@ -20,7 +20,7 @@ Running into an error while calling the API? See the [API error code reference](
 POST https://zenmux.ai/api/v1/images/edits
 ```
 
-The Create image edit endpoint is compatible with OpenAI's [Create image edit](https://developers.openai.com/api/reference/typescript/resources/images/methods/edit) endpoint and creates edited or extended images from one or more source images and a prompt.
+The Generate image edit endpoint is compatible with OpenAI's [Create image edit](https://developers.openai.com/api/reference/typescript/resources/images/methods/edit) endpoint and creates edited or extended images from one or more source images and a prompt.
 
 ::: tip Currently Supported Models
 ZenMux continuously updates the OpenAI image generation models it supports. Visit the [ZenMux model catalog](https://zenmux.ai/models?author=openai&sort=newest&output_modalities=image) to check the currently available models.

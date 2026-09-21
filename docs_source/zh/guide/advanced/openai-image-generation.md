@@ -371,5 +371,5 @@ curl https://zenmux.ai/api/v1/images/generations \
 
 完整接口字段请参考：
 
-- [Create image](/zh/api/openai/generate-an-image)
-- [Create image edit](/zh/api/openai/create-image-edit)
+- [Generate image](/zh/api/openai/generate-an-image)
+- [Generate image edit](/zh/api/openai/create-image-edit)

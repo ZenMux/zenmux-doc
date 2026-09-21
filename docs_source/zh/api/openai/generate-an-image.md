@@ -4,13 +4,13 @@ title: 生成图片（OpenAI Images API）
 head:
   - - meta
     - name: description
-      content: Create image
+      content: 通过 ZenMux OpenAI 兼容图片接口，根据提示词生成图片。
   - - meta
     - name: keywords
       content: Zenmux, API, documentation, openai, images, generate, image, OpenAI
 ---
 
-# Create image
+# Generate image
 
 ::: info 错误排查
 调用过程中遇到错误？请参阅 [API 错误码参考](/zh/guide/advanced/error-codes) 获取完整的错误类型说明与排查方案。
@@ -20,7 +20,7 @@ head:
 POST https://zenmux.ai/api/v1/images/generations
 ```
 
-Create image 接口兼容 OpenAI 的 [Create image](https://developers.openai.com/api/reference/typescript/resources/images/methods/generate) 接口，用于根据提示词创建图片。
+Generate image 接口兼容 OpenAI 的 [Create image](https://developers.openai.com/api/reference/typescript/resources/images/methods/generate) 接口，用于根据提示词创建图片。
 
 下面列出了所有模型可能支持的参数，不同模型的支持参数有所不同。ZenMux 透传 OpenAI Images API 协议；调用 ZenMux 时，请将 Base URL 设置为 `https://zenmux.ai/api/v1`，并使用 ZenMux API Key 鉴权。
 
