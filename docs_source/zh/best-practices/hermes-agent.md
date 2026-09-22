@@ -2,187 +2,227 @@
 head:
   - - meta
     - name: description
-      content: Hermes Agent 接入 ZenMux 使用指南
+      content: Hermes Agent 通过 OAuth 插件或 API Key 接入 ZenMux 的安装、授权和排障指南
   - - meta
     - name: keywords
-      content: ZenMux, 最佳实践, 集成, Hermes, Hermes Agent, OpenAI, API, AI 代理
+      content: ZenMux, 最佳实践, 集成, Hermes, Hermes Agent, OAuth, PKCE, OpenAI, API, AI 代理
 ---
 
 # Hermes Agent 接入 ZenMux 使用指南
 
-Hermes Agent 是一个功能强大的 AI 代理框架，支持多种工具调用、浏览器自动化、代码执行、文件操作等能力。通过接入 ZenMux，您可以在 Hermes Agent 中使用全球各大厂商的最新大模型，无需分别配置各家 API Key，一个 ZenMux API Key 即可统一调用。
+Hermes Agent 支持工具调用、浏览器自动化、代码执行和文件操作。接入 ZenMux 后，您可以通过同一个账户使用多个厂商的模型。
 
-::: info 兼容性说明
-ZenMux 完全支持 OpenAI API 协议，可以通过 Hermes Agent 的自定义端点功能与其配合使用。
+本文提供两种接入方式：
 
-注意 OpenAI 协议的 base_url 为 `https://zenmux.ai/api/v1`。
-:::
+| 方式 | 认证方式 | 适用场景 |
+| --- | --- | --- |
+| [OAuth 插件（推荐）](#oauth-plugin) | 在浏览器中登录并授权，无需手动创建或粘贴 API Key | 支持 OAuth PKCE 插件 API 的 Hermes |
+| [API Key 自定义端点](#api-key) | 手动配置 ZenMux API Key | 希望使用 API Key，或暂时无法升级 Hermes |
+
+两种方式均使用 OpenAI 兼容的 Chat Completions 协议，Base URL 为 `https://zenmux.ai/api/v1`。OAuth 是授权方式，不代表免费使用；请求按授权时选择的账户和计费方式结算。
+
+如需了解其他 Agent 的 OAuth 接入与通用安全说明，请参阅 [OAuth PKCE 登录指南](/zh/best-practices/oauth-pkce)。
 
 ## 前置条件
 
-- 操作系统：Linux / macOS / WSL2 / Android（Termux）
-- **Git**（唯一的必装前置依赖，安装脚本会自动处理其余一切）
-- ZenMux API Key（参见下方[第 0 步](#第-0-步获取-zenmux-api-key)）
+- 已有 [ZenMux 账户](https://zenmux.ai)。
+- 已安装 Hermes Agent；首次安装可参考 [Hermes 官方快速开始](https://hermes-agent.nousresearch.com/docs/getting-started/quickstart)。Windows 用户请使用 WSL2。
+- OAuth 插件要求 Hermes 包含声明式 OAuth PKCE 插件 API：`main` 分支至少包含提交 `3e67877e1b`。旧版 Hermes 请先更新，不能仅靠安装插件补齐该能力。
+- 通过 PyPI 安装插件时，需要 Python 3.11 或更高版本，且必须与 Hermes 使用同一 Python 环境。
+- 首次 OAuth 授权需要浏览器；远程运行请参阅[远程服务器授权](#remote-oauth)。
 
-::: tip 关于其他依赖
-Hermes Agent 的一键安装脚本会自动检测并安装以下依赖，您**无需手动安装**：
-- Python 3.11（通过 uv 包管理器安装，无需 sudo）
-- Node.js v22（用于浏览器自动化和 WhatsApp 网关）
-- ripgrep（快速文件搜索）
-- ffmpeg（音频格式转换，用于语音功能）
+::: tip 插件来源
+本文依据 [ZenMux Hermes 插件 README](https://github.com/ZenMux/hermes-plugin/blob/main/README.zh.md)。插件已内置专用 public OAuth client，使用 OAuth 2.0 Authorization Code + S256 PKCE，不需要配置 client secret。
 :::
 
-## 第 0 步：获取 ZenMux API Key
+## 方式一：OAuth 插件（推荐） {#oauth-plugin}
 
-在配置 Hermes Agent 之前，您需要一个 ZenMux API Key。ZenMux 提供两种计费方式：
+### 1. 安装并启用插件
+
+推荐从 GitHub 安装：
+
+```bash
+hermes plugins install ZenMux/hermes-plugin --enable
+hermes gateway restart
+```
+
+如果没有运行 Gateway，安装后重新启动 Hermes 即可。如果 Gateway 由 PM2 等进程管理器托管，请在对应管理器中重启，例如 `pm2 restart hermes-gateway --update-env`。
+
+::: details 其他安装方式与固定版本
+如需可复现安装，从 [Release 页面](https://github.com/ZenMux/hermes-plugin/releases) 获取完整的 40 位 commit，替换下面的占位符：
+
+```bash
+hermes plugins install ZenMux/hermes-plugin --ref <40-character-commit> --enable
+```
+
+也可以通过 PyPI 安装。以下路径适用于使用默认虚拟环境的 Hermes；自定义安装请替换为实际 Python 路径：
+
+```bash
+~/.hermes/hermes-agent/venv/bin/python -m pip install zenmux-hermes-plugin
+hermes plugins enable zenmux
+hermes gateway restart
+```
+
+必须安装到 Hermes 所在的 Python 环境，否则 Hermes 无法发现插件。文件系统 Provider 安装方式见[插件 README](https://github.com/ZenMux/hermes-plugin/blob/main/README.zh.md)。
+:::
+
+### 2. 登录并授权
+
+```bash
+hermes auth add zenmux
+hermes auth status zenmux
+```
+
+Hermes 会打开 ZenMux 授权页。选择账户和计费方式，批准授权，然后回到终端查看认证状态。
+
+access token 和 refresh token 由 Hermes 保存在凭据池中，不保存在插件目录；插件中的 `zenmux.json` 只包含 public OAuth client ID。刷新时通过 Hermes 凭据锁串行化 refresh token 轮换。
+
+::: warning 保护登录凭据
+不要把 token、authorization code 或完整的认证文件粘贴到聊天、工单或代码仓库。OAuth 插件不要求您手动复制 token 到 API Key 配置中。
+:::
+
+### 3. 选择模型并验证
+
+打开模型选择器，选择插件提供的 ZenMux 供应商及所需模型：
+
+```bash
+hermes model
+```
+
+也可以显式指定 provider 和完整模型 slug，避免沿用之前的自定义端点配置：
+
+```bash
+hermes --provider zenmux -m google/gemini-2.5-flash-lite
+hermes --provider zenmux -m anthropic/claude-sonnet-4.5
+```
+
+在会话中发送一条简短消息，确认能收到模型回复。若要将 ZenMux 设为默认供应商：
+
+```bash
+hermes config set model.provider zenmux
+hermes config set model.default google/gemini-2.5-flash-lite
+hermes config set model.base_url https://zenmux.ai/api/v1
+hermes config set model.api_mode chat_completions
+
+hermes -z "Reply with exactly: OK" --safe-mode
+```
+
+登录成功只说明授权完成；收到实际模型回复才说明推理链路可用。
+
+### 4. 切换模型与模型目录
+
+在已使用 ZenMux 的聊天或消息机器人中，可以输入：
+
+```text
+/model z-ai/glm-5.3-flashx
+```
+
+`zenmux` 是 provider 名，不是模型 slug 前缀。应使用完整的 `vendor/model` ID，例如 `z-ai/glm-5.3-flashx`，而不是 `zenmux/glm-5.3-flashx`。
+
+插件实时读取 `https://zenmux.ai/api/v1/models`，保留输出文本的模型，并从对话模型选择器中过滤纯图片、视频生成模型。仅在目录暂时不可用时使用少量 fallback 模型。模型示例不保证对所有账户可用，实际可用性以账户权限和 API 响应为准。
+
+::: info 目录外模型
+实时目录用于模型选择和拼写建议，不是账户权限白名单。对于账户专属、灰度或特殊路由 slug，Hermes 需要支持 `ProviderProfile.model_listing_authoritative`，才能允许目录外 slug 继续请求。旧版 Hermes 可能在发送前拒绝，需要先更新 Hermes 和插件。无效或无权访问的 slug 仍会被 ZenMux API 拒绝。
+:::
+
+### 远程服务器与无界面环境 {#remote-oauth}
+
+OAuth 回调使用临时 loopback 地址，例如 `http://127.0.0.1:54321/callback`。这里的端口不是固定值。
+
+1. 在远程终端启动登录，获取本次生成的授权 URL 和回调端口：
+
+   ```bash
+   hermes auth add zenmux --no-browser
+   ```
+
+2. 保持远程登录命令等待，在本机另开终端转发**本次实际显示的端口**（下面仅以 `54321` 为例）：
+
+   ```bash
+   ssh -N -L 54321:127.0.0.1:54321 user@remote-host
+   ```
+
+3. 在本机浏览器打开本次生成的授权 URL，完成授权，再回到远程终端检查结果。
+
+插件 `0.1.1` 及以上版本最多等待 10 分钟。超时后必须重新登录，使用新 URL 和新端口，不能复用过期 authorization code。不要将回调服务暴露到公网。
+
+对于不能 SSH 转发的托管容器，README 提供了在临时本地 `HERMES_HOME` 授权后、安全合并 `credential_pool.zenmux` 的替代方案。仅迁移该 provider 的凭据，切勿用整个本地 `auth.json` 覆盖远程其他 provider 的凭据；详见[远程环境说明](https://github.com/ZenMux/hermes-plugin/blob/main/README.zh.md#远程与无界面服务器)。
+
+### 认证管理与更新
+
+```bash
+# 查看凭据、主动刷新或退出登录
+hermes auth list zenmux
+hermes auth refresh zenmux
+hermes auth logout zenmux
+```
+
+按原安装方式更新插件，然后重启 Hermes 或 Gateway：
 
 ::: code-group
 
-```text [订阅 API Key（推荐）]
-适用场景：个人开发、学习探索
-特点：固定月费、成本可预测、5-10 倍价格杠杆
-API Key 格式：sk-ss-v1-xxx
-
-获取方式：
-1. 访问订阅管理页面：https://zenmux.ai/platform/subscription
-2. 选择套餐（Starter $20/月、Max $100/月、Ultra $200/月）
-3. 订阅后在页面创建订阅 API Key
-
-详细说明请参阅：订阅套餐指南
-https://docs.zenmux.ai/zh/guide/subscription
+```bash [GitHub]
+hermes plugins install ZenMux/hermes-plugin --force --enable
+hermes gateway restart
 ```
 
-```text [按量付费 API Key]
-适用场景：生产环境、商业产品、企业应用
-特点：无速率限制、生产级稳定性、按实际用量计费
-API Key 格式：sk-ai-v1-xxx
-
-获取方式：
-1. 访问按量付费页面：https://zenmux.ai/platform/pay-as-you-go
-2. 充值账户
-3. 在"按量付费 API Keys"区域创建 API Key
-
-详细说明请参阅：按量付费指南
-https://docs.zenmux.ai/zh/guide/pay-as-you-go
+```bash [PyPI]
+~/.hermes/hermes-agent/venv/bin/python -m pip install --upgrade zenmux-hermes-plugin
+hermes gateway restart
 ```
 
 :::
 
-## 第 1 步：安装 Hermes Agent
+停止使用时可先运行 `hermes auth logout zenmux`，再运行 `hermes plugins disable zenmux`。完整卸载步骤见[插件 README](https://github.com/ZenMux/hermes-plugin/blob/main/README.zh.md#卸载)。
 
-如果您已经安装了 Hermes Agent，可以跳过此步骤，直接进入[第 2 步](#第-2-步配置-zenmux-供应商)。
+## 方式二：API Key 自定义端点 {#api-key}
 
-在终端中运行以下一键安装命令（支持 Linux / macOS / WSL2 / Android Termux）：
+不使用 OAuth 插件时，仍可沿用 API Key 接入，无需安装插件。
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash
-```
+1. 根据需求创建[订阅 API Key](/zh/guide/subscription) 或[按量付费 API Key](/zh/guide/pay-as-you-go)。套餐、价格和配额以对应页面为准。
+2. 运行 `hermes model`，选择 **Custom endpoint (enter URL manually)**。
+3. 按提示填写：
 
-安装完成后，重新加载 Shell 配置：
+   | 配置项 | 值 |
+   | --- | --- |
+   | API Base URL | `https://zenmux.ai/api/v1` |
+   | API Key | 您的 ZenMux API Key |
+   | 模型名称 | 完整模型 ID，例如 `openai/gpt-5.4` |
 
-```bash
-source ~/.bashrc   # 如果使用 zsh，请运行 source ~/.zshrc
-```
+4. 运行 `hermes` 并发送测试消息，确认收到模型回复。
 
-::: tip Windows 用户
-请先安装 [WSL2](https://learn.microsoft.com/zh-cn/windows/wsl/install)，然后在 WSL2 终端中运行上述安装命令。
+::: warning 两种方式不要混用
+API Key 自定义端点的 `model.provider` 是 `custom`；OAuth 插件的 provider 是 `zenmux`。从旧方式迁移到 OAuth 后，请重新选择插件供应商，或按上文设置默认 provider。模型 ID 均不需要添加 `zenmux/` 前缀。
 :::
-
-更多安装方式请参阅 [Hermes Agent 官方快速开始文档](https://hermes-agent.nousresearch.com/docs/getting-started/quickstart)。
-
-## 第 2 步：配置 ZenMux 供应商
-
-在终端中运行 `hermes model` 命令，进入供应商选择界面：
-
-```bash
-hermes model
-```
-
-您会看到一个供应商列表（使用 ↑↓ 键导航，ENTER 键选择）：
-
-```text
-Select provider:
-  ↑↓ navigate  ENTER/SPACE select  ESC cancel
-
-   (○) OpenRouter (100+ models, pay-per-use)
-   (○) Anthropic (Claude models — API key or Claude Code)
-   ...
-   (○) Custom endpoint (enter URL manually)    ← 首次配置选择此项
-   (○) Cancel
-```
-
-首次配置 ZenMux，选择 **"Custom endpoint (enter URL manually)"**，然后按提示依次输入：
-
-1. **API Base URL**：`https://zenmux.ai/api/v1`
-2. **API Key**：粘贴您的 ZenMux API Key（如 `sk-ss-v1-xxx`）
-3. **模型名称**：输入要使用的模型 ID，如 `openai/gpt-5.2`
-
-配置完成后，向导会自动将设置写入 `~/.hermes/config.yaml`，无需手动编辑任何文件。
-
-::: warning 关于模型名称
-模型名称就是 ZenMux API 中的原始模型 ID（如 `openai/gpt-5.2`），**不需要**加 `zenmux/` 前缀。Hermes 会将此名称直接发送到配置的 `base_url` 端点。
-:::
-
-## 第 3 步：验证配置
-
-启动 Hermes Agent 并发送一条测试消息验证模型可以正常响应：
-
-```bash
-hermes
-```
-
-```text
-你好，请只回复"嗨！"
-```
-
-如果收到模型回复，说明配置成功。
-
-## 第 4 步：切换模型（可选）
-
-ZenMux 支持多种模型，您可以随时通过 `hermes model` 切换。
-
-在终端中运行：
-
-```bash
-hermes model
-```
-
-配置完成后，供应商列表中会出现 ZenMux 的命名条目，例如：
-
-```text
-   ...
-   (○) Zenmux.ai (zenmux.ai/api/v1) — openai/gpt-5.2
-   (○) Custom endpoint (enter URL manually)
-   ...
-```
-
-选择 **"Zenmux.ai"** 条目，即可浏览该供应商下的可用模型并选择新的模型。选择完成后，下次启动 Hermes 即会使用新模型，修改会持久化保存。
-
-::: tip 模型名称说明
-ZenMux 使用的模型 ID 示例：
-- `openai/gpt-5.2` → GPT-5.2
-- `anthropic/claude-sonnet-4.5` → Claude Sonnet 4.5
-- `deepseek/deepseek-chat` → DeepSeek Chat
-- `google/gemini-3-pro-preview` → Gemini 3 Pro
-
-完整的可用模型列表请查看 [ZenMux 模型列表](https://zenmux.ai/models)。
-:::
-
-## 使用 ZenMux 模型
-
-配置完成后，您可以通过多种方式使用 ZenMux 模型：
-
-### 通过 CLI 交互对话
-
-```bash
-# 启动 Hermes Agent 交互式会话（使用已配置的默认模型）
-hermes
-
-# 在对话中直接提问
-> 用简单的话解释量子计算
-```
 
 ## 故障排除
+
+### OAuth 插件问题
+
+::: details Unknown provider 'zenmux'
+先确认 Hermes 满足前置版本要求，再检查插件是否已安装、启用：
+
+```bash
+hermes plugins list
+hermes plugins enable zenmux
+hermes gateway restart
+```
+
+PyPI 安装还需确认插件位于 Hermes 使用的 Python 环境中。若 Gateway 由其他管理器托管，请在那里重启。
+:::
+
+::: details OAuth 超时或授权失败
+重新运行 `hermes auth add zenmux`，使用本次新生成的 URL 和端口。远程服务器需按[远程授权步骤](#remote-oauth)建立转发。不要重复使用过期登录流程的 authorization code。
+
+已登录后认证失效，可先运行 `hermes auth status zenmux` 和 `hermes auth refresh zenmux`；如果刷新仍失败，再重新登录。
+:::
+
+::: details 已登录，但推理提示没有 endpoint
+更新插件并重新运行 `hermes auth add zenmux`。当前插件会在凭据中保存 `base_url=https://zenmux.ai/api/v1`，早期开发版本未保存该字段。
+:::
+
+::: details 模型因不在目录中而被拒绝
+先检查完整 `vendor/model` slug 是否正确。若是有效的目录外模型，请更新到支持 `ProviderProfile.model_listing_authoritative` 的 Hermes，并更新插件。目录外放行不代表拥有调用权限，最终以 ZenMux API 响应为准。
+:::
 
 ### 常见问题
 
@@ -219,13 +259,13 @@ hermes
 **解决方案**：
 
 1. **重新运行 `hermes model`**：
-   重新选择 "Custom endpoint" 并确认 URL 为 `https://zenmux.ai/api/v1`
+   OAuth 方式选择插件的 ZenMux 供应商；API Key 方式选择 "Custom endpoint"。确认 URL 为 `https://zenmux.ai/api/v1`
 
 2. **检查当前配置**：
    ```bash
    hermes config
    ```
-   确认 `model` 段的 `provider` 为 `custom`，`base_url` 为 `https://zenmux.ai/api/v1`
+   确认 `model` 段的 `provider`：OAuth 插件应为 `zenmux`，API Key 自定义端点应为 `custom`；`base_url` 应为 `https://zenmux.ai/api/v1`
 
 3. **注意 base_url 格式**：
    - 正确：`https://zenmux.ai/api/v1`
@@ -245,7 +285,8 @@ hermes
 
 2. **检查防火墙和代理**：
    - 确保防火墙没有阻止出站 HTTPS 连接
-   - 如需使用代理，在 `~/.hermes/.env` 中设置 `HTTPS_PROXY`
+   - 使用标准 `HTTP_PROXY` / `HTTPS_PROXY` 配置代理
+   - 如代理会终止 TLS，通过 `SSL_CERT_FILE` / `REQUESTS_CA_BUNDLE` 配置其 CA，不要全局关闭 TLS 校验
 
 3. **DNS 问题排查**：
    ```bash
