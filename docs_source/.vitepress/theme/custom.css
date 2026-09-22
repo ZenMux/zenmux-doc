@@ -205,6 +205,16 @@
 } */
 
 @media (min-width: 960px) {
+  .VPNavBarSearch {
+    flex: 0 1 200px;
+    min-width: 128px;
+  }
+
+  .VPNavBarSearch #local-search {
+    width: 100%;
+    min-width: 0;
+  }
+
   .VPNavBar.has-sidebar .container > .title {
     padding-left: 20px !important;
     width: 143px !important;
@@ -220,13 +230,23 @@
 
   .VPNavBar.has-sidebar .content {
     padding-left: 174px !important;
-    padding-right: 20px !important;
+    padding-right: 0 !important;
     flex-grow: 0 !important;
     width: 100%;
   }
 
   .VPNavBar .wrapper {
     padding: 0 20px !important;
+  }
+
+  .VPNavBar .content-body > .login-button {
+    flex-shrink: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  .VPNavBar .login-button .user-avatar-trigger {
+    margin-left: 0;
   }
 }
 
@@ -235,8 +255,35 @@
 }
 
 .VPNavBarMenu {
+  --zenmux-menu-font:
+    -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
   margin-left: auto !important;
-  gap: 28px;
+  flex-shrink: 0;
+  gap: 24px;
+  font-stretch: 85%;
+  /* Match the main header instead of inheriting VitePress's text rasterization. */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  text-rendering: auto;
+}
+
+@media (min-width: 1340px) {
+  .VPNavBar.has-sidebar .content {
+    /* Reclaim spare logo spacing near the desktop menu breakpoint. */
+    padding-left: clamp(124px, calc(100vw - 1216px), 174px) !important;
+  }
+
+  .VPNavBar .content-body > .ai-trigger {
+    flex-shrink: 0;
+    margin-right: 16px !important;
+  }
+}
+
+@media (min-width: 1340px) and (max-width: 1439px) {
+  .VPNavBarSearch .DocSearch-Button-Keys {
+    display: none;
+  }
 }
 
 /* Nav menu links: remove VitePress default padding, let gap handle spacing */
@@ -356,12 +403,15 @@
   height: 40px;
 }
 
-/* Nav item text: color, font, weight */
-.VPNavBarMenuLink {
-  font-family: var(--zenmux-nav-font);
-  font-size: 14px;
+/* Outrank VitePress's scoped link rule and set width on the button text itself. */
+.VPNavBarMenu > .VPNavBarMenuLink,
+.VPNavBarMenuGroup.VPFlyout .button .text {
+  font-family: var(--zenmux-menu-font);
+  font-size: 16px;
+  font-stretch: 85%;
+  letter-spacing: -0.02em;
   font-weight: 400 !important;
-  color: #62666a !important;
+  color: #808080 !important;
 }
 
 .VPNavBarMenuLink:hover {
@@ -370,7 +420,7 @@
 
 .VPNavBarMenuLink.active {
   color: var(--vp-c-brand-1) !important;
-  font-weight: 700 !important;
+  font-weight: 400 !important;
 }
 
 .VPFlyout .button .text {
@@ -389,12 +439,42 @@
   font-weight: 700 !important;
 }
 
+.VPNavBarMenuGroup.VPFlyout:hover .button .text,
+.VPNavBarMenuGroup.VPFlyout.active .button .text,
+.VPNavBarMenuGroup.VPFlyout .button[aria-expanded="true"] .text {
+  color: var(--vp-c-brand-1) !important;
+}
+
+/* Match the main site's system-font label treatment without scaling hit areas. */
+.VPNavBarMenuLink > span,
+.VPNavBarMenuGroup.VPFlyout .button .text > span:first-child {
+  display: inline-block;
+  line-height: 1;
+  transform: scaleY(0.96);
+}
+
+.VPNavBarMenuLink:focus-visible,
+.VPNavBarMenuGroup.VPFlyout .button:focus-visible,
+.VPNavBarMenuGroup.VPFlyout .menu .link:focus-visible {
+  outline: 2px solid var(--vp-c-brand-1);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
 /* Dropdown chevron arrow */
-.VPNavBarMenuGroup .VPFlyout .button .text .vpi-chevron-down {
+.VPNavBarMenuGroup.VPFlyout .button .text .vpi-chevron-down {
+  flex-shrink: 0;
   margin-left: 2px;
+  margin-top: 2px;
   width: 14px;
   height: 14px;
   color: #c8c8c8;
+}
+
+.VPNavBarMenuGroup.VPFlyout:hover .button .vpi-chevron-down,
+.VPNavBarMenuGroup.VPFlyout .button[aria-expanded="true"] .vpi-chevron-down {
+  /* VitePress's chevron asset points right; its closed state is rotated 90deg. */
+  transform: rotate(270deg);
 }
 
 .VPFlyout .button .caret-icon {
@@ -445,10 +525,28 @@
   color: var(--zm-text-primary) !important;
 }
 
+.VPNavBarMenuGroup.VPFlyout .menu .VPMenu {
+  min-width: 188px !important;
+}
+
+.VPNavBarMenuGroup.VPFlyout .menu .VPMenu .link {
+  font-family: var(--zenmux-menu-font);
+  letter-spacing: -0.02em;
+  color: #808080 !important;
+}
+
+.VPNavBarMenuGroup.VPFlyout .menu .VPMenu .link:hover,
+.VPNavBarMenuGroup.VPFlyout .menu .VPMenu .link:focus-visible,
+.VPNavBarMenuGroup.VPFlyout .menu .VPMenu .link.active {
+  background-color: var(--zm-bg-hover) !important;
+  color: var(--zm-text-primary) !important;
+  font-weight: 400 !important;
+}
+
 /* Search button */
 @media (min-width: 768px) {
-  .DocSearch.DocSearch-Button {
-    width: 300px;
+  .VPNavBarSearch .DocSearch.DocSearch-Button {
+    width: 100%;
     height: 32px;
     border: 0.5px solid #e6e6e6 !important;
     border-radius: 8px;
@@ -516,13 +614,29 @@
   order: 6;
 }
 
-/* Icon sections: 8px gap between icons, 60px gap after nav menu */
+/* Icon sections: 8px gap between icons, 36px gap after nav menu */
 .VPNavBar .content-body .social-links {
-  margin: 0 4px 0 60px !important;
+  margin: 0 4px 0 36px !important;
 }
 .VPNavBar .content-body .appearance,
 .VPNavBar .content-body .translations {
   margin: 0 4px !important;
+}
+
+@media (min-width: 1340px) {
+  .VPNavBar .content-body .social-links {
+    /* 36px menu gap + the main site's collapsed search group (16 + 16 + 18). */
+    margin: 0 12px 0 86px !important;
+  }
+
+  .VPNavBar .content-body .appearance {
+    margin: 0 12px 0 0 !important;
+  }
+
+  .VPNavBar .content-body .translations {
+    /* 12px icon gap + the missing notification slot (32px + 20px margin). */
+    margin: 0 64px 0 0 !important;
+  }
 }
 
 /* GitHub social link: 32x32, icon 16x16 */
@@ -585,29 +699,44 @@
   color: var(--vp-c-text-1) !important;
 }
 
-/* Translations flyout: 32x32 icon-only button, hide chevron and text */
-.VPNavBarTranslations .VPFlyout .button {
-  padding: 0 !important;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
+/* Desktop actions match the main site's 18px glyphs and 32px hit areas. */
+@media (min-width: 960px) {
+  .VPNavBarSocialLinks .VPSocialLink [class^="vpi-social-"],
+  .VPNavBarAppearance .check .icon,
+  .VPNavBarAppearance .check .icon [class^="vpi-"],
+  .VPNavBarTranslations.VPFlyout .option-icon {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  /* VPNavBarTranslations and VPFlyout are classes on the same element. */
+  .VPNavBarTranslations.VPFlyout {
+    display: flex;
+    align-items: center;
+  }
+
+  .VPNavBarTranslations.VPFlyout > .button {
+    padding: 0 !important;
+    width: 32px;
+    height: 32px;
+    justify-content: center;
+    border-radius: 8px;
+  }
+
+  .VPNavBarTranslations.VPFlyout .button .text {
+    font-size: 0 !important;
+    line-height: 1;
+  }
+
+  .VPNavBarTranslations.VPFlyout .option-icon {
+    margin: 0 !important;
+    color: #858585;
+  }
+
+  .VPNavBarTranslations.VPFlyout:hover .option-icon {
+    color: var(--vp-c-text-1) !important;
+  }
 }
-.VPNavBarTranslations .VPFlyout .button .text {
-  font-size: 0 !important;
-  line-height: 32px;
-}
-.VPNavBarTranslations .VPFlyout .button .text .option-icon {
-  font-size: 16px !important;
-  margin: 0 !important;
-  color: #858585;
-}
-.VPNavBarTranslations .VPFlyout:hover .button .text .option-icon {
-  color: var(--vp-c-text-1) !important;
-}
-.VPNavBarTranslations .VPFlyout .button .text .vpi-chevron-down,
 .VPNavBarTranslations .vpi-chevron-down,
 .VPNavBarTranslations .text-icon {
   display: none !important;
@@ -670,13 +799,31 @@
   color: var(--zm-text-secondary) !important;
 }
 
+.dark .VPNavBarMenuGroup.VPFlyout .button .text,
+.dark .VPNavBarMenuGroup.VPFlyout .menu .VPMenu .link {
+  color: var(--zm-text-secondary) !important;
+}
+
 .dark .VPFlyout:hover .button .text,
-.dark .VPFlyout.active .button .text {
+.dark .VPFlyout.active .button .text,
+.dark .VPNavBarMenuGroup.VPFlyout:hover .button .text,
+.dark .VPNavBarMenuGroup.VPFlyout.active .button .text,
+.dark .VPNavBarMenuGroup.VPFlyout .button[aria-expanded="true"] .text {
   color: var(--vp-c-brand-1) !important;
+}
+
+.dark .VPNavBarMenuGroup.VPFlyout .menu .VPMenu .link:hover,
+.dark .VPNavBarMenuGroup.VPFlyout .menu .VPMenu .link:focus-visible,
+.dark .VPNavBarMenuGroup.VPFlyout .menu .VPMenu .link.active {
+  color: var(--zm-text-primary) !important;
 }
 
 .dark .VPFlyout .button .text .vpi-chevron-down {
   color: var(--zm-border-primary);
+}
+
+.dark .VPNavBarMenuGroup.VPFlyout .button .text .vpi-chevron-down {
+  color: var(--zm-text-tertiary);
 }
 
 .dark .DocSearch.DocSearch-Button {
