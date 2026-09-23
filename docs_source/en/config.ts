@@ -457,7 +457,7 @@ export default defineLoacaleConfig({
               link: "/best-practices/open-webui",
             },
             {
-              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/08/17/AiPNvoR/Pi-Logo-black-outline.svg" />Pi Coding Agent Integration',
+              text: '<img src="https://cdn.marmot-cloud.com/storage/zenmux/2026/08/17/2aZy1tH/Namepi-TypeColor.svg" />Pi Coding Agent Integration',
               link: "/best-practices/pi-coding-agent",
             },
             {
