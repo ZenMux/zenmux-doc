@@ -10,7 +10,7 @@ The change aligns the public navigation, applies those names to both locales, re
 
 **Non-goals**
 
-No backend APIs, request examples, schemas, authentication rules, model filters, document URLs, or deployment behavior change. The Next.js site's independent drawer is outside this change. Docs keeps its existing Image visibility; Icons and Enterprise are not added because Docs does not consume the main site's complete permission and rollout data. No shared navigation service, component rewrite, or new dependency is introduced.
+No backend APIs, request examples, schemas, authentication rules, model filters, document URLs, or deployment behavior change. The Next.js site's independent drawer is outside this change. Docs keeps its existing Image visibility; Icons is not added because Docs does not consume the main site's complete permission and rollout data. Enterprise is public in Docs per the 2026-09-23 follow-up below. No shared navigation service, component rewrite, or new dependency is introduced.
 
 **Affected files**
 
@@ -22,7 +22,7 @@ No backend APIs, request examples, schemas, authentication rules, model filters,
 
 **Data and navigation contracts**
 
-Public header order is Studio, Models, Analytics, Pricing, Developers, Campaign, About Us. Studio points to `https://zenmux.ai/platform/chat?newChat=true`, `/platform/image`, and `/platform/video`. Analytics contains `/analytics/models` and `/analytics/apps`. All main-site targets use the absolute `https://zenmux.ai` origin. Existing Docs and Endpoints navigation behavior is preserved. Desktop and mobile continue to consume the same locale-specific `theme.nav`.
+Public header order is Studio, Models, Analytics, Pricing, Developers, Enterprise, Campaign, About Us. Studio points to `https://zenmux.ai/platform/chat?newChat=true`, `/platform/image`, and `/platform/video`. Analytics contains `/analytics/models` and `/analytics/apps`. All main-site targets use the absolute `https://zenmux.ai` origin. Existing Docs and Endpoints navigation behavior is preserved. Desktop and mobile continue to consume the same locale-specific `theme.nav`.
 
 | Operation | Relative API path | English document | Chinese document |
 | --- | --- | --- | --- |
@@ -116,16 +116,16 @@ search implementation, Vue component, or dependency changes are needed.
   86px menu-to-GitHub gap (36 + 16 + 16 + 18), followed by 12px icon gaps. Reserve
   notifications with a 64px language-to-account gap (12 + 32 + 20). CSS margins
   provide the slots without adding inert buttons or focus stops. The notification
-  slot remains reserved in both account states. Conditional main-site Enterprise
-  navigation remains outside Docs, so differing menu sets can still have different
-  first-item positions even when their right edges match.
+  slot remains reserved in both account states. Enterprise is public in Docs per
+  the 2026-09-23 follow-up; differing main-site menu visibility can still produce
+  different first-item positions even when their right edges match.
 - Keep the 1340px menu collapse breakpoint. The search container can shrink from
   200px to 128px, its button fills that container, Ask AI retains 16px of trailing
   spacing, and sidebar-header padding shrinks from 174px to 124px near the desktop
   breakpoint to accommodate the larger text without overlap.
-  Hide only the search shortcut hint at 1340–1439px so search contents still fit
-  when Login and the reserved action slots use more width; the shortcut itself
-  and search action are unchanged.
+  The public Enterprise follow-up below makes search compact at 1340–1439px
+  and hides its shortcut hint through 1511px; the shortcut itself and search
+  action are unchanged.
 
 **Validation and limitations.** A temporary localhost mirror serves published
 VitePress markup/runtime with the working-tree CSS substituted in its original
@@ -158,3 +158,46 @@ horizontal transforms.
 pipeline; do not hand-edit generated assets. Existing links and the shared
 locale/mobile navigation remain intact. Rollback reverts the stylesheet change
 and republishes. No new product decisions or migrations are required.
+
+### Main-site icon artwork — 2026-09-23
+
+`custom.css` now embeds the same GitHub, Sun, and Moon SVG geometry and stroke
+attributes as the main site's installed `lucide-react` 0.537.0, and the language
+SVG from `zenmux-next-new/src/components/Icons/Web.tsx`. Lucide's ISC notice is
+preserved in a CSS license comment. VitePress continues to render them through
+its existing masks, with no new package, component, link, or interaction change.
+The existing 18px desktop / 20px mobile dimensions and action spacing remain.
+
+Validation compares all four computed SVG masks with the source-derived SVGs,
+checks the existing desktop header regression, and visually inspects light/dark
+icons and the mobile controls in the isolated preview. CSS syntax and whitespace
+checks pass. This changes artwork only; there is no new e2e case or deployment.
+
+### Public Enterprise entry — 2026-09-23
+
+The user requested an Enterprise entry visible to everyone in Docs. Both locale
+configs now place `Enterprise` / `企业` after Developers and before Campaign,
+linking to `https://zenmux.ai/enterprise` with the existing `noIcon` treatment.
+Desktop and mobile consume the same static config; there is no account, role,
+or rollout check. Main-site access rules, APIs, and persistence are outside scope.
+
+The eighth label caused the English header's search button to overlap the logo
+at 1340px. `custom.css` now uses a 40px icon-only search button at 1340–1439px,
+and hides its shortcut hint through 1511px. The search name, action, shortcut,
+menu breakpoint, label typography, and right-side action spacing remain intact.
+The existing header regression expects eight labels; its adjacent logic document
+records the new search boundaries.
+
+Validation: both source configs pass exact label, position, and URL checks.
+The isolated preview injects their actual nav data into cached VitePress site
+data and matching server-rendered header markup, alongside current source CSS.
+Fifteen desktop checks pass: English signed-out at 1340/1439/1440/1511/1512/1920px,
+plus English avatar (dark), Chinese signed-out, and Chinese avatar at
+1340/1440/1512px. All eight labels, action spacing, and overlap checks pass.
+Both mobile locales expose the entry to signed-out visitors at 390px, and the
+compact desktop search opens normally. Account states are fixtures; this does
+not verify real account APIs or the destination's access behavior.
+
+Release uses the existing source-to-site pipeline; no generated assets are
+edited. Rollback removes the two nav entries and reverts the associated narrow
+search styling and regression count. No open product questions remain.

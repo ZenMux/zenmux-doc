@@ -26,7 +26,7 @@ async (page) => {
         centerY: rect.top + rect.height / 2,
       };
     });
-    if (labels.length !== 7) failures.push(`Expected 7 top-level labels, found ${labels.length}`);
+    if (labels.length !== 8) failures.push(`Expected 8 top-level labels, found ${labels.length}`);
     for (const label of labels) {
       if (label.fontSize !== '16px' || label.fontStretch !== '85%' ||
           label.fontWeight !== '400' || label.letterSpacing !== '-0.32px' ||
