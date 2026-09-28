@@ -192,7 +192,8 @@ export default defineLoacaleConfig({
           },
         ],
       },
-      { text: "企业", link: "https://zenmux.ai/enterprise", noIcon: true },
+      // 暂时隐藏企业导航入口，恢复时取消下一行注释。
+      // { text: "企业", link: "https://zenmux.ai/enterprise", noIcon: true },
       { text: "活动", link: "https://zenmux.ai/campaign", noIcon: true },
       {
         text: "关于我们",

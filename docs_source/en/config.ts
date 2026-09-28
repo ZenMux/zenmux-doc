@@ -190,7 +190,8 @@ export default defineLoacaleConfig({
           },
         ],
       },
-      { text: "Enterprise", link: "https://zenmux.ai/enterprise", noIcon: true },
+      // Temporarily hidden; uncomment to restore the Enterprise navigation entry.
+      // { text: "Enterprise", link: "https://zenmux.ai/enterprise", noIcon: true },
       { text: "Campaign", link: "https://zenmux.ai/campaign", noIcon: true },
       {
         text: "About Us",
