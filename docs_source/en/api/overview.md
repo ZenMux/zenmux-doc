@@ -1,33 +1,33 @@
 ---
 title: API Reference
-subtitle: An overview of OpenRouter's API
-headline: OpenRouter API Reference | Complete API Documentation
+subtitle: An overview of ZenMux's API
+headline: ZenMux API Reference | Complete API Documentation
 canonical-url: 'https://zenmux.ai/docs/api/overview.html'
-'og:site_name': OpenRouter Documentation
-'og:title': OpenRouter API Reference - Complete Documentation
+'og:site_name': ZenMux Documentation
+'og:title': ZenMux API Reference - Complete Documentation
 'og:description': >-
-  Comprehensive guide to OpenRouter's API. Learn about request/response schemas,
+  Comprehensive guide to ZenMux's API. Learn about request/response schemas,
   authentication, parameters, and integration with multiple AI model providers.
 'og:image':
   type: url
   value: >-
-    https://zenmux.ai/dynamic-og?title=OpenRouter%20API%20Reference&description=Comprehensive%20guide%20to%20OpenRouter's%20API.
+    https://zenmux.ai/dynamic-og?title=ZenMux%20API%20Reference&description=Comprehensive%20guide%20to%20ZenMux's%20API.
 'og:image:width': 1200
 'og:image:height': 630
 'twitter:card': summary_large_image
-'twitter:site': '@OpenRouterAI'
+'twitter:site': '@ZenMuxAI'
 noindex: false
 nofollow: false
 head:
   - - meta
     - name: description
-      content: OpenRouter's request and response schemas are very similar to the OpenAI Chat API, with a few small differences. At a high level, **OpenRouter normali...
+      content: ZenMux's request and response schemas are compatible with the OpenAI Chat API and normalized across models and providers.
   - - meta
     - name: keywords
       content: Zenmux, API, documentation, overview, OpenAI, GPT
 ---
 
-OpenRouter's request and response schemas are very similar to the OpenAI Chat API, with a few small differences. At a high level, **OpenRouter normalizes the schema across models and providers** so you only need to learn one.
+ZenMux's request and response schemas are very similar to the OpenAI Chat API, with a few small differences. At a high level, **ZenMux normalizes the schema across models and providers** so you only need to learn one.
 
 ## Requests
 
@@ -84,13 +84,8 @@ type Request = {
   // https://platform.openai.com/docs/guides/latency-optimization#use-predicted-outputs
   prediction?: { type: 'content'; content: string };
 
-  // OpenRouter-only parameters
-  // See "Prompt Transforms" section: zenmux.ai/docs/transforms
-  transforms?: string[];
-  // See "Model Routing" section: zenmux.ai/docs/model-routing
-  models?: string[];
-  route?: 'fallback';
-  // See "Provider Routing" section: zenmux.ai/docs/provider-routing
+  // Provider routing
+  // See "Provider Routing" section: zenmux.ai/docs/guide/advanced/provider-routing.html
   provider?: ProviderPreferences;
   user?: string; // A stable identifier for your end-users. Used to help detect and prevent abuse.
 };
@@ -156,10 +151,10 @@ The `response_format` parameter ensures you receive a structured response from t
 
 ### Headers
 
-OpenRouter allows you to specify some optional headers to identify your app and make it discoverable to users on our site.
+ZenMux allows you to specify optional headers to identify your app.
 
 - `HTTP-Referer`: Identifies your app on zenmux.ai
-- `X-Title`: Sets/modifies your app's title
+- `X-Title`: Identifies your app's name
 
 ::: code-group
 
@@ -167,9 +162,9 @@ OpenRouter allows you to specify some optional headers to identify your app and 
 fetch('https://zenmux.ai/api/v1/chat/completions', {
   method: 'POST',
   headers: {
-    Authorization: 'Bearer <OPENROUTER_API_KEY>',
-    'HTTP-Referer': '<YOUR_SITE_URL>', // Optional. Site URL for rankings on zenmux.ai.
-    'X-Title': '<YOUR_SITE_NAME>', // Optional. Site title for rankings on zenmux.ai.
+    Authorization: 'Bearer <ZENMUX_API_KEY>',
+    'HTTP-Referer': '<YOUR_SITE_URL>', // Optional. Site URL used to identify your app.
+    'X-Title': '<YOUR_SITE_NAME>', // Optional. Site name used to identify your app.
     'Content-Type': 'application/json',
   },
   body: JSON.stringify({
@@ -190,9 +185,8 @@ fetch('https://zenmux.ai/api/v1/chat/completions', {
   If the `model` parameter is omitted, the user or payer's default is used.
   Otherwise, remember to select a value for `model` from the [supported
   models](https://zenmux.ai/models) or [API](/api/openai/openai-list-models), and include the organization
-  prefix. OpenRouter will select the least expensive and best GPUs available to
-  serve the request, and fall back to other providers or GPUs if it receives a
-  5xx response code or if you are rate-limited.
+  prefix. ZenMux selects providers according to its [provider routing](/guide/advanced/provider-routing)
+  configuration. See [Fallback Mechanism](/guide/advanced/fallback) for fallback behavior.
 :::
 
 ::: info Streaming
@@ -211,7 +205,7 @@ fetch('https://zenmux.ai/api/v1/chat/completions', {
 
 ### Assistant Prefill
 
-OpenRouter supports asking models to complete a partial response. This can be useful for guiding models to respond in a certain way.
+For models that support assistant prefill, ZenMux allows you to request completion of a partial response. This can be useful for guiding models to respond in a certain way.
 
 To use this features, simply include a message with `role: "assistant"` at the end of your `messages` array.
 
@@ -221,7 +215,7 @@ To use this features, simply include a message with `role: "assistant"` at the e
 fetch('https://zenmux.ai/api/v1/chat/completions', {
   method: 'POST',
   headers: {
-    Authorization: 'Bearer <OPENROUTER_API_KEY>',
+    Authorization: 'Bearer <ZENMUX_API_KEY>',
     'Content-Type': 'application/json',
   },
   body: JSON.stringify({
@@ -240,7 +234,7 @@ fetch('https://zenmux.ai/api/v1/chat/completions', {
 
 ### CompletionsResponse Format
 
-OpenRouter normalizes the schema across models and providers to comply with the [OpenAI Chat API](https://platform.openai.com/docs/api-reference/chat).
+ZenMux normalizes the schema across models and providers to comply with the [OpenAI Chat API](https://platform.openai.com/docs/api-reference/chat).
 
 This means that `choices` is always an array, even if the model only returns one completion. Each choice will contain a `delta` property if a stream was requested and a `message` property otherwise. This makes it easier to use the same code for all models.
 
@@ -351,7 +345,7 @@ Here's an example:
 
 ### Finish Reason
 
-OpenRouter normalizes each model's `finish_reason` to one of the following values: `tool_calls`, `stop`, `length`, `content_filter`, `error`.
+ZenMux's OpenAI-compatible responses use `finish_reason` to indicate why generation stopped. Common values include `tool_calls`, `stop`, `length`, and `content_filter`.
 
 Some models and providers may have additional finish reasons. The raw finish_reason string returned by the model is available via the `native_finish_reason` property.
 

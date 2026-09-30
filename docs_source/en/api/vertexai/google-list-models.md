@@ -196,7 +196,7 @@ Maximum token count (exclusive). The actual token count must be < this value; nu
     {
       "name": "google/gemini-2.5-flash-lite",
       "displayName": "Google: Gemini 2.5 Flash Lite",
-      "description": "Gemini 2.5 Flash-Lite is a lightweight reasoning model in the Gemini 2.5 family, optimized for ultra-low latency and cost efficiency. It offers improved throughput, faster token generation, and better performance across common benchmarks compared to earlier Flash models. By default, \"thinking\" (i.e. multi-pass reasoning) is disabled to prioritize speed, but developers can enable it via the [Reasoning API parameter](https://openrouter.ai/docs/use-cases/reasoning-tokens) to selectively trade off cost for intelligence. ",
+      "description": "Gemini 2.5 Flash-Lite is a lightweight reasoning model in the Gemini 2.5 family, optimized for ultra-low latency and cost efficiency. It offers improved throughput, faster token generation, and better performance across common benchmarks compared to earlier Flash models. By default, \"thinking\" (i.e. multi-pass reasoning) is disabled to prioritize speed, but developers can enable it via the [thinkingConfig parameter](https://zenmux.ai/docs/api/vertexai/generate-content.html) to selectively trade off cost for intelligence. ",
       "inputTokenLimit": 1048576,
       "outputTokenLimit": 65535,
       "thinking": true,
