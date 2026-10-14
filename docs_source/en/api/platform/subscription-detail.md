@@ -82,7 +82,8 @@ The account's current status:
 5-hour rolling window quota (high-frequency protection):
 
 - `usage_percentage` `number` — Fraction of the window consumed (0–1), to 4 decimal places
-- `resets_at` `string | null` — Window reset time (ISO 8601); `null` if the window has not yet started
+- `resets_at` `string | null` — Natural window reset time (ISO 8601); `null` if the window has not yet started
+- `remaining_resets` `integer` — Early 5-hour window resets remaining in the current subscription cycle, shared by manual and automatic resets. Always a nonnegative integer; `0` when there is no valid subscription, the plan has no reset entitlement, or all attempts have been used
 - `max_flows` `number` — Maximum Flows available in this window
 - `used_flows` `number` — Flows consumed so far
 - `remaining_flows` `number` — Flows remaining
@@ -91,7 +92,7 @@ The account's current status:
 
 ### data.quota_7_day `object`
 
-7-day rolling window quota. Same field structure as `quota_5_hour`.
+7-day rolling window quota. It shares the Flow usage, value, and natural reset time fields with `quota_5_hour`, but does not include `remaining_resets`.
 
 ### data.quota_monthly `object`
 
@@ -99,6 +100,16 @@ Monthly subscription cycle quota (upper limits only; no real-time usage data):
 
 - `max_flows` `number` — Maximum Flows available in the current billing cycle
 - `max_value_usd` `number` — USD value of the total monthly quota
+
+### Early Reset Attempts
+
+`remaining_resets` uses the same entitlement source as the subscription management page. It counts attempts remaining across the subscription cycle, rather than Flows remaining in the current 5-hour window or time until its natural reset.
+
+- After a successful manual or automatic reset has been recorded, subsequent queries reflect the consumed attempt. Toggling automatic resets alone does not consume an attempt.
+- A natural 5-hour window reset does not consume an early reset attempt. A valid subscription may have remaining attempts even when its window has not started and `resets_at` is `null`.
+- When a new subscription cycle takes effect, attempts are recalculated from the current entitlement; unused attempts do not carry over. Plan changes use the effective plan, cycle, and recorded consumption. A scheduled plan change does not affect the current entitlement before it takes effect.
+- Canceling renewal preserves remaining attempts until the current entitlement expires. Missing, free, or expired subscriptions return `0`, rather than `null` or an omitted field.
+- A positive count does not guarantee that a reset can currently be performed; other window quotas and account restrictions still apply. Entitlement query failures return an error rather than a fallback count of `0`.
 
 ::: info Quota behavior
 
@@ -134,6 +145,7 @@ curl https://zenmux.ai/api/v1/management/subscription/detail \
     "quota_5_hour": {
       "usage_percentage": 0.0715,
       "resets_at": "2026-03-24T08:35:09.000Z",
+      "remaining_resets": 1,
       "max_flows": 800,
       "used_flows": 57.2,
       "remaining_flows": 742.8,
