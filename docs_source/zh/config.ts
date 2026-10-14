@@ -240,6 +240,10 @@ export default defineLoacaleConfig({
                   link: "/zh/api/openai/openai-responses",
                 },
                 {
+                  text: "Create a Decision",
+                  link: "/zh/api/openai/openai-decisions",
+                },
+                {
                   text: "Create an Embedding",
                   link: "/zh/api/openai/create-embeddings",
                 },
