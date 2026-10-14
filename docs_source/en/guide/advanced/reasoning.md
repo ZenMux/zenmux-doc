@@ -52,6 +52,14 @@ The `reasoning` parameter provides more fine-grained reasoning control and suppo
 }
 ```
 
+#### mode
+
+A ZenMux extension, provided as an optional string, that selects the upstream model's reasoning mode. When the request is routed to a Responses upstream, ZenMux forwards a non-empty `reasoning.mode` unchanged to the same upstream field. Both streaming and non-streaming requests are supported.
+
+Supported values, default behavior, and combinations with reasoning effort depend on the upstream model; ZenMux does not enforce a common enum. You can pass `mode` on its own or combine it with `reasoning.effort`: `mode` selects the reasoning mode, while `effort` controls reasoning intensity.
+
+For example, use `"standard"` or `"pro"` only with models that support those modes. See "Using Reasoning Mode reasoning.mode" below for examples.
+
 #### effort
 
 Equivalent to the `reasoning_effort` parameter, intended for models that only support `reasoning_effort`. Available values are the same as `reasoning_effort`.
@@ -206,6 +214,44 @@ curl https://zenmux.ai/api/v1/chat/completions \
     "reasoning_effort": "high"
   }'
 ```
+
+#### Using Reasoning Mode reasoning.mode
+
+The examples below use `"pro"` to demonstrate how to pass the parameter. Set the `ZENMUX_MODEL` environment variable to the ID of a model that supports the mode and is called through the Responses protocol.
+
+With the OpenAI Python SDK, use `extra_body` to pass extension fields. With cURL, place `reasoning` at the top level of the request body.
+
+::: code-group
+
+```python [Python]
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.environ["ZENMUX_API_KEY"],
+    base_url="https://zenmux.ai/api/v1",
+)
+
+completion = client.chat.completions.create(
+    model=os.environ["ZENMUX_MODEL"],
+    messages=[{"role": "user", "content": "Explain why there are infinitely many primes."}],
+    extra_body={"reasoning": {"mode": "pro", "effort": "medium"}},
+)
+print(completion.choices[0].message.content)
+```
+
+```bash [cURL]
+curl https://zenmux.ai/api/v1/chat/completions \
+  -H "Authorization: Bearer $ZENMUX_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d "{
+    \"model\": \"$ZENMUX_MODEL\",
+    \"messages\": [{\"role\": \"user\", \"content\": \"Explain why there are infinitely many primes.\"}],
+    \"reasoning\": {\"mode\": \"pro\", \"effort\": \"medium\"}
+  }"
+```
+
+:::
 
 #### Extracting reasoning output
 
@@ -410,6 +456,19 @@ Anthropic Claude models provide reasoning capabilities via **Extended Thinking**
 - When thinking is enabled, modifying `temperature` or `top_k` is not supported
 - Response pre-fill is not supported
 - Forced tool calling is not supported (`tool_choice: "any"` or a specific tool name)
+
+:::
+
+### reasoning.mode (ZenMux extension)
+
+Messages requests also support `reasoning.mode`. Place it in a top-level `reasoning` object in the request body, alongside `thinking`. When the request is routed to a Responses upstream, ZenMux forwards a non-empty `mode` unchanged to the upstream's `reasoning.mode`. Both streaming and non-streaming requests are supported.
+
+`mode` is an optional string. Supported values and default behavior depend on the upstream model; ZenMux does not enforce a common enum. `"standard"` and `"pro"` apply only to models that support those modes.
+
+You can pass `reasoning.mode` on its own without configuring `thinking`. When combined with `thinking.type: "enabled"` and `budget_tokens`, ZenMux preserves `mode` while computing reasoning effort from the budget, then forwards it to the upstream. Continue to configure reasoning budget and effort through `thinking`.
+
+::: warning Combining with thinking
+`thinking.type: "disabled"` overwrites the reasoning configuration, so `mode` is not forwarded in this combination.
 :::
 
 ### API Call Examples
@@ -505,6 +564,51 @@ curl https://zenmux.ai/api/anthropic/v1/messages \
       }
     ]
   }'
+```
+
+:::
+
+#### Using Reasoning Mode reasoning.mode
+
+The examples below use `"pro"` to demonstrate how to pass the parameter. Set the `ZENMUX_MODEL` environment variable to the ID of a model that supports the mode and is called through the Responses protocol.
+
+With the Anthropic Python SDK, also use `extra_body` to pass `reasoning`. The examples below enable thinking as well; you can omit `thinking` and pass only `reasoning.mode`.
+
+::: code-group
+
+```python [Python]
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ["ZENMUX_API_KEY"],
+    base_url="https://zenmux.ai/api/anthropic",
+)
+
+message = client.messages.create(
+    model=os.environ["ZENMUX_MODEL"],
+    max_tokens=8192,
+    thinking={"type": "enabled", "budget_tokens": 4096},
+    messages=[{"role": "user", "content": "Explain why there are infinitely many primes."}],
+    extra_body={"reasoning": {"mode": "pro"}},
+)
+for block in message.content:
+    if block.type == "text":
+        print(block.text)
+```
+
+```bash [cURL]
+curl https://zenmux.ai/api/anthropic/v1/messages \
+  -H "x-api-key: $ZENMUX_API_KEY" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "Content-Type: application/json" \
+  -d "{
+    \"model\": \"$ZENMUX_MODEL\",
+    \"max_tokens\": 8192,
+    \"messages\": [{\"role\": \"user\", \"content\": \"Explain why there are infinitely many primes.\"}],
+    \"thinking\": {\"type\": \"enabled\", \"budget_tokens\": 4096},
+    \"reasoning\": {\"mode\": \"pro\"}
+  }"
 ```
 
 :::
