@@ -83,6 +83,13 @@ const providersData: Provider[] = [
         docUrl: "/docs/api/openai/openai-responses.html",
       },
       {
+        title: "Create a Decision",
+        path: "/decisions",
+        iconType: "chat",
+        docUrl: "/docs/api/openai/openai-decisions.html",
+        docUrlZh: "/docs/zh/api/openai/openai-decisions.html",
+      },
+      {
         title: "Create an Embedding",
         path: "/embeddings",
         iconType: "embeddings",
