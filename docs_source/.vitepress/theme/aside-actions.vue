@@ -8,10 +8,6 @@
       <IconBack_top class="action-icon" />
       <span>Scroll to top</span>
     </button>
-    <button class="aside-action-item" @click="askAI">
-      <AiIcon class="action-icon" />
-      <span>Ask AI about this page</span>
-    </button>
   </div>
 </template>
 
@@ -21,10 +17,7 @@ import { useData } from "vitepress";
 import copyToClipboard from "copy-to-clipboard";
 import { Copy as CopyIcon } from "./icons";
 import IconBack_top from "./icons/IconBack_top.vue";
-import ChatFrame from "./icons/ChatFrame.vue";
 import { fetchPageContent } from "./use-page-content";
-
-const AiIcon = ChatFrame;
 
 const { page } = useData();
 
@@ -44,10 +37,6 @@ async function copyPage() {
 
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: "smooth" });
-}
-
-function askAI() {
-  document.dispatchEvent(new CustomEvent("open-ai-assistant"));
 }
 </script>
 

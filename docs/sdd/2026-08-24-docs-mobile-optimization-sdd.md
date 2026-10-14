@@ -1,5 +1,25 @@
 # Docs Mobile Optimization SDD
 
+## Hide Ask AI entry points (2026-10-14)
+
+Ask AI entry points are hidden at the user's request. The assistant behavior
+described below is historical and is no longer mounted by this update.
+`theme/index.ts` no longer imports or mounts `ai-assistant.vue`, removing
+the desktop trigger, mobile floating trigger, and assistant keyboard/event
+listeners. `aside-actions.vue` removes the page-level Ask AI action.
+`mobile-search.vue` removes the assistant suggestion and event dispatch; results,
+active selection, Enter, and ARIA option IDs now use zero-based document indexes.
+The Enter hint says Select. Empty results do not activate a selection.
+
+Local documentation search, copy, and navigation remain available. Assistant
+implementation files remain unmounted. This change only hides frontend entry
+points; the backend API, configuration, and deployment are outside its scope.
+
+Validation: compile the changed Vue components, verify no mounted component
+imports or dispatches assistant events, exercise first/last/empty document
+selection, and run `git diff --check`. The UI change takes effect when docs is
+published. No data model or API changes and no open questions for this scope.
+
 ## Background
 
 The documentation site currently relies on VitePress's generic mobile navigation and desktop-oriented custom styles. The approved Figma design introduces a compact mobile header, a wider documentation drawer, and mobile-first search and AI entry points.

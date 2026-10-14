@@ -11,9 +11,7 @@ import {
   watch,
 } from "vue";
 import { useData, useRouter } from "vitepress";
-import { openAiAssistant } from "./assistant-events";
 import { useBodyScrollLock } from "./composables/use-body-scroll-lock";
-import ChatFrame from "./icons/ChatFrame.vue";
 import IconSearch from "./icons/IconSearch.vue";
 
 interface SearchDocument {
@@ -48,7 +46,6 @@ const labels = computed(() => {
   if (isZh.value) {
     return {
       search: "搜索",
-      askAssistant: "询问助手",
       documents: "文档结果",
       select: "选择",
       noResults: "没有匹配的文档",
@@ -57,7 +54,6 @@ const labels = computed(() => {
   }
   return {
     search: "Search",
-    askAssistant: "Ask Assistant",
     documents: "Documentation",
     select: "Select",
     noResults: "No matching documents",
@@ -66,21 +62,11 @@ const labels = computed(() => {
 });
 
 const trimmedQuery = computed(() => query.value.trim());
-const assistantQuestion = computed(() => {
-  if (!trimmedQuery.value) {
-    return "";
-  }
-  if (isZh.value) {
-    return `请介绍一下“${trimmedQuery.value}”。`;
-  }
-  return `Can you tell me about ${trimmedQuery.value}?`;
-});
-
 const selectableCount = computed(() => {
   if (!trimmedQuery.value) {
     return 0;
   }
-  return results.value.length + 1;
+  return results.value.length;
 });
 
 useBodyScrollLock(open);
@@ -181,28 +167,13 @@ function closeSearch() {
   nextTick(() => previousFocus?.focus());
 }
 
-async function askAssistant() {
-  if (!assistantQuestion.value) {
-    return;
-  }
-  const question = assistantQuestion.value;
-  open.value = false;
-  await nextTick();
-  previousFocus?.focus();
-  openAiAssistant({ query: question, autoSend: true });
-}
-
 async function openResult(result: MobileSearchResult) {
   open.value = false;
   await router.go(result.id);
 }
 
 function activateSelection() {
-  if (activeIndex.value === 0) {
-    void askAssistant();
-    return;
-  }
-  const result = results.value[activeIndex.value - 1];
+  const result = results.value[activeIndex.value];
   if (result) {
     void openResult(result);
   }
@@ -336,25 +307,12 @@ onUnmounted(() => {
               autocomplete="off"
               :placeholder="labels.search"
               :aria-activedescendant="
-                trimmedQuery ? `mobile-search-option-${activeIndex}` : undefined
+                selectableCount ? `mobile-search-option-${activeIndex}` : undefined
               "
             />
           </label>
 
           <div v-if="trimmedQuery" class="mobile-search-results">
-            <p class="mobile-search-section-label">{{ labels.askAssistant }}</p>
-            <button
-              id="mobile-search-option-0"
-              class="mobile-search-option mobile-search-ai-option"
-              :class="{ active: activeIndex === 0 }"
-              type="button"
-              @mouseenter="activeIndex = 0"
-              @click="askAssistant"
-            >
-              <ChatFrame aria-hidden="true" />
-              <span>{{ assistantQuestion }}</span>
-            </button>
-
             <template v-if="results.length">
               <p class="mobile-search-section-label mobile-search-doc-label">
                 {{ labels.documents }}
@@ -362,14 +320,14 @@ onUnmounted(() => {
               <div class="mobile-search-document-results" role="listbox">
                 <button
                   v-for="(result, index) in results"
-                  :id="`mobile-search-option-${index + 1}`"
+                  :id="`mobile-search-option-${index}`"
                   :key="result.id"
                   class="mobile-search-option mobile-search-document-option"
-                  :class="{ active: activeIndex === index + 1 }"
+                  :class="{ active: activeIndex === index }"
                   type="button"
                   role="option"
-                  :aria-selected="activeIndex === index + 1"
-                  @mouseenter="activeIndex = index + 1"
+                  :aria-selected="activeIndex === index"
+                  @mouseenter="activeIndex = index"
                   @click="openResult(result)"
                 >
                   <span class="mobile-search-result-title">{{ result.title }}</span>
@@ -388,7 +346,7 @@ onUnmounted(() => {
 
             <footer class="mobile-search-footer" aria-hidden="true">
               <span><kbd>↑</kbd><kbd>↓</kbd> {{ labels.select }}</span>
-              <span><kbd>↵</kbd> {{ labels.askAssistant }}</span>
+              <span><kbd>↵</kbd> {{ labels.select }}</span>
             </footer>
           </div>
         </section>
@@ -522,23 +480,6 @@ onUnmounted(() => {
 .mobile-search-option.active {
   color: var(--zm-text-primary);
   background: var(--zm-bg-tertiary);
-}
-
-.mobile-search-ai-option {
-  padding: 12px;
-  color: var(--zm-text-secondary);
-  font-size: 15px;
-  line-height: normal;
-}
-
-.mobile-search-ai-option.active {
-  color: var(--zm-text-secondary);
-}
-
-.mobile-search-ai-option svg {
-  flex: 0 0 auto;
-  width: 16px;
-  height: 16px;
 }
 
 .mobile-search-document-results {
