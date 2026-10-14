@@ -36,7 +36,6 @@ const Login = defineAsyncComponent(() => import("./login.vue"));
 const EndpointDrawer = defineAsyncComponent(
   () => import("./endpoint-drawer.vue"),
 );
-const AiAssistant = defineAsyncComponent(() => import("./ai-assistant.vue"));
 const MobileSearch = defineAsyncComponent(() => import("./mobile-search.vue"));
 
 declare global {
@@ -318,7 +317,6 @@ export default {
         h(ClientOnly, null, {
           default: () => h(DocTabs, { variant: "sidebar" }),
         }),
-      "nav-bar-content-before": () => h(ClientOnly, null, { default: () => h(AiAssistant) }),
       "nav-bar-content-after": () =>
         h(ClientOnly, null, {
           default: () => [h(Login), h(EndpointDrawer)],
