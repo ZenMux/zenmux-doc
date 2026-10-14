@@ -52,6 +52,14 @@ ZenMux 提供了对模型推理行为的精细控制能力，支持多种 API �
 }
 ```
 
+#### mode
+
+ZenMux 扩展字段，类型为可选字符串，用于选择上游模型的推理模式。当请求路由到 Responses 协议的上游时，ZenMux 会将非空的 `reasoning.mode` 原样传递到上游同名字段，流式与非流式请求均支持。
+
+支持的值、默认行为以及与推理强度的组合由上游模型决定，ZenMux 不限定统一枚举。`mode` 可以单独传递，也可以与 `reasoning.effort` 一起使用；`mode` 选择推理模式，`effort` 控制推理强度。
+
+例如，仅在模型支持相应模式时使用 `"standard"` 或 `"pro"`。调用示例见下方「使用推理模式 reasoning.mode」。
+
 #### effort
 
 等价于 `reasoning_effort` 参数,供仅支持 `reasoning_effort` 的模型使用。可选值与 `reasoning_effort` 相同。
@@ -206,6 +214,44 @@ curl https://zenmux.ai/api/v1/chat/completions \
     "reasoning_effort": "high"
   }'
 ```
+
+#### 使用推理模式 reasoning.mode
+
+以下示例使用 `"pro"` 演示传参方式。请将环境变量 `ZENMUX_MODEL` 设置为支持相应模式且通过 Responses 协议调用的模型 ID。
+
+OpenAI Python SDK 使用 `extra_body` 传递扩展字段；cURL 将 `reasoning` 放在请求体顶层。
+
+::: code-group
+
+```python [Python]
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.environ["ZENMUX_API_KEY"],
+    base_url="https://zenmux.ai/api/v1",
+)
+
+completion = client.chat.completions.create(
+    model=os.environ["ZENMUX_MODEL"],
+    messages=[{"role": "user", "content": "Explain why there are infinitely many primes."}],
+    extra_body={"reasoning": {"mode": "pro", "effort": "medium"}},
+)
+print(completion.choices[0].message.content)
+```
+
+```bash [cURL]
+curl https://zenmux.ai/api/v1/chat/completions \
+  -H "Authorization: Bearer $ZENMUX_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d "{
+    \"model\": \"$ZENMUX_MODEL\",
+    \"messages\": [{\"role\": \"user\", \"content\": \"Explain why there are infinitely many primes.\"}],
+    \"reasoning\": {\"mode\": \"pro\", \"effort\": \"medium\"}
+  }"
+```
+
+:::
 
 #### 推理结果提取
 
@@ -412,6 +458,18 @@ Anthropic Claude 模型通过 **Extended Thinking（扩展思维）** 功能提�
 - 不支持强制工具调用（`tool_choice: "any"` 或指定工具名）
 :::
 
+### reasoning.mode（ZenMux 扩展）
+
+Messages 请求也支持 `reasoning.mode`，放在请求体顶层的 `reasoning` 对象中，与 `thinking` 同级。当请求路由到 Responses 协议的上游时，ZenMux 会将非空的 `mode` 原样传递到上游的 `reasoning.mode`，流式与非流式请求均支持。
+
+`mode` 的类型为可选字符串，支持的值和默认行为由上游模型决定，ZenMux 不限定统一枚举。`"standard"`、`"pro"` 仅适用于支持这些模式的模型。
+
+可以单独传递 `reasoning.mode`，无需配置 `thinking`。与 `thinking.type: "enabled"` 和 `budget_tokens` 一起使用时，ZenMux 在根据预算计算推理强度的过程中会保留 `mode`，然后一并传给上游。推理预算与强度仍通过 `thinking` 配置。
+
+::: warning 与 thinking 的组合
+`thinking.type: "disabled"` 会覆盖 reasoning 配置，因此此组合不会透传 `mode`。
+:::
+
 ### API 调用示例
 
 ::: code-group
@@ -505,6 +563,51 @@ curl https://zenmux.ai/api/anthropic/v1/messages \
       }
     ]
   }'
+```
+
+:::
+
+#### 使用推理模式 reasoning.mode
+
+以下示例使用 `"pro"` 演示传参方式。请将环境变量 `ZENMUX_MODEL` 设置为支持相应模式且通过 Responses 协议调用的模型 ID。
+
+Anthropic Python SDK 同样使用 `extra_body` 传递 `reasoning`。以下示例同时开启 thinking；也可以省略 `thinking`，仅传递 `reasoning.mode`。
+
+::: code-group
+
+```python [Python]
+import os
+from anthropic import Anthropic
+
+client = Anthropic(
+    api_key=os.environ["ZENMUX_API_KEY"],
+    base_url="https://zenmux.ai/api/anthropic",
+)
+
+message = client.messages.create(
+    model=os.environ["ZENMUX_MODEL"],
+    max_tokens=8192,
+    thinking={"type": "enabled", "budget_tokens": 4096},
+    messages=[{"role": "user", "content": "Explain why there are infinitely many primes."}],
+    extra_body={"reasoning": {"mode": "pro"}},
+)
+for block in message.content:
+    if block.type == "text":
+        print(block.text)
+```
+
+```bash [cURL]
+curl https://zenmux.ai/api/anthropic/v1/messages \
+  -H "x-api-key: $ZENMUX_API_KEY" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "Content-Type: application/json" \
+  -d "{
+    \"model\": \"$ZENMUX_MODEL\",
+    \"max_tokens\": 8192,
+    \"messages\": [{\"role\": \"user\", \"content\": \"Explain why there are infinitely many primes.\"}],
+    \"thinking\": {\"type\": \"enabled\", \"budget_tokens\": 4096},
+    \"reasoning\": {\"mode\": \"pro\"}
+  }"
 ```
 
 :::
