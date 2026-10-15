@@ -82,7 +82,8 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 5 小时滚动窗口配额（高频保护机制）：
 
 - `usage_percentage` `number` — 当前周期已用百分比（0–1），精确到 4 位小数
-- `resets_at` `string | null` — 当前窗口重置时间（ISO 8601）；窗口未开始时为 `null`
+- `resets_at` `string | null` — 当前窗口自然重置时间（ISO 8601）；窗口未开始时为 `null`
+- `remaining_resets` `integer` — 本订阅周期内剩余的 5 小时窗口提前重置次数，手动和自动触发共用；始终返回非负整数，无有效订阅、套餐无此权益或次数用尽时为 `0`
 - `max_flows` `number` — 窗口内最大可用 Flow 数
 - `used_flows` `number` — 已使用 Flow 数
 - `remaining_flows` `number` — 剩余可用 Flow 数
@@ -91,7 +92,7 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 
 ### data.quota_7_day `object`
 
-7 天滚动窗口配额，字段结构与 `quota_5_hour` 相同。
+7 天滚动窗口配额，包含与 `quota_5_hour` 相同的 Flow 用量、价值和自然重置时间字段，不包含 `remaining_resets`。
 
 ### data.quota_monthly `object`
 
@@ -99,6 +100,16 @@ Authorization: Bearer <ZENMUX_MANAGEMENT_API_KEY>
 
 - `max_flows` `number` — 当月最大可用 Flow 数
 - `max_value_usd` `number` — 当月总额度对应的美元价值
+
+### 提前重置次数
+
+`remaining_resets` 使用与官网订阅管理页相同的实际权益来源。它统计整个订阅周期内的剩余机会，不表示当前 5 小时窗口的剩余 Flow，也不表示自然重置的倒计时。
+
+- 手动或自动重置成功并完成记账后，后续查询反映次数扣减；仅切换自动重置开关不会扣次数。
+- 5 小时窗口自然滚动重置不消耗提前重置机会。有效订阅尚未开始窗口时，`resets_at` 可以为 `null`，但剩余次数仍可大于 `0`。
+- 新订阅周期生效后按当前权益重新计算，未使用次数不累计。套餐变更按当前生效套餐、周期和实际消费记录计算；预约下周期的变更在生效前不影响当前权益。
+- 取消续费但权益尚未到期时，仍返回当前周期剩余次数。无订阅、免费套餐或权益已失效时固定返回 `0`，不返回 `null` 或省略字段。
+- 剩余次数大于 `0` 不保证当前可以重置；其他窗口额度和账号限制仍然生效。权益查询失败时返回错误，不用 `0` 代替失败。
 
 ::: info 配额说明
 
@@ -134,6 +145,7 @@ curl https://zenmux.ai/api/v1/management/subscription/detail \
     "quota_5_hour": {
       "usage_percentage": 0.0715,
       "resets_at": "2026-03-24T08:35:09.000Z",
+      "remaining_resets": 1,
       "max_flows": 800,
       "used_flows": 57.2,
       "remaining_flows": 742.8,

@@ -269,6 +269,9 @@ onUnmounted(() => {
   flex-shrink: 0;
   width: 14px;
   height: 14px;
+}
+
+.arrow-icon {
   transform: rotate(180deg);
 }
 

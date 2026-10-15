@@ -499,7 +499,8 @@ curl https://zenmux.ai/api/v1/management/subscription/detail \
       "max_flows": 800,
       "used_flows": 57.2,
       "remaining_flows": 742.8,
-      "usage_percentage": 0.0715
+      "usage_percentage": 0.0715,
+      "remaining_resets": 1
     },
     "quota_7_day": {
       "max_flows": 6182,
