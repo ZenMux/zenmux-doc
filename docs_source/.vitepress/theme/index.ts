@@ -20,6 +20,11 @@ import DefaultTheme from "vitepress/theme";
 import "virtual:group-icons.css";
 import Select from "./select.vue";
 import ApiContainerLoader from "./api-container-loader.vue";
+import ApiRequestBody from "./api-request-body.vue";
+import {
+  requestVariantKey,
+  type RequestVariantSelection,
+} from "./composables/use-request-variant";
 import DocTabs from "./doc-tabs.vue";
 import Breadcrumb from "./breadcrumb.vue";
 import ContactCards from "./contact-cards.vue";
@@ -324,6 +329,7 @@ export default {
     });
   },
   enhanceApp({ app, router, siteData }) {
+    app.provide(requestVariantKey, ref<RequestVariantSelection | null>(null));
     const originGo = router.go;
     const siteBase = siteData.value.base || "/";
     // 注：base 已改为 "/docs/"，VitePress 原生按 /docs 前缀生成链接与 history，
@@ -535,5 +541,6 @@ export default {
     app.component("ContactCard", ContactCard);
     app.component("Accordion", Accordion);
     app.component("AccordionItem", AccordionItem);
+    app.component("ApiRequestBody", ApiRequestBody);
   },
 } satisfies Theme;

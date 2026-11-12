@@ -3,8 +3,10 @@ import { ref, onMounted, computed, watch, nextTick } from "vue";
 import { ElMessage, ElSelect, ElOption } from "element-plus";
 import { Copy as CopyIcon, Checked as CheckedIcon } from "./icons";
 import { useData, inBrowser } from "vitepress";
+import { useRequestVariant } from "./composables/use-request-variant";
 
 const { frontmatter, page } = useData();
+const { variants, currentVariant } = useRequestVariant();
 
 const isApiRequest = computed(() => frontmatter.value.pageClass === "api-page");
 
@@ -1038,7 +1040,11 @@ function initRequestData() {
       return example;
     });
     if (requestExamples.value.length) {
-      setCurrentExample(requestExamples.value[0]);
+      setCurrentExample(
+        requestExamples.value.find(
+          (example) => example.title === currentVariant.value?.example,
+        ) || requestExamples.value[0],
+      );
     }
     return;
   }
@@ -1118,7 +1124,20 @@ watch(currentExampleId, () => {
   if (options.length && !options.includes(currentLang.value)) {
     currentLang.value = options[0];
   }
+  const variant = variants.value.find(
+    (item) => item.example === currentExample.value?.title,
+  );
+  if (variant) currentVariant.value = variant;
 });
+
+// Only pages declaring requestVariants link their parameter and example tabs.
+watch(
+  () => currentVariant.value?.example,
+  (title) => {
+    const example = requestExamples.value.find((item) => item.title === title);
+    if (example) currentExampleId.value = example.id;
+  },
+);
 
 function htmlToPlain(html: string) {
   if (!html) return "";
