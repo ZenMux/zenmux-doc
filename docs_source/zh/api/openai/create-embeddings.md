@@ -20,7 +20,7 @@ head:
 POST https://zenmux.ai/api/v1/embeddings
 ```
 
-Create an Embedding 接口兼容 OpenAI 的 [Create an Embedding](https://platform.openai.com/docs/api-reference/embeddings/create) 接口，用于将输入文本转换为向量表示（embedding）。
+Create an Embedding 接口兼容 OpenAI 的 [Create an Embedding](https://platform.openai.com/docs/api-reference/embeddings/create) 接口，用于将输入转换为向量表示（embedding）。
 
 ## Request headers
 
@@ -34,9 +34,9 @@ Bearer Token 鉴权
 
 ## Request
 
-### input `string or array` <span style="color: #FA6062; font-weight: 400">\*</span>
+### input `string or array or object` <span style="color: #FA6062; font-weight: 400">\*</span>
 
-要生成 embedding 的输入文本，可以是字符串或字符串数组。如需在单个请求中嵌入多个输入，请传递字符串数组。
+要生成 embedding 的输入。如需在单个请求中分别嵌入多段文本，请传递字符串数组。
 
 支持的输入类型：
 
@@ -44,6 +44,8 @@ Bearer Token 鉴权
 - `array of strings` — 将被转化为 embedding 的文本字符串数组
 - `array of integers` — 将被转化为 embedding 的 token 整数数组
 - `array of integer arrays` — 将被转化为 embedding 的 token 整数二维数组
+
+- `object` — 包含 `content` 数组的多模态输入对象
 
 ::: warning 输入限制
 
@@ -53,11 +55,42 @@ Bearer Token 鉴权
 - 单次请求中所有输入的 token 总数不能超过 300,000
 :::
 
+#### 多模态输入
+
+将 `input` 设为包含 `content` 的对象。`content` 至少包含一个内容项，每项用 `type` 指定类型。同一个数组可以组合不同类型的内容，具体支持的模态、格式与大小限制取决于所选模型。
+
+| `type`        | 必填字段                                        | 可选字段                                   |
+| ------------- | ----------------------------------------------- | ------------------------------------------ |
+| `text`        | `text`，非空文本字符串                          |                                            |
+| `image_url`   | `image_url.url`，图片 URL 或 Base64 Data URL    |                                            |
+| `input_audio` | `input_audio.data`，音频 URL 或 Base64 Data URL | `input_audio.format`，格式字符串，如 `mp3` |
+| `input_video` | `input_video.data`，视频 URL 或 Base64 Data URL | `input_video.format`，格式字符串，如 `mp4` |
+| `input_file`  | `input_file.data`，文件 URL 或 Base64 Data URL  | `input_file.format`，格式字符串，如 `pdf`  |
+
+表中所有必填字段的值均为非空字符串。内联媒体使用带 MIME 类型的 Base64 Data URL，例如 `data:video/mp4;base64,…`。
+
+以下请求体使用 `google/gemini-embedding-2` 组合文本和图片。调用前请将示例图片 URL 替换为实际地址，或传入图片的 Base64 Data URL。
+
+```json
+{
+  "model": "google/gemini-embedding-2",
+  "input": {
+    "content": [
+      { "type": "text", "text": "A mountain lake at sunset" },
+      {
+        "type": "image_url",
+        "image_url": { "url": "https://example.com/lake.jpg" }
+      }
+    ]
+  }
+}
+```
+
 ### model `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 要使用的模型 ID，格式为 `<供应商>/<模型名称>`。
 
-当前支持的 embedding 模型：
+示例 embedding 模型：
 
 - `openai/text-embedding-3-large` — 高精度 embedding 模型，输出维度 3072
 - `openai/text-embedding-3-small` — 高效 embedding 模型，输出维度 1536
@@ -89,7 +122,7 @@ Bearer Token 鉴权
 
 ### data `array`
 
-embedding 对象数组，每个元素对应一个输入文本的 embedding 结果。
+embedding 对象数组，每个元素包含一个输入的 embedding 结果。
 
 #### data 对象
 

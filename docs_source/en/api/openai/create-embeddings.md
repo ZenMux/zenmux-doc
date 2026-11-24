@@ -20,7 +20,7 @@ Encountering errors during API calls? See the [API Error Codes Reference](/guide
 POST https://zenmux.ai/api/v1/embeddings
 ```
 
-The Create an Embedding endpoint is compatible with OpenAI's [Create an Embedding](https://platform.openai.com/docs/api-reference/embeddings/create) API, used to convert input text into vector representations (embeddings).
+The Create an Embedding endpoint is compatible with OpenAI's [Create an Embedding](https://platform.openai.com/docs/api-reference/embeddings/create) API and converts inputs into vector representations (embeddings).
 
 ## Request headers
 
@@ -34,9 +34,9 @@ Request content type, defaults to `application/json`
 
 ## Request
 
-### input `string or array` <span style="color: #FA6062; font-weight: 400">\*</span>
+### input `string or array or object` <span style="color: #FA6062; font-weight: 400">\*</span>
 
-The input text to generate embeddings for. Can be a string or an array of strings. To embed multiple inputs in a single request, pass an array of strings.
+The input to embed. To embed multiple pieces of text separately in a single request, pass an array of strings.
 
 Supported input types:
 
@@ -44,6 +44,8 @@ Supported input types:
 - `array of strings` — An array of text strings to be embedded
 - `array of integers` — An array of token integers to be embedded
 - `array of integer arrays` — A 2D array of token integers to be embedded
+
+- `object` — A multimodal input object containing a `content` array
 
 ::: warning Input Limitations
 
@@ -53,11 +55,42 @@ Supported input types:
 - Total token count across all inputs in a single request cannot exceed 300,000
 :::
 
+#### Multimodal input
+
+Set `input` to an object with a `content` array containing at least one part. Each part has a `type` field. You can combine different part types in the same array. Supported modalities, formats, and size limits depend on the selected model.
+
+| `type`        | Required field                                      | Optional field                                      |
+| ------------- | --------------------------------------------------- | --------------------------------------------------- |
+| `text`        | `text`, a non-empty text string                     |                                                     |
+| `image_url`   | `image_url.url`, an image URL or Base64 data URL    |                                                     |
+| `input_audio` | `input_audio.data`, an audio URL or Base64 data URL | `input_audio.format`, a format string such as `mp3` |
+| `input_video` | `input_video.data`, a video URL or Base64 data URL  | `input_video.format`, a format string such as `mp4` |
+| `input_file`  | `input_file.data`, a file URL or Base64 data URL    | `input_file.format`, a format string such as `pdf`  |
+
+All required fields in the table take non-empty strings. For inline media, use a Base64 data URL with a MIME type, such as `data:audio/mpeg;base64,…`.
+
+This request body combines text and an image with `google/gemini-embedding-2`. Before sending the request, replace the example image URL with an actual address or the image's Base64 data URL.
+
+```json
+{
+  "model": "google/gemini-embedding-2",
+  "input": {
+    "content": [
+      { "type": "text", "text": "A mountain lake at sunset" },
+      {
+        "type": "image_url",
+        "image_url": { "url": "https://example.com/lake.jpg" }
+      }
+    ]
+  }
+}
+```
+
 ### model `string` <span style="color: #FA6062; font-weight: 400">\*</span>
 
 The model ID to use, in the format `<provider>/<model-name>`.
 
-Currently supported embedding models:
+Example embedding models:
 
 - `openai/text-embedding-3-large` — High-accuracy embedding model with 3072 output dimensions
 - `openai/text-embedding-3-small` — Efficient embedding model with 1536 output dimensions
@@ -89,7 +122,7 @@ The object type, always `list`.
 
 ### data `array`
 
-An array of embedding objects, each corresponding to the embedding result of an input text.
+An array of embedding objects, each containing an embedding for an input.
 
 #### data object
 
